@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="msl">
   <head>
     <title>Million Songs Library</title>
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@
     {% } %}
   </head>
   <body>
+    <div ui-view></div>
     {% for (var item in o.htmlWebpackPlugin.files.js) { %}
     <script src="{%=o.htmlWebpackPlugin.files.js[item] %}"></script>
     {% } %}

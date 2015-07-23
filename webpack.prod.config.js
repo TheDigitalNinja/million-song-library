@@ -16,7 +16,7 @@ config.output.filename = "build.[hash].js";
 // add source uglify plugin
 config.plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
 // add angular annotate plugin
-config.plugins.push(new ngAnnotatePlugin());
+config.plugins.push(new ngAnnotatePlugin({add: true}));
 // find ExtractTextPlugin plugin and replace with one that used hash suffix
 config.plugins = _.map(config.plugins, function (plugin) {
   if (plugin instanceof ExtractTextPlugin) {
@@ -24,10 +24,13 @@ config.plugins = _.map(config.plugins, function (plugin) {
   }
   return plugin;
 });
-// find less loader and replace it with new loader that dose not uses source maps
+// find less and css loaders and replace them with new loaders that dose not uses source maps
 config.module.loaders = _.map(config.module.loaders, function (loader) {
-  if (loader.test.toString() === /\.less/.toString()) {
-    return {test: /\.less/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")}
+  switch (loader.test.toString()) {
+    case /\.css/.toString():
+      return {test: /\.css/, loader: ExtractTextPlugin.extract("style", "css")};
+    case /\.less/.toString():
+      return {test: /\.less/, loader: ExtractTextPlugin.extract("style", "css!less")};
   }
   return loader;
 });

@@ -1,0 +1,18 @@
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="headerCtrl as head">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" ui-sref="default.home">
+        Million Songs Library
+      </a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li ui-sref-active="active">
+        <a ui-sref="default.home">Home</a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="default.some">Some</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container default-container" ui-view></div>
