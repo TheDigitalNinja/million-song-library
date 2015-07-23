@@ -1,0 +1,18 @@
+{
+  "name": "million_songs_library",
+  "version": "1.0.0",
+  "authors": [
+    "Tomas-Sereikis <tomas.sereikis@gmail.com>"
+  ],
+  "main": "src/index.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}
