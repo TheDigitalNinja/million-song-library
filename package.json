@@ -4,10 +4,10 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
+    "postinstall": "bower install",
+    "pretest": "eslint src",
     "test": "karma start --singleRun true",
     "autotest": "karma start",
-    "validate": "npm-run-all eslint test",
-    "eslint": "eslint src",
     "build": "webpack --config webpack.prod.config.js",
     "serve-dev": "webpack-dev-server --port 3000 --content-base src --devtool source-map",
     "serve-prod": "http-server build -p 80"
@@ -19,6 +19,7 @@
     "babel-eslint": "^3.1.23",
     "babel-loader": "^5.3.2",
     "babel-runtime": "^5.8.3",
+    "bower": "^1.4.1",
     "css-loader": "^0.15.5",
     "eslint": "^0.24.1",
     "eslint-loader": "^0.14.2",
