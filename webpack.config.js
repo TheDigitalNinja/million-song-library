@@ -27,10 +27,11 @@ module.exports = {
       {test: /\.js$/, loader: "eslint-loader", exclude: exclude}
     ],
     loaders: [
-      {test: /\.js$/, exclude: exclude, loader: "babel-loader?stage=1&optional=runtime"},
+      {test: /\.js$/, exclude: exclude, loader: "ng-annotate?add=true!babel?stage=1&optional=runtime"},
       {test: /\.html$/, loader: "html"},
       {test: /\.eot|ttf|woff|woof2|svg/, loader: "file"},
-      {test: /\.less/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!less-loader?sourceMap")}
+      {test: /\.css/, loader: ExtractTextPlugin.extract("style", "css?sourceMap")},
+      {test: /\.less/, loader: ExtractTextPlugin.extract("style", "css?sourceMap!less?sourceMap")}
     ]
   },
   plugins: [
