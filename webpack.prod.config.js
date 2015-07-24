@@ -1,6 +1,5 @@
 var _ = require("lodash");
 var webpack = require("webpack");
-var ngAnnotatePlugin = require("ng-annotate-webpack-plugin");
 var LessPluginCleanCSS = require('less-plugin-clean-css');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var config = require("./webpack.config.js");
@@ -15,8 +14,6 @@ config.lessLoader = {lessPlugins: [new LessPluginCleanCSS({advanced: true})]};
 config.output.filename = "build.[hash].js";
 // add source uglify plugin
 config.plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
-// add angular annotate plugin
-config.plugins.push(new ngAnnotatePlugin({add: true}));
 // find ExtractTextPlugin plugin and replace with one that used hash suffix
 config.plugins = _.map(config.plugins, function (plugin) {
   if (plugin instanceof ExtractTextPlugin) {

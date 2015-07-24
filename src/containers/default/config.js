@@ -1,8 +1,11 @@
 import defaultContainerTemplate from "./layout.html";
 
-export default /*@ngInject*/ function defaultContainerConfig ($stateProvider) {
+function defaultContainerConfig ($stateProvider) {
+  "ngInject";
   $stateProvider.state({
     name: "default",
     template: defaultContainerTemplate
   });
 }
+
+export default defaultContainerConfig;

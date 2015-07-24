@@ -4,7 +4,6 @@ import routerModule from "angular-ui-router";
 import defaultConfig from "./config";
 import layoutsModule from "./containers/module";
 
-var ngModule = angular.module("msl", [routerModule, layoutsModule])
-  .config(defaultConfig);
-
-export default ngModule;
+export default angular.module("msl", [routerModule, layoutsModule])
+  .config(defaultConfig)
+  .name;

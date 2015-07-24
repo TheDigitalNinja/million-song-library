@@ -27,7 +27,7 @@ module.exports = {
       {test: /\.js$/, loader: "eslint-loader", exclude: exclude}
     ],
     loaders: [
-      {test: /\.js$/, exclude: exclude, loader: "babel?stage=1&optional=runtime"},
+      {test: /\.js$/, exclude: exclude, loader: "ng-annotate?add=true!babel?stage=1&optional=runtime"},
       {test: /\.html$/, loader: "html"},
       {test: /\.eot|ttf|woff|woof2|svg/, loader: "file"},
       {test: /\.css/, loader: ExtractTextPlugin.extract("style", "css?sourceMap")},

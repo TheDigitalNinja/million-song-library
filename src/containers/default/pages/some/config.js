@@ -1,9 +1,12 @@
 import defaultSomePageTemplate from "./template.html";
 
-export default /*@ngInject*/ function defaultContainerSomePageConfig ($stateProvider) {
+function defaultContainerSomePageConfig ($stateProvider) {
+  "ngInject";
   $stateProvider.state({
     url: "/some",
     name: "default.some",
     template: defaultSomePageTemplate
   });
 }
+
+export default defaultContainerSomePageConfig;
