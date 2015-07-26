@@ -40,3 +40,57 @@ sure you have called `npm run build` first.
 Webpack is running with `webpack.EnvironmentPlugin`, this means that we can define custom build environments, for e.g.
 if you insert `process.env.NODE_ENV` into your code it will be replaced with build environment `development` or `production`,
 this way you can do custom actions which are only required for specified environment.
+
+### File Layout Structure
+
+#### Source Files
+
+Source files are stored in `./src` directory. When webpack start build it starts from `./src/index.js` file.
+Library files from `npm` and `bower` can be accessed by simple imports like in `node.js`. We strongly suggest
+to use `npm` dependencies and use `bower` for dependencies that are not published to `npm`.
+
+```
+/src
+	/containers
+		# containers are layouts, different layouts have different controllers,
+		# pages, factories, stylesheets and other e.g. header controller might
+		# be different then in other layouts. Each container is a angular module
+		# with its custom config and dependencies. When using ui router you will
+		# define layout global states in container config.
+		/<containers list...>
+			/controllers
+			/factories
+			/pages
+				# container pages can have its controllers, factories, stylesheets
+				# and other. Each page is a different angular module so it can
+				# have custom config. When using angular ui router you will
+				# define it states in page module config - not in the global one!
+				# this way you get a clear view on page dependencies.
+				/<container pages list...>
+					/controllers
+					/factories
+					/stylesheets
+					/config.js
+					/module.js
+					/template.html
+			/stylesheets
+			/config.js
+			/run.js
+			/layout.html
+			/module.js
+		/module.js
+	/config.js
+	/run.js
+	/index.js
+```
+
+##### Ng Annotate
+
+Make sure that you use `"ngInject";` for angular injectable dependencies.
+Please read [ES6 support for ngAnnotate](https://github.com/olov/ng-annotate#es6-and-typescript-support) before.
+
+#### Test Files
+
+Test files are stored in `./test/specs` directory. When karma runner starts it includes files by
+`./test/specs/**/*.test.js` pattern only. Other files like source files that needs to be tested has to be
+imported in the test files.
