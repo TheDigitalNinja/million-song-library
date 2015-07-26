@@ -38,5 +38,5 @@ sure you have called `npm run build` first.
 ### Environment
 
 Webpack is running with `webpack.EnvironmentPlugin`, this means that we can define custom build environments, for e.g.
-if you insert `process.env.NODE_ENV` into your code it will be replaced with build environment `development` or `production`
-- this way you can do custom actions which are only required for specified environment.
+if you insert `process.env.NODE_ENV` into your code it will be replaced with build environment `development` or `production`,
+this way you can do custom actions which are only required for specified environment.
