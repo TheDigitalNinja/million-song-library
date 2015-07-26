@@ -35,6 +35,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.EnvironmentPlugin(["NODE_ENV"]),
     new HtmlWebpackPlugin({filename: "index.html", template: path.join(context, "index.tpl.html")}),
     new ExtractTextPlugin("stylesheet.css", {allChunks: true})
   ]

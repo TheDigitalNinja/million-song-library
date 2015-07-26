@@ -8,8 +8,8 @@
     "pretest": "eslint src",
     "test": "karma start --singleRun true",
     "autotest": "karma start",
-    "build": "webpack --config webpack.prod.config.js",
-    "serve-dev": "webpack-dev-server --port 3000 --content-base src --devtool source-map",
+    "build": "NODE_ENV=production webpack --config webpack.prod.config.js",
+    "serve-dev": "NODE_ENV=development webpack-dev-server --port 3000 --content-base src",
     "serve-prod": "http-server build -p 80"
   },
   "author": "",
