@@ -16,8 +16,8 @@ dependencies as well as it will trigger `bower install` for installing bower dep
 ### Testing
 
 Project is tested with `karma` with `jasmine` framework and `eslint` for reporting on patterns. You can run tests and
-pattern reporting by simply calling `npm test`. Note that if `eslint` fails then tests will not be triggered. You can also
-use `npm run autotest` for automated test runs when some source files changes.
+pattern reporting by simply calling `npm test`. Note that if `eslint` fails then tests will not be triggered.
+You can also use `npm run autotest` for automated test runs when some source files changes.
 
 ### Build
 
@@ -32,5 +32,11 @@ If any changed will be made during dev server run, source files will be automati
 ### Prod Server
 
 Start prod server by calling `npm run serve-prod`, this will try to mound `./build` directory to `80` port by
-using [http-server](https://github.com/indexzero/http-server) for serving static resources. Before you run this make sure you have called
-`npm run build` first.
+using [http-server](https://github.com/indexzero/http-server) for serving static resources. Before you run this make
+sure you have called `npm run build` first.
+
+### Environment
+
+Webpack is running with `webpack.EnvironmentPlugin`, this means that we can define custom build environments, for e.g.
+if you insert `process.env.NODE_ENV` into your code it will be replaced with build environment `development` or `production`
+- this way you can do custom actions which are only required for specified environment.
