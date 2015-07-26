@@ -6,7 +6,7 @@ module.exports = function (config) {
     basePath: "",
     frameworks: ["jasmine"],
     files: [
-      "./test/**/*.test.js"
+      "./test/specs/**/*.test.js"
     ],
     preprocessors: {
       "./test/**/*.test.js": ["webpack"]
