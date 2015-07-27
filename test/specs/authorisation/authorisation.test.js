@@ -1,7 +1,6 @@
-/* global describe, it, expect, beforeEach, module, jasmine */
+/* global describe, it, expect, beforeEach, jasmine */
 import angular from "angular";
-import "angular-mocks";
-import authorisationModule from "../../../src/authorisation/module";
+import authorisationModule from "authorisation/module";
 
 describe("authorisation", function () {
   var authorisation;

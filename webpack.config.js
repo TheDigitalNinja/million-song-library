@@ -30,7 +30,7 @@ module.exports = {
     {"document": "document"}
   ],
   resolve: {
-    modulesDirectories: ["node_modules", "bower_components"]
+    modulesDirectories: ["node_modules", "bower_components", "src"]
   },
   devtool: "source-map",
   module: {

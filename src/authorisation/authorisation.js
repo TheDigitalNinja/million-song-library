@@ -4,8 +4,10 @@ const EVENT_CHANGE_NAMESPACE = "change";
 
 function authorisation () {
   "ngInject";
+
   var events = new EventEmitter();
   var authorised = false;
+
   return {
     /**
      * triggers authorisation
