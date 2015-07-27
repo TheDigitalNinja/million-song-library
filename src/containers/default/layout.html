@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top" ng-controller="headerCtrl as head">
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="headerCtrl as header">
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" ui-sref="default.home">
@@ -11,6 +11,14 @@
       </li>
       <li ui-sref-active="active">
         <a ui-sref="default.some">Some</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li ng-if="header.authorised === false">
+        <a ui-sref="default.login">Login</a>
+      </li>
+      <li ng-if="header.authorised === true">
+        <a href ng-click="header.logout()">Logout</a>
       </li>
     </ul>
   </div>

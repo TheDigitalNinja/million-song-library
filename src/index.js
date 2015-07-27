@@ -1,4 +1,5 @@
 import "bootstrap/less/bootstrap.less";
+import "font-awesome/less/font-awesome.less";
 import angular from "angular";
 import routerModule from "angular-ui-router";
 import defaultConfig from "./config";

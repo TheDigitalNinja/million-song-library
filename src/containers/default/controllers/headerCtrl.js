@@ -1,7 +1,21 @@
-function headerCtrl ($scope, $log) {
+function headerCtrl ($scope, $state, authorisation) {
   "ngInject";
-  this.test = 1;
-  $log.info($scope);
+
+  /**
+   * on authorisation state change callback trigger
+   */
+  var onStateChange = () => {
+    this.authorised = authorisation.isAuthorised();
+    $scope.$evalAsync();
+  };
+
+  this.logout = () => {
+    authorisation.authorise(false);
+    $state.go("default.login");
+  };
+
+  authorisation.addChangeListener(onStateChange);
+  $scope.$on("$destroy", () => authorisation.removeChangeListener(onStateChange));
 }
 
 export default headerCtrl;

@@ -11,11 +11,7 @@ module.exports = function (config) {
     preprocessors: {
       "./test/**/*.test.js": ["webpack"]
     },
-    webpack: _.assign(
-      _.pick(webpackConfig, ["externals", "module", "resolve", "plugins"]), {
-        watch: true
-      }
-    ),
+    webpack: _.pick(webpackConfig, ["externals", "module", "resolve", "plugins"]),
     webpackServer: {
       noInfo: true
     },
