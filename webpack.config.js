@@ -1,4 +1,6 @@
+var _ = require("lodash");
 var path = require("path");
+var argv = require("yargs").argv;
 var webpack = require("webpack");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -6,6 +8,15 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var context = path.join(__dirname, "src");
 var build = path.join(__dirname, "build");
 var exclude = /node_modules|bower_components/;
+
+/**
+ * If environment is not defined then check if it is not passed by argument.
+ * Environment is passed by arguments because windows and unix handled environment
+ * variables differently.
+ */
+if (_.isUndefined(process.env.NODE_ENV)) {
+  process.env.NODE_ENV = argv.development ? "development" : "production";
+}
 
 module.exports = {
   context: context,
