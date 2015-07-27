@@ -21,7 +21,7 @@ config.plugins = _.map(config.plugins, function (plugin) {
   }
   return plugin;
 });
-// find less and css loaders and replace them with new loaders that dose not uses source maps
+// find less and css loaders and replace them with new loaders that does not use source maps
 config.module.loaders = _.map(config.module.loaders, function (loader) {
   switch (loader.test.toString()) {
     case /\.css/.toString():

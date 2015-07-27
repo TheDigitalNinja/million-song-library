@@ -3,9 +3,9 @@
 ## Developers
 
 Project is based on [Webpack](http://webpack.github.io/) and [Angular](https://angularjs.org/).
-Main `index.html` file is build by using webpacks [HTML Webpack Plugin](https://github.com/ampedandwired/html-webpack-plugin).
+Main `index.html` file is build by using webpack's [HTML Webpack Plugin](https://github.com/ampedandwired/html-webpack-plugin).
 Project is based on ES6 syntax, it is converted to ES5 by using [BabelJS](https://babeljs.io) compiler with state `1`,
-this means that we can you extra features like `await` and `async`. For stylesheets we use [LESS](http://lesscss.org/)
+this means that we can use extra features like `await` and `async`. For stylesheets we use [LESS](http://lesscss.org/)
 compiler.
 
 ### Installation
@@ -27,7 +27,7 @@ Mount them on any server and you are ready to go or alternatively use `npm run s
 ### Dev Server
 
 Start dev server by calling `npm run serve-dev`, this will automatically mound a server on `3000` localhost port.
-If any changed will be made during dev server run, source files will be automatically rebuild.
+If any change is made during dev server run, source files will be automatically rebuild.
 
 ### Prod Server
 
@@ -87,7 +87,7 @@ to use `npm` dependencies and use `bower` for dependencies that are not publishe
 ##### Ng Annotate
 
 Make sure that you use `"ngInject";` for angular injectable dependencies.
-Please read [ES6 support for ngAnnotate](https://github.com/olov/ng-annotate#es6-and-typescript-support) before.
+Please read [ES6 support for ngAnnotate](https://github.com/olov/ng-annotate#es6-and-typescript-support).
 
 #### Test Files
 
