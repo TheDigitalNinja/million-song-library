@@ -11,7 +11,7 @@ describe("headerCtrl", function () {
   beforeEach(angular.mock.module(defaultContainer, function ($provide) {
     $state = jasmine.createSpyObj("$state", ["go"]);
     authorisation = jasmine.createSpyObj("authorisation", [
-      "authorise",
+      "destroy",
       "isAuthorised",
       "addChangeListener",
       "removeChangeListener"
@@ -28,7 +28,7 @@ describe("headerCtrl", function () {
   it("should change authorise flag when state changed and change current state", function () {
     var headerCtrl = $controller("headerCtrl", {$scope});
     headerCtrl.logout();
-    expect(authorisation.authorise).toHaveBeenCalled();
+    expect(authorisation.destroy).toHaveBeenCalled();
     expect($state.go).toHaveBeenCalledWith("default.login");
   });
 

@@ -23,14 +23,14 @@ describe("loginCtrl", function () {
   it("should trigger authorisation when login with google", function () {
     var loginCtrl = $controller("loginCtrl", {$scope});
     loginCtrl.loginWithGoogle();
-    expect(authorisation.authorise).toHaveBeenCalledWith(true);
+    expect(authorisation.authorise).toHaveBeenCalled();
     expect($state.go).toHaveBeenCalledWith("default.home");
   });
 
   it("should trigger authorisation when login with facebook", function () {
     var loginCtrl = $controller("loginCtrl", {$scope});
     loginCtrl.loginWithFacebook();
-    expect(authorisation.authorise).toHaveBeenCalledWith(true);
+    expect(authorisation.authorise).toHaveBeenCalled();
     expect($state.go).toHaveBeenCalledWith("default.home");
   });
 });

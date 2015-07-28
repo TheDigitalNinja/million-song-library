@@ -10,11 +10,19 @@ function authorisation () {
 
   return {
     /**
-     * triggers authorisation
-     * @param {boolean} state
+     * authorise user and create user session
+     * and emit state change event
      */
-    authorise(state) {
-      authorised = state;
+    authorise() {
+      authorised = true;
+      events.emit(EVENT_CHANGE_NAMESPACE);
+    },
+    /**
+     * destroy user session
+     * and emit state change event
+     */
+    destroy() {
+      authorised = false;
       events.emit(EVENT_CHANGE_NAMESPACE);
     },
     /**

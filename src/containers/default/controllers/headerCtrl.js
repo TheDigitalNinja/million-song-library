@@ -10,7 +10,7 @@ function headerCtrl ($scope, $state, authorisation) {
   };
 
   this.logout = () => {
-    authorisation.authorise(false);
+    authorisation.destroy();
     $state.go("default.login");
   };
 
