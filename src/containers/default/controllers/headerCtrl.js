@@ -1,11 +1,13 @@
 function headerCtrl ($scope, $state, authorisation) {
   "ngInject";
 
-  /**
-   * on authorisation state change callback trigger
-   */
   var onStateChange = () => {
     this.authorised = authorisation.isAuthorised();
+    if (this.authorised) {
+      this.login = authorisation.getUserData("login");
+    } else {
+      delete this.login;
+    }
     $scope.$evalAsync();
   };
 

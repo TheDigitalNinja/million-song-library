@@ -1,20 +1,30 @@
+import _ from "lodash";
+import assert from "assert";
 import {EventEmitter} from "events";
 
 const EVENT_CHANGE_NAMESPACE = "change";
+const LOGIN_EMPTY = "Login is empty!";
+const PASSWORD_EMPTY = "Password is empty!";
 
 function authorisation () {
   "ngInject";
 
   var events = new EventEmitter();
   var authorised = false;
+  var authorisedData = {};
 
   return {
     /**
      * authorise user and create user session
      * and emit state change event
+     * @param {{login: string, password: string}} credentials
      */
-    authorise() {
+    authorise({login: login, password: password}) {
+      assert.ifError(_.isEmpty(login) ? LOGIN_EMPTY : false);
+      assert.ifError(_.isEmpty(password) ? PASSWORD_EMPTY : false);
       authorised = true;
+      authorisedData.login = login;
+      authorisedData.password = password;
       events.emit(EVENT_CHANGE_NAMESPACE);
     },
     /**
@@ -23,7 +33,20 @@ function authorisation () {
      */
     destroy() {
       authorised = false;
+      authorisedData = {};
       events.emit(EVENT_CHANGE_NAMESPACE);
+    },
+    /**
+     * get user data
+     * @param {string|null} param
+     * @return {*}
+     */
+    getUserData(param = null) {
+      if (_.isNull(param)) {
+        return authorisedData;
+      } else {
+        return _.result(authorisedData, param);
+      }
     },
     /**
      * returns if user is authorised

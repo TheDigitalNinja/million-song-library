@@ -1,13 +1,8 @@
 function loginCtrl ($state, authorisation) {
   "ngInject";
 
-  this.loginWithGoogle = () => {
-    authorisation.authorise();
-    $state.go("default.home");
-  };
-
-  this.loginWithFacebook = () => {
-    authorisation.authorise();
+  this.submit = () => {
+    authorisation.authorise({login: this.email, password: this.password});
     $state.go("default.home");
   };
 }

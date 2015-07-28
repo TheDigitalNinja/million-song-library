@@ -1,14 +1,15 @@
 <div ng-controller="loginCtrl as login">
-  <h1 class="text-center">Log Into Million Song Library</h1>
   <div class="login-max-container text-center">
-    <h5>Log in with your social accounts</h5>
-    <button class="btn btn-default btn-block" ng-click="login.loginWithGoogle()">
-      <i class="fa fa-fw fa-google"></i>
-      Login with Google
-    </button>
-    <button class="btn btn-default btn-block" ng-click="login.loginWithFacebook()">
-      <i class="fa fa-fw fa-facebook"></i>
-      Login with Facebook
-    </button>
+    <form name="credentials" ng-submit="login.submit()">
+      <div class="form-group">
+        <input type="email" id="email" ng-model="login.email" class="form-control" placeholder="Email address" required autofocus>
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" ng-model="login.password" class="form-control" placeholder="Password" required>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit" ng-disabled="credentials.$invalid">
+        Sign in
+      </button>
+    </form>
   </div>
 </div>

@@ -14,7 +14,8 @@ describe("headerCtrl", function () {
       "destroy",
       "isAuthorised",
       "addChangeListener",
-      "removeChangeListener"
+      "removeChangeListener",
+      "getUserData"
     ]);
     $provide.value("$state", $state);
     $provide.value("authorisation", authorisation);
@@ -32,16 +33,21 @@ describe("headerCtrl", function () {
     expect($state.go).toHaveBeenCalledWith("default.login");
   });
 
-  it("should change authorised flag when state changes", function () {
+  it("should change authorised scope data", function () {
     var bind, headerCtrl;
     authorisation.addChangeListener.and.callFake(cb => bind = cb);
     headerCtrl = $controller("headerCtrl", {$scope});
     authorisation.isAuthorised.and.returnValue(false);
     bind();
     expect(headerCtrl.authorised).toBeFalsy();
+    expect(authorisation.getUserData).not.toHaveBeenCalled();
+    expect();
     authorisation.isAuthorised.and.returnValue(true);
+    authorisation.getUserData.and.returnValue("login@email");
     bind();
     expect(headerCtrl.authorised).toBeTruthy();
+    expect(authorisation.getUserData).toHaveBeenCalledWith("login");
+    expect(headerCtrl.login).toBe("login@email");
   });
 
   it("should not call change listener when state changes after scope is destroyed", function () {

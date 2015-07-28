@@ -20,17 +20,12 @@ describe("loginCtrl", function () {
     $scope = $rootScope.$new();
   }));
 
-  it("should trigger authorisation when login with google", function () {
+  it("should authorise with credentials", function () {
     var loginCtrl = $controller("loginCtrl", {$scope});
-    loginCtrl.loginWithGoogle();
-    expect(authorisation.authorise).toHaveBeenCalled();
-    expect($state.go).toHaveBeenCalledWith("default.home");
-  });
-
-  it("should trigger authorisation when login with facebook", function () {
-    var loginCtrl = $controller("loginCtrl", {$scope});
-    loginCtrl.loginWithFacebook();
-    expect(authorisation.authorise).toHaveBeenCalled();
+    loginCtrl.email = "test@test.com";
+    loginCtrl.password = "password";
+    loginCtrl.submit();
+    expect(authorisation.authorise).toHaveBeenCalledWith({login: loginCtrl.email, password: loginCtrl.password});
     expect($state.go).toHaveBeenCalledWith("default.home");
   });
 });
