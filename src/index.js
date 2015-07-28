@@ -1,9 +1,10 @@
 import "bootstrap/less/bootstrap.less";
+import "font-awesome/less/font-awesome.less";
 import angular from "angular";
-import routerModule from "angular-ui-router";
+import router from "angular-ui-router";
+import layouts from "./containers/module";
 import defaultConfig from "./config";
-import layoutsModule from "./containers/module";
 
-export default angular.module("msl", [routerModule, layoutsModule])
+export default angular.module("msl", [router, layouts])
   .config(defaultConfig)
   .name;

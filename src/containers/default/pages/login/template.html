@@ -1,0 +1,19 @@
+<div ng-controller="loginCtrl as login">
+  <div class="login-max-container text-center">
+    <form name="credentials" ng-submit="login.submit()">
+      <div class="form-group"
+           ng-class="{'has-error': credentials.email.$invalid && credentials.email.$dirty}">
+        <input type="email" name="email" ng-model="login.email" class="form-control"
+               placeholder="Email address" required autofocus>
+      </div>
+      <div class="form-group"
+           ng-class="{'has-error': credentials.password.$invalid && credentials.password.$dirty}">
+        <input type="password" name="password" ng-model="login.password" class="form-control"
+               placeholder="Password" required>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit" ng-disabled="credentials.$invalid">
+        Sign in
+      </button>
+    </form>
+  </div>
+</div>

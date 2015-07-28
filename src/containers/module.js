@@ -1,5 +1,5 @@
 import angular from "angular";
-import defaultContainerModule from "./default/module";
+import defaultContainer from "./default/module";
 
-export default angular.module("msl.containers", [defaultContainerModule])
+export default angular.module("msl.containers", [defaultContainer])
   .name;
