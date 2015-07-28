@@ -25,14 +25,14 @@ describe("headerCtrl", function () {
     $scope = $rootScope.$new();
   }));
 
-  it("should trigger logout", function () {
+  it("should change authorise flag when state changed and change current state", function () {
     var headerCtrl = $controller("headerCtrl", {$scope});
     headerCtrl.logout();
     expect(authorisation.authorise).toHaveBeenCalled();
     expect($state.go).toHaveBeenCalledWith("default.login");
   });
 
-  it("should change authorised flag whn state changes", function () {
+  it("should change authorised flag when state changes", function () {
     var bind, headerCtrl;
     authorisation.addChangeListener.and.callFake(cb => bind = cb);
     headerCtrl = $controller("headerCtrl", {$scope});
@@ -42,5 +42,16 @@ describe("headerCtrl", function () {
     authorisation.isAuthorised.and.returnValue(true);
     bind();
     expect(headerCtrl.authorised).toBeTruthy();
+  });
+
+  it("should not call change listener when state changes after scope is destroyed", function () {
+    var bind, headerCtrl;
+    authorisation.addChangeListener.and.callFake(cb => bind = cb);
+    headerCtrl = $controller("headerCtrl", {$scope});
+    authorisation.isAuthorised.and.returnValue(false);
+    bind();
+    expect(headerCtrl.authorised).toBeFalsy();
+    $scope.$destroy();
+    expect(authorisation.removeChangeListener).toHaveBeenCalledWith(bind);
   });
 });
