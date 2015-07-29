@@ -1,5 +1,3 @@
-function artistCtrl () {
-  window.console.log("ateiname");
-}
+function artistCtrl () { }
 
 export default artistCtrl;
