@@ -23,13 +23,19 @@
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-if="header.authorised === true">
       <li>
-        <p class="navbar-text">
-          <i class="fa fa-fw fa-user"></i>
+        <a href="#" ng-click="$event.preventDefault();" dropdown>
           {{header.login}}
-        </p>
-      </li>
-      <li>
-        <a href ng-click="header.logout()">Logout</a>
+          <i class="fa fa-angle-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a ui-sref="default.personalContent">Personal Content</a>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+            <a href="#" ng-click="$event.preventDefault();" ng-click="header.logout()">Logout</a>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
