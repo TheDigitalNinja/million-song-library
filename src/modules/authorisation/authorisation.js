@@ -3,15 +3,32 @@ import assert from "assert";
 import {EventEmitter} from "events";
 
 const EVENT_CHANGE_NAMESPACE = "change";
+const COOKIE_NAMESPACE = "authorisation";
 const LOGIN_EMPTY = "Login is empty!";
 const PASSWORD_EMPTY = "Password is empty!";
 
-function authorisation () {
+function authorisation (storage) {
   "ngInject";
 
+  var stored = storage.get(COOKIE_NAMESPACE);
   var events = new EventEmitter();
-  var authorised = false;
-  var authorisedData = {};
+  var authorised = Boolean(stored);
+  var authorisedData = stored || {};
+
+  /**
+   * when user authorises save data to cookies
+   * otherwise delete data from cookies
+   */
+  function onAuthorisationStateChange () {
+    if (authorised) {
+      storage.put(COOKIE_NAMESPACE, authorisedData);
+    } else {
+      storage.remove(COOKIE_NAMESPACE);
+    }
+  }
+
+  // register authorisation state change event
+  events.on(EVENT_CHANGE_NAMESPACE, onAuthorisationStateChange);
 
   return {
     /**
