@@ -1,7 +1,7 @@
 import "./stylesheets/default.less";
 import angular from "angular";
 import router from "angular-ui-router";
-import authorisation from "authorisation/module";
+import authorisation from "modules/authorisation/module";
 import defaultContainerLoginPageConfig from "./config";
 import loginCtrl from "./controllers/loginCtrl.js";
 
