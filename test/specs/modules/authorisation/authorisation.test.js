@@ -92,7 +92,7 @@ describe("authorisation factory", function () {
       authorisation = _authorisation_;
     }));
 
-    it("should have data from session", function () {
+    it("should have startup data from session", function () {
       expect(storage.get).toHaveBeenCalledWith("authorisation");
       expect(authorisation.isAuthorised()).toBeTruthy();
       expect(authorisation.getUserData()).toEqual(loginCredentials);
