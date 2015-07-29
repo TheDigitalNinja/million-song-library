@@ -20,8 +20,8 @@ function authorisation () {
      * @param {{login: string, password: string}} credentials
      */
     authorise({login: login, password: password}) {
-      assert.ifError(_.isEmpty(login) ? LOGIN_EMPTY : false);
-      assert.ifError(_.isEmpty(password) ? PASSWORD_EMPTY : false);
+      assert.ok(!_.isEmpty(login), LOGIN_EMPTY);
+      assert.ok(!_.isEmpty(password), PASSWORD_EMPTY);
       authorised = true;
       authorisedData.login = login;
       authorisedData.password = password;
