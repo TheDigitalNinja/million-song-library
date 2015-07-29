@@ -6,7 +6,7 @@ import homePage from "./pages/home/module";
 import loginPage from "./pages/login/module";
 import artistPage from "./pages/artist/module";
 import songPage from "./pages/song/module";
-import personalContentPage from "./pages/personal-content/module";
+import personalContentPage from "./pages/my/module";
 import defaultContainerConfig from "./config";
 import headerCtrl from "./controllers/headerCtrl";
 
