@@ -1,4 +1,4 @@
-import defaultMyPageTemplate from "./template.html";
+import defaultMyPageTemplate from "./templates/default.html";
 import defaultMyPageHistoryTemplate from "./templates/history.html";
 import defaultMyPageLikesTemplate from "./templates/likes.html";
 import defaultMyPageLibraryTemplate from "./templates/library.html";
