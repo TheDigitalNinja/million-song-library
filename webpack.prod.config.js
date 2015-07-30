@@ -20,7 +20,7 @@ config.plugins.push(new CleanPlugin(["build"]));
 // find ExtractTextPlugin plugin and replace with one that used hash suffix
 config.plugins = _.map(config.plugins, function (plugin) {
   if (plugin instanceof ExtractTextPlugin) {
-    return new ExtractTextPlugin("stylesheet.[hash].css", {allChunks: true});
+    return new ExtractTextPlugin("stylesheet.css", {allChunks: true});
   }
   return plugin;
 });

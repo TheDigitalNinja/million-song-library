@@ -1,0 +1,61 @@
+
+// ==========================================================================
+// Typography
+// ==========================================================================
+
+// Default font style
+//
+// Markup:
+// <p>This is the default font style.</p>
+//
+// Styleguide 2.1
+
+body {
+  font-family: @defaultFont;
+  -webkit-font-smoothing: antialiased;
+  color: @black;
+}
+
+
+// Headlines
+//
+// Markup:
+// <h1>h1 - Headline one</h1>
+// <h2>h2 - Headline two</h2>
+// <h3>h3 - Headline three</h3>
+// <h4>h4 - Headline four</h4>
+// <h5>h5 - Headline five</h5>
+// <h6>h6 - Headline six</h6>
+//
+// Styleguide 2.2
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6, {
+  font-family: @defaultFont;
+}
+
+
+// Text colors
+//
+// .text-black - Set text color
+// .text-gray - "   "
+// .text-white - "   "
+//
+// Markup:
+// <p class="{{modifier_class}}">Lorem Ipsum is simply dummy text...</p>
+//
+// Styleguide 2.3
+
+.text-black {
+  color: @black !important;
+}
+.text-gray {
+  color: @gray-1 !important;
+}
+.text-white {
+  color: @white !important;
+}

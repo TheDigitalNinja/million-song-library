@@ -41,6 +41,12 @@ Webpack is running with `webpack.EnvironmentPlugin`, this means that we can defi
 if you insert `process.env.NODE_ENV` into your code it will be replaced with build environment `development` or `production`,
 this way you can do custom actions which are only required for specified environment.
 
+### Styleguide
+
+To create a styleguide of the project run `npm run styleguide`, this will
+generate styleguide's files using [Kss-node](https://github.com/kss-node/kss-node)
+in /build/styleguide/ directory.
+
 ### File Layout Structure
 
 #### Source Files
