@@ -30,7 +30,9 @@ module.exports = {
     {"document": "document"}
   ],
   resolve: {
-    modulesDirectories: ["node_modules", "bower_components", "src"]
+    modulesDirectories: ["node_modules", "bower_components"],
+    extensions: ["", ".js", ".json"],
+    root: [context]
   },
   devtool: "source-map",
   module: {
@@ -47,6 +49,8 @@ module.exports = {
   },
   plugins: [
     new webpack.EnvironmentPlugin(["NODE_ENV"]),
+    // use jquery as a global because some libraries like bootstrap expects it to be global
+    new webpack.ProvidePlugin({jQuery: "jquery"}),
     new HtmlWebpackPlugin({filename: "index.html", template: path.join(context, "index.tpl.html")}),
     new ExtractTextPlugin("stylesheet.css", {allChunks: true})
   ]

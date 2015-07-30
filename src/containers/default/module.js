@@ -6,6 +6,7 @@ import homePage from "./pages/home/module";
 import loginPage from "./pages/login/module";
 import artistPage from "./pages/artist/module";
 import songPage from "./pages/song/module";
+import personalContentPage from "./pages/my/module";
 import defaultContainerConfig from "./config";
 import headerCtrl from "./controllers/headerCtrl";
 
@@ -15,7 +16,8 @@ export default angular.module("msl.containers.default", [
   homePage,
   loginPage,
   artistPage,
-  songPage
+  songPage,
+  personalContentPage
 ])
   .config(defaultContainerConfig)
   .controller("headerCtrl", headerCtrl)
