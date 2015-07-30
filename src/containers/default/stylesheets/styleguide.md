@@ -7,6 +7,7 @@ This is the first draft of the CSS styleguide for Million Songs Library.
   1. [LESS CSS Preprocessor](#the-setup-less-css-preprocessor)
   2. [KSS](#the-setup-kss)
   3. [Twitter Bootstrap](#the-setup-bootstrap)
+  4. [Font Awesome](#the-setup-font-awesome)
 
 
 
@@ -36,3 +37,9 @@ At the root of this CSS architecture lies Twitter's [Bootstrap](http://getbootst
 - [Bootstrap: Grid system](http://getbootstrap.com/css/#grid)
 - [Bootstrap: Helper classes](http://getbootstrap.com/css/#helper-classes)
 - [Bootstrap: Responsive Utilities](http://getbootstrap.com/css/#responsive-utilities)
+
+<a name="the-setup-font-awesome"></a>
+### Font Awesome
+Font Awesome gives you scalable vector icons that can instantly be customized - size, color, drop shadow, and anything that can be done with the power of CSS.
+
+- [Font Awesome: Homepage](http://fortawesome.github.io/Font-Awesome/)
