@@ -12,7 +12,7 @@ config.eslint = {failOnError: true, failOnWarning: true};
 // add clean css plugin
 config.lessLoader = {lessPlugins: [new LessPluginCleanCSS({advanced: true})]};
 // set output file to use hash
-config.output.filename = "build.[hash].js";
+config.output.filename = "build.js";
 // add source uglify plugin
 config.plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
 // remove previous build files
