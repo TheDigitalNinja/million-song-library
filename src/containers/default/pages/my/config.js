@@ -2,13 +2,20 @@ import defaultMyPageTemplate from "./templates/default.html";
 import defaultMyPageHistoryTemplate from "./templates/history.html";
 import defaultMyPageLikesTemplate from "./templates/likes.html";
 import defaultMyPageLibraryTemplate from "./templates/library.html";
+import {USER_REDIRECT_TO, ROLE_USER} from "constants";
 
 function defaultContainerMyPageConfig ($stateProvider) {
   "ngInject";
   $stateProvider
     .state({
       name: "default.my",
-      template: defaultMyPageTemplate
+      template: defaultMyPageTemplate,
+      data: {
+        permissions: {
+          only: [ROLE_USER],
+          redirectTo: USER_REDIRECT_TO
+        }
+      }
     })
     .state({
       url: "/my/history",

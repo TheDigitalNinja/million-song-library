@@ -30,7 +30,9 @@ module.exports = {
     {"document": "document"}
   ],
   resolve: {
-    modulesDirectories: ["node_modules", "bower_components", "src"]
+    modulesDirectories: ["node_modules", "bower_components"],
+    extensions: ["", ".js", ".json"],
+    root: [context]
   },
   devtool: "source-map",
   module: {
