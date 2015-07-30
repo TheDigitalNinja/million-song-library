@@ -9,6 +9,7 @@
     "test": "karma start --singleRun true",
     "autotest": "karma start",
     "build": "webpack --config webpack.prod.config.js",
+    "styleguide": "kss-node --config=kss-config.json",
     "serve-dev": "webpack-dev-server --port 3000 --content-base build/ --development",
     "serve-prod": "http-server build -p 80"
   },
@@ -54,6 +55,7 @@
     "assert": "^1.3.0",
     "bootstrap": "^3.3.5",
     "font-awesome": "^4.3.0",
-    "lodash": "^3.10.0"
+    "lodash": "^3.10.0",
+    "kss": "^2.1.0"
   }
 }
