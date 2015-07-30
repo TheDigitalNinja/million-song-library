@@ -45,7 +45,7 @@ this way you can do custom actions which are only required for specified environ
 
 To create a styleguide of the project run `npm run styleguide`, this will
 generate styleguide's files using [Kss-node](https://github.com/kss-node/kss-node)
-in /build/styleguide/ directory.
+in `/build/styleguide/` directory.
 
 ### File Layout Structure
 
