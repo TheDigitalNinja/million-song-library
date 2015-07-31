@@ -14,7 +14,106 @@
 // Styleguide 3.1
 
 .item-name {
-  color: #777777;
+  color: @color-text-grey;
   text-transform: uppercase;
   font-size:  16px;
+}
+
+
+// Image container
+//
+// Element for showing image of Artist / Song / Album. Adding
+// `image-container-margin` class adds `margin-bottom: 10px`, `small-image`
+// makes image container to be `150px` width and height instead of default
+// `200px`.
+//
+// Markup:
+// <div class="image-container">
+//   <img class="img-responsive" src="" alt="" />
+// </div>
+//
+// Styleguide 3.2
+
+@image-size-lg: 200px;
+@image-size-sm: 150px;
+
+.image-container {
+  width: @image-size-lg;
+  height: @image-size-lg;
+  background-color: @gray-2;
+}
+
+.image-container-margin {
+  margin-bottom: 10px;
+}
+
+.small-image {
+  width: @image-size-sm;
+  height: @image-size-sm;
+}
+
+// List of elements (layout 1)
+//
+// List of elements, for example: Song list. Uses `[Image container]` for
+// showing image.
+//
+// Markup:
+// <div>
+//   <div class="image-container">
+//     <img class="img-responsive" src="" alt="" />
+//   </div>
+//   <h3 class="track-id">Track ID</h3>
+//   <p>Artist Name</p>
+// </div>
+//
+// Styleguide 3.3
+
+.track-id {
+  margin-top: 10px;
+}
+
+
+// List of elements (layout 2, horizontal)
+//
+// List of elements, for example: Song list. Uses `[Image container]` for
+// showing image.
+//
+// Markup:
+// <div class="horizontal-layout">
+//   <div class="image-container small-image">
+//     <img class="img-responsive" src="" alt="" />
+//   </div>
+//   <div class="track-info">
+//     <div class="track-artist-name-container">
+//       <h2>Track ID</h2>
+//       <p>Artist Name</p>
+//     </div>
+//     <div>
+//       <span class="text-gray">7:21</span> | <span class="text-gray">Genre Name</span>
+//     </div>
+//   </div>
+//   <div class="clear"></div>
+// </div>
+//
+// Styleguide 3.4
+
+.horizontal-layout {
+  padding-bottom: 10px;
+
+  .image-container {
+    float: left;
+    margin-right: 10px;
+  }
+
+  .track-info {
+    float: left;
+
+    h2 {
+      margin-top: 5px;
+    }
+
+    .track-artist-name-container {
+      height: 120px;
+    }
+  }
 }
