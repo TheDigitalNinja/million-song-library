@@ -6,9 +6,11 @@ import homePage from "./pages/home/module";
 import loginPage from "./pages/login/module";
 import artistPage from "./pages/artist/module";
 import songPage from "./pages/song/module";
+import searchPage from "./pages/search/module";
 import personalContentPage from "./pages/my/module";
 import defaultContainerConfig from "./config";
 import headerCtrl from "./controllers/headerCtrl";
+import headerSearchCtrl from "./controllers/headerSearchCtrl";
 
 export default angular.module("msl.containers.default", [
   router,
@@ -17,8 +19,10 @@ export default angular.module("msl.containers.default", [
   loginPage,
   artistPage,
   songPage,
-  personalContentPage
+  personalContentPage,
+  searchPage
 ])
   .config(defaultContainerConfig)
   .controller("headerCtrl", headerCtrl)
+  .controller("headerSearchCtrl", headerSearchCtrl)
   .name;
