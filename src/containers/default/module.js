@@ -2,6 +2,7 @@ import "./stylesheets/default.less";
 import angular from "angular";
 import router from "angular-ui-router";
 import authorisation from "modules/authorisation/module";
+import player from "modules/player/module";
 import homePage from "./pages/home/module";
 import loginPage from "./pages/login/module";
 import artistPage from "./pages/artist/module";
@@ -15,6 +16,7 @@ import headerSearchCtrl from "./controllers/headerSearchCtrl";
 export default angular.module("msl.containers.default", [
   router,
   authorisation,
+  player,
   homePage,
   loginPage,
   artistPage,

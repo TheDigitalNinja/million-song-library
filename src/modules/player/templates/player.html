@@ -1,0 +1,25 @@
+<footer class="player-footer" ng-if="player.active">
+  <div class="container">
+    <div class="btn-group">
+      <button class="btn btn-default">
+        <i class="fa fa-backward"></i>
+      </button>
+      <button class="btn btn-default">
+        <i class="fa fw fa-play"></i>
+      </button>
+      <button class="btn btn-default">
+        <i class="fa fw fa-forward"></i>
+      </button>
+      <button class="btn btn-default">
+        <i class="fa fw fa-volume-up"></i>
+      </button>
+    </div>
+    <div>Artist Name - Track ID</div>
+    <div class="track-timeline"></div>
+    <div>
+      <button class="btn btn-default" ng-click="player.close()">
+        <i class="fa fw fa-times"></i>
+      </button>
+    </div>
+  </div>
+</footer>
