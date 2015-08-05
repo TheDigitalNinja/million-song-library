@@ -9,6 +9,14 @@
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="i in home.getNumber(home.itemsCount) track by $index">
       <div class="image-container">
         <img class="img-responsive" src="" alt="" />
+        <div class="image-overlay">
+          <div class="overlay-control first-control">
+            <i class="fa fa-play"></i> Play
+          </div>
+          <div class="overlay-control">
+            <i class="fa fa-heart"></i> Add to library
+          </div>
+        </div>
       </div>
       <h3 class="track-id">Track ID</h3>
       <p>Artist Name</p>
@@ -25,6 +33,14 @@
     <div class="horizontal-layout col-xs-12 col-lg-6" ng-repeat="i in home.getNumber(home.itemsCount) track by $index">
       <div class="image-container small-image">
         <img class="img-responsive" src="" alt="" />
+        <div class="image-overlay">
+          <div class="overlay-control first-control">
+            <i class="fa fa-play"></i> Play
+          </div>
+          <div class="overlay-control">
+            <i class="fa fa-heart"></i> Add to library
+          </div>
+        </div>
       </div>
       <div class="track-info">
         <div class="track-artist-name-container">
