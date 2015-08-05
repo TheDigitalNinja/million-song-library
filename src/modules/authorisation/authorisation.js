@@ -1,4 +1,5 @@
 import _ from "lodash";
+import $ from "jquery";
 import assert from "assert";
 import {EventEmitter} from "events";
 
@@ -7,7 +8,7 @@ const COOKIE_NAMESPACE = "authorisation";
 const LOGIN_EMPTY = "Login is empty!";
 const PASSWORD_EMPTY = "Password is empty!";
 
-function authorisation (storage) {
+function authorisation ($http, sessionToken, storage) {
   "ngInject";
 
   var stored = storage.get(COOKIE_NAMESPACE);
@@ -36,12 +37,19 @@ function authorisation (storage) {
      * and emit state change event
      * @param {{login: string, password: string}} credentials
      */
-    authorise({login: login, password: password}) {
+    async authorise({login: login, password: password}) {
       assert.ok(!_.isEmpty(login), LOGIN_EMPTY);
       assert.ok(!_.isEmpty(password), PASSWORD_EMPTY);
+      // make api request
+      var url = [process.env.API_HOST, "/api/loginedge/login"].join("");
+      var data = $.param({email: login, password});
+      var headers = {"Content-Type": "application/x-www-form-urlencoded"};
+      var response = await $http({method: "POST", url, data, headers});
+      // save session token
+      sessionToken.set(response.data.sessionToken);
+      // save authorised data
       authorised = true;
       authorisedData.login = login;
-      authorisedData.password = password;
       events.emit(EVENT_CHANGE_NAMESPACE);
     },
     /**
@@ -49,6 +57,7 @@ function authorisation (storage) {
      * and emit state change event
      */
     destroy() {
+      sessionToken.destroy();
       authorised = false;
       authorisedData = {};
       events.emit(EVENT_CHANGE_NAMESPACE);

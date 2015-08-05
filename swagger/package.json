@@ -1,0 +1,5 @@
+{
+  "name": "msl-swagger",
+  "description": "Million Song Library API Project",
+  "main": "app.js"
+}

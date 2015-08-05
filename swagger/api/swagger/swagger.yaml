@@ -1,0 +1,459 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Million Songs API
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths
+basePath: /
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /api/loginedge/login:
+    x-swagger-router-controller: login_controller
+    post:
+      tags:
+        - Login
+      consumes: ["application/x-www-form-urlencoded"]
+      schemes: ["https"]
+      description: Logs a user into the system
+      operationId: login
+      parameters:
+        -
+          name: email
+          in: formData
+          description: Login to the app with user credentials
+          required: true
+          type: string
+        -
+          name: password
+          in: formData
+          description: user password
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Successfully logged on the user
+          schema:
+            $ref: "#/definitions/LoginSuccessResponse"
+        "401":
+          description: Bad Login Credentials
+          schema:
+            $ref: "#/definitions/StatusResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/loginedge/resetpassword:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: login_controller
+    post:
+      description: Resets the user's password via email.
+      tags:
+        - Login
+      operationId: reset_password
+      parameters:
+        - name: email
+          in: formData
+          description: Email used to identify the account
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/StatusResponse"
+        "400":
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/catalogedge/user:
+    x-swagger-router-controller: catalog_controller
+    get:
+      description: Get the current user's account info
+      tags:
+        - Catalog
+      operationId: user_info
+      parameters:
+        -
+          name: sessionToken
+          in: header
+          description: Valid Session Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UserInfo"
+        "400":
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+  /api/catalogedge/songinfo:
+    x-swagger-router-controller: catalog_controller
+    get:
+      description: Get a song's info from the database
+      tags:
+        - Catalog
+      operationId: song_info
+      parameters:
+        -
+          name: songId
+          in: query
+          description: The song's identification number.
+          required: true
+          type: string
+        -
+          name: sessionToken
+          in: header
+          description: Valid Session Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SongInfo"
+        "400":
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/catalogedge/albuminfo:
+    x-swagger-router-controller: catalog_controller
+    get:
+      description: Get data for an Album of songs
+      tags:
+        - Catalog
+      operationId: album_info
+      parameters:
+        -
+          name: albumId
+          in: query
+          description: Album identification number
+          required: true
+          type: string
+        -
+          name: sessionToken
+          in: header
+          description: Valid Session Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/AlbumInfo"
+        "400":
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/catalogedge/artistinfo:
+    x-swagger-router-controller: catalog_controller
+    get:
+      description: Get data on an Artist
+      tags:
+        - Catalog
+      operationId: artist_info
+      parameters:
+        -
+          name: artistId
+          in: query
+          description: Artist Identifier
+          required: true
+          type: string
+        -
+          name: sessionToken
+          in: header
+          description: Valid Session Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ArtistInfo"
+        "400":
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/imageedge/artistimage:
+    x-swagger-router-controller: image_controller
+    get:
+      description: Get an artist's picture.
+      tags:
+        - Image
+      operationId: artist_image
+      parameters:
+        -
+          name: artistId
+          in: query
+          description: Artist Identifier
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Successfully acquired artist image.
+          schema:
+            $ref: "#/definitions/Image"
+        "400":
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/imageedge/albumcover:
+    x-swagger-router-controller: image_controller
+    get:
+      description: Get an album cover
+      tags:
+        - Image
+      operationId: album_cover
+      parameters:
+        -
+          name: albumId
+          in: query
+          description: Album id
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Successfully acquired album cover image.
+          schema:
+            $ref: "#/definitions/Image"
+        "400":
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/imageedge/trackcover:
+    x-swagger-router-controller: image_controller
+    get:
+      description: Get a track cover
+      tags:
+        - Image
+      operationId: track_cover
+      parameters:
+        -
+          name: songId
+          in: query
+          description: Song id
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Successfully acquired track cover image.
+          schema:
+            $ref: "#/definitions/Image"
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/ratingsedge/ratesong/{songId}:
+    x-swagger-router-controller: rating_controller
+    put:
+      description: Update your rating of a song.
+      tags:
+        - Rating
+      operationId: rate_song
+      parameters:
+        -
+          name: songId
+          in: path
+          description: Id for the song that is being rated.
+          required: true
+          type: string
+        -
+          name: userId
+          in: formData
+          description: User Id
+          required: true
+          type: string
+        -
+          name: sessionToken
+          in: formData
+          description: Valid Session Token
+          required: true
+          type: string
+        -
+          name: rating
+          in: formData
+          description: User Rating of Song.
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Successfully sent rating data to server
+          schema:
+            $ref: "#/definitions/StatusResponse"
+        "500":
+          description: Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/searchedge/search/{searchType}:
+    x-swagger-router-controller: search_controller
+    get:
+      description: Search things that match a user provided string
+      tags:
+        - Search
+      operationId: search_for
+      parameters:
+        -
+          name: search_text
+          in: formData
+          description: User search string
+          required: true
+          type: string
+        -
+          name: searchType
+          in: path
+          description: type of thing to search for Album, Artist, Song
+          type: string
+        -
+          name: sessionToken
+          in: header
+          description: Valid Session Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Successfully searched.
+          schema:
+            $ref: "#/definitions/SearchResponse"
+
+  /api/playeredge/play/{songId}:
+    x-swagger-router-controller: player_controller
+    get:
+      description: Get song data to play a song
+      tags:
+        - Player
+      operationId: play_song
+      parameters:
+        -
+          name: songId
+          in: path
+          description: Song id for the song the user requested
+          required: true
+          type: string
+        -
+          name: sessionToken
+          in: header
+          description: Valid Session Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Request accepted streaming sound data.
+          schema:
+            $ref: "#/definitions/SoundData"
+        "404":
+          description: Song not found.
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+# complex objects have schema definitions
+definitions:
+  LoginSuccessResponse:
+    required:
+      - sessionToken
+    properties:
+      sessionToken:
+        type: string
+  StatusResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  UserInfo:
+    properties:
+      name:
+        type: string
+      userId:
+        type: string
+      email:
+        type: string
+  Song_id:
+    type: string
+  SongInfo:
+    properties:
+      song_id:
+        $ref: "#/definitions/Song_id"
+      artist_mbid:
+        type: string
+      artist_name:
+        type: string
+      duration:
+        description: Length of song in seconds.
+        type: integer
+      danceability:
+        type: number
+      average_rating:
+        type: number
+      release:
+        description: Album the song was released in.
+        type: string
+      song_hotttnesss:
+        description: The Echo Nest hotttnesss score
+        type: number
+  AlbumInfo:
+    properties:
+      album_id:
+        type: string
+      songs_list:
+        type: array
+        items:
+          $ref: "#/definitions/Song_id"
+  Image:
+    properties:
+      name:
+        type: string
+      data:
+        type: string
+        format: binary
+  SoundData:
+    properties:
+      name:
+        type: string
+      data:
+        type: string
+        format: binary
+  ArtistInfo:
+    properties:
+      name:
+        type: string
+      artistId:
+        type: string
+      artist_mbid:
+        type: string
+      albums_list:
+        type: array
+        items:
+          $ref: "#/definitions/Album_id"
+      songs_list:
+        type: array
+        items:
+          $ref: "#/definitions/Song_id"
+  Album_id:
+    type: string
+  SearchResponse:
+    properties:
+      search_results:
+        type: array
+        items:
+          $ref: "#/definitions/SearchResult"
+  SearchResult:
+    type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string

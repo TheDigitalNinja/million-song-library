@@ -18,6 +18,14 @@ if (_.isUndefined(process.env.NODE_ENV)) {
   process.env.NODE_ENV = argv.development ? "development" : "production";
 }
 
+/**
+ * If api host environment is not defined and api mock param is set then
+ * set api host environment as swagger host.
+ */
+if (_.isUndefined(process.env.API_HOST) && (argv.mock || process.env.npm_config_mock)) {
+  process.env.API_HOST = "http://localhost:10010";
+}
+
 module.exports = {
   context: context,
   entry: "./index.js",
@@ -48,7 +56,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.EnvironmentPlugin(["NODE_ENV"]),
+    new webpack.EnvironmentPlugin(["NODE_ENV", "API_HOST"]),
     // use jquery as a global because some libraries like bootstrap expects it to be global
     new webpack.ProvidePlugin({jQuery: "jquery"}),
     new HtmlWebpackPlugin({filename: "index.html", template: path.join(context, "index.tpl.html")}),
