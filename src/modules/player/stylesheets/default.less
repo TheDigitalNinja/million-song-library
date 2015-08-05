@@ -1,15 +1,48 @@
 @import "../../../../bower_components/flexbox.less/flexbox";
+@import "../../../containers/default/stylesheets/core";
 
-/**
- * @todo start using variables
- */
+// Player
+//
+// Player element for playing a song.
+// Note: `.styleguide-fix` class is used only in Styleguide to fix css rule
+// `position: fixed`.
+//
+// Markup:
+// <footer class="player-footer styleguide-fix">
+//   <div class="container">
+//     <div class="btn-group">
+//       <button class="btn btn-default">
+//         <i class="fa fa-backward"></i>
+//       </button>
+//       <button class="btn btn-default">
+//         <i class="fa fw fa-play"></i>
+//       </button>
+//       <button class="btn btn-default">
+//         <i class="fa fw fa-forward"></i>
+//       </button>
+//       <button class="btn btn-default">
+//         <i class="fa fw fa-volume-up"></i>
+//       </button>
+//     </div>
+//     <div>Artist Name - Track ID</div>
+//     <div class="track-timeline"></div>
+//     <div>
+//       <button class="btn btn-default">
+//         <i class="fa fw fa-times"></i>
+//       </button>
+//     </div>
+//   </div>
+// </footer>
+//
+// Styleguide 3.5
+
 .player-footer {
   position: fixed;
   bottom: 0;
   width: 100%;
   height: 55px;
-  background-color: #f8f8f8;
-  border-top: 1px solid #e7e7e7;
+  background-color: @gray-4;
+  border-top: 1px solid @gray-3;
   padding: 10px;
 
   .container {
@@ -33,4 +66,9 @@
       .flex(2013, auto);
     }
   }
+}
+
+// This class is used in Styleguide only, to fix position: fixed css rule
+.styleguide-fix {
+  position: static;
 }
