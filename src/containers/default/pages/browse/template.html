@@ -1,0 +1,8 @@
+<div ng-controller="browseCtrl as browse">
+  <div class="row" ng-repeat="category in browse.categories">
+    <h1>{{ category.title }}</h1>
+    <ul>
+      <li ng-repeat="item in category.items"><a href="#" title="{{ item.name }}">{{ item.name }}</a></li>
+    </ul>
+  </div>
+</div>
