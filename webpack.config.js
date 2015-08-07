@@ -22,8 +22,12 @@ if (_.isUndefined(process.env.NODE_ENV)) {
  * If api host environment is not defined and api mock param is set then
  * set api host environment as swagger host.
  */
-if (_.isUndefined(process.env.API_HOST) && (argv.mock || process.env.npm_config_mock)) {
-  process.env.API_HOST = "http://localhost:10010";
+if (_.isUndefined(process.env.API_HOST)) {
+  if (argv.mock || process.env.npm_config_mock) {
+    process.env.API_HOST = "http://localhost:10010";
+  } else {
+    process.env.API_HOST = "";
+  }
 }
 
 module.exports = {

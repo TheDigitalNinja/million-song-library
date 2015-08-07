@@ -20,12 +20,14 @@ describe("loginCtrl", function () {
     $scope = $rootScope.$new();
   }));
 
-  it("should authorise with credentials", function () {
+  it("should authorise with credentials", done => async function () {
     var loginCtrl = $controller("loginCtrl", {$scope});
+    authorisation.authorise.and.returnValue(Promise.resolve(true));
     loginCtrl.email = "test@test.com";
     loginCtrl.password = "password";
-    loginCtrl.submit();
+    await loginCtrl.submit();
     expect(authorisation.authorise).toHaveBeenCalledWith({login: loginCtrl.email, password: loginCtrl.password});
     expect($state.go).toHaveBeenCalledWith("default.home");
-  });
+    done();
+  }());
 });

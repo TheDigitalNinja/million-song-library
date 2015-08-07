@@ -46,17 +46,38 @@ paths:
           schema:
             $ref: "#/definitions/LoginSuccessResponse"
         "401":
-          description: Bad Login Credentials
+          description: Invalid Login Credentials
+        "500":
+          description: Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/loginedge/logout:
+    x-swagger-router-controller: login_controller
+    post:
+      description: Log out a user
+      tags:
+        - Login
+      operationId: logout
+      parameters:
+       -  name: sessionToken
+          in: header
+          description: Valid Session Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Logged out
           schema:
             $ref: "#/definitions/StatusResponse"
-        default:
-          description: Error
+        "500":
+          description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
   /api/loginedge/resetpassword:
     # binds a127 app logic to a route
     x-swagger-router-controller: login_controller
     post:
+      schemes: ["https"]
       description: Resets the user's password via email.
       tags:
         - Login
@@ -73,8 +94,8 @@ paths:
           schema:
             # a pointer to a definition
             $ref: "#/definitions/StatusResponse"
-        "400":
-          description: Error
+        "500":
+          description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
   /api/catalogedge/user:
@@ -96,12 +117,11 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/UserInfo"
-        "400":
-          description: Error
+        "500":
+          description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-
-  /api/catalogedge/songinfo:
+  /api/catalogedge/song/{songId}:
     x-swagger-router-controller: catalog_controller
     get:
       description: Get a song's info from the database
@@ -111,7 +131,7 @@ paths:
       parameters:
         -
           name: songId
-          in: query
+          in: path
           description: The song's identification number.
           required: true
           type: string
@@ -126,11 +146,11 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/SongInfo"
-        "400":
-          description: Error
+        "500":
+          description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/catalogedge/albuminfo:
+  /api/catalogedge/album/{albumId}:
     x-swagger-router-controller: catalog_controller
     get:
       description: Get data for an Album of songs
@@ -140,7 +160,7 @@ paths:
       parameters:
         -
           name: albumId
-          in: query
+          in: path
           description: Album identification number
           required: true
           type: string
@@ -155,11 +175,11 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/AlbumInfo"
-        "400":
-          description: Error
+        "500":
+          description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/catalogedge/artistinfo:
+  /api/catalogedge/artist/{artistId}:
     x-swagger-router-controller: catalog_controller
     get:
       description: Get data on an Artist
@@ -169,7 +189,7 @@ paths:
       parameters:
         -
           name: artistId
-          in: query
+          in: path
           description: Artist Identifier
           required: true
           type: string
@@ -184,11 +204,138 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/ArtistInfo"
-        "400":
-          description: Error
+        "500":
+          description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/imageedge/artistimage:
+  /api/catalogedge/browse/catalog:
+    x-swagger-router-controller: catalog_controller
+    get:
+      description: Get browsing data for songs in the catalog. If the "last" and "items"  parameters are not passed the default response is 25 items starting from the beginning.
+      tags:
+        - Catalog
+      operationId: browse_catalog
+      parameters:
+        -
+          name: last
+          in: query
+          description: Start with songs from this index, if not provided starts at 0.
+          type: string
+        -
+          name: items
+          in: query
+          description: Number of items to return. The maximum is 100.
+          type: integer
+        -
+          name: genre
+          in: query
+          description: Genre of songs to return.
+          type: string
+        -
+          name: sessionToken
+          in: header
+          description: Valid Session Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SongList"
+        "500":
+          description: Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/catalogedge/browse/artist:
+    x-swagger-router-controller: catalog_controller
+    get:
+      description: Get browsing data so that the user can browse through artists.
+      tags:
+        - Catalog
+      operationId: browse_artists
+      parameters:
+        -
+          name: last
+          in: query
+          description: Start with artists from this index, if not provided starts at 0.
+          type: string
+        -
+          name: items
+          in: query
+          description: Number of items to return. The maximum is 100.
+          type: integer
+        -
+          name: sessionToken
+          in: header
+          description: Valid Session Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ArtistList"
+        "500":
+          description: Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/catalogedge/browse/album:
+    x-swagger-router-controller: catalog_controller
+    get:
+      description: Get browsing data so that the user can browse through artists.
+      tags:
+        - Catalog
+      operationId: browse_albums
+      parameters:
+        -
+          name: last
+          in: query
+          description: Start with album from this index, if not provided starts at 0.
+          type: string
+        -
+          name: items
+          in: query
+          description: Number of items to return. The maximum is 100.
+          type: integer
+        -
+          name: sessionToken
+          in: header
+          description: Valid Session Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/AlbumList"
+        "500":
+          description: Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/catalogedge/browse/toptracks:
+    x-swagger-router-controller: catalog_controller
+    get:
+      description: Get browsing data so that the user can browse through artists.
+      tags:
+        - Catalog
+      operationId: browse_albums
+      parameters:
+       -
+          name: sessionToken
+          in: header
+          description: Valid Session Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SongList"
+        "500":
+          description: Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/imageedge/artist/{artistId}:
     x-swagger-router-controller: image_controller
     get:
       description: Get an artist's picture.
@@ -198,8 +345,14 @@ paths:
       parameters:
         -
           name: artistId
-          in: query
+          in: path
           description: Artist Identifier
+          required: true
+          type: string
+        -
+          name: sessionToken
+          in: header
+          description: Valid Session Token
           required: true
           type: string
       responses:
@@ -207,11 +360,11 @@ paths:
           description: Successfully acquired artist image.
           schema:
             $ref: "#/definitions/Image"
-        "400":
-          description: Error
+        "500":
+          description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/imageedge/albumcover:
+  /api/imageedge/album/{albumId}:
     x-swagger-router-controller: image_controller
     get:
       description: Get an album cover
@@ -221,8 +374,14 @@ paths:
       parameters:
         -
           name: albumId
-          in: query
+          in: path
           description: Album id
+          required: true
+          type: string
+        -
+          name: sessionToken
+          in: header
+          description: Valid Session Token
           required: true
           type: string
       responses:
@@ -230,11 +389,11 @@ paths:
           description: Successfully acquired album cover image.
           schema:
             $ref: "#/definitions/Image"
-        "400":
-          description: Error
+        "500":
+          description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/imageedge/trackcover:
+  /api/imageedge/track/{songId}:
     x-swagger-router-controller: image_controller
     get:
       description: Get a track cover
@@ -244,8 +403,14 @@ paths:
       parameters:
         -
           name: songId
-          in: query
+          in: path
           description: Song id
+          required: true
+          type: string
+        -
+          name: sessionToken
+          in: header
+          description: Valid Session Token
           required: true
           type: string
       responses:
@@ -253,8 +418,8 @@ paths:
           description: Successfully acquired track cover image.
           schema:
             $ref: "#/definitions/Image"
-        "400":
-          description: Bad Request
+        "500":
+          description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
   /api/ratingsedge/ratesong/{songId}:
@@ -272,21 +437,15 @@ paths:
           required: true
           type: string
         -
-          name: userId
+          name: rating
           in: formData
-          description: User Id
+          description: User Rating of Song.
           required: true
           type: string
         -
           name: sessionToken
-          in: formData
+          in: header
           description: Valid Session Token
-          required: true
-          type: string
-        -
-          name: rating
-          in: formData
-          description: User Rating of Song.
           required: true
           type: string
       responses:
@@ -298,7 +457,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/searchedge/search/{searchType}:
+  /api/searchedge/search:
     x-swagger-router-controller: search_controller
     get:
       description: Search things that match a user provided string
@@ -314,7 +473,7 @@ paths:
           type: string
         -
           name: searchType
-          in: path
+          in: query
           description: type of thing to search for Album, Artist, Song
           type: string
         -
@@ -328,7 +487,10 @@ paths:
           description: Successfully searched.
           schema:
             $ref: "#/definitions/SearchResponse"
-
+        "500":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /api/playeredge/play/{songId}:
     x-swagger-router-controller: player_controller
     get:
@@ -356,6 +518,10 @@ paths:
             $ref: "#/definitions/SoundData"
         "404":
           description: Song not found.
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "500":
+          description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
 # complex objects have schema definitions
@@ -451,6 +617,23 @@ definitions:
           $ref: "#/definitions/SearchResult"
   SearchResult:
     type: string
+  SongList:
+    properties:
+      genre:
+        type: string
+      songs:
+        type: array
+        items:
+          $ref: "#/definitions/SongInfo"
+  ArtistList:
+    type: array
+    items:
+      $ref: "#/definitions/ArtistInfo"
+  AlbumList:
+    type: array
+    items:
+      $ref: "#/definitions/AlbumInfo"
+
   ErrorResponse:
     required:
       - message

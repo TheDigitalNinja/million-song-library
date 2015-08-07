@@ -8,6 +8,9 @@ function sessionToken () {
     get() {
       return this.token;
     },
+    has() {
+      return this.hasOwnProperty("token");
+    },
     destroy() {
       delete this.token;
     }

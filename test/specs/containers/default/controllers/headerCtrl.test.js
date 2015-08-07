@@ -46,8 +46,8 @@ describe("headerCtrl", function () {
     authorisation.getUserData.and.returnValue("login@email");
     bind();
     expect(headerCtrl.authorised).toBeTruthy();
-    expect(authorisation.getUserData).toHaveBeenCalledWith("login");
-    expect(headerCtrl.login).toBe("login@email");
+    expect(authorisation.getUserData).toHaveBeenCalledWith("email");
+    expect(headerCtrl.email).toBe("login@email");
   });
 
   it("should not call change listener when state changes after scope is destroyed", function () {

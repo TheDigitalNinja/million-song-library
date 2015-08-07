@@ -1,6 +1,6 @@
 import _ from "lodash";
-import $ from "jquery";
 import assert from "assert";
+import querystring from "querystring";
 import {EventEmitter} from "events";
 
 const EVENT_CHANGE_NAMESPACE = "change";
@@ -8,7 +8,7 @@ const COOKIE_NAMESPACE = "authorisation";
 const LOGIN_EMPTY = "Login is empty!";
 const PASSWORD_EMPTY = "Password is empty!";
 
-function authorisation ($http, sessionToken, storage) {
+function authorisation ($q, $rootScope, $http, sessionToken, storage) {
   "ngInject";
 
   var stored = storage.get(COOKIE_NAMESPACE);
@@ -28,6 +28,15 @@ function authorisation ($http, sessionToken, storage) {
     }
   }
 
+  /**
+   * attach host to path
+   * @param {string} path
+   * @returns {string}
+   */
+  function withHost (path) {
+    return [process.env.API_HOST, path].join("");
+  }
+
   // register authorisation state change event
   events.on(EVENT_CHANGE_NAMESPACE, onAuthorisationStateChange);
 
@@ -38,18 +47,21 @@ function authorisation ($http, sessionToken, storage) {
      * @param {{login: string, password: string}} credentials
      */
     async authorise({login: login, password: password}) {
+      var data, headers, response, token;
       assert.ok(!_.isEmpty(login), LOGIN_EMPTY);
       assert.ok(!_.isEmpty(password), PASSWORD_EMPTY);
       // make api request
-      var url = [process.env.API_HOST, "/api/loginedge/login"].join("");
-      var data = $.param({email: login, password});
-      var headers = {"Content-Type": "application/x-www-form-urlencoded"};
-      var response = await $http({method: "POST", url, data, headers});
+      data = querystring.stringify({email: login, password});
+      headers = {"Content-Type": "application/x-www-form-urlencoded"};
+      response = await $http.post(withHost("/api/loginedge/login"), data, {headers});
+      token = response.data.sessionToken;
       // save session token
-      sessionToken.set(response.data.sessionToken);
+      sessionToken.set(token);
+      // get user data
+      response = await $http.get(withHost("/api/catalogedge/user"));
       // save authorised data
       authorised = true;
-      authorisedData.login = login;
+      authorisedData = _.pick(response.data, ["email", "name", "userId"]);
       events.emit(EVENT_CHANGE_NAMESPACE);
     },
     /**

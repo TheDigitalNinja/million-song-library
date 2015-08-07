@@ -1,12 +1,12 @@
-function headerCtrl ($scope, $state, authorisation) {
+function headerCtrl ($q, $scope, $state, authorisation) {
   "ngInject";
 
   var onStateChange = () => {
     this.authorised = authorisation.isAuthorised();
     if (this.authorised) {
-      this.login = authorisation.getUserData("login");
+      this.email = authorisation.getUserData("email");
     } else {
-      delete this.login;
+      delete this.email;
     }
     $scope.$evalAsync();
   };
