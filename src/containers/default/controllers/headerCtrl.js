@@ -1,4 +1,4 @@
-function headerCtrl ($q, $scope, $state, authorisation) {
+function headerCtrl ($scope, $state, authorisation) {
   "ngInject";
 
   var onStateChange = () => {
