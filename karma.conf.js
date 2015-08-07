@@ -7,7 +7,7 @@ webpackExternals.push({"angular": "angular"});
 module.exports = function (config) {
   config.set({
     basePath: "",
-    frameworks: ["jasmine-ajax", "jasmine"],
+    frameworks: ["jasmine"],
     files: [
       "./node_modules/es5-shim/es5-shim.js",
       "./node_modules/angular/angular.js",
@@ -30,7 +30,6 @@ module.exports = function (config) {
       require("karma-sourcemap-loader"),
       require("karma-webpack"),
       require("karma-jasmine"),
-      require("karma-jasmine-ajax"),
       require("karma-phantomjs-launcher")
     ],
     reporters: ["dots"],
@@ -39,7 +38,6 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ["PhantomJS"],
-    //browsers: ["Chrome"],
     singleRun: false
   });
 };
