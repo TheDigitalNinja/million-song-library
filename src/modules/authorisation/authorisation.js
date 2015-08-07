@@ -8,7 +8,7 @@ const COOKIE_NAMESPACE = "authorisation";
 const LOGIN_EMPTY = "Login is empty!";
 const PASSWORD_EMPTY = "Password is empty!";
 
-function authorisation ($q, $rootScope, $http, sessionToken, storage) {
+function authorisation ($http, sessionToken, storage) {
   "ngInject";
 
   var stored = storage.get(COOKIE_NAMESPACE);
