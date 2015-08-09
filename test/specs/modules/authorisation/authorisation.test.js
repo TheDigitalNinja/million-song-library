@@ -11,7 +11,7 @@ describe("authorisation factory", function () {
 
   describe("#1", function () {
     var session = {sessionToken: "sessionToken"};
-    var user = {email: "email", name: "name", userId: "userId"};
+    var user = {userEmail: "email", userId: "userId"};
 
     beforeEach(angular.mock.module(authorisationModule, function ($provide) {
       storage = jasmine.createSpyObj("storage", ["get", "put", "remove"]);
@@ -48,7 +48,7 @@ describe("authorisation factory", function () {
       expect($http.post.calls.count()).toBe(1);
       expect($http.get.calls.count()).toBe(1);
       expect($http.post.calls.argsFor(0)).toEqual(["/api/loginedge/login", "email=login&password=password", headers]);
-      expect($http.get.calls.argsFor(0)).toEqual(["/api/catalogedge/user"]);
+      expect($http.get.calls.argsFor(0)).toEqual(["/api/loginedge/sessioninfosessionToken"]);
       expect(authorisation.isAuthorised()).toBeTruthy();
       expect(sessionToken.set).toHaveBeenCalledWith("sessionToken");
       expect(storage.get).toHaveBeenCalledWith("authorisation");
@@ -68,7 +68,9 @@ describe("authorisation factory", function () {
       expect($http.get.calls.count()).toBe(1);
       expect(storage.get).toHaveBeenCalled();
       expect(storage.put).toHaveBeenCalled();
-      authorisation.destroy();
+      $http.post.and.returnValue(Promise.resolve());
+      await authorisation.destroy();
+      expect($http.post).toHaveBeenCalledWith("/api/loginedge/logout", {});
       expect(sessionToken.destroy).toHaveBeenCalled();
       expect(listener.calls.count()).toBe(3);
       expect(storage.remove).toHaveBeenCalledWith("authorisation");
@@ -82,8 +84,7 @@ describe("authorisation factory", function () {
       $http.get.and.returnValue(Promise.resolve({data: user}));
       await authorisation.authorise(loginCredentials);
       expect(listener.calls.count()).toBe(2);
-      expect(authorisation.getUserData("email")).toBe(user.email);
-      expect(authorisation.getUserData("name")).toBe(user.name);
+      expect(authorisation.getUserData("userEmail")).toBe(user.userEmail);
       expect(authorisation.getUserData("userId")).toBe(user.userId);
       expect(authorisation.getUserData()).toEqual(user);
       done();
@@ -97,7 +98,9 @@ describe("authorisation factory", function () {
       await authorisation.authorise(loginCredentials);
       expect(listener.calls.count()).toBe(2);
       expect(authorisation.getUserData()).toEqual(user);
-      authorisation.destroy();
+      $http.post.and.returnValue(Promise.resolve());
+      await authorisation.destroy();
+      expect($http.post).toHaveBeenCalledWith("/api/loginedge/logout", {});
       expect(authorisation.getUserData()).toEqual({});
       done();
     }());

@@ -30,11 +30,10 @@ function authorisation ($http, sessionToken, storage) {
 
   /**
    * attach host to path
-   * @param {string} path
    * @returns {string}
    */
-  function withHost (path) {
-    return [process.env.API_HOST, path].join("");
+  function withHost () {
+    return [process.env.API_HOST].concat(_.toArray(arguments)).join("");
   }
 
   // register authorisation state change event
@@ -58,17 +57,18 @@ function authorisation ($http, sessionToken, storage) {
       // save session token
       sessionToken.set(token);
       // get user data
-      response = await $http.get(withHost("/api/catalogedge/user"));
+      response = await $http.get(withHost("/api/loginedge/sessioninfo", token));
       // save authorised data
       authorised = true;
-      authorisedData = _.pick(response.data, ["email", "name", "userId"]);
+      authorisedData = _.pick(response.data, ["userEmail", "userId"]);
       events.emit(EVENT_CHANGE_NAMESPACE);
     },
     /**
      * destroy user session
      * and emit state change event
      */
-    destroy() {
+    async destroy() {
+      await $http.post(withHost("/api/loginedge/logout"), {});
       sessionToken.destroy();
       authorised = false;
       authorisedData = {};

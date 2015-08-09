@@ -1,18 +1,19 @@
-function sessionToken () {
+function sessionToken (storage) {
   "ngInject";
 
   return {
     set(token) {
+      storage.put("sessionId", token);
       this.token = token;
     },
     get() {
-      return this.token;
+      return storage.get("sessionId");
     },
     has() {
-      return this.hasOwnProperty("token");
+      return !!storage.get("sessionId");
     },
     destroy() {
-      delete this.token;
+      storage.remove("sessionId");
     }
   };
 }
