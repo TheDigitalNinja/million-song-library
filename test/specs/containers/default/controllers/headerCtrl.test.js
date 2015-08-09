@@ -26,12 +26,14 @@ describe("headerCtrl", function () {
     $scope = $rootScope.$new();
   }));
 
-  it("should change authorise flag when state changed and change current state", function () {
+  it("should change authorise flag when state changed and change current state", done => async function () {
     var headerCtrl = $controller("headerCtrl", {$scope});
-    headerCtrl.logout();
+    authorisation.destroy.and.returnValue(Promise.resolve());
+    await headerCtrl.logout();
     expect(authorisation.destroy).toHaveBeenCalled();
     expect($state.go).toHaveBeenCalledWith("default.login");
-  });
+    done();
+  }());
 
   it("should change authorised scope data", function () {
     var bind, headerCtrl;
@@ -46,8 +48,8 @@ describe("headerCtrl", function () {
     authorisation.getUserData.and.returnValue("login@email");
     bind();
     expect(headerCtrl.authorised).toBeTruthy();
-    expect(authorisation.getUserData).toHaveBeenCalledWith("login");
-    expect(headerCtrl.login).toBe("login@email");
+    expect(authorisation.getUserData).toHaveBeenCalledWith("userEmail");
+    expect(headerCtrl.email).toBe("login@email");
   });
 
   it("should not call change listener when state changes after scope is destroyed", function () {

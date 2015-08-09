@@ -9,22 +9,25 @@ module.exports = function (config) {
     basePath: "",
     frameworks: ["jasmine"],
     files: [
+      "./node_modules/es5-shim/es5-shim.js",
       "./node_modules/angular/angular.js",
       "./node_modules/angular-mocks/angular-mocks.js",
       "./test/**/*.test.js"
     ],
     preprocessors: {
-      "./test/**/*.test.js": ["webpack"]
+      "./test/**/*.test.js": ["webpack", "sourcemap"]
     },
     webpack: _.assign(
       _.pick(webpackConfig, ["module", "resolve", "plugins"]), {
-        externals: webpackExternals
+        externals: webpackExternals,
+        devtool: "inline-source-map"
       }
     ),
     webpackServer: {
       noInfo: true
     },
     plugins: [
+      require("karma-sourcemap-loader"),
       require("karma-webpack"),
       require("karma-jasmine"),
       require("karma-phantomjs-launcher")

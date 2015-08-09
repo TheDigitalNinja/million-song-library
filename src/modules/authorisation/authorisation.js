@@ -1,5 +1,6 @@
 import _ from "lodash";
 import assert from "assert";
+import querystring from "querystring";
 import {EventEmitter} from "events";
 
 const EVENT_CHANGE_NAMESPACE = "change";
@@ -7,7 +8,7 @@ const COOKIE_NAMESPACE = "authorisation";
 const LOGIN_EMPTY = "Login is empty!";
 const PASSWORD_EMPTY = "Password is empty!";
 
-function authorisation (storage) {
+function authorisation ($http, sessionToken, storage) {
   "ngInject";
 
   var stored = storage.get(COOKIE_NAMESPACE);
@@ -27,6 +28,14 @@ function authorisation (storage) {
     }
   }
 
+  /**
+   * attach host to path
+   * @returns {string}
+   */
+  function withHost () {
+    return [process.env.API_HOST].concat(_.toArray(arguments)).join("");
+  }
+
   // register authorisation state change event
   events.on(EVENT_CHANGE_NAMESPACE, onAuthorisationStateChange);
 
@@ -36,19 +45,31 @@ function authorisation (storage) {
      * and emit state change event
      * @param {{login: string, password: string}} credentials
      */
-    authorise({login: login, password: password}) {
+    async authorise({login: login, password: password}) {
+      var data, headers, response, token;
       assert.ok(!_.isEmpty(login), LOGIN_EMPTY);
       assert.ok(!_.isEmpty(password), PASSWORD_EMPTY);
+      // make api request
+      data = querystring.stringify({email: login, password});
+      headers = {"Content-Type": "application/x-www-form-urlencoded"};
+      response = await $http.post(withHost("/api/loginedge/login"), data, {headers});
+      token = response.data.sessionToken;
+      // save session token
+      sessionToken.set(token);
+      // get user data
+      response = await $http.get(withHost("/api/loginedge/sessioninfo", token));
+      // save authorised data
       authorised = true;
-      authorisedData.login = login;
-      authorisedData.password = password;
+      authorisedData = _.pick(response.data, ["userEmail", "userId"]);
       events.emit(EVENT_CHANGE_NAMESPACE);
     },
     /**
      * destroy user session
      * and emit state change event
      */
-    destroy() {
+    async destroy() {
+      await $http.post(withHost("/api/loginedge/logout"), {});
+      sessionToken.destroy();
       authorised = false;
       authorisedData = {};
       events.emit(EVENT_CHANGE_NAMESPACE);

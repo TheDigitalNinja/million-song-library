@@ -1,9 +1,15 @@
-function loginCtrl ($state, authorisation) {
+function loginCtrl ($scope, $state, authorisation) {
   "ngInject";
 
-  this.submit = () => {
-    authorisation.authorise({login: this.email, password: this.password});
-    $state.go("default.home");
+  this.submit = async () => {
+    delete this.hasError;
+    try {
+      await authorisation.authorise({login: this.email, password: this.password});
+      $state.go("default.home");
+    } catch (e) {
+      this.hasError = true;
+      $scope.$evalAsync();
+    }
   };
 }
 
