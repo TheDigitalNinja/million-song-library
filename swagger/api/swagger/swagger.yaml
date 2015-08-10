@@ -221,6 +221,21 @@ paths:
           in: query
           description: Genre of songs to return.
           type: string
+        -
+          name: year
+          in: query
+          description: Year the song was released
+          type: string
+        - 
+          name: artist
+          in: query
+          description: Artist associated with the song
+          type: string
+        - 
+          name: album
+          in: query
+          description: Album song was released in.
+          type: string
       responses:
         "200":
           description: Success
@@ -234,85 +249,6 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/catalogedge/browse/artist:
-    x-swagger-router-controller: catalog_controller
-    get: 
-      description: Get browsing data so that the user can browse through artists.
-      tags:
-        - Catalog
-      operationId: browse_artists
-      parameters:
-        -
-          name: last
-          in: query
-          description: Start with artists from this index, if not provided starts at 0.
-          type: string
-        - 
-          name: items
-          in: query
-          description: Number of items to return. The maximum is 100.
-          type: integer
-      responses:
-        "200":
-          description: Success
-          schema: 
-            $ref: "#/definitions/ArtistList"
-        "404":
-          description: Index not found.
-          schema:
-            $ref: "#/definitions/NotFoundResponse"            
-        "500":
-          description: Server Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-  /api/catalogedge/browse/album:
-    x-swagger-router-controller: catalog_controller
-    get: 
-      description: Get browsing data so that the user can browse through artists.
-      security: [session_id: []]
-      tags:
-        - Catalog
-      operationId: browse_albums
-      parameters:
-        -
-          name: last
-          in: query
-          description: Start with album from this index, if not provided starts at 0.
-          type: string
-        - 
-          name: items
-          in: query
-          description: Number of items to return. The maximum is 100.
-          type: integer
-      responses:
-        "200":
-          description: Success
-          schema: 
-            $ref: "#/definitions/AlbumList"
-        "404":
-          description: Index not found.
-          schema:
-            $ref: "#/definitions/NotFoundResponse"            
-        "500":
-          description: Server Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"        
-  /api/catalogedge/browse/toptracks:
-    x-swagger-router-controller: catalog_controller
-    get: 
-      description: Get browsing data so that the user can browse through artists.
-      tags:
-        - Catalog
-      operationId: browse_albums
-      responses:
-        "200":
-          description: Success
-          schema: 
-            $ref: "#/definitions/SongList"
-        "500":
-          description: Server Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"      
   /api/imageedge/artist/{artistId}:
     x-swagger-router-controller: image_controller
     get:
@@ -412,9 +348,9 @@ paths:
         - 
           name: rating
           in: formData
-          description: User Rating of Song.
+          description: Value between 1-5 that represents the user's rating of the song.
           required: true
-          type: string       
+          type: number       
       responses:
         "200":
           description: Successfully sent rating data to the server.
