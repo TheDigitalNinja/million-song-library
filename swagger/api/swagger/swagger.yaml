@@ -93,7 +93,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/loginedge/sessioninfo{sessionId}:
+  /api/loginedge/sessioninfo/{sessionId}:
     x-swagger-router-controller: session_controller
     get:
       description: Endpoint for api services to get session data from session token.
@@ -567,7 +567,7 @@ paths:
 securityDefinitions:
   session_id:
     type: apiKey
-    name: sessionId
+    name: SessionId
     in: header
 # complex objects have schema definitions
 definitions:
