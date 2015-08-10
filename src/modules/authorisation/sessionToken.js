@@ -1,19 +1,22 @@
-function sessionToken (storage) {
+function sessionToken ($cookies) {
   "ngInject";
+
+  const STORAGE_NAMESPACE = "sessionId";
 
   return {
     set(token) {
-      storage.put("sessionId", token);
-      this.token = token;
+      $cookies.put(STORAGE_NAMESPACE, token);
+      return this;
     },
     get() {
-      return storage.get("sessionId");
+      return $cookies.get(STORAGE_NAMESPACE);
     },
     has() {
-      return !!storage.get("sessionId");
+      return !!$cookies.get(STORAGE_NAMESPACE);
     },
     destroy() {
-      storage.remove("sessionId");
+      $cookies.remove(STORAGE_NAMESPACE);
+      return this;
     }
   };
 }

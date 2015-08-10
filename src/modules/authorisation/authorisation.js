@@ -8,10 +8,10 @@ const COOKIE_NAMESPACE = "authorisation";
 const LOGIN_EMPTY = "Login is empty!";
 const PASSWORD_EMPTY = "Password is empty!";
 
-function authorisation ($http, sessionToken, storage) {
+function authorisation ($http, sessionToken, $cookies) {
   "ngInject";
 
-  var stored = storage.get(COOKIE_NAMESPACE);
+  var stored = $cookies.getObject(COOKIE_NAMESPACE);
   var events = new EventEmitter();
   var authorised = Boolean(stored);
   var authorisedData = stored || {};
@@ -22,9 +22,9 @@ function authorisation ($http, sessionToken, storage) {
    */
   function onAuthorisationStateChange () {
     if (authorised) {
-      storage.put(COOKIE_NAMESPACE, authorisedData);
+      $cookies.putObject(COOKIE_NAMESPACE, authorisedData);
     } else {
-      storage.remove(COOKIE_NAMESPACE);
+      $cookies.remove(COOKIE_NAMESPACE);
     }
   }
 

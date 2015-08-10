@@ -6,7 +6,7 @@ describe("authorisation factory", function () {
   var $http;
   var loginCredentials = {login: "login", password: "password"};
   var authorisation;
-  var storage;
+  var $cookies;
   var sessionToken;
 
   describe("#1", function () {
@@ -14,10 +14,10 @@ describe("authorisation factory", function () {
     var user = {userEmail: "email", userId: "userId"};
 
     beforeEach(angular.mock.module(authorisationModule, function ($provide) {
-      storage = jasmine.createSpyObj("storage", ["get", "put", "remove"]);
+      $cookies = jasmine.createSpyObj("$cookies", ["getObject", "putObject", "remove"]);
       sessionToken = jasmine.createSpyObj("sessionToken", ["set", "destroy"]);
       $http = jasmine.createSpyObj("$http", ["post", "get"]);
-      $provide.value("storage", storage);
+      $provide.value("$cookies", $cookies);
       $provide.value("sessionToken", sessionToken);
       $provide.value("$http", $http);
     }));
@@ -51,8 +51,8 @@ describe("authorisation factory", function () {
       expect($http.get.calls.argsFor(0)).toEqual(["/api/loginedge/sessioninfosessionToken"]);
       expect(authorisation.isAuthorised()).toBeTruthy();
       expect(sessionToken.set).toHaveBeenCalledWith("sessionToken");
-      expect(storage.get).toHaveBeenCalledWith("authorisation");
-      expect(storage.put).toHaveBeenCalledWith("authorisation", user);
+      expect($cookies.getObject).toHaveBeenCalledWith("authorisation");
+      expect($cookies.putObject).toHaveBeenCalledWith("authorisation", user);
       expect(listener.calls.count()).toBe(2);
       done();
     }());
@@ -66,14 +66,14 @@ describe("authorisation factory", function () {
       expect(listener.calls.count()).toBe(2);
       expect($http.post.calls.count()).toBe(1);
       expect($http.get.calls.count()).toBe(1);
-      expect(storage.get).toHaveBeenCalled();
-      expect(storage.put).toHaveBeenCalled();
+      expect($cookies.getObject).toHaveBeenCalled();
+      expect($cookies.putObject).toHaveBeenCalled();
       $http.post.and.returnValue(Promise.resolve());
       await authorisation.destroy();
       expect($http.post).toHaveBeenCalledWith("/api/loginedge/logout", {});
       expect(sessionToken.destroy).toHaveBeenCalled();
       expect(listener.calls.count()).toBe(3);
-      expect(storage.remove).toHaveBeenCalledWith("authorisation");
+      expect($cookies.remove).toHaveBeenCalledWith("authorisation");
       done();
     }());
 
@@ -120,9 +120,9 @@ describe("authorisation factory", function () {
 
   describe("#2", function () {
     beforeEach(angular.mock.module(authorisationModule, function ($provide) {
-      storage = jasmine.createSpyObj("storage", ["get", "put", "remove"]);
-      storage.get.and.returnValue(loginCredentials);
-      $provide.value("storage", storage);
+      $cookies = jasmine.createSpyObj("$cookies", ["getObject", "putObject", "remove"]);
+      $cookies.getObject.and.returnValue(loginCredentials);
+      $provide.value("$cookies", $cookies);
     }));
 
     beforeEach(inject(function (_authorisation_) {
@@ -130,7 +130,7 @@ describe("authorisation factory", function () {
     }));
 
     it("should have startup data from session", function () {
-      expect(storage.get).toHaveBeenCalledWith("authorisation");
+      expect($cookies.getObject).toHaveBeenCalledWith("authorisation");
       expect(authorisation.isAuthorised()).toBeTruthy();
       expect(authorisation.getUserData()).toEqual(loginCredentials);
     });
