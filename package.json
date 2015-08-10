@@ -10,7 +10,7 @@
     "autotest": "karma start",
     "build": "webpack --config webpack.prod.config.js",
     "styleguide": "kss-node --config=kss-config.json",
-    "serve-dev": "webpack-dev-server --port 3000 --content-base build/ --development",
+    "serve-dev": "webpack-dev-server --port 3000 --content-base build/ --development --progress",
     "serve-prod": "http-server build -p 80",
     "serve-docs": "swagger project edit ./swagger",
     "serve-mock": "swagger project start --mock ./swagger"

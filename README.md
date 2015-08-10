@@ -35,17 +35,17 @@ Start prod server by calling `npm run serve-prod`, this will try to mound `./bui
 using [http-server](https://github.com/indexzero/http-server) for serving static resources. Before you run this make
 sure you have called `npm run build` first.
 
-### Environment
-
-Webpack is running with `webpack.EnvironmentPlugin`, this means that we can define custom build environments, for e.g.
-if you insert `process.env.NODE_ENV` into your code it will be replaced with build environment `development` or `production`,
-this way you can do custom actions which are only required for specified environment.
-
 ### Styleguide
 
 To create a styleguide of the project run `npm run styleguide`, this will
 generate styleguide's files using [Kss-node](https://github.com/kss-node/kss-node)
 in `/build/styleguide/` directory.
+
+### Environment
+
+Webpack is running with `webpack.EnvironmentPlugin`, this means that we can define custom build environments, for e.g.
+if you insert `process.env.NODE_ENV` into your code it will be replaced with build environment `development` or `production`,
+this way you can do custom actions which are only required for specified environment.
 
 ### File Layout Structure
 
