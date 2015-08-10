@@ -57,7 +57,7 @@ function authorisation ($http, sessionToken, storage) {
       // save session token
       sessionToken.set(token);
       // get user data
-      response = await $http.get(withHost("/api/loginedge/sessioninfo", token));
+      response = await $http.get(withHost("/api/loginedge/sessioninfo/", token));
       // save authorised data
       authorised = true;
       authorisedData = _.pick(response.data, ["userEmail", "userId"]);
