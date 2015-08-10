@@ -95,8 +95,25 @@ to use `npm` dependencies and use `bower` for dependencies that are not publishe
 Make sure that you use `"ngInject";` for angular injectable dependencies.
 Please read [ES6 support for ngAnnotate](https://github.com/olov/ng-annotate#es6-and-typescript-support).
 
-#### Test Files
+### Test Files
 
 Test files are stored in `./test/specs` directory. When karma runner starts it includes files by
 `./test/specs/**/*.test.js` pattern only. Other files like source files that needs to be tested has to be
 imported in the test files.
+
+### API
+
+In order to get API host add `process.env.API_HOST`. This will return host if it is defined at build time.
+
+### Swagger
+
+Swagger config file is placed in `./swagger/api/swagger/swagger.yaml`
+
+#### Swagger Mock Server
+
+Start mock server by running `npm run serve-mock`. **Note** that if you want that your dev server would
+use swagger mock server you need to start it with `--mock` argument, for e.g. `npm run serve-dev --mock`.
+
+#### Swagger Docs Editor
+
+Start docs editor by running `npm run serve-docs`.
