@@ -103,7 +103,7 @@ imported in the test files.
 
 ### API
 
-In order to get API host add `process.env.API_HOST`. This will return host if its defined at build time.
+In order to get API host add `process.env.API_HOST`. This will return host if it is defined at build time.
 
 ### Swagger
 
