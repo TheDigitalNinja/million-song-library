@@ -10,7 +10,8 @@ function myLibrary ($http) {
   return {
     async fetch() {
       var content = (await $http.get(withHost("/api/accountedge/users/mylibrary"))).data;
-      console.log(content);
+      console.log("response got", content);
+      return content;
     }
   };
 }

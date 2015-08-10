@@ -1,13 +1,13 @@
-/* global describe, it, expect, beforeEach, jasmine, inject */
+/* global describe, it, expect, beforeEach, afterEach, jasmine, inject */
 import angular from "angular";
 import authorisationModule from "modules/authorisation/module";
 
 describe("authorisation factory", function () {
-  var $http;
   var loginCredentials = {login: "login", password: "password"};
   var authorisation;
   var $cookies;
   var sessionToken;
+  var httpBackend;
 
   describe("#1", function () {
     var session = {sessionToken: "sessionToken"};
@@ -16,16 +16,19 @@ describe("authorisation factory", function () {
     beforeEach(angular.mock.module(authorisationModule, function ($provide) {
       $cookies = jasmine.createSpyObj("$cookies", ["getObject", "putObject", "remove"]);
       sessionToken = jasmine.createSpyObj("sessionToken", ["set", "destroy"]);
-      $http = jasmine.createSpyObj("$http", ["post", "get"]);
       $provide.value("$cookies", $cookies);
       $provide.value("sessionToken", sessionToken);
-      $provide.value("$http", $http);
     }));
 
-    beforeEach(inject(function (_authorisation_, _$http_) {
+    beforeEach(inject(function (_authorisation_, _$http_, _$httpBackend_) {
       authorisation = _authorisation_;
-      $http = _$http_;
+      httpBackend = _$httpBackend_;
     }));
+
+    afterEach(function () {
+      httpBackend.verifyNoOutstandingExpectation();
+      httpBackend.verifyNoOutstandingRequest();
+    });
 
     it("should throw authorise error if not credentials passed", done => async function () {
       var reject = jasmine.createSpy("reject");
@@ -40,15 +43,15 @@ describe("authorisation factory", function () {
 
     it("should authorise, save session and trigger listener", done => async function () {
       var listener = jasmine.createSpy("listener");
-      var headers = {headers: {"Content-Type": "application/x-www-form-urlencoded"}};
-      $http.post.and.returnValue(Promise.resolve({data: session}));
-      $http.get.and.returnValue(Promise.resolve({data: user}));
       authorisation.addChangeListener(listener);
-      await authorisation.authorise(loginCredentials);
-      expect($http.post.calls.count()).toBe(1);
-      expect($http.get.calls.count()).toBe(1);
-      expect($http.post.calls.argsFor(0)).toEqual(["/api/loginedge/login", "email=login&password=password", headers]);
-      expect($http.get.calls.argsFor(0)).toEqual(["/api/loginedge/sessioninfo/sessionToken"]);
+      var authorise = authorisation.authorise(loginCredentials);
+      httpBackend.expectPOST("/api/loginedge/login", "email=login&password=password").respond(session);
+      await new Promise(resolve => setTimeout(resolve, 0));
+      httpBackend.flush();
+      httpBackend.expectGET("/api/loginedge/sessioninfo/sessionToken").respond(user);
+      await new Promise(resolve => setTimeout(resolve, 0));
+      httpBackend.flush();
+      await authorise;
       expect(authorisation.isAuthorised()).toBeTruthy();
       expect(sessionToken.set).toHaveBeenCalledWith("sessionToken");
       expect($cookies.getObject).toHaveBeenCalledWith("authorisation");
@@ -60,17 +63,22 @@ describe("authorisation factory", function () {
     it("should authorize and destroy session", done => async function () {
       var listener = jasmine.createSpy("listener");
       authorisation.addChangeListener(listener);
-      $http.post.and.returnValue(Promise.resolve({data: session}));
-      $http.get.and.returnValue(Promise.resolve({data: user}));
-      await authorisation.authorise(loginCredentials);
+      var authorise = authorisation.authorise(loginCredentials);
+      httpBackend.expectPOST("/api/loginedge/login", "email=login&password=password").respond(session);
+      await new Promise(resolve => setTimeout(resolve, 0));
+      httpBackend.flush();
+      httpBackend.expectGET("/api/loginedge/sessioninfo/sessionToken").respond(user);
+      await new Promise(resolve => setTimeout(resolve, 0));
+      httpBackend.flush();
+      await authorise;
       expect(listener.calls.count()).toBe(2);
-      expect($http.post.calls.count()).toBe(1);
-      expect($http.get.calls.count()).toBe(1);
       expect($cookies.getObject).toHaveBeenCalled();
       expect($cookies.putObject).toHaveBeenCalled();
-      $http.post.and.returnValue(Promise.resolve());
-      await authorisation.destroy();
-      expect($http.post).toHaveBeenCalledWith("/api/loginedge/logout", {});
+      var destroy = authorisation.destroy();
+      httpBackend.expectPOST("/api/loginedge/logout", {}).respond({});
+      await new Promise(resolve => setTimeout(resolve, 0));
+      httpBackend.flush();
+      await destroy;
       expect(sessionToken.destroy).toHaveBeenCalled();
       expect(listener.calls.count()).toBe(3);
       expect($cookies.remove).toHaveBeenCalledWith("authorisation");
@@ -80,9 +88,14 @@ describe("authorisation factory", function () {
     it("should get authorized user data", done => async function () {
       var listener = jasmine.createSpy("listener");
       authorisation.addChangeListener(listener);
-      $http.post.and.returnValue(Promise.resolve({data: session}));
-      $http.get.and.returnValue(Promise.resolve({data: user}));
-      await authorisation.authorise(loginCredentials);
+      var authorise = authorisation.authorise(loginCredentials);
+      httpBackend.expectPOST("/api/loginedge/login", "email=login&password=password").respond(session);
+      await new Promise(resolve => setTimeout(resolve, 0));
+      httpBackend.flush();
+      httpBackend.expectGET("/api/loginedge/sessioninfo/sessionToken").respond(user);
+      await new Promise(resolve => setTimeout(resolve, 0));
+      httpBackend.flush();
+      await authorise;
       expect(listener.calls.count()).toBe(2);
       expect(authorisation.getUserData("userEmail")).toBe(user.userEmail);
       expect(authorisation.getUserData("userId")).toBe(user.userId);
@@ -93,26 +106,23 @@ describe("authorisation factory", function () {
     it("should remove authorized user data", done => async function () {
       var listener = jasmine.createSpy("listener");
       authorisation.addChangeListener(listener);
-      $http.post.and.returnValue(Promise.resolve({data: session}));
-      $http.get.and.returnValue(Promise.resolve({data: user}));
-      await authorisation.authorise(loginCredentials);
+      var authorise = authorisation.authorise(loginCredentials);
+      httpBackend.expectPOST("/api/loginedge/login", "email=login&password=password").respond(session);
+      await new Promise(resolve => setTimeout(resolve, 0));
+      httpBackend.flush();
+      httpBackend.expectGET("/api/loginedge/sessioninfo/sessionToken").respond(user);
+      await new Promise(resolve => setTimeout(resolve, 0));
+      httpBackend.flush();
+      await authorise;
       expect(listener.calls.count()).toBe(2);
       expect(authorisation.getUserData()).toEqual(user);
-      $http.post.and.returnValue(Promise.resolve());
-      await authorisation.destroy();
-      expect($http.post).toHaveBeenCalledWith("/api/loginedge/logout", {});
-      expect(authorisation.getUserData()).toEqual({});
-      done();
-    }());
-
-    it("should trigger authorized and then unbind", done => async function () {
-      var listener = jasmine.createSpy("listener");
-      authorisation.addChangeListener(listener);
-      $http.post.and.returnValue(Promise.resolve({data: session}));
-      $http.get.and.returnValue(Promise.resolve({data: user}));
-      await authorisation.authorise(loginCredentials);
       authorisation.removeChangeListener(listener);
-      authorisation.destroy();
+      var destroy = authorisation.destroy();
+      httpBackend.expectPOST("/api/loginedge/logout", {}).respond({});
+      await new Promise(resolve => setTimeout(resolve, 0));
+      httpBackend.flush();
+      await destroy;
+      expect(authorisation.getUserData()).toEqual({});
       expect(listener.calls.count()).toBe(2);
       done();
     }());
