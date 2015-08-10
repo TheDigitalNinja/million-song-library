@@ -48,7 +48,7 @@ describe("authorisation factory", function () {
       expect($http.post.calls.count()).toBe(1);
       expect($http.get.calls.count()).toBe(1);
       expect($http.post.calls.argsFor(0)).toEqual(["/api/loginedge/login", "email=login&password=password", headers]);
-      expect($http.get.calls.argsFor(0)).toEqual(["/api/loginedge/sessioninfosessionToken"]);
+      expect($http.get.calls.argsFor(0)).toEqual(["/api/loginedge/sessioninfo/sessionToken"]);
       expect(authorisation.isAuthorised()).toBeTruthy();
       expect(sessionToken.set).toHaveBeenCalledWith("sessionToken");
       expect($cookies.getObject).toHaveBeenCalledWith("authorisation");
