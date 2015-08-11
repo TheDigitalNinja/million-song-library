@@ -1,15 +1,9 @@
-import _ from "lodash";
-
-function myLibrary ($http) {
+function myLibrary (myLibraryStore) {
   "ngInject";
-
-  function withHost () {
-    return [process.env.API_HOST].concat(_.toArray(arguments)).join("");
-  }
 
   return {
     async fetch() {
-      var content = (await $http.get(withHost("/api/accountedge/users/mylibrary"))).data;
+      var content = await myLibraryStore.fetch();
       console.log("response got", content);
       return content;
     }
