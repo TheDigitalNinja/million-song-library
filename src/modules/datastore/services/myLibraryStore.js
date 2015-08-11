@@ -5,6 +5,9 @@ function myLibraryStore (request, entityMapper) {
 
   const API_REQUEST_PATH = "/api/accountedge/users/mylibrary";
   return {
+    /**
+     * @return {MyLibraryEntity}
+     */
     async fetch() {
       return entityMapper(await request.get(API_REQUEST_PATH), MyLibraryEntity);
     }

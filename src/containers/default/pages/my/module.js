@@ -5,12 +5,10 @@ import defaultContainerMyPageConfig from "./config";
 import historyCtrl from "./controllers/historyCtrl";
 import libraryCtrl from "./controllers/libraryCtrl";
 import likesCtrl from "./controllers/likesCtrl";
-import myLibrary from "./factories/myLibrary";
 
 export default angular.module("msl.containers.default.my", [router, datastore])
   .controller("historyCtrl", historyCtrl)
   .controller("libraryCtrl", libraryCtrl)
   .controller("likesCtrl", likesCtrl)
-  .factory("myLibrary", myLibrary)
   .config(defaultContainerMyPageConfig)
   .name;
