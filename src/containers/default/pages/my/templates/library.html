@@ -1,8 +1,6 @@
 <div ng-controller="libraryCtrl as library">
   <h3>Songs in Your Library</h3>
-  <div class="text-center text-muted" ng-if="!library.display">
-    <i class="fa fa-refresh fa-spin fa-4x"></i>
-  </div>
+  <div loading ng-if="!library.display"></div>
   <table class="table table-striped" ng-if="library.display">
     <thead>
       <tr>
