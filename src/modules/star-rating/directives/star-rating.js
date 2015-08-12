@@ -27,7 +27,7 @@ function ratingController ($scope) {
     }
   };
 
-  $scope.$watch("starRating", function (oldVal, newVal) {
+  $scope.$watch("starRating", function (newVal) {
     if (newVal >= 0) {
       updateStars();
     }
