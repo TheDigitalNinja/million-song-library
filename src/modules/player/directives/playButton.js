@@ -24,7 +24,6 @@ function playButtonController ($scope, player) {
   };
 
   player.addStateChangeListener(onPlayerStateChange);
-  $scope.$watch("size", size => this.size = size);
   $scope.$on("$destroy", () => player.removeStateChangeListener(onPlayerStateChange));
 }
 
