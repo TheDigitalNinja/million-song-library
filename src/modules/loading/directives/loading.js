@@ -4,7 +4,7 @@ function loadingDirective () {
   "ngInject";
 
   return {
-    restrict: "A",
+    restrict: "E",
     template: loadingTemplate
   };
 }

@@ -1,6 +1,6 @@
 <div ng-controller="libraryCtrl as library">
   <h3>Songs in Your Library</h3>
-  <div loading ng-if="!library.display"></div>
+  <loading ng-if="!library.display"></loading>
   <table class="table table-striped" ng-if="library.display">
     <thead>
       <tr>
