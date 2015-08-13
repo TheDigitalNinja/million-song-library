@@ -59,3 +59,29 @@ h6, {
 .text-white {
   color: @white !important;
 }
+
+// Link colors
+//
+// Link colors are text colors with project standard hover/active/focus state
+// colors
+//
+// .link-black - Sets text color, including hover to `@black`
+// .link-gray - Sets text color, including hover to `@gray-1`
+//
+// Markup:
+// <a href="#" class="{{modifier_class}}">Lorem Ipsum is simply dummy text...</a>
+//
+// Styleguide 2.4
+
+.link-black {
+  color: @black !important;
+  .pseudo-class({
+    color: @black !important;
+  });
+}
+.link-gray {
+  color: @gray-1 !important;
+  .pseudo-class({
+    color: @gray-1 !important;
+  });
+}
