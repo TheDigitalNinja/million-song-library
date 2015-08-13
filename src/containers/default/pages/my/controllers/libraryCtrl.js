@@ -7,14 +7,6 @@ function libraryCtrl ($scope, myLibraryStore) {
     this.display = true;
     $scope.$evalAsync();
   })();
-
-  /**
-   * play button action
-   * @param {string} songId
-   */
-  this.play = function (songId) {
-    console.log(songId);
-  };
 }
 
 export default libraryCtrl;
