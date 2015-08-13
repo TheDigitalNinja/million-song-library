@@ -1,26 +1,4 @@
 <div ng-controller="libraryCtrl as library">
   <h3>Songs in Your Library</h3>
-  <loading ng-if="!library.display"></loading>
-  <table class="table table-striped" ng-if="library.display">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Artist</th>
-        <th>Song</th>
-        <th>Release</th>
-        <th>Duration</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="song in library.content.songs track by song.songId">
-        <td>
-          <play-button size="xs" song-id="song.songId"></play-button>
-        </td>
-        <td>{{song.artistName}}</td>
-        <td>{{song.songName}}</td>
-        <td>{{song.release}}</td>
-        <td>{{song.duration}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <songs-table loading="!library.display" content="library.content"></songs-table>
 </div>

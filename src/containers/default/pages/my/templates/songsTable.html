@@ -1,0 +1,23 @@
+<loading ng-if="loading"></loading>
+<table class="table table-striped" ng-if="!loading">
+  <thead>
+  <tr>
+    <th></th>
+    <th>Artist</th>
+    <th>Song</th>
+    <th>Release</th>
+    <th>Duration</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="song in content.songs track by song.songId">
+    <td style="width: 100px;">
+      <play-button size="xs" song-id="song.songId"></play-button>
+    </td>
+    <td>{{song.artistName}}</td>
+    <td>{{song.songName}}</td>
+    <td>{{song.release}}</td>
+    <td>{{song.duration}}</td>
+  </tr>
+  </tbody>
+</table>

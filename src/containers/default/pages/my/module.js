@@ -6,8 +6,10 @@ import defaultContainerMyPageConfig from "./config";
 import historyCtrl from "./controllers/historyCtrl";
 import libraryCtrl from "./controllers/libraryCtrl";
 import likesCtrl from "./controllers/likesCtrl";
+import songsTable from "./directives/songsTable";
 
 export default angular.module("msl.containers.default.my", [router, datastore, loading])
+  .directive("songsTable", songsTable)
   .controller("historyCtrl", historyCtrl)
   .controller("libraryCtrl", libraryCtrl)
   .controller("likesCtrl", likesCtrl)
