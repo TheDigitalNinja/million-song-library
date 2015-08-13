@@ -1,9 +1,9 @@
 import SongListEntity from "../entities/SongListEntity";
 
-function myLibraryStore (request, entityMapper) {
+function recentSongsStore (request, entityMapper) {
   "ngInject";
 
-  const API_REQUEST_PATH = "/api/accountedge/users/mylibrary";
+  const API_REQUEST_PATH = "/api/accountedge/users/recentsongs";
   return {
     /**
      * @return {SongListEntity}
@@ -14,4 +14,4 @@ function myLibraryStore (request, entityMapper) {
   };
 }
 
-export default myLibraryStore;
+export default recentSongsStore;
