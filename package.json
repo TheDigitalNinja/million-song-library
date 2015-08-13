@@ -8,7 +8,7 @@
     "pretest": "eslint src",
     "test": "karma start --singleRun true",
     "autotest": "karma start",
-    "build": "webpack --config webpack.prod.config.js",
+    "build": "webpack --config webpack.prod.config.js && kss-node --config=kss-config.json",
     "styleguide": "kss-node --config=kss-config.json",
     "serve-dev": "webpack-dev-server --port 3000 --content-base build/ --development --progress",
     "serve-prod": "http-server build -p 80",
