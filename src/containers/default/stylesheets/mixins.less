@@ -1,0 +1,31 @@
+
+// ==========================================================================
+// Mixins
+// ==========================================================================
+
+// pseudo-class
+//
+// Adds widely used pseudo class selectors to a given element, uses LESS
+// detached rulesets for adaptability.
+//
+// Passes your ruleset as a variable to the mixin as can be seen in the below
+// example.
+//
+// ```
+// .pseudo-class({
+//   color: @white;
+//   background: @black;
+//  });
+// ```
+//
+// Styleguide 5.1
+
+.pseudo-class(@rules) {
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  &.selected {
+    @rules();
+  }
+}
