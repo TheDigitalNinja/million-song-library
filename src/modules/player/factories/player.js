@@ -1,15 +1,14 @@
+import _ from "lodash";
 import assert from "assert";
 import {EventEmitter} from "events";
-import PlayerEntity from "./entities/PlayerEntity";
 
 const EVENT_PLAYER_STATE_CHANGE = "visibilityStateChange";
-const NOT_PLAYER_ENTITY = "Provided entity is not instance of PlayerEntity!";
 
-function player () {
+function player (songStore) {
   "ngInject";
 
   var events = new EventEmitter();
-  var active = false;
+  var songEntity, active;
 
   return {
     /**
@@ -30,16 +29,36 @@ function player () {
       events.removeListener(EVENT_PLAYER_STATE_CHANGE, cb);
     },
     /**
+     * check if player is active
      * @return {boolean}
      */
     isActive() {
-      return active;
+      return !!active;
     },
     /**
-     * @param {PlayerEntity} entity
+     * get currently playing song entity
+     * @return {SongInfoEntity|undefined}
      */
-    play(entity) {
-      assert.ok(entity instanceof PlayerEntity, NOT_PLAYER_ENTITY);
+    getSongEntity() {
+      return songEntity;
+    },
+    /**
+     * start player
+     * @param {string} songId
+     */
+    async play(songId) {
+      assert.ok(_.isString(songId), "Song Id must be defined as string!");
+      songEntity = await songStore.fetch(songId);
+      active = true;
+      events.emit(EVENT_PLAYER_STATE_CHANGE);
+    },
+    /**
+     * stop player
+     */
+    stop() {
+      songEntity = undefined;
+      active = false;
+      events.emit(EVENT_PLAYER_STATE_CHANGE);
     }
   };
 }

@@ -14,9 +14,7 @@
     <tbody>
       <tr ng-repeat="song in library.content.songs track by song.songId">
         <td>
-          <button class="btn btn-default btn-xs" ng-click="library.play(song.songId)">
-            <i class="fa fa-play"></i> Play
-          </button>
+          <play-button size="xs" song-id="song.songId"></play-button>
         </td>
         <td>{{song.artistName}}</td>
         <td>{{song.songName}}</td>
