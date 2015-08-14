@@ -1,28 +1,4 @@
 <div ng-controller="historyCtrl as history">
   <h3>Last Songs You Have Viewed</h3>
-  <div class="text-center text-muted" ng-if="!history.display">
-    <i class="fa fa-refresh fa-spin fa-4x"></i>
-  </div>
-  <table class="table table-striped" ng-if="history.display">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Artist</th>
-        <th>Song</th>
-        <th>Release</th>
-        <th>Duration</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="song in history.content.songs track by song.songId">
-        <td>
-          <play-button size="xs" song-id="song.songId"></play-button>
-        </td>
-        <td>{{song.artistName}}</td>
-        <td>{{song.songName}}</td>
-        <td>{{song.release}}</td>
-        <td>{{song.duration}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <songs-table loading="!history.display" content="history.content"></songs-table>
 </div>
