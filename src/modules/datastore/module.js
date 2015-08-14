@@ -5,6 +5,7 @@ import myLibraryStore from "./services/myLibraryStore";
 import recentSongsStore from "./services/recentSongsStore";
 import songStore from "./services/songStore";
 import sessionInfoStore from "./services/sessionInfoStore";
+import artistStore from "./services/artistStore";
 import loginStore from "./services/loginStore";
 import logoutStore from "./services/logoutStore";
 
@@ -15,6 +16,7 @@ export default angular.module("msl.datastore", [])
   .factory("recentSongsStore", recentSongsStore)
   .factory("songStore", songStore)
   .factory("sessionInfoStore", sessionInfoStore)
+  .factory("artistStore", artistStore)
   .factory("loginStore", loginStore)
   .factory("logoutStore", logoutStore)
   .name;

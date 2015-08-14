@@ -2,13 +2,13 @@
   <div class="row">
     <div class="col-md-3">
       <div class="image-container image-container-margin">
-        <img class="img-responsive" src="" alt="" />
+        <img class="img-responsive" ng-src="artist.artistInfo.linkToImage" alt="{{artist.artistInfo.artistName}}" />
       </div>
     </div>
 
     <div class="artist-info col-md-9">
       <span class="item-name">Artist</span>
-      <h1 class="artist-name">Artist Name</h1>
+      <h1 class="artist-name">{{artist.artistInfo.artistName}}</h1>
       <p>
         Some information about the artist.<br>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui.
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <h3>Top Songs Of <small>Artist Name</small></h3>
+  <h3>Top Songs Of <small>{{artist.artistInfo.artistName}}</small></h3>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -51,7 +51,7 @@
     </tbody>
   </table>
 
-  <h3>Albums By <small>Artist Name</small></h3>
+  <h3>Albums By <small>{{artist.artistInfo.artistName}}</small></h3>
   <table class="table table-striped">
     <thead>
       <tr>
