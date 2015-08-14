@@ -26,30 +26,7 @@
   </div>
 
   <h3>Top Songs Of <small>{{artist.artistInfo.artistName}}</small></h3>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Artist</th>
-        <th>Song</th>
-        <th>Year</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>Artist Name</td>
-        <td>Track ID</td>
-        <td>2015</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Artist Name</td>
-        <td>Track ID</td>
-        <td>2015</td>
-      </tr>
-    </tbody>
-  </table>
+  <songs-table loading="!artist.displaySongs" content="artist.artistSongs"></songs-table>
 
   <h3>Albums By <small>{{artist.artistInfo.artistName}}</small></h3>
   <table class="table table-striped">

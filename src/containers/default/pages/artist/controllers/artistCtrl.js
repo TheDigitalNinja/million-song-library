@@ -9,6 +9,7 @@ function artistCtrl ($scope, $state, $stateParams, artistStore, catalogStore) {
     })().then(async () => {
       // TODO: Get list of artist albums
       this.artistSongs = await catalogStore.fetch({artist: this.artistId});
+      this.displaySongs = true;
       $scope.$evalAsync();
     });
   } else {
