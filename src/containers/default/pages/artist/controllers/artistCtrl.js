@@ -1,14 +1,16 @@
-function artistCtrl ($scope, $state, $stateParams, artistStore) {
+function artistCtrl ($scope, $state, $stateParams, artistStore, catalogStore) {
   this.artistId = ($stateParams.artistId) ? $stateParams.artistId : "";
 
   if (this.artistId !== "") {
     // Fetch content from artist store
     (async () => {
       this.artistInfo = await artistStore.fetch(this.artistId);
-      // TODO: Get artis's albums info
-      // TODO: Get artis's songs info
       $scope.$evalAsync();
-    })();
+    })().then(async () => {
+      // TODO: Get list of artist albums
+      this.artistSongs = await catalogStore.fetch({artist: this.artistId});
+      $scope.$evalAsync();
+    });
   } else {
     $state.go("default.home");
   }
