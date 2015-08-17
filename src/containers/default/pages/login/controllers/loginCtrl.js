@@ -4,7 +4,7 @@ function loginCtrl ($scope, $state, authorisation) {
   this.submit = async () => {
     delete this.hasError;
     try {
-      await authorisation.authorise({login: this.email, password: this.password});
+      await authorisation.authorise(this.email, this.password);
       $state.go("default.home");
     } catch (e) {
       this.hasError = true;

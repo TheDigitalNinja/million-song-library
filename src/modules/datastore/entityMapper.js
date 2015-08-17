@@ -1,9 +1,15 @@
 import _ from "lodash";
 
+/**
+ * @returns {entityMapper}
+ */
 function entityMapperFactory () {
   "ngInject";
 
-  return function entityMapper (response, Entity) {
+  /**
+   * @name entityMapper
+   */
+  function entityMapper (response, Entity) {
     var entity = new Entity();
     var methods = _.keys(entity);
     var Instance;
@@ -21,7 +27,9 @@ function entityMapperFactory () {
     });
     _.forEach(methods, method => delete entity[method]);
     return entity;
-  };
+  }
+
+  return entityMapper;
 }
 
 export default entityMapperFactory;

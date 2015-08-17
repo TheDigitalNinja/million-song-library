@@ -1,3 +1,16 @@
+/**
+ * @name SongInfoEntity
+ * @property {string} artistMbid
+ * @property {string} artistName
+ * @property {number} averageRating
+ * @property {number} danceability
+ * @property {number} duration
+ * @property {string} linkToImage
+ * @property {string} release
+ * @property {number} songHotttnesss
+ * @property {string} songId
+ * @property {string} songName
+ */
 class SongInfoEntity {
   constructor() {
     this.artistMbid = String;

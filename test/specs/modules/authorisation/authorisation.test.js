@@ -1,34 +1,36 @@
-/* global describe, it, expect, beforeEach, afterEach, jasmine, inject */
+/* global describe, it, expect, beforeEach, jasmine, inject */
 import angular from "angular";
 import authorisationModule from "modules/authorisation/module";
 
 describe("authorisation factory", function () {
   var loginCredentials = {login: "login", password: "password"};
+  var user = {userEmail: "email", userId: "userId"};
+  var session = {sessionToken: "sessionToken"};
+
   var authorisation;
   var $cookies;
   var sessionToken;
-  var httpBackend;
+  var loginStore;
+  var sessionInfoStore;
+  var logoutStore;
 
   describe("#1", function () {
-    var session = {sessionToken: "sessionToken"};
-    var user = {userEmail: "email", userId: "userId"};
-
     beforeEach(angular.mock.module(authorisationModule, function ($provide) {
       $cookies = jasmine.createSpyObj("$cookies", ["getObject", "putObject", "remove"]);
       sessionToken = jasmine.createSpyObj("sessionToken", ["set", "destroy"]);
+      loginStore = jasmine.createSpyObj("loginStore", ["push"]);
+      sessionInfoStore = jasmine.createSpyObj("sessionInfoStore", ["fetch"]);
+      logoutStore = jasmine.createSpyObj("logoutStore", ["push"]);
       $provide.value("$cookies", $cookies);
       $provide.value("sessionToken", sessionToken);
+      $provide.value("loginStore", loginStore);
+      $provide.value("sessionInfoStore", sessionInfoStore);
+      $provide.value("logoutStore", logoutStore);
     }));
 
-    beforeEach(inject(function (_authorisation_, _$http_, _$httpBackend_) {
+    beforeEach(inject(function (_authorisation_) {
       authorisation = _authorisation_;
-      httpBackend = _$httpBackend_;
     }));
-
-    afterEach(function () {
-      httpBackend.verifyNoOutstandingExpectation();
-      httpBackend.verifyNoOutstandingRequest();
-    });
 
     it("should throw authorise error if not credentials passed", done => async function () {
       var reject = jasmine.createSpy("reject");
@@ -44,15 +46,12 @@ describe("authorisation factory", function () {
     it("should authorise, save session and trigger listener", done => async function () {
       var listener = jasmine.createSpy("listener");
       authorisation.addChangeListener(listener);
-      var authorise = authorisation.authorise(loginCredentials);
-      httpBackend.expectPOST("/api/loginedge/login", "email=login&password=password").respond(session);
-      await new Promise(resolve => setTimeout(resolve, 0));
-      httpBackend.flush();
-      httpBackend.expectGET("/api/loginedge/sessioninfo/sessionToken").respond(user);
-      await new Promise(resolve => setTimeout(resolve, 0));
-      httpBackend.flush();
-      await authorise;
+      loginStore.push.and.returnValue(Promise.resolve(session));
+      sessionInfoStore.fetch.and.returnValue(Promise.resolve(user));
+      await authorisation.authorise(loginCredentials.login, loginCredentials.password);
       expect(authorisation.isAuthorised()).toBeTruthy();
+      expect(loginStore.push).toHaveBeenCalledWith(loginCredentials.login, loginCredentials.password);
+      expect(sessionInfoStore.fetch).toHaveBeenCalledWith(session.sessionToken);
       expect(sessionToken.set).toHaveBeenCalledWith("sessionToken");
       expect($cookies.getObject).toHaveBeenCalledWith("authorisation");
       expect($cookies.putObject).toHaveBeenCalledWith("authorisation", user);
@@ -63,22 +62,15 @@ describe("authorisation factory", function () {
     it("should authorize and destroy session", done => async function () {
       var listener = jasmine.createSpy("listener");
       authorisation.addChangeListener(listener);
-      var authorise = authorisation.authorise(loginCredentials);
-      httpBackend.expectPOST("/api/loginedge/login", "email=login&password=password").respond(session);
-      await new Promise(resolve => setTimeout(resolve, 0));
-      httpBackend.flush();
-      httpBackend.expectGET("/api/loginedge/sessioninfo/sessionToken").respond(user);
-      await new Promise(resolve => setTimeout(resolve, 0));
-      httpBackend.flush();
-      await authorise;
+      loginStore.push.and.returnValue(Promise.resolve(session));
+      sessionInfoStore.fetch.and.returnValue(Promise.resolve(user));
+      await authorisation.authorise(loginCredentials.login, loginCredentials.password);
       expect(listener.calls.count()).toBe(2);
       expect($cookies.getObject).toHaveBeenCalled();
       expect($cookies.putObject).toHaveBeenCalled();
-      var destroy = authorisation.destroy();
-      httpBackend.expectPOST("/api/loginedge/logout", {}).respond({});
-      await new Promise(resolve => setTimeout(resolve, 0));
-      httpBackend.flush();
-      await destroy;
+      logoutStore.push.and.returnValue(Promise.resolve());
+      await authorisation.destroy();
+      expect(logoutStore.push).toHaveBeenCalled();
       expect(sessionToken.destroy).toHaveBeenCalled();
       expect(listener.calls.count()).toBe(3);
       expect($cookies.remove).toHaveBeenCalledWith("authorisation");
@@ -88,14 +80,9 @@ describe("authorisation factory", function () {
     it("should get authorized user data", done => async function () {
       var listener = jasmine.createSpy("listener");
       authorisation.addChangeListener(listener);
-      var authorise = authorisation.authorise(loginCredentials);
-      httpBackend.expectPOST("/api/loginedge/login", "email=login&password=password").respond(session);
-      await new Promise(resolve => setTimeout(resolve, 0));
-      httpBackend.flush();
-      httpBackend.expectGET("/api/loginedge/sessioninfo/sessionToken").respond(user);
-      await new Promise(resolve => setTimeout(resolve, 0));
-      httpBackend.flush();
-      await authorise;
+      loginStore.push.and.returnValue(Promise.resolve(session));
+      sessionInfoStore.fetch.and.returnValue(Promise.resolve(user));
+      await authorisation.authorise(loginCredentials.login, loginCredentials.password);
       expect(listener.calls.count()).toBe(2);
       expect(authorisation.getUserData("userEmail")).toBe(user.userEmail);
       expect(authorisation.getUserData("userId")).toBe(user.userId);
@@ -106,22 +93,14 @@ describe("authorisation factory", function () {
     it("should remove authorized user data", done => async function () {
       var listener = jasmine.createSpy("listener");
       authorisation.addChangeListener(listener);
-      var authorise = authorisation.authorise(loginCredentials);
-      httpBackend.expectPOST("/api/loginedge/login", "email=login&password=password").respond(session);
-      await new Promise(resolve => setTimeout(resolve, 0));
-      httpBackend.flush();
-      httpBackend.expectGET("/api/loginedge/sessioninfo/sessionToken").respond(user);
-      await new Promise(resolve => setTimeout(resolve, 0));
-      httpBackend.flush();
-      await authorise;
+      loginStore.push.and.returnValue(Promise.resolve(session));
+      sessionInfoStore.fetch.and.returnValue(Promise.resolve(user));
+      await authorisation.authorise(loginCredentials.login, loginCredentials.password);
       expect(listener.calls.count()).toBe(2);
       expect(authorisation.getUserData()).toEqual(user);
       authorisation.removeChangeListener(listener);
-      var destroy = authorisation.destroy();
-      httpBackend.expectPOST("/api/loginedge/logout", {}).respond({});
-      await new Promise(resolve => setTimeout(resolve, 0));
-      httpBackend.flush();
-      await destroy;
+      logoutStore.push.and.returnValue(Promise.resolve());
+      await authorisation.destroy();
       expect(authorisation.getUserData()).toEqual({});
       expect(listener.calls.count()).toBe(2);
       done();
@@ -131,8 +110,16 @@ describe("authorisation factory", function () {
   describe("#2", function () {
     beforeEach(angular.mock.module(authorisationModule, function ($provide) {
       $cookies = jasmine.createSpyObj("$cookies", ["getObject", "putObject", "remove"]);
-      $cookies.getObject.and.returnValue(loginCredentials);
+      sessionToken = jasmine.createSpyObj("sessionToken", ["set", "destroy"]);
+      loginStore = jasmine.createSpyObj("loginStore", ["push"]);
+      sessionInfoStore = jasmine.createSpyObj("sessionInfoStore", ["fetch"]);
+      logoutStore = jasmine.createSpyObj("logoutStore", ["push"]);
       $provide.value("$cookies", $cookies);
+      $provide.value("sessionToken", sessionToken);
+      $provide.value("loginStore", loginStore);
+      $provide.value("sessionInfoStore", sessionInfoStore);
+      $provide.value("logoutStore", logoutStore);
+      $cookies.getObject.and.returnValue(user);
     }));
 
     beforeEach(inject(function (_authorisation_) {
@@ -142,7 +129,7 @@ describe("authorisation factory", function () {
     it("should have startup data from session", function () {
       expect($cookies.getObject).toHaveBeenCalledWith("authorisation");
       expect(authorisation.isAuthorised()).toBeTruthy();
-      expect(authorisation.getUserData()).toEqual(loginCredentials);
+      expect(authorisation.getUserData()).toEqual(user);
     });
   });
 });
