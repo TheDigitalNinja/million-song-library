@@ -1,10 +1,10 @@
 <div ng-controller="homeCtrl as home">
   <div class="row">
     <div class="col-lg-3">
-      <div class="row" ng-repeat="category in home.categories">
+      <div class="row" ng-repeat="category in home.categories track by $index">
         <h3>{{ category.title }}</h3>
         <ul>
-          <li ng-repeat="item in category.items"><a href="#" title="{{ item.name }}">{{ item.name }}</a></li>
+          <li ng-repeat="item in category.items track by $index"><a href="#" title="{{ item.name }}">{{ item.name }}</a></li>
         </ul>
       </div>
     </div>
