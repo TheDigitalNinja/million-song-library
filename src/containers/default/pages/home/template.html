@@ -1,57 +1,70 @@
 <div ng-controller="homeCtrl as home">
   <div class="row">
-    <div class="col-xs-12">
-      <h1>Home Page Layout 1</h1>
+    <div class="col-lg-3">
+      <div class="row" ng-repeat="category in home.categories">
+        <h3>{{ category.title }}</h3>
+        <ul>
+          <li ng-repeat="item in category.items"><a href="#" title="{{ item.name }}">{{ item.name }}</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="i in home.getNumber(home.itemsCount) track by $index">
-      <div class="image-container">
-        <img class="img-responsive" src="" alt="" />
-        <div class="image-overlay">
-          <div class="overlay-control first-control">
-            <i class="fa fa-play"></i> Play
-          </div>
-          <div class="overlay-control">
-            <i class="fa fa-heart"></i> Add to library
-          </div>
+    <div class="col-lg-9">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Home Page Layout 1</h1>
         </div>
       </div>
-      <h3 class="track-id">Track ID</h3>
-      <p>Artist Name</p>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <h1>Home Page Layout 2</h1>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="horizontal-layout col-xs-12 col-lg-6" ng-repeat="i in home.getNumber(home.itemsCount) track by $index">
-      <div class="image-container small-image">
-        <img class="img-responsive" src="" alt="" />
-        <div class="image-overlay">
-          <div class="overlay-control first-control">
-            <i class="fa fa-play"></i> Play
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="i in home.getNumber(home.itemsCount) track by $index">
+          <div class="image-container">
+            <img class="img-responsive" src="" alt="" />
+            <div class="image-overlay">
+              <div class="overlay-control first-control">
+                <i class="fa fa-play"></i> Play
+              </div>
+              <div class="overlay-control">
+                <i class="fa fa-heart"></i> Add to library
+              </div>
+            </div>
           </div>
-          <div class="overlay-control">
-            <i class="fa fa-heart"></i> Add to library
-          </div>
-        </div>
-      </div>
-      <div class="track-info">
-        <div class="track-artist-name-container">
-          <h2>Track ID</h2>
+          <h3 class="track-id">Track ID</h3>
           <p>Artist Name</p>
         </div>
-        <div>
-          <span class="text-gray">7:21</span> | <span class="text-gray">Genre Name</span>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Home Page Layout 2</h1>
         </div>
       </div>
-      <div class="clear"></div>
+
+      <div class="row">
+        <div class="horizontal-layout col-xs-12 col-lg-6" ng-repeat="i in home.getNumber(home.itemsCount) track by $index">
+          <div class="image-container small-image">
+            <img class="img-responsive" src="" alt="" />
+            <div class="image-overlay">
+              <div class="overlay-control first-control">
+                <i class="fa fa-play"></i> Play
+              </div>
+              <div class="overlay-control">
+                <i class="fa fa-heart"></i> Add to library
+              </div>
+            </div>
+          </div>
+          <div class="track-info">
+            <div class="track-artist-name-container">
+              <h2>Track ID</h2>
+              <p>Artist Name</p>
+            </div>
+            <div>
+              <span class="text-gray">7:21</span> | <span class="text-gray">Genre Name</span>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
