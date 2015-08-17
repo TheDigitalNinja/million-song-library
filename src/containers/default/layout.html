@@ -20,6 +20,8 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+      <!--
+      Commented out Search bar, see MSL-44 for details
       <li ng-controller="headerSearchCtrl as search" >
         <form class="navbar-form" name="searchForm" ng-submit="search.submitForm()" novalidate>
           <div class="input-group">
@@ -30,6 +32,7 @@
           </div>
         </form>
       </li>
+      -->
       <li ui-sref-active="active" ng-if="header.authorised === false">
         <a ui-sref="default.login">Login</a>
       </li>
