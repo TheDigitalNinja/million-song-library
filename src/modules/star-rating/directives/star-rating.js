@@ -1,7 +1,7 @@
 import _ from "lodash";
 import ratingTemplate from "../templates/star-rating.html";
 
-function ratingController ($scope) {
+function ratingController ($scope, rateStore) {
   "ngInject";
 
   this.max = 5;
@@ -20,10 +20,17 @@ function ratingController ($scope) {
     }
   };
 
-  this.rate = (index) => {
-    if (!this.readOnly) {
+  this.rate = async (index) => {
+    if (!this.readOnly && $scope.starRating !== (index + 1)) {
+      this.readOnly = true;
       $scope.starRating = index + 1;
-      // TODO: make a request to back-end server
+      try {
+        await rateStore.push($scope.songId, $scope.starRating);
+      } catch (err) {
+        // TODO: Handle the error
+      }
+      this.readOnly = false;
+      $scope.$evalAsync();
     }
   };
 
@@ -44,7 +51,8 @@ function starRatingDirective () {
     controllerAs: "rating",
     scope: {
       starRating: "=",
-      readOnly: "="
+      readOnly: "=",
+      songId: "="
     }
   };
 }
