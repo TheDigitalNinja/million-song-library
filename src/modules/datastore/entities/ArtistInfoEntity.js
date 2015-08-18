@@ -1,3 +1,12 @@
+/**
+ * @name ArtistInfoEntity
+ * @property {string} albumsList
+ * @property {string} artistId
+ * @property {String} artistMbid
+ * @property {String} artistName
+ * @property {String} linkToImage
+ * @property {string} songsList
+ */
 class ArtistInfoEntity {
   constructor() {
     this.albumsList = String;
