@@ -1,6 +1,5 @@
 import _ from "lodash";
 import assert from "assert";
-import querystring from "querystring";
 import {EventEmitter} from "events";
 
 const EVENT_CHANGE_NAMESPACE = "change";
@@ -8,9 +7,26 @@ const COOKIE_NAMESPACE = "authorisation";
 const LOGIN_EMPTY = "Login is empty!";
 const PASSWORD_EMPTY = "Password is empty!";
 
-function authorisation ($http, sessionToken, $cookies) {
+/**
+ * @name authorisation
+ * @param {$cookies} $cookies
+ * @param {sessionToken} sessionToken
+ * @param {loginStore} loginStore
+ * @param {sessionInfoStore} sessionInfoStore
+ * @param {logoutStore} logoutStore
+ * @returns {*}
+ */
+function authorisation (
+  $cookies,
+  sessionToken,
+  loginStore,
+  sessionInfoStore,
+  logoutStore
+) {
   "ngInject";
 
+  // get cookie info for session storage
+  // if we have data stored then user is authorised
   var stored = $cookies.getObject(COOKIE_NAMESPACE);
   var events = new EventEmitter();
   var authorised = Boolean(stored);
@@ -28,14 +44,6 @@ function authorisation ($http, sessionToken, $cookies) {
     }
   }
 
-  /**
-   * attach host to path
-   * @returns {string}
-   */
-  function withHost () {
-    return [process.env.API_HOST].concat(_.toArray(arguments)).join("");
-  }
-
   // register authorisation state change event
   events.on(EVENT_CHANGE_NAMESPACE, onAuthorisationStateChange);
 
@@ -43,32 +51,30 @@ function authorisation ($http, sessionToken, $cookies) {
     /**
      * authorise user and create user session
      * and emit state change event
-     * @param {{login: string, password: string}} credentials
+     * @name authorisation#authorise
+     * @param {string} login
+     * @param {string} password
      */
-    async authorise({login: login, password: password}) {
-      var data, headers, response, token;
+    async authorise(login, password) {
       assert.ok(!_.isEmpty(login), LOGIN_EMPTY);
       assert.ok(!_.isEmpty(password), PASSWORD_EMPTY);
       // make api request
-      data = querystring.stringify({email: login, password});
-      headers = {"Content-Type": "application/x-www-form-urlencoded"};
-      response = await $http.post(withHost("/api/loginedge/login"), data, {headers});
-      token = response.data.sessionToken;
+      var response = await loginStore.push(login, password);
+      var token = response.sessionToken;
       // save session token
       sessionToken.set(token);
-      // get user data
-      response = await $http.get(withHost("/api/loginedge/sessioninfo/", token));
       // save authorised data
+      authorisedData = await sessionInfoStore.fetch(token);
       authorised = true;
-      authorisedData = _.pick(response.data, ["userEmail", "userId"]);
       events.emit(EVENT_CHANGE_NAMESPACE);
     },
     /**
      * destroy user session
      * and emit state change event
+     * @name authorisation#destory
      */
     async destroy() {
-      await $http.post(withHost("/api/loginedge/logout"), {});
+      await logoutStore.push();
       sessionToken.destroy();
       authorised = false;
       authorisedData = {};
@@ -76,7 +82,8 @@ function authorisation ($http, sessionToken, $cookies) {
     },
     /**
      * get user data
-     * @param {string|null} param
+     * @name authorisation#getUserData
+     * @param {string|null} [param]
      * @return {*}
      */
     getUserData(param = null) {
@@ -88,6 +95,7 @@ function authorisation ($http, sessionToken, $cookies) {
     },
     /**
      * returns if user is authorised
+     * @name authorisation#isAuthorised
      * @return {boolean}
      */
     isAuthorised() {
@@ -96,6 +104,7 @@ function authorisation ($http, sessionToken, $cookies) {
     /**
      * add authorisation sate change listener
      * @note by default when adding state listener it will fire at first time to report current sate
+     * @name authorisation#addChangeListener
      * @param {Function} cb
      */
     addChangeListener(cb) {
@@ -104,6 +113,7 @@ function authorisation ($http, sessionToken, $cookies) {
     },
     /**
      * remove authorisation state change listener
+     * @name authorisation#removeChangeListener
      * @param {Function} cb
      */
     removeChangeListener(cb) {

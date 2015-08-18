@@ -26,7 +26,7 @@ describe("loginCtrl", function () {
     loginCtrl.email = "test@test.com";
     loginCtrl.password = "password";
     await loginCtrl.submit();
-    expect(authorisation.authorise).toHaveBeenCalledWith({login: loginCtrl.email, password: loginCtrl.password});
+    expect(authorisation.authorise).toHaveBeenCalledWith(loginCtrl.email, loginCtrl.password);
     expect($state.go).toHaveBeenCalledWith("default.home");
     done();
   }());
@@ -50,7 +50,7 @@ describe("loginCtrl", function () {
     loginCtrl.password = "password";
     await loginCtrl.submit();
     expect(loginCtrl.hasError).toBeUndefined();
-    expect(authorisation.authorise).toHaveBeenCalledWith({login: loginCtrl.email, password: loginCtrl.password});
+    expect(authorisation.authorise).toHaveBeenCalledWith(loginCtrl.email, loginCtrl.password);
     expect($state.go).toHaveBeenCalledWith("default.home");
     done();
   }());

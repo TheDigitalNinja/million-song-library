@@ -1,10 +1,15 @@
 import SongInfoEntity from "./SongInfoEntity";
 
-class MyLibraryEntity {
+/**
+ * @name SongListEntity
+ * @property {string} genre
+ * @property {SongInfoEntity[]} songs
+ */
+class SongListEntity {
   constructor() {
     this.genre = String;
     this.songs = [SongInfoEntity];
   }
 }
 
-export default MyLibraryEntity;
+export default SongListEntity;

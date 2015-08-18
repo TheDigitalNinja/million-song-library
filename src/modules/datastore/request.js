@@ -1,12 +1,22 @@
+/**
+ * @param {$http} $http
+ * @returns {*}
+ */
 function request ($http) {
   "ngInject";
 
+  /**
+   * append api host to request path
+   * @param {string} path
+   * @returns {string}
+   */
   function withHost (path) {
     return [process.env.API_HOST, path].join("");
   }
 
   return {
     /**
+     * @name request#get
      * @param {string} path
      * @param {Object} config
      * @return {*}
@@ -16,6 +26,7 @@ function request ($http) {
       return response.data;
     },
     /**
+     * @name request#post
      * @param {string} path
      * @param {*} content
      * @param {Object} config

@@ -1,6 +1,10 @@
 import defaultLoginPageTemplate from "./template.html";
 import {ANONYMOUS_REDIRECT_TO, ROLE_ANONYMOUS} from "constants";
 
+/**
+ * angular config for login page
+ * @param {ui.router.state.$stateProvider} $stateProvider
+ */
 function defaultContainerLoginPageConfig ($stateProvider) {
   "ngInject";
   $stateProvider.state({
