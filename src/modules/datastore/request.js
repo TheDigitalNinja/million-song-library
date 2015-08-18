@@ -35,6 +35,17 @@ function request ($http) {
     async post(path, content, config = {}) {
       var response = await $http.post(withHost(path), content, config);
       return response.data;
+    },
+    /**
+     * @name request#put
+     * @param {string} path
+     * @param {*} content
+     * @param {Object} config
+     * @return {*}
+     */
+    async put(path, content, config = {}) {
+      var response = await $http.put(withHost(path), content, config);
+      return response.data;
     }
   };
 }
