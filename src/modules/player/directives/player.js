@@ -9,7 +9,7 @@ function playerController ($scope, player) {
   "ngInject";
 
   /**
-   * listener for player sate change
+   * listener for player state change
    * this is not angular action so we need to digest scope manually
    */
   var onPlayerStateChange = () => {

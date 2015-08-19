@@ -1,5 +1,5 @@
 /**
- * my page history sate controller
+ * my page history state controller
  * @param {$rootScope.Scope} $scope
  * @param {recentSongsStore} recentSongsStore
  */
@@ -8,7 +8,7 @@ function historyCtrl ($scope, recentSongsStore) {
 
   /**
    * fetch content from my history store
-   * this is not angular event to we need to digest scope manually
+   * this is not angular event so we need to digest scope manually
    */
   (async () => {
     this.content = await recentSongsStore.fetch();
