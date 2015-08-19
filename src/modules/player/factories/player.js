@@ -4,6 +4,13 @@ import {EventEmitter} from "events";
 
 const EVENT_PLAYER_STATE_CHANGE = "visibilityStateChange";
 
+/**
+ * player service
+ * this service stores sate about currently playing song
+ * @name player
+ * @param {songStore} songStore
+ * @returns {*}
+ */
 function player (songStore) {
   "ngInject";
 
@@ -13,8 +20,7 @@ function player (songStore) {
   return {
     /**
      * player state change listener
-     *  - player state changes when track is added to play list or is removed from it
-     * @todo add more details on its workflow
+     * @name player#addStateChangeListener
      * @param {Function} cb
      */
     addStateChangeListener(cb) {
@@ -23,6 +29,7 @@ function player (songStore) {
     },
     /**
      * remove player stage listener
+     * @name player#removeStateChangeListener
      * @param {Function} cb
      */
     removeStateChangeListener(cb) {
@@ -30,6 +37,7 @@ function player (songStore) {
     },
     /**
      * check if player is active
+     * @name player#isActive
      * @return {boolean}
      */
     isActive() {
@@ -37,13 +45,15 @@ function player (songStore) {
     },
     /**
      * get currently playing song entity
+     * @name player#getSongEntity
      * @return {SongInfoEntity|undefined}
      */
     getSongEntity() {
       return songEntity;
     },
     /**
-     * start player
+     * start player and save current song state
+     * @name player#play
      * @param {string} songId
      */
     async play(songId) {
@@ -53,7 +63,8 @@ function player (songStore) {
       events.emit(EVENT_PLAYER_STATE_CHANGE);
     },
     /**
-     * stop player
+     * remove currently playing song sate
+     * @name player#stop
      */
     stop() {
       songEntity = undefined;

@@ -7,6 +7,7 @@ describe("authorisation factory", function () {
   var user = {userEmail: "email", userId: "userId"};
   var session = {sessionToken: "sessionToken"};
 
+  /** @type {authorisation} */
   var authorisation;
   var $cookies;
   var sessionToken;
