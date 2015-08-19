@@ -1,4 +1,4 @@
-function artistCtrl ($scope, $state, $stateParams, artistStore, catalogStore) {
+function artistCtrl ($scope, $state, $stateParams, artistStore, catalogStore, $log) {
   this.artistId = ($stateParams.artistId) ? $stateParams.artistId : "";
 
   if (this.artistId !== "") {
@@ -11,7 +11,8 @@ function artistCtrl ($scope, $state, $stateParams, artistStore, catalogStore) {
         this.displaySongs = true;
         $scope.$evalAsync();
       } catch (err) {
-        // TODO: hande the error
+        // TODO: Handle the error
+        $log.warn(err);
       }
     })();
   } else {

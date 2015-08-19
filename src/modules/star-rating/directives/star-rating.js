@@ -1,7 +1,7 @@
 import _ from "lodash";
 import ratingTemplate from "../templates/star-rating.html";
 
-function ratingController ($scope, rateStore) {
+function ratingController ($scope, rateStore, $log) {
   "ngInject";
 
   this.max = 5;
@@ -28,6 +28,7 @@ function ratingController ($scope, rateStore) {
         await rateStore.push($scope.songId, $scope.starRating);
       } catch (err) {
         // TODO: Handle the error
+        $log.warn(err);
       }
       this.readOnly = false;
       $scope.$evalAsync();
