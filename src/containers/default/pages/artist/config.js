@@ -1,5 +1,9 @@
 import defaultArtistPageTemplate from "./template.html";
 
+/**
+ * Angular config for Artist page
+ * @param {ui.router.state.$stateProvider} $stateProvider
+ */
 function defaultContainerArtistPageConfig ($stateProvider) {
   "ngInject";
   $stateProvider.state({

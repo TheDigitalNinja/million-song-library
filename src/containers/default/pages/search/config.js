@@ -1,5 +1,9 @@
 import defaultSearchPageTemplate from "./template.html";
 
+/**
+ * Angular config for Search page
+ * @param {ui.router.state.$stateProvider} $stateProvider
+ */
 function defaultContainerSearchPageConfig ($stateProvider) {
   "ngInject";
   $stateProvider.state({
