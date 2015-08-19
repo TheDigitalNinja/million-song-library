@@ -4,7 +4,7 @@
 
 Project is based on [Webpack](http://webpack.github.io/) and [Angular](https://angularjs.org/).
 Main `index.html` file is build by using webpack's [HTML Webpack Plugin](https://github.com/ampedandwired/html-webpack-plugin).
-Project is based on ES6 syntax, it is converted to ES5 by using [BabelJS](https://babeljs.io) compiler with state `1`,
+Project is based on ES6 syntax, it is converted to ES5 by using [BabelJS](https://babeljs.io) compiler with stage `1`,
 this means that we can use extra features like `await` and `async`. For stylesheets we use [LESS](http://lesscss.org/)
 compiler.
 
@@ -56,38 +56,41 @@ Library files from `npm` and `bower` can be accessed by simple imports like in `
 to use `npm` dependencies and use `bower` for dependencies that are not published to `npm`.
 
 ```
-/src
-	/containers
-		# containers are layouts, different layouts have different controllers,
-		# pages, factories, stylesheets and other e.g. header controller might
-		# be different then in other layouts. Each container is a angular module
-		# with its custom config and dependencies. When using ui router you will
-		# define layout global states in container config.
-		/<containers list...>
-			/controllers
-			/factories
-			/pages
-				# container pages can have its controllers, factories, stylesheets
-				# and other. Each page is a different angular module so it can
-				# have custom config. When using angular ui router you will
-				# define it states in page module config - not in the global one!
-				# this way you get a clear view on page dependencies.
-				/<container pages list...>
-					/controllers
-					/factories
-					/stylesheets
-					/config.js
-					/module.js
-					/template.html
-			/stylesheets
-			/config.js
-			/run.js
-			/layout.html
-			/module.js
-		/module.js
-	/config.js
-	/run.js
-	/index.js
+├──  /src
+│   ├── /containers
+│   │   │   # containers are layouts, different layouts have different controllers,
+│   │   │   # pages, factories, stylesheets and other e.g. header controller might
+│   │   │   # be different then in other layouts. Each container is a angular module
+│   │   │   # with its custom config and dependencies. When using ui router you will
+│   │   │   # define layout global states in container config.
+│   │   ├── /<containers list...>
+│   │   │   ├── /controllers
+│   │   │   ├── /factories
+│   │   │   ├── /pages
+│   │   │   │   │   # container pages can have its controllers, factories, stylesheets
+│   │   │   │   │   # and other. Each page is a different angular module so it can
+│   │   │   │   │   # have custom config. When using angular ui router you will
+│   │   │   │   │   # define it states in page module config - not in the global one!
+│   │   │   │   │   # this way you get a clear view on page dependencies.
+│   │   │   │   └── /<container pages list...>
+│   │   │   │       ├── /controllers
+│   │   │   │       ├── /factories
+│   │   │   │       ├── /stylesheets
+│   │   │   │       ├── /config.js
+│   │   │   │       ├── /module.js
+│   │   │   │       └── /template.html
+│   │   │   ├── /stylesheets
+│   │   │   ├── /config.js
+│   │   │   ├── /run.js
+│   │   │   ├── /layout.html
+│   │   │   └── /module.js
+│   │   └── /module.js
+│   ├── /modules
+│   │   │   # place to put custom modules used all over the system
+│   │   └── /<modules list...>
+│   ├── /config.js
+│   ├── /run.js
+│   └── /index.js
 ```
 
 ##### Ng Annotate
