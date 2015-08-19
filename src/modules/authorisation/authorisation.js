@@ -102,7 +102,7 @@ function authorisation (
       return authorised;
     },
     /**
-     * add authorisation sate change listener
+     * add authorisation state change listener
      * @note by default when adding state listener it will fire at first time to report current sate
      * @name authorisation#addChangeListener
      * @param {Function} cb

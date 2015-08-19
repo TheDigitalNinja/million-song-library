@@ -7,7 +7,7 @@ import defaultContainerTemplate from "./layout.html";
 function defaultContainerConfig ($stateProvider) {
   "ngInject";
 
-  // default sate is used so we do not re render elements like navigation
+  // default state is used so we do not re-render elements like navigation
   // when user navigates to new default container page
   $stateProvider.state({
     name: "default",

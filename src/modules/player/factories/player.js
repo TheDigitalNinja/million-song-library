@@ -6,7 +6,7 @@ const EVENT_PLAYER_STATE_CHANGE = "visibilityStateChange";
 
 /**
  * player service
- * this service stores sate about currently playing song
+ * this service stores state about currently playing song
  * @name player
  * @param {songStore} songStore
  * @returns {*}

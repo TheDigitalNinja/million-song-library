@@ -1,4 +1,21 @@
-function artistCtrl ($scope, $state, $stateParams, artistStore, catalogStore, $log) {
+/**
+ * Artist page controller
+ * @param {$rootScope.Scope} $scope
+ * @param {ui.router.state.$state} $state
+ * @param {ui.router.state.$stateParams} $stateParams
+ * @param {artistStore} artistStore
+ * @param {catalogStore} catalogStore
+ * @param {$logProvider.$log} $log
+ */
+function artistCtrl (
+  $scope,
+  $state,
+  $stateParams,
+  artistStore,
+  catalogStore,
+  $log
+) {
+  // Get artistId from $stateParams
   this.artistId = ($stateParams.artistId) ? $stateParams.artistId : "";
 
   if (this.artistId !== "") {
