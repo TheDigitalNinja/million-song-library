@@ -16,12 +16,14 @@ function songCtrl (
   // Get songId from $stateParams
   this.songId = ($stateParams.songId) ? $stateParams.songId : "";
 
+  // Fetch content from song store
+  this.getSongInfo = async () => {
+    this.songInfo = await songStore.fetch(this.songId);
+    $scope.$evalAsync();
+  };
+
   if (this.songId !== "") {
-    // Fetch content from song store
-    (async () => {
-      this.songInfo = await songStore.fetch(this.songId);
-      $scope.$evalAsync();
-    })();
+    this.getSongInfo();
   } else {
     $state.go("default.home");
   }
