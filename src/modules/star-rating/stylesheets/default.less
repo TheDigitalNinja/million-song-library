@@ -8,19 +8,19 @@
 // Markup:
 // <ul class="star-rating list-unstyled">
 //   <li>
-//     <i class="fa fa-star"></i>
+//    <button type="button" class="btn fa fa-star"></button>
 //   </li>
 //   <li>
-//     <i class="fa fa-star"></i>
+//    <button type="button" class="btn fa fa-star"></button>
 //   </li>
 //   <li>
-//     <i class="fa fa-star"></i>
+//    <button type="button" class="btn fa fa-star"></button>
 //   </li>
 //   <li>
-//     <i class="fa fa-star-o"></i>
+//    <button type="button" class="btn fa fa-star-o"></button>
 //   </li>
 //   <li>
-//     <i class="fa fa-star-o"></i>
+//    <button type="button" class="btn fa fa-star-o"></button>
 //   </li>
 // </ul>
 //
@@ -31,14 +31,17 @@
 
   li {
     display: inline-block;
+  }
 
-    i.fa {
-      cursor: pointer;
-    }
+  button {
+    cursor: pointer;
+    border: 0 none;
+    background: none;
+    padding: 2px;
   }
 
   &.rating-readonly {
-    i.fa {
+    button.fa {
       cursor: default;
     }
   }
