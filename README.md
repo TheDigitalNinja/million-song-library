@@ -21,7 +21,8 @@ You can also use `npm run autotest` for automated test runs when some source fil
 
 ### Build
 
-Project is build by calling `npm run build`, this will create new source files and place them in `./build` directory.
+Project is build by calling `npm run build`, this will create new source files and place them in `./build` directory,
+also this will create Styleguide of the project.
 Mount them on any server and you are ready to go or alternatively use `npm run serve-dev`.
 
 ### Dev Server
