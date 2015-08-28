@@ -14,8 +14,13 @@ module.exports = function (config) {
       "./node_modules/angular-mocks/angular-mocks.js",
       "./test/**/*.test.js"
     ],
+    reporters: ["progress", "coverage"],
     preprocessors: {
-      "./test/**/*.test.js": ["webpack", "sourcemap"]
+      "./test/**/*.test.js": ["webpack", "sourcemap", "coverage"]
+    },
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
     },
     webpack: _.assign(
       _.pick(webpackConfig, ["module", "resolve", "plugins"]), {
@@ -28,11 +33,11 @@ module.exports = function (config) {
     },
     plugins: [
       require("karma-sourcemap-loader"),
+      require("karma-coverage"),
       require("karma-webpack"),
       require("karma-jasmine"),
       require("karma-phantomjs-launcher")
     ],
-    reporters: ["dots"],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
