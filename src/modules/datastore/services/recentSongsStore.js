@@ -1,4 +1,4 @@
-import SongListEntity from "../entities/SongListEntity";
+import SongListEntity from '../entities/SongListEntity';
 
 /**
  * recent songs store service
@@ -8,9 +8,9 @@ import SongListEntity from "../entities/SongListEntity";
  * @returns {*}
  */
 function recentSongsStore (request, entityMapper) {
-  "ngInject";
+  'ngInject';
 
-  const API_REQUEST_PATH = "/api/accountedge/users/recentsongs";
+  const API_REQUEST_PATH = '/api/accountedge/users/recentsongs';
   return {
     /**
      * fetch songs list from account recent songs endpoint

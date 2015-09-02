@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="image-container image-container-margin">
+      <img class="img-responsive" ng-src="{{vm.songInfo.linkToImage}}" alt="{{vm.songInfo.songName}}"/>
+    </div>
+  </div>
+
+  <div class="song-info col-md-9">
+    <div class="row">
+      <div class="col-md-12">
+        <span class="item-name">Track</span>
+
+        <h1 class="song-name">{{vm.songInfo.songName}}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <span class="item-name">Artist</span>
+
+        <p><a class="link-black" ui-sref="default.artist">{{vm.songInfo.artistName}}</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <span class="item-name">Duration</span>
+
+    <p>{{vm.songInfo.duration}}</p>
+  </div>
+
+  <div class="col-md-3">
+    <span class="item-name">Released</span>
+
+    <p>{{vm.songInfo.release}}</p>
+  </div>
+
+  <div class="col-md-3">
+    <span class="item-name">Genre</span>
+
+    <p>Genre Name</p>
+  </div>
+  <div class="col-md-3">
+    <span class="item-name">Vote</span>
+
+    <div star-rating="vm.songInfo.averageRating" song-id="vm.songInfo.songId"></div>
+  </div>
+</div>
+
+<h3>Similar Songs</h3>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Artist</th>
+    <th>Song</th>
+    <th>Year</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Artist Name</td>
+    <td>Track ID</td>
+    <td>2015</td>
+  </tr>
+  <tr>
+    <td>Artist Name</td>
+    <td>Track ID</td>
+    <td>2015</td>
+  </tr>
+  </tbody>
+</table>

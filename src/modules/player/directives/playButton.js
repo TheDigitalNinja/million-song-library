@@ -1,12 +1,10 @@
-import playButtonTemplate from "../templates/playButton.html";
-
 /**
  * play button directive controller
  * @param {$rootScope.Scope} $scope
  * @param {player} player
  */
 function playButtonController ($scope, player) {
-  "ngInject";
+  'ngInject';
 
   this.currentlyPlayingSong = false;
 
@@ -38,21 +36,21 @@ function playButtonController ($scope, player) {
   // add player state change listener
   player.addStateChangeListener(onPlayerStateChange);
   // when scope destroys then remove player state change listener
-  $scope.$on("$destroy", () => player.removeStateChangeListener(onPlayerStateChange));
+  $scope.$on('$destroy', () => player.removeStateChangeListener(onPlayerStateChange));
 }
 
-function playButton () {
-  "ngInject";
+export default function playButton () {
+
+  'ngInject';
+
   return {
-    restrict: "E",
+    restrict: 'E',
     controller: playButtonController,
-    controllerAs: "pb",
-    template: playButtonTemplate,
+    controllerAs: 'pb',
+    template: require('../templates/playButton.html'),
     scope: {
-      size: "@",
-      songId: "="
+      size: '@',
+      songId: '='
     }
   };
 }
-
-export default playButton;

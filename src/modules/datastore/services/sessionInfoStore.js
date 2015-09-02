@@ -1,4 +1,4 @@
-import SessionInfoEntity from "../entities/SessionInfoEntity";
+import SessionInfoEntity from '../entities/SessionInfoEntity';
 
 /**
  * session info store service
@@ -8,9 +8,9 @@ import SessionInfoEntity from "../entities/SessionInfoEntity";
  * @returns {*}
  */
 function sessionInfoStore (request, entityMapper) {
-  "ngInject";
+  'ngInject';
 
-  const API_REQUEST_PATH = "/api/loginedge/sessioninfo/";
+  const API_REQUEST_PATH = '/api/loginedge/sessioninfo/';
   return {
     /**
      * fetch session data by session id

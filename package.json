@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "postinstall": "bower install",
-    "pretest": "eslint src",
+    "validate": "eslint src",
     "test": "karma start --singleRun true",
     "autotest": "karma start",
     "build": "webpack --config webpack.prod.config.js && kss-node --config=kss-config.json",

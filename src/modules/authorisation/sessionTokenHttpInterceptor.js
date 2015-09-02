@@ -1,4 +1,4 @@
-import url from "url";
+import url from 'url';
 
 /**
  * session token angular http interceptor
@@ -7,8 +7,8 @@ import url from "url";
  * @param {sessionToken} sessionToken
  * @returns {*}
  */
-function sessionTokenHttpInterceptor (sessionToken) {
-  "ngInject";
+export default function sessionTokenHttpInterceptor (sessionToken) {
+  'ngInject';
 
   // parse current api host - api host is set as environment
   // variable when building
@@ -32,5 +32,3 @@ function sessionTokenHttpInterceptor (sessionToken) {
     }
   };
 }
-
-export default sessionTokenHttpInterceptor;

@@ -4,3 +4,7 @@
 /build
 /npm-debug.log
 /coverage
+
+*-compiled.js
+*-compiled.js.map
+.DS_Store

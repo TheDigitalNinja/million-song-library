@@ -1,8 +1,8 @@
-import _ from "lodash";
-import assert from "assert";
-import {EventEmitter} from "events";
+import _ from 'lodash';
+import assert from 'assert';
+import {EventEmitter} from 'events';
 
-const EVENT_PLAYER_STATE_CHANGE = "visibilityStateChange";
+const EVENT_PLAYER_STATE_CHANGE = 'visibilityStateChange';
 
 /**
  * player service
@@ -11,8 +11,8 @@ const EVENT_PLAYER_STATE_CHANGE = "visibilityStateChange";
  * @param {songStore} songStore
  * @returns {*}
  */
-function player (songStore) {
-  "ngInject";
+export default function player (songStore) {
+  'ngInject';
 
   var events = new EventEmitter();
   var songEntity, active;
@@ -57,7 +57,7 @@ function player (songStore) {
      * @param {string} songId
      */
     async play(songId) {
-      assert.ok(_.isString(songId), "Song Id must be defined as string!");
+      assert.ok(_.isString(songId), 'Song Id must be defined as string!');
       songEntity = await songStore.fetch(songId);
       active = true;
       events.emit(EVENT_PLAYER_STATE_CHANGE);
@@ -73,5 +73,3 @@ function player (songStore) {
     }
   };
 }
-
-export default player;

@@ -1,12 +1,10 @@
-import playerTemplate from "../templates/player.html";
-
 /**
  * player directive controller
  * @param {$rootScope.Scope} $scope
  * @param {player} player
  */
 function playerController ($scope, player) {
-  "ngInject";
+  'ngInject';
 
   /**
    * listener for player state change
@@ -26,18 +24,16 @@ function playerController ($scope, player) {
   // add player state change listener
   player.addStateChangeListener(onPlayerStateChange);
   // when scope destroys then remove player state change listener
-  $scope.$on("$destroy", () => player.removeStateChangeListener(onPlayerStateChange));
+  $scope.$on('$destroy', () => player.removeStateChangeListener(onPlayerStateChange));
 }
 
-function playerDirective () {
-  "ngInject";
+export default function playerDirective () {
+  'ngInject';
 
   return {
-    restrict: "E",
-    template: playerTemplate,
+    restrict: 'E',
+    template: require('../templates/player.html'),
     controller: playerController,
-    controllerAs: "player"
+    controllerAs: 'player'
   };
 }
-
-export default playerDirective;

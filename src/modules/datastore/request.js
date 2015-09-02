@@ -2,8 +2,8 @@
  * @param {$http} $http
  * @returns {*}
  */
-function request ($http) {
-  "ngInject";
+export default function request ($http) {
+  'ngInject';
 
   /**
    * append api host to request path
@@ -11,7 +11,7 @@ function request ($http) {
    * @returns {string}
    */
   function withHost (path) {
-    return [process.env.API_HOST, path].join("");
+    return [process.env.API_HOST, path].join('');
   }
 
   return {
@@ -49,5 +49,3 @@ function request ($http) {
     }
   };
 }
-
-export default request;

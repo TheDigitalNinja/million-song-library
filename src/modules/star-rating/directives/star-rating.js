@@ -1,8 +1,8 @@
-import _ from "lodash";
-import ratingTemplate from "../templates/star-rating.html";
+import _ from 'lodash';
+import ratingTemplate from '../templates/star-rating.html';
 
 function ratingController ($scope, rateStore, $log) {
-  "ngInject";
+  'ngInject';
 
   this.max = 5;
 
@@ -35,7 +35,7 @@ function ratingController ($scope, rateStore, $log) {
     }
   };
 
-  $scope.$watch("starRating", function (newVal) {
+  $scope.$watch('starRating', function (newVal) {
     if (newVal >= 0) {
       updateStars();
     }
@@ -43,17 +43,17 @@ function ratingController ($scope, rateStore, $log) {
 }
 
 function starRatingDirective () {
-  "ngInject";
+  'ngInject';
 
   return {
-    restrict: "A",
+    restrict: 'A',
     template: ratingTemplate,
     controller: ratingController,
-    controllerAs: "rating",
+    controllerAs: 'rating',
     scope: {
-      starRating: "=",
-      readOnly: "=",
-      songId: "="
+      starRating: '=',
+      readOnly: '=',
+      songId: '='
     }
   };
 }

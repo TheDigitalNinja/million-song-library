@@ -4,10 +4,10 @@
  * @param {$cookies} $cookies
  * @returns {*}
  */
-function sessionToken ($cookies) {
-  "ngInject";
+export default function sessionToken ($cookies) {
+  'ngInject';
 
-  const STORAGE_NAMESPACE = "sessionId";
+  const STORAGE_NAMESPACE = 'sessionId';
 
   return {
     /**
@@ -47,5 +47,3 @@ function sessionToken ($cookies) {
     }
   };
 }
-
-export default sessionToken;

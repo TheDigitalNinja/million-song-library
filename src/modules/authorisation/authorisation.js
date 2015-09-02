@@ -1,11 +1,11 @@
-import _ from "lodash";
-import assert from "assert";
-import {EventEmitter} from "events";
+import _ from 'lodash';
+import assert from 'assert';
+import {EventEmitter} from 'events';
 
-const EVENT_CHANGE_NAMESPACE = "change";
-const COOKIE_NAMESPACE = "authorisation";
-const LOGIN_EMPTY = "Login is empty!";
-const PASSWORD_EMPTY = "Password is empty!";
+const EVENT_CHANGE_NAMESPACE = 'change';
+const COOKIE_NAMESPACE = 'authorisation';
+const LOGIN_EMPTY = 'Login is empty!';
+const PASSWORD_EMPTY = 'Password is empty!';
 
 /**
  * @name authorisation
@@ -16,14 +16,14 @@ const PASSWORD_EMPTY = "Password is empty!";
  * @param {logoutStore} logoutStore
  * @returns {*}
  */
-function authorisation (
+export default function authorisation (
   $cookies,
   sessionToken,
   loginStore,
   sessionInfoStore,
   logoutStore
 ) {
-  "ngInject";
+  'ngInject';
 
   // get cookie info for session storage
   // if we have data stored then user is authorised
@@ -121,5 +121,3 @@ function authorisation (
     }
   };
 }
-
-export default authorisation;

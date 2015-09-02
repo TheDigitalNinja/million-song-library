@@ -1,12 +1,12 @@
-import _ from "lodash";
+import _ from 'lodash';
 
 /**
  * response raw object mapper to typed entity
  * @name entityMapper
  * @type {Function}
  */
-function entityMapper () {
-  "ngInject";
+export default function entityMapper () {
+  'ngInject';
 
   /**
    * @param {Object} response
@@ -47,5 +47,3 @@ function entityMapper () {
 
   return mapper;
 }
-
-export default entityMapper;

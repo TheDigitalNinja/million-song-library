@@ -1,4 +1,4 @@
-import StatusResponseEntity from "../entities/StatusResponseEntity";
+import StatusResponseEntity from '../entities/StatusResponseEntity';
 
 /**
  * rate store service
@@ -8,9 +8,9 @@ import StatusResponseEntity from "../entities/StatusResponseEntity";
  * @returns {*}
  */
 function rateStore (request, entityMapper) {
-  "ngInject";
+  'ngInject';
 
-  const API_REQUEST_PATH = "/api/ratingsedge/ratesong/";
+  const API_REQUEST_PATH = '/api/ratingsedge/ratesong/';
   return {
     /**
      * make rate song request

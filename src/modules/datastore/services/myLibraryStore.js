@@ -1,4 +1,4 @@
-import SongListEntity from "../entities/SongListEntity";
+import SongListEntity from '../entities/SongListEntity';
 
 /**
  * my library store service
@@ -8,9 +8,9 @@ import SongListEntity from "../entities/SongListEntity";
  * @returns {*}
  */
 function myLibraryStore (request, entityMapper) {
-  "ngInject";
+  'ngInject';
 
-  const API_REQUEST_PATH = "/api/accountedge/users/mylibrary";
+  const API_REQUEST_PATH = '/api/accountedge/users/mylibrary';
   return {
     /**
      * fetch songs from account library endpoint

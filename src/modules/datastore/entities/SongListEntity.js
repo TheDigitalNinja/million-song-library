@@ -1,4 +1,4 @@
-import SongInfoEntity from "./SongInfoEntity";
+import SongInfoEntity from './SongInfoEntity';
 
 /**
  * @name SongListEntity

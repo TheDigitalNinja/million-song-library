@@ -1,10 +1,10 @@
-import loadingTemplate from "../templates/loading.html";
+import loadingTemplate from '../templates/loading.html';
 
 function loadingDirective () {
-  "ngInject";
+  'ngInject';
 
   return {
-    restrict: "E",
+    restrict: 'E',
     template: loadingTemplate
   };
 }

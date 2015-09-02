@@ -1,5 +1,5 @@
-import querystring from "querystring";
-import LoginSuccessResponseEntity from "../entities/LoginSuccessResponseEntity";
+import querystring from 'querystring';
+import LoginSuccessResponseEntity from '../entities/LoginSuccessResponseEntity';
 
 /**
  * login store service
@@ -9,9 +9,9 @@ import LoginSuccessResponseEntity from "../entities/LoginSuccessResponseEntity";
  * @returns {*}
  */
 function loginStore (request, entityMapper) {
-  "ngInject";
+  'ngInject';
 
-  const API_REQUEST_PATH = "/api/loginedge/login";
+  const API_REQUEST_PATH = '/api/loginedge/login';
   return {
     /**
      * make login request
@@ -22,7 +22,7 @@ function loginStore (request, entityMapper) {
      */
     async push(email, password) {
       var data = querystring.stringify({email, password});
-      var headers = {"Content-Type": "application/x-www-form-urlencoded"};
+      var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
       return entityMapper(await request.post(API_REQUEST_PATH, data, headers), LoginSuccessResponseEntity);
     }
   };

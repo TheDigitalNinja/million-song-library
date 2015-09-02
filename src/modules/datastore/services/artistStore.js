@@ -1,4 +1,4 @@
-import ArtistInfoEntity from "../entities/ArtistInfoEntity";
+import ArtistInfoEntity from '../entities/ArtistInfoEntity';
 
 /**
  * artist store
@@ -7,9 +7,9 @@ import ArtistInfoEntity from "../entities/ArtistInfoEntity";
  * @returns {*}
  */
 function artistStore (request, entityMapper) {
-  "ngInject";
+  'ngInject';
 
-  const API_REQUEST_PATH = "/api/catalogedge/artist/";
+  const API_REQUEST_PATH = '/api/catalogedge/artist/';
   return {
     /**
      * fetch artist from catalogue endpoint

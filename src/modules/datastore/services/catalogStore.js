@@ -1,4 +1,4 @@
-import CatalogListEntity from "../entities/CatalogListEntity";
+import CatalogListEntity from '../entities/CatalogListEntity';
 
 /**
  * catalog store
@@ -7,9 +7,9 @@ import CatalogListEntity from "../entities/CatalogListEntity";
  * @returns {*}
  */
 function catalogStore (request, entityMapper) {
-  "ngInject";
+  'ngInject';
 
-  const API_REQUEST_PATH = "/api/catalogedge/browse/catalog";
+  const API_REQUEST_PATH = '/api/catalogedge/browse/catalog';
   return {
     /**
      * fetch songs from catalogue endpoint

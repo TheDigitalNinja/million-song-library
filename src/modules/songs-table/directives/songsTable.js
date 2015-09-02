@@ -1,13 +1,13 @@
-import songsTableTemplate from "../templates/songsTable.html";
+import songsTableTemplate from '../templates/songsTable.html';
 
 function songsTable () {
-  "ngInject";
+  'ngInject';
   return {
-    restrict: "E",
+    restrict: 'E',
     template: songsTableTemplate,
     scope: {
-      loading: "=",
-      content: "="
+      loading: '=',
+      content: '='
     }
   };
 }
