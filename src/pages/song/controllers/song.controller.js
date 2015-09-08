@@ -5,29 +5,27 @@
  * @param {ui.router.state.$stateParams} $stateParams
  * @param {songStore} songStore
  */
- export default function songCtrl($scope,
-                  $state,
-                  $stateParams,
-                  songStore) {
-  'ngInject';
+export default class songCtrl {
+  /*@ngInject*/
 
-  var vm = this;
-
-  // Fetch content from song store
-  var getSongInfo = async() => {
-    vm.songInfo = await songStore.fetch(vm.songId);
-    $scope.$evalAsync();
-  };
-
-  function init() {
+  constructor($state,
+              $stateParams) {
+    var vm = this;
     if (angular.isDefined($stateParams.songId) && $stateParams.songId.length > 0) {
       vm.songId = $stateParams.songId;
-      getSongInfo();
+      this.getSongInfo();
     } else {
       $state.go('msl.home');
     }
   }
 
-  init();
+  // Fetch content from song store
+  getSongInfo($scope,
+              songStore) {
+    (async() => {
+      this.songInfo = await songStore.fetch(this.songId);
+      $scope.$evalAsync();
+    })();
+  }
 
 }

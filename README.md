@@ -29,11 +29,11 @@ The tests will run in the different browsers(Chrome, Firefox, Safari and Interne
 
 Project is build by calling `npm run build`, this will create new source files and place them in `./build` directory,
 also this will create Styleguide of the project.
-Mount them on any server and you are ready to go or alternatively use `npm run serve-dev`.
+Mount them on any server and you are ready to go or alternatively use `npm run dev`.
 
 ### Dev Server
 
-Start dev server by calling `npm run serve-dev`, this will automatically mound a server on `3000` localhost port.
+Start dev server by calling `npm run dev`, this will automatically mound a server on `3000` localhost port.
 If any change is made during dev server run, source files will be automatically rebuild.
 
 ### Prod Server
@@ -64,38 +64,29 @@ to use `npm` dependencies and use `bower` for dependencies that are not publishe
 
 ```
 ├──  /src
-│   ├── /containers
-│   │   │   # containers are layouts, different layouts have different controllers,
-│   │   │   # pages, factories, stylesheets and other e.g. header controller might
-│   │   │   # be different then in other layouts. Each container is a angular module
-│   │   │   # with its custom config and dependencies. When using ui router you will
-│   │   │   # define layout global states in container config.
-│   │   ├── /<containers list...>
-│   │   │   ├── /controllers
-│   │   │   ├── /factories
-│   │   │   ├── /pages
-│   │   │   │   │   # container pages can have its controllers, factories, stylesheets
-│   │   │   │   │   # and other. Each page is a different angular module so it can
-│   │   │   │   │   # have custom config. When using angular ui router you will
-│   │   │   │   │   # define it states in page module config - not in the global one!
-│   │   │   │   │   # this way you get a clear view on page dependencies.
-│   │   │   │   └── /<container pages list...>
-│   │   │   │       ├── /controllers
-│   │   │   │       ├── /factories
-│   │   │   │       ├── /stylesheets
-│   │   │   │       ├── /config.js
-│   │   │   │       ├── /module.js
-│   │   │   │       └── /template.html
-│   │   │   ├── /stylesheets
-│   │   │   ├── /config.js
-│   │   │   ├── /run.js
-│   │   │   ├── /layout.html
-│   │   │   └── /module.js
-│   │   └── /module.js
+│   ├── /layout
+│   │   │   # overall site layout, navigation bar and components that are visible
+│   │   │   # through out all views go here
 │   ├── /modules
 │   │   │   # place to put custom modules used all over the system
 │   │   └── /<modules list...>
-│   ├── /config.js
+│   ├── /pages
+│   │   │   # pages can have its controllers, factories, and other.
+│   │   │   # Each page is a different angular module so it can
+│   │   │   # have custom configuration and route. When using angular ui router you will
+│   │   │   # define it states in page module route - not in the global one!
+│   │   │   # this way you get a clear view on page dependencies.
+│   │   └── /<pages list...>
+│   │       ├── /controllers
+│   │       ├── /factories
+│   │       ├── /*-route.js
+│   │       ├── /*-module.js
+│   │       └── /*.html
+│   ├── /styles
+│   │   │   # place custom stylesheets used all over the system
+│   │   └── /<stylesheet list...>
+│   ├── /constants.js
+│   ├── /routing.js
 │   ├── /run.js
 │   └── /index.js
 ```
@@ -122,8 +113,8 @@ Swagger config file is placed in `./swagger/api/swagger/swagger.yaml`
 #### Swagger Mock Server
 
 Start mock server by running `npm run serve-mock`. **Note** that if you want that your dev server would
-use swagger mock server you need to start it with `--mock` argument, for e.g. `npm run serve-dev --mock`.
+use swagger mock server you need to start it with `--mock` argument, for e.g. `npm run dev --mock`.
 
 #### Swagger Docs Editor
 
-Start docs editor by running `npm run serve-docs`.
+Start docs editor by running `npm run docs`.

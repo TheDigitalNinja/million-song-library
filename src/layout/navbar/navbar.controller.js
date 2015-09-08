@@ -1,48 +1,49 @@
 /**
  * navbar controller
  * it should only process authentication and navigation actions only
- * @param {$rootScope.Scope} $scope
- * @param {ui.router.state.$state} $state
- * @param {authorisation} authorisation
  */
-export default function navbarCtrl($scope, $state, authorisation) {
+export default class navbarCtrl {
 
-  'ngInject';
-
-  var vm = this;
+  /*@ngInject*/
 
   /**
-   * on authorisation state changes we what to catch that event
-   * and update controller authenticated user data
-   * vm event is not triggered by angular so we must manually
-   * trigger scope change
+   * Class constructor
+   * @param $scope
+   * @param $state
+   * @param authorisation
    */
-  var onStateChange = () => {
-    vm.authorised = authorisation.isAuthorised();
-    if (vm.authorised) {
-      vm.email = authorisation.getUserData('userEmail');
-    } else {
-      delete vm.email;
-    }
-    $scope.$evalAsync();
-  };
+  constructor($scope, $state, authorisation) {
 
-  /**
-   * logout action for destroying session
-   * after logout redirect user to login page
-   */
+    /**
+     * on authorisation state changes we what to catch that event
+     * and update controller authenticated user data
+     * vm event is not triggered by angular so we must manually
+     * trigger scope change
+     */
 
-  vm.logout = async() => {
-  await authorisation.destroy();
-    $state.go('msl.login');
-  };
+    this.onStateChange = () => {
+      this.authorised = authorisation.isAuthorised();
+      if (this.authorised) {
+        this.email = authorisation.getUserData('userEmail');
+      } else {
+        delete this.email;
+      }
+      $scope.$evalAsync();
+    };
 
-  function init () {
+    /**
+     * logout action for destroying session
+     * after logout redirect user to login page
+     */
+    this.logout = async() => {
+      await authorisation.destroy();
+      $state.go('msl.login');
+    };
+
     // add authorisation state change listener
-    authorisation.addChangeListener(onStateChange);
+    authorisation.addChangeListener(this.onStateChange);
     // when scope destroys remove authorisation state change listener
-    $scope.$on('$destroy', () => authorisation.removeChangeListener(onStateChange));
+    $scope.$on('$destroy', () => authorisation.removeChangeListener(this.onStateChange));
   }
 
-  init();
 }

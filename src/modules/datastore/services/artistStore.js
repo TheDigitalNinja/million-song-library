@@ -6,7 +6,7 @@ import ArtistInfoEntity from '../entities/ArtistInfoEntity';
  * @param {entityMapper} entityMapper
  * @returns {*}
  */
-function artistStore (request, entityMapper) {
+export default function artistStore (request, entityMapper) {
   'ngInject';
 
   const API_REQUEST_PATH = '/api/catalogedge/artist/';
@@ -22,5 +22,3 @@ function artistStore (request, entityMapper) {
     }
   };
 }
-
-export default artistStore;

@@ -1,15 +1,13 @@
 /**
  * Home page controller
  */
-export default function homeCtrl() {
+export default class homeCtrl {
 
-  var vm = this;
-
-  // TODO: Remove after getting list from backend
-  vm.itemsCount = 5;
-  vm.categories = [];
-
-  function init() {
+  constructor() {
+    var vm = this;
+    // TODO: Remove after getting list from backend
+    vm.itemsCount = 5;
+    vm.categories = [];
     // Mockup some data
     // TODO: Remove mock data when we start getting list of genres from backend
     vm.categories.push({
@@ -19,11 +17,9 @@ export default function homeCtrl() {
     vm.categories.push({title: 'Genres', items: [{name: 'Pop'}, {name: 'Rock'}, {name: 'Techno'}]});
   }
 
-  init();
-
-  vm.getNumber = function getNumber(num) {
+  getNumber(num) {
     return new Array(num);
-  };
+  }
 
 }
 

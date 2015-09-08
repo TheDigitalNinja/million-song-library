@@ -2,13 +2,11 @@
  * Search page controller
  * @param {ui.router.state.$stateParams} $stateParams
  */
-export default function searchCtrl($stateParams, $log) {
-  'ngInject';
+export default class searchCtrl {
+  /*@ngInject*/
 
-  var vm = this;
-
-
-  function init() {
+  constructor($stateParams, $log) {
+    var vm = this;
     // Get search query from $stateParams
     vm.searchQuery = $stateParams.query;
     if (vm.searchQuery) {
@@ -17,6 +15,4 @@ export default function searchCtrl($stateParams, $log) {
       $log.error('Queried for empty string');
     }
   }
-
-  init();
 }

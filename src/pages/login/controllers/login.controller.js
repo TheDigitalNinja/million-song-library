@@ -4,26 +4,27 @@
  * @param {ui.router.state.$state} $state
  * @param {authorisation} authorisation
  */
-export default function loginCtrl($scope, $state, authorisation) {
-
-  'ngInject';
-
-  var vm = this;
+export default class loginCtrl {
+  /*@ngInject*/
 
   /**
    * user form submit action
    */
-  vm.submit = async() =>  {
-    delete vm.hasError;
-    try {
-      await authorisation.authorise(vm.email, vm.password);
-      // if authorisation is success then redirect user to home page
-      $state.go('msl.home');
-    } catch (e) {
-      vm.hasError = true;
-      $scope.$evalAsync();
-    }
-  };
+
+  constructor($scope, authorisation, $state) {
+    this.submit = async() => {
+      delete this.hasError;
+      try {
+        await authorisation.authorise(this.email, this.password);
+        // if authorisation is success then redirect user to home page
+        $state.go('msl.home');
+      } catch (e) {
+        this.hasError = true;
+        $scope.$evalAsync();
+      }
+    };
+  }
+
 }
 
 
