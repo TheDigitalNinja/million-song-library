@@ -33,14 +33,15 @@ describe('songCtrl', function () {
     expect($state.go).toHaveBeenCalledWith('msl.home');
   });
 
-  //it('should get artistInfo', done => async function () {
-  //  var songCtrl = $controller('songCtrl', {
-  //    $scope: $scope,
-  //    $stateParams: {songId: 1}
-  //  });
-  //  songStore.fetch.and.returnValue(Promise.resolve());
-  //  //await songCtrl.getSongInfo();
-  //  expect(songStore.fetch).toHaveBeenCalledWith($stateParams.songId);
-  //  done();
-  //}());
+  it('should get artistInfo', done => async function () {
+    var songCtrl = $controller('songCtrl', {
+      $scope: $scope,
+      $stateParams: { songId: '' }
+    });
+    songStore.fetch.and.returnValue(Promise.resolve());
+    songCtrl.songId = '';
+    await songCtrl.getSongInfo();
+    expect(songStore.fetch).toHaveBeenCalledWith($stateParams.songId);
+    done();
+  }());
 });
