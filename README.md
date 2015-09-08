@@ -16,8 +16,14 @@ dependencies as well as it will trigger `bower install` for installing bower dep
 ### Testing
 
 Project is tested with `karma` with `jasmine` framework and `eslint` for reporting on patterns. You can run tests and
-pattern reporting by simply calling `npm test`. Note that if `eslint` fails then tests will not be triggered.
+pattern reporting by simply calling `npm run test`. Note that if `eslint` fails then tests will not be triggered.
 You can also use `npm run autotest` for automated test runs when some source files changes.
+
+#### Functional Testing
+
+Project is tested with `jasmine` using `protractor` framework. First, you need to start webdriver-manager
+by calling `npm run webdriver-start`, and then you can run the tests by calling `npm run protractor`.
+The tests will run in the different browsers(Chrome, Firefox, Safari and Internet Explorer).
 
 ### Build
 
