@@ -7,14 +7,13 @@ export default class historyCtrl {
   /*@ngInject*/
 
   constructor($scope, recentSongsStore) {
-    var vm = this;
     /**
      * fetch content from my history store
      * this is not angular event so we need to digest scope manually
      */
     (async () => {
-      vm.content = await recentSongsStore.fetch();
-      vm.display = true;
+      this.content = await recentSongsStore.fetch();
+      this.display = true;
       $scope.$evalAsync();
     })();
   }
