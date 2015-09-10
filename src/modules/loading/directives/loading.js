@@ -5,7 +5,7 @@ function loadingDirective () {
 
   return {
     restrict: 'E',
-    template: loadingTemplate
+    template: loadingTemplate,
   };
 }
 

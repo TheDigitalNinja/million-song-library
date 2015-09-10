@@ -29,6 +29,6 @@ export default function sessionTokenHttpInterceptor (sessionToken) {
         }
       }
       return config;
-    }
+    },
   };
 }

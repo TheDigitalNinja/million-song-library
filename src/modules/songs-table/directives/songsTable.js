@@ -7,8 +7,8 @@ function songsTable () {
     template: songsTableTemplate,
     scope: {
       loading: '=',
-      content: '='
-    }
+      content: '=',
+    },
   };
 }
 

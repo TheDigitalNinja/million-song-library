@@ -26,7 +26,7 @@ describe('searchCtrl', function () {
     $stateParams = {query: 'someQuery'};
     $controller('searchCtrl', {
       $scope: $scope,
-      $stateParams: $stateParams
+      $stateParams: $stateParams,
     });
     expect($log.debug).toHaveBeenCalledWith('searched for: someQuery');
   });
@@ -35,7 +35,7 @@ describe('searchCtrl', function () {
     $stateParams = {query: ''};
     $controller('searchCtrl', {
       $scope: $scope,
-      $stateParams: $stateParams
+      $stateParams: $stateParams,
     });
     expect($log.error).toHaveBeenCalled();
   });

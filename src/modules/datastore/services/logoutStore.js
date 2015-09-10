@@ -19,7 +19,7 @@ function logoutStore (request, entityMapper) {
      */
     async push() {
       return entityMapper(await request.post(API_REQUEST_PATH, {}), StatusResponseEntity);
-    }
+    },
   };
 }
 

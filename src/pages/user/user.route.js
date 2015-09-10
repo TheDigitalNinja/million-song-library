@@ -14,26 +14,26 @@ export default function userRoute($stateProvider) {
       data: {
         permissions: {
           only: [ROLE_USER],
-          redirectTo: USER_REDIRECT_TO
-        }
-      }
+          redirectTo: USER_REDIRECT_TO,
+        },
+      },
     })
     .state('msl.user.history', {
       url: '/my/history',
       template: require('./templates/user-history.html'),
       controller: 'userHistoryCtrl',
-      controllerAs: 'vm'
+      controllerAs: 'vm',
     })
     .state('msl.user.likes', {
       url: '/my/likes',
       template: require('./templates/user-likes.html'),
       controller: 'userLikesCtrl',
-      controllerAs: 'vm'
+      controllerAs: 'vm',
     })
     .state('msl.user.library', {
       url: '/my/library',
       template: require('./templates/user-library.html'),
       controller: 'userLibraryCtrl',
-      controllerAs: 'vm'
+      controllerAs: 'vm',
     });
 }

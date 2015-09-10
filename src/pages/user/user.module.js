@@ -16,7 +16,7 @@ export default angular.module('msl.user', [
   uiRouter,
   dataStore,
   loading,
-  songsTable
+  songsTable,
 ])
   .controller('userHistoryCtrl', userHistoryCtrl)
   .controller('userLibraryCtrl', userLibraryCtrl)

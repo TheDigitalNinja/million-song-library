@@ -46,6 +46,6 @@ export default function request ($http) {
     async put(path, content, config = {}) {
       var response = await $http.put(withHost(path), content, config);
       return response.data;
-    }
+    },
   };
 }

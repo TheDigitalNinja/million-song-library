@@ -39,7 +39,8 @@ export default function authorisation (
   function onAuthorisationStateChange () {
     if (authorised) {
       $cookies.putObject(COOKIE_NAMESPACE, authorisedData);
-    } else {
+    }
+    else {
       $cookies.remove(COOKIE_NAMESPACE);
     }
   }
@@ -89,7 +90,8 @@ export default function authorisation (
     getUserData(param = null) {
       if (_.isNull(param)) {
         return authorisedData;
-      } else {
+      }
+      else {
         return _.result(authorisedData, param);
       }
     },
@@ -103,7 +105,7 @@ export default function authorisation (
     },
     /**
      * add authorisation state change listener
-     * @note by default when adding state listener it will fire at first time to report current sate
+     * NOTE: by default when adding state listener it will fire at first time to report current sate
      * @name authorisation#addChangeListener
      * @param {Function} cb
      */
@@ -118,6 +120,6 @@ export default function authorisation (
      */
     removeChangeListener(cb) {
       events.removeListener(EVENT_CHANGE_NAMESPACE, cb);
-    }
+    },
   };
 }

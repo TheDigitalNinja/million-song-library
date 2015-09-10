@@ -30,7 +30,7 @@ describe('artistCtrl', function () {
     $controller('artistCtrl', {
       $scope: $scope,
       $state: $state,
-      $stateParams: $stateParams
+      $stateParams: $stateParams,
     });
     expect($state.go).toHaveBeenCalledWith('msl.home');
   });

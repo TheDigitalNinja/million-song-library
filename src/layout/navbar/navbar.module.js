@@ -16,7 +16,7 @@ import navbarSearchCtrl from './navbar-search.controller.js';
 export default angular.module('msl.layout.navbar', [
   uiRouter,
   authorisation,
-  player
+  player,
 ])
   .directive('navbar', navbarDirective)
   .controller('navbarCtrl', navbarCtrl)

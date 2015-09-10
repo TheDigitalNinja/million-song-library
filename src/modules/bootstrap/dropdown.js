@@ -14,6 +14,6 @@ export default function dropdown () {
       element = $(element);
       element.attr('data-toggle', 'dropdown');
       element.dropdown();
-    }
+    },
   };
 }

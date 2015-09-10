@@ -20,7 +20,7 @@ function sessionInfoStore (request, entityMapper) {
      */
     async fetch(sessionId) {
       return entityMapper(await request.get(API_REQUEST_PATH + sessionId), SessionInfoEntity);
-    }
+    },
   };
 }
 

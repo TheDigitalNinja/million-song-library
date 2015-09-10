@@ -34,6 +34,6 @@ export default function playerDirective () {
     restrict: 'E',
     template: require('../templates/player.html'),
     controller: playerController,
-    controllerAs: 'player'
+    controllerAs: 'player',
   };
 }

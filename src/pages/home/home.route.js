@@ -12,6 +12,6 @@ export default function homeRoute($stateProvider) {
       template: require('./home.html'),
       controller: 'homeCtrl',
       controllerAs: 'vm',
-      title: 'Home'
+      title: 'Home',
     });
 }

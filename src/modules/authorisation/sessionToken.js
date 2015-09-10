@@ -44,6 +44,6 @@ export default function sessionToken ($cookies) {
     destroy() {
       $cookies.remove(STORAGE_NAMESPACE);
       return this;
-    }
+    },
   };
 }

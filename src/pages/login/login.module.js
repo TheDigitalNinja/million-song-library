@@ -11,7 +11,7 @@ import loginCtrl from './controllers/login.controller.js';
 
 export default angular.module('msl.login', [
   uiRouter,
-    authorisation
+    authorisation,
   ])
   .config(loginRoute)
   .controller('loginCtrl', loginCtrl)

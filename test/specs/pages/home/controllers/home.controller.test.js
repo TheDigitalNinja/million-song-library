@@ -12,9 +12,7 @@ describe('homeCtrl', function () {
   beforeEach(inject(function (_$controller_, $rootScope) {
     $controller = _$controller_;
     $scope = $rootScope.$new();
-    homeCtrl = $controller('homeCtrl', {
-      $scope: $scope
-    });
+    homeCtrl = $controller('homeCtrl', {$scope: $scope});
   }));
 
   afterEach(function () {

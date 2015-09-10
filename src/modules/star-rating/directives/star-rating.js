@@ -15,7 +15,7 @@ function ratingController ($scope, rateStore, $log) {
     this.stars = [];
     for (let i = 0; i < this.max; i++) {
       this.stars.push({
-        filled: i < $scope.starRating
+        filled: i < $scope.starRating,
       });
     }
   };
@@ -53,8 +53,8 @@ function starRatingDirective () {
     scope: {
       starRating: '=',
       readOnly: '=',
-      songId: '='
-    }
+      songId: '=',
+    },
   };
 }
 

@@ -16,7 +16,8 @@ function playButtonController ($scope, player) {
     var songEntity = player.getSongEntity();
     if (songEntity) {
       this.currentlyPlayingSong = songEntity.songId === $scope.songId;
-    } else {
+    }
+    else {
       this.currentlyPlayingSong = false;
     }
     $scope.$evalAsync();
@@ -28,7 +29,8 @@ function playButtonController ($scope, player) {
   this.play = function () {
     if (this.currentlyPlayingSong) {
       player.stop();
-    } else {
+    }
+    else {
       player.play($scope.songId);
     }
   };
@@ -50,7 +52,7 @@ export default function playButton () {
     template: require('../templates/playButton.html'),
     scope: {
       size: '@',
-      songId: '='
-    }
+      songId: '=',
+    },
   };
 }

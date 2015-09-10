@@ -15,7 +15,7 @@ describe('navbarCtrl', function () {
       'isAuthorised',
       'addChangeListener',
       'removeChangeListener',
-      'getUserData'
+      'getUserData',
     ]);
     $provide.value('$state', $state);
     $provide.value('authorisation', authorisation);

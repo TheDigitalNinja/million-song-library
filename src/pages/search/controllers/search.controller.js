@@ -11,7 +11,8 @@ export default class searchCtrl {
     vm.searchQuery = $stateParams.query;
     if (vm.searchQuery) {
       $log.debug('searched for: ' + vm.searchQuery);
-    } else {
+    }
+    else {
       $log.error('Queried for empty string');
     }
   }

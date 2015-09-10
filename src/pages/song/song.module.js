@@ -15,7 +15,7 @@ import songCtrl from './controllers/song.controller.js';
 export default angular.module('msl.song', [
   router,
   rating,
-  dataStore
+  dataStore,
 ])
   .config(songPageRoute)
   .controller('songCtrl', songCtrl)

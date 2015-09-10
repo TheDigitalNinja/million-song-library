@@ -11,6 +11,6 @@ export default function songPageRoute($stateProvider) {
       url: '/song/:songId',
       template: require('./song.html'),
       controller: 'songCtrl',
-      controllerAs: 'vm'
+      controllerAs: 'vm',
     });
 }

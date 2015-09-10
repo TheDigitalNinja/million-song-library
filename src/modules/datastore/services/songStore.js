@@ -19,7 +19,7 @@ function songStore (request, entityMapper) {
      */
     async fetch(songId) {
       return entityMapper(await request.get(API_REQUEST_PATH + songId), SongInfoEntity);
-    }
+    },
   };
 }
 

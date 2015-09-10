@@ -19,9 +19,9 @@ export default function loginPageRoute($stateProvider) {
       data: {
         permissions: {
           only: [ROLE_ANONYMOUS],
-          redirectTo: ANONYMOUS_REDIRECT_TO
-        }
+          redirectTo: ANONYMOUS_REDIRECT_TO,
+        },
       },
-      title: 'Login'
+      title: 'Login',
     });
 }
