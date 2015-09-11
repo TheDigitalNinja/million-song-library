@@ -13,6 +13,7 @@ import artistPage from './pages/artist/artist.module.js';
 import errorPage from './pages/error/error.module.js';
 import homePage from './pages/home/home.module.js';
 import loginPage from './pages/login/login.module.js';
+import searchPage from './pages/search/search.module.js';
 import songPage from './pages/song/song.module.js';
 import userPage from './pages/user/user.module.js';
 
@@ -31,6 +32,7 @@ export default angular.module('msl', [
   errorPage,
   homePage,
   loginPage,
+  searchPage,
   songPage,
   userPage,
 

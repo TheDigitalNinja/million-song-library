@@ -5,7 +5,7 @@
 export default function searchPageRoute($stateProvider) {
   'ngInject';
   $stateProvider.state(
-    'msl.route', {
+    'msl.search', {
       url: '/search/:query',
       template: require('./search.html'),
       controller: 'searchCtrl',
