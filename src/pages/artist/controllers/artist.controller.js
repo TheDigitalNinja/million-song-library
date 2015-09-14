@@ -8,7 +8,6 @@
  * @param {$logProvider.$log} $log
  */
 
-
 export default class artistCtrl {
   /*@ngInject*/
 
@@ -17,7 +16,8 @@ export default class artistCtrl {
     if (angular.isDefined($stateParams.artistId) && $stateParams.artistId.length > 0) {
       this.artirstId = $stateParams.artistId;
       this.getArtistInfo();
-    } else {
+    }
+    else {
       $state.go('msl.home');
     }
   }

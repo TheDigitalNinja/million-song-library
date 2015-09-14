@@ -15,7 +15,7 @@ import artistCtrl from './controllers/artist.controller.js';
 export default angular.module('msl.artist', [
   uiRouter,
   dataStore,
-  songsTable
+  songsTable,
 ])
   .config(artistRoute)
   .controller('artistCtrl', artistCtrl)

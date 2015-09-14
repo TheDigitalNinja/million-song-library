@@ -15,7 +15,7 @@ export default angular.module('msl.layout', [
   uiRouter,
   authorisation,
   player,
-  navbarModule
+  navbarModule,
 ])
   .config(layoutRoute)
   .name;

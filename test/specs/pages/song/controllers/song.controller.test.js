@@ -28,7 +28,7 @@ describe('songCtrl', function () {
     $controller('songCtrl', {
       $scope: $scope,
       $state: $state,
-      $stateParams: $stateParams
+      $stateParams: $stateParams,
     });
     expect($state.go).toHaveBeenCalledWith('msl.home');
   });

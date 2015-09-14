@@ -14,7 +14,8 @@ export default class songCtrl {
     if (angular.isDefined($stateParams.songId) && $stateParams.songId.length > 0) {
       vm.songId = $stateParams.songId;
       this.getSongInfo();
-    } else {
+    }
+    else {
       $state.go('msl.home');
     }
   }

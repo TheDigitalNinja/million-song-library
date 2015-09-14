@@ -19,6 +19,6 @@ export default function artistStore (request, entityMapper) {
      */
     async fetch(artistId) {
       return entityMapper(await request.get(API_REQUEST_PATH + artistId), ArtistInfoEntity);
-    }
+    },
   };
 }

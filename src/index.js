@@ -39,7 +39,7 @@ export default angular.module('msl', [
   authorisation,
   player,
   permission,
-  bootstrap
+  bootstrap,
 ])
   .config(routing)
   .run(onRun)

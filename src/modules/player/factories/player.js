@@ -70,6 +70,6 @@ export default function player (songStore) {
       songEntity = undefined;
       active = false;
       events.emit(EVENT_PLAYER_STATE_CHANGE);
-    }
+    },
   };
 }

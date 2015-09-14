@@ -9,6 +9,6 @@ export default function searchPageRoute($stateProvider) {
       url: '/search/:query',
       template: require('./search.html'),
       controller: 'searchCtrl',
-      controllerAs: 'vm'
+      controllerAs: 'vm',
     });
 }

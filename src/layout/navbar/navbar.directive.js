@@ -6,8 +6,7 @@ export default function navbar() {
     restrict: 'E',
     template: require('./navbar.html'),
     controller: 'navbarCtrl',
-    controllerAs: 'vm'
+    controllerAs: 'vm',
   };
 }
-
 

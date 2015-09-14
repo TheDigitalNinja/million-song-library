@@ -25,7 +25,8 @@ export default class navbarCtrl {
       this.authorised = authorisation.isAuthorised();
       if (this.authorised) {
         this.email = authorisation.getUserData('userEmail');
-      } else {
+      }
+      else {
         delete this.email;
       }
       $scope.$evalAsync();

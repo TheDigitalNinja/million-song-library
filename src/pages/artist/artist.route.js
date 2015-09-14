@@ -10,6 +10,6 @@ export default function artistPageRoute($stateProvider) {
       template: require('./artist.html'),
       controller: 'artistCtrl',
       controllerAs: 'vm',
-      title: 'Artist'
+      title: 'Artist',
     });
 }

@@ -9,6 +9,6 @@ export default function errorPageRoute($stateProvider) {
   $stateProvider.state(
     'error', {
       template: require('./error.html'),
-      title: 'Error'
+      title: 'Error',
     });
 }

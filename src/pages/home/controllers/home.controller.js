@@ -12,7 +12,7 @@ export default class homeCtrl {
     // TODO: Remove mock data when we start getting list of genres from backend
     vm.categories.push({
       title: 'Artists',
-      items: [{name: 'Artist Name'}, {name: 'Artist Name 2'}, {name: 'Artist Name 3'}]
+      items: [{name: 'Artist Name'}, {name: 'Artist Name 2'}, {name: 'Artist Name 3'}],
     });
     vm.categories.push({title: 'Genres', items: [{name: 'Pop'}, {name: 'Rock'}, {name: 'Techno'}]});
   }
@@ -22,5 +22,4 @@ export default class homeCtrl {
   }
 
 }
-
 

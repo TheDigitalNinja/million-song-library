@@ -21,7 +21,7 @@ function rateStore (request, entityMapper) {
      */
     async push(songId, rating) {
       return entityMapper(await request.put(API_REQUEST_PATH + songId, {rating}), StatusResponseEntity);
-    }
+    },
   };
 }
 

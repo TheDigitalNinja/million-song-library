@@ -19,7 +19,7 @@ function catalogStore (request, entityMapper) {
      */
     async fetch(opts) {
       return entityMapper(await request.get(API_REQUEST_PATH, {params: opts}), CatalogListEntity);
-    }
+    },
   };
 }
 

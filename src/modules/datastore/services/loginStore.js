@@ -24,7 +24,7 @@ function loginStore (request, entityMapper) {
       var data = querystring.stringify({email, password});
       var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
       return entityMapper(await request.post(API_REQUEST_PATH, data, headers), LoginSuccessResponseEntity);
-    }
+    },
   };
 }
 

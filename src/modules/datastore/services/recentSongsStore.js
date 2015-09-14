@@ -19,7 +19,7 @@ function recentSongsStore (request, entityMapper) {
      */
     async fetch() {
       return entityMapper(await request.get(API_REQUEST_PATH), SongListEntity);
-    }
+    },
   };
 }
 
