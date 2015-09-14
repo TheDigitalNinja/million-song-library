@@ -9,7 +9,6 @@ export default function layoutRoute($stateProvider) {
   // when user navigates to new default container page
   $stateProvider
     .state('msl', {
-      name: 'layout',
       template: require('./layout.html')
     });
 }
