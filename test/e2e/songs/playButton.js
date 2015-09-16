@@ -1,12 +1,12 @@
 /* global describe, it, expect, beforeEach, pending */
-describe('play button in home page', function () {
+describe('play button in home page', () => {
   var homeURL;
 
-  beforeEach(function() {
+  beforeEach(() => {
     browser.driver.get('http://localhost:3000/#/');
   });
 
-  xit('when click play button', function () {
+  xit('when click play button', () => {
     pending('Wait for functionality');
     homeURL = browser.driver.getCurrentUrl();
     browser.driver.findElement(By.linkText("Play")).click();
