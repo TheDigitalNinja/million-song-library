@@ -1,12 +1,12 @@
 /* global describe, it, expect, beforeEach, pending */
-describe('add to library button in home page', function () {
+describe('add to library button in home page', () => {
   var homeURL;
 
-  beforeEach(function() {
+  beforeEach(() => {
     browser.driver.get('http://localhost:3000/#/');
   });
 
-  xit('when click add to library button', function () {
+  xit('when click add to library button', () => {
     pending('Wait for functionality');
     var homeURL = browser.driver.getCurrentUrl();
     browser.driver.findElement(By.linkText("Add to library")).click();
