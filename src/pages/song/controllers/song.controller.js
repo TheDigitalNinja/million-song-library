@@ -8,25 +8,24 @@
 export default class songCtrl {
   /*@ngInject*/
 
-  constructor($state,
+  constructor($scope,
+              $state,
+              songStore,
               $stateParams) {
-    var vm = this;
+
+    // Fetch content from song store
+    this.getSongInfo = async() => {
+      this.songInfo = await songStore.fetch(this.songId);
+      $scope.$evalAsync();
+    };
+
     if (angular.isDefined($stateParams.songId) && $stateParams.songId.length > 0) {
-      vm.songId = $stateParams.songId;
+      this.songId = $stateParams.songId;
       this.getSongInfo();
     }
     else {
       $state.go('msl.home');
     }
-  }
-
-  // Fetch content from song store
-  getSongInfo($scope,
-              songStore) {
-    (async() => {
-      this.songInfo = await songStore.fetch(this.songId);
-      $scope.$evalAsync();
-    })();
   }
 
 }
