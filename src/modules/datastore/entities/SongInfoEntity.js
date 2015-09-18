@@ -10,6 +10,7 @@
  * @property {number} songHotttnesss
  * @property {string} songId
  * @property {string} songName
+ * @property {string} genreName
  */
 class SongInfoEntity {
   constructor() {
@@ -23,6 +24,7 @@ class SongInfoEntity {
     this.songHotttnesss = Number;
     this.songId = String;
     this.songName = String;
+    this.genreName = String;
   }
 }
 

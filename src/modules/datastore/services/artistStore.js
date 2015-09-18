@@ -1,4 +1,5 @@
 import ArtistInfoEntity from '../entities/ArtistInfoEntity';
+import ArtistListEntity from '../entities/ArtistListEntity';
 
 /**
  * artist store
@@ -9,7 +10,7 @@ import ArtistInfoEntity from '../entities/ArtistInfoEntity';
 export default function artistStore (request, entityMapper) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/catalogedge/artist/';
+  const API_REQUEST_PATH = '/api/catalogedge/artists/';
   return {
     /**
      * fetch artist from catalogue endpoint
@@ -19,6 +20,9 @@ export default function artistStore (request, entityMapper) {
      */
     async fetch(artistId) {
       return entityMapper(await request.get(API_REQUEST_PATH + artistId), ArtistInfoEntity);
+    },
+    async fetchAll(){
+      return entityMapper(await request.get(API_REQUEST_PATH), ArtistListEntity);
     },
   };
 }

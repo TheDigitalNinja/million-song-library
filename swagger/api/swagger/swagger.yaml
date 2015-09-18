@@ -4,9 +4,9 @@ info:
   title: Million Songs API
 # during dev, should point to your local machine
 host: localhost:10010
-# basePath prefixes all resource paths 
+# basePath prefixes all resource paths
 basePath: /
-# 
+#
 schemes:
   # tip: remove http to make production-grade
   - http
@@ -27,14 +27,14 @@ paths:
       schemes: ["https"]
       description: Logs a user into the system
       operationId: login
-      parameters: 
-        - 
+      parameters:
+        -
           name: email
           in: formData
           description: Login to the app with user credentials
           required: true
           type: string
-        - 
+        -
           name: password
           in: formData
           description: user password
@@ -49,7 +49,7 @@ paths:
           description: Invalid Login Credentials
         "500":
           description: Server Error
-          schema: 
+          schema:
             $ref: "#/definitions/ErrorResponse"
   /api/loginedge/logout:
     x-swagger-router-controller: login_controller
@@ -73,8 +73,8 @@ paths:
     x-swagger-router-controller: login_controller
     post:
       schemes: ["https"]
-      description: Resets the user's password via email.
-      tags: 
+      description: "Resets the user's password via email."
+      tags:
         - Login
       operationId: reset_password
       parameters:
@@ -97,11 +97,11 @@ paths:
     x-swagger-router-controller: session_controller
     get:
       description: Endpoint for api services to get session data from session token.
-      tags: 
+      tags:
         - Login
       operationId: session_info
-      parameters: 
-        - 
+      parameters:
+        -
           name: sessionId
           in: path
           description: The session to retrieve data for.
@@ -114,20 +114,20 @@ paths:
             $ref: "#/definitions/SessionInfo"
         "500":
           description: Server Error
-          schema: 
+          schema:
             $ref: "#/definitions/ErrorResponse"
   /api/catalogedge/song/{songId}:
     x-swagger-router-controller: catalog_controller
     get:
-      description: Get a song's info from the database
+      description: "Get a song's info from the database"
+      operationId: getSongById
       tags:
         - Catalog
-      operationId: song_info
       parameters:
-        - 
+        -
           name: songId
           in: path
-          description: The song's identification number.
+          description: "The song's identification number."
           required: true
           type: string
       responses:
@@ -147,11 +147,11 @@ paths:
     x-swagger-router-controller: catalog_controller
     get:
       description: Get data for an Album of songs
-      tags: 
+      tags:
         - Catalog
       operationId: album_info
       parameters:
-        - 
+        -
           name: albumId
           in: path
           description: Album identification number
@@ -178,7 +178,7 @@ paths:
         - Catalog
       operationId: artist_info
       parameters:
-        - 
+        -
           name: artistId
           in: path
           description: Artist Identifier
@@ -197,21 +197,64 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /api/catalogedge/genres:
+    x-swagger-router-controller: genre_controller
+    get:
+      description: "Gets the existing genres"
+      tags:
+        - Genre
+      operationId: genreList
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GenreList"
+        "500":
+          description: Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/catalogedge/genres/{genreName}:
+    x-swagger-router-controller: genre_controller
+    get:
+      description: Get the subgenres of the genre
+      tags:
+        - Genre
+      operationId: getGenre
+      parameters:
+        -
+          name: genreName
+          in: path
+          description: genre name
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GenreList"
+        "404":
+          description: Genre not found.
+          schema:
+            $ref: "#/definitions/NotFoundResponse"
+        "500":
+          description: Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /api/catalogedge/browse/catalog:
     x-swagger-router-controller: catalog_controller
     get:
       description: Get browsing data for songs in the catalog. If the "last" and "items"  parameters are not passed the default response is 25 items starting from the beginning.
-      security: [session_id: []]
-      tags: 
+      # security: { session_id: [] }
+      operationId: browseCatalog
+      tags:
         - Catalog
-      operationId: browse_catalog
       parameters:
         -
           name: last
           in: query
           description: Start with songs from this index, if not provided starts at 0.
           type: string
-        - 
+        -
           name: items
           in: query
           description: Number of items to return. The maximum is 100.
@@ -226,30 +269,51 @@ paths:
           in: query
           description: Year the song was released
           type: string
-        - 
+        -
           name: artist
           in: query
           description: Artist associated with the song
           type: string
-        - 
+        -
           name: album
           in: query
           description: Album song was released in.
           type: string
+        -
+          name: rating
+          in: query
+          description: Mininum song rating
+          type: integer
       responses:
         "200":
           description: Success
-          schema: 
+          schema:
             $ref: "#/definitions/SongList"
         "404":
           description: Index not found.
           schema:
-            $ref: "#/definitions/NotFoundResponse"            
+            $ref: "#/definitions/NotFoundResponse"
         "500":
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/imageedge/artist/{artistId}:
+  /api/catalogedge/artists:
+      x-swagger-router-controller: artist_controller
+      get:
+        description: Get all Artists
+        tags:
+          - Artist
+        operationId: artistList
+        responses:
+          "200":
+            description: Success
+            schema:
+              $ref: "#/definitions/ArtistList"
+          "500":
+            description: Server Error
+            schema:
+              $ref: "#/definitions/ErrorResponse"
+  /api/imageedge/artists/{artistId}:
     x-swagger-router-controller: image_controller
     get:
       description: Get an artist's picture.
@@ -257,7 +321,7 @@ paths:
         - Image
       operationId: artist_image
       parameters:
-        - 
+        -
           name: artistId
           in: path
           description: Artist Identifier
@@ -271,8 +335,8 @@ paths:
         "404":
           description: Image not found.
           schema:
-            $ref: "#/definitions/NotFoundResponse"            
-        "500": 
+            $ref: "#/definitions/NotFoundResponse"
+        "500":
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
@@ -284,7 +348,7 @@ paths:
         - Image
       operationId: album_cover
       parameters:
-        - 
+        -
           name: albumId
           in: path
           description: Album id
@@ -298,8 +362,8 @@ paths:
         "404":
           description: Image not found.
           schema:
-            $ref: "#/definitions/NotFoundResponse"            
-        "500": 
+            $ref: "#/definitions/NotFoundResponse"
+        "500":
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
@@ -307,11 +371,11 @@ paths:
     x-swagger-router-controller: image_controller
     get:
       description: Get a track cover
-      tags: 
+      tags:
         - Image
       operationId: track_cover
       parameters:
-        - 
+        -
           name: songId
           in: path
           description: Song id
@@ -325,32 +389,32 @@ paths:
         "404":
           description: Image not found.
           schema:
-            $ref: "#/definitions/NotFoundResponse"            
-        "500": 
+            $ref: "#/definitions/NotFoundResponse"
+        "500":
           description: Server Error
           schema:
-            $ref: "#/definitions/ErrorResponse"      
+            $ref: "#/definitions/ErrorResponse"
   /api/ratingsedge/ratesong/{songId}:
     x-swagger-router-controller: rating_controller
     put:
       description: Update your rating of a song.
       security: [session_id: []]
-      tags: 
+      tags:
         - Rating
       operationId: rate_song
       parameters:
-        - 
+        -
           name: songId
           in: path
           description: Id for the song that is being rated.
           required: true
           type: string
-        - 
+        -
           name: rating
           in: formData
           description: Value between 1-5 that represents the user's rating of the song.
           required: true
-          type: number       
+          type: number
       responses:
         "200":
           description: Successfully sent rating data to the server.
@@ -359,21 +423,21 @@ paths:
         "404":
           description: Song not found.
           schema:
-            $ref: "#/definitions/NotFoundResponse"            
+            $ref: "#/definitions/NotFoundResponse"
         "500":
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
   /api/ratingsedge/commentsong/{songId}:
     x-swagger-router-controller: rating_controller
-    put: 
+    put:
       description: Make a comment about a song.
       security: [session_id: []]
       tags:
         - Rating
       operationId: comment_song
       parameters:
-        - 
+        -
           name: songId
           in: path
           description: Id of the song you want to comment on.
@@ -387,7 +451,7 @@ paths:
         "404":
           description: Song not found.
           schema:
-            $ref: "#/definitions/NotFoundResponse"            
+            $ref: "#/definitions/NotFoundResponse"
         "500":
           description: Server Error
           schema:
@@ -397,17 +461,17 @@ paths:
     get:
       description: Search things that match a user provided string.
       security: [session_id: []]
-      tags: 
+      tags:
         - Search
       operationId: search_for
       parameters:
-        - 
+        -
           name: search_text
           in: formData
           description: User search string
           required: true
           type: string
-        - 
+        -
           name: searchType
           in: query
           description: type of thing to search for Album, Artist, Song
@@ -415,22 +479,22 @@ paths:
       responses:
         "200":
           description: Successfully searched.
-          schema: 
+          schema:
             $ref: "#/definitions/SearchResponse"
-        "500": 
+        "500":
           description: Bad Request
           schema:
-            $ref: "#/definitions/ErrorResponse"       
+            $ref: "#/definitions/ErrorResponse"
   /api/playeredge/play/{songId}:
     x-swagger-router-controller: player_controller
-    get: 
+    get:
       description: Get song data to play a song
       security: [session_id: []]
       tags:
         - Player
       operationId: play_song
       parameters:
-        - 
+        -
           name: songId
           in: path
           description: Song id for the song the user requested
@@ -445,22 +509,22 @@ paths:
           description: Song not found.
           schema:
             $ref: "#/definitions/ErrorResponse"
-        "500": 
+        "500":
           description: Server Error
           schema:
-            $ref: "#/definitions/ErrorResponse"   
+            $ref: "#/definitions/ErrorResponse"
   /api/accountedge/users/recentsongs:
     x-swagger-router-controller: history_controller
-    get: 
+    get:
       description: Get recently played songs
       security: [session_id: []]
-      tags: 
+      tags:
         - Account
       operationId: recent_songs
       responses:
         "200":
-          description: Got recent songs! 
-          schema: 
+          description: Got recent songs!
+          schema:
             $ref: "#/definitions/SongList"
         "500":
           description: Server Error
@@ -469,7 +533,7 @@ paths:
   /api/accountedge/users/mylibrary:
     x-swagger-router-controller: history_controller
     get:
-      description: Get the user's library of songs.
+      description: "Get the user's library of songs."
       security: [session_id: []]
       tags:
         - Account
@@ -477,16 +541,16 @@ paths:
       responses:
         "200":
           description: Retrieved user library.
-          schema: 
+          schema:
             $ref: "#/definitions/SongList"
         "500":
           description: Server Error
           schema:
-            $ref: "#/definitions/ErrorResponse"   
+            $ref: "#/definitions/ErrorResponse"
   /api/accountedge/users/profile:
     x-swagger-router-controller: catalog_controller
     get:
-      description: Get the current user's account info
+      description: "Get the current user's account info"
       security: [session_id: []]
       tags:
         - Account
@@ -499,7 +563,7 @@ paths:
         "500":
           description: Server Error
           schema:
-            $ref: "#/definitions/ErrorResponse"                
+            $ref: "#/definitions/ErrorResponse"
 securityDefinitions:
   session_id:
     type: apiKey
@@ -525,7 +589,7 @@ definitions:
         type: string
       userId:
         type: string
-      email: 
+      email:
         type: string
   Song_id:
     type: string
@@ -536,7 +600,7 @@ definitions:
       song_name:
         type: string
       link_to_image:
-        type: string  
+        type: string
       artist_mbid:
         type: string
       artist_name:
@@ -554,17 +618,20 @@ definitions:
       song_hotttnesss:
         description: The Echo Nest hotttnesss score
         type: number
+      genre_name:
+        description: The genre name
+        type: string
   AlbumInfo:
     properties:
       album_id:
         type: string
-      album_name: 
+      album_name:
         type: string
       link_to_image:
-        type: string  
+        type: string
       songs_list:
         type: array
-        items: 
+        items:
           $ref: "#/definitions/Song_id"
   Image:
     properties:
@@ -584,22 +651,34 @@ definitions:
     properties:
       artist_name:
         type: string
-      artistId: 
+      artistId:
         type: string
-      artist_mbid: 
+      artist_mbid:
         type: string
-      albums_list: 
+      albums_list:
         type: array
-        items: 
+        items:
           $ref: "#/definitions/Album_id"
       link_to_image:
         type: string
       songs_list:
         type: array
-        items: 
+        items:
           $ref: "#/definitions/Song_id"
   Album_id:
     type: string
+  GenreList:
+    properties:
+      genre:
+        type: string
+      genres:
+        type: array
+        items:
+          $ref: "#/definitions/GenreInfo"
+  GenreInfo:
+    properties:
+      genre_name:
+        type: string
   SearchResponse:
     properties:
       search_results:
@@ -617,9 +696,11 @@ definitions:
         items:
           $ref: "#/definitions/SongInfo"
   ArtistList:
-    type: array
-    items:
-      $ref: "#/definitions/ArtistInfo"
+    properties:
+      artists:
+        type: array
+        items:
+          $ref: "#/definitions/ArtistInfo"
   AlbumList:
     type: array
     items:

@@ -5,7 +5,7 @@
         <artist-filter></artist-filter>
       </div>
       <div class="row">
-        <genre-filter></genre-filter>
+        <genre-filter active-genre='{{ vm.genreName }}'></genre-filter>
       </div>
       <div class="row">
         <rating-filter></rating-filter>
@@ -15,7 +15,7 @@
     <div class="col-lg-9">
       <div class="row">
         <div class="col-xs-12">
-          <h1>Catalog</h1>
+          <h1>{{ vm.genreName }} Catalog</h1>
         </div>
       </div>
 
@@ -38,7 +38,7 @@
               <p>{{ song.artistName }}</p>
             </div>
             <div>
-              <span class="text-gray">{{ song.duration}}</span> | <span class="text-gray">{{ song.genreName }}</span>
+              <span class="text-gray">{{ song.duration}}</span> | <span class="text-gray genre">{{ song.genreName }}</span>
             </div>
           </div>
           <div class="clear"></div>

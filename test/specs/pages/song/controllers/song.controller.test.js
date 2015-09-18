@@ -36,7 +36,7 @@ describe('songCtrl', function () {
   it('should get artistInfo', done => async function () {
     var songCtrl = $controller('songCtrl', {
       $scope: $scope,
-      $stateParams: { songId: '' }
+      $stateParams: { songId: '' },
     });
     songStore.fetch.and.returnValue(Promise.resolve());
     songCtrl.songId = '';

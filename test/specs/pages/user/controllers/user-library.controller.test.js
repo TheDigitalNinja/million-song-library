@@ -23,7 +23,7 @@ describe('userLibraryCtrl', function () {
   it('should fetch library store content on initialization', done => async function () {
     $controller('userLibraryCtrl', {
       $scope: $scope,
-      myLibraryStore: myLibraryStore
+      myLibraryStore: myLibraryStore,
     });
     myLibraryStore.fetch.and.returnValue(Promise.resolve());
     expect(myLibraryStore.fetch).toHaveBeenCalled();
