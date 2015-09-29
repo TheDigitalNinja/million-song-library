@@ -1,4 +1,3 @@
-import querystring from 'querystring';
 import LoginSuccessResponseEntity from '../entities/LoginSuccessResponseEntity';
 
 /**
@@ -21,7 +20,7 @@ function loginStore (request, entityMapper) {
      * @return {LoginSuccessResponseEntity}
      */
     async push(email, password) {
-      var data = querystring.stringify({email, password});
+      var data = {email, password};
       var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
       return entityMapper(await request.post(API_REQUEST_PATH, data, headers), LoginSuccessResponseEntity);
     },

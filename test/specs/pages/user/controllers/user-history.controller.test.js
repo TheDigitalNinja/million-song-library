@@ -23,7 +23,7 @@ describe('userHistoryCtrl', function () {
   it('should fetch recent history store content on initialization', done => async function () {
     var userHistoryCtrl = $controller('userHistoryCtrl', {
       $scope: $scope,
-      recentSongsStore: recentSongsStore
+      recentSongsStore: recentSongsStore,
     });
     recentSongsStore.fetch.and.returnValue(Promise.resolve());
     expect(recentSongsStore.fetch).toHaveBeenCalled();

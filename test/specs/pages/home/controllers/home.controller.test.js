@@ -21,7 +21,7 @@ describe('homeCtrl', function () {
 
   it('should not have empty categories', function () {
     expect(homeCtrl.categories.length).toBeGreaterThan(0);
-    expect(homeCtrl.categories.length).toBe(2);
+    expect(homeCtrl.categories.length).toBe(1);
   });
 
   it('getNumber should return array of length n', function () {
