@@ -1,33 +1,35 @@
 /* global describe, it, expect, beforeEach, afterEach, inject, jasmine */
 import libraryPage from 'pages/user/user.module.js';
 
-describe('userLibraryCtrl', function () {
-  var $scope, $controller, myLibraryStore;
+describe('userLibraryCtrl', () => {
+  let $scope, $controller, myLibraryStore;
 
-  beforeEach(
-    angular.mock.module(libraryPage, function ($provide) {
-        myLibraryStore = jasmine.createSpyObj('myLibraryStore', ['fetch']);
-        $provide.value('myLibraryStore', myLibraryStore);
-      }
-    ));
+  beforeEach(() => {
+    angular.mock.module(libraryPage, ($provide) => {
+      myLibraryStore = jasmine.createSpyObj('myLibraryStore', ['fetch']);
+      $provide.value('myLibraryStore', myLibraryStore);
+    });
 
-  beforeEach(inject(function (_$controller_, $rootScope) {
-    $controller = _$controller_;
-    $scope = $rootScope.$new();
-  }));
+    inject((_$controller_, $rootScope) => {
+      $controller = _$controller_;
+      $scope = $rootScope.$new();
+    });
+  });
 
-  afterEach(function () {
+  afterEach(() => {
     $scope.$destroy();
   });
 
-  it('should fetch library store content on initialization', done => async function () {
-    $controller('userLibraryCtrl', {
-      $scope: $scope,
-      myLibraryStore: myLibraryStore,
-    });
-    myLibraryStore.fetch.and.returnValue(Promise.resolve());
-    expect(myLibraryStore.fetch).toHaveBeenCalled();
-    done();
-  }());
+  it('should fetch library store content on initialization', (done) => {
+    (async () => {
+      $controller('userLibraryCtrl', {
+        $scope: $scope,
+        myLibraryStore: myLibraryStore,
+      });
+      myLibraryStore.fetch.and.returnValue(Promise.resolve());
+      expect(myLibraryStore.fetch).toHaveBeenCalled();
+      done();
+    })();
+  });
 
 });

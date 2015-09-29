@@ -1,6 +1,5 @@
 /* global describe, it, expect, beforeEach, pending */
 describe('play button in home page', () => {
-  var homeURL;
 
   beforeEach(() => {
     browser.driver.get('http://localhost:3000/#/');
@@ -8,8 +7,9 @@ describe('play button in home page', () => {
 
   xit('when click play button', () => {
     pending('Wait for functionality');
-    homeURL = browser.driver.getCurrentUrl();
-    browser.driver.findElement(By.linkText("Play")).click();
+    const homeURL = browser.driver.getCurrentUrl();
+
+    browser.driver.findElement(By.linkText('Play')).click();
     expect(browser.driver.getCurrentUrl()).toMatch(homeURL);
   });
 });

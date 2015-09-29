@@ -4,7 +4,7 @@ import angular from 'angular';
 import errorPage from 'pages/error/error.module.js';
 
 describe('error route', () => {
-  var state;
+  let state;
 
   beforeEach(() => {
     angular.mock.module('ui.router');

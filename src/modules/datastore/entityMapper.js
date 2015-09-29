@@ -15,17 +15,17 @@ export default function entityMapper () {
    */
   function mapper (response, Entity) {
     // create new instance of entity
-    var entity = new Entity();
+    const entity = new Entity();
     // get entity map keys
-    var keys = _.keys(entity);
+    let keys = _.keys(entity);
     // loop per response keys
-    _.forEach(_.keys(response), function (key) {
+    _.forEach(_.keys(response), (key) => {
       // camel case response map key
-      var method = _.camelCase(key);
+      const method = _.camelCase(key);
       // check if we can create instance of key type
       if (_.isFunction(entity[method])) {
         // create new key type instance
-        var Instance = entity[method];
+        const Instance = entity[method];
         // assign it response value and get its instance
         entity[method] = new Instance(response[key]).valueOf();
         // remove key from needed to map keys list
@@ -34,13 +34,13 @@ export default function entityMapper () {
       // check if map value is a array
       else if (_.isArray(entity[method])) {
         // map response items to type instance
-        entity[method] = _.map(response[key], item => mapper(item, entity[method][0]));
+        entity[method] = _.map(response[key], (item) => mapper(item, entity[method][0]));
         // remove key from needed to map keys list
         keys = _.without(keys, method);
       }
     });
     // remove keys that had not mapped to response keys
-    _.forEach(keys, method => delete entity[method]);
+    _.forEach(keys, (method) => delete entity[method]);
 
     return entity;
   }

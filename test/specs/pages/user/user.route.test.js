@@ -5,8 +5,8 @@ import userPage from 'pages/user/user.module.js';
 import {USER_REDIRECT_TO, ROLE_USER} from 'constants';
 
 describe('user routes', () => {
-  var $state;
-  var $rootScope;
+  let $state;
+  let $rootScope;
 
   const goTo = (state) => {
     $state.go(state);
@@ -25,7 +25,7 @@ describe('user routes', () => {
   });
 
   describe('user state', () => {
-    var userState;
+    let userState;
 
     beforeEach(() => {
       goTo('msl.user');
@@ -47,7 +47,7 @@ describe('user routes', () => {
   });
 
   describe('user history state', () => {
-    var historyState;
+    let historyState;
 
     beforeEach(() => {
       goTo('msl.user.history');
@@ -73,7 +73,7 @@ describe('user routes', () => {
   });
 
   describe('user likes state', () => {
-    var likesState;
+    let likesState;
 
     beforeEach(() => {
       goTo('msl.user.likes');
@@ -99,7 +99,7 @@ describe('user routes', () => {
   });
 
   describe('user libray state', () => {
-    var libraryState;
+    let libraryState;
 
     beforeEach(() => {
       goTo('msl.user.library');

@@ -22,7 +22,7 @@ export default function artistStore(request, entityMapper) {
     async fetch(artistId) {
       return entityMapper(await request.get(API_REQUEST_PATH + artistId), ArtistInfoEntity);
     },
-    async fetchAll(){
+    async fetchAll() {
       return entityMapper(await request.get(API_REQUEST_PATH), ArtistListEntity);
     },
     async fetchArtistAlbums(artistId) {

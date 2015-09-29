@@ -33,7 +33,12 @@ describe('browseCtrl', () => {
 
   it('should get the songs filtering by genre, artist, and rating', (done) => {
     (async () => {
-      expect(catalogStore.fetch).toHaveBeenCalledWith({ genre: genreName, rating: rating, artist: artistMbid });
+      expect(catalogStore.fetch).toHaveBeenCalledWith({
+        genre: genreName,
+        rating: rating,
+        artist: artistMbid,
+      });
+
       done();
     })();
   });

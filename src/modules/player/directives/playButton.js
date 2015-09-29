@@ -12,8 +12,8 @@ function playButtonController ($scope, player) {
    * listener for player state change
    * this is not angular action so we need to digest scope manually
    */
-  var onPlayerStateChange = () => {
-    var songEntity = player.getSongEntity();
+  let onPlayerStateChange = () => {
+    const songEntity = player.getSongEntity();
     if (songEntity) {
       this.currentlyPlayingSong = songEntity.songId === $scope.songId;
     }

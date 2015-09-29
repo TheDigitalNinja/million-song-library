@@ -4,7 +4,7 @@ import layoutPage from 'layout/layout.module.js';
 import homePage from 'pages/home/home.module.js';
 
 describe('home routes', () => {
-  var state;
+  let state;
 
   beforeEach(() => {
     angular.mock.module('ui.router');

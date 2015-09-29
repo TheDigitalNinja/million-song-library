@@ -30,7 +30,7 @@ export default class artistCtrl {
     (async() => {
       try {
         this.artistInfo = await this.artistStore.fetch(this.artistId);
-        this.artistSongs = await this.catalogStore.fetch({artist: this.artistId});
+        this.artistSongs = await this.catalogStore.fetch({ artist: this.artistId });
         this.artistAlbums = await this.artistStore.fetchArtistAlbums(this.artistId);
         this.displaySongs = true;
         this.$scope.$evalAsync();

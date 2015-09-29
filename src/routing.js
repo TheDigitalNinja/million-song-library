@@ -8,8 +8,8 @@ export default function defaultRoute ($urlRouterProvider, $httpProvider) {
   // then redirect it to root page
   $urlRouterProvider.when('', '/');
   // when state is not found then redirect user to error state
-  $urlRouterProvider.otherwise(function ($injector) {
-    var $state = $injector.get('$state');
+  $urlRouterProvider.otherwise(($injector) => {
+    const $state = $injector.get('$state');
     $state.go('error');
   });
 }

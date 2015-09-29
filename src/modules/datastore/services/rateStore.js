@@ -20,7 +20,8 @@ function rateStore (request, entityMapper) {
      * @return {StatusResponseEntity}
      */
     async push(songId, rating) {
-      return entityMapper(await request.put(API_REQUEST_PATH + songId, {rating}), StatusResponseEntity);
+      const response = await request.put(API_REQUEST_PATH + songId, { rating });
+      return entityMapper(response, StatusResponseEntity);
     },
   };
 }

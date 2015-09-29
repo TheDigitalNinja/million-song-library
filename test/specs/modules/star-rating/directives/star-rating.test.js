@@ -4,35 +4,39 @@ import $ from 'jquery';
 import angular from 'angular';
 import starRatingModule from 'modules/star-rating/module';
 
-describe('starRating directive', function () {
-  var $scope, rateStore, compileElement;
+describe('starRating directive', () => {
+  let $scope, rateStore, compileElement;
 
-  beforeEach(angular.mock.module(starRatingModule, function ($provide) {
-    rateStore = jasmine.createSpyObj('rateStore', ['push']);
-    $provide.value('rateStore', rateStore);
-  }));
+  beforeEach(() => {
+    angular.mock.module(starRatingModule, ($provide) => {
+      rateStore = jasmine.createSpyObj('rateStore', ['push']);
+      $provide.value('rateStore', rateStore);
+    });
 
-  beforeEach(inject(function ($rootScope, $compile) {
-    $scope = $rootScope.$new();
-    $scope.songId = 'songId';
-    $scope.rating = 1;
-    $scope.readOnly = false;
+    inject(($rootScope, $compile) => {
+      $scope = $rootScope.$new();
+      $scope.songId = 'songId';
+      $scope.rating = 1;
+      $scope.readOnly = false;
 
-    compileElement = function () {
-      return $($compile('<div star-rating=\'rating\' song-id=\'songId\' read-only=\'readOnly\'></div>')($scope));
-    };
-  }));
+      compileElement = function () {
+        const element = `<div star-rating='rating' song-id='songId' read-only='readOnly'></div>`;
+        return $($compile(element)($scope));
+      };
+    });
+  });
 
-  afterEach(function () {
+  afterEach(() => {
     $scope.$destroy();
   });
 
-  it('should fill one star if (rating = 1)', function () {
-    var emptyStars = 0;
-    var filledStars = 0;
-    var element = compileElement();
+  it('should fill one star if (rating = 1)', () => {
+    const element = compileElement();
+    let emptyStars = 0;
+    let filledStars = 0;
+
     $scope.$digest();
-    _.forEach(element.find('li'), function (el) {
+    _.forEach(element.find('li'), (el) => {
       if ($(el).children('button').hasClass('fa-star')) {
         emptyStars++;
       }
@@ -44,17 +48,19 @@ describe('starRating directive', function () {
     expect(filledStars).toBe(4);
   });
 
-  it('should not change rating if readOnly is true', function () {
+  it('should not change rating if readOnly is true', () => {
     $scope.readOnly = true;
-    var element = compileElement();
+    const element = compileElement();
+
     $scope.$digest();
     element.find('button.fa-star-o').first().click();
     $scope.$digest();
     expect($scope.rating).toBe(1);
   });
 
-  it('should change rating when user clicks on a star', function () {
-    var element = compileElement();
+  it('should change rating when user clicks on a star', () => {
+    const element = compileElement();
+
     $scope.$digest();
     element.find('button.fa-star-o').first().click();
     $scope.$digest();

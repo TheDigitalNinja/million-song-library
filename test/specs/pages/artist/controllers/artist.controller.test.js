@@ -1,32 +1,32 @@
 /* global describe, it, expect, beforeEach, afterEach, inject, jasmine */
 import artistPage from 'pages/artist/artist.module.js';
 
-describe('artistCtrl', function () {
-  var $scope, $state, $stateParams, $controller, artistStore, catalogStore;
+describe('artistCtrl', () => {
+  let $scope, $state, $stateParams, $controller, artistStore, catalogStore;
 
-  beforeEach(
-    angular.mock.module(artistPage, function ($provide) {
-        $state = jasmine.createSpyObj('$state', ['go']);
-        $provide.value('$state', $state);
-        $stateParams = {artistId: ''};
-        $provide.value('$stateParams', $stateParams);
-        artistStore = jasmine.createSpyObj('artistStore', ['fetch']);
-        $provide.value('artistStore', artistStore);
-        catalogStore = jasmine.createSpyObj('catalogStore', ['fetch']);
-        $provide.value('catalogStore', catalogStore);
-      }
-    ));
+  beforeEach(() => {
+    angular.mock.module(artistPage, ($provide) => {
+      $state = jasmine.createSpyObj('$state', ['go']);
+      $provide.value('$state', $state);
+      $stateParams = { artistId: '' };
+      $provide.value('$stateParams', $stateParams);
+      artistStore = jasmine.createSpyObj('artistStore', ['fetch']);
+      $provide.value('artistStore', artistStore);
+      catalogStore = jasmine.createSpyObj('catalogStore', ['fetch']);
+      $provide.value('catalogStore', catalogStore);
+    });
 
-  beforeEach(inject(function (_$controller_, $rootScope) {
-    $controller = _$controller_;
-    $scope = $rootScope.$new();
-  }));
+    inject((_$controller_, $rootScope) => {
+      $controller = _$controller_;
+      $scope = $rootScope.$new();
+    });
+  });
 
-  afterEach(function () {
+  afterEach(() => {
     $scope.$destroy();
   });
 
-  it('should redirect to `home` state when $stateParams.artistId is empty string', function () {
+  it('should redirect to `home` state when $stateParams.artistId is empty string', () => {
     $controller('artistCtrl', {
       $scope: $scope,
       $state: $state,

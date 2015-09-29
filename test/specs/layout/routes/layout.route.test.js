@@ -4,7 +4,7 @@ import angular from 'angular';
 import layoutPage from 'layout/layout.module.js';
 
 describe('layout routes', () => {
-  var state;
+  let state;
 
   beforeEach(() => {
     angular.mock.module('ui.router');
