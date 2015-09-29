@@ -4,7 +4,9 @@
 /build
 /npm-debug.log
 /coverage
+/swagger/api/swagger/swagger.json
 
 *-compiled.js
 *-compiled.js.map
 .DS_Store
+
