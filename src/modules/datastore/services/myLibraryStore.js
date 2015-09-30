@@ -1,4 +1,5 @@
 import SongListEntity from '../entities/SongListEntity';
+import StatusResponseEntity from '../entities/StatusResponseEntity';
 
 /**
  * my library store service
@@ -19,6 +20,10 @@ function myLibraryStore (request, entityMapper) {
      */
     async fetch() {
       return entityMapper(await request.get(API_REQUEST_PATH), SongListEntity);
+    },
+
+    async addSong(songId) {
+      return entityMapper(await request.post(API_REQUEST_PATH + '/add', { songId: songId }), StatusResponseEntity);
     },
   };
 }

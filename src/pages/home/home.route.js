@@ -3,7 +3,6 @@
  * @param {ui.router.state.$stateProvider} $stateProvider
  */
 export default function homeRoute($stateProvider) {
-
   'ngInject';
 
   $stateProvider.state(
