@@ -6,10 +6,19 @@ export default function artistPageRoute($stateProvider) {
   'ngInject';
   $stateProvider.state(
     'msl.artist', {
-      url: '/artist/:artistId',
-      template: require('./artist.html'),
+      url: '/artists/:artistId',
+      template: require('./templates/artist.html'),
       controller: 'artistCtrl',
       controllerAs: 'vm',
       title: 'Artist',
+    });
+
+    $stateProvider.state(
+    'msl.artistsList', {
+      url: '/artists',
+      template: require('./templates/artist-list.html'),
+      controller: 'artistListCtrl',
+      controllerAs: 'vm',
+      title: 'Artists',
     });
 }

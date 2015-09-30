@@ -11,10 +11,14 @@
 export default class artistCtrl {
   /*@ngInject*/
 
-  constructor($stateParams, $state) {
-    this.artistInfo = {lala : 'asdfadfadsf'};
+  constructor($stateParams, $state, $log, artistStore, catalogStore, $scope) {
     if (angular.isDefined($stateParams.artistId) && $stateParams.artistId.length > 0) {
-      this.artirstId = $stateParams.artistId;
+      this.artistId = $stateParams.artistId;
+      this.$scope = $scope;
+      this.$log = $log;
+      this.artistStore = artistStore;
+      this.catalogStore = catalogStore;
+      this.artistStore = artistStore;
       this.getArtistInfo();
     }
     else {
@@ -22,17 +26,20 @@ export default class artistCtrl {
     }
   }
 
-  getArtistInfo($log, artistStore, catalogStore, $scope) {
+  getArtistInfo() {
     (async() => {
       try {
-        this.artistInfo = await artistStore.fetch(this.artistId);
+        this.artistInfo = await this.artistStore.fetch(this.artistId);
         // TODO: Get list of artist albums
-        this.artistSongs = await catalogStore.fetch({artist: this.artistId});
+        this.artistSongs = await this.catalogStore.fetch({artist: this.artistId});
         this.displaySongs = true;
-        $scope.$evalAsync();
+        this.$scope.$evalAsync();
       } catch (err) {
         // TODO: Handle the error
-        $log.warn(err);
+        this.artistInfo = {};
+        this.artistSongs = [];
+        this.displaySongs = false;
+        this.$log.warn(err);
       }
     })();
   }
