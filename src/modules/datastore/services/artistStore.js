@@ -1,5 +1,6 @@
 import ArtistInfoEntity from '../entities/ArtistInfoEntity';
 import ArtistListEntity from '../entities/ArtistListEntity';
+import AlbumListEntity from '../entities/AlbumListEntity';
 
 /**
  * artist store
@@ -23,6 +24,9 @@ export default function artistStore(request, entityMapper) {
     },
     async fetchAll(){
       return entityMapper(await request.get(API_REQUEST_PATH), ArtistListEntity);
+    },
+    async fetchArtistAlbums(artistId) {
+      return entityMapper(await request.get(API_REQUEST_PATH + artistId + '/albums'), AlbumListEntity);
     },
   };
 }

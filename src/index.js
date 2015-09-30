@@ -10,6 +10,7 @@ import layout from './layout/layout.module.js';
 
 //Pages
 import artistPage from './pages/artist/artist.module.js';
+import albumPage from './pages/album/album.module.js';
 import errorPage from './pages/error/error.module.js';
 import homePage from './pages/home/home.module.js';
 import loginPage from './pages/login/login.module.js';
@@ -30,6 +31,7 @@ export default angular.module('msl', [
 
   layout,
   artistPage,
+  albumPage,
   errorPage,
   homePage,
   loginPage,

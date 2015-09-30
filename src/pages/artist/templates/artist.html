@@ -37,6 +37,7 @@
 <h3>Albums By
   <small>{{vm.artistInfo.artistName}}</small>
 </h3>
+
 <table class="table table-striped">
   <thead>
   <tr>
@@ -46,10 +47,10 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
+  <tr ng-repeat="album in vm.artistAlbums.albums track by $index ">
     <td>{{vm.artistInfo.artistName}}</td>
-    <td>Album Name</td>
-    <td>2015</td>
+    <td><a ui-sref="msl.album({albumId: album.albumId})">{{album.albumName}}</a></td>
+    <td>{{album.albumYear}}</td>
   </tr>
   </tbody>
 </table>
