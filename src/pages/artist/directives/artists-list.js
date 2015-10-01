@@ -4,8 +4,10 @@ export default function artistsList() {
 
   return {
     restrict: 'E',
-    scope: true,
-    template: require('../../artist/templates/artist-list.html'),
+    scope: {
+      artists: '=',
+    },
+    template: require('../templates/artist-list.html'),
     controller: 'artistListCtrl',
     controllerAs: 'vm',
   };

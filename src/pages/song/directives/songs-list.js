@@ -4,8 +4,11 @@ export default function songList() {
 
   return {
     restrict: 'E',
+    scope: {
+      songs: '=',
+    },
     template: require('../templates/songs-list.html'),
-    controller: 'homeCtrl',
+    controller: 'songsListCtrl',
     controllerAs: 'vm',
   };
 }
