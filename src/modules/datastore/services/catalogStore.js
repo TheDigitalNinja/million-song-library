@@ -18,7 +18,7 @@ function catalogStore (request, entityMapper) {
      * @return {CatalogListEntity}
      */
     async fetch(opts) {
-      return entityMapper(await request.get(API_REQUEST_PATH, {params: opts}), CatalogListEntity);
+      return entityMapper(await request.get(API_REQUEST_PATH, { params: opts }), CatalogListEntity);
     },
   };
 }

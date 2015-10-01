@@ -34,18 +34,14 @@
     "disallowMultipleVarDecl": {
       "allExcept": ["undefined"]
     },
+    "disallowKeywords": ["var"],
     "requireKeywordsOnNewLine": ["else"],
 
     "requireSpaceAfterKeywords": [
-      "if",
       "else",
-      "for",
-      "while",
       "do",
-      "switch",
       "return",
-      "try",
-      "catch"
+      "try"
     ],
     "requireSpaceBeforeBinaryOperators": [
         "=", "+=", "-=", "*=", "/=", "%=", "<<=", ">>=", ">>>=",
@@ -59,7 +55,7 @@
     "requireSpacesInConditionalExpression": true,
     "requireSpaceBeforeBlockStatements": true,
     "requireLineFeedAtFileEnd": true,
-    "disallowSpacesInsideObjectBrackets": "all",
+    "requireSpacesInsideObjectBrackets": "all",
     "disallowSpacesInsideArrayBrackets": "all",
     "disallowSpacesInsideParentheses": true,
 

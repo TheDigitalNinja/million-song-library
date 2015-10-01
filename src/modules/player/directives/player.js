@@ -10,7 +10,7 @@ function playerController ($scope, player) {
    * listener for player state change
    * this is not angular action so we need to digest scope manually
    */
-  var onPlayerStateChange = () => {
+  let onPlayerStateChange = () => {
     this.active = player.isActive();
     this.songEntity = player.getSongEntity();
     $scope.$evalAsync();

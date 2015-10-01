@@ -8,9 +8,9 @@ export default class navbarCtrl {
 
   /**
    * Class constructor
-   * @param $scope
-   * @param $state
-   * @param authorisation
+   * @param {$rootScope.Scope} $scope
+   * @param {ui.router.state.$state} $state
+   * @param {msl.authorisation} authorisation
    */
   constructor($scope, $state, authorisation) {
 

@@ -6,8 +6,8 @@ import searchPage from 'pages/search/search.module.js';
 
 describe('search routes', () => {
   const searchQuery = 'pop';
-  var state;
-  var $state;
+  let state;
+  let $state;
 
   beforeEach(() => {
     angular.mock.module('ui.router');

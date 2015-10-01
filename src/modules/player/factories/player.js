@@ -14,8 +14,8 @@ const EVENT_PLAYER_STATE_CHANGE = 'visibilityStateChange';
 export default function player (songStore) {
   'ngInject';
 
-  var events = new EventEmitter();
-  var songEntity, active;
+  const events = new EventEmitter();
+  let songEntity, active;
 
   return {
     /**

@@ -24,11 +24,16 @@ export default class genreCtrl {
   getGenreSongs() {
     (async () => {
       try {
-        const songsList = await this.catalogStore.fetch({ genre: this.genreName, rating: this.minRating, artist: this.artistMbid });
+        const songsList = await this.catalogStore.fetch({
+          genre: this.genreName,
+          rating: this.minRating,
+          artist: this.artistMbid,
+        });
+
         this.songs = songsList.songs;
         this.$scope.$evalAsync();
       }
-      catch(error) {
+      catch (error) {
         this.songs = [];
         this.$log.warn(error);
       }

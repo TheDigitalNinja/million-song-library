@@ -3,9 +3,9 @@ import SongListEntity from '../entities/SongListEntity';
 /**
  * recent songs store service
  * @name recentSongsStore
- * @param request
- * @param entityMapper
- * @returns {*}
+ * @param {request} request
+ * @param {entityMapper} entityMapper
+ * @returns {SongListEntity}
  */
 function recentSongsStore (request, entityMapper) {
   'ngInject';

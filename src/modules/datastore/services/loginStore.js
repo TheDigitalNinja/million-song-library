@@ -20,9 +20,11 @@ function loginStore (request, entityMapper) {
      * @return {LoginSuccessResponseEntity}
      */
     async push(email, password) {
-      var data = {email, password};
-      var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
-      return entityMapper(await request.post(API_REQUEST_PATH, data, headers), LoginSuccessResponseEntity);
+      const data = { email, password };
+      const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+
+      const response = await request.post(API_REQUEST_PATH, data, headers);
+      return entityMapper(response, LoginSuccessResponseEntity);
     },
   };
 }

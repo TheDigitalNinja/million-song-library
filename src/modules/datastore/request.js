@@ -22,7 +22,7 @@ export default function request ($http) {
      * @return {*}
      */
     async get(path, config = {}) {
-      var response = await $http.get(withHost(path), config);
+      const response = await $http.get(withHost(path), config);
       return response.data;
     },
     /**
@@ -33,7 +33,7 @@ export default function request ($http) {
      * @return {*}
      */
     async post(path, content, config = {}) {
-      var response = await $http.post(withHost(path), content, config);
+      const response = await $http.post(withHost(path), content, config);
       return response.data;
     },
     /**
@@ -44,7 +44,7 @@ export default function request ($http) {
      * @return {*}
      */
     async put(path, content, config = {}) {
-      var response = await $http.put(withHost(path), content, config);
+      const response = await $http.put(withHost(path), content, config);
       return response.data;
     },
   };

@@ -27,10 +27,10 @@ export default function authorisation (
 
   // get cookie info for session storage
   // if we have data stored then user is authorised
-  var stored = $cookies.getObject(COOKIE_NAMESPACE);
-  var events = new EventEmitter();
-  var authorised = Boolean(stored);
-  var authorisedData = stored || {};
+  const stored = $cookies.getObject(COOKIE_NAMESPACE);
+  const events = new EventEmitter();
+  let authorised = Boolean(stored);
+  let authorisedData = stored || {};
 
   /**
    * when user authorises save data to cookies
@@ -60,8 +60,8 @@ export default function authorisation (
       assert.ok(!_.isEmpty(login), LOGIN_EMPTY);
       assert.ok(!_.isEmpty(password), PASSWORD_EMPTY);
       // make api request
-      var response = await loginStore.push(login, password);
-      var token = response.sessionToken;
+      const response = await loginStore.push(login, password);
+      const token = response.sessionToken;
       // save session token
       sessionToken.set(token);
       // save authorised data

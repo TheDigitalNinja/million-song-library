@@ -1,29 +1,29 @@
 /* global describe, it, expect, beforeEach, afterEach, inject, jasmine */
 import searchPage from 'pages/search/search.module.js';
 
-describe('searchCtrl', function () {
-  var $scope, $stateParams, $controller, $log;
+describe('searchCtrl', () => {
+  let $scope, $stateParams, $controller, $log;
 
-  beforeEach(
-    angular.mock.module(searchPage, function ($provide) {
-        $stateParams = {query: 'someQuery'};
-        $provide.value('$stateParams', $stateParams);
-        $log = jasmine.createSpyObj('$log', ['error', 'debug']);
-        $provide.value('$log', $log);
-      }
-    ));
+  beforeEach(() => {
+    angular.mock.module(searchPage, ($provide) => {
+      $stateParams = { query: 'someQuery' };
+      $provide.value('$stateParams', $stateParams);
+      $log = jasmine.createSpyObj('$log', ['error', 'debug']);
+      $provide.value('$log', $log);
+    });
 
-  beforeEach(inject(function (_$controller_, $rootScope) {
-    $controller = _$controller_;
-    $scope = $rootScope.$new();
-  }));
+    inject((_$controller_, $rootScope) => {
+      $controller = _$controller_;
+      $scope = $rootScope.$new();
+    });
+  });
 
-  afterEach(function () {
+  afterEach(() => {
     $scope.$destroy();
   });
 
-  it('should log debug on query param present', function () {
-    $stateParams = {query: 'someQuery'};
+  it('should log debug on query param present', () => {
+    $stateParams = { query: 'someQuery' };
     $controller('searchCtrl', {
       $scope: $scope,
       $stateParams: $stateParams,
@@ -31,8 +31,8 @@ describe('searchCtrl', function () {
     expect($log.debug).toHaveBeenCalledWith('searched for: someQuery');
   });
 
-  it('should log error on query param missing', function () {
-    $stateParams = {query: ''};
+  it('should log error on query param missing', () => {
+    $stateParams = { query: '' };
     $controller('searchCtrl', {
       $scope: $scope,
       $stateParams: $stateParams,

@@ -11,7 +11,7 @@ function ratingController ($scope, rateStore, $log) {
     this.readOnly = false;
   }
 
-  var updateStars = () => {
+  let updateStars = () => {
     this.stars = [];
     for (let i = 0; i < this.max; i++) {
       this.stars.push({
@@ -35,7 +35,7 @@ function ratingController ($scope, rateStore, $log) {
     }
   };
 
-  $scope.$watch('starRating', function (newVal) {
+  $scope.$watch('starRating', (newVal) => {
     if (newVal >= 0) {
       updateStars();
     }

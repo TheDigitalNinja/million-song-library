@@ -439,7 +439,7 @@ paths:
         -
           name: rating
           in: formData
-          description: Value between 1-5 that represents the user's rating of the song.
+          description: "Value between 1-5 that represents the user's rating of the song."
           required: true
           type: number
       responses:

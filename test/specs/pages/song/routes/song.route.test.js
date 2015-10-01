@@ -6,8 +6,8 @@ import songPage from 'pages/song/song.module.js';
 
 describe('song routes', () => {
   const songId = 2;
-  var state;
-  var $state;
+  let state;
+  let $state;
 
   beforeEach(() => {
     angular.mock.module('ui.router');
