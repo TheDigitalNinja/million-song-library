@@ -4,6 +4,8 @@
  * @property {String} albumName
  * @property {String} linkToImage
  * @property {string} songsList
+ * @property {string} artist
+ * @property {string} genre
  * @property {string} albumYear
  */
 export default class AlbumInfoEntity {
@@ -13,5 +15,7 @@ export default class AlbumInfoEntity {
     this.linkToImage = String;
     this.songsList = String;
     this.albumYear = String;
+    this.genre = String;
+    this.artist = String;
   }
 }
