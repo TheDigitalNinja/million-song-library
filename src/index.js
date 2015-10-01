@@ -3,6 +3,7 @@ import 'bootstrap/less/bootstrap.less';
 import 'font-awesome/less/font-awesome.less';
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import uiBootstrap from 'angular-ui-bootstrap';
 import bootstrap from './modules/bootstrap/module';
 
 //Layout
@@ -44,6 +45,7 @@ export default angular.module('msl', [
   player,
   permission,
   bootstrap,
+  uiBootstrap,
 ])
   .config(routing)
   .run(onRun)
