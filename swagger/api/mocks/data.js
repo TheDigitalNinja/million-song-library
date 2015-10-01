@@ -136,6 +136,8 @@ module.exports = {
       link_to_image: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Mosaico_LDA.jpg',
       song_list: [],
       album_year: '2010',
+      artist: 'La 12',
+      genre: 'bad music...',
     },
     {
       album_id: '2',
@@ -143,6 +145,8 @@ module.exports = {
       link_to_image: 'http://www.metalinjection.net/wp-content/uploads/2014/07/mercyful-fate_photo03.jpg',
       song_list: [],
       album_year: '2011',
+      artist: 'Mercyful Fate',
+      genre: 'Metal',
     },
     {
       album_id: '3',
@@ -150,6 +154,8 @@ module.exports = {
       link_to_image: 'http://www.metalinjection.net/wp-content/uploads/2014/07/mercyful-fate_photo03.jpg',
       song_list: [],
       album_year: '2012',
+      artist: 'Mercyful Fate',
+      genre: 'Dark Metal',
     },
     {
       album_id: '4',
@@ -157,6 +163,8 @@ module.exports = {
       link_to_image: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Mosaico_LDA.jpg',
       song_list: [],
       album_year: '2013',
+      artist: 'Katy Perry',
+      genre: 'Pop',
     }
   ],
   genres: [

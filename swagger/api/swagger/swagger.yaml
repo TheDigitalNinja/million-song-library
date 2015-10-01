@@ -143,13 +143,33 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/catalogedge/album/{albumId}:
-    x-swagger-router-controller: catalog_controller
+  /api/catalogedge/albums:
+    x-swagger-router-controller: album_controller
+    get:
+      description: Get list of all albums
+      tags:
+        - Album
+      operationId: getAlbums
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/AlbumsList"
+        "404":
+          description: Album not found.
+          schema:
+            $ref: "#/definitions/NotFoundResponse"
+        "500":
+          description: Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/catalogedge/albums/{albumId}:
+    x-swagger-router-controller: album_controller
     get:
       description: Get data for an Album of songs
       tags:
-        - Catalog
-      operationId: album_info
+        - Album
+      operationId: getAlbumById
       parameters:
         -
           name: albumId
@@ -683,6 +703,10 @@ definitions:
       link_to_image:
         type: string
       album_year:
+        type: string
+      artist:
+        type: string
+      genre:
         type: string
       songs_list:
         type: array

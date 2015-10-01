@@ -9,7 +9,7 @@ import AlbumInfoEntity from '../entities/AlbumInfoEntity';
 export default function albumStore(request, entityMapper) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/catalogedge/album/';
+  const API_REQUEST_PATH = '/api/catalogedge/albums/';
   return {
     /**
      * fetch album from catalogue endpoint

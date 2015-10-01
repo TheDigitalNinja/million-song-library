@@ -1,56 +1,51 @@
-<div class="row">
-  <div class="col-md-3">
-    <div class="image-container image-container-margin">
-      <img class="img-responsive" ng-src="{{vm.artistInfo.linkToImage}}" alt="{{vm.artistInfo.artistName}}"/>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="row">
+        <genre-filter></genre-filter>
+      </div>
+      <div class="row">
+        <rating-filter></rating-filter>
+      </div>
+    </div>
+
+    <div class="col-lg-9">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="image-container image-container-margin">
+            <img class="img-responsive" ng-src="{{vm.artistInfo.linkToImage}}" alt="{{vm.artistInfo.artistName}}"/>
+          </div>
+        </div>
+
+        <div class="artist-info col-md-9">
+          <span class="item-name">Artist</span>
+          <span class="pull-right"><a href=""><i class="fa fa-heart-o"></i> Add Artist to Library</a></span>
+
+          <h1 class="artist-name">{{vm.artistInfo.artistName}}</h1>
+
+          <p>
+            Some information about the artist.<br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac
+            neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique,
+            tortor mauris molestie elit, et lacinia ipsum quam nec dui.
+          </p>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+
+      <tabset justified="true">
+        <tab heading="Songs">
+          <songs-table loading="!vm.displaySongs" content="vm.artistSongs"></songs-table>
+        </tab>
+        <tab heading="Albums">
+          <albums-list albums="vm.artistAlbums.albums"></albums-list>
+        </tab>
+        <tab heading="Similar Artists">
+          <artists-list></artists-list>
+        </tab>
+      </tabset>
+
     </div>
   </div>
-
-  <div class="artist-info col-md-9">
-    <span class="item-name">Artist</span>
-
-    <h1 class="artist-name">{{vm.artistInfo.artistName}}</h1>
-
-    <p>
-      Some information about the artist.<br>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac
-      neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique,
-      tortor mauris molestie elit, et lacinia ipsum quam nec dui.
-    </p>
-  </div>
-
-  <div class="clearfix"></div>
 </div>
-
-<div class="row">
-  <div class="col-md-12">
-    <span class="item-name">Genres</span>
-
-    <p>Genre Name 1, Genre Name 2</p>
-  </div>
-</div>
-
-<h3>Top Songs Of
-  <small>{{vm.artistInfo.artistName}}</small>
-</h3>
-<songs-table loading="!vm.displaySongs" content="vm.artistSongs"></songs-table>
-
-<h3>Albums By
-  <small>{{vm.artistInfo.artistName}}</small>
-</h3>
-
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>Artist</th>
-    <th>Album</th>
-    <th>Year</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr ng-repeat="album in vm.artistAlbums.albums track by $index ">
-    <td>{{vm.artistInfo.artistName}}</td>
-    <td><a ui-sref="msl.album({albumId: album.albumId})">{{album.albumName}}</a></td>
-    <td>{{album.albumYear}}</td>
-  </tr>
-  </tbody>
-</table>

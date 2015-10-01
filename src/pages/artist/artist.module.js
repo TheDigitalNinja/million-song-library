@@ -11,6 +11,7 @@ import songsTable from 'modules/songs-table/module';
 
 import artistRoute from './artist.route.js';
 import artistCtrl from './controllers/artist.controller.js';
+import artistsList from './directives/artists-list.js';
 import artistListCtrl from './controllers/artist-list.controller.js';
 
 export default angular.module('msl.artist', [
@@ -20,5 +21,6 @@ export default angular.module('msl.artist', [
 ])
   .config(artistRoute)
   .controller('artistCtrl', artistCtrl)
+  .directive('artistsList', artistsList)
   .controller('artistListCtrl', artistListCtrl)
   .name;

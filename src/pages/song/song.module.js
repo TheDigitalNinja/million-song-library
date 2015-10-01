@@ -10,6 +10,8 @@ import dataStore from 'modules/datastore/module';
 import rating from 'modules/star-rating/module';
 
 import songPageRoute from './song.route.js';
+import songsList from './directives/songs-list.js';
+import songsListCtrl from './controllers/songs-list.controller.js';
 import songCtrl from './controllers/song.controller.js';
 
 export default angular.module('msl.song', [
@@ -18,5 +20,7 @@ export default angular.module('msl.song', [
   dataStore,
 ])
   .config(songPageRoute)
+  .directive('songsList', songsList)
+  .controller('songsListCtrl', songsListCtrl)
   .controller('songCtrl', songCtrl)
   .name;

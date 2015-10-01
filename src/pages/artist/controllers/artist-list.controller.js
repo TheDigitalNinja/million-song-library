@@ -15,26 +15,12 @@ export default class artistListCtrl {
     this.$log = $log;
     this.$scope = $scope;
     this.artistStore = artistStore;
-    this.getArtists();
-
     //} else {
     //  $state.go('msl.home');
     //}
   }
 
-  getArtists() {
-    (async () => {
-      try {
-        const artistList = await this.artistStore.fetchAll();
-        this.artists = artistList.artists;
-        this.$scope.$evalAsync();
-      }
-      catch (err) {
-        this.artists = [];
-        this.$log.warn(err);
-      }
-    })();
-  }
+
 
 }
 
