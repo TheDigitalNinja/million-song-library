@@ -14,9 +14,10 @@
   }
 
   function getArtist(req, res) {
-    var artist_mbid = req.swagger.params.artist_mbid.value;
 
-    var artist = _findArtist(artist_mbid);
+    var artistId = req.swagger.params.artistId.value;
+
+    var artist = _.findWhere(data.artists, { artistId: artistId });
 
     res.json({
       artistId: artist.artistId,
@@ -26,12 +27,6 @@
       link_to_image: artist.link_to_image,
       songs_list: artist.songs_list
     });
-  }
-
-  function _findArtist(artist_mbid) {
-    var artist = _.findWhere(data.artists, { artist_mbid: artist_mbid });
-
-    return artist[0];
   }
 
 })();

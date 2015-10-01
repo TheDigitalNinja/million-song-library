@@ -11,6 +11,7 @@ import songsTable from 'modules/songs-table/module';
 
 import artistRoute from './artist.route.js';
 import artistCtrl from './controllers/artist.controller.js';
+import artistListCtrl from './controllers/artist-list.controller.js';
 
 export default angular.module('msl.artist', [
   uiRouter,
@@ -19,4 +20,5 @@ export default angular.module('msl.artist', [
 ])
   .config(artistRoute)
   .controller('artistCtrl', artistCtrl)
+  .controller('artistListCtrl', artistListCtrl)
   .name;

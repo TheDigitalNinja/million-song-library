@@ -170,13 +170,13 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/catalogedge/artist/{artistId}:
-    x-swagger-router-controller: catalog_controller
+  /api/catalogedge/artists/{artistId}:
+    x-swagger-router-controller: artist_controller
     get:
-      description: Get data on an Artist
+      description: Recovers a artist by its id
       tags:
-        - Catalog
-      operationId: artist_info
+        - Artist
+      operationId: getArtist
       parameters:
         -
           name: artistId
@@ -569,6 +569,8 @@ securityDefinitions:
     type: apiKey
     name: SessionId
     in: header
+
+# =============================================================================================DEFINITIONS
 # complex objects have schema definitions
 definitions:
   LoginSuccessResponse:
