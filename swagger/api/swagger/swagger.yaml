@@ -340,6 +340,33 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /api/catalogedge/artists/{artistId}/albums:
+    x-swagger-router-controller: artist_controller
+    get:
+      description: Get the albums of a artist
+      tags:
+        - Albums
+      operationId: getArtistAlbums
+      parameters:
+        -
+          name: artistId
+          in: path
+          description: artist identifier
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/AlbumsList"
+        "404":
+          description: No albums found for this artist.
+          schema:
+            $ref: "#/definitions/NotFoundResponse"
+        "500":
+          description: Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /api/imageedge/album/{albumId}:
     x-swagger-router-controller: image_controller
     get:
@@ -631,6 +658,8 @@ definitions:
         type: string
       link_to_image:
         type: string
+      album_year:
+        type: string
       songs_list:
         type: array
         items:
@@ -703,10 +732,12 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/ArtistInfo"
-  AlbumList:
-    type: array
-    items:
-      $ref: "#/definitions/AlbumInfo"
+  AlbumsList:
+    properties:
+      albums:
+        type: array
+        items:
+          $ref: "#/definitions/AlbumInfo"
   SessionInfo:
     properties:
       userId:

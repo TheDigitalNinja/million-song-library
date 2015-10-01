@@ -84,7 +84,7 @@ module.exports = {
       artistId: '1',
       artist_mbid: '1',
       artist_name: 'La 12',
-      albums_list: [],
+      albums_list: ['1'],
       link_to_image: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Mosaico_LDA.jpg',
       songs_list: [],
     },
@@ -92,7 +92,7 @@ module.exports = {
       artistId: '2',
       artist_mbid: '2',
       artist_name: 'Mercyful Fate',
-      albums_list: [],
+      albums_list: ['2', '3'],
       link_to_image: 'http://www.metalinjection.net/wp-content/uploads/2014/07/mercyful-fate_photo03.jpg',
       songs_list: [],
     },
@@ -100,7 +100,7 @@ module.exports = {
       artistId: '3',
       artist_mbid: '3',
       artist_name: 'Katy Perry',
-      albums_list: [],
+      albums_list: ['4'],
       link_to_image: 'http://www.billboard.com/files/media/katy-perry-one-of-the-boys-album-billboard-650x650.jpg',
       songs_list: [],
     },
@@ -127,6 +127,36 @@ module.exports = {
       albums_list: [],
       link_to_image: 'http://www.josepvinaixa.com/blog/wp-content/uploads/2014/04/Shakira.png',
       songs_list: [],
+    }
+  ],
+  albums: [
+    {
+      album_id: '1',
+      album_name: 'Some album',
+      link_to_image: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Mosaico_LDA.jpg',
+      song_list: [],
+      album_year: '2010',
+    },
+    {
+      album_id: '2',
+      album_name: 'Some album',
+      link_to_image: 'http://www.metalinjection.net/wp-content/uploads/2014/07/mercyful-fate_photo03.jpg',
+      song_list: [],
+      album_year: '2011',
+    },
+    {
+      album_id: '3',
+      album_name: 'Some album',
+      link_to_image: 'http://www.metalinjection.net/wp-content/uploads/2014/07/mercyful-fate_photo03.jpg',
+      song_list: [],
+      album_year: '2012',
+    },
+    {
+      album_id: '4',
+      album_name: 'Some album',
+      link_to_image: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Mosaico_LDA.jpg',
+      song_list: [],
+      album_year: '2013',
     }
   ],
   genres: [
