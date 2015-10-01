@@ -19,6 +19,7 @@ import searchPage from './pages/search/search.module.js';
 import songPage from './pages/song/song.module.js';
 import userPage from './pages/user/user.module.js';
 import browsePage from './pages/browse/browse.module.js';
+import libraryPage from './pages/library/library.module.js';
 
 //Modules
 import authorisation from 'modules/authorisation/module';
@@ -40,6 +41,7 @@ export default angular.module('msl', [
   songPage,
   userPage,
   browsePage,
+  libraryPage,
 
   authorisation,
   player,

@@ -558,10 +558,10 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   /api/accountedge/users/mylibrary:
-    x-swagger-router-controller: history_controller
+    x-swagger-router-controller: library_controller
     get:
       description: "Get the user's library of songs."
-      security: [session_id: []]
+      #security: [session_id: []]
       tags:
         - Account
       operationId: song_library
@@ -570,6 +570,30 @@ paths:
           description: Retrieved user library.
           schema:
             $ref: "#/definitions/SongList"
+        "500":
+          description: Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /api/accountedge/users/mylibrary/add:
+    x-swagger-router-controller: library_controller
+    post:
+      description: "adds a song to the user's library"
+      #security: [session_id: []]
+      tags:
+        - Account
+      operationId: add_to_library
+      parameters:
+        -
+          name: songId
+          in: formData
+          description: Song id for the song to add to the library
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Successfully added song to my library.
+          schema:
+            $ref: "#/definitions/StatusResponse"
         "500":
           description: Server Error
           schema:

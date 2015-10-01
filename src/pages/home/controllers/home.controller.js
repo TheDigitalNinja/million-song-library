@@ -4,7 +4,11 @@
 export default class homeCtrl {
   /*@ngInject*/
 
-  constructor($scope, catalogStore, genreStore) {
+  constructor($scope, $log, catalogStore, myLibraryStore) {
+    this.$scope = $scope;
+    this.$log = $log;
+    this.myLibraryStore = myLibraryStore;
+
     this.getSongs($scope, catalogStore);
 
     this.categories = [];
@@ -27,7 +31,21 @@ export default class homeCtrl {
         this.songs = songList.songs;
         $scope.$evalAsync();
       }
-      catch (err) { }
+      catch(error) {
+        this.$log.warn(error);
+      }
+    })();
+  }
+
+  addToMyLibrary(songId) {
+    (async () => {
+      try {
+        await this.myLibraryStore.addSong(songId);
+        this.$scope.$evalAsync();
+      }
+      catch(error) {
+        this.$log.warn(error);
+      }
     })();
   }
 }
