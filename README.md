@@ -5,7 +5,7 @@
 Project is based on [Webpack](http://webpack.github.io/) and [Angular](https://angularjs.org/).
 Main `index.html` file is built by using webpack's [HTML Webpack Plugin](https://github.com/ampedandwired/html-webpack-plugin).
 Project is based on ES6 syntax. It is converted to ES5 by using [BabelJS](https://babeljs.io) compiler with stage `1`,
-this means that we can use extra features like `await` and `async`. For stylesheets we use [LESS](http://lesscss.org/)
+this means that we can use extra features like `await` and `async`. For stylesheets we use [Sass](http://sass-lang.com/)
 compiler.
 
 ### Installation

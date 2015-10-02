@@ -15,5 +15,8 @@
   ],
   "dependencies": {
     "flexbox.less": "~0.0.4"
+  },
+  "devDependencies": {
+    "bootstrap": "v4-dev"
   }
 }
