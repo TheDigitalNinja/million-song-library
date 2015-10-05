@@ -704,9 +704,11 @@ definitions:
         type: string
       album_year:
         type: string
-      artist:
+      artistId:
         type: string
-      genre:
+      artist_name:
+        type: string
+      genre_name:
         type: string
       songs_list:
         type: array

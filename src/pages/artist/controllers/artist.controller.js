@@ -18,7 +18,6 @@ export default class artistCtrl {
       this.$log = $log;
       this.artistStore = artistStore;
       this.catalogStore = catalogStore;
-      this.artistStore = artistStore;
       this.getArtistInfo();
     }
     else {

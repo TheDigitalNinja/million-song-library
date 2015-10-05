@@ -20,14 +20,7 @@
 
     var artist = _.findWhere(data.artists, { artistId: artistId });
 
-    res.json({
-      artistId: artist.artistId,
-      artist_mbid: artist.artist_mbid,
-      artist_name: artist.artist_name,
-      albums_list: artist.albums_list,
-      link_to_image: artist.link_to_image,
-      songs_list: artist.songs_list
-    });
+    res.json(artist);
   }
 
   function getArtistAlbums(req, res) {

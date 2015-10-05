@@ -3,19 +3,23 @@
  * @property {string} albumId
  * @property {String} albumName
  * @property {String} linkToImage
- * @property {string} songsList
- * @property {string} artist
- * @property {string} genre
  * @property {string} albumYear
+ * @property {string} artistId
+ * @property {string} artistName
+ * @property {string} genreName
+ * @property {string} songsList
  */
-export default class AlbumInfoEntity {
+class AlbumInfoEntity {
   constructor() {
     this.albumId = String;
     this.albumName = String;
     this.linkToImage = String;
-    this.songsList = String;
     this.albumYear = String;
-    this.genre = String;
-    this.artist = String;
+    this.artistId = String;
+    this.artistName = String;
+    this.genreName = String;
+    this.songsList = String;
   }
 }
+
+export default AlbumInfoEntity;
