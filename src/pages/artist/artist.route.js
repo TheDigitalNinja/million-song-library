@@ -13,12 +13,4 @@ export default function artistPageRoute($stateProvider) {
       title: 'Artist',
     });
 
-    $stateProvider.state(
-    'msl.artistsList', {
-      url: '/artists',
-      template: require('./templates/artist-list.html'),
-      controller: 'artistListCtrl',
-      controllerAs: 'vm',
-      title: 'Artists',
-    });
 }

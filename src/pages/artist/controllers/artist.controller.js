@@ -19,6 +19,7 @@ export default class artistCtrl {
       this.artistStore = artistStore;
       this.catalogStore = catalogStore;
       this.getArtistInfo();
+      this.getSimilarArtists();
     }
     else {
       $state.go('msl.home');
@@ -38,6 +39,20 @@ export default class artistCtrl {
         this.artistInfo = {};
         this.artistSongs = [];
         this.displaySongs = false;
+        this.$log.warn(err);
+      }
+    })();
+  }
+
+  getSimilarArtists() {
+    (async() => {
+      try {
+        const artistList = await this.artistStore.fetchSimilarArtist(this.artistId);
+        this.similarArtists = artistList.artists;
+        this.$scope.$evalAsync();
+      } catch (err) {
+        // TODO: Handle the error
+        this.similarArtists = [];
         this.$log.warn(err);
       }
     })();
