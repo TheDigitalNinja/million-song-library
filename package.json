@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "postinstall": "bower install",
-    "validate": "eslint src",
+    "validate": "eslint src && jscs src",
     "test": "karma start --singleRun true",
     "autotest": "karma start",
     "webdriver-start": "webdriver-manager start",

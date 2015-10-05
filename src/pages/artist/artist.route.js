@@ -12,5 +12,4 @@ export default function artistPageRoute($stateProvider) {
       controllerAs: 'vm',
       title: 'Artist',
     });
-
 }

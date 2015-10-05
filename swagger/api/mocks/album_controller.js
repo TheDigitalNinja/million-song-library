@@ -10,16 +10,28 @@
   };
 
   function getAlbums(req, res) {
-    res.json({ albums: data.albums });
+    var genre = req.swagger.params.genreName.value;
+    if (genre !== undefined && genre !== null && genre.length > 0) {
+      res.json(getAlbumsFilteredByGenre(genre));
+    } else {
+      res.json({ albums: data.albums });
+    }
   }
 
   function getAlbumById(req, res) {
-
     var albumId = req.swagger.params.albumId.value;
-
     var album = _.findWhere(data.albums, { album_id: albumId });
-
     res.json(album);
+  }
+
+  function getAlbumsFilteredByGenre(genre) {
+    var response = [];
+    for (var i = data.albums.length - 1; i >= 0; i--) {
+      if (data.albums[i].genre_name.toLowerCase() === genre.toLowerCase()) {
+        response.push(data.albums[i]);
+      }
+    }
+    return {albums: response};
   }
 
 })();

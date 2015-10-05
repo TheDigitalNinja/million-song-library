@@ -18,10 +18,21 @@ export default function albumStore(request, entityMapper) {
      * @return {AlbumInfoEntity}
      */
     async fetch(albumId) {
-      return entityMapper(await request.get(API_REQUEST_PATH + albumId), AlbumInfoEntity);
+      return entityMapper(await request.get(
+          `${API_REQUEST_PATH}${albumId}`),
+        AlbumInfoEntity);
     },
-    async fetchAll () {
-      return entityMapper(await request.get(API_REQUEST_PATH), AlbumListEntity);
+
+    /**
+     * fetch all albums from catalogue endpoint
+     * @name albumStore#fetchAll
+     * @param {string} genre
+     * @return {AlbumListEntity}
+     */
+    async fetchAll (genre) {
+      return entityMapper(await request.get(
+          API_REQUEST_PATH, { params: { genreName: genre } }),
+        AlbumListEntity);
     },
   };
 }

@@ -1,14 +1,41 @@
+/**
+ * Genre filter controller
+ * @param {$scope} $scope
+ * @param {$log} $log
+ * @param {genreStore} genreStore
+ * @param {genreFilterModel}  genreFilterModel
+ */
 class genreFilterCtrl {
   /*@ngInject*/
 
-  constructor($scope, $log, genreStore) {
+  constructor($scope, $log, genreStore, genreFilterModel) {
     this.$scope = $scope;
     this.$log = $log;
     this.genreStore = genreStore;
+    this.genreFilterModel = genreFilterModel;
 
     this.getGenres();
   }
 
+  /**
+   * Applies genre filter on change
+   * @param {string} genre
+   */
+  applyFilterByGenre(genre) {
+    this.genreFilterModel.selectedGenre = genre;
+    if (angular.isDefined(genre) && genre.length > 0) {
+      this.genreFilterModel.songs = null;
+      this.genreFilterModel.albums = null;
+      this.genreFilterModel.artists = null;
+      this.genreFilterModel.getSongsFilteredByGenre(this.$scope);
+      this.genreFilterModel.getAlbumsFilteredByGenre(this.$scope);
+      this.genreFilterModel.getArtistsFilteredByGenre(this.$scope);
+    }
+  }
+
+  /**
+   * Gets all genres
+   */
   getGenres() {
     (async () => {
       try {
@@ -16,15 +43,19 @@ class genreFilterCtrl {
         this.genres = genresList.genres;
         this.$scope.$evalAsync();
       }
-      catch(err) {
+      catch (err) {
         this.genres = [];
         this.$log.warn(err);
       }
     })();
   }
+
 }
 
-class GenreFilter {
+/**
+ * Genre filter directive
+ */
+export default class GenreFilter {
   /*@ngInject*/
 
   constructor($q) {
@@ -42,5 +73,3 @@ class GenreFilter {
     return GenreFilter.instance;
   }
 }
-
-export default GenreFilter;
