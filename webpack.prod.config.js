@@ -1,6 +1,6 @@
 var _ = require("lodash");
 var webpack = require("webpack");
-var LessPluginCleanCSS = require('less-plugin-clean-css');
+//var LessPluginCleanCSS = require('less-plugin-clean-css');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CleanPlugin = require('clean-webpack-plugin');
 var config = require("./webpack.config.js");
@@ -10,7 +10,7 @@ delete config.devtool;
 // add eslint on error fail
 config.eslint = {failOnError: true, failOnWarning: true};
 // add clean css plugin
-config.lessLoader = {lessPlugins: [new LessPluginCleanCSS({advanced: true})]};
+//config.lessLoader = {lessPlugins: [new LessPluginCleanCSS({advanced: true})]};
 // set output file to use hash
 config.output.filename = "build.js";
 // add source uglify plugin
@@ -24,13 +24,13 @@ config.plugins = _.map(config.plugins, function (plugin) {
   }
   return plugin;
 });
-// find less and css loaders and replace them with new loaders that does not use source maps
+// find scss and css loaders and replace them with new loaders that does not use source maps
 config.module.loaders = _.map(config.module.loaders, function (loader) {
   switch (loader.test.toString()) {
     case /\.css/.toString():
       return {test: /\.css/, loader: ExtractTextPlugin.extract("style", "css")};
-    case /\.less/.toString():
-      return {test: /\.less/, loader: ExtractTextPlugin.extract("style", "css!less")};
+    case /\.scss/.toString():
+      return {test: /\.scss/, loader: ExtractTextPlugin.extract("style", "css!scss")};
   }
   return loader;
 });

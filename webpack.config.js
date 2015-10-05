@@ -56,7 +56,7 @@ module.exports = {
       {test: /\.html$/, loader: "html"},
       {test: /\.eot|ttf|woff|woof2|svg/, loader: "file"},
       {test: /\.css/, loader: ExtractTextPlugin.extract("style", "css?sourceMap")},
-      {test: /\.less/, loader: ExtractTextPlugin.extract("style", "css?sourceMap!less?sourceMap")},
+      {test: /\.scss$/, loaders: ["style", "css", "sass"]},
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [

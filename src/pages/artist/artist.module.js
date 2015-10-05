@@ -1,5 +1,5 @@
 //Styles
-import './stylesheets/artist.less';
+import './stylesheets/artist.scss';
 
 //Dependencies
 import angular from 'angular';

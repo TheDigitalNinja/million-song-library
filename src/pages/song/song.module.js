@@ -1,5 +1,5 @@
 //View
-import './stylesheets/song.less';
+import './stylesheets/song.scss';
 
 //Dependencies
 import angular from 'angular';

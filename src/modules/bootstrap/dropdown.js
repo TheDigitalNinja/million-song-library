@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import 'bootstrap/js/dropdown';
+import 'bootstrap/dist/js/umd/dropdown';
 
 /**
  * dropdown directive - this uses bootstrap dropdown

@@ -1,5 +1,5 @@
 //Styles
-import '../styles/layout.less';
+import '../styles/layout.scss';
 //Dependencies
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';

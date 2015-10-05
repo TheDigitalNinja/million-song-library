@@ -1,5 +1,5 @@
 //View
-import './stylesheets/login.less';
+import './stylesheets/login.scss';
 //Dependencies
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';

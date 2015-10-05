@@ -11,9 +11,9 @@
 // Styleguide 2.1
 
 body {
-  font-family: @defaultFont;
+  font-family: $defaultFont;
   -webkit-font-smoothing: antialiased;
-  color: @black;
+  color: $black;
 }
 
 
@@ -35,15 +35,15 @@ h3,
 h4,
 h5,
 h6, {
-  font-family: @defaultFont;
+  font-family: $defaultFont;
 }
 
 
 // Text colors
 //
-// .text-black - Sets text color to `@black`
-// .text-gray -  Sets text color to `@gray-1`
-// .text-white -  Sets text color to `@white`
+// .text-black - Sets text color to `$black`
+// .text-gray -  Sets text color to `$gray-1`
+// .text-white -  Sets text color to `$white`
 //
 // Markup:
 // <p class="{{modifier_class}}">Lorem Ipsum is simply dummy text...</p>
@@ -51,13 +51,13 @@ h6, {
 // Styleguide 2.3
 
 .text-black {
-  color: @black !important;
+  color: $black !important;
 }
 .text-gray {
-  color: @gray-1 !important;
+  color: $gray-1 !important;
 }
 .text-white {
-  color: @white !important;
+  color: $white !important;
 }
 
 // Link colors
@@ -65,8 +65,8 @@ h6, {
 // Link colors are text colors with project standard hover/active/focus state
 // colors
 //
-// .link-black - Sets text color, including hover to `@black`
-// .link-gray - Sets text color, including hover to `@gray-1`
+// .link-black - Sets text color, including hover to `$black`
+// .link-gray - Sets text color, including hover to `$gray-1`
 //
 // Markup:
 // <a href="#" class="{{modifier_class}}">Lorem Ipsum is simply dummy text...</a>
@@ -74,14 +74,14 @@ h6, {
 // Styleguide 2.4
 
 .link-black {
-  color: @black !important;
-  .pseudo-class({
-    color: @black !important;
-  });
+  color: $black !important;
+  @include pseudo-class {
+    color: $black !important;
+  }
 }
 .link-gray {
-  color: @gray-1 !important;
-  .pseudo-class({
-    color: @gray-1 !important;
-  });
+  color: $gray-1 !important;
+  @include pseudo-class {
+    color: $gray-1 !important;
+  }
 }

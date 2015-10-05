@@ -1,4 +1,4 @@
-import './stylesheets/default.less';
+import './stylesheets/default.scss';
 import angular from 'angular';
 import starRating from './directives/star-rating';
 import datastore from 'modules/datastore/module';

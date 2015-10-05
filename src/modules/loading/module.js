@@ -1,4 +1,4 @@
-import './stylesheets/default.less';
+import './stylesheets/default.scss';
 import angular from 'angular';
 import loadingDirective from './directives/loading';
 
