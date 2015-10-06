@@ -2,7 +2,7 @@
 <ul>
   <li ng-repeat='rate in vm.rates track by $index'>
     <ul class="star-rating list-unstyled" ng-class='rating-readonly'>
-      <a ui-sref='msl.browse({rating: rate.rate})'>
+      <a ng-click="vm.applyRatingFilter(rate)">
         <li ng-repeat="star in rate.stars track by $index">
           <button type="button" class="btn fa" ng-class="star.filled ? 'fa-star' : 'fa-star-o'"></button>
         </li>

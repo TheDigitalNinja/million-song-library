@@ -17,7 +17,6 @@ import loginPage from './pages/login/login.module.js';
 import searchPage from './pages/search/search.module.js';
 import songPage from './pages/song/song.module.js';
 import userPage from './pages/user/user.module.js';
-import browsePage from './pages/browse/browse.module.js';
 import libraryPage from './pages/library/library.module.js';
 
 //Modules
@@ -39,7 +38,6 @@ export default angular.module('msl', [
   searchPage,
   songPage,
   userPage,
-  browsePage,
   libraryPage,
 
   authorisation,

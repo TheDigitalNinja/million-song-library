@@ -22,14 +22,36 @@ export default function artistStore(request, entityMapper) {
     async fetch(artistId) {
       return entityMapper(await request.get(API_REQUEST_PATH + artistId), ArtistInfoEntity);
     },
-    async fetchAll() {
-      return entityMapper(await request.get(API_REQUEST_PATH), ArtistListEntity);
+
+    /**
+     * fetch all artists from catalogue endpoint
+     * @name artistStore#fetchAll
+     * @param {string} genre
+     * @return {ArtistListEntity}
+     */
+    async fetchAll(genre) {
+      return entityMapper(await request.get(
+          API_REQUEST_PATH, { params: { genreName: genre } }),
+        ArtistListEntity
+      );
     },
+
+    /**
+     * fetch all artist's albums from catalogue endpoint
+     * @name artistStore#fetchArtistsAlbums
+     * @param {string} artistId
+     * @return {AlbumListEntity}
+     */
     async fetchArtistAlbums(artistId) {
-      return entityMapper(await request.get(API_REQUEST_PATH + artistId + '/albums'), AlbumListEntity);
+      return entityMapper(await request.get(
+          `${API_REQUEST_PATH}${artistId}/albums`),
+        AlbumListEntity
+      );
     },
     async fetchSimilarArtist(artistId) {
-      return entityMapper(await request.get(API_REQUEST_PATH + artistId + '/similar-artists'), ArtistListEntity);
+      return entityMapper(await request.get(
+          `${API_REQUEST_PATH}${artistId}/similar-artists`),
+        ArtistListEntity);
     },
   };
 }

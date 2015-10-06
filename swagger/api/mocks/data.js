@@ -87,6 +87,7 @@ module.exports = {
       albums_list: ['1'],
       link_to_image: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Mosaico_LDA.jpg',
       songs_list: [],
+      genre: 'Jazz',
     },
     {
       artistId: '2',
@@ -95,6 +96,7 @@ module.exports = {
       albums_list: ['2', '3'],
       link_to_image: 'http://www.metalinjection.net/wp-content/uploads/2014/07/mercyful-fate_photo03.jpg',
       songs_list: [],
+      genre: 'Metal',
     },
     {
       artistId: '3',
@@ -103,6 +105,7 @@ module.exports = {
       albums_list: ['4'],
       link_to_image: 'http://www.billboard.com/files/media/katy-perry-one-of-the-boys-album-billboard-650x650.jpg',
       songs_list: [],
+      genre: 'Pop',
     },
     {
       artistId: '4',
@@ -111,6 +114,7 @@ module.exports = {
       albums_list: [],
       link_to_image: 'http://www.aldia.cr/futbol-costa-rica/cartagines/Cartagines-aficion-Cartago-Herediano-final-Verano_2013_ALDIMA20130519_0077_6.jpg',
       songs_list: [],
+      genre: 'Rock',
     },
     {
       artistId: '5',
@@ -119,6 +123,7 @@ module.exports = {
       albums_list: [],
       link_to_image: 'http://sp2.fotolog.com/photo/2/9/28/gorgojito/1219372920619_f.jpg',
       songs_list: [],
+      genre: 'Merenge',
     },
     {
       artistId: '6',
@@ -127,6 +132,7 @@ module.exports = {
       albums_list: [],
       link_to_image: 'http://www.josepvinaixa.com/blog/wp-content/uploads/2014/04/Shakira.png',
       songs_list: [],
+      genre: 'Pop',
     }
   ],
   albums: [
@@ -136,7 +142,7 @@ module.exports = {
       link_to_image: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Mosaico_LDA.jpg',
       album_year: '2010',
       artist_name: 'La 12',
-      genre_name: 'bad music...',
+      genre_name: 'Jazz',
       songs_list: ['1','2'],
     },
     {
@@ -145,8 +151,9 @@ module.exports = {
       link_to_image: 'http://www.metalinjection.net/wp-content/uploads/2014/07/mercyful-fate_photo03.jpg',
       album_year: '2011',
       artist_name: 'Mercyful Fate',
-      genre_name: 'Metal',
+      genre_name: 'Rock',
       songs_list: [],
+      genre: 'Rock',
     },
     {
       album_id: '3',
@@ -154,7 +161,7 @@ module.exports = {
       link_to_image: 'http://www.metalinjection.net/wp-content/uploads/2014/07/mercyful-fate_photo03.jpg',
       album_year: '2012',
       artist_name: 'Mercyful Fate',
-      genre_name: 'Dark Metal',
+      genre_name: 'Rock',
       songs_list: [],
     },
     {

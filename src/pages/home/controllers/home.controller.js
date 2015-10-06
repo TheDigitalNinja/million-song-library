@@ -6,37 +6,56 @@
  * @param {myLibraryStore} myLibraryStore
  * @param {artistStore} artistStore
  * @param {albumStore} albumStore
+ * @param {genreFilterModel} genreFilterModel
  */
 export default class homeCtrl {
   /*@ngInject*/
 
-  constructor($scope, $log, catalogStore, myLibraryStore, artistStore, albumStore) {
+  constructor($scope,
+              $log,
+              catalogStore,
+              myLibraryStore,
+              artistStore,
+              albumStore,
+              genreFilterModel) {
     this.$scope = $scope;
     this.$log = $log;
     this.artistStore = artistStore;
     this.albumStore = albumStore;
     this.myLibraryStore = myLibraryStore;
     this.catalogStore = catalogStore;
-
-    this.categories = [];
-    // Mockup some data
-
-    // TODO: Remove mock data when we start getting list of genres from backend
-    this.categories.push({
-      title: 'Artists',
-      items: [{name: 'Artist Name'}, {name: 'Artist Name 2'}, {name: 'Artist Name 3'}],
-    });
+    this.model = genreFilterModel.selectedGenre;
 
     //Initializes data
     this.getSongs();
     this.getArtists();
     this.getAlbums();
+
+    this.$scope.$watch(() => genreFilterModel.songs,
+      () => {
+        if (genreFilterModel.songs !== null) {
+          this.songs = genreFilterModel.songs;
+        }
+      });
+
+    this.$scope.$watch(()=> genreFilterModel.artists,
+      () => {
+        if (genreFilterModel.artists !== null) {
+          this.artists = genreFilterModel.artists;
+        }
+      });
+
+    this.$scope.$watch(()=> genreFilterModel.albums,
+      () => {
+        if (genreFilterModel.albums !== null) {
+          this.albumsList = genreFilterModel.albums;
+        }
+      });
   }
 
-  getNumber(num) {
-    return new Array(num);
-  }
-
+  /**
+   * Fetches all ablums
+   */
   getAlbums() {
     (async () => {
       try {
@@ -45,11 +64,15 @@ export default class homeCtrl {
         this.$scope.$evalAsync();
       }
       catch (error) {
+        this.albumsList = [];
         this.$log.warn(error);
       }
     })();
   }
 
+  /**
+   * Gets all songs
+   */
   getSongs() {
     (async () => {
       try {
@@ -58,11 +81,15 @@ export default class homeCtrl {
         this.$scope.$evalAsync();
       }
       catch (error) {
+        this.songs = [];
         this.$log.warn(error);
       }
     })();
   }
 
+  /**
+   * Gets all artists
+   */
   getArtists() {
     (async () => {
       try {
@@ -77,6 +104,10 @@ export default class homeCtrl {
     })();
   }
 
+  /**
+   * Adds selected song to library
+   * @param {int} songId
+   */
   addToMyLibrary(songId) {
     (async () => {
       try {

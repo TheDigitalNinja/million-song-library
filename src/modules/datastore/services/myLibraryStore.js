@@ -8,7 +8,7 @@ import StatusResponseEntity from '../entities/StatusResponseEntity';
  * @param {entityMapper} entityMapper
  * @returns {*}
  */
-function myLibraryStore (request, entityMapper) {
+function myLibraryStore(request, entityMapper) {
   'ngInject';
 
   const API_REQUEST_PATH = '/api/accountedge/users/mylibrary';
@@ -23,7 +23,10 @@ function myLibraryStore (request, entityMapper) {
     },
 
     async addSong(songId) {
-      return entityMapper(await request.post(API_REQUEST_PATH + '/add', { songId: songId }), StatusResponseEntity);
+      return entityMapper(await request.post(
+          `${API_REQUEST_PATH}/add`, { songId: songId }),
+        StatusResponseEntity
+      );
     },
   };
 }
