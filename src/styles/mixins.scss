@@ -12,9 +12,31 @@
 // example.
 //
 // ```
-// @include pseudo-class {
+// a {
 //   color: $white;
 //   background: $black;
+//
+//   @include pseudo-class {
+//      color: $white;
+//      background: $black;
+//	  }
+// }
+// ```
+// Will output the following CSS.
+//
+// ```
+// a {
+//   color: #fff;
+//   background: #000;
+// }
+//
+// a:hover,
+// a:focus,
+// b:active,
+// a.active,
+// a.selected {
+//   color: #fff;
+//   background: #000;
 // }
 // ```
 //
