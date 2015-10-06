@@ -3,9 +3,7 @@
  * @param {ui.router.state.$stateProvider} $stateProvider
  */
 export default function songPageRoute($stateProvider) {
-
   'ngInject';
-
   $stateProvider.state(
     'msl.song', {
       url: '/song/:songId',
@@ -13,4 +11,5 @@ export default function songPageRoute($stateProvider) {
       controller: 'songCtrl',
       controllerAs: 'vm',
     });
+
 }

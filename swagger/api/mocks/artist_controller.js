@@ -8,6 +8,7 @@
     artistList: artistList,
     getArtist: getArtist,
     getArtistAlbums: getArtistAlbums,
+    getSimilarArtists: getSimilarArtists,
   };
 
   function artistList(req, res) {
@@ -46,6 +47,12 @@
       }
     }
     res.json({albums: albums});
+  }
+
+  function getSimilarArtists(req, res){
+    var artists = _.sample(data.artists, 3);
+
+    res.json({ artists: artists });
   }
 
 })();

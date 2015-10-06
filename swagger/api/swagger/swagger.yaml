@@ -217,6 +217,33 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /api/catalogedge/artists/{artistId}/similar-artists:
+      x-swagger-router-controller: artist_controller
+      get:
+        description: Get the similar artists of the artist
+        tags:
+          - Artist
+        operationId: getSimilarArtists
+        parameters:
+          -
+            name: artistId
+            in: path
+            description: Artist Identifier
+            required: true
+            type: string
+        responses:
+          "200":
+            description: Success
+            schema:
+              $ref: "#/definitions/ArtistList"
+          "404":
+            description: Similar artists not found.
+            schema:
+              $ref: "#/definitions/NotFoundResponse"
+          "500":
+            description: Server Error
+            schema:
+              $ref: "#/definitions/ErrorResponse"
   /api/catalogedge/genres:
     x-swagger-router-controller: genre_controller
     get:

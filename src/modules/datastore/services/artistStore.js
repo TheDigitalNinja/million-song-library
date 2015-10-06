@@ -28,5 +28,8 @@ export default function artistStore(request, entityMapper) {
     async fetchArtistAlbums(artistId) {
       return entityMapper(await request.get(API_REQUEST_PATH + artistId + '/albums'), AlbumListEntity);
     },
+    async fetchSimilarArtist(artistId) {
+      return entityMapper(await request.get(API_REQUEST_PATH + artistId + '/similar-artists'), ArtistListEntity);
+    },
   };
 }
