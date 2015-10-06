@@ -1,0 +1,35 @@
+<div class="song-box">
+  <div class="image-container">
+    <img class="img-responsive center-block" ng-src="{{song.linkToImage}}" alt=""/>
+
+    <div class="image-overlay">
+      <div class="overlay-control first-control">
+        <i class="fa fa-play"></i> Play
+      </div>
+      <div class="overlay-control" ng-click='vm.addToMyLibrary(song.songId)'>
+        <i class="fa fa-heart"></i> Add to library
+      </div>
+    </div>
+  </div>
+
+  <div class="info-panel">
+    <div class="header">
+      <div class="col-md-9 container-title">
+        <span>{{ song.songName }}</span>
+      </div>
+      <div class="col-md-3 container-duration">
+        <span class="text-white">{{ song.duration}}</span>
+      </div>
+    </div>
+    <div class="content">
+      <div><a ui-sref="msl.artist({artistId: song.artistId})">{{ song.artistName }}</a></div>
+      <!-- TODO remove accordingly when api supports album and year on song -->
+      <div class="secondary-content">{{ song.songName }}: some album, 1999</div>
+      <div>
+        <div star-rating="3"></div>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+
+</div>

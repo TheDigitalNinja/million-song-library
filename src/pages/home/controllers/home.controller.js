@@ -1,23 +1,26 @@
 /**
  * Home page controller
- * @param {$rootScope.Scope} $scope
- * @param {$log} $log
- * @param {catalogStore} catalogStore
- * @param {myLibraryStore} myLibraryStore
- * @param {artistStore} artistStore
- * @param {albumStore} albumStore
- * @param {genreFilterModel} genreFilterModel
  */
 export default class homeCtrl {
   /*@ngInject*/
 
-  constructor($scope,
-              $log,
-              catalogStore,
-              myLibraryStore,
+  /**
+   * @constructor
+   * @param {albumStore} albumStore
+   * @param {artistStore} artistStore
+   * @param {catalogStore} catalogStore
+   * @param {genreFilterModel} genreFilterModel
+   * @param {$log} $log
+   * @param {myLibraryStore} myLibraryStore
+   * @param {$rootScope.Scope} $scope
+   */
+  constructor(albumStore,
               artistStore,
-              albumStore,
-              genreFilterModel) {
+              catalogStore,
+              genreFilterModel,
+              $log,
+              myLibraryStore,
+              $scope) {
     this.$scope = $scope;
     this.$log = $log;
     this.artistStore = artistStore;
@@ -25,6 +28,7 @@ export default class homeCtrl {
     this.myLibraryStore = myLibraryStore;
     this.catalogStore = catalogStore;
     this.model = genreFilterModel.selectedGenre;
+    this.activeTab = 'songs';
 
     //Initializes data
     this.getSongs();
@@ -55,6 +59,7 @@ export default class homeCtrl {
 
   /**
    * Fetches all ablums
+   * @private
    */
   getAlbums() {
     (async () => {
@@ -72,6 +77,7 @@ export default class homeCtrl {
 
   /**
    * Gets all songs
+   * @private
    */
   getSongs() {
     (async () => {
@@ -89,6 +95,7 @@ export default class homeCtrl {
 
   /**
    * Gets all artists
+   * @private
    */
   getArtists() {
     (async () => {
@@ -106,6 +113,7 @@ export default class homeCtrl {
 
   /**
    * Adds selected song to library
+   * @private
    * @param {int} songId
    */
   addToMyLibrary(songId) {

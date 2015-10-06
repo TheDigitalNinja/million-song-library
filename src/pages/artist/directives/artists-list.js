@@ -1,3 +1,8 @@
+/**
+ * Artist List directive
+ * @author anram88
+ * @returns {{restrict: string, scope: {artists: string}, template: *, controller: string, controllerAs: string}}
+ */
 export default function artistsList() {
 
   'ngInject';
@@ -8,8 +13,6 @@ export default function artistsList() {
       artists: '=',
     },
     template: require('../templates/artist-list.html'),
-    controller: 'artistListCtrl',
-    controllerAs: 'vm',
   };
 }
 

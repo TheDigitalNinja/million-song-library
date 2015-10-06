@@ -1,0 +1,28 @@
+<div class="artist-box">
+  <div class="image-container">
+    <img class="img-responsive center-block" ng-src="{{artist.linkToImage}}" alt=""/>
+
+    <div class="image-overlay">
+      <div class="overlay-control" ng-click='vm.addToMyLibrary(artist.artistId)'>
+        <i class="fa fa-heart"></i> Add to library
+      </div>
+    </div>
+  </div>
+
+  <div class="info-panel">
+    <div class="header">
+      <div class="col-sm-12 container-title">
+        <span>
+          <a href="" ui-sref="msl.artist({artistId: artist.artistId})">
+            {{ artist.artistName }}
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="content">
+      <div star-rating="4"></div>
+    </div>
+  </div>
+  <div class="clear"></div>
+
+</div>

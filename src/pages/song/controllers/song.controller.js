@@ -1,15 +1,19 @@
 /**
  * Song page controller
- * @param {$rootScope.Scope} $scope
- * @param {ui.router.state.$state} $state
- * @param {ui.router.state.$stateParams} $stateParams
- * @param {artistStore} artistStore
- * @param {songStore} songStore
- * @param {$logProvider.$log} $log
  */
 export default class songCtrl {
   /*@ngInject*/
 
+  /**
+   * @constructor
+   * @this {vm}
+   * @param {$rootScope.Scope} $scope
+   * @param {$logProvider.$log} $log
+   * @param {ui.router.state.$state} $state
+   * @param {songStore} songStore
+   * @param {ui.router.state.$stateParams} $stateParams
+   * @param {artistStore} artistStore
+   */
   constructor($scope, $log, $state, songStore, $stateParams, artistStore) {
     if (angular.isDefined($stateParams.songId) && $stateParams.songId.length > 0) {
       this.$log = $log;
@@ -24,6 +28,9 @@ export default class songCtrl {
     }
   }
 
+  /**
+   * @private
+   */
   getSongInfo() {
     (async() => {
       try {
@@ -38,10 +45,14 @@ export default class songCtrl {
     })();
   }
 
-  getSimilarArtists(artistMbid) {
+  /**
+   * Gets similar artists
+   * @param {int} artistId
+   */
+  getSimilarArtists(artistId) {
     (async() => {
       try {
-        const artistList = await this.artistStore.fetchSimilarArtist(artistMbid);
+        const artistList = await this.artistStore.fetchSimilarArtist(artistId);
         this.similarArtists = artistList.artists;
         this.$scope.$evalAsync();
       } catch (err) {
