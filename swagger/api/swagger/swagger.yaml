@@ -346,7 +346,7 @@ paths:
   /api/imageedge/artist/{artistId}:
     x-swagger-router-controller: image_controller
     get:
-      description: Get an artist's picture.
+      description: Get an artist's picture. Result will be an image (png, jpg, etc.).
       tags:
         - Image
       operationId: artist_image
@@ -361,7 +361,7 @@ paths:
         "200":
           description: Successfully acquired artist image.
           schema:
-            $ref: "#/definitions/Image"
+            type: file
         "404":
           description: Image not found.
           schema:
@@ -373,7 +373,7 @@ paths:
   /api/imageedge/album/{albumId}:
     x-swagger-router-controller: image_controller
     get:
-      description: Get an album cover
+      description: Get an album cover image. Result will be an image (png, jpg, etc.).
       tags:
         - Image
       operationId: album_cover
@@ -388,7 +388,7 @@ paths:
         "200":
           description: Successfully acquired album cover image.
           schema:
-            $ref: "#/definitions/Image"
+            type: file
         "404":
           description: Image not found.
           schema:
@@ -400,7 +400,7 @@ paths:
   /api/imageedge/song/{songId}:
     x-swagger-router-controller: image_controller
     get:
-      description: Get a song cover
+      description: Get a song cover. Result will be an image (png, jpg, etc.).
       tags:
         - Image
       operationId: song_cover
@@ -415,7 +415,7 @@ paths:
         "200":
           description: Successfully acquired song cover image.
           schema:
-            $ref: "#/definitions/Image"
+            type: file
         "404":
           description: Image not found.
           schema:
@@ -521,11 +521,9 @@ paths:
   /api/playeredge/play/{songId}:
     x-swagger-router-controller: player_controller
     get:
-      description: Get song data to play a song
+      description: Request to begin streaming a song. Result will be an mp3.
       tags:
         - Player
-      schemes: ["https"]
-      security: [session_id: []]
       operationId: play_song
       parameters:
         -
@@ -538,7 +536,7 @@ paths:
         "200":
           description: Request accepted streaming sound data.
           schema:
-            $ref: "#/definitions/SoundData"
+            type: file
         "404":
           description: Song not found.
           schema:
@@ -636,7 +634,7 @@ definitions:
         $ref: "#/definitions/Song_id"
       song_name:
         type: string
-      link_to_image:
+      image_link:
         type: string
       artist_mbid:
         type: string
@@ -664,26 +662,12 @@ definitions:
         type: string
       album_name:
         type: string
-      link_to_image:
+      image_link:
         type: string
       songs_list:
         type: array
         items:
           $ref: "#/definitions/Song_id"
-  Image:
-    properties:
-      name:
-        type: string
-      data:
-        type: string
-        format: binary
-  SoundData:
-    properties:
-      name:
-        type: string
-      data:
-        type: string
-        format: binary
   ArtistInfo:
     properties:
       artist_name:
@@ -696,7 +680,7 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/Album_id"
-      link_to_image:
+      image_link:
         type: string
       songs_list:
         type: array
@@ -714,7 +698,8 @@ definitions:
     type: string
   SongList:
     properties:
-      genre:
+      last_pos:
+        description: The key to pass as the "pos" parameter when retrieving the next page.
         type: string
       songs:
         type: array
@@ -722,6 +707,9 @@ definitions:
           $ref: "#/definitions/SongInfo"
   ArtistList:
     properties:
+      last_pos:
+        description: The key to pass as the "pos" parameter when retrieving the next page.
+        type: string
       artists:
         type: array
         items:
