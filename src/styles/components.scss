@@ -14,7 +14,7 @@
 // Styleguide 3.1
 
 .item-name {
-  color: @color-text-grey;
+  color: $color-text-grey;
   text-transform: uppercase;
   font-size:  16px;
 }
@@ -35,13 +35,13 @@
 //
 // Styleguide 3.2
 
-@image-size-lg: 200px;
-@image-size-sm: 150px;
+$image-size-lg: 200px;
+$image-size-sm: 150px;
 
 .image-container {
-  width: @image-size-lg;
-  height: @image-size-lg;
-  background-color: @gray-2;
+  width: $image-size-lg;
+  height: $image-size-lg;
+  background-color: $gray-2;
   position: relative;
 
   .image-overlay {
@@ -68,7 +68,7 @@
       }
 
       &:hover {
-        color: @gray-2;
+        color: $gray-2;
       }
     }
 
@@ -88,8 +88,8 @@
 }
 
 .small-image {
-  width: @image-size-sm;
-  height: @image-size-sm;
+  width: $image-size-sm;
+  height: $image-size-sm;
 
   .image-overlay {
     .overlay-control {

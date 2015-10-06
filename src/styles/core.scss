@@ -1,7 +1,15 @@
+// Bourbon Mixins
+@import "./node_modules/bourbon/app/assets/stylesheets/_bourbon.scss";
+
 // Variables
 //
 // Styleguide 1.
 @import "variables";
+
+// Mixins
+//
+// Styleguide 5.
+@import "mixins";
 
 // Typography
 //
@@ -17,8 +25,3 @@
 //
 // Styleguide 4.
 @import "helpers";
-
-// Mixins
-//
-// Styleguide 5.
-@import "mixins";

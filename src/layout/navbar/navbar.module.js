@@ -1,5 +1,5 @@
 //View
-import '../../styles/layout.less';
+import '../../styles/layout.scss';
 
 //Dependencies
 import angular from 'angular';

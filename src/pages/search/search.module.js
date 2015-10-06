@@ -1,5 +1,5 @@
 //Styles
-import './stylesheets/search.less';
+import './stylesheets/search.scss';
 
 //Dependencies
 import angular from 'angular';

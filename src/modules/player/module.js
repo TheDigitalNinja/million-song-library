@@ -1,4 +1,4 @@
-import './stylesheets/default.less';
+import './stylesheets/default.scss';
 import angular from 'angular';
 import playerFactory from './factories/player';
 import playerDirective from './directives/player';

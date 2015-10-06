@@ -1,4 +1,3 @@
-@import "../../../../bower_components/flexbox.less/flexbox";
 @import "../../../styles/core";
 
 // Player
@@ -42,15 +41,15 @@
   bottom: 0;
   width: 100%;
   height: 55px;
-  background-color: @gray-4;
-  border-top: 1px solid @gray-3;
+  background-color: $gray-4;
+  border-top: 1px solid $gray-3;
   padding: 10px;
 
   .container {
-    .flexbox();
-    .flex-direction(row);
-    .justify-content(center);
-    .align-items(center);
+    @include display-box;
+    @include box-direction(row); 
+    @include justify-content(center);
+    @include align-items(center);
 
     & > div {
       margin-left: 15px;
@@ -64,7 +63,7 @@
     }
 
     .track-timeline {
-      .flex(2013, auto);
+      //.flex(2013, auto);
     }
   }
 }

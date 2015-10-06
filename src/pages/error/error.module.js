@@ -1,5 +1,5 @@
 //View
-import './stylesheets/error.less';
+import './stylesheets/error.scss';
 
 //Dependencies
 import angular from 'angular';

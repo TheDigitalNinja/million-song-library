@@ -1,0 +1,31 @@
+
+// ==========================================================================
+// Mixins
+// ==========================================================================
+
+// pseudo-class
+//
+// Adds widely used pseudo class selectors to a given element, uses the Sass @content
+// directive for adaptability.
+//
+// Passes your ruleset as a content block to the mixin as can be seen in the below
+// example.
+//
+// ```
+// @include pseudo-class {
+//   color: $white;
+//   background: $black;
+// }
+// ```
+//
+// Styleguide 5.1
+
+@mixin pseudo-class {
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  &.selected {
+    @content;
+  }
+}
