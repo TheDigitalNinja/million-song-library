@@ -4,7 +4,7 @@ This is the first draft of the CSS styleguide for Million Songs Library.
 ## Table of contents
 
 1. [The setup](#the-setup)
-  1. [LESS CSS Preprocessor](#the-setup-less-css-preprocessor)
+  1. [Sass CSS Preprocessor](#the-setup-sass-css-preprocessor)
   2. [KSS](#the-setup-kss)
   3. [Twitter Bootstrap](#the-setup-bootstrap)
   4. [Font Awesome](#the-setup-font-awesome)
@@ -16,11 +16,11 @@ This is the first draft of the CSS styleguide for Million Songs Library.
 <a name="the-setup"></a>
 ## The setup
 
-<a name="the-setup-less-css-preprocessor"></a>
-### LESS CSS Preprocessor
-The project uses LESS, a CSS pre-processor, meaning that it extends the CSS language, adding features that allow variables, mixins, functions and many other techniques that allow you to make CSS that is more maintainable, themable and extendable.
+<a name="the-setup-sass-css-preprocessor"></a>
+### Sass CSS Preprocessor
+The project uses Sass, a CSS pre-processor, meaning that it extends the CSS language, adding features that allow variables, mixins, functions and many other techniques that allow you to make CSS that is more maintainable, themable and extendable. This project uses the SCSS syntax.
 
-- [LESS: Homepage](http://lesscss.org)
+- [Sass: Homepage](http://sass-lang.com)
 
 <a name="the-setup-kss"></a>
 ### KSS
@@ -31,12 +31,12 @@ KSS is a set of guidelines to help you produce an HTML styleguide tied to CSS do
 
 <a name="the-setup-bootstrap"></a>
 ### Twitter Bootstrap
-At the root of this CSS architecture lies Twitter's [Bootstrap](http://getbootstrap.com/css/). Please view their documentation for utilising their functionalities.
+At the root of this CSS architecture lies Twitter's [Bootstrap](http://v4-alpha.getbootstrap.com/). Please view their documentation for utilising their functionalities. This project is using Bootstrap 4 which utilizes Sass for CSS preprocessing.
 
-- [Bootstrap: General](http://getbootstrap.com/css/)
-- [Bootstrap: Grid system](http://getbootstrap.com/css/#grid)
-- [Bootstrap: Helper classes](http://getbootstrap.com/css/#helper-classes)
-- [Bootstrap: Responsive Utilities](http://getbootstrap.com/css/#responsive-utilities)
+- [Bootstrap 4: General](http://v4-alpha.getbootstrap.com/)
+- [Bootstrap 4: Grid System](http://v4-alpha.getbootstrap.com/layout/grid/)
+- [Bootstrap 4: Utility Classes](http://v4-alpha.getbootstrap.com/components/utilities/)
+- [Bootstrap 4: Responsive Utilities](http://v4-alpha.getbootstrap.com/layout/responsive-utilities/)
 
 <a name="the-setup-font-awesome"></a>
 ### Font Awesome
