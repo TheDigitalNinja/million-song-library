@@ -16,11 +16,15 @@ module.exports = function (config) {
     ],
     reporters: ["progress", "coverage"],
     preprocessors: {
-      "./test/**/*.test.js": ["webpack", "sourcemap", "coverage"]
+      "./test/**/*.test.js": ["webpack", "sourcemap"],
     },
     coverageReporter: {
       type : 'html',
       dir : 'coverage/'
+    },
+    instrumenters: {isparta: require('isparta')},
+    instrumenter: {
+      './test/**/*.test.js': 'isparta'
     },
     webpack: _.assign(
       _.pick(webpackConfig, ["module", "resolve", "plugins"]), {
