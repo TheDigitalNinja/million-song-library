@@ -606,62 +606,44 @@ securityDefinitions:
     in: header
 # complex objects have schema definitions
 definitions:
-  LoginSuccessResponse:
-    required:
-      - sessionToken
-    properties:
-      sessionToken:
-        type: string
-  StatusResponse:
-    required:
-      - message
-    properties:
-      message:
-        type: string
-  UserInfo:
-    properties:
-      name:
-        type: string
-      userId:
-        type: string
-      email:
-        type: string
+  #
+  # primitive objects
+  #
+  Album_id:
+    type: string
+  Artist_id:
+    type: string
+  Facet_id:
+    type: string
+  SearchResult:
+    type: string
   Song_id:
     type: string
-  SongInfo:
-    properties:
-      song_id:
-        $ref: "#/definitions/Song_id"
-      song_name:
-        type: string
-      image_link:
-        type: string
-      artist_mbid:
-        type: string
-      artist_name:
-        type: string
-      duration:
-        description: Length of song in seconds.
-        type: integer
-      danceability:
-        type: number
-      average_rating:
-        type: number
-      release:
-        description: Album the song was released in.
-        type: string
-      song_hotttnesss:
-        description: The Echo Nest hotttnesss score
-        type: number
-      genre_name:
-        description: The genre name
-        type: string
+  User_id:
+    type: string
+
+  #
+  # complex objects
+  #
   AlbumInfo:
     properties:
       album_id:
-        type: string
+        $ref: "#/definitions/Album_id"
       album_name:
         type: string
+      artist_id:
+        $ref: "#/definitions/Artist_id"
+      artist_name:
+        type: string
+      genre:
+        type: string
+      year:
+        description: The year the album was released
+        type: number
+      average_rating:
+        type: number
+      personal_rating:
+        type: number
       image_link:
         type: string
       songs_list:
@@ -670,50 +652,89 @@ definitions:
           $ref: "#/definitions/Song_id"
   ArtistInfo:
     properties:
-      artist_name:
-        type: string
       artist_id:
-        type: string
-      artist_mbid:
+        $ref: "#/definitions/Artist_id"
+      artist_name:
         type: string
       albums_list:
         type: array
         items:
           $ref: "#/definitions/Album_id"
+      average_rating:
+        type: number
+      personal_rating:
+        type: number
       image_link:
         type: string
       songs_list:
         type: array
         items:
           $ref: "#/definitions/Song_id"
-  Album_id:
-    type: string
-  SearchResponse:
-    properties:
-      search_results:
+      similar_artists_list:
         type: array
         items:
-          $ref: "#/definitions/SearchResult"
-  SearchResult:
-    type: string
-  SongList:
+          $ref: "#/definitions/Artist_id"
+  FacetInfo:
     properties:
-      last_pos:
-        description: The key to pass as the "pos" parameter when retrieving the next page.
+      facet_id:
+        $ref: "#/definitions/Facet_id"
+      name:
         type: string
-      songs:
-        type: array
-        items:
-          $ref: "#/definitions/SongInfo"
-  ArtistList:
+  FacetInfoWithChildren:
     properties:
-      last_pos:
-        description: The key to pass as the "pos" parameter when retrieving the next page.
+      facet_id:
+        $ref: "#/definitions/Facet_id"
+      name:
         type: string
-      artists:
+      children:
         type: array
         items:
-          $ref: "#/definitions/ArtistInfo"
+          $ref: "#/definitions/FacetInfo"
+  SongInfo:
+    properties:
+      song_id:
+        $ref: "#/definitions/Song_id"
+      song_name:
+        type: string
+      image_link:
+        type: string
+      artist_id:
+        $ref: "#/definitions/Artist_id"
+      artist_name:
+        type: string
+      album_id:
+        $ref: "#/definitions/Album_id"
+      album_name:
+        type: string
+      duration:
+        description: Length of song in seconds.
+        type: integer
+      genre:
+        type: string
+      danceability:
+        type: number
+      average_rating:
+        type: number
+      personal_rating:
+        type: number
+      song_hotttnesss:
+        description: The Echo Nest hotttnesss score
+        type: number
+      year:
+        description: The year the song was released
+        type: number
+  UserInfo:
+    properties:
+      userId:
+        $ref: "#/definitions/User_id"
+      name:
+        type: string
+      email:
+        type: string
+  
+  #
+  #lists
+  #
   AlbumList:
     properties:
       last_pos:
@@ -723,33 +744,57 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/AlbumInfo"
+  ArtistList:
+    properties:
+      last_pos:
+        description: The key to pass as the "pos" parameter when retrieving the next page.
+        type: string
+      artists:
+        type: array
+        items:
+          $ref: "#/definitions/ArtistInfo"
   SessionInfo:
     properties:
       userId:
         type: string
       userEmail:
         type: string
+  SongList:
+    properties:
+      last_pos:
+        description: The key to pass as the "pos" parameter when retrieving the next page.
+        type: string
+      songs:
+        type: array
+        items:
+          $ref: "#/definitions/SongInfo"
+  
+  #
+  #responses
+  #
   ErrorResponse:
     required:
       - message
     properties:
       message:
         type: string
+  LoginSuccessResponse:
+    required:
+      - sessionToken
+    properties:
+      sessionToken:
+        type: string
   NotFoundResponse:
     type: string
-  FacetInfo:
+  SearchResponse:
     properties:
-      facet_id:
-        type: string
-      name:
-        type: string
-  FacetInfoWithChildren:
-    properties:
-      facet_id:
-        type: string
-      name:
-        type: string
-      children:
+      search_results:
         type: array
         items:
-          $ref: "#/definitions/FacetInfo"
+          $ref: "#/definitions/SearchResult"
+  StatusResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
