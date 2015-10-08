@@ -1,15 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-3">
-      <div class="row">
+    <div class="col-lg-3 msl-sidebar">
         <genre-filter></genre-filter>
-      </div>
-      <div class="row">
         <rating-filter></rating-filter>
-      </div>
     </div>
 
-    <div class="col-lg-9">
+    <div class="col-lg-9 msl-main-content">
       <div class="row">
         <div class="col-xs-12">
           <h1 ng-hide="!!vm.model.selectedGenre">Featured</h1>

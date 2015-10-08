@@ -1,7 +1,12 @@
 @import "core";
 
+body {
+  background-color: $gray-3;
+}
+
 .layout-container {
-  padding-top: 70px;
+  background-color: $white;
+	padding: 0;
 }
 
 .tab-content{

@@ -9,6 +9,21 @@
 //
 // <ul class="list-unstyled">
 //   <li>
+//     <div class="color-sample" style="background-color: #E26F35;">
+//       <strong>$orange:</strong> #E26F35
+//     </div>
+//   </li>
+//   <li>
+//     <div class="color-sample" style="background-color: #E74A4E;">
+//       <strong>$red:</strong> #E74A4E
+//     </div>
+//   </li>
+//   <li>
+//     <div class="color-sample" style="background-color: #333E48;">
+//       <strong>$blue-1:</strong> #333E48
+//     </div>
+//   </li>
+//   <li>
 //     <div class="color-sample" style="background-color: #000000;">
 //       <strong>$black:</strong> #000000
 //     </div>
@@ -24,24 +39,27 @@
 //     </div>
 //   </li>
 //   <li>
-//     <div class="color-sample-light" style="background-color: #e7e7e7;">
-//       <strong>$gray-3:</strong> #e7e7e7
+//     <div class="color-sample-light" style="background-color: #E7E7E7;">
+//       <strong>$gray-3:</strong> #E7E7E7
 //     </div>
 //   </li>
 //   <li>
-//     <div class="color-sample-light" style="background-color: #f8f8f8;">
-//       <strong>$gray-4:</strong> #f8f8f8
+//     <div class="color-sample-light" style="background-color: #F8F8F8;">
+//       <strong>$gray-4:</strong> #F8F8F8
 //     </div>
 //   </li>
 //   <li>
-//     <div class="color-sample-light" style="background-color: #ffffff;">
-//       <strong>$white:</strong> #ffffff
+//     <div class="color-sample-light" style="background-color: #FFFFFF;">
+//       <strong>$white:</strong> #FFFFFF
 //     </div>
 //   </li>
 // </ul>
 //
 // Styleguide 1.1
 
+$orange: #e26f35;
+$red: #e74a4e;
+$blue-1: #333e48;
 $black: #000000;
 $gray-1: #777777;
 $gray-2: #CCCCCC;
