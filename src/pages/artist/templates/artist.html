@@ -1,31 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-3">
-      <div class="row">
-        <rating-filter></rating-filter>
-      </div>
-    </div>
 
     <div class="col-lg-9">
       <div class="row">
-        <div class="col-md-3">
-          <div class="image-container image-container-margin">
-            <img class="img-responsive" ng-src="{{vm.artistInfo.linkToImage}}" alt="{{vm.artistInfo.artistName}}"/>
-          </div>
-        </div>
 
         <div class="artist-info col-md-9">
-          <span class="item-name">Artist</span>
           <span class="pull-right"><a href=""><i class="fa fa-heart-o"></i> Add Artist to Library</a></span>
 
           <h1 class="artist-name">{{vm.artistInfo.artistName}}</h1>
-
-          <p>
-            Some information about the artist.<br>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac
-            neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique,
-            tortor mauris molestie elit, et lacinia ipsum quam nec dui.
-          </p>
+          <div star-rating="0"></div>
         </div>
 
         <div class="clearfix"></div>
