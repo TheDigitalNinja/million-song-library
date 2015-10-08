@@ -35,15 +35,15 @@ describe('songCtrl', () => {
 
   it('should get artistInfo', (done) => {
     (async () => {
+      const SONG_ID = '1';
       const songCtrl = $controller('songCtrl', {
         $scope: $scope,
-        $stateParams: { songId: '' },
+        $stateParams: { songId: SONG_ID },
       });
-
       songStore.fetch.and.returnValue(Promise.resolve());
-      songCtrl.songId = '';
+
       await songCtrl.getSongInfo();
-      expect(songStore.fetch).toHaveBeenCalledWith($stateParams.songId);
+      expect(songStore.fetch).toHaveBeenCalledWith(SONG_ID);
       done();
     })();
   });
