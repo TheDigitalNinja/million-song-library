@@ -3,10 +3,11 @@
   <thead>
   <tr>
     <th></th>
-    <th>Artist</th>
+    <th>Run Time</th>
     <th>Song</th>
-    <th>Release</th>
-    <th>Duration</th>
+    <th>Album</th>
+    <th>Rating</th>
+    <th>Add to Library</th>
   </tr>
   </thead>
   <tbody>
@@ -14,10 +15,25 @@
     <td style="width: 100px;">
       <play-button size="xs" song-id="song.songId"></play-button>
     </td>
-    <td>{{song.artistName}}</td>
-    <td>{{song.songName}}</td>
-    <td>{{song.release}}</td>
-    <td>{{song.duration}}</td>
+    <td>{{song.duration | timeFilter: 'MM:SS'}}</td>
+    <td>
+      <a href="" ui-sref="msl.song({songId: song.songId})">
+        {{song.songName}}
+      </a>
+    </td>
+    <td>
+      <a href="" ui-sref="msl.album({albumId: song.albumId})">
+        {{song.albumName}}
+      </a>
+    </td>
+    <td>
+      <div star-rating="4"></div>
+    </td>
+    <td>
+      <a href="" ng-click="vm.addToMyLibrary(song.songId)">
+        <i class="fa fa-heart"></i>
+      </a>
+    </td>
   </tr>
   </tbody>
 </table>

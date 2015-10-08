@@ -27,6 +27,7 @@ import player from 'modules/player/module';
 import permission from './modules/permission/module';
 import routing from './routing.js';
 import onRun from './run';
+import filters from './filters/filters.module.js';
 
 export default angular.module('msl', [
   uiRouter,
@@ -48,6 +49,7 @@ export default angular.module('msl', [
   bootstrap,
 
   starRating,
+  filters,
 ])
   .config(routing)
   .run(onRun)
