@@ -1,17 +1,21 @@
 /**
  * Album page controller
- * @param {$rootScope.Scope} $scope
- * @param {ui.router.state.$state} $state
- * @param {ui.router.state.$stateParams} $stateParams
- * @param {artistStore} artistStore
- * @param {albumStore} albumStore
- * @param {catalogStore} catalogStore
- * @param {$logProvider.$log} $log
+ * @author anram88
  */
 export default class albumCtrl {
   /*@ngInject*/
 
-  constructor($scope, $state, artistStore, albumStore, $log, $stateParams, catalogStore) {
+  /**
+   * @constructor
+   * @param {albumStore} albumStore
+   * @param {artistStore} artistStore
+   * @param {catalogStore} catalogStore
+   * @param {$logProvider.$log} $log
+   * @param {$rootScope.Scope} $scope
+   * @param {ui.router.state.$state} $state
+   * @param {ui.router.state.$stateParams} $stateParams
+   */
+  constructor(albumStore, artistStore, catalogStore, $log, $scope, $state, $stateParams) {
     if (angular.isDefined($stateParams.albumId) && $stateParams.albumId.length > 0) {
       this.$scope = $scope;
       this.$log = $log;
@@ -26,6 +30,9 @@ export default class albumCtrl {
     }
   }
 
+  /**
+   * @private
+   */
   getAlbumInfo() {
     (async() => {
       try {
@@ -44,10 +51,14 @@ export default class albumCtrl {
     })();
   }
 
-  getSimilarArtists(artistMbid) {
+  /**
+   * Gets similar artists
+   * @param {int} artistId
+   */
+  getSimilarArtists(artistId) {
     (async() => {
       try {
-        const artistList = await this.artistStore.fetchSimilarArtist(artistMbid);
+        const artistList = await this.artistStore.fetchSimilarArtist(artistId);
         this.similarArtists = artistList.artists;
         this.$scope.$evalAsync();
       } catch (err) {

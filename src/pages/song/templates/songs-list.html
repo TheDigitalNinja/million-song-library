@@ -1,25 +1,5 @@
 <div class="row">
-  <div class="horizontal-layout col-xs-12 col-lg-6" ng-repeat="song in songs track by $index">
-    <div class="image-container small-image">
-      <img class="img-responsive small-image" ng-src="{{song.linkToImage}}"  alt="" />
-      <div class="image-overlay">
-        <div class="overlay-control first-control">
-          <i class="fa fa-play"></i> Play
-        </div>
-        <div class="overlay-control" ng-click='vm.addToMyLibrary(song.songId)'>
-          <i class="fa fa-heart"></i> Add to library
-        </div>
-      </div>
-    </div>
-    <div class="track-info">
-      <div class="track-artist-name-container">
-        <h2>{{ song.songName }}</h2>
-        <p>{{ song.artistName }}</p>
-      </div>
-      <div>
-        <span class="text-gray">{{ song.duration}}</span> | <span class="text-gray">{{ song.genreName }}</span>
-      </div>
-    </div>
-    <div class="clear"></div>
+  <div class=" col-xs-12 col-lg-4" ng-repeat="song in songs track by $index">
+    <song-box song="song"></song-box>
   </div>
 </div>

@@ -1,23 +1,27 @@
 /**
  * Artist page controller
- * @param {$rootScope.Scope} $scope
- * @param {ui.router.state.$state} $state
- * @param {ui.router.state.$stateParams} $stateParams
- * @param {artistStore} artistStore
- * @param {catalogStore} catalogStore
- * @param {$logProvider.$log} $log
  */
 
 export default class artistCtrl {
   /*@ngInject*/
 
-  constructor($stateParams, $state, $log, artistStore, catalogStore, $scope) {
+  /**
+   * @constructor
+   * @param {$rootScope.Scope} $scope
+   * @param {ui.router.state.$stateParams} $stateParams
+   * @param {ui.router.state.$state} $state
+   * @param {$logProvider.$log} $log
+   * @param {artistStore} artistStore
+   * @param {catalogStore} catalogStore
+   */
+  constructor($scope, $stateParams, $state, $log, artistStore, catalogStore) {
     if (angular.isDefined($stateParams.artistId) && $stateParams.artistId.length > 0) {
       this.artistId = $stateParams.artistId;
       this.$scope = $scope;
       this.$log = $log;
       this.artistStore = artistStore;
       this.catalogStore = catalogStore;
+      this.activeTab = 'songs';
       this.getArtistInfo();
       this.getSimilarArtists();
     }
@@ -26,6 +30,9 @@ export default class artistCtrl {
     }
   }
 
+  /**
+   * @private
+   */
   getArtistInfo() {
     (async() => {
       try {
@@ -44,6 +51,9 @@ export default class artistCtrl {
     })();
   }
 
+  /**
+   * @private
+   */
   getSimilarArtists() {
     (async() => {
       try {

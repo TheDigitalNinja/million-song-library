@@ -19,6 +19,8 @@ import songPage from './pages/song/song.module.js';
 import userPage from './pages/user/user.module.js';
 import libraryPage from './pages/library/library.module.js';
 
+import starRating from './modules/star-rating/module.js';
+
 //Modules
 import authorisation from 'modules/authorisation/module';
 import player from 'modules/player/module';
@@ -44,6 +46,8 @@ export default angular.module('msl', [
   player,
   permission,
   bootstrap,
+
+  starRating,
 ])
   .config(routing)
   .run(onRun)
