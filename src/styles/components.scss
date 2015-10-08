@@ -244,4 +244,272 @@ $image-size-sm: 150px;
 
 }
 
+// List of elements (layout 3, list)
+//
+// List of elements, for example: Song list. Uses `[Image container]` for
+// showing image.
+//
+// Markup:
+// <table class="list-layout">
+//   <thead>
+//     <tr>
+//       <th> # </th>
+//       <th> Song </th>
+//     </tr>
+//   </thead>
+//   <tbody>
+//     <tr>
+//       <td class="marker"> 1 </td>
+//       <td>
+//         <div class="image-container small-image">
+//           <img class="img-responsive" src="" alt="" />
+//           <div class="image-overlay">
+//             <div class="overlay-control first-control">
+//               <i class="fa fa-play"></i> Play
+//             </div>
+//             <div class="overlay-control">
+//               <i class="fa fa-heart"></i> Add to library
+//             </div>
+//           </div>
+//         </div>
+//         <div class="track-info">
+//           <div class="track-artist-name-container">
+//             <h2>Track ID</h2>
+//             <p>Artist Name</p>
+//           </div>
+//           <div>
+//             <span class="text-gray">7:21</span> | <span class="text-gray">Genre Name</span>
+//           </div>
+//         </div>
+//       </td>
+//     </tr>
+//   </tbody>
+// </table>
+//
+// Styleguide 3.5
 
+.list-layout {
+  width: 90%;
+  margin: 0 auto;
+
+  th {
+    font-size: 2em;
+    font-weight: normal;
+
+    &:first-child {
+      text-align: center;
+    }
+  }
+
+  td {
+    border-top: 1px solid $gray-3;
+    border-bottom: 1px solid $gray-3;
+  }
+
+  .marker {
+    font-size: 4em;
+    width: 55px;
+    text-align: center;
+  }
+
+  .image-container {
+    float: left;
+    margin-right: 10px;
+  }
+
+  .track-info {
+    float: left;
+  }
+}
+
+// Navigation Bar
+//
+// Top navigation bar
+//
+// markup:
+// <nav class="navbar navbar-default">
+//   <div class="container">
+//     <div class="navbar-brand">
+//       <a class="msl-title" >Million Songs Library</a>
+//     </div>
+//     <ul class="nav navbar-nav">
+//       <li class="nav-item">
+//         <a class="nav-link">Login</a>
+//       </li>
+//       <li class="nav-item">
+//         <a class="nav-link">Register</a>
+//       </li>
+//     </ul>
+//   </div>
+// </nav>
+//
+// Styleguide 3.6
+
+#kss-node {
+  .navbar .container {
+    width: 100%;
+  }
+}
+
+.kz-logo {
+  display: block;
+  float: left;
+  margin-right: 30px;
+  width: 170px;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.msl-title {
+  display: block;
+  float: left;
+  font-size: 2.75rem;
+  font-weight: 200;
+  height: 66px;
+  padding-top: 12px;
+
+  @include pseudo-class {
+    color: $orange;
+    text-decoration: none;
+  }
+}
+
+.navbar {
+  margin-bottom: 0px;
+  background-color: $gray-3;
+  border: none;
+  padding: 0;
+
+  .container {
+    background-color: $white;
+    border-bottom: 5px solid $orange;
+    padding-right: 0;
+  }
+
+  .navbar-brand {
+    padding: 10px 0;
+  }
+
+  a {
+    color: $blue-1;
+  }
+
+  .navbar-nav {
+    float: right;
+
+    .nav-item + .nav-item {
+      margin-left: 5px;
+    }
+
+    li {
+      background-color: #DEE0E2;
+      margin-left: 5px;
+
+      &.active a {
+        background-color: #333E48;
+        color: $white;
+      }
+
+      a {
+        height: 112px;
+        font-weight: bold;
+        line-height: 112px;
+        width: 140px;
+        padding: 0;
+        text-align: center;
+
+        &:hover {
+          color: $white;
+          background-color: #333E48;
+        }
+      }
+    }
+  }
+}
+
+// Sidebar
+//
+// Left facet/filter bar
+//
+// Markup:
+// <div class="col-lg-3" class="msl-sidebar">
+//   <h3>Browse by Genre</h3>
+//   <ul>
+//     <li><a href="#""> Genre 1 </a></li>
+//     <li><a href="#""> Genre 2 </a></li>
+//   </ul>
+//
+//   <h3>Browse by Rating</h3>
+//   <ul>
+//     <li><a href="#""> Genre 1 </a></li>
+//     <li><a href="#""> Genre 2 </a></li>
+//   </ul>
+// </div>
+//
+// Styleguide 3.7
+
+.msl-sidebar {
+  border-right: 1px solid $gray-3;
+  color: $blue-1;
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 200;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0px;
+
+    li {
+
+      a {
+        color: $orange;
+        text-decoration: none;
+        display: block;
+      }
+    }
+  }
+}
+
+.msl-sidebar,
+.msl-main-content {
+  margin: 20px 0;
+}
+
+// Hero Image
+//
+// Hero image that can be used to display the titles of the pages
+//
+// Markup:
+// <div class="row hero-image">
+//   <div class="image-container">
+//     <img alt="hero" src="http://kenzan.com/wp-content/uploads/2015/07/our-work-hero-1024-1024x305.jpg">
+//   </div>
+//   <span class="message">Million Songs Library</span>
+// </div>
+//
+// Styleguide 3.8
+
+.hero-image {
+  position: relative;
+
+  .image-container {
+    width: 100%;
+    height: auto;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .message {
+    color: $white;
+    font-size: 4em;
+    position: absolute;
+    top: 40%;
+    left: 5%;
+  }
+}

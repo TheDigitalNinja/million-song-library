@@ -1,16 +1,12 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default">
   <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" ui-sref="msl.home">
-        Million Songs Library
-      </a>
+    <div class="navbar-brand">
+      <a class="kz-logo" href="http://www.kenzan.com"><img src="../../images/logo-2x.png" alt="Kenzan" /></a>
+      <a class="msl-title" ui-sref="msl.home">Million Songs Library</a>
     </div>
-    <ul class="nav navbar-nav">
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <!--
+    <!--
       Commented out Search bar, see MSL-44 for details
-      <li ng-controller="headerSearchCtrl as search" >
+      <div ng-controller="headerSearchCtrl as search" >
         <form class="navbar-form" name="searchForm" ng-submit="search.submitForm()" novalidate>
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search for music..." name="q" ng-model="search.q" required>
@@ -19,31 +15,22 @@
             </div>
           </div>
         </form>
+      </div>
+    -->
+    <ul class="nav navbar-nav" ng-if="vm.authorised === false">
+      <li class="nav-item" ui-sref-active="active">
+        <a class="nav-link" ui-sref="msl.login">Login</a>
       </li>
-      -->
-      <li ui-sref-active="active" ng-if="vm.authorised === false">
-        <a ui-sref="msl.login">Login</a>
+      <li class="nav-item" ui-sref-active="active">
+        <a class="nav-link" ui-sref="msl.login">Register</a>
       </li>
-      <li ng-if="vm.authorised === true">
-        <a href="#" ng-click="$event.preventDefault();" dropdown>
-          {{vm.email}}
-          <i class="fa fa-angle-down"></i>
-        </a>
-        <ul class="dropdown-menu">
-          <li>
-            <a ui-sref="msl.my.history">History</a>
-          </li>
-          <li>
-            <a ui-sref="msl.my.likes">Likes</a>
-          </li>
-          <li>
-            <a ui-sref="msl.library">Library</a>
-          </li>
-          <li role="separator" class="divider"></li>
-          <li>
-            <a href="#" ng-click="$event.preventDefault(); vm.logout();">Logout</a>
-          </li>
-        </ul>
+    </ul>
+    <ul class="nav navbar-nav" ng-if="vm.authorised === true">
+      <li class="nav-item" ui-sref-active="active">
+        <a class="nav-link" ui-sref="msl.library">My Library</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" ng-click="$event.preventDefault(); vm.logout();">Logout</a>
       </li>
     </ul>
   </div>

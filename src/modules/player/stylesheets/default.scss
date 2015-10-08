@@ -4,11 +4,8 @@
 //
 // Player element for playing a song.
 //
-// Note: `.styleguide-fix` class is used only in Styleguide to overwrite css
-// rule `position: fixed`.
-//
 // Markup:
-// <footer class="player-footer styleguide-fix">
+// <footer class="player-footer">
 //   <div class="container">
 //     <div class="btn-group">
 //       <button class="btn btn-default">
@@ -34,7 +31,15 @@
 //   </div>
 // </footer>
 //
-// Styleguide 3.5
+// Styleguide 3.9
+
+#kss-node {
+  .player-footer {
+    position: static;
+
+    .container { width: 100%; }
+  }
+}
 
 .player-footer {
   position: fixed;
@@ -66,9 +71,4 @@
       //.flex(2013, auto);
     }
   }
-}
-
-// This class is used in Styleguide only, to overwrite position: fixed; css rule
-.styleguide-fix {
-  position: static;
 }
