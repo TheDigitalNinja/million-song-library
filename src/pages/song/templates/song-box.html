@@ -18,7 +18,7 @@
         <span>{{ song.songName }}</span>
       </div>
       <div class="col-md-3 container-duration">
-        <span class="text-white">{{ song.duration}}</span>
+        <span class="text-white">{{ song.duration | timeFilter: 'MM:SS'}}</span>
       </div>
     </div>
     <div class="content">

@@ -57,6 +57,7 @@ export default class homeCtrl {
       });
   }
 
+  //TODO refactor this into its own model
   /**
    * Fetches all ablums
    * @private
@@ -75,6 +76,7 @@ export default class homeCtrl {
     })();
   }
 
+  //TODO refactor this into its own model
   /**
    * Gets all songs
    * @private
@@ -93,6 +95,7 @@ export default class homeCtrl {
     })();
   }
 
+  //TODO refactor this into its own model
   /**
    * Gets all artists
    * @private
@@ -111,9 +114,9 @@ export default class homeCtrl {
     })();
   }
 
+  //TODO refactor this into its own model
   /**
    * Adds selected song to library
-   * @private
    * @param {int} songId
    */
   addToMyLibrary(songId) {

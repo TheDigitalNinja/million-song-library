@@ -41,6 +41,7 @@ $image-size-sm: 150px;
   height: $image-size-lg;
   background-color: $gray-2;
   position: relative;
+  overflow: hidden;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 
