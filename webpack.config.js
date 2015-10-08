@@ -64,7 +64,12 @@ module.exports = {
             'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
         ]
       }
-    ]
+    ],
+    postLoaders: [{
+      test: /\.js$/,
+      exclude: /(test|node_modules)\//,
+      loader: 'isparta'
+    }]
   },
   plugins: [
     new webpack.EnvironmentPlugin(["NODE_ENV", "API_HOST"]),
