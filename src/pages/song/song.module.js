@@ -15,7 +15,8 @@ import songCtrl from './controllers/song.controller.js';
 import songsList from './directives/songs-list.js';
 
 import songBox from './directives/song-box.js';
-import songBoxCtrl from './controllers/song-box.controller.js';
+
+import songModel from './models/song.model.js';
 
 export default angular.module('msl.song', [
   router,
@@ -26,5 +27,5 @@ export default angular.module('msl.song', [
   .controller('songCtrl', songCtrl)
   .directive('songBox', songBox)
   .directive('songsList', songsList)
-  .controller('songBoxCtrl', songBoxCtrl)
+  .factory('songModel', songModel)
   .name;

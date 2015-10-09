@@ -13,8 +13,6 @@ export default function artistsBox() {
       artist: '=',
     },
     template: require('../templates/artist-box.html'),
-    controller: 'artistBoxCtrl',
-    controllerAs: 'vm',
   };
 }
 

@@ -1,17 +1,17 @@
 <div class="container">
   <div class="row">
+    <div class="col-sm-12 col-md-10 col-md-offset-1">
 
-    <div class="col-lg-9">
       <div class="row">
-
-        <div class="artist-info col-md-9">
-          <span class="pull-right"><a href=""><i class="fa fa-heart-o"></i> Add Artist to Library</a></span>
-
-          <h1 class="artist-name">{{vm.artistInfo.artistName}}</h1>
-          <div star-rating="vm.artistInfo.averageRating" song-id="vm.artistInfo.artistId"></div>
+        <div class="artist-info col-md-12">
+          <span class="pull-right">
+            <a href="" add-to-library id="vm.artistId" type="artist">
+              <i class="fa fa-heart-o"></i> Add Artist to Library
+            </a>
+          </span>
+          <h1 class="artist-name">{{vm.model.artist.artistInfo.artistName}}</h1>
+          <div star-rating="0"></div>
         </div>
-
-        <div class="clearfix"></div>
       </div>
 
       <ul class="nav nav-tabs" role="tablist">
@@ -39,17 +39,17 @@
         <div role="tabpanel"
              ng-class="{'active': vm.activeTab === 'songs'}"
              class="tab-pane" id="home">
-          <songs-table loading="!vm.displaySongs" content="vm.artistSongs"></songs-table>
+          <songs-table loading="!vm.displaySongs" content="vm.model.artist.artistSongs"></songs-table>
         </div>
         <div role="tabpanel"
              ng-class="{'active': vm.activeTab === 'albums'}"
              class="tab-pane" id="profile">
-          <albums-list albums="vm.artistAlbums.albums"></albums-list>
+          <albums-list albums="vm.model.artist.artistAlbums.albums"></albums-list>
         </div>
         <div role="tabpanel"
              ng-class="{'active': vm.activeTab === 'artists'}"
              class="tab-pane" id="messages">
-          <artists-list artists="vm.similarArtists"></artists-list>
+          <artists-list artists="vm.model.artists"></artists-list>
         </div>
       </div>
 

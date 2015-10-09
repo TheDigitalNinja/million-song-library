@@ -39,17 +39,17 @@
         <div role="tabpanel"
              ng-class="{'active': vm.activeTab === 'songs'}"
              class="tab-pane" id="home">
-          <songs-list songs="vm.songs"></songs-list>
+          <songs-list songs="vm.songModel.songs"></songs-list>
         </div>
         <div role="tabpanel"
              ng-class="{'active': vm.activeTab === 'albums'}"
              class="tab-pane" id="profile">
-          <albums-list albums="vm.albumsList"></albums-list>
+          <albums-list albums="vm.albumModel.albums"></albums-list>
         </div>
         <div role="tabpanel"
              ng-class="{'active': vm.activeTab === 'artists'}"
              class="tab-pane" id="messages">
-          <artists-list artists="vm.artists"></artists-list>
+          <artists-list artists="vm.artistModel.artists"></artists-list>
         </div>
       </div>
 

@@ -7,56 +7,31 @@ export default class songCtrl {
   /**
    * @constructor
    * @this {vm}
-   * @param {$rootScope.Scope} $scope
+   * @param {artistModel} artistModel
    * @param {$logProvider.$log} $log
+   * @param {$rootScope.Scope} $scope
    * @param {ui.router.state.$state} $state
-   * @param {songStore} songStore
    * @param {ui.router.state.$stateParams} $stateParams
-   * @param {artistStore} artistStore
+   * @param {songModel} songModel
    */
-  constructor($scope, $log, $state, songStore, $stateParams, artistStore) {
+  constructor(artistModel, $log, $scope, $state, $stateParams, songModel) {
     if (angular.isDefined($stateParams.songId) && $stateParams.songId.length > 0) {
+      this.artistModel = artistModel;
       this.$log = $log;
       this.$scope = $scope;
       this.songId = $stateParams.songId;
-      this.songStore = songStore;
-      this.artistStore = artistStore;
-      this.getSongInfo();
+      this.model = songModel;
+      //Initialization
+      songModel.getSong($scope, this.songId);
+      $scope.$watch(()=> songModel.song,
+        () => {
+          if (songModel.song !== null) {
+            artistModel.getSimilarArtists($scope, songModel.song.artistMbid);
+          }
+        });
     }
     else {
       $state.go('msl.home');
     }
   }
-
-  /**
-   * @private
-   */
-  async getSongInfo() {
-    try {
-      this.songInfo = await this.songStore.fetch(this.songId);
-      this.$scope.$evalAsync();
-      this.getSimilarArtists(this.songInfo.artistMbid);
-    } catch (err) {
-      // TODO: Handle the error
-      this.songInfo = {};
-      this.$log.warn(err);
-    }
-  }
-
-  /**
-   * Gets similar artists
-   * @param {int} artistId
-   */
-  async getSimilarArtists(artistId) {
-    try {
-      const artistList = await this.artistStore.fetchSimilarArtist(artistId);
-      this.similarArtists = artistList.artists;
-      this.$scope.$evalAsync();
-    } catch (err) {
-      // TODO: Handle the error
-      this.similarArtists = [];
-      this.$log.warn(err);
-    }
-  }
-
 }
