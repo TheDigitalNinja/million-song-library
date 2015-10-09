@@ -42,14 +42,14 @@ export default class homeCtrl {
         }
       });
 
-    this.$scope.$watch(()=> genreFilterModel.artists,
+    this.$scope.$watch(() => genreFilterModel.artists,
       () => {
         if (genreFilterModel.artists !== null) {
           this.artists = genreFilterModel.artists;
         }
       });
 
-    this.$scope.$watch(()=> genreFilterModel.albums,
+    this.$scope.$watch(() => genreFilterModel.albums,
       () => {
         if (genreFilterModel.albums !== null) {
           this.albumsList = genreFilterModel.albums;
@@ -62,18 +62,16 @@ export default class homeCtrl {
    * Fetches all ablums
    * @private
    */
-  getAlbums() {
-    (async () => {
-      try {
-        const albumList = await this.albumStore.fetchAll();
-        this.albumsList = albumList.albums;
-        this.$scope.$evalAsync();
-      }
-      catch (error) {
-        this.albumsList = [];
-        this.$log.warn(error);
-      }
-    })();
+  async getAlbums() {
+    try {
+      const albumList = await this.albumStore.fetchAll();
+      this.albumsList = albumList.albums;
+      this.$scope.$evalAsync();
+    }
+    catch (error) {
+      this.albumsList = [];
+      this.$log.warn(error);
+    }
   }
 
   //TODO refactor this into its own model
@@ -81,18 +79,16 @@ export default class homeCtrl {
    * Gets all songs
    * @private
    */
-  getSongs() {
-    (async () => {
-      try {
-        const songList = await this.catalogStore.fetch();
-        this.songs = songList.songs;
-        this.$scope.$evalAsync();
-      }
-      catch (error) {
-        this.songs = [];
-        this.$log.warn(error);
-      }
-    })();
+  async getSongs() {
+    try {
+      const songList = await this.catalogStore.fetch();
+      this.songs = songList.songs;
+      this.$scope.$evalAsync();
+    }
+    catch (error) {
+      this.songs = [];
+      this.$log.warn(error);
+    }
   }
 
   //TODO refactor this into its own model
@@ -100,18 +96,16 @@ export default class homeCtrl {
    * Gets all artists
    * @private
    */
-  getArtists() {
-    (async () => {
-      try {
-        const artistList = await this.artistStore.fetchAll();
-        this.artists = artistList.artists;
-        this.$scope.$evalAsync();
-      }
-      catch (err) {
-        this.artists = [];
-        this.$log.warn(err);
-      }
-    })();
+  async getArtists() {
+    try {
+      const artistList = await this.artistStore.fetchAll();
+      this.artists = artistList.artists;
+      this.$scope.$evalAsync();
+    }
+    catch (err) {
+      this.artists = [];
+      this.$log.warn(err);
+    }
   }
 
   //TODO refactor this into its own model

@@ -31,36 +31,32 @@ export default class songCtrl {
   /**
    * @private
    */
-  getSongInfo() {
-    (async() => {
-      try {
-        this.songInfo = await this.songStore.fetch(this.songId);
-        this.$scope.$evalAsync();
-        this.getSimilarArtists(this.songInfo.artistMbid);
-      } catch (err) {
-        // TODO: Handle the error
-        this.songInfo = {};
-        this.$log.warn(err);
-      }
-    })();
+  async getSongInfo() {
+    try {
+      this.songInfo = await this.songStore.fetch(this.songId);
+      this.$scope.$evalAsync();
+      this.getSimilarArtists(this.songInfo.artistMbid);
+    } catch (err) {
+      // TODO: Handle the error
+      this.songInfo = {};
+      this.$log.warn(err);
+    }
   }
 
   /**
    * Gets similar artists
    * @param {int} artistId
    */
-  getSimilarArtists(artistId) {
-    (async() => {
-      try {
-        const artistList = await this.artistStore.fetchSimilarArtist(artistId);
-        this.similarArtists = artistList.artists;
-        this.$scope.$evalAsync();
-      } catch (err) {
-        // TODO: Handle the error
-        this.similarArtists = [];
-        this.$log.warn(err);
-      }
-    })();
+  async getSimilarArtists(artistId) {
+    try {
+      const artistList = await this.artistStore.fetchSimilarArtist(artistId);
+      this.similarArtists = artistList.artists;
+      this.$scope.$evalAsync();
+    } catch (err) {
+      // TODO: Handle the error
+      this.similarArtists = [];
+      this.$log.warn(err);
+    }
   }
 
 }
