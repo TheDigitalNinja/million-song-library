@@ -4,6 +4,7 @@
  * @property {String} albumName
  * @property {String} linkToImage
  * @property {string} albumYear
+ * @property {number} averageRating
  * @property {string} artistId
  * @property {string} artistName
  * @property {string} genreName
@@ -15,6 +16,7 @@ class AlbumInfoEntity {
     this.albumName = String;
     this.linkToImage = String;
     this.albumYear = String;
+    this.averageRating = Number;
     this.artistId = String;
     this.artistName = String;
     this.genreName = String;
