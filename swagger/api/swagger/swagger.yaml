@@ -811,6 +811,8 @@ definitions:
         type: string
       artist_mbid:
         type: string
+      average_rating:
+        type: number
       albums_list:
         type: array
         items:
