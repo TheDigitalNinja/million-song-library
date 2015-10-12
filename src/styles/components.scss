@@ -42,8 +42,6 @@ $image-size-sm: 150px;
   background-color: $gray-2;
   position: relative;
   overflow: hidden;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
 
   img {
     max-height: 100%;
@@ -386,11 +384,20 @@ $image-size-sm: 150px;
   .container {
     background-color: $white;
     border-bottom: 5px solid $orange;
+    padding-left: 0;
     padding-right: 0;
+
+    @include breakpoint($bp-small) {
+      padding-left: .9375rem;
+    }
   }
 
   .navbar-brand {
-    padding: 10px 0;
+    padding: 10px 0 10px 15px;
+
+    @include breakpoint($bp-small) {
+      padding: 10px 0;
+    }
   }
 
   a {
@@ -398,32 +405,54 @@ $image-size-sm: 150px;
   }
 
   .navbar-nav {
-    float: right;
+    clear: both;
+    float: left;
+    width: 100%;
+
+    @include breakpoint($bp-small) {
+      clear: none;
+      float: right;
+      width: auto;
+    }
 
     .nav-item + .nav-item {
-      margin-left: 5px;
+      margin-left: 1%;
+
+      @include breakpoint($bp-small) {
+        margin-left: 5px;
+      }
     }
 
     li {
       background-color: #DEE0E2;
-      margin-left: 5px;
+      width: 49.5%;
 
       &.active a {
         background-color: #333E48;
         color: $white;
       }
 
+      @include breakpoint($bp-small) {
+        margin-left: 5px;
+        width: auto;
+      }
+
       a {
-        height: 112px;
+        height: 45px;
         font-weight: bold;
-        line-height: 112px;
-        width: 140px;
+        line-height: 45px;
         padding: 0;
         text-align: center;
 
         &:hover {
           color: $white;
           background-color: #333E48;
+        }
+
+        @include breakpoint($bp-small) {
+          height: 90px;
+          line-height: 90px;
+          width: 140px;
         }
       }
     }
@@ -477,7 +506,12 @@ $image-size-sm: 150px;
 
 .msl-sidebar,
 .msl-main-content {
-  margin: 20px 0;
+  padding: 20px 0.9375rem;
+
+  @include breakpoint($bp-large) {
+    margin: 20px 0;
+    padding: 0 0.9375rem;
+  }
 }
 
 // Hero Image
@@ -485,7 +519,7 @@ $image-size-sm: 150px;
 // Hero image that can be used to display the titles of the pages
 //
 // Markup:
-// <div class="row hero-image">
+// <div class="hero-image">
 //   <div class="image-container">
 //     <img alt="hero" src="http://kenzan.com/wp-content/uploads/2015/07/our-work-hero-1024-1024x305.jpg">
 //   </div>
@@ -495,7 +529,13 @@ $image-size-sm: 150px;
 // Styleguide 3.8
 
 .hero-image {
+  clear: both;
+  margin-left: 0;
   position: relative;
+
+  @include breakpoint($bp-small) {
+    margin-left: -0.9375rem;
+  }
 
   .image-container {
     width: 100%;
@@ -507,10 +547,52 @@ $image-size-sm: 150px;
   }
 
   .message {
+    bottom: 10px;
     color: $white;
-    font-size: 4em;
+    font-size: 1.5em;
+    font-weight: 400;
+    left: 15px;
     position: absolute;
-    top: 40%;
-    left: 5%;
+    text-transform: uppercase;
+
+    @include breakpoint($bp-medium) {
+      font-size: 2.5em;
+      font-weight: 200;
+      left: 25px;
+    }
+
+    @include breakpoint($bp-large) {
+      bottom: 15px;
+      font-size: 3.5em;
+      left: 35px;
+    }
+  }
+}
+
+// Content Tabs
+//
+// Markup:
+// <ul class="nav nav-tabs" role="tablist">
+//   <li class="nav-item">
+//      <a class="nav-link active" href="" role="tab" data-toggle="tab">Songs</a>
+//   </li>
+//   <li class="nav-item">
+//      <a class="nav-link" href="" role="tab" data-toggle="tab">Albums</a>
+//   </li>
+//   <li class="nav-item">
+//      <a class="nav-link" href="" role="tab" data-toggle="tab">Artists</a>
+//   </li>
+// </ul>
+//
+// Styleguide 3.12
+.nav-tabs .nav-link {
+  background-color: lighten($gray-3, 5%);
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+  color: $orange;
+  padding: 0.5em 2em;
+
+  &:hover {
+    background-color: $gray-3;
   }
 }
