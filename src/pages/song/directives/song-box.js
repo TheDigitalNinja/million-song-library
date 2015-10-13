@@ -13,8 +13,6 @@ export default function songBox() {
       song: '=',
     },
     template: require('../templates/song-box.html'),
-    controller: 'songBoxCtrl',
-    controllerAs: 'vm',
   };
 }
 

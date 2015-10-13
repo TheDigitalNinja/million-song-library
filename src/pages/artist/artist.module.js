@@ -15,7 +15,8 @@ import artistCtrl from './controllers/artist.controller.js';
 import artistsList from './directives/artists-list.js';
 
 import artistBox from './directives/artist-box.js';
-import artistBoxCtrl from './controllers/artist-box.controller.js';
+
+import artistModel from './models/artist.model.js';
 
 export default angular.module('msl.artist', [
   uiRouter,
@@ -26,5 +27,5 @@ export default angular.module('msl.artist', [
   .controller('artistCtrl', artistCtrl)
   .directive('artistsList', artistsList)
   .directive('artistBox', artistBox)
-  .controller('artistBoxCtrl', artistBoxCtrl)
+  .factory('artistModel', artistModel)
   .name;

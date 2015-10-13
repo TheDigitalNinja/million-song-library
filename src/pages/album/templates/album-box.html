@@ -3,8 +3,10 @@
     <img class="img-responsive center-block" ng-src="{{album.linkToImage}}" alt=""/>
 
     <div class="image-overlay">
-      <div class="overlay-control" ng-click='vm.addToMyLibrary(album.albumId)'>
-        <i class="fa fa-heart"></i> Add to library
+      <div class="overlay-control">
+        <a href="" add-to-library id="album.albumId" type="album">
+          <i class="fa fa-heart"></i> Add to library
+        </a>
       </div>
     </div>
   </div>

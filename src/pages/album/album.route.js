@@ -9,7 +9,7 @@ export default function albumPageRoute($stateProvider) {
   $stateProvider.state(
     'msl.album', {
       url: '/album/:albumId',
-      template: require('./album.html'),
+      template: require('./templates/album.html'),
       controller: 'albumCtrl',
       controllerAs: 'vm',
     });

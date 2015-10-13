@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="image-container image-container-margin">
+        <img class="img-responsive center-block" ng-src="{{vm.model.album.linkToImage}}" alt="{{vm.model.album.albumName}}"/>
+      </div>
+      <p class="text-center">Album cover from ???</p>
+    </div>
+
+    <div class="song-info col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="song-name">{{vm.songInfo.songName}}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+        <span class="pull-right">
+          <a href="" add-to-library id="vm.albumId" type="album">
+            <i class="fa fa-heart-o"></i> Add Album to Library
+          </a>
+        </span>
+          <h1>{{vm.model.album.albumName}}</h1>
+          <span>Artist:</span>
+          <a class="link-black" ui-sref="default.genre">{{vm.model.album.artistName}}</a><br>
+          <span>Genre:</span>
+          <a class="link-black" ui-sref="default.genre">{{vm.model.album.genreName}}</a><br>
+          <span>Year:</span>
+          <a class="link-black" ui-sref="default.year">{{vm.model.album.albumYear}}</a><br>
+          <span>Rating:</span>
+          <div star-rating="vm.model.album.averageRating" song-id="vm.model.album.albumId"></div><br>
+
+        </div>
+      </div>
+
+      <h3>Album Songs</h3>
+      <songs-table loading="!vm.displaySongs" content="vm.albumSongs"></songs-table>
+
+      <h3>Similar Artists</h3>
+      <artists-list artists="vm.artistModel.artists"></artists-list>
+
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+</div>

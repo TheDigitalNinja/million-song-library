@@ -7,66 +7,25 @@ export default class artistCtrl {
 
   /**
    * @constructor
+   * @param {artistModel} artistModel
    * @param {$rootScope.Scope} $scope
    * @param {ui.router.state.$stateParams} $stateParams
    * @param {ui.router.state.$state} $state
-   * @param {$logProvider.$log} $log
-   * @param {artistStore} artistStore
-   * @param {catalogStore} catalogStore
    */
-  constructor($scope, $stateParams, $state, $log, artistStore, catalogStore) {
+  constructor(artistModel, $scope, $stateParams, $state) {
     if (angular.isDefined($stateParams.artistId) && $stateParams.artistId.length > 0) {
       this.artistId = $stateParams.artistId;
+      this.model = artistModel;
       this.$scope = $scope;
-      this.$log = $log;
-      this.artistStore = artistStore;
-      this.catalogStore = catalogStore;
       this.activeTab = 'songs';
-      this.getArtistInfo();
-      this.getSimilarArtists();
+      //Initialize data
+      this.displaySongs = true;
+      artistModel.getArtist(this.$scope, this.artistId);
+      artistModel.getSimilarArtists(this.$scope, this.artistId);
     }
     else {
       $state.go('msl.home');
     }
   }
-
-  /**
-   * @private
-   */
-  getArtistInfo() {
-    (async() => {
-      try {
-        this.artistInfo = await this.artistStore.fetch(this.artistId);
-        this.artistSongs = await this.catalogStore.fetch({ artist: this.artistId });
-        this.artistAlbums = await this.artistStore.fetchArtistAlbums(this.artistId);
-        this.displaySongs = true;
-        this.$scope.$evalAsync();
-      } catch (err) {
-        // TODO: Handle the error
-        this.artistInfo = {};
-        this.artistSongs = [];
-        this.displaySongs = false;
-        this.$log.warn(err);
-      }
-    })();
-  }
-
-  /**
-   * @private
-   */
-  getSimilarArtists() {
-    (async() => {
-      try {
-        const artistList = await this.artistStore.fetchSimilarArtist(this.artistId);
-        this.similarArtists = artistList.artists;
-        this.$scope.$evalAsync();
-      } catch (err) {
-        // TODO: Handle the error
-        this.similarArtists = [];
-        this.$log.warn(err);
-      }
-    })();
-  }
-
 }
 
