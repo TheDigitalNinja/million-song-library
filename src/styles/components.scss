@@ -494,11 +494,18 @@ $image-size-sm: 150px;
     padding: 0px;
 
     li {
-
       a {
         color: $orange;
         text-decoration: none;
-        display: block;
+        display: inline-block;
+
+        &.active {
+          font-weight: bold;
+        }
+      }
+
+      button {
+        color: $orange;
       }
     }
   }

@@ -18,19 +18,31 @@ class genreFilterCtrl {
   }
 
   /**
+   * Determines if the given genre is the active one
+   * @param {GenreEntity} genre
+   * @return {Boolean}
+   */
+  activeGenre(genre) {
+    if(this.genreFilterModel.selectedGenre) {
+      return this.genreFilterModel.selectedGenre.toLowerCase() === genre.genreName.toLowerCase();
+    }
+    else {
+      return false;
+    }
+  }
+
+  /**
    * Applies genre filter on change
    * @param {string} genre
    */
   applyFilterByGenre(genre) {
     this.genreFilterModel.selectedGenre = genre;
-    if (angular.isDefined(genre) && genre.length > 0) {
-      this.genreFilterModel.songs = null;
-      this.genreFilterModel.albums = null;
-      this.genreFilterModel.artists = null;
-      this.genreFilterModel.getSongsFilteredByGenre(this.$scope);
-      this.genreFilterModel.getAlbumsFilteredByGenre(this.$scope);
-      this.genreFilterModel.getArtistsFilteredByGenre(this.$scope);
-    }
+    this.genreFilterModel.songs = null;
+    this.genreFilterModel.albums = null;
+    this.genreFilterModel.artists = null;
+    this.genreFilterModel.getSongsFilteredByGenre(this.$scope);
+    this.genreFilterModel.getAlbumsFilteredByGenre(this.$scope);
+    this.genreFilterModel.getArtistsFilteredByGenre(this.$scope);
   }
 
   /**
