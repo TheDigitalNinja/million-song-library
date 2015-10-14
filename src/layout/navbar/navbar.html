@@ -32,11 +32,12 @@
         <a class="nav-link" href="#" ng-click="$event.preventDefault(); vm.logout();">Logout</a>
       </li>
     </ul>
-    <div class="hero-image">
+    <div class="hero-image" ng-class="{'sub-hero-image': !vm.isHome}">
       <div class="image-container">
-        <img alt="hero" src="../../images/home-hero.jpg">
+          <img ng-if="vm.isHome" alt="hero" src="../../images/home-hero.jpg">
+          <img ng-if="!vm.isHome" alt="hero" src="../../images/sub-hero.jpg">
       </div>
-      <span class="message">Million Songs Library</span>
+      <a ui-sref="msl.home" class="hero-title">Million Songs Library</a>
     </div>
   </div>
 </nav>
