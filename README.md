@@ -118,3 +118,10 @@ use swagger mock server you need to start it with `--mock` argument, for e.g. `n
 #### Swagger Docs Editor
 
 Start docs editor by running `npm run docs`.
+
+#### Swagger CodeGen
+
+As much as I wish there was an easy npm way to install Swagger's CodeGen, there isn't. So if you will be
+needing to build client and server stubs from the swagger.yaml, then you'll need to install codegen using
+the instructions here (https://github.com/swagger-api/swagger-codegen/blob/master/README.md). So the
+generate_x_stubs.sh scripts work, you'll want to install codegen under this project at swagger/codegen. 
