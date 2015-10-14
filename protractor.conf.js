@@ -7,10 +7,13 @@ exports.config = {
   multiCapabilities: [{
     browserName: 'firefox'
   }, {
-    browserName: 'safari'
-  }, {
     browserName: 'internet explorer'
   }, {
     browserName: 'chrome'
-  }]
+  }],
+  jasmineNodeOpts: {
+    showColors: true,
+    defaultTimeoutInterval: 50000,
+    isVerbose: true,
+  },
 }
