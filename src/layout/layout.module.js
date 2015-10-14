@@ -8,7 +8,7 @@ import uiRouter from 'angular-ui-router';
 import authorisation from 'modules/authorisation/module';
 import player from 'modules/player/module';
 
-import sideNavModule from './sidenav/sideNav.module.js';
+import sideNavModule from './sidenav/sidenav.module.js';
 import navbarModule from './navbar/navbar.module.js';
 import layoutRoute from './layout.route.js';
 

@@ -1,15 +1,22 @@
 /**
  * Rating filter controller
- * @param {$location} $location
- * @param {$scope} $scope
  */
 export default class ratingFilterCtrl {
   /*@ngInject*/
 
-  constructor($location, $scope) {
+  /**
+   * @constructor
+   * @this {vm}
+   * @param {$location} $location
+   * @param {$scope} $scope
+   * @param {filterModel} filterModel
+   */
+  constructor($location, $scope, filterModel) {
     this.$scope = $scope;
-    this.rates = [];
     this.$location = $location;
+    this.filterModel = filterModel;
+
+    this.rates = [];
 
     this._updateRatings();
   }
@@ -19,9 +26,14 @@ export default class ratingFilterCtrl {
    * @param {rate} rate
    */
   applyRatingFilter(rate) {
-    this.$scope.ratingFilter = rate.rate;
+    this.ratingFilter = rate.rate;
+    this.$location.search('rating', this.ratingFilter);
+    this.filterModel.filter({ rating: this.ratingFilter }, this.$scope.listener);
   }
 
+  /**
+   * Updates the array of rates
+   */
   _updateRatings() {
     const maxRates = 4;
 
@@ -30,6 +42,9 @@ export default class ratingFilterCtrl {
     }
   }
 
+  /**
+   * Update the stars for each rate
+   */
   _updateStars(starRating) {
     const max = 5;
     let stars = [];
