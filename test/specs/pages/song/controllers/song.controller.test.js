@@ -2,7 +2,7 @@
 import songPage from 'pages/song/song.module.js';
 
 describe('songCtrl', () => {
-  let $scope, $state, $stateParams, $controller, songStore;
+  let $scope, $state, $stateParams, $controller, songModel, artistModel, $log;
 
   beforeEach(() => {
     angular.mock.module(songPage, ($provide) => {
@@ -10,8 +10,10 @@ describe('songCtrl', () => {
       $provide.value('$state', $state);
       $stateParams = { songId: '' };
       $provide.value('$stateParams', $stateParams);
-      songStore = jasmine.createSpyObj('songStore', ['fetch']);
-      $provide.value('songStore', songStore);
+      songModel = jasmine.createSpyObj('songModel', ['getSong']);
+      $provide.value('songModel', songModel);
+      $provide.value('artistModel', artistModel);
+      $provide.value('$log', $log);
     });
 
     inject((_$controller_, $rootScope) => {
@@ -24,26 +26,45 @@ describe('songCtrl', () => {
     $scope.$destroy();
   });
 
-  it('should redirect to `home` state when $stateParams.songId is empty string', () => {
-    $controller('songCtrl', {
+  it('should instantiate a song controller', () => {
+    const songCtrl = $controller('songCtrl', {
+      artistModel: artistModel,
+      $log: $log,
       $scope: $scope,
       $state: $state,
       $stateParams: $stateParams,
+      songModel: songModel,
+    });
+    expect(songCtrl).toBeDefined();
+  });
+
+  it('should redirect to `home` state when $stateParams.songId is empty string', () => {
+    $controller('songCtrl', {
+      artistModel: artistModel,
+      $log: $log,
+      $scope: $scope,
+      $state: $state,
+      $stateParams: $stateParams,
+      songModel: songModel,
     });
     expect($state.go).toHaveBeenCalledWith('msl.home');
   });
 
-  it('should get artistInfo', (done) => {
+  it('should get songInfo when stateParam songId is defined', (done) => {
     (async () => {
       const SONG_ID = '1';
+      $stateParams = { songId: SONG_ID };
       const songCtrl = $controller('songCtrl', {
+        artistModel: artistModel,
+        $log: $log,
         $scope: $scope,
-        $stateParams: { songId: SONG_ID },
+        $state: $state,
+        $stateParams: $stateParams,
+        songModel: songModel,
       });
-      songStore.fetch.and.returnValue(Promise.resolve());
-
-      await songCtrl.getSongInfo();
-      expect(songStore.fetch).toHaveBeenCalledWith(SONG_ID);
+      songModel.getSong.and.returnValue(Promise.resolve());
+      await songModel.getSong(SONG_ID);
+      expect(songModel.getSong).toHaveBeenCalledWith(SONG_ID);
       done();
     })();
   });

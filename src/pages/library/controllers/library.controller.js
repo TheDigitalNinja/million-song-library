@@ -1,6 +1,18 @@
 import _ from 'lodash';
 
+/**
+ * Library controller
+ */
 export default class libraryCtrl {
+  /*@ngInject*/
+
+  /**
+   * @constructor
+   * @this {vm}
+   * @param {$scope} $scope
+   * @param {$log} $log
+   * @param {myLibraryStore} myLibraryStore
+   */
   constructor($scope, $log, myLibraryStore) {
     this.$scope = $scope;
     this.$log = $log;

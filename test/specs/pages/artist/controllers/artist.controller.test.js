@@ -1,19 +1,20 @@
 /* global describe, it, expect, beforeEach, afterEach, inject, jasmine */
-import artistPage from 'pages/artist/artist.module.js';
+import artistModule from 'pages/artist/artist.module.js';
 
 describe('artistCtrl', () => {
-  let $scope, $state, $stateParams, $controller, artistStore, catalogStore;
+  let $scope, $state, $stateParams, $controller, artistModel;
 
   beforeEach(() => {
-    angular.mock.module(artistPage, ($provide) => {
+    angular.mock.module(artistModule, ($provide) => {
+
       $state = jasmine.createSpyObj('$state', ['go']);
       $provide.value('$state', $state);
+
       $stateParams = { artistId: '' };
       $provide.value('$stateParams', $stateParams);
-      artistStore = jasmine.createSpyObj('artistStore', ['fetch']);
-      $provide.value('artistStore', artistStore);
-      catalogStore = jasmine.createSpyObj('catalogStore', ['fetch']);
-      $provide.value('catalogStore', catalogStore);
+
+      artistModel = jasmine.createSpyObj('artistModel', ['getArtist']);
+      $provide.value('artistModel', artistModel);
     });
 
     inject((_$controller_, $rootScope) => {
@@ -26,26 +27,39 @@ describe('artistCtrl', () => {
     $scope.$destroy();
   });
 
+  it('should create an artist controller', () => {
+    const artistCtrl = $controller('artistCtrl', {
+      artistModel: artistModel,
+      $scope: $scope,
+      $stateParams: $stateParams,
+      $state: $state,
+    });
+    expect(artistCtrl).toBeDefined();
+  });
+
   it('should redirect to `home` state when $stateParams.artistId is empty string', () => {
     $controller('artistCtrl', {
+      artistModel: artistModel,
       $scope: $scope,
-      $state: $state,
       $stateParams: $stateParams,
+      $state: $state,
     });
     expect($state.go).toHaveBeenCalledWith('msl.home');
   });
 
-  //it('should get artistInfo', done => async function () {
-  //  $stateParams = {artistId: 1};
-  //  var artistCtrl = $controller('artistCtrl', {
-  //    $scope: $scope,
-  //    $stateParams: $stateParams
-  //  });
-  //  artistStore.fetch.and.returnValue(Promise.resolve());
-  //  catalogStore.fetch.and.returnValue(Promise.resolve());
-  //  //await artistCtrl.getArtistInfo();
-  //  expect(artistStore.fetch).toHaveBeenCalledWith($stateParams.artistId);
-  //  expect(catalogStore.fetch).toHaveBeenCalledWith({artist: $stateParams.artistId});
-  //  done();
-  //}());
+  it('should get artistInfo when stateParam artistId is defined', (done) => {
+    (async () => {
+      $stateParams = { artistId: 1 };
+      $controller('artistCtrl', {
+        artistModel: artistModel,
+        $scope: $scope,
+        $stateParams: $stateParams,
+        $state: $state,
+      });
+      artistModel.getArtist.and.returnValue(Promise.resolve());
+      await artistModel.getArtist($stateParams.artistId);
+      expect(artistModel.getArtist).toHaveBeenCalledWith($stateParams.artistId);
+      done();
+    })();
+  });
 });

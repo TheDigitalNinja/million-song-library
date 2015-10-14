@@ -22,11 +22,11 @@ export default class songCtrl {
       this.songId = $stateParams.songId;
       this.model = songModel;
       //Initialization
-      songModel.getSong($scope, this.songId);
+      songModel.getSong(this.songId);
       $scope.$watch(()=> songModel.song,
         () => {
           if (songModel.song !== null) {
-            artistModel.getSimilarArtists($scope, songModel.song.artistMbid);
+            artistModel.getSimilarArtists(songModel.song.artistMbid);
           }
         });
     }

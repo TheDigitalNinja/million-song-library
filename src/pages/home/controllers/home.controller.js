@@ -10,7 +10,6 @@ export default class homeCtrl {
    * @param {albumModel} albumModel
    * @param {artistModel} artistModel
    * @param {genreFilterModel} genreFilterModel
-   * @param {libraryModel} libraryModel
    * @param {$log} $log
    * @param {$rootScope.Scope} $scope
    * @param {songModel} songModel
@@ -18,13 +17,11 @@ export default class homeCtrl {
   constructor(albumModel,
               artistModel,
               genreFilterModel,
-              libraryModel,
               $log,
               $scope,
               songModel) {
     this.$scope = $scope;
     this.$log = $log;
-    this.libraryModel = libraryModel;
     this.artistModel = artistModel;
     this.albumModel = albumModel;
     this.model = genreFilterModel;
@@ -32,9 +29,9 @@ export default class homeCtrl {
     this.activeTab = 'songs';
 
     //Initializes data
-    songModel.getSongs(this.$scope);
-    artistModel.getArtists(this.$scope);
-    albumModel.getAlbums(this.$scope);
+    songModel.getSongs();
+    artistModel.getArtists();
+    albumModel.getAlbums();
 
     this.$scope.$watch(() => genreFilterModel.songs,
       () => {

@@ -40,9 +40,9 @@ class genreFilterCtrl {
     this.genreFilterModel.songs = null;
     this.genreFilterModel.albums = null;
     this.genreFilterModel.artists = null;
-    this.genreFilterModel.getSongsFilteredByGenre(this.$scope);
-    this.genreFilterModel.getAlbumsFilteredByGenre(this.$scope);
-    this.genreFilterModel.getArtistsFilteredByGenre(this.$scope);
+    this.genreFilterModel.getSongsFilteredByGenre();
+    this.genreFilterModel.getAlbumsFilteredByGenre();
+    this.genreFilterModel.getArtistsFilteredByGenre();
   }
 
   /**

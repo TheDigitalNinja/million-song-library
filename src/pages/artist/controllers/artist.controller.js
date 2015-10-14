@@ -20,8 +20,8 @@ export default class artistCtrl {
       this.activeTab = 'songs';
       //Initialize data
       this.displaySongs = true;
-      artistModel.getArtist(this.$scope, this.artistId);
-      artistModel.getSimilarArtists(this.$scope, this.artistId);
+      artistModel.getArtist(this.artistId);
+      artistModel.getSimilarArtists(this.artistId);
     }
     else {
       $state.go('msl.home');

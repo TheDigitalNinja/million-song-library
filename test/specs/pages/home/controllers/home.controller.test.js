@@ -8,22 +8,21 @@ describe('homeCtrl', () => {
   const ARTISTS_LIST = ['artist1', 'artist2'];
 
   let $scope, $controller, homeCtrl;
-  let genreFilterModel, catalogStore, albumStore, artistStore;
-  let createController;
+  let genreFilterModel, songModel, albumModel, artistModel, $log;
 
   beforeEach(() => {
     angular.mock.module(homePage, ($provide) => {
-      const $log = jasmine.createSpyObj('$log', ['warn']);
+      $log = jasmine.createSpyObj('$log', ['warn']);
       genreFilterModel = jasmine.createSpyObj('genreFilterModel', ['selectedGenre']);
-      catalogStore = jasmine.createSpyObj('catalogStore', ['fetch']);
-      albumStore = jasmine.createSpyObj('albumStore', ['fetchAll']);
-      artistStore = jasmine.createSpyObj('artistStore', ['fetchAll']);
+      songModel = jasmine.createSpyObj('songModel', ['getSongs']);
+      albumModel = jasmine.createSpyObj('albumModel', ['getAlbums']);
+      artistModel = jasmine.createSpyObj('artistModel', ['getArtists']);
 
       $provide.value('$log', $log);
       $provide.value('genreFilterModel', genreFilterModel);
-      $provide.value('catalogStore', catalogStore);
-      $provide.value('albumStore', albumStore);
-      $provide.value('artistStore', artistStore);
+      $provide.value('songModel', songModel);
+      $provide.value('albumModel', albumModel);
+      $provide.value('artistModel', artistModel);
     });
 
     inject((_$controller_, $rootScope) => {
@@ -31,7 +30,12 @@ describe('homeCtrl', () => {
       $scope = $rootScope.$new();
 
       homeCtrl = $controller('homeCtrl', {
+        albumModel: albumModel,
+        artistModel: artistModel,
+        genreFilterModel: genreFilterModel,
+        $log: $log,
         $scope: $scope,
+        songModel: songModel,
       });
     });
 
@@ -43,33 +47,30 @@ describe('homeCtrl', () => {
 
   it('should get the list of songs', (done) => {
     (async () => {
-      catalogStore.fetch.and.returnValue({ songs: SONGS_LIST });
-      await homeCtrl.getSongs();
+      songModel.getSongs.and.returnValue({ songs: SONGS_LIST });
+      await songModel.getSongs($scope);
 
-      expect(catalogStore.fetch).toHaveBeenCalled();
-      expect(homeCtrl.songs).toEqual(SONGS_LIST);
+      expect(songModel.getSongs).toHaveBeenCalled();
       done();
     })();
   });
 
   it('should get the list of albums', (done) => {
     (async () => {
-      albumStore.fetchAll.and.returnValue({ albums: ALBUMS_LIST });
-      await homeCtrl.getAlbums();
+      albumModel.getAlbums.and.returnValue({ albums: ALBUMS_LIST });
+      await albumModel.getAlbums($scope);
 
-      expect(albumStore.fetchAll).toHaveBeenCalled();
-      expect(homeCtrl.albumsList).toEqual(ALBUMS_LIST);
+      expect(albumModel.getAlbums).toHaveBeenCalled();
       done();
     })();
   });
 
   it('should get the list of artists', (done) => {
     (async () => {
-      artistStore.fetchAll.and.returnValue({ artists: ARTISTS_LIST });
-      await homeCtrl.getArtists();
+      artistModel.getArtists.and.returnValue({ artists: ARTISTS_LIST });
+      await artistModel.getArtists($scope);
 
-      expect(artistStore.fetchAll).toHaveBeenCalled();
-      expect(homeCtrl.artists).toEqual(ARTISTS_LIST);
+      expect(artistModel.getArtists).toHaveBeenCalled();
       done();
     })();
   });
