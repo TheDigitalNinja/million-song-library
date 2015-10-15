@@ -3,9 +3,10 @@
  * @author anram88
  * @param {albumStore} albumStore
  * @param {$log} $log
+ * @param {$rootScope} $rootScope
  * @returns {{getAlbum: getAlbum, getAlbums: getAlbums, album: null, albums: null}}
  */
-export default function albumModel (albumStore, $log) {
+export default function albumModel(albumStore, $log, $rootScope) {
 
   let _model = {
     getAlbum: getAlbum,
@@ -17,34 +18,28 @@ export default function albumModel (albumStore, $log) {
 
   /**
    * Gets a specific album
-   * @param {$scope} $scope
    * @param {int} albumId
    */
-  function getAlbum ($scope, albumId) {
-    (async() => {
-      try {
-        _model.album = await albumStore.fetch(albumId);
-        $scope.$evalAsync();
-      } catch (err) {
-        $log.warn(err);
-      }
-    })();
+  async function getAlbum(albumId) {
+    try {
+      _model.album = await albumStore.fetch(albumId);
+      $rootScope.$new().$evalAsync();
+    } catch (err) {
+      $log.warn(err);
+    }
   }
 
   /**
    * Gets all albums
-   * @param {$scope} $scope
    */
-  function getAlbums ($scope) {
-    (async () => {
-      try {
-        const albumList = await albumStore.fetchAll();
-        _model.albums = albumList.albums;
-        $scope.$evalAsync();
-      }
-      catch (error) {
-        $log.warn(error);
-      }
-    })();
+  async function getAlbums() {
+    try {
+      const albumList = await albumStore.fetchAll();
+      _model.albums = albumList.albums;
+      $rootScope.$new().$evalAsync();
+    }
+    catch (error) {
+      $log.warn(error);
+    }
   }
 }

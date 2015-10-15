@@ -24,13 +24,13 @@ export default class albumCtrl {
       this.albumId = $stateParams.albumId;
 
       //Initialization
-      albumModel.getAlbum(this.$scope, this.albumId);
+      albumModel.getAlbum(this.albumId);
       //TODO get album's songs
       $scope.$watch(() => albumModel.album,
         () => {
           if (albumModel.album !== null) {
             this.displaySongs = true;
-            artistModel.getSimilarArtists($scope, albumModel.album.artistId);
+            artistModel.getSimilarArtists(albumModel.album.artistId);
           }
         }
       );

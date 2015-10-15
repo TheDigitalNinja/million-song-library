@@ -4,9 +4,10 @@
  * @param {catalogStore} catalogStore
  * @param {$log} $log
  * @param {songStore} songStore
+ * @param {$rootScope} $rootScope
  * @returns {{getSong: getSong, getSongs: getSongs, song: null, songs: null}}
  */
-export default function songModel(catalogStore, $log, songStore) {
+export default function songModel(catalogStore, $log, songStore, $rootScope) {
   let _model = {
     getSong: getSong,
     getSongs: getSongs,
@@ -17,34 +18,28 @@ export default function songModel(catalogStore, $log, songStore) {
 
   /**
    * Retrieves information of a single song
-   * @param {$scope} $scope
    * @param {int} songId
    */
-  function getSong($scope, songId) {
-    (async() => {
-      try {
-        _model.song = await songStore.fetch(songId);
-        $scope.$evalAsync();
-      } catch (err) {
-        $log.warn(err);
-      }
-    })();
+  async function getSong(songId) {
+    try {
+      _model.song = await songStore.fetch(songId);
+      $rootScope.$new().$evalAsync();
+    } catch (err) {
+      $log.warn(err);
+    }
   }
 
   /**
    * Gets all songs
-   * @param {$scope} $scope
    */
-  function getSongs($scope) {
-    (async () => {
-      try {
-        const songList = await catalogStore.fetch();
-        _model.songs = songList.songs;
-        $scope.$evalAsync();
-      }
-      catch (error) {
-        $log.warn(error);
-      }
-    })();
+  async function getSongs() {
+    try {
+      const songList = await catalogStore.fetch();
+      _model.songs = songList.songs;
+      $rootScope.$new().$evalAsync();
+    }
+    catch (error) {
+      $log.warn(error);
+    }
   }
 }

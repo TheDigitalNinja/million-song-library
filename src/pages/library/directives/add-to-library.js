@@ -18,13 +18,13 @@ export default function addToLibrary (libraryModel) {
       elem.bind('click', ()=> {
         switch(scope.type) {
           case 'album':
-            libraryModel.addAlbumToLibrary(scope, scope.id);
+            libraryModel.addAlbumToLibrary(scope.id);
             break;
           case 'artist':
-            libraryModel.addArtistToLibrary(scope, scope.id);
+            libraryModel.addArtistToLibrary(scope.id);
             break;
           case 'song':
-            libraryModel.addSongToLibrary(scope, scope.id);
+            libraryModel.addSongToLibrary(scope.id);
             break;
         }
       });

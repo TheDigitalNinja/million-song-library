@@ -1,15 +1,20 @@
 /**
  * Genre Filter Model
- * @param $log
- * @param catalogStore
- * @param artistStore
- * @param albumStore
+ * @param {albumStore} albumStore
+ * @param {artistStore} artistStore
+ * @param {catalogStore} catalogStore
+ * @param {$log} $log
+ * @param {$rootScope} $rootScope
  * @returns {{getSongsFilteredByGenre: getSongsFilteredByGenre, getArtistsFilteredByGenre: getArtistsFilteredByGenre,
  *     getAlbumsFilteredByGenre: getAlbumsFilteredByGenre, selectedGenre: null, songs: null, artists: null, albums:
  *     null}}
  */
 
-export default function genreFilterModel($log, catalogStore, artistStore, albumStore) {
+export default function genreFilterModel(albumStore,
+                                         artistStore,
+                                         catalogStore,
+                                         $log,
+                                         $rootScope) {
 
   /*@ngInject*/
   let _model = {
@@ -26,57 +31,48 @@ export default function genreFilterModel($log, catalogStore, artistStore, albumS
 
   /**
    * Fetches all artists filtered by genre
-   * @param {$scope} $scope
    */
-  function getArtistsFilteredByGenre($scope) {
-    (async () => {
-      try {
-        const artistList = await artistStore.fetchAll(_model.selectedGenre);
-        _model.artists = artistList.artists;
-        $scope.$evalAsync();
-      }
-      catch (err) {
-        $log.warn(err);
-      }
-    })();
+  async function getArtistsFilteredByGenre() {
+    try {
+      const artistList = await artistStore.fetchAll(_model.selectedGenre);
+      _model.artists = artistList.artists;
+      $rootScope.$new().$evalAsync();
+    }
+    catch (err) {
+      $log.warn(err);
+    }
   }
 
   /**
    * Filters albums by genre
-   * @param {$scope} $scope
    */
-  function getAlbumsFilteredByGenre($scope) {
-    (async () => {
-      try {
-        const albumList = await albumStore.fetchAll(_model.selectedGenre);
-        _model.albums = albumList.albums;
-        $scope.$evalAsync();
-      }
-      catch (error) {
-        $log.warn(error);
-      }
-    })();
+  async function getAlbumsFilteredByGenre() {
+    try {
+      const albumList = await albumStore.fetchAll(_model.selectedGenre);
+      _model.albums = albumList.albums;
+      $rootScope.$new().$evalAsync();
+    }
+    catch (error) {
+      $log.warn(error);
+    }
   }
 
   /**
    * Filters songs by genre
-   * @param {$scope} $scope
    */
-  function getSongsFilteredByGenre($scope) {
-    (async () => {
-      try {
-        const songsList = await catalogStore.fetch({
-          genre: _model.selectedGenre,
-          rating: null,
-          artist: null,
-        });
-        _model.songs = songsList.songs;
-        $scope.$evalAsync();
-      }
-      catch (error) {
-        $log.warn(error);
-      }
-    })();
+  async function getSongsFilteredByGenre() {
+    try {
+      const songsList = await catalogStore.fetch({
+        genre: _model.selectedGenre,
+        rating: null,
+        artist: null,
+      });
+      _model.songs = songsList.songs;
+      $rootScope.$new().$evalAsync();
+    }
+    catch (error) {
+      $log.warn(error);
+    }
   }
 
 }
