@@ -31,7 +31,7 @@ export default function albumStore(request, entityMapper) {
      */
     async fetchAll (genre) {
       return entityMapper(await request.get(
-          `${ API_REQUEST_PATH }browse/album`, { params: { genreName: genre } }),
+          `${ API_REQUEST_PATH }browse/album`, { params: { facets: genre } }),
         AlbumListEntity);
     },
   };

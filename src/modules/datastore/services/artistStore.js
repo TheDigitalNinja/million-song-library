@@ -31,7 +31,7 @@ export default function artistStore(request, entityMapper) {
      */
     async fetchAll(genre) {
       return entityMapper(await request.get(
-          `${ API_REQUEST_PATH }browse/artist`, { params: { genreName: genre } }),
+          `${ API_REQUEST_PATH }browse/artist`, { params: { facets: genre } }),
         ArtistListEntity
       );
     },

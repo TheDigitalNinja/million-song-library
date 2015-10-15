@@ -37,16 +37,36 @@
   }
 
   function browse_albums(req, res) {
+    var genreName = req.swagger.params.facets.value;
+    var albums;
+    if(genreName) {
+      albums = _.filter(data.albums, function(album) {
+        return album.genre.toLowerCase() == genreName.toLowerCase();
+      });
+    }
+    else {
+       albums = data.albums;
+    }
     res.json({
       last_pos: '',
-      albums: data.albums,
+      albums: albums,
     });
   }
 
   function browse_artists(req, res) {
+    var genreName = req.swagger.params.facets.value;
+    var artists;
+    if(genreName) {
+      artists = _.filter(data.artists, function(artist) {
+        return artist.genre.toLowerCase() == genreName.toLowerCase();
+      });
+    }
+    else {
+       artists = data.artists;
+    }
     res.json({
       last_pos: '',
-      artists: data.artists,
+      artists: artists,
     });
   }
 
