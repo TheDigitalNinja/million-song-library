@@ -9,7 +9,7 @@ import AlbumInfoEntity from '../entities/AlbumInfoEntity';
 export default function albumStore(request, entityMapper) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/catalogedge/albums/';
+  const API_REQUEST_PATH = '/api/v1/catalogedge/';
   return {
     /**
      * fetch album from catalogue endpoint
@@ -19,7 +19,7 @@ export default function albumStore(request, entityMapper) {
      */
     async fetch(albumId) {
       return entityMapper(await request.get(
-          `${API_REQUEST_PATH}${albumId}`),
+          `${API_REQUEST_PATH}album/${albumId}`),
         AlbumInfoEntity);
     },
 
@@ -31,7 +31,7 @@ export default function albumStore(request, entityMapper) {
      */
     async fetchAll (genre) {
       return entityMapper(await request.get(
-          API_REQUEST_PATH, { params: { genreName: genre } }),
+          `${ API_REQUEST_PATH }browse/album`, { params: { genreName: genre } }),
         AlbumListEntity);
     },
   };

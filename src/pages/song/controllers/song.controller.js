@@ -26,7 +26,7 @@ export default class songCtrl {
       $scope.$watch(()=> songModel.song,
         () => {
           if (songModel.song !== null) {
-            artistModel.getSimilarArtists(songModel.song.artistMbid);
+            //artistModel.getSimilarArtists(songModel.song.artistMbid);
           }
         });
     }

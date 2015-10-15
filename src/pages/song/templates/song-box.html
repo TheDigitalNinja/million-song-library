@@ -1,6 +1,6 @@
 <div class="song-box">
   <div class="image-container">
-    <img class="img-responsive center-block" ng-src="{{song.linkToImage}}" alt=""/>
+    <img class="img-responsive center-block" ng-src="{{song.imageLink}}" alt=""/>
 
     <div class="image-overlay">
       <div class="overlay-control first-control">
@@ -29,8 +29,7 @@
     </div>
     <div class="content">
       <div><a ui-sref="msl.artist({artistId: song.artistId})">{{ song.artistName }}</a></div>
-      <!-- TODO remove accordingly when api supports album and year on song -->
-      <div class="secondary-content">{{ song.songName }}: some album, 1999</div>
+      <div class="secondary-content">{{ song.songName }}: {{ song.albumName }}, {{ song.year }}</div>
       <div>
         <div star-rating="song.averageRating" song-id="song.songId"></div>
       </div>

@@ -1,6 +1,6 @@
 <div class="album-box">
   <div class="image-container">
-    <img class="img-responsive center-block" ng-src="{{album.linkToImage}}" alt=""/>
+    <img class="img-responsive center-block" ng-src="{{album.imageLink}}" alt=""/>
 
     <div class="image-overlay">
       <div class="overlay-control">
@@ -17,7 +17,7 @@
         <span>
           <a href="" ui-sref="msl.album({albumId: album.albumId})">
             {{ album.albumName }}
-          </a>, {{album.albumYear}}
+          </a>, {{album.year}}
         </span>
       </div>
     </div>

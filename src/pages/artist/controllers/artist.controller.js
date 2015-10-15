@@ -21,7 +21,8 @@ export default class artistCtrl {
       //Initialize data
       this.displaySongs = true;
       artistModel.getArtist(this.artistId);
-      artistModel.getSimilarArtists(this.artistId);
+      // TODO: get the similar artists from the entity array
+      //artistModel.getSimilarArtists(this.artistId);
     }
     else {
       $state.go('msl.home');

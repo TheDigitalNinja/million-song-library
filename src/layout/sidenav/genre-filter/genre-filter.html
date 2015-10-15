@@ -1,7 +1,7 @@
 <h3>Genres</h3>
 <ul>
   <li ng-repeat="genre in vm.genres track by $index">
-  <a href="" ng-click="vm.applyFilterByGenre((genre.genreName | lowercase))" title="{{genre.genreName}}" ng-class="{ 'active': vm.activeGenre(genre) }">{{genre.genreName}}</a>
+  <a href="" ng-click="vm.applyFilterByGenre((genre.name | lowercase))" title="{{genre.name}}" ng-class="{ 'active': vm.activeGenre(genre) }">{{genre.name}}</a>
   <button ng-click="vm.applyFilterByGenre(null)" ng-show="vm.activeGenre(genre)" type="button" class="close">
     <span aria-hidden="true">&times;</span>
   </button>

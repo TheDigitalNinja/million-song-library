@@ -9,7 +9,7 @@ import CatalogListEntity from '../entities/CatalogListEntity';
 function catalogStore (request, entityMapper) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/catalogedge/browse/catalog';
+  const API_REQUEST_PATH = '/api/v1/catalogedge/browse/song';
   return {
     /**
      * fetch songs from catalogue endpoint

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-3">
       <div class="image-container image-container-margin">
-        <img class="img-responsive center-block" ng-src="{{vm.model.song.linkToImage}}" alt="{{vm.model.song.songName}}"/>
+        <img class="img-responsive center-block" ng-src="{{vm.model.song.imageLink}}" alt="{{vm.model.song.songName}}"/>
       </div>
       <p class="text-center">Album cover from ???</p>
     </div>
@@ -25,9 +25,9 @@
           <span>Album:</span>
           <a class="link-black" ui-sref="default.album">Some Album</a><br>
           <span>Genre:</span>
-          <span class="genre-name">{{vm.model.song.genreName}}</span><br>
+          <span class="genre-name">{{vm.model.song.genre}}</span><br>
           <span>Year:</span>
-          <span class="song-release">{{vm.model.song.release}}</span><br>
+          <span class="song-release">{{vm.model.song.year}}</span><br>
           <span>Rating:</span>
           <div star-rating="vm.model.song.averageRating" song-id="vm.model.song.songId"></div><br>
         </div>

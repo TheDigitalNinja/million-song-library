@@ -1,26 +1,28 @@
 /**
  * @name AlbumInfoEntity
- * @property {string} albumId
+ * @property {String} albumId
  * @property {String} albumName
- * @property {String} linkToImage
- * @property {string} albumYear
- * @property {number} averageRating
- * @property {string} artistId
- * @property {string} artistName
- * @property {string} genreName
- * @property {string} songsList
+ * @property {String} artistId
+ * @property {String} artistName
+ * @property {String} genre
+ * @property {String} year
+ * @property {Number} averageRating
+ * @property {Number} personalRating
+ * @property {String} imageLink
+ * @property {[String]} songsList
  */
 class AlbumInfoEntity {
   constructor() {
     this.albumId = String;
     this.albumName = String;
-    this.linkToImage = String;
-    this.albumYear = String;
-    this.averageRating = Number;
     this.artistId = String;
     this.artistName = String;
-    this.genreName = String;
-    this.songsList = String;
+    this.genre = String;
+    this.year = String;
+    this.averageRating = Number;
+    this.personalRating = Number;
+    this.imageLink = String;
+    this.songsList = [String];
   }
 }
 

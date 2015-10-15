@@ -10,7 +10,7 @@ import LoginSuccessResponseEntity from '../entities/LoginSuccessResponseEntity';
 function loginStore (request, entityMapper) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/loginedge/login';
+  const API_REQUEST_PATH = '/api/v1/loginedge/login';
   return {
     /**
      * make login request
