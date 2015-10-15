@@ -530,7 +530,7 @@ $image-size-sm: 150px;
 //   <div class="image-container">
 //     <img alt="hero" src="http://kenzan.com/wp-content/uploads/2015/07/our-work-hero-1024-1024x305.jpg">
 //   </div>
-//   <span class="message">Million Songs Library</span>
+//   <span class="hero-title">Million Songs Library</span>
 // </div>
 //
 // Styleguide 3.8
@@ -553,7 +553,37 @@ $image-size-sm: 150px;
     }
   }
 
-  .message {
+  &.sub-hero-image {
+
+    .image-container {
+      height: 75px;
+      overflow: hidden;
+      width: 100%;
+    }
+    img {
+      float: right;
+      height: 75px;
+      max-width: none;
+      width: auto;
+    }
+
+    .hero-title {
+      font-size: 1.5em;
+
+      @include breakpoint($bp-medium) {
+        bottom: 7px;
+        font-size: 2.5em;
+        left: 25px;
+      }
+
+      @include breakpoint($bp-large) {
+        bottom: 7px;
+        font-size: 2.5em;
+      }
+    }
+  }
+
+  .hero-title {
     bottom: 10px;
     color: $white;
     font-size: 1.5em;
@@ -561,6 +591,10 @@ $image-size-sm: 150px;
     left: 15px;
     position: absolute;
     text-transform: uppercase;
+
+    @include pseudo-class  {
+      text-decoration: none;
+    }
 
     @include breakpoint($bp-medium) {
       font-size: 2.5em;

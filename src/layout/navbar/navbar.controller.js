@@ -12,7 +12,27 @@ export default class navbarCtrl {
    * @param {ui.router.state.$state} $state
    * @param {msl.authorisation} authorisation
    */
-  constructor($scope, $state, authorisation) {
+  constructor($rootScope, $scope, $state, authorisation) {
+
+    /**
+     * Check and see if we are on the home page so the template
+     * knows whether to show the large or small hero.
+     */
+
+    var vm = this;
+
+    vm.isHome = isHomeCheck($state.current.name);
+
+    $rootScope.$on('$stateChangeStart', function(event, toState){
+      vm.isHome = isHomeCheck(toState.name);
+    });
+
+    function isHomeCheck(newState) {
+      if (newState === 'msl.home') {
+        return true;
+      }
+      return false;
+    }
 
     /**
      * on authorisation state changes we what to catch that event
