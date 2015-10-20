@@ -11,6 +11,7 @@ export default function albumModel(albumStore, $log, $rootScope) {
   let _model = {
     getAlbum: getAlbum,
     getAlbums: getAlbums,
+    filterAlbums: filterAlbums,
     album: null,
     albums: null,
   };
@@ -39,6 +40,24 @@ export default function albumModel(albumStore, $log, $rootScope) {
       $rootScope.$new().$evalAsync();
     }
     catch (error) {
+      $log.warn(error);
+    }
+  }
+
+  /**
+   * Gets a list of albums filtered by rating and genre
+   * @param {number} rating
+   * @param {string} genre
+   * @param {function} callback
+   */
+  async function filterAlbums(rating, genre, callback) {
+    try {
+      const albumList = await albumStore.fetchAll(genre);
+      if(callback) {
+        callback(albumList.albums);
+      }
+    }
+    catch(error) {
       $log.warn(error);
     }
   }

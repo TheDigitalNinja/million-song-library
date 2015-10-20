@@ -8,6 +8,7 @@ export default class navbarCtrl {
 
   /**
    * Class constructor
+   * @param {$rootScope} $rootScope
    * @param {$rootScope.Scope} $scope
    * @param {ui.router.state.$state} $state
    * @param {msl.authorisation} authorisation
@@ -19,11 +20,11 @@ export default class navbarCtrl {
      * knows whether to show the large or small hero.
      */
 
-    var vm = this;
+    let vm = this;
 
     vm.isHome = isHomeCheck($state.current.name);
 
-    $rootScope.$on('$stateChangeStart', function(event, toState){
+    $rootScope.$on('$stateChangeStart', (event, toState) => {
       vm.isHome = isHomeCheck(toState.name);
     });
 

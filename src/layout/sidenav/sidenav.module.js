@@ -1,13 +1,13 @@
 // Dependencies
 import angular from 'angular';
 
-import ratingFilter from './rating_filter/rating_filter.module.js';
-import genreFilter from './genre_filter/genre_filter.module.js';
-import artistFilter from './artist_filter/artist_filter.module.js';
+import ratingFilter from './rating-filter/rating-filter.module.js';
+import genreFilter from './genre-filter/genre-filter.module.js';
+import filterModel from './filter.model.js';
 
 export default angular.module('msl.layout.sideNav', [
   ratingFilter,
   genreFilter,
-  artistFilter,
 ])
+  .service('filterModel', filterModel)
   .name;

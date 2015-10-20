@@ -11,6 +11,7 @@ export default function songModel(catalogStore, $log, songStore, $rootScope) {
   let _model = {
     getSong: getSong,
     getSongs: getSongs,
+    filterSongs: filterSongs,
     song: null,
     songs: null,
   };
@@ -39,6 +40,25 @@ export default function songModel(catalogStore, $log, songStore, $rootScope) {
       $rootScope.$new().$evalAsync();
     }
     catch (error) {
+      $log.warn(error);
+    }
+  }
+
+  /**
+   * Gets songs filtered by rating and genre
+   * @param {integer} rating
+   * @param {string} genre
+   * @param {function} callback
+   */
+  async function filterSongs(rating, genre, callback) {
+    try {
+      const songsList = await catalogStore.fetch({ rating: rating, genre: genre });
+      const songs = songsList.songs;
+      if(callback) {
+        callback(songs);
+      }
+    }
+    catch(error) {
       $log.warn(error);
     }
   }

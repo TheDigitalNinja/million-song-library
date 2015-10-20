@@ -8,18 +8,16 @@ describe('homeCtrl', () => {
   const ARTISTS_LIST = ['artist1', 'artist2'];
 
   let $scope, $controller, homeCtrl;
-  let genreFilterModel, songModel, albumModel, artistModel, $log;
+  let songModel, albumModel, artistModel, $log;
 
   beforeEach(() => {
     angular.mock.module(homePage, ($provide) => {
       $log = jasmine.createSpyObj('$log', ['warn']);
-      genreFilterModel = jasmine.createSpyObj('genreFilterModel', ['selectedGenre']);
       songModel = jasmine.createSpyObj('songModel', ['getSongs']);
       albumModel = jasmine.createSpyObj('albumModel', ['getAlbums']);
       artistModel = jasmine.createSpyObj('artistModel', ['getArtists']);
 
       $provide.value('$log', $log);
-      $provide.value('genreFilterModel', genreFilterModel);
       $provide.value('songModel', songModel);
       $provide.value('albumModel', albumModel);
       $provide.value('artistModel', artistModel);
@@ -32,7 +30,6 @@ describe('homeCtrl', () => {
       homeCtrl = $controller('homeCtrl', {
         albumModel: albumModel,
         artistModel: artistModel,
-        genreFilterModel: genreFilterModel,
         $log: $log,
         $scope: $scope,
         songModel: songModel,

@@ -14,6 +14,7 @@ export default function artistModel(artistStore, catalogStore, $log, $rootScope)
     getArtist: getArtist,
     getArtists: getArtists,
     getSimilarArtists: getSimilarArtists,
+    filterArtists: filterArtists,
     artist: null,
     artists: null,
   };
@@ -67,6 +68,24 @@ export default function artistModel(artistStore, catalogStore, $log, $rootScope)
     } catch (err) {
       _model.artists = [];
       $log.warn(err);
+    }
+  }
+
+  /**
+   * Gets a list of artists filtered by rating and genre
+   * @param {number} rating
+   * @param {string} genre
+   * @param {function} callback
+   */
+  async function filterArtists(rating, genre, callback) {
+    try {
+      const artistList = await artistStore.fetchAll(genre);
+      if(callback) {
+        callback(artistList.artists);
+      }
+    }
+    catch(error) {
+      $log.warn(error);
     }
   }
 }

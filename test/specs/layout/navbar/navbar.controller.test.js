@@ -10,7 +10,7 @@ describe('navbarCtrl', () => {
 
   beforeEach(() => {
     angular.mock.module(navbarModule, ($provide) => {
-      $state = jasmine.createSpyObj('$state', ['go']);
+      $state = jasmine.createSpyObj('$state', ['go', 'current']);
       authorisation = jasmine.createSpyObj('authorisation', [
         'destroy',
         'isAuthorised',

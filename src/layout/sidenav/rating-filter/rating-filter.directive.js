@@ -1,13 +1,13 @@
-import ratingFilterCtrl from './rating_filter.controller.js';
+import ratingFilterCtrl from './rating-filter.controller.js';
 
 class RatingFilter {
   /*@ngInject*/
 
   constructor() {
     this.restrict = 'E';
-    this.template = require('./rating_filter.html');
+    this.template = require('./rating-filter.html');
     this.scope = {
-      activeMinRating: '@',
+      listener: '=',
     };
     this.controller = ratingFilterCtrl;
     this.controllerAs = 'vm';
