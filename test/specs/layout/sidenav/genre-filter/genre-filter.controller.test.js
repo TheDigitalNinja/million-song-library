@@ -52,14 +52,14 @@ describe('genreFilterCtrl', () => {
     it('should return true if the genre is the selectedGenre', () => {
       const controller = genreFilterCtrl();
       controller.selectedGenre = genres[0];
-      const genre = { genreName: genres[0] };
+      const genre = { name: genres[0] };
 
       expect(controller.activeGenre(genre)).toBeTruthy();
     });
 
     it('should return false when the genre is not the selectedGenre', () => {
       const controller = genreFilterCtrl();
-      const genre = { genreName: genres[0] };
+      const genre = { name: genres[0] };
 
       expect(controller.activeGenre(genre)).toBeFalsy();
     });
@@ -70,7 +70,7 @@ describe('genreFilterCtrl', () => {
 
     beforeEach(() => {
       controller = genreFilterCtrl();
-      genre = { genreName: genres[0] };
+      genre = { name: genres[0] };
 
       controller.applyFilterByGenre(genre);
     });
