@@ -28,6 +28,23 @@ export default class navbarCtrl {
       this.isHome = this.isHomeCheck(toState.name);
     });
 
+    /**
+     * on authorisation state changes we what to catch that event
+     * and update controller authenticated user data
+     * vm event is not triggered by angular so we must manually
+     * trigger scope change
+     */
+    this.onStateChange = () => {
+      this.authorised = this.authorisation.isAuthorised();
+      if (this.authorised) {
+        this.email = this.authorisation.getUserData('userEmail');
+      }
+      else {
+        delete this.email;
+      }
+      this.$scope.$evalAsync();
+    };
+
     // add authorisation state change listener
     this.authorisation.addChangeListener(this.onStateChange);
     // when scope destroys remove authorisation state change listener
@@ -41,22 +58,6 @@ export default class navbarCtrl {
     return false;
   }
 
-  /**
-   * on authorisation state changes we what to catch that event
-   * and update controller authenticated user data
-   * vm event is not triggered by angular so we must manually
-   * trigger scope change
-   */
-  onStateChange() {
-    this.authorised = this.authorisation.isAuthorised();
-    if (this.authorised) {
-      this.email = this.authorisation.getUserData('userEmail');
-    }
-    else {
-      delete this.email;
-    }
-    this.$scope.$evalAsync();
-  }
 
   /**
    * logout action for destroying session
