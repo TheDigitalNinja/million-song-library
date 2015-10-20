@@ -7,6 +7,7 @@
   module.exports = {
     get_song: get_song,
     get_artist: get_artist,
+    get_album: get_album,
     browse_songs: browse_songs,
     browse_albums: browse_albums,
     browse_artists: browse_artists,
@@ -22,6 +23,12 @@
     var artistId = req.swagger.params.artistId.value;
     var artist = _.findWhere(data.artists, { artist_id: artistId });
     res.json(artist);
+  }
+
+  function get_album(req, res) {
+    var albumId = req.swagger.params.albumId.value;
+    var album = _.findWhere(data.albums, { album_id: albumId });
+    res.json(album);
   }
 
   function browse_songs(req, res) {
