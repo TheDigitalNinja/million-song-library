@@ -346,7 +346,7 @@ paths:
   /api/v1/imageedge/artist/{artistId}:
     x-swagger-router-controller: image_controller
     get:
-      description: Get an artist's picture. Result will be an image (png, jpg, etc.).
+      description: "Get an artist's picture. Result will be an image (png, jpg, etc.)."
       tags:
         - Image
       operationId: get_artist_image
