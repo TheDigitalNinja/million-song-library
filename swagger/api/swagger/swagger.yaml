@@ -715,7 +715,7 @@ definitions:
         type: string
       email:
         type: string
-  
+
   #
   #lists
   #
@@ -752,7 +752,7 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/SongInfo"
-  
+
   #
   #responses
   #
@@ -769,7 +769,9 @@ definitions:
       sessionToken:
         type: string
   NotFoundResponse:
-    type: string
+    properties:
+      message:
+        type: string
   SearchResponse:
     properties:
       search_results:
