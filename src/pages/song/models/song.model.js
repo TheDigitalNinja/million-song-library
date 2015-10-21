@@ -62,4 +62,5 @@ export default function songModel(catalogStore, $log, songStore, $rootScope) {
       $log.warn(error);
     }
   }
+
 }
