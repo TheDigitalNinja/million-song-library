@@ -30,7 +30,7 @@ export default class albumCtrl {
         () => {
           if (albumModel.album !== null) {
             this.displaySongs = true;
-            artistModel.similarArtists(albumModel.album.artistId, (artists) => {
+            artistModel.getSimilarArtists(albumModel.album.artistId, (artists) => {
               this.similarArtists = artists;
             });
           }
