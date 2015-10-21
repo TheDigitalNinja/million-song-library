@@ -86,8 +86,8 @@ module.exports = {
       average_rating: 1,
       image_link: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Mosaico_LDA.jpg',
       albums_list: ['1'],
-      songs_list: [],
-      similar_artists_list: [],
+      songs_list: ['1'],
+      similar_artists_list: ["2", "3"],
       genre: 'Jazz',
     },
     {

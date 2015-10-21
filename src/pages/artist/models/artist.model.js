@@ -13,7 +13,7 @@ export default function artistModel(artistStore, catalogStore, $log, $rootScope)
   let _model = {
     getArtist: getArtist,
     getArtists: getArtists,
-    getSimilarArtists: getSimilarArtists,
+    similarArtists: similarArtists,
     filterArtists: filterArtists,
     artist: null,
     artists: null,
@@ -58,15 +58,37 @@ export default function artistModel(artistStore, catalogStore, $log, $rootScope)
   }
 
   /**
-   * Gets a list of similar artists
-   * @param {int} artistId
+   * Gets a list of similar artists of the received artist
+   * @param {string} artistId
+   * @param {function} callback
    */
-  async function getSimilarArtists(artistId) {
+  async function similarArtists(artistId, callback) {
     try {
-      const artistList = await artistStore.fetchSimilarArtist(artistId);
-      _model.artists = artistList.artists;
+      const artist = await artistStore.fetch(artistId);
+      await getArtistsById(artist.similarArtistsList);
+      if(callback) {
+        callback(_model.artists);
+      }
+    }
+    catch(error) {
+      $log.warn(error);
+    }
+  }
+
+  /**
+   * Gets a list of artists
+   * @param {string[]} artistIds
+   */
+  async function getArtistsById(artistIds) {
+    try {
+      const artists = artistIds.map(async (artistId) => {
+        return await artistStore.fetch(artistId);
+      });
+
+      _model.artists = await* artists;
+
       $rootScope.$new().$evalAsync();
-    } catch (err) {
+    } catch(err) {
       _model.artists = [];
       $log.warn(err);
     }
