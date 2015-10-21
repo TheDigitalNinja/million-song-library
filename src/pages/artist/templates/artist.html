@@ -39,7 +39,7 @@
         <div role="tabpanel"
              ng-class="{'active': vm.activeTab === 'songs'}"
              class="tab-pane" id="home">
-          <songs-table loading="!vm.displaySongs" content="vm.model.artist.artistSongs"></songs-table>
+          <songs-table loading="!vm.displaySongs" songs="vm.model.artist.artistSongs.songs"></songs-table>
         </div>
         <div role="tabpanel"
              ng-class="{'active': vm.activeTab === 'albums'}"

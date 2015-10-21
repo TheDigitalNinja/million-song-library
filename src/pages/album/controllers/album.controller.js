@@ -25,10 +25,12 @@ export default class albumCtrl {
 
       //Initialization
       albumModel.getAlbum(this.albumId);
-      //TODO get album's songs
       $scope.$watch(() => albumModel.album,
         () => {
           if (albumModel.album !== null) {
+            albumModel.getAlbumSongs(albumModel.album.artistId, (songs) => {
+              this.albumSongs = songs;
+            });
             this.displaySongs = true;
             artistModel.similarArtists(albumModel.album.artistId, (artists) => {
               this.similarArtists = artists;

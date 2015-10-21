@@ -10,7 +10,7 @@ export default function songsTable () {
     template: require('../templates/songsTable.html'),
     scope: {
       loading: '=',
-      content: '=',
+      songs: '=',
     },
     controller: 'songsTableCtrl',
     controllerAs: 'vm',
