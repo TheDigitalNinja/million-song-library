@@ -87,7 +87,7 @@ module.exports = {
       image_link: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Mosaico_LDA.jpg',
       albums_list: ['1'],
       songs_list: ['1'],
-      similar_artists_list: ["2", "3"],
+      similar_artists_list: ['2', '3'],
       genre: 'Jazz',
     },
     {
@@ -97,7 +97,7 @@ module.exports = {
       albums_list: ['2', '3'],
       image_link: 'http://www.metalinjection.net/wp-content/uploads/2014/07/mercyful-fate_photo03.jpg',
       songs_list: [],
-      similar_artists_list: [],
+      similar_artists_list: ['1', '3'],
       genre: 'Metal',
     },
     {
@@ -107,7 +107,7 @@ module.exports = {
       albums_list: ['4'],
       image_link: 'http://www.billboard.com/files/media/katy-perry-one-of-the-boys-album-billboard-650x650.jpg',
       songs_list: [],
-      similar_artists_list: [],
+      similar_artists_list: ['5', '6'],
       genre: 'Pop',
     },
     {
@@ -117,7 +117,7 @@ module.exports = {
       albums_list: [],
       image_link: 'http://www.aldia.cr/futbol-costa-rica/cartagines/Cartagines-aficion-Cartago-Herediano-final-Verano_2013_ALDIMA20130519_0077_6.jpg',
       songs_list: [],
-      similar_artists_list: [],
+      similar_artists_list: ['4', '6'],
       genre: 'Rock',
     },
     {
@@ -127,7 +127,7 @@ module.exports = {
       albums_list: [],
       image_link: 'http://sp2.fotolog.com/photo/2/9/28/gorgojito/1219372920619_f.jpg',
       songs_list: [],
-      similar_artists_list: [],
+      similar_artists_list: ['1'],
       genre: 'Merenge',
     },
     {
@@ -137,7 +137,7 @@ module.exports = {
       albums_list: [],
       image_link: 'http://www.josepvinaixa.com/blog/wp-content/uploads/2014/04/Shakira.png',
       songs_list: [],
-      similar_artists_list: [],
+      similar_artists_list: ['1', '3', '5'],
       genre: 'Pop',
     }
   ],
@@ -173,7 +173,7 @@ module.exports = {
       artist_id: '3',
       artist_name: 'Mercyful Fate',
       genre: 'Rock',
-      songs_list: [],
+      songs_list: ['5','6'],
     },
     {
       album_id: '4',
@@ -184,7 +184,7 @@ module.exports = {
       artist_id: '4',
       artist_name: 'Katy Perry',
       genre: 'Pop',
-      songs_list: [],
+      songs_list: ['1','2','3','4'],
     }
   ],
   genres: [
