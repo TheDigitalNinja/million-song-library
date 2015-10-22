@@ -51,7 +51,7 @@ describe('artistModel', () => {
         const similarArtistIds = ['1', '2'];
         spyOn(artistStore, 'fetch');
         artistStore.fetch.and.returnValue({ similarArtistsList: similarArtistIds });
-        await artistModel.similarArtists(ARTIST_ID);
+        await artistModel.getSimilarArtists(ARTIST_ID);
         expect(artistStore.fetch).toHaveBeenCalledWith(ARTIST_ID);
         done();
       })();
@@ -62,7 +62,7 @@ describe('artistModel', () => {
         const similarArtistIds = ['3', '4'];
         spyOn(artistStore, 'fetch');
         artistStore.fetch.and.returnValue({ similarArtistsList: similarArtistIds });
-        await artistModel.similarArtists(ARTIST_ID);
+        await artistModel.getSimilarArtists(ARTIST_ID);
         expect(artistStore.fetch).toHaveBeenCalledWith('3');
         expect(artistStore.fetch).toHaveBeenCalledWith('4');
         done();
