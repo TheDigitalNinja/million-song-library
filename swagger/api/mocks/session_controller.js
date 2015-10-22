@@ -6,7 +6,7 @@
   }
 
   function session_info(req, res) {
-    var sessionId = req.swagger.params.sessionId.value;
+    var sessionId = req.headers.sessionid;
     res.json({ userId: sessionId, userEmail: sessionId});
   }
 })();
