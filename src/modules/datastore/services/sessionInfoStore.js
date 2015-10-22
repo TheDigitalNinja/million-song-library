@@ -19,7 +19,7 @@ function sessionInfoStore (request, entityMapper) {
      * @return {SongInfoEntity}
      */
     async fetch(sessionId) {
-      return entityMapper(await request.get(API_REQUEST_PATH + sessionId), SessionInfoEntity);
+      return entityMapper(await request.get(API_REQUEST_PATH), SessionInfoEntity);
     },
   };
 }
