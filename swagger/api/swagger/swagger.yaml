@@ -196,7 +196,7 @@ paths:
   /api/v1/catalogedge/facet/{facetId}:
     x-swagger-router-controller: facet_controller
     get:
-      description: Get a facet in the heirarchy. Passing a facetId of \"~\" retrieves the root facet.
+      description: Get a facet in the heirarchy. Passing a facetId of '~' retrieves the root facet.
       tags:
         - Catalog
       operationId: get_facet
@@ -229,32 +229,20 @@ paths:
       operationId: browse_albums
       parameters:
         -
-          name: pos
-          in: query
-          description: Used for paginating results. Start with next album after this position. If not provided, defaults to the beginning. This string is sourced from the "last_pos" field in the server response from the previous album page.
-          type: string
+          $ref: "#/parameters/PagingState"
         -
-          name: items
-          in: query
-          description: Number of items to return. Used for paginating results. The maximum is 100. If not provided, or falls outside the inclusive range 1-100, defaults to 25.
-          type: integer
+          $ref: "#/parameters/Items"
         -
-          name: facets
-          in: query
-          description: Comma delimited list of facets to use as filters. If not provided, no filters will be applied.
-          type: string
+          $ref: "#/parameters/Facets"
         -
-          name: sort_fields
-          in: query
-          description: Comma delimited list of fields on which to sort. If not provided, results will be sorted by album name.
-          type: string
+          $ref: "#/parameters/SortFields"
       responses:
         "200":
           description: Success
           schema:
             $ref: "#/definitions/AlbumList"
         "400":
-          description: "Request parameter error: (1) Invalid pos. The string passed as pos is not a valid pos key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys."
+          description: "Request parameter error: (1) Invalid pagingState. The string passed as pagingState is not a valid pagingState key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys."
           schema:
             $ref: "#/definitions/ErrorResponse"
         "500":
@@ -270,32 +258,20 @@ paths:
       operationId: browse_artists
       parameters:
         -
-          name: pos
-          in: query
-          description: Used for paginating results. Start with next artist after this position. If not provided, defaults to the beginning. This string is sourced from the "last_pos" field in the server response from the previous artist page.
-          type: string
+          $ref: "#/parameters/PagingState"
         -
-          name: items
-          in: query
-          description: Number of items to return. Used for paginating results. The maximum is 100. If not provided, or falls outside the inclusive range 1-100, defaults to 25.
-          type: integer
+          $ref: "#/parameters/Items"
         -
-          name: facets
-          in: query
-          description: Comma delimited list of facets to use as filters. If not provided, no filters will be applied.
-          type: string
+          $ref: "#/parameters/Facets"
         -
-          name: sort_fields
-          in: query
-          description: Comma delimited list of fields on which to sort. If not provided, results will be sorted by artist name.
-          type: string
+          $ref: "#/parameters/SortFields"
       responses:
         "200":
           description: Success
           schema:
             $ref: "#/definitions/ArtistList"
         "400":
-          description: "Request parameter error: (1) Invalid pos. The string passed as pos is not a valid pos key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys."
+          description: "Request parameter error: (1) Invalid pagingState. The string passed as pagingState is not a valid pagingState key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys."
           schema:
             $ref: "#/definitions/ErrorResponse"
         "500":
@@ -311,32 +287,20 @@ paths:
       operationId: browse_songs
       parameters:
         -
-          name: pos
-          in: query
-          description: Used for paginating results. Start with next song after this position. If not provided, defaults to the beginning. This string is sourced from the "last_pos" field in the server response from the previous song page.
-          type: string
+          $ref: "#/parameters/PagingState"
         -
-          name: items
-          in: query
-          description: Number of items to return. Used for paginating results. The maximum is 100. If not provided, or falls outside the inclusive range 1-100, defaults to 25.
-          type: integer
+          $ref: "#/parameters/Items"
         -
-          name: facets
-          in: query
-          description: Comma delimited list of facets to use as filters. If not provided, no filters will be applied.
-          type: string
+          $ref: "#/parameters/Facets"
         -
-          name: sort_fields
-          in: query
-          description: Comma delimited list of fields on which to sort. If not provided, results will be sorted by song name.
-          type: string
+          $ref: "#/parameters/SortFields"
       responses:
         "200":
           description: Success
           schema:
             $ref: "#/definitions/SongList"
         "400":
-          description: "Request parameter error: (1) Invalid pos. The string passed as pos is not a valid pos key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys."
+          description: "Request parameter error: (1) Invalid pagingState. The string passed as pagingState is not a valid pagingState key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys."
           schema:
             $ref: "#/definitions/ErrorResponse"
         "500":
@@ -494,21 +458,24 @@ paths:
       description: Search things that match a user provided string
       tags:
         - Search
-      schemes: ["https"]
-      security: [session_id: []]
       operationId: search_for
       parameters:
         -
-          name: search_text
-          in: formData
+          name: searchText
+          in: query
           description: User search string
           required: true
           type: string
         -
           name: searchType
           in: query
-          description: type of thing to search for Album, Artist, Song
+          description: A string representation of the various types of entities that can be searched.
+          required: true
           type: string
+          enum: &entityTypes
+            - album
+            - artist
+            - song
       responses:
         "200":
           description: Successfully searched
@@ -604,6 +571,32 @@ securityDefinitions:
     type: apiKey
     name: SessionId
     in: header
+#
+# Reuseable Parameters
+#
+parameters:
+  Facets:
+    name: facets
+    in: query
+    description: Comma delimited list of facets to use as filters. If not provided, no filters will be applied.
+    type: string
+  Items:
+    name: items
+    in: query
+    description: Number of items to return. Used for paginating results. The maximum is 100. If not provided, or falls outside the inclusive range 1-100, defaults to 25.
+    type: integer
+  PagingState:
+    name: pagingState
+    in: query
+    description: PagingState is use to retrieve the next page in a pagenated query. A  PagingState instance contains a GUID key to an EVCache entry on the server. The value of the EVCache entry contains the original Cassandra query and the PagingState returned after execution of the Cassandra paginated query.
+    required: false
+    type: string
+  SortFields:
+    name: sortFields
+    in: query
+    description: Comma delimited list of fields on which to sort. If not provided, results will be sorted by album name.
+    type: string
+
 # complex objects have schema definitions
 definitions:
   #
@@ -674,6 +667,11 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/FacetInfo"
+  PagingState:
+    properties:
+      pagingState:
+        description: PagingState indicates a position in a paginated query. It is sent from the server with each paginated result and returned to the server to retrieve the next page. A PagingState instance contains a GUID key to an EVCache entry on the server. The value of the EVCache entry contains the original Cassandra query and the PagingState returned after execution of the Cassandra paginated query.
+        type: string
   SongInfo:
     properties:
       song_id:
@@ -721,18 +719,16 @@ definitions:
   #
   AlbumList:
     properties:
-      last_pos:
-        description: The key to pass as the "pos" parameter when retrieving the next page
-        type: string
+      pagingState:
+        $ref: "#/definitions/PagingState"
       albums:
         type: array
         items:
           $ref: "#/definitions/AlbumInfo"
   ArtistList:
     properties:
-      last_pos:
-        description: The key to pass as the "pos" parameter when retrieving the next page
-        type: string
+      pagingState:
+        $ref: "#/definitions/PagingState"
       artists:
         type: array
         items:
@@ -745,9 +741,8 @@ definitions:
         type: string
   SongList:
     properties:
-      last_pos:
-        description: The key to pass as the "pos" parameter when retrieving the next page.
-        type: string
+      pagingState:
+        $ref: "#/definitions/PagingState"
       songs:
         type: array
         items:
