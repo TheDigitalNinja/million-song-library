@@ -1,31 +1,22 @@
-<div class="album-box">
-  <div class="image-container">
-    <img class="img-responsive center-block" ng-src="{{album.imageLink}}" alt=""/>
-
-    <div class="image-overlay">
-      <div class="overlay-control">
-        <a href="" add-to-library id="album.albumId" type="album">
-          <i class="fa fa-heart"></i> Add to library
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="info-panel">
-    <div class="header">
-      <div class="col-sm-12 container-title">
-        <span>
-          <a href="" ui-sref="msl.album({albumId: album.albumId})">
+<div class="media-box">
+  <md-card>
+    <div class="media-box-inner">
+      <img class="media-box-inner-image" ng-src="{{album.imageLink}}" alt="{{ album.artistName }}"/>
+      <div class="media-box-meta">
+        <a href="" ui-sref="msl.album({albumId: album.albumId})">
             {{ album.albumName }}
-          </a>, {{album.year}}
-        </span>
+        </a><br /> {{album.artistName}}, {{album.year}}
+      </div>
+      <div class="media-box-overlay">
+        <div class="media-box-overlay-control">
+          <a href="" add-to-library id="album.albumId" type="album">
+            <i class="fa fa-heart"></i> Add to library
+          </a>
+        </div>
       </div>
     </div>
-    <div class="content">
-      <div star-rating="album.averageRating" song-id="album.albumId"></div>
-    </div>
+  </md-card>
+  <div class="info-panel">
+    <div star-rating="album.averageRating" song-id="album.albumId"></div>
   </div>
-  <div class="clear"></div>
-
 </div>
-

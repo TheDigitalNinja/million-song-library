@@ -6,7 +6,7 @@ var HtmlWebpackPlugin = require("html-webpack-plugin");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var context = path.join(__dirname, "src");
-var build = path.join(__dirname, "client/build");
+var build = path.join(__dirname, "build");
 var exclude = /node_modules|bower_components/;
 
 /**

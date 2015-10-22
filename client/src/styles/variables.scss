@@ -9,18 +9,28 @@
 //
 // <ul class="list-unstyled">
 //   <li>
-//     <div class="color-sample" style="background-color: #E26F35;">
-//       <strong>$orange:</strong> #E26F35
+//     <div class="color-sample" style="background-color: #FF9800;">
+//       <strong>$orange-1</strong> #FF9800
 //     </div>
 //   </li>
 //   <li>
-//     <div class="color-sample" style="background-color: #E74A4E;">
-//       <strong>$red:</strong> #E74A4E
+//     <div class="color-sample" style="background-color: #E65100;">
+//       <strong>$orange-2:</strong> #E65100
 //     </div>
 //   </li>
 //   <li>
-//     <div class="color-sample" style="background-color: #333E48;">
-//       <strong>$blue-1:</strong> #333E48
+//     <div class="color-sample" style="background-color: #2196F3;">
+//       <strong>$blue-1:</strong> #2196F3
+//     </div>
+//   </li>
+//   <li>
+//     <div class="color-sample" style="background-color: #0D47A1;">
+//       <strong>$blue-2:</strong> #0D47A1
+//     </div>
+//   </li>
+//   <li>
+//     <div class="color-sample" style="background-color: #263238;">
+//       <strong>$blue-3:</strong> #263238
 //     </div>
 //   </li>
 //   <li>
@@ -57,15 +67,19 @@
 //
 // Styleguide 1.1
 
-$orange: #e26f35;
-$red: #e74a4e;
-$blue-1: #333e48;
+$orange-1: #FF9800;
+$orange-2: #E65100;
+$blue-1: #2196F3;
+$blue-2: #0D47A1;
+$blue-3: #263238;
 $black: #000000;
 $gray-1: #777777;
 $gray-2: #CCCCCC;
 $gray-3: #e7e7e7;
 $gray-4: #f8f8f8;
 $white: #ffffff;
+
+$brand-primary: $blue-1;
 
 // Colors - Semantic
 //

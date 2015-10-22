@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-xs-12 col-lg-4" ng-repeat="album in albums track by $index">
+<div layout="row" layout-wrap>
+  <div layout-padding flex="33" flex-sm="100" ng-repeat="album in albums track by $index">
     <album-box album="album"></album-box>
   </div>
 </div>

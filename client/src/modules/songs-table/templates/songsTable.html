@@ -1,18 +1,18 @@
 <loading ng-if="loading"></loading>
-<table class="table table-striped" ng-if="!loading">
+<table class="table table-striped song-table" ng-if="!loading">
   <thead>
   <tr>
-    <th></th>
-    <th>Run Time</th>
+    <th class="th-narrow"></th>
+    <th class="th-narrow">Run Time</th>
     <th>Song</th>
     <th>Album</th>
-    <th>Rating</th>
+    <th class="th-med">Rating</th>
     <th>Add to Library</th>
   </tr>
   </thead>
   <tbody>
   <tr ng-repeat="song in songs track by song.songId">
-    <td style="width: 100px;">
+    <td>
       <play-button size="xs" song-id="song.songId"></play-button>
     </td>
     <td>{{song.duration | timeFilter: 'MM:SS'}}</td>

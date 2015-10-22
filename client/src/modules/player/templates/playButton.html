@@ -1,8 +1,8 @@
-<button class="btn btn-default" ng-click="pb.play()" ng-class="size ? 'btn-' + size : ''">
-  <span ng-if="pb.currentlyPlayingSong">
+<md-button class="md-raised msl-play-btn" ng-click="pb.play()">
+	<span ng-if="pb.currentlyPlayingSong">
     <i class="fa fa-stop"></i> Stop
   </span>
   <span ng-if="!pb.currentlyPlayingSong">
     <i class="fa fa-play"></i> Play
   </span>
-</button>
+</md-button>

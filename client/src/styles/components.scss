@@ -47,47 +47,6 @@ $image-size-sm: 150px;
     max-height: 100%;
     max-width: 100%;
   }
-
-  .image-overlay {
-    visibility: hidden;
-    opacity: 0;
-
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    background-color: rgba(0, 0, 0, 0.4);
-    color: white;
-
-    .overlay-control {
-      margin: 15px 20px;
-      font-size: 18px;
-      line-height: 30px;
-      height: 30px;
-      cursor: pointer;
-
-      i.fa {
-        width: 35px;
-        font-size: 30px;
-        vertical-align: middle;
-      }
-
-      &:hover {
-        color: $gray-2;
-      }
-    }
-
-    .first-control {
-      margin-top: 60px;
-    }
-  }
-
-  &:hover .image-overlay {
-    visibility: visible;
-    opacity: 1;
-  }
 }
 
 .image-container-margin {
@@ -97,54 +56,51 @@ $image-size-sm: 150px;
 .small-image {
   width: $image-size-sm;
   height: $image-size-sm;
-
-  .image-overlay {
-    .overlay-control {
-      margin: 10px 15px;
-      font-size: 14px;
-      line-height: 25px;
-      height: 25px;
-
-      i.fa {
-        width: 30px;
-        font-size: 25px;
-        vertical-align: middle;
-      }
-    }
-
-    .first-control {
-      margin-top: 45px;
-    }
-  }
 }
 
-// List of elements (layout 1)
+// Box View List of Elements (layout 1)
 //
-// List of elements, for example: Song list. Uses `[Image container]` for
-// showing image.
+// List of box style elements, for example: Song list.
 //
 // Markup:
-// <div>
-//   <div class="image-container">
-//     <img class="img-responsive" src="" alt="" />
-//     <div class="image-overlay">
-//       <div class="overlay-control first-control">
-//         <i class="fa fa-play"></i> Play
+// <div class="media-box">
+//   <md-card>
+//     <div class="media-box-inner">
+//       <img class="media-box-inner-image" ng-src="{{song.imageLink}}" alt="{{ song.artistName }}"/>
+//       <div class="media-box-meta">
+//         <a href="#">
+//             Song Name
+//         </a>
+//         <span class="track-length">3:15</span>
 //       </div>
-//       <div class="overlay-control">
-//         <i class="fa fa-heart"></i> Add to library
+//       <div class="media-box-overlay">
+//         <div class="media-box-overlay-control">
+//           <i class="fa fa-play"></i> Play
+//         </div>
+//         <div class="media-box-overlay-control">
+//           <a href="" add-to-library id="song.songId" type="song">
+//             <i class="fa fa-heart"></i> Add to library
+//           </a>
+//         </div>
 //       </div>
 //     </div>
+//   </md-card>
+//   <div class="info-panel">
+//     <div><a href="#">Artist Name</a></div>
+//     <div>Song Name: Album Name, 1990</div>
+//     <ul class="star-rating list-unstyled">
+//       <li><button type="button" class="btn fa fa-star"></button></li>
+//       <li><button type="button" class="btn fa fa-star"></button></li>
+//       <li><button type="button" class="btn fa fa-star"></button></li>
+//       <li><button type="button" class="btn fa fa-star-o"></button></li>
+//       <li><button type="button" class="btn fa fa-star-o"></button></li>
+//     </ul>
 //   </div>
-//   <h3 class="track-id">Track ID</h3>
-//   <p>Artist Name</p>
 // </div>
 //
 // Styleguide 3.3
 
-.track-id {
-  margin-top: 10px;
-}
+
 
 // List of elements (layout 2, horizontal)
 //
@@ -202,17 +158,94 @@ $image-size-sm: 150px;
   }
 }
 
-.song-box,  {
+.song-box,
+.album-box,
+.media-box {
   margin-bottom: 1em;
-  height: 360px;
 }
 
-.album-box, .artist-box {
-  margin-bottom: 1em;
-  height: 310px;
+.media-box-inner {
+  background-color: #ccc;
+  height: 0;
+  width: 100%;
+  padding-bottom: 100%;
+  position: relative;
+  overflow: hidden;
 }
+
+  .media-box-inner-image {
+    height: 100%;
+    position: absolute;
+    width: auto;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .media-box-meta {
+    background-color: rgba(0,0,0,.75);
+    bottom: 0;
+    color: $white;
+    left: 0;
+    padding: 10px 15px;
+    position: absolute;
+    right: 0;
+    z-index: 2;
+
+    a {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+
+  .media-box-track-time {
+    background: $black;
+    bottom: 0;
+    font-size: 14px;
+    padding-top: 3px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 50px;
+  }
+
+  .media-box-overlay {
+    background-color: rgba($black,.8);
+    bottom: 0;
+    color: $white;
+    display: none;
+    left: 0;
+    padding: 20% 10%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+
+    .media-box:hover & {
+      display: block;
+    }
+  }
+
+    .media-box-overlay-control {
+      cursor: pointer;
+      margin-bottom: 8px;
+
+      a {
+        color: $white;
+        text-decoration: none;
+
+        &:hover {
+          color: $orange-1;
+          text-decoration: none;
+        }
+      }
+    }
+
 
 .info-panel {
+  padding: 0 8px;
+
   .header {
     height: 50px;
     overflow: hidden;
@@ -323,42 +356,50 @@ $image-size-sm: 150px;
 
 // Navigation Bar
 //
-// Top navigation bar
+// Angular Material markup for top navigation bar.
 //
 // markup:
-// <nav class="navbar navbar-default">
-//   <div class="container">
-//     <div class="navbar-brand">
-//       <a class="msl-title" >Million Songs Library</a>
+// <nav class="container msl-main-nav">
+//   <md-toolbar>
+//     <div class="md-toolbar-tools">
+//       <h2>
+//         <a href="#">Million Songs Library</a>
+//       </h2>
+//       <span flex></span>
+//       <md-button ui-sref="msl.login" ui-sref-active="active">
+//         Login
+//       </md-button>
+//       <md-button aria-label="Register">
+//         Register
+//       </md-button>
 //     </div>
-//     <ul class="nav navbar-nav">
-//       <li class="nav-item">
-//         <a class="nav-link">Login</a>
-//       </li>
-//       <li class="nav-item">
-//         <a class="nav-link">Register</a>
-//       </li>
-//     </ul>
-//   </div>
+//   </md-toolbar>
 // </nav>
 //
 // Styleguide 3.6
 
-#kss-node {
-  .navbar .container {
-    width: 100%;
-  }
-}
 
+// KSS doesn't render this properly due to the angular directives
+// so we will hide the rendering to reduce confusion
+
+#kssref-3-6 .kss-modifier__wrapper {
+  display: none;
+}
 .kz-logo {
   display: block;
   float: left;
   margin-right: 30px;
+  padding: 0.9375rem;
   width: 170px;
 
   img {
     max-width: 100%;
   }
+}
+
+.msl-main-nav {
+  background-color: $white;
+  padding: 0;
 }
 
 .msl-title {
@@ -370,7 +411,7 @@ $image-size-sm: 150px;
   padding-top: 12px;
 
   @include pseudo-class {
-    color: $orange;
+    color: $orange-1;
     text-decoration: none;
   }
 }
@@ -383,7 +424,7 @@ $image-size-sm: 150px;
 
   .container {
     background-color: $white;
-    border-bottom: 5px solid $orange;
+    border-bottom: 5px solid $orange-1;
     padding-left: 0;
     padding-right: 0;
 
@@ -461,28 +502,25 @@ $image-size-sm: 150px;
 
 // Sidebar
 //
-// Left facet/filter bar
+// Left facet/filter bar Angular Material markup
 //
 // Markup:
-// <div class="col-lg-3" class="msl-sidebar">
-//   <h3>Browse by Genre</h3>
-//   <ul>
-//     <li><a href="#""> Genre 1 </a></li>
-//     <li><a href="#""> Genre 2 </a></li>
-//   </ul>
-//
-//   <h3>Browse by Rating</h3>
-//   <ul>
-//     <li><a href="#""> Genre 1 </a></li>
-//     <li><a href="#""> Genre 2 </a></li>
-//   </ul>
+// <div flex="25" flex-sm="100" class="msl-sidebar">
+//     <genre-filter listener='vm'></genre-filter>
+//     <rating-filter listener='vm'></rating-filter>
 // </div>
 //
 // Styleguide 3.7
 
+// KSS doesn't render this properly due to the angular directives
+// so we will hide the rendering to reduce confusion
+#kssref-3-7 .kss-modifier__wrapper {
+  display: none;
+}
+
 .msl-sidebar {
   border-right: 1px solid $gray-3;
-  color: $blue-1;
+  color: $blue-3;
 
   h3 {
     font-size: 1.5rem;
@@ -494,18 +532,15 @@ $image-size-sm: 150px;
     padding: 0px;
 
     li {
+      line-height: 1.4;
       a {
-        color: $orange;
-        text-decoration: none;
+        color: $orange-2;
         display: inline-block;
+        text-decoration: none;
 
         &.active {
           font-weight: bold;
         }
-      }
-
-      button {
-        color: $orange;
       }
     }
   }
@@ -513,127 +548,64 @@ $image-size-sm: 150px;
 
 .msl-sidebar,
 .msl-main-content {
-  padding: 20px 0.9375rem;
+  padding: 0 0.9375rem 20px;
 
   @include breakpoint($bp-large) {
-    margin: 20px 0;
     padding: 0 0.9375rem;
-  }
-}
-
-// Hero Image
-//
-// Hero image that can be used to display the titles of the pages
-//
-// Markup:
-// <div class="hero-image">
-//   <div class="image-container">
-//     <img alt="hero" src="http://kenzan.com/wp-content/uploads/2015/07/our-work-hero-1024-1024x305.jpg">
-//   </div>
-//   <span class="hero-title">Million Songs Library</span>
-// </div>
-//
-// Styleguide 3.8
-
-.hero-image {
-  clear: both;
-  margin-left: 0;
-  position: relative;
-
-  @include breakpoint($bp-small) {
-    margin-left: -0.9375rem;
-  }
-
-  .image-container {
-    width: 100%;
-    height: auto;
-
-    img {
-      width: 100%;
-    }
-  }
-
-  &.sub-hero-image {
-
-    .image-container {
-      height: 75px;
-      overflow: hidden;
-      width: 100%;
-    }
-    img {
-      float: right;
-      height: 75px;
-      max-width: none;
-      width: auto;
-    }
-
-    .hero-title {
-      font-size: 1.5em;
-
-      @include breakpoint($bp-medium) {
-        bottom: 7px;
-        font-size: 2.5em;
-        left: 25px;
-      }
-
-      @include breakpoint($bp-large) {
-        bottom: 7px;
-        font-size: 2.5em;
-      }
-    }
-  }
-
-  .hero-title {
-    bottom: 10px;
-    color: $white;
-    font-size: 1.5em;
-    font-weight: 400;
-    left: 15px;
-    position: absolute;
-    text-transform: uppercase;
-
-    @include pseudo-class  {
-      text-decoration: none;
-    }
-
-    @include breakpoint($bp-medium) {
-      font-size: 2.5em;
-      font-weight: 200;
-      left: 25px;
-    }
-
-    @include breakpoint($bp-large) {
-      bottom: 15px;
-      font-size: 3.5em;
-      left: 35px;
-    }
   }
 }
 
 // Content Tabs
 //
-// Markup:
-// <ul class="nav nav-tabs" role="tablist">
-//   <li class="nav-item">
-//      <a class="nav-link active" href="" role="tab" data-toggle="tab">Songs</a>
-//   </li>
-//   <li class="nav-item">
-//      <a class="nav-link" href="" role="tab" data-toggle="tab">Albums</a>
-//   </li>
-//   <li class="nav-item">
-//      <a class="nav-link" href="" role="tab" data-toggle="tab">Artists</a>
-//   </li>
-// </ul>
+// Angular Material markup for content tabs
 //
-// Styleguide 3.12
-.nav-tabs .nav-link {
-  background-color: lighten($gray-3, 5%);
-  border-bottom: 1px solid #ddd;
-  border-radius: 0;
-  color: $orange;
-  padding: 0.5em 2em;
+// Markup:
+// <md-tabs md-dynamic-height md-border-bottom>
+//   <md-tab>
+//     <md-tab-label>
+//       Songs
+//     </md-tab-label>
+//     <md-tab-body>
+//       Song Content
+//     </md-tab-body>
+//   </md-tab>
+//   <md-tab>
+//     <md-tab-label>
+//       Albums
+//     </md-tab-label>
+//     <md-tab-body>
+//       Album Content
+//     </md-tab-body>
+//   </md-tab>
+//   <md-tab>
+//     <md-tab-label>
+//       Artists
+//     </md-tab-label>
+//     <md-tab-body>
+//       Artist Content
+//     </md-tab-body>
+//   </md-tab>
+// </md-tabs>
+//
+// Styleguide 3.11
 
-  &:hover {
-    background-color: $gray-3;
-  }
+.tab-content {
+  padding: 2em 1em 1em;
+}
+
+// KSS doesn't render this properly due to the angular directives
+// so we will hide the rendering to reduce confusion
+#kssref-3-11 .kss-modifier__wrapper {
+  display: none;
+}
+
+// Buttons
+.btn-facet-clear {
+  display: inline-block;
+  float: right;
+  font-size: 20px;
+  line-height: 18px;
+  margin: 2px 0;
+  min-height: 18px;
+  min-width: 18px;
 }

@@ -7,7 +7,7 @@
 //
 // Simple class for setting `clear: both` on an element.
 //
-// Note: this is different from Bootstrap's `.clearfix`, which is meant to
+// Note: this is different from `.clearfix`, which is meant to
 // 'self-clear' an element's floated children.
 //
 // Markup:
@@ -17,4 +17,8 @@
 
 .clear {
   clear: both;
+}
+
+.clearfix  {
+	@include clearfix;
 }

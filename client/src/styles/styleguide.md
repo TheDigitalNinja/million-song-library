@@ -6,7 +6,7 @@ This is the first draft of the CSS styleguide for Million Songs Library.
 1. [The setup](#the-setup)
   1. [Sass CSS Preprocessor](#the-setup-sass-css-preprocessor)
   2. [KSS](#the-setup-kss)
-  3. [Twitter Bootstrap](#the-setup-bootstrap)
+  3. [Material Design](#the-setup-material)
   4. [Font Awesome](#the-setup-font-awesome)
 
 
@@ -29,14 +29,12 @@ KSS is a set of guidelines to help you produce an HTML styleguide tied to CSS do
 - [KSS: Homepage](http://warpspire.com/kss/)
 - [KSS: Syntax](http://warpspire.com/kss/syntax/)
 
-<a name="the-setup-bootstrap"></a>
-### Twitter Bootstrap
-At the root of this CSS architecture lies Twitter's [Bootstrap](http://v4-alpha.getbootstrap.com/). Please view their documentation for utilising their functionalities. This project is using Bootstrap 4 which utilizes Sass for CSS preprocessing.
+<a name="the-setup-material"></a>
+### Material Design
+At the root of this CSS and Angular architecture lies Google's Material Design [Material Design](http://www.getmdl.io/). We are using the Angular Material [Angular Material](https://material.angularjs.org/latest/) version of Material Design to leverage built in Angular components. Please view their documentation for utilising their functionalities.
 
-- [Bootstrap 4: General](http://v4-alpha.getbootstrap.com/)
-- [Bootstrap 4: Grid System](http://v4-alpha.getbootstrap.com/layout/grid/)
-- [Bootstrap 4: Utility Classes](http://v4-alpha.getbootstrap.com/components/utilities/)
-- [Bootstrap 4: Responsive Utilities](http://v4-alpha.getbootstrap.com/layout/responsive-utilities/)
+- [Material Design](http://www.getmdl.io/)
+- [Angular Material](https://material.angularjs.org/latest/)
 
 <a name="the-setup-font-awesome"></a>
 ### Font Awesome

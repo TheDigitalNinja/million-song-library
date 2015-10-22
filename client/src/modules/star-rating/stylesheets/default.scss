@@ -1,3 +1,5 @@
+$orange-1: #FF9800;
+$orange-2: #E65100;
 // Star rating
 //
 // Element for rating a song.
@@ -7,33 +9,28 @@
 //
 // Markup:
 // <ul class="star-rating list-unstyled">
-//   <li>
-//    <button type="button" class="btn fa fa-star"></button>
-//   </li>
-//   <li>
-//    <button type="button" class="btn fa fa-star"></button>
-//   </li>
-//   <li>
-//    <button type="button" class="btn fa fa-star"></button>
-//   </li>
-//   <li>
-//    <button type="button" class="btn fa fa-star-o"></button>
-//   </li>
-//   <li>
-//    <button type="button" class="btn fa fa-star-o"></button>
-//   </li>
+//   <li><button type="button" class="btn fa fa-star"></button></li>
+//   <li><button type="button" class="btn fa fa-star"></button></li>
+//   <li><button type="button" class="btn fa fa-star"></button></li>
+//   <li><button type="button" class="btn fa fa-star-o"></button></li>
+//   <li><button type="button" class="btn fa fa-star-o"></button></li>
 // </ul>
 //
-// Styleguide 3.10
+// Styleguide 3.9
 
 .star-rating {
-  display: inline-block;
+  clear: both;
+  display: block;
+  float: left;
+  max-width: 150px;
+  padding: 0;
 
   li {
     display: inline-block;
   }
 
-  button {
+  button, a {
+    color: $orange-2;
     cursor: pointer;
     border: 0 none;
     background: none;

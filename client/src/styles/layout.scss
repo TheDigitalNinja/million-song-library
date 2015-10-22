@@ -6,9 +6,48 @@ body {
 
 .layout-container {
   background-color: $white;
+  margin: 0 auto;
+  max-width: 1200px;
   padding: 1em 0 0;
 }
 
-.tab-content {
-  padding: 2em 1em 1em;
+.msl-box-grid {
+	margin-left: -16px;
+}
+
+.msl-box-grid-title {
+	margin: 2em 0 0;
+}
+
+.msl-padding {
+	padding: 0 0.9375rem;
+}
+
+.song-table {
+	border-spacing: 0;
+	margin: 20px 0;
+	width: 100%;
+
+	th {
+		background-color: $gray-3;
+		text-align: left;
+		min-width: 15%;
+
+		&.th-narrow {
+			width: 105px;
+		}
+
+		&.th-med {
+			width: 125px;
+		}
+	}
+
+	th, td {
+		border-bottom: 1px solid $gray-3;
+		padding: 5px 0;
+	}
+}
+
+.msl-play-btn {
+	margin-left: 0;
 }

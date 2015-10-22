@@ -1,8 +1,11 @@
 //Dependencies
-import 'bootstrap/scss/bootstrap.scss';
 import 'font-awesome/scss/font-awesome.scss';
+import 'angular-material/angular-material.scss';
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import angularAria from 'angular-aria';
+import angularAnimate from 'angular-animate';
+import angularMaterial from 'angular-material';
 import bootstrap from './modules/bootstrap/module';
 
 //Layout
@@ -31,6 +34,9 @@ import filters from './filters/filters.module.js';
 
 export default angular.module('msl', [
   uiRouter,
+  angularAria,
+  angularAnimate,
+  angularMaterial,
 
   layout,
   artistPage,
@@ -52,5 +58,12 @@ export default angular.module('msl', [
   filters,
 ])
   .config(routing)
+  .config(
+    ($mdThemingProvider) => {
+      $mdThemingProvider.theme('default')
+      .primaryPalette('blue')
+      .accentPalette('deep-orange');
+    }
+  )
   .run(onRun)
   .name;
