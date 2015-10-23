@@ -14,6 +14,7 @@ export default function artistModel(artistStore, catalogStore, $log, $rootScope)
     getArtist: getArtist,
     getArtists: getArtists,
     getSimilarArtists: getSimilarArtists,
+    getArtistsById: getArtistsById,
     filterArtists: filterArtists,
     artist: null,
     artists: null,
@@ -23,8 +24,9 @@ export default function artistModel(artistStore, catalogStore, $log, $rootScope)
   /**
    * Gets songs, albums and artists info of a specific artists
    * @param {int} artistId
+   * @param {function} done
    */
-  async function getArtist(artistId) {
+  async function getArtist(artistId, done) {
     try {
       _model.artist = {
         artistInfo: null,
@@ -33,7 +35,12 @@ export default function artistModel(artistStore, catalogStore, $log, $rootScope)
       };
       _model.artist.artistInfo = await artistStore.fetch(artistId);
       _model.artist.artistSongs = await catalogStore.fetch({ artist: artistId });
-      _model.artist.artistAlbums = await artistStore.fetchArtistAlbums(artistId);
+      // TODO: get albums from artist info
+      //_model.artist.artistAlbums = await artistStore.fetchArtistAlbums(artistId);
+
+      if(done) {
+        done(_model.artist);
+      }
 
       $rootScope.$new().$evalAsync();
     } catch (err) {
@@ -57,15 +64,41 @@ export default function artistModel(artistStore, catalogStore, $log, $rootScope)
   }
 
   /**
-   * Gets a list of similar artists
-   * @param {int} artistId
+   * Gets a list of similar artists of the received artist
+   * @param {string} artistId
+   * @param {function} done
    */
-  async function getSimilarArtists(artistId) {
+  async function getSimilarArtists(artistId, done) {
     try {
-      const artistList = await artistStore.fetchSimilarArtist(artistId);
-      _model.artists = artistList.artists;
+      const artist = await artistStore.fetch(artistId);
+      await getArtistsById(artist.similarArtistsList);
+      if(done) {
+        done(_model.artists);
+      }
+    }
+    catch(error) {
+      $log.warn(error);
+    }
+  }
+
+  /**
+   * Gets a list of artists
+   * @param {string[]} artistIds
+   * @param {function} done
+   */
+  async function getArtistsById(artistIds, done) {
+    try {
+      const artists = artistIds.map(async (artistId) => {
+        return await artistStore.fetch(artistId);
+      });
+      _model.artists = await* artists;
+
+      if(done) {
+        done(_model.artists);
+      }
+
       $rootScope.$new().$evalAsync();
-    } catch (err) {
+    } catch(err) {
       _model.artists = [];
       $log.warn(err);
     }

@@ -17,6 +17,13 @@ class Entity2 {
   }
 }
 
+class Entity3 {
+  constructor() {
+    this.list = [String];
+    this.name = String;
+  }
+}
+
 describe('entityMapper', () => {
   let entityMapper;
 
@@ -26,6 +33,14 @@ describe('entityMapper', () => {
     inject((_entityMapper_) => {
       entityMapper = _entityMapper_;
     });
+  });
+
+  it('should map native objects', () => {
+    const mapped = entityMapper({ list: ['1', '2'], name: 'test' }, Entity3);
+
+    expect(mapped instanceof Entity3).toBeTruthy();
+    expect(mapped.name).toEqual('test');
+    expect(mapped.list).toEqual(['1', '2']);
   });
 
   it('should map response to entity', () => {

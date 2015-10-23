@@ -1,22 +1,24 @@
 /**
  * @name ArtistInfoEntity
- * @property {string} albumsList
- * @property {string} artistId
- * @property {String} artistMbid
+ * @property {String} artistId
  * @property {String} artistName
- * @property {number} averageRating
- * @property {String} linkToImage
- * @property {string} songsList
+ * @property {String} albumsList
+ * @property {Number} averageRating
+ * @property {Number} personalRating
+ * @property {String} imageLink
+ * @property {String} songsList
+ * @property {String} similarArtistsList
  */
 class ArtistInfoEntity {
   constructor() {
-    this.albumsList = String;
     this.artistId = String;
-    this.artistMbid = String;
     this.artistName = String;
+    this.albumsList = String;
     this.averageRating = Number;
-    this.linkToImage = String;
-    this.songsList = String;
+    this.personalRating = Number;
+    this.imageLink = String;
+    this.songsList = [String];
+    this.similarArtistsList = [String];
   }
 }
 

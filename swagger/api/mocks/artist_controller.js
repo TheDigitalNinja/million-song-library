@@ -6,7 +6,6 @@
 
   module.exports = {
     artistList: artistList,
-    getArtist: getArtist,
     getArtistAlbums: getArtistAlbums,
     getSimilarArtists: getSimilarArtists,
   };
@@ -18,12 +17,6 @@
     } else {
       res.json({ artists: data.artists });
     }
-  }
-
-  function getArtist(req, res) {
-    var artistId = req.swagger.params.artistId.value;
-    var artist = _.findWhere(data.artists, { artistId: artistId });
-    res.json(artist);
   }
 
   function getArtistAlbums(req, res) {

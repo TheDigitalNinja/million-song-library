@@ -2,8 +2,9 @@ import GenreInfoEntity from './GenreInfoEntity';
 
 class GenreListEntity {
   constructor() {
-    this.genreName = String;
-    this.genres = [GenreInfoEntity];
+    this.facetId = Number;
+    this.name = String;
+    this.children = [GenreInfoEntity];
   }
 }
 

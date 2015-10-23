@@ -3,7 +3,7 @@ import GenreListEntity from '../entities/GenreListEntity';
 function genreStore(request, entityMapper) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/catalogedge/genres/';
+  const API_REQUEST_PATH = '/api/v1/catalogedge/facet/~';
 
   return {
     async fetch(genreName) {

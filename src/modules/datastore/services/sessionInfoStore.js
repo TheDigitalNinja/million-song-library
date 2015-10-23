@@ -10,7 +10,7 @@ import SessionInfoEntity from '../entities/SessionInfoEntity';
 function sessionInfoStore (request, entityMapper) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/loginedge/sessioninfo/';
+  const API_REQUEST_PATH = '/api/v1/loginedge/sessioninfo/';
   return {
     /**
      * fetch session data by session id
@@ -19,7 +19,7 @@ function sessionInfoStore (request, entityMapper) {
      * @return {SongInfoEntity}
      */
     async fetch(sessionId) {
-      return entityMapper(await request.get(API_REQUEST_PATH + sessionId), SessionInfoEntity);
+      return entityMapper(await request.get(API_REQUEST_PATH), SessionInfoEntity);
     },
   };
 }

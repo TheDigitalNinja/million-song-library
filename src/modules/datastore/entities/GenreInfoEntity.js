@@ -1,6 +1,7 @@
 class GenreInfoEntity {
   constructor() {
-    this.genreName = String;
+    this.facetId = String;
+    this.name = String;
   }
 }
 

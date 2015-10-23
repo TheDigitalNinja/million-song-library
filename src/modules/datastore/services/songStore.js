@@ -9,7 +9,7 @@ import SongInfoEntity from '../entities/SongInfoEntity';
 function songStore (request, entityMapper) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/catalogedge/song/';
+  const API_REQUEST_PATH = '/api/v1/catalogedge/song/';
   return {
     /**
      * fetch songs from catalogue endpoint

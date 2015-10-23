@@ -85,6 +85,6 @@
     "jquery": "^1.11.3",
     "lodash": "^3.10.0",
     "connect": "^3.2.0",
-    "swagger-tools": "0.8.*"
+    "swagger-tools": "0.9.7"
   }
 }

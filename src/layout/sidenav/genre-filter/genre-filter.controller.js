@@ -30,7 +30,7 @@ export default class genreFilterCtrl {
    */
   activeGenre(genre) {
     if(this.selectedGenre) {
-      return this.selectedGenre.toLowerCase() === genre.genreName.toLowerCase();
+      return this.selectedGenre.toLowerCase() === genre.name.toLowerCase();
     }
     else {
       return false;
@@ -54,7 +54,7 @@ export default class genreFilterCtrl {
   async getGenres() {
     try {
       const genresList = await this.genreStore.fetch(this.$scope.activeGenre);
-      this.genres = genresList.genres;
+      this.genres = genresList.children;
       this.$scope.$evalAsync();
     }
     catch (err) {

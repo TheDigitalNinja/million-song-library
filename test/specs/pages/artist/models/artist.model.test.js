@@ -45,15 +45,28 @@ describe('artistModel', () => {
     });
   });
 
-  describe('getSimilarArtists', () => {
-    it('should fetch the similar artist', (done) => {
+  describe('similarArtists', () => {
+    it('should fetch the artist', (done) => {
       (async () => {
-        spyOn(artistStore, 'fetchSimilarArtist');
+        const similarArtistIds = ['1', '2'];
+        spyOn(artistStore, 'fetch');
+        artistStore.fetch.and.returnValue({ similarArtistsList: similarArtistIds });
         await artistModel.getSimilarArtists(ARTIST_ID);
+        expect(artistStore.fetch).toHaveBeenCalledWith(ARTIST_ID);
         done();
       })();
-      expect(artistStore.fetchSimilarArtist).toHaveBeenCalledWith(ARTIST_ID);
+    });
+
+    it('should fetch the similar artists', (done) => {
+      (async () => {
+        const similarArtistIds = ['3', '4'];
+        spyOn(artistStore, 'fetch');
+        artistStore.fetch.and.returnValue({ similarArtistsList: similarArtistIds });
+        await artistModel.getSimilarArtists(ARTIST_ID);
+        expect(artistStore.fetch).toHaveBeenCalledWith('3');
+        expect(artistStore.fetch).toHaveBeenCalledWith('4');
+        done();
+      })();
     });
   });
-
 });
