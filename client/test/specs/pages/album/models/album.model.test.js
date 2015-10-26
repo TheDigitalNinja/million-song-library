@@ -3,16 +3,28 @@ import albumModule from 'pages/album/album.module.js';
 
 describe('albumModel', () => {
 
-  const ALBUMS_LIST = ['album1', 'album2'];
+  const ALBUM_LIST = { albums: ['album1', 'album2'] };
   const ALBUM_ID = 4;
+  const RATING = 3;
+  const GENRE = 'rock';
+  const doneFn = jasmine.createSpy('doneFn');
+  const error = new Error('an error');
 
-  let albumModel, albumStore;
+  let albumModel, albumStore, songStore, $log;
 
   beforeEach(() => {
-    angular.mock.module(albumModule);
-    inject(($injector) => {
-      albumModel = $injector.get('albumModel');
-      albumStore = $injector.get('albumStore');
+    angular.mock.module(albumModule, ($provide) => {
+      albumStore = jasmine.createSpyObj('albumStore', ['fetch', 'fetchAll']);
+      songStore = jasmine.createSpyObj('songStore', ['fetch']);
+      $log = jasmine.createSpyObj('$log', ['warn']);
+
+      $provide.value('albumStore', albumStore);
+      $provide.value('songStore', songStore);
+      $provide.value('$log', $log);
+    });
+
+    inject((_albumModel_) => {
+      albumModel = _albumModel_;
     });
   });
 
@@ -23,23 +35,123 @@ describe('albumModel', () => {
   describe('getAlbum', () => {
     it('should get the album information', (done) => {
       (async () => {
-        spyOn(albumStore, 'fetch');
         await albumModel.getAlbum(ALBUM_ID);
+        expect(albumStore.fetch).toHaveBeenCalledWith(ALBUM_ID);
         done();
       })();
-      expect(albumStore.fetch).toHaveBeenCalledWith(ALBUM_ID);
+    });
+
+    it('should log a warn if an error is thrown', (done) => {
+      (async () => {
+        albumStore.fetch.and.throwError(error);
+
+        await albumModel.getAlbum(ALBUM_ID);
+        expect($log.warn).toHaveBeenCalledWith(error);
+        done();
+      })();
     });
   });
 
   describe('getAlbums', () => {
     it('should get the list of albums', (done) => {
       (async () => {
-        spyOn(albumStore, 'fetchAll');
         await albumModel.getAlbums();
+        expect(albumStore.fetchAll).toHaveBeenCalled();
         done();
       })();
-      expect(albumStore.fetchAll).toHaveBeenCalled();
+    });
+
+    it('should set the albums of the model', (done) => {
+      (async () => {
+        albumStore.fetchAll.and.returnValue(ALBUM_LIST);
+        await albumModel.getAlbums();
+        expect(albumModel.albums).toEqual(ALBUM_LIST.albums);
+        done();
+      })();
+    });
+
+    it('should log a warn if an error is thrown', (done) => {
+      (async () => {
+        albumStore.fetchAll.and.throwError(error);
+
+        await albumModel.getAlbums();
+        expect($log.warn).toHaveBeenCalledWith(error);
+        done();
+      })();
     });
   });
 
+  describe('filterAlbums', () => {
+    it('should filter the albums by genres', (done) => {
+      (async () => {
+        await albumModel.filterAlbums(RATING, GENRE, doneFn);
+        expect(albumStore.fetchAll).toHaveBeenCalledWith(GENRE);
+        done();
+      })();
+    });
+
+    it('should call the done function', (done) => {
+      (async () => {
+        const albumList = { albums: ['anAlbum'] };
+        albumStore.fetchAll.and.returnValue(albumList);
+
+        await albumModel.filterAlbums(RATING, GENRE, doneFn);
+        expect(doneFn).toHaveBeenCalledWith(albumList.albums);
+        done();
+      })();
+    });
+
+    it('should log a warn if an error is thrown', (done) => {
+      (async () => {
+        albumStore.fetchAll.and.throwError(error);
+
+        await albumModel.filterAlbums(RATING, GENRE, doneFn);
+        expect($log.warn).toHaveBeenCalledWith(error);
+        done();
+      })();
+    });
+  });
+
+  describe('getAlbumSongs', () => {
+    const album = { songsList: ['aSongId'] };
+
+    it('should get the album from the album store', (done) => {
+      (async () => {
+        await albumModel.getAlbumSongs(ALBUM_ID, doneFn);
+        expect(albumStore.fetch).toHaveBeenCalledWith(ALBUM_ID);
+        done();
+      })();
+    });
+
+    it('should get the songs from the album songs list', (done) => {
+      (async () => {
+        albumStore.fetch.and.returnValue(album);
+        await albumModel.getAlbumSongs(ALBUM_ID, doneFn);
+        expect(songStore.fetch).toHaveBeenCalledWith('aSongId');
+        done();
+      })();
+    });
+
+    it('should log a warn if an error is thrown', (done) => {
+      (async () => {
+        albumStore.fetch.and.throwError(error);
+
+        await albumModel.getAlbumSongs(ALBUM_ID, doneFn);
+        expect($log.warn).toHaveBeenCalledWith(error);
+        done();
+      })();
+    });
+
+    it('should set the songs as empty when the song store fails', (done) => {
+      (async () => {
+        songStore.fetch.and.throwError(error);
+        albumStore.fetch.and.returnValue(album);
+
+        await albumModel.getAlbumSongs(ALBUM_ID, doneFn);
+        expect($log.warn).toHaveBeenCalledWith(error);
+        expect(albumModel.songs).toEqual([]);
+        done();
+      })();
+    });
+  });
 });
