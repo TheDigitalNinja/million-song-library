@@ -14,7 +14,7 @@ describe('albumCtrl', () => {
       $stateParams = { albumId: '' };
       $provide.value('$stateParams', $stateParams);
 
-      albumModel = jasmine.createSpyObj('albumModel', ['getAlbum']);
+      albumModel = jasmine.createSpyObj('albumModel', ['getAlbum', 'getAlbumSongs']);
       $provide.value('albumModel', albumModel);
 
       artistModel = jasmine.createSpyObj('artistModel', ['getSimilarArtists']);
@@ -73,5 +73,47 @@ describe('albumCtrl', () => {
       expect(albumModel.getAlbum).toHaveBeenCalledWith($stateParams.albumId);
       done();
     })();
+  });
+
+  it('should update the album songs when the album changes', () => {
+    $stateParams = { albumId: '1' };
+    const ctrl = $controller('albumCtrl', {
+      albumModel: albumModel,
+      artistModel: artistModel,
+      $log: $log,
+      $scope: $scope,
+      $state: $state,
+      $stateParams: $stateParams,
+    });
+    albumModel.getAlbumSongs.and.callFake((artistId, cb) => {
+      cb(songs);
+    });
+    const newAlbum = { artistId: '1' };
+    albumModel.album = newAlbum;
+    const songs = ['song'];
+    $scope.$apply();
+    expect(albumModel.getAlbumSongs).toHaveBeenCalledWith(newAlbum.artistId, jasmine.any(Function));
+    expect(ctrl.albumSongs).toEqual(songs);
+  });
+
+  it('should update the similar artists when album changes', () => {
+    $stateParams = { albumId: '1' };
+    const ctrl = $controller('albumCtrl', {
+      albumModel: albumModel,
+      artistModel: artistModel,
+      $log: $log,
+      $scope: $scope,
+      $state: $state,
+      $stateParams: $stateParams,
+    });
+    artistModel.getSimilarArtists.and.callFake((artistId, cb) => {
+      cb(artists);
+    });
+    const newAlbum = { artistId: '1' };
+    albumModel.album = newAlbum;
+    const artists = ['artist'];
+    $scope.$apply();
+    expect(artistModel.getSimilarArtists).toHaveBeenCalledWith(newAlbum.artistId, jasmine.any(Function));
+    expect(ctrl.similarArtists).toEqual(artists);
   });
 });
