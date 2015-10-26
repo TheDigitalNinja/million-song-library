@@ -23,7 +23,7 @@ describe('sonPage', () => {
 
     it('checks song release', () => {
       const songRelease = browser.driver.findElement(By.className('song-release')).getText();
-      expect(songRelease).toMatch('01-01-1919');
+      expect(songRelease).toMatch('1919');
     });
   });
 

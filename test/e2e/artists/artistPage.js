@@ -29,13 +29,13 @@ describe('artistPage', () => {
     });
 
     describe('Albums', () => {
-      it('checks album name', () => {
+      xit('checks album name', () => {
         browser.driver.findElement(By.linkText('Albums')).click();
         const albumName = browser.driver.findElement(By.linkText('Some album')).getText();
         expect(albumName).toMatch('Some album');
       });
 
-      it('redirects to album page', () => {
+      xit('redirects to album page', () => {
         browser.driver.findElement(By.linkText('Albums')).click();
         browser.driver.findElement(By.linkText('Some album')).click();
         browser.getCurrentUrl().then((url) => {
