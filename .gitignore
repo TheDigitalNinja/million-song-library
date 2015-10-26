@@ -1,12 +1,15 @@
-/.idea
-/bower_components
-/node_modules
-/build
-/npm-debug.log
-/coverage
-/swagger/api/swagger/swagger.json
+/client/bower_components
+/client/node_modules
+/client/build
+/client/coverage
+/client/swagger/api/swagger/swagger.json
 
+/server/target
+
+/common/swagger-codegen
 *-compiled.js
 *-compiled.js.map
 .DS_Store
+.idea
+npm-debug.log
 
