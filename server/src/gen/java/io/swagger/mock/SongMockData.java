@@ -78,4 +78,36 @@ public class SongMockData {
         return new SongInfo();
     }
 
+    public SongList browseSongs(String pagingState, Integer items, String facets, String sortFields) {
+        List<SongInfo> browsedSongs = songList.getSongs();
+
+        if (pagingState != null && !pagingState.isEmpty()) {
+            // TODO implement pagination
+            System.out.println("Pagination: " + pagingState);
+        }
+        if (facets != null && facets.length() > 0) {
+            // TODO implement facet filtering
+            System.out.println("Filtering by facet: " + facets);
+        }
+
+        // TODO if no items are provided should return 25 results
+        if (items != null && items > 0) {
+            browsedSongs = new ArrayList<SongInfo>();
+
+            for (int i = 0; i < items && i < songList.getSongs().size(); i++) {
+                browsedSongs.add(songList.getSongs().get(i));
+            }
+        }
+
+        if (sortFields != null && !sortFields.isEmpty()) {
+            //TODO implement sorting by sortFields
+            System.out.println("Sorting results by: " + sortFields);
+        }
+
+        SongList results = new SongList();
+        results.setSongs(browsedSongs);
+
+        return results;
+    }
+
 }
