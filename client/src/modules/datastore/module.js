@@ -14,6 +14,7 @@ import rateStore from './services/rateStore';
 import genreStore from './services/genreStore';
 import ArtistInfoEntity from './entities/ArtistInfoEntity';
 import ArtistListEntity from './entities/ArtistListEntity';
+import GenreListEntity from './entities/GenreListEntity';
 
 export default angular.module('msl.datastore', [])
   .factory('request', request)
@@ -31,4 +32,5 @@ export default angular.module('msl.datastore', [])
   .factory('genreStore', genreStore)
   .value('ArtistInfoEntity', ArtistInfoEntity)
   .value('ArtistListEntity', ArtistListEntity)
+  .value('GenreListEntity', GenreListEntity)
   .name;

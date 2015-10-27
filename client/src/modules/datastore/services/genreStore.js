@@ -1,18 +1,23 @@
-import GenreListEntity from '../entities/GenreListEntity';
-
-function genreStore(request, entityMapper) {
+/**
+ * genre store
+ * @param {request} request
+ * @param {entityMapper} entityMapper
+ * @param {GenreListEntity} GenreListEntity
+ * @returns {*}
+ */
+function genreStore(request, entityMapper, GenreListEntity) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/v1/catalogedge/facet/~';
+  const API_REQUEST_PATH = '/api/v1/catalogedge/facet/';
 
   return {
-    async fetch(genreName) {
-      if(genreName) {
-        return entityMapper(await request.get(API_REQUEST_PATH + genreName), GenreListEntity);
-      }
-      else {
-        return entityMapper(await request.get(API_REQUEST_PATH), GenreListEntity);
-      }
+    /**
+     * fetch genres from catalogedge's facet endpoint
+     * @param {string} genreName
+     */
+    async fetch(genreName = '~') {
+      const response = await request.get(`${ API_REQUEST_PATH }${ genreName }`);
+      return entityMapper(response, GenreListEntity);
     },
   };
 }
