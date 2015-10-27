@@ -1,6 +1,7 @@
 /**
  * Artist model
  * @author anram88
+ * @param {albumStore} albumStore
  * @param {artistStore} artistStore
  * @param {catalogStore} catalogStore
  * @param {$log} $log
@@ -8,11 +9,12 @@
  * @returns {{getArtist: getArtist, getArtists: getArtists, getSimilarArtists: getSimilarArtists, artist: null,
  *     artists: null}}
  */
-export default function artistModel(artistStore, catalogStore, $log, $rootScope) {
+export default function artistModel(albumStore, artistStore, catalogStore, $log, $rootScope) {
 
   let _model = {
     getArtist: getArtist,
     getArtists: getArtists,
+    getArtistAlbums: getArtistAlbums,
     getSimilarArtists: getSimilarArtists,
     getArtistsById: getArtistsById,
     filterArtists: filterArtists,
@@ -63,6 +65,27 @@ export default function artistModel(artistStore, catalogStore, $log, $rootScope)
   }
 
   /**
+   * Gets a list of albums
+   * @param {string[]} albumIds
+   * @param {function} done
+   */
+  async function getArtistAlbums(albumIds, done) {
+    try {
+      const albums = albumIds.map(async (albumId) => await albumStore.fetch(albumId));
+      _model.albums = await* albums;
+
+      if(done) {
+        done(_model.albums);
+      }
+
+      $rootScope.$new().$evalAsync();
+    } catch(err) {
+      _model.albums = [];
+      $log.warn(err);
+    }
+  }
+
+  /**
    * Gets a list of similar artists of the received artist
    * @param {string} artistId
    * @param {function} done
@@ -70,7 +93,7 @@ export default function artistModel(artistStore, catalogStore, $log, $rootScope)
   async function getSimilarArtists(artistId, done) {
     try {
       const artist = await artistStore.fetch(artistId);
-      await getArtistsById(artist.similarArtistsList);
+      await _model.getArtistsById(artist.similarArtistsList);
       if(done) {
         done(_model.artists);
       }
@@ -105,13 +128,13 @@ export default function artistModel(artistStore, catalogStore, $log, $rootScope)
    * Gets a list of artists filtered by rating and genre
    * @param {number} rating
    * @param {string} genre
-   * @param {function} callback
+   * @param {function} done
    */
-  async function filterArtists(rating, genre, callback) {
+  async function filterArtists(rating, genre, done) {
     try {
       const artistList = await artistStore.fetchAll(genre);
-      if(callback) {
-        callback(artistList.artists);
+      if(done) {
+        done(artistList.artists);
       }
     }
     catch(error) {

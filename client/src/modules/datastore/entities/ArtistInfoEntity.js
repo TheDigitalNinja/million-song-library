@@ -13,7 +13,7 @@ class ArtistInfoEntity {
   constructor() {
     this.artistId = String;
     this.artistName = String;
-    this.albumsList = String;
+    this.albumsList = [String];
     this.averageRating = Number;
     this.personalRating = Number;
     this.imageLink = String;
