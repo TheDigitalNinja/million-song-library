@@ -1,6 +1,5 @@
 /* global describe, it, expect, beforeEach, inject */
 import datastoreModule from 'modules/datastore/module';
-import ArtistListEntity from 'modules/datastore/entities/ArtistListEntity';
 
 describe('artistStore', () => {
   const ARTIST_ID = '3';

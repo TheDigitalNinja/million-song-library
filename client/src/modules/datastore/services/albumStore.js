@@ -1,12 +1,12 @@
-import AlbumListEntity from '../entities/AlbumListEntity';
-import AlbumInfoEntity from '../entities/AlbumInfoEntity';
 /**
  * album store
  * @param {request} request
  * @param {entityMapper} entityMapper
+ * @param {AlbumInfoEntity} AlbumInfoEntity
+ * @param {AlbumListEntity} AlbumListEntity
  * @returns {*}
  */
-export default function albumStore(request, entityMapper) {
+export default function albumStore(request, entityMapper, AlbumInfoEntity, AlbumListEntity) {
   'ngInject';
 
   const API_REQUEST_PATH = '/api/v1/catalogedge/';
@@ -18,9 +18,8 @@ export default function albumStore(request, entityMapper) {
      * @return {AlbumInfoEntity}
      */
     async fetch(albumId) {
-      return entityMapper(await request.get(
-          `${API_REQUEST_PATH}album/${albumId}`),
-        AlbumInfoEntity);
+      const response = await request.get(`${API_REQUEST_PATH}album/${albumId}`);
+      return entityMapper(response, AlbumInfoEntity);
     },
 
     /**
@@ -30,9 +29,9 @@ export default function albumStore(request, entityMapper) {
      * @return {AlbumListEntity}
      */
     async fetchAll (genre) {
-      return entityMapper(await request.get(
-          `${ API_REQUEST_PATH }browse/album`, { params: { facets: genre } }),
-        AlbumListEntity);
+      const params = { params: { facets: genre } };
+      const response = await request.get(`${ API_REQUEST_PATH }browse/album`, params);
+      return entityMapper(response, AlbumListEntity);
     },
   };
 }
