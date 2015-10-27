@@ -78,4 +78,37 @@ public class AlbumMockData {
         }
         return new AlbumInfo();
     }
+
+    public AlbumList browseAlbums(String pagingState, Integer items, String facets, String sortFields) {
+
+        List<AlbumInfo> browsedAlbums = albumList.getAlbums();
+
+        if (pagingState != null && !pagingState.isEmpty()) {
+            // TODO implement pagination
+            System.out.println("Paging State: " + pagingState);
+        }
+
+        if (facets != null && facets.length() > 0) {
+            // TODO implement facet filtering
+            System.out.println("Filtering by facet: " + facets);
+        }
+
+        // TODO if no items are provided should return 25 results
+        if (items != null && items > 0) {
+            browsedAlbums = new ArrayList<AlbumInfo>();
+            for (int i = 0; i < items && i < albumList.getAlbums().size(); i++) {
+                browsedAlbums.add(albumList.getAlbums().get(i));
+            }
+        }
+
+        if (sortFields != null && !sortFields.isEmpty()) {
+            //TODO implement sorting by sortFields
+            System.out.println("Sorting results by: " + sortFields);
+        }
+
+        AlbumList results = new AlbumList();
+        results.setAlbums(browsedAlbums);
+
+        return results;
+    }
 }
