@@ -25,12 +25,11 @@ describe('artistModel', () => {
     it('should fetch the artist information', (done) => {
       (async () => {
         spyOn(artistStore, 'fetch');
-        spyOn(artistStore, 'fetchArtistAlbums');
         spyOn(catalogStore, 'fetch');
         await artistModel.getArtist(ARTIST_ID);
+        expect(artistStore.fetch).toHaveBeenCalledWith(ARTIST_ID);
         done();
       })();
-      expect(artistStore.fetch).toHaveBeenCalledWith(ARTIST_ID);
     });
   });
 
