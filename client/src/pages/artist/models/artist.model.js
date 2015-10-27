@@ -36,7 +36,6 @@ export default function artistModel(artistStore, catalogStore, $log, $rootScope)
       _model.artist.artistInfo = await artistStore.fetch(artistId);
       _model.artist.artistSongs = await catalogStore.fetch({ artist: artistId });
       // TODO: get albums from artist info
-      //_model.artist.artistAlbums = await artistStore.fetchArtistAlbums(artistId);
 
       if(done) {
         done(_model.artist);

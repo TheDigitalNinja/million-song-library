@@ -12,6 +12,8 @@ import loginStore from './services/loginStore';
 import logoutStore from './services/logoutStore';
 import rateStore from './services/rateStore';
 import genreStore from './services/genreStore';
+import ArtistInfoEntity from './entities/ArtistInfoEntity';
+import ArtistListEntity from './entities/ArtistListEntity';
 
 export default angular.module('msl.datastore', [])
   .factory('request', request)
@@ -27,4 +29,6 @@ export default angular.module('msl.datastore', [])
   .factory('logoutStore', logoutStore)
   .factory('rateStore', rateStore)
   .factory('genreStore', genreStore)
+  .value('ArtistInfoEntity', ArtistInfoEntity)
+  .value('ArtistListEntity', ArtistListEntity)
   .name;

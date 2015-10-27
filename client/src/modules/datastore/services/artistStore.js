@@ -1,14 +1,12 @@
-import ArtistInfoEntity from '../entities/ArtistInfoEntity';
-import ArtistListEntity from '../entities/ArtistListEntity';
-import AlbumListEntity from '../entities/AlbumListEntity';
-
 /**
  * artist store
  * @param {request} request
  * @param {entityMapper} entityMapper
+ * @param {ArtistInfoEntity} ArtistInfoEntity
+ * @param {ArtistListEntity} ArtistListEntity
  * @returns {*}
  */
-export default function artistStore(request, entityMapper) {
+export default function artistStore(request, entityMapper, ArtistInfoEntity, ArtistListEntity) {
   'ngInject';
 
   const API_REQUEST_PATH = '/api/v1/catalogedge/';
@@ -20,8 +18,8 @@ export default function artistStore(request, entityMapper) {
      * @return {ArtistInfoEntity}
      */
     async fetch(artistId) {
-      return entityMapper(await request.get(`${ API_REQUEST_PATH }artist/${ artistId }`),
-        ArtistInfoEntity);
+      const response = await request.get(`${ API_REQUEST_PATH }artist/${ artistId }`);
+      return entityMapper(response, ArtistInfoEntity);
     },
 
     /**
@@ -31,28 +29,9 @@ export default function artistStore(request, entityMapper) {
      * @return {ArtistListEntity}
      */
     async fetchAll(genre) {
-      return entityMapper(await request.get(
-          `${ API_REQUEST_PATH }browse/artist`, { params: { facets: genre } }),
-        ArtistListEntity
-      );
-    },
-
-    /**
-     * fetch all artist's albums from catalogue endpoint
-     * @name artistStore#fetchArtistsAlbums
-     * @param {string} artistId
-     * @return {AlbumListEntity}
-     */
-    async fetchArtistAlbums(artistId) {
-      return entityMapper(await request.get(
-          `${API_REQUEST_PATH}${artistId}/albums`),
-        AlbumListEntity
-      );
-    },
-    async fetchSimilarArtist(artistId) {
-      return entityMapper(await request.get(
-          `${API_REQUEST_PATH}${artistId}/similar-artists`),
-        ArtistListEntity);
+      const params = { params: { facets: genre } };
+      const response = await request.get(`${ API_REQUEST_PATH }browse/artist`, params);
+      return entityMapper(response, ArtistListEntity);
     },
   };
 }
