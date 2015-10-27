@@ -16,17 +16,17 @@ public class ArtistMockData {
     public ArtistMockData() {
         this.artistList = new ArtistList();
         List<ArtistInfo> artists = new ArrayList<ArtistInfo>();
-        
+
         ArtistInfo artistMockData1 = new ArtistInfo();
         artistMockData1.setArtistId("1");
         artistMockData1.setArtistName("Vai, Steve");
         artistMockData1.setImageLink("https://veggiesrock.files.wordpress.com/2011/07/vai2009_promo11.jpg");
         artists.add(artistMockData1);
-        
+
         List<String> artistMockAlbums1 = new ArrayList<String>();
         artistMockAlbums1.add("1");
         artistMockData1.setAlbumsList(artistMockAlbums1);
-        
+
         List<String> artistMockSongs1 = new ArrayList<String>();
         artistMockSongs1.add("1");
         artistMockData1.setSongsList(artistMockSongs1);
@@ -36,11 +36,11 @@ public class ArtistMockData {
         artistMockData2.setArtistName("Pink Floyd");
         artistMockData2.setImageLink("http://www.billboard.com/files/styles/promo_650/public/media/pink-floyd-1973-billboard-650.jpg");
         artists.add(artistMockData2);
-        
+
         List<String> artistMockAlbums2 = new ArrayList<String>();
         artistMockAlbums2.add("2");
         artistMockData2.setAlbumsList(artistMockAlbums2);
-        
+
         List<String> artistMockSongs2 = new ArrayList<String>();
         artistMockSongs2.add("2");
         artistMockData2.setSongsList(artistMockSongs2);
@@ -50,7 +50,7 @@ public class ArtistMockData {
         artistMockData3.setArtistName("Janis Joplin");
         artistMockData3.setImageLink("http://www.thisdayinmusic.com/upload/janis_joplin_6727.jpg");
         artists.add(artistMockData3);
-        
+
         List<String> artistMockAlbums3 = new ArrayList<String>();
         artistMockAlbums3.add("3");
         artistMockData3.setAlbumsList(artistMockAlbums3);
@@ -64,7 +64,7 @@ public class ArtistMockData {
         artistMockData4.setArtistName("Led Zeppelin");
         artistMockData4.setImageLink("http://d2x3wmakafwqf5.cloudfront.net/wordpress/wp-content/blogs.dir/106/files/2014/06/led_zeppelin_wallpaper_blac_and_white.jpg");
         artists.add(artistMockData4);
-        
+
         List<String> artistMockAlbums4 = new ArrayList<String>();
         artistMockAlbums4.add("4");
         artistMockData4.setAlbumsList(artistMockAlbums4);
@@ -72,7 +72,7 @@ public class ArtistMockData {
         List<String> artistMockSongs4 = new ArrayList<String>();
         artistMockSongs4.add("4");
         artistMockData4.setSongsList(artistMockSongs4);
-        
+
         artistList.setArtists(artists);
     }
 
@@ -83,5 +83,37 @@ public class ArtistMockData {
             }
         }
         return new ArtistInfo();
+    }
+
+    public ArtistList browseArtists(String pagingState, Integer items, String facets, String sortFields) {
+        List<ArtistInfo> browsedArtists = artistList.getArtists();
+
+        if (pagingState != null && !pagingState.isEmpty()) {
+            // TODO implement pagination
+            System.out.println("Paging State: " + pagingState);
+        }
+
+        if (facets != null && facets.length() > 0) {
+            // TODO implement facet filtering
+            System.out.println("Filtering by facet: " + facets);
+        }
+
+        // TODO if no items is provided should return 25 results
+        if (items != null && items > 0) {
+            browsedArtists = new ArrayList<ArtistInfo>();
+            for (int i = 0; i < items && i < artistList.getArtists().size(); i++) {
+                browsedArtists.add(artistList.getArtists().get(i));
+            }
+        }
+
+        if (sortFields != null && !sortFields.isEmpty()) {
+            //TODO implement sorting by sortFields
+            System.out.println("Sorting results by: " + sortFields);
+        }
+
+        ArtistList results = new ArtistList();
+        results.setArtists(browsedArtists);
+
+        return results;
     }
 }

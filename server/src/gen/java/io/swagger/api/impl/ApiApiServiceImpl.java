@@ -96,10 +96,10 @@ public class ApiApiServiceImpl extends ApiApiService {
     }
 
     @Override
-    public Response browseArtists(String pos, Integer items, String facets, String sortFields)
+    public Response browseArtists(String pagingState, Integer items, String facets, String sortFields)
             throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        // TODO replace current mock implementation
+        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", artistMockData.browseArtists(pagingState, items, facets, sortFields))).build();
     }
 
     // =========================================================================================================== SONGS
