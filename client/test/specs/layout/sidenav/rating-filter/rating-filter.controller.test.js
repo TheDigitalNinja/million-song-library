@@ -35,25 +35,56 @@ describe('ratingFilterCtrl', () => {
 
   });
 
+  describe('activeRating', () => {
+    it('should return true if the rating is the ratingFilter', () => {
+      const rate= { rate: 4 }
+      const controller = ratingFilterCtrl();
+      controller.ratingFilter = 4 ;
+
+      expect(controller.activeRating(rate)).toBeTruthy();
+    });
+
+    it('should return false when the rating is not the ratingFilter', () => {
+      const controller = ratingFilterCtrl();
+      const rate= { rate: 3 }
+
+      expect(controller.activeRating(rate)).toBeFalsy();
+    });
+  });
+
   describe('applyRatingFilter', () => {
     let controller, rateObj;
 
-    beforeEach(() => {
-      controller = ratingFilterCtrl();
-      rateObj = { rate: RATE };
-      controller.applyRatingFilter(rateObj);
+    describe('when object is null', () => {
+      beforeEach(() => {
+        controller = ratingFilterCtrl();
+        controller.applyRatingFilter(null);
+      });
+
+      it('should set the controller rating filter', () => {
+        expect(controller.ratingFilter).toEqual(null);
+      });
     });
 
-    it('should set the controller rating filter', () => {
-      expect(controller.ratingFilter).toEqual(RATE);
-    });
+    describe('when object exist', () => {
 
-    it('should update the search query', () => {
-      expect($location.search).toHaveBeenCalledWith('rating', RATE);
-    });
+      beforeEach(() => {
+        controller = ratingFilterCtrl();
+        rateObj = { rate: RATE };
+        controller.applyRatingFilter(rateObj);
+      });
 
-    it('should filter by the given rating', () => {
-      expect(filterModel.filter).toHaveBeenCalledWith({ rating: RATE}, listener);
+      it('should set the controller rating filter', () => {
+        expect(controller.ratingFilter).toEqual(RATE);
+      });
+
+      it('should update the search query', () => {
+        expect($location.search).toHaveBeenCalledWith('rating', RATE);
+      });
+
+      it('should filter by the given rating', () => {
+        expect(filterModel.filter).toHaveBeenCalledWith({ rating: RATE}, listener);
+      });
     });
   });
 });
