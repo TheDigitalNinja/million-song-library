@@ -14,8 +14,8 @@ export default function addToLibrary (libraryModel) {
       type: '@',
       id: '=',
     },
-    link: function(scope, elem, attrs) {
-      elem.bind('click', ()=> {
+    link: function(scope, elem) {
+      elem.bind('click', () => {
         switch(scope.type) {
           case 'album':
             libraryModel.addAlbumToLibrary(scope.id);
