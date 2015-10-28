@@ -3,7 +3,8 @@ package io.swagger.mock;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.swagger.model.FacetInfoWithChildren;
+import io.swagger.api.factories.FacetServiceFactory;
+import io.swagger.model.*;
 
 /**
  * Created by anram88 on 10/27/15.
@@ -100,20 +101,6 @@ public class FacetMockData {
         return ratingFacetList;
     }
 
-    private FacetInfoWithChildren searchForFacet(List<FacetInfoWithChildren> facets, String facet_id) {
-        for (FacetInfoWithChildren facet : facets) {
-            if (facet.getFacetId().equals(facet_id)) {
-                return facet;
-            } else if (facet.getChildren().size() > 0) {
-                FacetInfoWithChildren searchResults = searchForFacet(facet.getChildren(), facet_id);
-                if (searchResults.getFacetId() != null && searchResults.getFacetId().equals(facet_id)) {
-                    return searchResults;
-                }
-            }
-        }
-        return new FacetInfoWithChildren();
-    }
-
     public FacetInfoWithChildren getFacet(String facet_id) {
         // ~ should return root facet
         if (facet_id.equals("~")) {
@@ -125,9 +112,9 @@ public class FacetMockData {
             allFacets.setChildren(facets);
             return allFacets;
         } else {
-            FacetInfoWithChildren searchResults = searchForFacet(mockFacets, facet_id);
-            if (searchResults.getFacetId().equals(facet_id)) {
-                return searchResults;
+            FacetInfoWithChildren result = FacetServiceFactory.getFacet(facet_id, mockFacets);
+            if (result != null) {
+                return result;
             }
         }
         return new FacetInfoWithChildren();

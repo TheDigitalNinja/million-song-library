@@ -647,6 +647,8 @@ definitions:
         type: array
         items:
           type: string
+      genre:
+        type: string
       similar_artists_list:
         type: array
         items:

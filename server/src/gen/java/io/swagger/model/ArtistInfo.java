@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-10-20T17:56:37.516-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-10-27T19:06:46.559-06:00")
 public class ArtistInfo  {
   
   private String artistId = null;
@@ -18,6 +18,7 @@ public class ArtistInfo  {
   private BigDecimal personalRating = null;
   private String imageLink = null;
   private List<String> songsList = new ArrayList<String>();
+  private String genre = null;
   private List<String> similarArtistsList = new ArrayList<String>();
 
   
@@ -108,6 +109,18 @@ public class ArtistInfo  {
   /**
    **/
   @ApiModelProperty(value = "")
+  @JsonProperty("genre")
+  public String getGenre() {
+    return genre;
+  }
+  public void setGenre(String genre) {
+    this.genre = genre;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(value = "")
   @JsonProperty("similar_artists_list")
   public List<String> getSimilarArtistsList() {
     return similarArtistsList;
@@ -130,6 +143,7 @@ public class ArtistInfo  {
     sb.append("  personalRating: ").append(personalRating).append("\n");
     sb.append("  imageLink: ").append(imageLink).append("\n");
     sb.append("  songsList: ").append(songsList).append("\n");
+    sb.append("  genre: ").append(genre).append("\n");
     sb.append("  similarArtistsList: ").append(similarArtistsList).append("\n");
     sb.append("}\n");
     return sb.toString();
