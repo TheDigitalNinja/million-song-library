@@ -37,16 +37,16 @@ describe('ratingFilterCtrl', () => {
 
   describe('activeRating', () => {
     it('should return true if the rating is the ratingFilter', () => {
-      const rate= { rate: 4 }
+      const rate = { rate: 4 };
       const controller = ratingFilterCtrl();
-      controller.ratingFilter = 4 ;
+      controller.ratingFilter = 4;
 
       expect(controller.activeRating(rate)).toBeTruthy();
     });
 
     it('should return false when the rating is not the ratingFilter', () => {
       const controller = ratingFilterCtrl();
-      const rate= { rate: 3 }
+      const rate = { rate: 3 };
 
       expect(controller.activeRating(rate)).toBeFalsy();
     });
