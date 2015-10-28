@@ -2,12 +2,15 @@
 <ul>
   <li ng-repeat='rate in vm.rates track by $index'>
     <ul class="star-rating list-unstyled" ng-class='rating-readonly'>
-      <a ng-click="vm.applyRatingFilter(rate)">
+      <a href="" ng-click="vm.applyRatingFilter(rate)" title="{{rate.rate}}" ng-class="{ 'active': vm.activeRating(rate) }">
         <li ng-repeat="star in rate.stars track by $index">
           <button type="button" class="btn fa" ng-class="star.filled ? 'fa-star' : 'fa-star-o'"></button>
         </li>
         <span>&amp; up</span>
       </a>
     </ul>
+    <button ng-click="vm.applyRatingFilter(null)" ng-show="vm.activeRating(rate)" type="button" class="close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </li>
 </ul>

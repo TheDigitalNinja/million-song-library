@@ -22,11 +22,25 @@ export default class ratingFilterCtrl {
   }
 
   /**
+   * Determines if the given rating is the active one
+   * @param {rate} rate
+   * @return {Boolean}
+   */
+  activeRating(rate) {
+    if(this.ratingFilter) {
+      return this.ratingFilter === rate.rate;
+    }
+    else {
+      return false;
+    }
+  }
+
+  /**
    * Applies rating filter on change
    * @param {rate} rate
    */
   applyRatingFilter(rate) {
-    this.ratingFilter = rate.rate;
+    this.ratingFilter = rate == null ? null : rate.rate;
     this.$location.search('rating', this.ratingFilter);
     this.filterModel.filter({ rating: this.ratingFilter }, this.$scope.listener);
   }
