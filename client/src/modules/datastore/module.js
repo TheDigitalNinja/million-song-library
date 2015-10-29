@@ -17,6 +17,7 @@ import ArtistListEntity from './entities/ArtistListEntity';
 import GenreListEntity from './entities/GenreListEntity';
 import AlbumInfoEntity from './entities/AlbumInfoEntity';
 import AlbumListEntity from './entities/AlbumListEntity';
+import SongListEntity from './entities/SongListEntity';
 
 export default angular.module('msl.datastore', [])
   .factory('request', request)
@@ -37,4 +38,5 @@ export default angular.module('msl.datastore', [])
   .value('GenreListEntity', GenreListEntity)
   .value('AlbumInfoEntity', AlbumInfoEntity)
   .value('AlbumListEntity', AlbumListEntity)
+  .value('SongListEntity', SongListEntity)
   .name;
