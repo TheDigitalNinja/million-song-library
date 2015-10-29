@@ -1,13 +1,12 @@
-import SongListEntity from '../entities/SongListEntity';
-
 /**
  * recent songs store service
  * @name recentSongsStore
  * @param {request} request
  * @param {entityMapper} entityMapper
- * @returns {SongListEntity}
+ * @param {SongListEntity} SongListEntity
+ * @returns {*}
  */
-function recentSongsStore (request, entityMapper) {
+function recentSongsStore (request, entityMapper, SongListEntity) {
   'ngInject';
 
   const API_REQUEST_PATH = '/api/v1/accountedge/users/recentsongs';
@@ -18,7 +17,8 @@ function recentSongsStore (request, entityMapper) {
      * @return {SongListEntity}
      */
     async fetch() {
-      return entityMapper(await request.get(API_REQUEST_PATH), SongListEntity);
+      const response = await request.get(API_REQUEST_PATH);
+      return entityMapper(response, SongListEntity);
     },
   };
 }
