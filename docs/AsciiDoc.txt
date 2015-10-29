@@ -76,3 +76,11 @@ That is a *LOT* of information. Let's summarize...
 Database
 ~~~~~~~~
 [red]#TBA#: Add Cassandra schema info here once it is developed
+
+Data Import
+~~~~~~~~~~~
+The Million Song Library data is available from http://labrosa.ee.columbia.edu/millionsong/pages/getting-dataset. A 10,000 song subset of the full data set is also available from this page. Downloading the data yields a gzipped file that contains two directories: AdditionalFiles and data. The data directory has a bunch of subdirectories that contain an HDF file (with the extension h5) for each song in the database. The AdditionalFiles directory contains several files that summarize the dataset - these files will not be used for the import.
+
+HDF or Hierarchical Data Format files (https://en.wikipedia.org/wiki/Hierarchical_Data_Format) contain all the data we need for albums, artists and songs. We use the Java HDF5 Interface (JHI5) (https://www.hdfgroup.org/products/java/JNI/jhi5/) to read these files.
+
+So, at a high level, the data import program, written in Java, traverses a given directory tree reading and processing each file with an extension of "h5". The appropriate data is extracted from each file and inserted into the Cassandra cluster. Note: the tags withing a file (/metadata/artist_terms) essentially indicate the genre of the song. There are so many genres used in the dataset that it makes their use as a searching mechanism not particularly useful. So a properties file is used to declare which of the genres we are interested in persisting. Any genres not found in the properties file are ignored.
