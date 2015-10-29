@@ -1,13 +1,12 @@
-import StatusResponseEntity from '../entities/StatusResponseEntity';
-
 /**
  * rate store service
  * @name rateStore
  * @param {request} request
  * @param {entityMapper} entityMapper
+ * @param {StatusResponseEntity} StatusResponseEntity
  * @returns {*}
  */
-function rateStore (request, entityMapper) {
+function rateStore (request, entityMapper, StatusResponseEntity) {
   'ngInject';
 
   const API_REQUEST_PATH = '/api/v1/ratingsedge/ratesong/';
