@@ -1,13 +1,12 @@
-import StatusResponseEntity from '../entities/StatusResponseEntity';
-
 /**
  * logout store service
  * @name logoutStore
  * @param {request} request
  * @param {entityMapper} entityMapper
+ * @param {StatusResponseEntity} StatusResponseEntity
  * @returns {*}
  */
-function logoutStore (request, entityMapper) {
+function logoutStore (request, entityMapper, StatusResponseEntity) {
   'ngInject';
 
   const API_REQUEST_PATH = '/api/v1/loginedge/logout';
@@ -18,7 +17,8 @@ function logoutStore (request, entityMapper) {
      * @return {StatusResponseEntity}
      */
     async push() {
-      return entityMapper(await request.post(API_REQUEST_PATH, {}), StatusResponseEntity);
+      const response = await request.post(API_REQUEST_PATH);
+      return entityMapper(response, StatusResponseEntity);
     },
   };
 }
