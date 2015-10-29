@@ -20,6 +20,7 @@ import AlbumListEntity from './entities/AlbumListEntity';
 import SongListEntity from './entities/SongListEntity';
 import StatusResponseEntity from './entities/StatusResponseEntity';
 import LoginSuccessResponseEntity from './entities/LoginSuccessResponseEntity';
+import SessionInfoEntity from './entities/SessionInfoEntity';
 
 export default angular.module('msl.datastore', [])
   .factory('request', request)
@@ -43,4 +44,5 @@ export default angular.module('msl.datastore', [])
   .value('SongListEntity', SongListEntity)
   .value('StatusResponseEntity', StatusResponseEntity)
   .value('LoginSuccessResponseEntity', LoginSuccessResponseEntity)
+  .value('SessionInfoEntity', SessionInfoEntity)
   .name;
