@@ -1,13 +1,12 @@
-import LoginSuccessResponseEntity from '../entities/LoginSuccessResponseEntity';
-
 /**
  * login store service
  * @name loginStore
  * @param {request} request
  * @param {entityMapper} entityMapper
+ * @param {LoginSuccessResponseEntity} LoginSuccessResponseEntity
  * @returns {*}
  */
-function loginStore (request, entityMapper) {
+function loginStore (request, entityMapper, LoginSuccessResponseEntity) {
   'ngInject';
 
   const API_REQUEST_PATH = '/api/v1/loginedge/login';
