@@ -533,7 +533,7 @@ paths:
   /api/v1/accountedge/users/mylibrary:
     x-swagger-router-controller: history_controller
     get:
-      description: Get the user's library of songs
+      description: Get the user's library of favorites
       tags:
         - Account
       schemes: ["https"]
@@ -543,7 +543,7 @@ paths:
         "200":
           description: Retrieved user library
           schema:
-            $ref: "#/definitions/SongList"
+            $ref: "#/definitions/MyLibrary"
         "500":
           description: Server Error
           schema:
@@ -667,6 +667,14 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/FacetInfo"
+  MyLibrary:
+    properties:
+      albums:
+        $ref: "#/definitions/AlbumList"
+      artists:
+        $ref: "#/definitions/ArtistList"
+      songs:
+        $ref: "#/definitions/SongList"
   PagingState:
     properties:
       pagingState:
