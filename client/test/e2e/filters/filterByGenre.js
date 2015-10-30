@@ -25,8 +25,7 @@ describe('genre filter in home page', () => {
   it('checks deselect filter', () => {
     browser.driver.findElement(By.linkText('Rock')).click();
     browser.driver.findElement(By.className('close')).click();
-    const genreName = browser.driver.findElement(By.className('close'));
-    expect(genreName.getAttribute('class')).toContain('ng-hide');
+    const deselectFilter = browser.driver.findElement(By.className('close'));
+    expect(deselectFilter.getAttribute('class')).toContain('ng-hide');
   });
-
 });
