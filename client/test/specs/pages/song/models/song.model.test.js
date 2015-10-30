@@ -5,14 +5,13 @@ describe('songModel', () => {
 
   const SONG_ID = 4;
 
-  let catalogStore, songModel, songStore;
+  let songModel, songStore;
 
   beforeEach(() => {
     angular.mock.module(songModule);
     inject(($injector) => {
       songModel = $injector.get('songModel');
       songStore = $injector.get('songStore');
-      catalogStore = $injector.get('catalogStore');
     });
   });
 
@@ -34,11 +33,11 @@ describe('songModel', () => {
   describe('getSongs', () => {
     it('should get the list of songs', (done) => {
       (async () => {
-        spyOn(catalogStore, 'fetch');
+        spyOn(songStore, 'fetchAll');
         await (songModel.getSongs());
         done();
       })();
-      expect(catalogStore.fetch).toHaveBeenCalled();
+      expect(songStore.fetchAll).toHaveBeenCalled();
     });
   });
 
