@@ -1,4 +1,3 @@
-import SongListEntity from '../entities/SongListEntity';
 import StatusResponseEntity from '../entities/StatusResponseEntity';
 
 /**
@@ -8,7 +7,7 @@ import StatusResponseEntity from '../entities/StatusResponseEntity';
  * @param {entityMapper} entityMapper
  * @returns {*}
  */
-function myLibraryStore(request, entityMapper) {
+function myLibraryStore(request, entityMapper, SongListEntity) {
   'ngInject';
 
   const API_REQUEST_PATH = '/api/v1/accountedge/users/mylibrary';
@@ -19,15 +18,11 @@ function myLibraryStore(request, entityMapper) {
      * @return {SongListEntity}
      */
     async fetch() {
-      return entityMapper(await request.get(API_REQUEST_PATH), SongListEntity);
+      const response = await request.get(API_REQUEST_PATH);
+      return entityMapper(response, SongListEntity);
     },
 
-    async addSong(songId) {
-      return entityMapper(await request.post(
-          `${API_REQUEST_PATH}/add`, { songId: songId }),
-        StatusResponseEntity
-      );
-    },
+    // TODO: Implement add Song/Album/Artist to Library
   };
 }
 
