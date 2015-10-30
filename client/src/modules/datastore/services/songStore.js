@@ -1,12 +1,11 @@
-import SongInfoEntity from '../entities/SongInfoEntity';
-
 /**
  * songs store
  * @param {request} request
  * @param {entityMapper} entityMapper
+ * @param {SongInfoEntity} SongInfoEntity
  * @returns {*}
  */
-function songStore (request, entityMapper) {
+function songStore(request, entityMapper, SongInfoEntity) {
   'ngInject';
 
   const API_REQUEST_PATH = '/api/v1/catalogedge/song/';
@@ -18,7 +17,8 @@ function songStore (request, entityMapper) {
      * @return {SongInfoEntity}
      */
     async fetch(songId) {
-      return entityMapper(await request.get(API_REQUEST_PATH + songId), SongInfoEntity);
+      const response = await request.get(API_REQUEST_PATH + songId);
+      return entityMapper(response, SongInfoEntity);
     },
   };
 }
