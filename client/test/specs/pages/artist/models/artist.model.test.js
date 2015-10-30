@@ -1,19 +1,29 @@
-/* global describe, it, expect, beforeEach, afterEach, inject, jasmine */
 import artistModule from 'pages/artist/artist.module.js';
 
 describe('artistModel', () => {
-
   const ARTIST_ID = 5;
+  const RATING = 3;
+  const GENRE = 'rock';
+  const doneFn = jasmine.createSpy('doneFn');
+  const error = new Error('an error');
 
-  let artistModel, artistStore, catalogStore, $log;
+  let artistModel, albumStore, artistStore, catalogStore, $log;
 
   beforeEach(() => {
-    angular.mock.module(artistModule);
-    inject(($injector) => {
-      artistModel = $injector.get('artistModel');
-      artistStore = $injector.get('artistStore');
-      catalogStore = $injector.get('catalogStore');
-      $log = $injector.get('$log');
+    angular.mock.module(artistModule, ($provide) => {
+      albumStore = jasmine.createSpyObj('albumStore', ['fetch']);
+      artistStore = jasmine.createSpyObj('artistStore', ['fetch', 'fetchAll']);
+      catalogStore = jasmine.createSpyObj('catalogStore', ['fetch']);
+      $log = jasmine.createSpyObj('$log', ['warn']);
+
+      $provide.value('albumStore', albumStore);
+      $provide.value('artistStore', artistStore);
+      $provide.value('catalogStore', catalogStore);
+      $provide.value('$log', $log);
+    });
+
+    inject((_artistModel_) => {
+      artistModel = _artistModel_;
     });
   });
 
@@ -24,10 +34,27 @@ describe('artistModel', () => {
   describe('getArtist', () => {
     it('should fetch the artist information', (done) => {
       (async () => {
-        spyOn(artistStore, 'fetch');
-        spyOn(catalogStore, 'fetch');
         await artistModel.getArtist(ARTIST_ID);
         expect(artistStore.fetch).toHaveBeenCalledWith(ARTIST_ID);
+        done();
+      })();
+    });
+
+    it('should call the done function', (done) => {
+      (async () => {
+        const artistInfo = { artist: ['anArtist'] };
+        artistModel.artist = artistInfo;
+        await artistModel.getArtist('1', doneFn);
+        expect(doneFn).toHaveBeenCalledWith(artistModel.artist);
+        done();
+      })();
+    });
+
+    it('should log a warn if an error is thrown', (done) => {
+      (async () => {
+        artistStore.fetch.and.throwError(error);
+        await artistModel.getArtist(ARTIST_ID);
+        expect($log.warn).toHaveBeenCalledWith(error);
         done();
       })();
     });
@@ -36,19 +63,68 @@ describe('artistModel', () => {
   describe('getArtists', () => {
     it('should get the list of artists', (done) => {
       (async () => {
-        spyOn(artistStore, 'fetchAll');
         await artistModel.getArtists();
+        expect(artistStore.fetchAll).toHaveBeenCalled();
         done();
       })();
-      expect(artistStore.fetchAll).toHaveBeenCalled();
+    });
+
+    it('should set the artists of the model', (done) => {
+      (async () => {
+        const artistList = { artists: ['artist1', 'artist2'] };
+        artistStore.fetchAll.and.returnValue(artistList);
+        await artistModel.getArtists();
+        expect(artistModel.artists).toEqual(artistList.artists);
+        done();
+      })();
+    });
+
+    it('should log a warn if an error is thrown', (done) => {
+      (async () => {
+        artistStore.fetchAll.and.throwError(error);
+        await artistModel.getArtists();
+        expect($log.warn).toHaveBeenCalledWith(error);
+        done();
+      })();
     });
   });
 
-  describe('similarArtists', () => {
+  describe('getArtistAlbums', () => {
+    it('should fetch the albums', (done) => {
+      (async () => {
+        const artistAlbumIds = ['1', '2'];
+        await artistModel.getArtistAlbums(artistAlbumIds);
+        expect(albumStore.fetch).toHaveBeenCalledWith('1');
+        expect(albumStore.fetch).toHaveBeenCalledWith('2');
+        done();
+      })();
+    });
+
+    it('should call the done function', (done) => {
+      (async () => {
+        const ambumList = { albums: ['anAlbum'] };
+        artistModel.albums = ambumList;
+        await artistModel.getArtistAlbums(['1'], doneFn);
+        expect(doneFn).toHaveBeenCalledWith(artistModel.albums);
+        done();
+      })();
+    });
+
+    it('should log a warn if an error is thrown', (done) => {
+      (async () => {
+        const artistAlbumIds = ['1', '2'];
+        albumStore.fetch.and.throwError(error);
+        await artistModel.getArtistAlbums(artistAlbumIds);
+        expect($log.warn).toHaveBeenCalledWith(error);
+        done();
+      })();
+    });
+  });
+
+  describe('getSimilarArtists', () => {
     it('should fetch the artist', (done) => {
       (async () => {
         const similarArtistIds = ['1', '2'];
-        spyOn(artistStore, 'fetch');
         artistStore.fetch.and.returnValue({ similarArtistsList: similarArtistIds });
         await artistModel.getSimilarArtists(ARTIST_ID);
         expect(artistStore.fetch).toHaveBeenCalledWith(ARTIST_ID);
@@ -59,11 +135,83 @@ describe('artistModel', () => {
     it('should fetch the similar artists', (done) => {
       (async () => {
         const similarArtistIds = ['3', '4'];
-        spyOn(artistStore, 'fetch');
         artistStore.fetch.and.returnValue({ similarArtistsList: similarArtistIds });
         await artistModel.getSimilarArtists(ARTIST_ID);
         expect(artistStore.fetch).toHaveBeenCalledWith('3');
         expect(artistStore.fetch).toHaveBeenCalledWith('4');
+        done();
+      })();
+    });
+
+    it('should call the done function with the list of artists', (done) => {
+      (async () => {
+        const artist_list = ['artist1'];
+
+        artistStore.fetch.and.returnValue({ similarArtistsList: []});
+        spyOn(artistModel, 'getArtistsById');
+        artistModel.getArtistsById.and.callFake(() => artistModel.artists = artist_list );
+
+        await artistModel.getSimilarArtists(ARTIST_ID, doneFn);
+        expect(doneFn).toHaveBeenCalledWith(artist_list);
+        done();
+      })();
+    });
+
+    it('should log a warn if an error is thrown', (done) => {
+      (async () => {
+        artistStore.fetch.and.throwError(error);
+        await artistModel.getSimilarArtists(ARTIST_ID);
+        expect($log.warn).toHaveBeenCalledWith(error);
+        done();
+      })();
+    });
+  });
+
+  describe('getArtistsById', () => {
+    it('should call the done function', (done) => {
+      (async () => {
+        const artistList = { artists: ['anArtist'] };
+        artistModel.artists = artistList;
+        await artistModel.getArtistsById(['1'], doneFn);
+        expect(doneFn).toHaveBeenCalledWith(artistModel.artists);
+        done();
+      })();
+    });
+
+    it('should log a warn if an error is thrown', (done) => {
+      (async () => {
+        artistStore.fetch.and.throwError(error);
+        await artistModel.getArtistsById(['1'], doneFn);
+        expect($log.warn).toHaveBeenCalledWith(error);
+        done();
+      })();
+    });
+  });
+
+  describe('filterArtists', () => {
+    it('should fetch the albums', (done) => {
+      (async () => {
+        await artistModel.filterArtists(RATING, GENRE);
+        expect(artistStore.fetchAll).toHaveBeenCalledWith('rock');
+        done();
+      })();
+    });
+
+    it('should call the done function', (done) => {
+      (async () => {
+        const artistList = { artists: ['anArtist'] };
+        artistStore.fetchAll.and.returnValue(artistList);
+        await artistModel.filterArtists(RATING, GENRE, doneFn);
+        expect(doneFn).toHaveBeenCalledWith(artistList.artists);
+        done();
+      })();
+    });
+
+    it('should log a warn if an error is thrown', (done) => {
+      (async () => {
+        artistStore.fetchAll.and.throwError(error);
+        await artistModel.filterArtists(RATING, GENRE, doneFn);
+        expect($log.warn).toHaveBeenCalledWith(error);
         done();
       })();
     });

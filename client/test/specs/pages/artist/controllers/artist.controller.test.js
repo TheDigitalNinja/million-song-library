@@ -2,24 +2,30 @@
 import artistModule from 'pages/artist/artist.module.js';
 
 describe('artistCtrl', () => {
-  let $scope, $state, $stateParams, $controller, artistModel;
+  let $scope, $state, $stateParams, artistModel, createController;
 
   beforeEach(() => {
     angular.mock.module(artistModule, ($provide) => {
-
       $state = jasmine.createSpyObj('$state', ['go']);
-      $provide.value('$state', $state);
-
       $stateParams = { artistId: '' };
-      $provide.value('$stateParams', $stateParams);
+      artistModel = jasmine.createSpyObj('artistModel', ['getArtist', 'getArtistsById', 'getArtistAlbums']);
 
-      artistModel = jasmine.createSpyObj('artistModel', ['getArtist']);
+      $provide.value('$state', $state);
+      $provide.value('$stateParams', $stateParams);
       $provide.value('artistModel', artistModel);
     });
 
-    inject((_$controller_, $rootScope) => {
-      $controller = _$controller_;
+    inject(($controller, $rootScope) => {
       $scope = $rootScope.$new();
+
+      createController = () => {
+        return $controller('artistCtrl', {
+          artistModel: artistModel,
+          $scope: $scope,
+          $stateParams: $stateParams,
+          $state: $state,
+        });
+      };
     });
   });
 
@@ -28,38 +34,92 @@ describe('artistCtrl', () => {
   });
 
   it('should create an artist controller', () => {
-    const artistCtrl = $controller('artistCtrl', {
-      artistModel: artistModel,
-      $scope: $scope,
-      $stateParams: $stateParams,
-      $state: $state,
-    });
+    const artistCtrl = createController();
     expect(artistCtrl).toBeDefined();
   });
 
   it('should redirect to `home` state when $stateParams.artistId is empty string', () => {
-    $controller('artistCtrl', {
-      artistModel: artistModel,
-      $scope: $scope,
-      $stateParams: $stateParams,
-      $state: $state,
-    });
+    createController();
     expect($state.go).toHaveBeenCalledWith('msl.home');
   });
 
-  it('should get artistInfo when stateParam artistId is defined', (done) => {
-    (async () => {
-      $stateParams = { artistId: 1 };
-      $controller('artistCtrl', {
-        artistModel: artistModel,
-        $scope: $scope,
-        $stateParams: $stateParams,
-        $state: $state,
-      });
-      artistModel.getArtist.and.returnValue(Promise.resolve());
-      await artistModel.getArtist($stateParams.artistId);
-      expect(artistModel.getArtist).toHaveBeenCalledWith($stateParams.artistId);
-      done();
-    })();
+  it('should get artistInfo when stateParam artistId is defined', () => {
+    $stateParams = { artistId: '1' };
+    const ctrl = createController();
+    expect(artistModel.getArtist).toHaveBeenCalledWith($stateParams.artistId, jasmine.any(Function));
+  });
+
+  describe('getArtist', () => {
+    const similarArtistsList = ['1'];
+    const albumsList = ['3'];
+    const artist = { artistInfo: { similarArtistsList, albumsList } };
+
+    let ctrl;
+
+    beforeEach(() => {
+      $stateParams = { artistId: '1' };
+
+      ctrl = createController();
+      artistModel.getArtist.and.callFake((artistId, cb) => cb(artist));
+
+      spyOn(ctrl, 'getSimilarArtists');
+      spyOn(ctrl, 'getAlbums');
+
+      ctrl.getArtist();
+    });
+
+    it('should get the similar artists', () => {
+      expect(ctrl.getSimilarArtists).toHaveBeenCalledWith(similarArtistsList);
+    });
+
+    it('should get the albums', () => {
+      expect(ctrl.getAlbums).toHaveBeenCalledWith(albumsList);
+    });
+  });
+
+  describe('getSimilarArtists', () => {
+    const similarArtistsList = ['1'];
+    const artists = ['artist1'];
+    let ctrl;
+
+    beforeEach(() => {
+      $stateParams = { artistId: '1' };
+
+      ctrl = createController();
+      artistModel.getArtistsById.and.callFake((list, cb) => cb(artists));
+
+      ctrl.getSimilarArtists(similarArtistsList);
+    });
+
+    it('should ask the model for the artists', () => {
+      expect(artistModel.getArtistsById).toHaveBeenCalledWith(similarArtistsList, jasmine.any(Function));
+    });
+
+    it('should set the scope similar artists fron the model response', () => {
+      expect(ctrl.similarArtists).toEqual(artists);
+    });
+  });
+
+  describe('getAlbums', () => {
+    const albumsList = ['3'];
+    const albums = ['album1'];
+    let ctrl;
+
+    beforeEach(() => {
+      $stateParams = { artistId: '1' };
+
+      ctrl = createController();
+      artistModel.getArtistAlbums.and.callFake((list, cb) => cb(albums));
+
+      ctrl.getAlbums(albumsList);
+    });
+
+    it('should ask the model for the albums', () => {
+      expect(artistModel.getArtistAlbums).toHaveBeenCalledWith(albumsList, jasmine.any(Function));
+    });
+
+    it('should set the scope artist albums from the model response', () => {
+      expect(ctrl.artistAlbums).toEqual(albums);
+    });
   });
 });
