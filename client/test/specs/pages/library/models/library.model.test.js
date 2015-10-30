@@ -2,20 +2,21 @@
 import libraryModule from 'pages/library/library.module.js';
 
 describe('libraryModel', () => {
-
   const SONG_ID = 5;
   const ALBUM_ID = 4;
   const ARTIST_ID = 2;
 
-  let libraryModel, myLibraryStore, $log;
+  let libraryModel, $log;
 
   beforeEach(() => {
-    angular.mock.module(libraryModule);
-    inject(() => {
-      let $injector = angular.injector(['msl.library']);
-      libraryModel = $injector.get('libraryModel');
-      myLibraryStore = $injector.get('myLibraryStore');
-      $log = $injector.get('$log');
+    angular.mock.module(libraryModule, ($provide) => {
+      $log = jasmine.createSpyObj('$log', ['info']);
+
+      $provide.value('$log', $log);
+    });
+
+    inject((_libraryModel_) => {
+      libraryModel = _libraryModel_;
     });
   });
 
@@ -24,19 +25,14 @@ describe('libraryModel', () => {
   });
 
   describe('addSongToLibrary', () => {
-    it('should call myLibraryStore.addSong with SONG_ID', (done) => {
-      (async () => {
-        spyOn(myLibraryStore, 'addSong');
-        await libraryModel.addSongToLibrary(SONG_ID);
-        done();
-      })();
-      expect(myLibraryStore.addSong).toHaveBeenCalledWith(SONG_ID);
+    it('should log a message with the SONG_ID', () => {
+      libraryModel.addSongToLibrary(SONG_ID);
+      expect($log.info).toHaveBeenCalledWith(`Adding song ${SONG_ID} to library`);
     });
   });
 
   describe('addAlbumToLibrary', () => {
     it('should log a message with the ALBUM_ID', () => {
-      spyOn($log, 'info');
       libraryModel.addAlbumToLibrary(ALBUM_ID);
       expect($log.info).toHaveBeenCalledWith(`Adding album ${ALBUM_ID} to library`);
     });
@@ -44,7 +40,6 @@ describe('libraryModel', () => {
 
   describe('addArtistToLibrary', () => {
     it('should log the a message with the ARTIST_ID', () => {
-      spyOn($log, 'info');
       libraryModel.addArtistToLibrary(ARTIST_ID);
       expect($log.info).toHaveBeenCalledWith(`Adding artist ${ARTIST_ID} to library`);
     });

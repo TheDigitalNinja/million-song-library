@@ -2,13 +2,12 @@
  * Library model
  * @author anram88
  * @param {$log} $log
- * @param {myLibraryStore} myLibraryStore
- * @param {$rootScope} $rootScope
  * @returns {{addSongToLibrary: addSongToLibrary, addAlbumToLibrary: addAlbumToLibrary, addArtistToLibrary:
  *     addArtistToLibrary}}
  */
-export default function libraryModel($log, myLibraryStore, $rootScope) {
+export default function libraryModel($log) {
 
+  // TODO: Use myLibraryStore methods to add to the library once they are defined
   const _model = {
     addSongToLibrary: addSongToLibrary,
     addAlbumToLibrary: addAlbumToLibrary,
@@ -21,13 +20,7 @@ export default function libraryModel($log, myLibraryStore, $rootScope) {
    * @param {int} songId
    */
   async function addSongToLibrary(songId) {
-    try {
-      await myLibraryStore.addSong(songId);
-      $rootScope.$new().$evalAsync();
-    }
-    catch (error) {
-      $log.warn(error);
-    }
+    $log.info(`Adding song ${songId} to library`);
   }
 
   /**
