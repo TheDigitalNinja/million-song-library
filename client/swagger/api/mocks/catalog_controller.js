@@ -16,7 +16,7 @@
   function get_song(req, res) {
     var songId = req.swagger.params.songId.value;
     var song = _.findWhere(data.songs, { song_id: songId }) || {};
-    res.json(song);
+    res.json({ data: song });
   }
 
   function get_artist(req, res) {
@@ -37,10 +37,10 @@
     var rating = facets.rating;
     var artist = facets.artist;
 
-    res.json({
+    res.json({ data: {
       last_pos: '',
       songs: filterCatalog(genreName, rating, artist),
-    });
+    } } );
   }
 
   function browse_albums(req, res) {

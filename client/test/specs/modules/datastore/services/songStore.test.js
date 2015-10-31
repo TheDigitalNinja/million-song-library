@@ -1,15 +1,18 @@
 import datastoreModule from 'modules/datastore/module';
 
 describe('songStore', () => {
-  let songStore, request, entityMapper, SongInfoEntity, SongListEntity;
+  const error = new Error('an error');
+  let songStore, request, entityMapper, SongInfoEntity, SongListEntity, $log;
 
   beforeEach(() => {
     angular.mock.module(datastoreModule, ($provide) => {
       request = jasmine.createSpyObj('request', ['get']);
       entityMapper = jasmine.createSpy('entityMapper');
+      $log = jasmine.createSpyObj('$log', ['error']);
 
       $provide.value('request', request);
       $provide.value('entityMapper', entityMapper);
+      $provide.value('$log', $log);
     });
 
     inject((_songStore_, _SongInfoEntity_, _SongListEntity_) => {
@@ -21,6 +24,11 @@ describe('songStore', () => {
 
   describe('fetch', () => {
     const SONG_ID = '3';
+    const response = { data: 'a_response' };
+
+    beforeEach(() => {
+      request.get.and.returnValue(response);
+    });
 
     it('should get the song info from the api endpoint', (done) => {
       (async () => {
@@ -32,10 +40,17 @@ describe('songStore', () => {
 
     it('should map the response into a SongInfoEntity', (done) => {
       (async () => {
-        const response = 'a_response';
-        request.get.and.returnValue(response);
         await songStore.fetch(SONG_ID);
-        expect(entityMapper).toHaveBeenCalledWith(response, SongInfoEntity);
+        expect(entityMapper).toHaveBeenCalledWith(response.data, SongInfoEntity);
+        done();
+      })();
+    });
+
+    it('should log an error if an error is thrown', (done) => {
+      (async () => {
+        request.get.and.throwError(error);
+        await songStore.fetch(SONG_ID);
+        expect($log.error).toHaveBeenCalledWith(error);
         done();
       })();
     });
@@ -43,6 +58,12 @@ describe('songStore', () => {
 
   describe('fetchAll', () => {
     const opts = { genre: 'rock', rating: 4 };
+    const response = 'a_response';
+
+
+    beforeEach(() => {
+      request.get.and.returnValue(response);
+    });
 
     it('should request the songs to the endpoint', (done) => {
       (async () => {
@@ -55,12 +76,21 @@ describe('songStore', () => {
 
     it('should map the response into a SongListEntity', (done) => {
       (async () => {
-        const response = 'a_response';
-        request.get.and.returnValue(response);
         await songStore.fetchAll(opts);
         expect(entityMapper).toHaveBeenCalledWith(response, SongListEntity);
         done();
       })();
     });
+
+    it('should log an error if an error is thrown', (done) => {
+      (async () => {
+        request.get.and.throwError(error);
+        await songStore.fetchAll(opts);
+        expect($log.error).toHaveBeenCalledWith(error);
+        done();
+      })();
+    });
+
+
   });
 });
