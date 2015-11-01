@@ -15,7 +15,7 @@
     if (genre !== undefined && genre !== null && genre.length > 0) {
       res.json(getArtistFilteredByGenre(genre));
     } else {
-      res.json({ artists: data.artists });
+      res.json({ data: { artists: data.artists } });
     }
   }
 
@@ -31,13 +31,13 @@
         }
       }
     }
-    res.json({ albums: albums });
+    res.json({ data: { albums: albums } });
   }
 
   function getSimilarArtists(req, res) {
     var artists = _.sample(data.artists, 3);
 
-    res.json({ artists: artists });
+    res.json({ data: { artists: artists } });
   }
 
   function getArtistFilteredByGenre(genre) {

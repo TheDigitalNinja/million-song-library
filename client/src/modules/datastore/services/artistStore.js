@@ -4,9 +4,10 @@
  * @param {entityMapper} entityMapper
  * @param {ArtistInfoEntity} ArtistInfoEntity
  * @param {ArtistListEntity} ArtistListEntity
+ * @param {$log} $log
  * @returns {*}
  */
-export default function artistStore(request, entityMapper, ArtistInfoEntity, ArtistListEntity) {
+export default function artistStore(request, entityMapper, ArtistInfoEntity, ArtistListEntity, $log) {
   'ngInject';
 
   const API_REQUEST_PATH = '/api/v1/catalogedge/';
@@ -18,8 +19,13 @@ export default function artistStore(request, entityMapper, ArtistInfoEntity, Art
      * @return {ArtistInfoEntity}
      */
     async fetch(artistId) {
-      const response = await request.get(`${ API_REQUEST_PATH }artist/${ artistId }`);
-      return entityMapper(response, ArtistInfoEntity);
+      try {
+        const response = await request.get(`${ API_REQUEST_PATH }artist/${ artistId }`);
+        return entityMapper(response.data, ArtistInfoEntity);
+      } catch(error) {
+        $log.error(error);
+      }
+
     },
 
     /**
@@ -29,9 +35,13 @@ export default function artistStore(request, entityMapper, ArtistInfoEntity, Art
      * @return {ArtistListEntity}
      */
     async fetchAll(genre) {
-      const params = { params: { facets: genre } };
-      const response = await request.get(`${ API_REQUEST_PATH }browse/artist`, params);
-      return entityMapper(response, ArtistListEntity);
+      try {
+        const params = { params: { facets: genre } };
+        const response = await request.get(`${ API_REQUEST_PATH }browse/artist`, params);
+        return entityMapper(response.data, ArtistListEntity);
+      } catch(error) {
+        $log.error(error);
+      }
     },
   };
 }
