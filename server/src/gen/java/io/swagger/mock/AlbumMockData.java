@@ -33,7 +33,7 @@ public class AlbumMockData {
         albums.add(albumInfoMock1);
 
         AlbumInfo albumInfoMock2 = new AlbumInfo();
-        albumInfoMock2.setAlbumId("1");
+        albumInfoMock2.setAlbumId("2");
         albumInfoMock2.setAlbumName("The Wall");
         albumInfoMock2.setArtistId("2");
         albumInfoMock2.setArtistName("Pink Floyd");

@@ -4,9 +4,10 @@
  * @param {entityMapper} entityMapper
  * @param {AlbumInfoEntity} AlbumInfoEntity
  * @param {AlbumListEntity} AlbumListEntity
+ * @param {$log} $log
  * @returns {*}
  */
-export default function albumStore(request, entityMapper, AlbumInfoEntity, AlbumListEntity) {
+export default function albumStore(request, entityMapper, AlbumInfoEntity, AlbumListEntity, $log) {
   'ngInject';
 
   const API_REQUEST_PATH = '/api/v1/catalogedge/';
@@ -18,8 +19,12 @@ export default function albumStore(request, entityMapper, AlbumInfoEntity, Album
      * @return {AlbumInfoEntity}
      */
     async fetch(albumId) {
-      const response = await request.get(`${API_REQUEST_PATH}album/${albumId}`);
-      return entityMapper(response, AlbumInfoEntity);
+      try {
+        const response = await request.get(`${ API_REQUEST_PATH }album/${ albumId }`);
+        return entityMapper(response.data, AlbumInfoEntity);
+      } catch(error) {
+        $log.error(error);
+      }
     },
 
     /**
@@ -28,10 +33,14 @@ export default function albumStore(request, entityMapper, AlbumInfoEntity, Album
      * @param {string} genre
      * @return {AlbumListEntity}
      */
-    async fetchAll (genre) {
-      const params = { params: { facets: genre } };
-      const response = await request.get(`${ API_REQUEST_PATH }browse/album`, params);
-      return entityMapper(response, AlbumListEntity);
+    async fetchAll(genre) {
+      try {
+        const params = { params: { facets: genre } };
+        const response = await request.get(`${ API_REQUEST_PATH }browse/album`, params);
+        return entityMapper(response.data, AlbumListEntity);
+      } catch(error) {
+        $log.error(error);
+      }
     },
   };
 }

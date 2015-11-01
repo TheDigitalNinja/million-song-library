@@ -28,7 +28,7 @@
   function get_album(req, res) {
     var albumId = req.swagger.params.albumId.value;
     var album = _.findWhere(data.albums, { album_id: albumId });
-    res.json(album);
+    res.json({ data: album });
   }
 
   function browse_songs(req, res) {
@@ -54,10 +54,10 @@
     else {
        albums = data.albums;
     }
-    res.json({
+    res.json({ data: {
       last_pos: '',
       albums: albums,
-    });
+    }});
   }
 
   function browse_artists(req, res) {
