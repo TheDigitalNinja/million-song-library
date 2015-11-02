@@ -3,13 +3,13 @@
  * @author anram88
  * @param {albumStore} albumStore
  * @param {artistStore} artistStore
- * @param {catalogStore} catalogStore
+ * @param {songStore} songStore
  * @param {$log} $log
  * @param {$rootScope} $rootScope
  * @returns {{getArtist: getArtist, getArtists: getArtists, getSimilarArtists: getSimilarArtists, artist: null,
  *     artists: null}}
  */
-export default function artistModel(albumStore, artistStore, catalogStore, $log, $rootScope) {
+export default function artistModel(albumStore, artistStore, songStore, $log, $rootScope) {
 
   let _model = {
     getArtist: getArtist,
@@ -36,7 +36,7 @@ export default function artistModel(albumStore, artistStore, catalogStore, $log,
         artistAlbums: [],
       };
       _model.artist.artistInfo = await artistStore.fetch(artistId);
-      _model.artist.artistSongs = await catalogStore.fetch({ artist: artistId });
+      _model.artist.artistSongs = await songStore.fetchAll({ artist: artistId });
       // TODO: get albums from artist info
 
       if(done) {

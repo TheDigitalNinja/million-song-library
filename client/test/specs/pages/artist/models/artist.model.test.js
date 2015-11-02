@@ -7,18 +7,18 @@ describe('artistModel', () => {
   const doneFn = jasmine.createSpy('doneFn');
   const error = new Error('an error');
 
-  let artistModel, albumStore, artistStore, catalogStore, $log;
+  let artistModel, albumStore, artistStore, songStore, $log;
 
   beforeEach(() => {
     angular.mock.module(artistModule, ($provide) => {
       albumStore = jasmine.createSpyObj('albumStore', ['fetch']);
       artistStore = jasmine.createSpyObj('artistStore', ['fetch', 'fetchAll']);
-      catalogStore = jasmine.createSpyObj('catalogStore', ['fetch']);
+      songStore = jasmine.createSpyObj('songStore', ['fetch', 'fetchAll']);
       $log = jasmine.createSpyObj('$log', ['warn']);
 
       $provide.value('albumStore', albumStore);
       $provide.value('artistStore', artistStore);
-      $provide.value('catalogStore', catalogStore);
+      $provide.value('songStore', songStore);
       $provide.value('$log', $log);
     });
 
