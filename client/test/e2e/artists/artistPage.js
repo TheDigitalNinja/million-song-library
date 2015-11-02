@@ -1,8 +1,7 @@
-/* global describe, it, expect, beforeEach, pending */
 describe('artistPage', () => {
 
   beforeEach(() => {
-    browser.driver.get('http://localhost:3000/#/artists/1');
+    browser.driver.get(`${ browser.baseUrl }/artists/1`);
   });
 
   it('checks artist name', () => {
@@ -22,7 +21,7 @@ describe('artistPage', () => {
         browser.driver.findElement(By.linkText('Songs')).click();
         browser.driver.findElement(By.linkText('Liga Campeon')).click();
         browser.getCurrentUrl().then((url) => {
-          expect(url).toBe('http://localhost:3000/#/song/1');
+          expect(url).toBe(`${ browser.baseUrl }/song/1`);
           debugger;
         });
       });

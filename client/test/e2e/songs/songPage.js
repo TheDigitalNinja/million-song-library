@@ -1,8 +1,7 @@
-/* global describe, it, expect, beforeEach, pending */
 describe('sonPage', () => {
 
   beforeEach(() => {
-    browser.driver.get('http://localhost:3000/#/song/1');
+    browser.driver.get(`${ browser.baseUrl }/song/1`);
   });
 
   describe('checks song info', () => {
@@ -26,5 +25,4 @@ describe('sonPage', () => {
       expect(songRelease).toMatch('1919');
     });
   });
-
 });

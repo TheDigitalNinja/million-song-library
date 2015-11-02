@@ -1,8 +1,7 @@
-/* global describe, it, expect, beforeEach, pending */
 describe('error page', () => {
 
   beforeEach(() => {
-    browser.driver.get('http://localhost:3000/#/errorPage');
+    browser.driver.get(`${ browser.baseUrl }/errorPage`);
   });
 
   it('Checks error message', () => {
@@ -12,10 +11,10 @@ describe('error page', () => {
   });
 
   it('Redirects to homepage', () => {
-    const homeURL = 'http://localhost:3000/#';
-
     browser.driver.findElement(By.linkText('home page')).click();
-    expect(browser.driver.getCurrentUrl()).toMatch(homeURL);
+    browser.getCurrentUrl().then((url) => {
+      expect(url).toBe(`${ browser.baseUrl }/`);
+      debugger;
+    });
   });
-
 });

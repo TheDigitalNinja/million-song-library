@@ -1,8 +1,7 @@
-/* global describe, it, expect, beforeEach, pending */
 describe('genre filter in home page', () => {
 
   beforeEach(() => {
-    browser.driver.get('http://localhost:3000/#/');
+    browser.driver.get(`${ browser.baseUrl }/`);
   });
 
   it('checks genre name', () => {

@@ -1,8 +1,7 @@
-/* global describe, it, expect, beforeEach, pending */
 describe('nav', () => {
 
   beforeEach(() => {
-    browser.driver.get('http://localhost:3000/#/');
+    browser.driver.get(`${ browser.baseUrl }/`);
   });
 
   it('Artists', () => {
@@ -15,7 +14,7 @@ describe('nav', () => {
     browser.driver.findElement(By.linkText('Artists')).click();
     browser.driver.findElement(By.linkText('La 12')).click();
     browser.getCurrentUrl().then((url) => {
-      expect(url).toBe('http://localhost:3000/#/artists/1');
+      expect(url).toBe(`${ browser.baseUrl }/artists/1`);
       debugger;
     });
   });
@@ -30,7 +29,7 @@ describe('nav', () => {
     browser.driver.findElement(By.linkText('Albums')).click();
     browser.driver.findElement(By.linkText('Some album')).click();
     browser.getCurrentUrl().then((url) => {
-      expect(url).toBe('http://localhost:3000/#/album/1');
+      expect(url).toBe(`${ browser.baseUrl }/album/1`);
       debugger;
     });
   });
@@ -45,9 +44,8 @@ describe('nav', () => {
     browser.driver.findElement(By.linkText('Songs')).click();
     browser.driver.findElement(By.linkText('Liga Campeon')).click();
     browser.getCurrentUrl().then((url) => {
-      expect(url).toBe('http://localhost:3000/#/song/1');
+      expect(url).toBe(`${ browser.baseUrl }/song/1`);
       debugger;
     });
   });
-
 });

@@ -1,8 +1,7 @@
-/* global describe, it, expect, beforeEach, pending */
 describe('albumPage', () => {
 
   beforeEach(() => {
-    browser.driver.get('http://localhost:3000/#/album/1');
+    browser.driver.get(`${ browser.baseUrl }/album/1`);
   });
 
   describe('checks album info', () => {
@@ -26,5 +25,4 @@ describe('albumPage', () => {
       expect(albumYear).toMatch('2010');
     });
   });
-
 });
