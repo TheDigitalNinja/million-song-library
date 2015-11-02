@@ -2,29 +2,29 @@ package io.swagger.model;
 
 import io.swagger.model.AlbumInfo;
 import java.util.*;
+import io.swagger.model.PagingState;
 
 import io.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-10-20T17:56:37.516-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-10-27T19:06:46.559-06:00")
 public class AlbumList  {
   
-  private String lastPos = null;
+  private PagingState pagingState = null;
   private List<AlbumInfo> albums = new ArrayList<AlbumInfo>();
 
   
   /**
-   * The key to pass as the "pos" parameter when retrieving the next page
    **/
-  @ApiModelProperty(value = "The key to pass as the \"pos\" parameter when retrieving the next page")
-  @JsonProperty("last_pos")
-  public String getLastPos() {
-    return lastPos;
+  @ApiModelProperty(value = "")
+  @JsonProperty("pagingState")
+  public PagingState getPagingState() {
+    return pagingState;
   }
-  public void setLastPos(String lastPos) {
-    this.lastPos = lastPos;
+  public void setPagingState(PagingState pagingState) {
+    this.pagingState = pagingState;
   }
 
   
@@ -46,7 +46,7 @@ public class AlbumList  {
     StringBuilder sb = new StringBuilder();
     sb.append("class AlbumList {\n");
     
-    sb.append("  lastPos: ").append(lastPos).append("\n");
+    sb.append("  pagingState: ").append(pagingState).append("\n");
     sb.append("  albums: ").append(albums).append("\n");
     sb.append("}\n");
     return sb.toString();

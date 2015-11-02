@@ -3,7 +3,7 @@ package io.swagger.api;
 import javax.xml.bind.annotation.XmlTransient;
 
 @javax.xml.bind.annotation.XmlRootElement
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-10-20T17:56:37.516-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-10-27T19:06:46.559-06:00")
 public class ApiResponseMessage {
     public static final int ERROR = 1;
     public static final int WARNING = 2;
@@ -30,7 +30,7 @@ public class ApiResponseMessage {
         this.data = song;
     }
 
-    private void initCode (int code) {
+    private void initCode(int code) {
         this.code = code;
         switch (code) {
             case ERROR:
@@ -52,6 +52,7 @@ public class ApiResponseMessage {
                 setType("unknown");
                 break;
         }
+        this.message = message;
     }
 
     @XmlTransient

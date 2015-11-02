@@ -1,8 +1,11 @@
 package io.swagger.mock;
 
+import io.swagger.api.factories.FacetServiceFactory;
+import io.swagger.model.AlbumInfo;
 import io.swagger.model.SongInfo;
 import io.swagger.model.SongList;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +31,7 @@ public class SongMockData {
         songMockData1.setAlbumName("Alien Love Secrets");
         songMockData1.setDuration(230);
         songMockData1.setGenre("Rock");
+        songMockData1.setAverageRating(new BigDecimal("4.5"));
         songs.add(songMockData1);
 
         SongInfo songMockData2 = new SongInfo();
@@ -40,6 +44,7 @@ public class SongMockData {
         songMockData2.setAlbumName("The Wall");
         songMockData2.setDuration(230);
         songMockData2.setGenre("Rock");
+        songMockData2.setAverageRating(new BigDecimal("3.5"));
         songs.add(songMockData2);
 
         SongInfo songMockData3 = new SongInfo();
@@ -51,7 +56,8 @@ public class SongMockData {
         songMockData3.setAlbumId("3");
         songMockData3.setAlbumName("Farewell song");
         songMockData3.setDuration(230);
-        songMockData3.setGenre("Rock and roll");
+        songMockData3.setGenre("Rock and Roll");
+        songMockData3.setAverageRating(new BigDecimal("3.7"));
         songs.add(songMockData3);
 
         SongInfo songMockData4 = new SongInfo();
@@ -63,8 +69,35 @@ public class SongMockData {
         songMockData4.setAlbumId("4");
         songMockData4.setAlbumName("Led Zeppelin III");
         songMockData4.setDuration(230);
-        songMockData4.setGenre("Rock and roll");
+        songMockData4.setGenre("Rock and Roll");
+        songMockData4.setAverageRating(new BigDecimal("3.5"));
         songs.add(songMockData4);
+
+        SongInfo songMockData5 = new SongInfo();
+        songMockData5.setSongId("5");
+        songMockData5.setSongName("Field Maneuvers");
+        songMockData5.setImageLink("https://upload.wikimedia.org/wikipedia/en/a/ad/UncleJamWantsYou.jpg");
+        songMockData5.setArtistId("5");
+        songMockData5.setArtistName("Funkadelic");
+        songMockData5.setAlbumId("5");
+        songMockData5.setAlbumName("Uncle Jam Wants You");
+        songMockData5.setDuration(230);
+        songMockData5.setGenre("Funk");
+        songMockData5.setAverageRating(new BigDecimal("2.5"));
+        songs.add(songMockData5);
+
+        SongInfo songMockData6 = new SongInfo();
+        songMockData6.setSongId("6");
+        songMockData6.setSongName("Rainbow Connection");
+        songMockData6.setImageLink("https://upload.wikimedia.org/wikipedia/en/7/7c/Willie-Nelson-Rainbow-Connection.jpg");
+        songMockData6.setArtistId("6");
+        songMockData6.setArtistName("Willie Nelson");
+        songMockData6.setAlbumId("6");
+        songMockData6.setAlbumName("Rainbow Connection");
+        songMockData6.setDuration(230);
+        songMockData6.setAverageRating(new BigDecimal("1.5"));
+        songMockData6.setGenre("Country");
+        songs.add(songMockData6);
 
         songList.setSongs(songs);
     }
@@ -78,24 +111,48 @@ public class SongMockData {
         return new SongInfo();
     }
 
-    public SongList browseSongs(String pagingState, Integer items, String facets, String sortFields) {
+    public SongList browseSongs(String pagingState, Integer items, String facetList, String sortFields) {
         List<SongInfo> browsedSongs = songList.getSongs();
 
         if (pagingState != null && !pagingState.isEmpty()) {
             // TODO implement pagination
             System.out.println("Pagination: " + pagingState);
         }
-        if (facets != null && facets.length() > 0) {
-            // TODO implement facet filtering
-            System.out.println("Filtering by facet: " + facets);
+
+        if (facetList != null && facetList.length() > 0) {
+
+            //TODO replace reference to mock data
+            FacetMockData facetMockData = new FacetMockData();
+
+            System.out.println("Filtering by facet(s): " + facetList);
+
+            List<SongInfo> pivotSongs = browsedSongs;
+            browsedSongs = new ArrayList<SongInfo>();
+
+            String[] facets = facetList.split(",");
+            for (String facet : facets) {
+                //TODO replace reference to mock data
+                if (FacetServiceFactory.isRatingFacet(facet, facetMockData.mockFacets)) {
+                    browsedSongs = FacetServiceFactory.filterSongsByRatingFacet(pivotSongs, facet);
+                } else {
+                    for (SongInfo song : pivotSongs) {
+                        if (FacetServiceFactory.getFacet(facet, facetMockData.mockFacets) != null) {
+                            String facetName = FacetServiceFactory.getFacet(facet, facetMockData.mockFacets).getName();
+                            if (song.getGenre().equals(facetName)) {
+                                browsedSongs.add(song);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         // TODO if no items are provided should return 25 results
         if (items != null && items > 0) {
+            List<SongInfo> pivotSongs = browsedSongs;
             browsedSongs = new ArrayList<SongInfo>();
-
-            for (int i = 0; i < items && i < songList.getSongs().size(); i++) {
-                browsedSongs.add(songList.getSongs().get(i));
+            for (int i = 0; i < items && i < pivotSongs.size(); i++) {
+                browsedSongs.add(pivotSongs.get(i));
             }
         }
 
