@@ -666,7 +666,7 @@ definitions:
       children:
         type: array
         items:
-          $ref: "#/definitions/FacetInfo"
+          $ref: "#/definitions/FacetInfoWithChildren"
   MyLibrary:
     properties:
       albums:

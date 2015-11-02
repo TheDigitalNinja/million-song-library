@@ -2,6 +2,7 @@ package io.swagger.api.impl;
 
 import io.swagger.api.*;
 import io.swagger.mock.ArtistMockData;
+import io.swagger.mock.FacetMockData;
 import io.swagger.mock.SongMockData;
 import io.swagger.model.*;
 import io.swagger.mock.AlbumMockData;
@@ -245,11 +246,13 @@ public class ApiApiServiceImpl extends ApiApiService {
     // ----------------------------------------------------------------------------------------------------------- OTHER
     // =================================================================================================================
 
+    FacetMockData facetMockData = new FacetMockData();
+
     @Override
     public Response getFacet(String facetId)
             throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        // TODO replace current mock data
+        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", facetMockData.getFacet(facetId))).build();
     }
 
     @Override

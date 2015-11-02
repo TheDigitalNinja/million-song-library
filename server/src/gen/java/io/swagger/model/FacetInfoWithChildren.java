@@ -1,6 +1,5 @@
 package io.swagger.model;
 
-import io.swagger.model.FacetInfo;
 import java.util.*;
 
 import io.swagger.annotations.*;
@@ -13,7 +12,7 @@ public class FacetInfoWithChildren  {
   
   private String facetId = null;
   private String name = null;
-  private List<FacetInfo> children = new ArrayList<FacetInfo>();
+  public List<FacetInfoWithChildren> children = new ArrayList<FacetInfoWithChildren>();
 
   
   /**
@@ -44,10 +43,10 @@ public class FacetInfoWithChildren  {
    **/
   @ApiModelProperty(value = "")
   @JsonProperty("children")
-  public List<FacetInfo> getChildren() {
+  public List<FacetInfoWithChildren> getChildren() {
     return children;
   }
-  public void setChildren(List<FacetInfo> children) {
+  public void setChildren(List<FacetInfoWithChildren> children) {
     this.children = children;
   }
 
