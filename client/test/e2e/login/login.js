@@ -1,14 +1,13 @@
 describe('login', () => {
 
   beforeEach(() => {
-    browser.driver.get('http://localhost:3000/#/login');
+    browser.driver.get(`${ browser.baseUrl }/login`);
   });
 
   describe('When the form is empty', () => {
     it('Should disable the sign in button', () => {
       const button = browser.driver.findElement(By.name('login'));
       const isDisabled = button.getAttribute('disabled');
-
       expect(isDisabled).toBe('true');
     });
   });
@@ -19,7 +18,6 @@ describe('login', () => {
 
       beforeEach(() => {
         const form = browser.driver.findElement(By.css('form'));
-
         loginURL = browser.driver.getCurrentUrl();
         browser.driver.findElement(By.name('email')).sendKeys('fail@email.com');
         browser.driver.findElement(By.name('password')).sendKeys('1234');
@@ -34,7 +32,6 @@ describe('login', () => {
       xit('should display the credentials invalid message', () => {
         pending('Wait for functionality');
         const text = browser.driver.findElement(By.className('alert-danger')).getText();
-
         expect(text).toMatch('Credentials are invalid!');
       });
     });
@@ -45,9 +42,8 @@ describe('login', () => {
         browser.driver.findElement(by.name('email')).sendKeys('correct@email.com');
         browser.driver.findElement(by.name('password')).sendKeys('1234');
         form.submit();
-
         const loginURL = browser.driver.getCurrentUrl();
-        expect(loginURL).toMatch('http://localhost:3000/#');
+        expect(loginURL).toMatch(`${ browser.baseUrl }/`);
       });
     });
   });
