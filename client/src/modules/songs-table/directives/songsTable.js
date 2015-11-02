@@ -12,7 +12,5 @@ export default function songsTable () {
       loading: '=',
       songs: '=',
     },
-    controller: 'songsTableCtrl',
-    controllerAs: 'vm',
   };
 }
