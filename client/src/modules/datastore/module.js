@@ -10,11 +10,11 @@ import albumStore from './services/albumStore';
 import loginStore from './services/loginStore';
 import logoutStore from './services/logoutStore';
 import rateStore from './services/rateStore';
-import genreStore from './services/genreStore';
+import facetStore from './services/facetStore';
 import ArtistInfoEntity from './entities/ArtistInfoEntity';
 import ArtistListEntity from './entities/ArtistListEntity';
-import GenreInfoEntity from './entities/GenreInfoEntity';
-import GenreListEntity from './entities/GenreListEntity';
+import FacetInfoEntity from './entities/FacetInfoEntity';
+import FacetListEntity from './entities/FacetListEntity';
 import AlbumInfoEntity from './entities/AlbumInfoEntity';
 import AlbumListEntity from './entities/AlbumListEntity';
 import SongListEntity from './entities/SongListEntity';
@@ -35,11 +35,11 @@ export default angular.module('msl.datastore', [])
   .factory('loginStore', loginStore)
   .factory('logoutStore', logoutStore)
   .factory('rateStore', rateStore)
-  .factory('genreStore', genreStore)
+  .factory('facetStore', facetStore)
   .value('ArtistInfoEntity', ArtistInfoEntity)
   .value('ArtistListEntity', ArtistListEntity)
-  .value('GenreInfoEntity', GenreInfoEntity)
-  .value('GenreListEntity', GenreListEntity)
+  .value('FacetInfoEntity', FacetInfoEntity)
+  .value('FacetListEntity', FacetListEntity)
   .value('AlbumInfoEntity', AlbumInfoEntity)
   .value('AlbumListEntity', AlbumListEntity)
   .value('SongListEntity', SongListEntity)

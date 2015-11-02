@@ -8,7 +8,11 @@
  * @returns {*}
  */
 
-function songStore(request, entityMapper, SongInfoEntity, SongListEntity, $log) {
+export default function songStore(request,
+                                  entityMapper,
+                                  SongInfoEntity,
+                                  SongListEntity,
+                                  $log) {
 
   'ngInject';
 
@@ -32,12 +36,12 @@ function songStore(request, entityMapper, SongInfoEntity, SongListEntity, $log) 
     /**
      * fetch songs from catalogue endpoint
      * @name songStore#fetchAll
-     * @param {array} opts
+     * @param {string} facets - comma separated list of facetIds
      * @return {SongListEntity}
      */
-    async fetchAll(opts) {
+    async fetchAll(facets) {
       try {
-        const params = { params: { facets: JSON.stringify(opts) } };
+        const params = { params: { facets: facets } };
         const response = await request.get(`${ API_REQUEST_PATH }browse/song`, params);
         return entityMapper(response.data, SongListEntity);
       } catch(error) {
@@ -46,5 +50,3 @@ function songStore(request, entityMapper, SongInfoEntity, SongListEntity, $log) 
     },
   };
 }
-
-export default songStore;

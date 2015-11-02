@@ -1,5 +1,4 @@
 import SongInfoEntity from './SongInfoEntity';
-
 /**
  * @name SongListEntity
  * @property {string} genre

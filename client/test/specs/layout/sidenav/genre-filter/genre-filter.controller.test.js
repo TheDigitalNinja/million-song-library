@@ -6,15 +6,15 @@ describe('genreFilterCtrl', () => {
   const listener = {};
   const genres = ['genre1', 'genre2'];
 
-  let $scope, element, genreFilterCtrl, genreStore, $location, filterModel;
+  let $scope, element, genreFilterCtrl, facetStore, $location, filterModel;
 
   beforeEach(() => {
     angular.mock.module(genreFilter, ($provide) => {
-      genreStore = jasmine.createSpyObj('genreStore', ['fetch']);
+      facetStore = jasmine.createSpyObj('facetStore', ['fetch']);
       $location = jasmine.createSpyObj('$location', ['search']);
-      filterModel = jasmine.createSpyObj('filterModel', ['filter']);
+      filterModel = jasmine.createSpyObj('filterModel', ['filter', 'setSelectedGenre']);
 
-      $provide.value('genreStore', genreStore);
+      $provide.value('facetStore', facetStore);
       $provide.value('filterModel', filterModel);
       $provide.value('$location', $location);
     });
@@ -41,10 +41,10 @@ describe('genreFilterCtrl', () => {
     it('should fetch the genres for the activeGenre', () => {
       const controller = genreFilterCtrl();
       controller.$scope.activeGenre = genres[0];
-      genreStore.fetch.and.returnValue({ genres: genres });
+      facetStore.fetch.and.returnValue({ facets: genres });
 
-      controller.getGenres();
-      expect(genreStore.fetch).toHaveBeenCalledWith(genres[0]);
+      controller._getGenreFacets();
+      expect(facetStore.fetch).toHaveBeenCalledWith(0);
     });
   });
 
@@ -52,7 +52,7 @@ describe('genreFilterCtrl', () => {
     it('should return true if the genre is the selectedGenre', () => {
       const controller = genreFilterCtrl();
       controller.selectedGenre = genres[0];
-      const genre = { name: genres[0] };
+      const genre = genres[0];
 
       expect(controller.activeGenre(genre)).toBeTruthy();
     });
@@ -84,7 +84,7 @@ describe('genreFilterCtrl', () => {
     });
 
     it('should filter by the genre', () => {
-      expect(filterModel.filter).toHaveBeenCalledWith({genre: genre}, listener);
+      expect(filterModel.filter).toHaveBeenCalledWith(listener);
     });
   });
 

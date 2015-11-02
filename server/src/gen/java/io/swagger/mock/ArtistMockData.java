@@ -3,6 +3,8 @@ package io.swagger.mock;
 import io.swagger.api.factories.FacetServiceFactory;
 import io.swagger.model.ArtistList;
 import io.swagger.model.ArtistInfo;
+import io.swagger.model.FacetInfo;
+import io.swagger.model.FacetInfoWithChildren;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,6 +16,77 @@ import java.util.List;
 public class ArtistMockData {
 
     public ArtistList artistList;
+    private FacetMockData facetMockData = new FacetMockData();
+
+    public ArtistInfo getArtist(String artistId) {
+        for (ArtistInfo artist : artistList.getArtists()) {
+            if (artist.getArtistId().equals(artistId)) {
+                return artist;
+            }
+        }
+        return new ArtistInfo();
+    }
+
+    private List<ArtistInfo> applyGenreFacet (String [] facets, List<ArtistInfo> artistList){
+        List<ArtistInfo> result = new ArrayList<ArtistInfo>();
+        boolean hasRatingFacet = false;
+        for (String facet: facets) {
+            if (!FacetServiceFactory.isRatingFacet(facet, facetMockData.getRatingFacets())) {
+                hasRatingFacet = true;
+                for (ArtistInfo artist : artistList) {
+                    String facetName = FacetServiceFactory.getFacet(facet, facetMockData.mockFacets).getName();
+                    if (artist.getGenre().equals(facetName)) {
+                        result.add(artist);
+                    }
+                }
+            }
+        }
+
+        if (hasRatingFacet) {
+            return result;
+        }else {
+            return artistList;
+        }
+    }
+
+    private List<ArtistInfo> applyRatingFacet (String [] facets, List<ArtistInfo> artistList) {
+        for (String facet : facets) {
+            if (FacetServiceFactory.isRatingFacet(facet, facetMockData.getRatingFacets())) {
+                return FacetServiceFactory.filterArtistByRatingFacet(artistList, facet);
+            }
+        }
+        return artistList;
+    }
+
+    public ArtistList browseArtists(String pagingState, Integer items, String facetList) {
+        List<ArtistInfo> browsedArtists = artistList.getArtists();
+
+        if (pagingState != null && !pagingState.isEmpty()) {
+            // TODO implement pagination
+            System.out.println("Paging State: " + pagingState);
+        }
+
+        if (facetList != null && facetList.length() > 0) {
+            System.out.println("Filtering by facet(s): " + facetList);
+            String[] facets = facetList.split(",");
+            browsedArtists = applyRatingFacet(facets, browsedArtists);
+            browsedArtists = applyGenreFacet(facets, browsedArtists);
+        }
+
+        // TODO if no items is provided should return 25 results
+        if (items != null && items > 0) {
+            List<ArtistInfo> pivotArtists = browsedArtists;
+            browsedArtists = new ArrayList<ArtistInfo>();
+            for (int i = 0; i < items && i < pivotArtists.size(); i++) {
+                browsedArtists.add(pivotArtists.get(i));
+            }
+        }
+
+        ArtistList results = new ArtistList();
+        results.setArtists(browsedArtists);
+
+        return results;
+    }
 
     public ArtistMockData() {
         this.artistList = new ArtistList();
@@ -23,7 +96,7 @@ public class ArtistMockData {
         artistMockData1.setArtistId("1");
         artistMockData1.setArtistName("Vai, Steve");
         artistMockData1.setImageLink("https://veggiesrock.files.wordpress.com/2011/07/vai2009_promo11.jpg");
-        artistMockData1.setAverageRating(new BigDecimal("4.7"));
+        artistMockData1.setAverageRating(new BigDecimal("4.5"));
         List<String> artistMockAlbums1 = new ArrayList<String>();
         artistMockAlbums1.add("1");
         artistMockData1.setAlbumsList(artistMockAlbums1);
@@ -31,6 +104,9 @@ public class ArtistMockData {
         artistMockSongs1.add("1");
         artistMockData1.setGenre("Rock");
         artistMockData1.setSongsList(artistMockSongs1);
+        List<String> artistMockData1SimilarArtists = new ArrayList<String>();
+        artistMockData1SimilarArtists.add("7");
+        artistMockData1.setSimilarArtistsList(artistMockData1SimilarArtists);
         artists.add(artistMockData1);
 
         ArtistInfo artistMockData2 = new ArtistInfo();
@@ -59,6 +135,9 @@ public class ArtistMockData {
         artistMockSongs3.add("3");
         artistMockData3.setGenre("Rock and Roll");
         artistMockData3.setSongsList(artistMockSongs3);
+        List<String> artistMockData3SimilarArtists = new ArrayList<String>();
+        artistMockData3SimilarArtists.add("4");
+        artistMockData3.setSimilarArtistsList(artistMockData3SimilarArtists);
         artistMockAlbums3.add("3");
 
         ArtistInfo artistMockData4 = new ArtistInfo();
@@ -73,6 +152,9 @@ public class ArtistMockData {
         artistMockSongs4.add("4");
         artistMockData4.setGenre("Rock and Roll");
         artistMockData4.setSongsList(artistMockSongs4);
+        List<String> artistMockData4SimilarArtists = new ArrayList<String>();
+        artistMockData4SimilarArtists.add("3");
+        artistMockData4.setSimilarArtistsList(artistMockData4SimilarArtists);
         artists.add(artistMockData4);
 
         ArtistInfo artistMockData5 = new ArtistInfo();
@@ -87,6 +169,9 @@ public class ArtistMockData {
         List<String> artistMockSongs5 = new ArrayList<String>();
         artistMockSongs5.add("5");
         artistMockData5.setSongsList(artistMockSongs5);
+        List<String> artistMockData5SimilarArtists = new ArrayList<String>();
+        artistMockData5SimilarArtists.add("8");
+        artistMockData5.setSimilarArtistsList(artistMockData5SimilarArtists);
         artists.add(artistMockData5);
 
         ArtistInfo artistMockData6 = new ArtistInfo();
@@ -99,75 +184,46 @@ public class ArtistMockData {
         artistMockData6.setGenre("Country");
         artistMockData6.setAlbumsList(artistMockAlbums6);
         List<String> artistMockSongs6 = new ArrayList<String>();
-        artistMockSongs5.add("6");
+        artistMockSongs6.add("6");
         artistMockData6.setSongsList(artistMockSongs6);
         artists.add(artistMockData6);
 
+        ArtistInfo artistMockData7 = new ArtistInfo();
+        artistMockData7.setArtistId("7");
+        artistMockData7.setArtistName("Joe Satriani");
+        artistMockData7.setImageLink("http://www.spirit-of-metal.com/membre_groupe/photo/Joe_Satriani-14020.jpg");
+        artistMockData7.setAverageRating(new BigDecimal("4.5"));
+        List<String> artistMockAlbums7 = new ArrayList<String>();
+        artistMockAlbums7.add("7");
+        artistMockAlbums7.add("8");
+        artistMockData7.setAlbumsList(artistMockAlbums7);
+        List<String> artistMockSongs7 = new ArrayList<String>();
+        artistMockSongs7.add("7");
+        artistMockSongs7.add("8");
+        artistMockData7.setGenre("Rock");
+        artistMockData7.setSongsList(artistMockSongs7);
+        List<String> artistMockData7SimilarArtists = new ArrayList<String>();
+        artistMockData7SimilarArtists.add("1");
+        artistMockData7.setSimilarArtistsList(artistMockData7SimilarArtists);
+        artists.add(artistMockData7);
+
+        ArtistInfo artistMockData8 = new ArtistInfo();
+        artistMockData8.setArtistId("8");
+        artistMockData8.setArtistName("Earth wind and fire");
+        artistMockData8.setImageLink("http://www.myplay.com/files/imagecache/photo_345_square/files/artist_images/dxc__qp1046245.jpg");
+        artistMockData8.setAverageRating(new BigDecimal("2.5"));
+        List<String> artistMockAlbums8 = new ArrayList<String>();
+        artistMockAlbums8.add("9");
+        artistMockData8.setAlbumsList(artistMockAlbums8);
+        List<String> artistMockSongs8 = new ArrayList<String>();
+        artistMockSongs8.add("9");
+        artistMockData8.setGenre("Funk");
+        artistMockData8.setSongsList(artistMockSongs8);
+        List<String> artistMockData8SimilarArtists = new ArrayList<String>();
+        artistMockData8SimilarArtists.add("5");
+        artistMockData8.setSimilarArtistsList(artistMockData8SimilarArtists);
+        artists.add(artistMockData8);
+
         artistList.setArtists(artists);
-    }
-
-    public ArtistInfo getArtist(String artistId) {
-        for (ArtistInfo artist : artistList.getArtists()) {
-            if (artist.getArtistId().equals(artistId)) {
-                return artist;
-            }
-        }
-        return new ArtistInfo();
-    }
-
-    public ArtistList browseArtists(String pagingState, Integer items, String facetList, String sortFields) {
-        List<ArtistInfo> browsedArtists = artistList.getArtists();
-
-        if (pagingState != null && !pagingState.isEmpty()) {
-            // TODO implement pagination
-            System.out.println("Paging State: " + pagingState);
-        }
-
-        if (facetList != null && facetList.length() > 0) {
-
-            //TODO replace reference to mock data
-            FacetMockData facetMockData = new FacetMockData();
-
-            System.out.println("Filtering by facet(s): " + facetList);
-
-            List<ArtistInfo> pivotArtists = browsedArtists;
-            browsedArtists = new ArrayList<ArtistInfo>();
-
-            String[] facets = facetList.split(",");
-            for (String facet : facets) {
-                //TODO replace reference to mock data
-                if (FacetServiceFactory.isRatingFacet(facet, facetMockData.mockFacets)) {
-                    browsedArtists = FacetServiceFactory.filterArtistByRatingFacet(pivotArtists, facet);
-                } else {
-                    for (ArtistInfo artist : pivotArtists) {
-                        if (FacetServiceFactory.getFacet(facet, facetMockData.mockFacets) != null) {
-                            String facetName = FacetServiceFactory.getFacet(facet, facetMockData.mockFacets).getName();
-                            if (artist.getGenre().equals(facetName)) {
-                                browsedArtists.add(artist);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // TODO if no items is provided should return 25 results
-        if (items != null && items > 0) {
-            List<ArtistInfo> pivotArtists = browsedArtists;
-            browsedArtists = new ArrayList<ArtistInfo>();
-            for (int i = 0; i < items && i < pivotArtists.size(); i++) {
-                browsedArtists.add(pivotArtists.get(i));
-            }
-        }
-
-        if (sortFields != null && !sortFields.isEmpty()) {
-            //TODO implement sorting by sortFields
-            System.out.println("Sorting results by: " + sortFields);
-        }
-
-        ArtistList results = new ArtistList();
-        results.setArtists(browsedArtists);
-
-        return results;
     }
 }

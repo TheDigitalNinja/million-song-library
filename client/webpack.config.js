@@ -26,7 +26,7 @@ if (_.isUndefined(process.env.API_HOST)) {
   if (argv.mock || process.env.npm_config_mock) {
     process.env.API_HOST = "http://localhost:10010";
   } else {
-    process.env.API_HOST = "";
+    process.env.API_HOST = "http://localhost:9000";
   }
 }
 

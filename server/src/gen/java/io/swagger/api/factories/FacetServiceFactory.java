@@ -1,9 +1,6 @@
 package io.swagger.api.factories;
 
-import io.swagger.model.AlbumInfo;
-import io.swagger.model.ArtistInfo;
-import io.swagger.model.FacetInfoWithChildren;
-import io.swagger.model.SongInfo;
+import io.swagger.model.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,39 +11,6 @@ import java.util.List;
  */
 public class FacetServiceFactory {
 
-    /**
-     * Retrieves a facet from list by id
-     * @param facet_id
-     * @param mockFacets
-     * @return
-     */
-    public static FacetInfoWithChildren getFacet (String facet_id, List<FacetInfoWithChildren> mockFacets) {
-        FacetInfoWithChildren searchResults = FacetServiceFactory.searchForFacet(mockFacets, facet_id);
-        if (searchResults != null && searchResults.getFacetId().equals(facet_id)) {
-            return searchResults;
-        }
-        return null;
-    }
-
-    /**
-     * Searches recursively for a facet under the children
-     * @param facets
-     * @param facet_id
-     * @return
-     */
-    public static FacetInfoWithChildren searchForFacet(List<FacetInfoWithChildren> facets, String facet_id) {
-        for (FacetInfoWithChildren facet : facets) {
-            if (facet.getFacetId().equals(facet_id)) {
-                return facet;
-            } else if (facet.getChildren().size() > 0) {
-                FacetInfoWithChildren searchResults = searchForFacet(facet.getChildren(), facet_id);
-                if (searchResults != null) {
-                    return searchResults;
-                }
-            }
-        }
-        return null;
-    }
 
     /**
      * Checks if facet is type rating facet
@@ -55,13 +19,21 @@ public class FacetServiceFactory {
      * @return boolean
      */
     public static boolean isRatingFacet(String facet_id, List<FacetInfoWithChildren> ratingFacets) {
-        ratingFacets = ratingFacets.get(1).getChildren();
         for (FacetInfoWithChildren ratingFacet : ratingFacets) {
             if (ratingFacet.getFacetId().equals(facet_id)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public static FacetInfoWithChildren getFacet (String facet_id, List<FacetInfoWithChildren> sourceList) {
+        for (FacetInfoWithChildren _facet : sourceList) {
+            if (_facet.getFacetId().equals(facet_id)) {
+                return _facet;
+            }
+        }
+        return null;
     }
 
     public static List<AlbumInfo> filterAlbumByRatingFacet(List<AlbumInfo> albumList, String facet_id) {

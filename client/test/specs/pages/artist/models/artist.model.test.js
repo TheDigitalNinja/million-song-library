@@ -2,8 +2,7 @@ import artistModule from 'pages/artist/artist.module.js';
 
 describe('artistModel', () => {
   const ARTIST_ID = 5;
-  const RATING = 3;
-  const GENRE = 'rock';
+  const FACET = '3';
   const doneFn = jasmine.createSpy('doneFn');
   const error = new Error('an error');
 
@@ -191,8 +190,8 @@ describe('artistModel', () => {
   describe('filterArtists', () => {
     it('should fetch the albums', (done) => {
       (async () => {
-        await artistModel.filterArtists(RATING, GENRE);
-        expect(artistStore.fetchAll).toHaveBeenCalledWith('rock');
+        await artistModel.filterArtists(FACET);
+        expect(artistStore.fetchAll).toHaveBeenCalledWith('3');
         done();
       })();
     });
@@ -201,7 +200,7 @@ describe('artistModel', () => {
       (async () => {
         const artistList = { artists: ['anArtist'] };
         artistStore.fetchAll.and.returnValue(artistList);
-        await artistModel.filterArtists(RATING, GENRE, doneFn);
+        await artistModel.filterArtists(FACET, doneFn);
         expect(doneFn).toHaveBeenCalledWith(artistList.artists);
         done();
       })();
@@ -210,7 +209,7 @@ describe('artistModel', () => {
     it('should log a warn if an error is thrown', (done) => {
       (async () => {
         artistStore.fetchAll.and.throwError(error);
-        await artistModel.filterArtists(RATING, GENRE, doneFn);
+        await artistModel.filterArtists(FACET, doneFn);
         expect($log.warn).toHaveBeenCalledWith(error);
         done();
       })();

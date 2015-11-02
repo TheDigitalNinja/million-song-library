@@ -37,7 +37,7 @@ import com.sun.jersey.multipart.FormDataParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
 
-@Path("//msl")
+@Path("/msl")
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
 @io.swagger.annotations.Api(value = "/msl", description = "the msl API")
@@ -392,4 +392,3 @@ public class MslApi  {
         return delegate.searchFor(searchText,searchType);
     }
 }
-

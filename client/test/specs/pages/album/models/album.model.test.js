@@ -5,8 +5,7 @@ describe('albumModel', () => {
 
   const ALBUM_LIST = { albums: ['album1', 'album2'] };
   const ALBUM_ID = 4;
-  const RATING = 3;
-  const GENRE = 'rock';
+  const FACET = '3';
   const doneFn = jasmine.createSpy('doneFn');
   const error = new Error('an error');
 
@@ -84,8 +83,8 @@ describe('albumModel', () => {
   describe('filterAlbums', () => {
     it('should filter the albums by genres', (done) => {
       (async () => {
-        await albumModel.filterAlbums(RATING, GENRE, doneFn);
-        expect(albumStore.fetchAll).toHaveBeenCalledWith(GENRE);
+        await albumModel.filterAlbums(FACET, doneFn);
+        expect(albumStore.fetchAll).toHaveBeenCalledWith(FACET);
         done();
       })();
     });
@@ -95,7 +94,7 @@ describe('albumModel', () => {
         const albumList = { albums: ['anAlbum'] };
         albumStore.fetchAll.and.returnValue(albumList);
 
-        await albumModel.filterAlbums(RATING, GENRE, doneFn);
+        await albumModel.filterAlbums(FACET, doneFn);
         expect(doneFn).toHaveBeenCalledWith(albumList.albums);
         done();
       })();
@@ -105,7 +104,7 @@ describe('albumModel', () => {
       (async () => {
         albumStore.fetchAll.and.throwError(error);
 
-        await albumModel.filterAlbums(RATING, GENRE, doneFn);
+        await albumModel.filterAlbums(FACET, doneFn);
         expect($log.warn).toHaveBeenCalledWith(error);
         done();
       })();

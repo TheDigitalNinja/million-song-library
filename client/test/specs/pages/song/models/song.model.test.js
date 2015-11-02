@@ -78,13 +78,12 @@ describe('songModel', () => {
   });
 
   describe('filterSongs', () => {
-    const RATING = 4;
-    const GENRE = 'rock';
+    const facets = '4';
 
     it('should fetch the songs with the given rating and genre', (done) => {
       (async () => {
-        const params = { rating: RATING, genre: GENRE };
-        await songModel.filterSongs(RATING, GENRE);
+        const params = facets;
+        await songModel.filterSongs(facets);
         expect(songStore.fetchAll).toHaveBeenCalledWith(params);
         done();
       })();
@@ -95,7 +94,7 @@ describe('songModel', () => {
         const songsList = { songs: ['song'] };
         const doneFn = jasmine.createSpy('doneFn');
         songStore.fetchAll.and.returnValue(songsList);
-        await songModel.filterSongs(RATING, GENRE, doneFn);
+        await songModel.filterSongs(facets, doneFn);
         expect(doneFn).toHaveBeenCalledWith(songsList.songs);
         done();
       })();

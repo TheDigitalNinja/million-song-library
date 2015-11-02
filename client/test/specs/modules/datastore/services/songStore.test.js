@@ -57,7 +57,7 @@ describe('songStore', () => {
   });
 
   describe('fetchAll', () => {
-    const opts = { genre: 'rock', rating: 4 };
+    const opts = '4';
     const response = { data: 'a_response' };
 
 
@@ -67,7 +67,7 @@ describe('songStore', () => {
 
     it('should request the songs to the endpoint', (done) => {
       (async () => {
-        const params = { facets: JSON.stringify(opts) };
+        const params = { facets: opts };
         await songStore.fetchAll(opts);
         expect(request.get).toHaveBeenCalledWith('/msl/v1/catalogedge/browse/song', { params });
         done();
@@ -90,7 +90,6 @@ describe('songStore', () => {
         done();
       })();
     });
-
 
   });
 });

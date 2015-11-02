@@ -48,16 +48,14 @@ export default function songModel($log, songStore, $rootScope) {
 
   /**
    * Gets songs filtered by rating and genre
-   * @param {integer} rating
-   * @param {string} genre
+   * @param {string} facets
    * @param {function} done
    */
-  async function filterSongs(rating, genre, done) {
+  async function filterSongs(facets, done) {
     try {
-      const songsList = await songStore.fetchAll({ rating, genre });
-      const songs = songsList.songs;
+      const songsList = await songStore.fetchAll(facets);
       if(done) {
-        done(songs);
+        done(songsList.songs);
       }
     }
     catch(error) {

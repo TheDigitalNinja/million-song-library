@@ -32,70 +32,101 @@
   }
 
   function browse_songs(req, res) {
-    var facets = JSON.parse(req.swagger.params.facets.value || "{}");
-    var genreName = facets.genre;
-    var rating = facets.rating;
-    var artist = facets.artist;
+    var facets = req.swagger.params.facets.value || "";
+    var facetsList = facets.split(',');
+    var genreId, ratingId;
+
+    for(var i = 0; i < facetsList.length; i++) {
+      var facetId = facetsList[i];
+
+      if(isRatingFilter(facetId)) {
+        ratingId = facetId;
+      }
+      else if(isGenreFilter(facetId)) {
+        genreId = facetId;
+      }
+    }
 
     res.json({ data: {
       last_pos: '',
-      songs: filterCatalog(genreName, rating, artist),
+      songs: filterCatalog(data.songs, genreId, ratingId),
     } } );
   }
 
   function browse_albums(req, res) {
-    var genreName = req.swagger.params.facets.value;
-    var albums;
-    if(genreName) {
-      albums = _.filter(data.albums, function(album) {
-        return album.genre.toLowerCase() == genreName.toLowerCase();
-      });
+    var facets = req.swagger.params.facets.value || "";
+    var facetsList = facets.split(',');
+    var genreId, ratingId;
+
+    for(var i = 0; i < facetsList.length; i++) {
+      var facetId = facetsList[i];
+
+      if(isRatingFilter(facetId)) {
+        ratingId = facetId;
+      }
+      else if(isGenreFilter(facetId)) {
+        genreId = facetId;
+      }
     }
-    else {
-       albums = data.albums;
-    }
+
     res.json({ data: {
       last_pos: '',
-      albums: albums,
+      albums: filterCatalog(data.albums, genreId, ratingId),
     }});
   }
 
   function browse_artists(req, res) {
-    var genreName = req.swagger.params.facets.value;
-    var artists;
-    if(genreName) {
-      artists = _.filter(data.artists, function(artist) {
-        return artist.genre.toLowerCase() == genreName.toLowerCase();
-      });
+    var facets = req.swagger.params.facets.value || "";
+    var facetsList = facets.split(',');
+    var genreId, ratingId;
+
+    for(var i = 0; i < facetsList.length; i++) {
+      var facetId = facetsList[i];
+
+      if(isRatingFilter(facetId)) {
+        ratingId = facetId;
+      }
+      else if(isGenreFilter(facetId)) {
+        genreId = facetId;
+      }
     }
-    else {
-       artists = data.artists;
-    }
+
     res.json({ data: {
       last_pos: '',
-      artists: artists,
+      artists: filterCatalog(data.artists, genreId, ratingId),
     }});
   }
 
-  function filterCatalog(genreName, rating, artist) {
+  function filterCatalog(catalog, genreId, ratingId) {
     var res;
-    if(genreName) {
-       res = _.filter(data.songs, function(song) {
-        return song.genre.toLowerCase() == genreName.toLowerCase();
+    if(genreId) {
+      var genre = _.find(data.genres, { facet_id: genreId });
+       res = _.filter(catalog, function(entity) {
+        return entity.genre.toLowerCase() == genre.name.toLowerCase();
       });
     }
     else {
-      res = data.songs;
+      res = catalog;
     }
 
-    if(rating) {
-       res = _.filter(res, function(song) { return song.average_rating >= rating; });
-    }
-
-    if(artist) {
-      res = _.filter(res, function(song) { return song.artist_id == artist });
+    if(ratingId) {
+      var ratingFilter = _.find(data.ratings, { facet_id: ratingId });
+      var rating = parseInt(ratingFilter.name[0]);
+      res = _.filter(res, function(entity) { return entity.average_rating >= rating; });
     }
 
     return res;
+  }
+
+  function isGenreFilter(facetId) {
+   var genres = data.genres;
+   var facetIds = _.pluck(genres, 'facet_id');
+   return _.includes(facetIds, facetId);
+  }
+
+  function isRatingFilter(facetId) {
+   var ratings = data.ratings;
+   var facetIds = _.pluck(ratings, 'facet_id');
+   return _.includes(facetIds, facetId);
   }
 })();

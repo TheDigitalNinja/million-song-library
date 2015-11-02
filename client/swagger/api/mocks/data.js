@@ -201,36 +201,63 @@ module.exports = {
   ],
   genres: [
     {
-      facet_id: '1',
+      facet_id: '2',
       name: 'Rock',
       children: [
         {
-          facet_id: '2',
+          facet_id: '3',
           name: 'Rock Clasico',
         },
         {
-          facet_id: '3',
+          facet_id: '4',
           name: 'Metal',
         }],
     },
     {
+      facet_id: '5',
       name: 'Jazz',
       children: [],
     },
     {
+      facet_id: '6',
       name: 'Salsa',
       children: [],
     },
     {
+      facet_id: '7',
       name: 'Merengue',
       children: [],
     },
     {
+      facet_id: '8',
       name: 'Classic',
       children: [],
     },
     {
+      facet_id: '9',
       name: 'Bachata',
+      children: [],
+    },
+  ],
+  ratings: [
+    {
+      facet_id: '14',
+      name: '4 stars and up',
+      children: [],
+    },
+    {
+      facet_id: '13',
+      name: '3 stars and up',
+      children: [],
+    },
+    {
+      facet_id: '12',
+      name: '2 stars and up',
+      children: [],
+    },
+    {
+      facet_id: '11',
+      name: '1 stars and up',
       children: [],
     },
   ],

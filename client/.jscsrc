@@ -48,7 +48,8 @@
       "else",
       "do",
       "return",
-      "try"
+      "try",
+      "throw"
     ],
     "requireSpaceBeforeBinaryOperators": [
         "=", "+=", "-=", "*=", "/=", "%=", "<<=", ">>=", ">>>=",

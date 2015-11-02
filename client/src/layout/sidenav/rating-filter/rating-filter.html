@@ -1,15 +1,19 @@
 <h3> Rating </h3>
 <ul>
-  <li ng-repeat='rate in vm.rates track by $index'>
+  <li ng-repeat='rating in vm.ratingFacets'>
     <ul class="star-rating list-unstyled" ng-class='rating-readonly'>
-      <a href="" ng-click="vm.applyRatingFilter(rate)" class="stars{{rate.rate}}" ng-class="{ 'active': vm.activeRating(rate) }">
-        <li ng-repeat="star in rate.stars track by $index">
+      <a href=""
+         ng-click="vm.applyRatingFilter(rating.facetId)"
+         class="stars{{rating.name[0]}}"
+         ng-init="rating.stars = vm.getStars(rating)"
+         ng-class="{ 'active': vm.isActiveRating(rating.facetId) }">
+        <li ng-repeat="star in rating.stars track by $index">
           <button type="button" class="btn fa" ng-class="star.filled ? 'fa-star' : 'fa-star-o'"></button>
         </li>
         <span>&amp; up</span>
       </a>
     </ul>
-    <button ng-click="vm.applyRatingFilter(null)" ng-show="vm.activeRating(rate)" type="button" class="close deselecFilter{{rate.rate}}">
+    <button ng-click="vm.applyRatingFilter('')" ng-show="vm.isActiveRating(rating.facetId)" type="button" class="close deselecFilter{{rating.name[0]}}">
       <span aria-hidden="true">&times;</span>
     </button>
   </li>
