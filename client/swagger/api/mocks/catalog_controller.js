@@ -22,7 +22,7 @@
   function get_artist(req, res) {
     var artistId = req.swagger.params.artistId.value;
     var artist = _.findWhere(data.artists, { artist_id: artistId });
-    res.json(artist);
+    res.json({ data: artist });
   }
 
   function get_album(req, res) {
@@ -71,10 +71,10 @@
     else {
        artists = data.artists;
     }
-    res.json({
+    res.json({ data: {
       last_pos: '',
       artists: artists,
-    });
+    }});
   }
 
   function filterCatalog(genreName, rating, artist) {
