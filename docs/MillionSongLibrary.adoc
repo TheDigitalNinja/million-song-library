@@ -75,7 +75,18 @@ That is a *LOT* of information. Let's summarize...
 
 Database
 ~~~~~~~~
-[red]#TBA#: Add Cassandra schema info here once it is developed
+.Entity-Relationship Diagram
+image:images/entity_relationship.png[Entity Relationship Diagram]
+
+.Access Patterns
+image:images/access_patterns.png[Access Patterns Diagram]
+
+.Queries
+[options="header"]
+|=======================
+|Query Number |Description  |
+|Q1           |Users by email    |image:images/Q1 users by email.png[Q1 Users by email]
+|=======================
 
 Data Import
 ~~~~~~~~~~~
