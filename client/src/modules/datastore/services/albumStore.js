@@ -7,7 +7,7 @@
  * @param {$log} $log
  * @returns {*}
  */
-export default function albumStore(request, entityMapper, AlbumInfoEntity, AlbumListEntity, $log) {
+function albumStore(request, entityMapper, AlbumInfoEntity, AlbumListEntity, $log) {
   'ngInject';
 
   const API_REQUEST_PATH = '/api/v1/catalogedge/';
@@ -44,3 +44,5 @@ export default function albumStore(request, entityMapper, AlbumInfoEntity, Album
     },
   };
 }
+
+export default albumStore;
