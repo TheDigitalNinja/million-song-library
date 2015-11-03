@@ -8,7 +8,7 @@
  * @returns {*}
  */
 
-export default function songStore(request, entityMapper, SongInfoEntity, SongListEntity, $log) {
+function songStore(request, entityMapper, SongInfoEntity, SongListEntity, $log) {
 
   'ngInject';
 
@@ -39,10 +39,12 @@ export default function songStore(request, entityMapper, SongInfoEntity, SongLis
       try {
         const params = { params: { facets: JSON.stringify(opts) } };
         const response = await request.get(`${ API_REQUEST_PATH }browse/song`, params);
-        return entityMapper(response, SongListEntity);
+        return entityMapper(response.data, SongListEntity);
       } catch(error) {
         $log.error(error);
       }
     },
   };
 }
+
+export default songStore;
