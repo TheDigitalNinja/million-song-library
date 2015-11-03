@@ -4,9 +4,12 @@
  * @param {entityMapper} entityMapper
  * @param {SongInfoEntity} SongInfoEntity
  * @param {SongListEntity} SongListEntity
+ * @param {$log} $log
  * @returns {*}
  */
-function songStore(request, entityMapper, SongInfoEntity, SongListEntity) {
+
+export default function songStore(request, entityMapper, SongInfoEntity, SongListEntity, $log) {
+
   'ngInject';
 
   const API_REQUEST_PATH = '/api/v1/catalogedge/';
@@ -18,8 +21,12 @@ function songStore(request, entityMapper, SongInfoEntity, SongListEntity) {
      * @return {SongInfoEntity}
      */
     async fetch(songId) {
-      const response = await request.get(`${ API_REQUEST_PATH }song/${ songId }`);
-      return entityMapper(response, SongInfoEntity);
+      try {
+        const response = await request.get(`${ API_REQUEST_PATH }song/${ songId }`);
+        return entityMapper(response.data, SongInfoEntity);
+      } catch(error) {
+        $log.error(error);
+      }
     },
 
     /**
@@ -29,11 +36,13 @@ function songStore(request, entityMapper, SongInfoEntity, SongListEntity) {
      * @return {SongListEntity}
      */
     async fetchAll(opts) {
-      const params = { params: { facets: JSON.stringify(opts) } };
-      const response = await request.get(`${ API_REQUEST_PATH }browse/song`, params);
-      return entityMapper(response, SongListEntity);
+      try {
+        const params = {params: {facets: JSON.stringify(opts)}};
+        const response = await request.get(`${ API_REQUEST_PATH }browse/song`, params);
+        return entityMapper(response, SongListEntity);
+      } catch(error) {
+        $log.error(error);
+      }
     },
   };
 }
-
-export default songStore;
