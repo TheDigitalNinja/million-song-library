@@ -37,7 +37,7 @@ export default function songStore(request, entityMapper, SongInfoEntity, SongLis
      */
     async fetchAll(opts) {
       try {
-        const params = {params: {facets: JSON.stringify(opts)}};
+        const params = { params: { facets: JSON.stringify(opts) } };
         const response = await request.get(`${ API_REQUEST_PATH }browse/song`, params);
         return entityMapper(response, SongListEntity);
       } catch(error) {
