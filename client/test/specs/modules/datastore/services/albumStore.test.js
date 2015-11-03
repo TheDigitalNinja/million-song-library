@@ -2,15 +2,18 @@
 import datastoreModule from 'modules/datastore/module';
 
 describe('albumStore', () => {
-  let albumStore, request, entityMapper, AlbumInfoEntity, AlbumListEntity;
+  const error = new Error('an error');
+  let albumStore, request, entityMapper, AlbumInfoEntity, AlbumListEntity, $log;
 
   beforeEach(() => {
     angular.mock.module(datastoreModule, ($provide) => {
       request = jasmine.createSpyObj('request', ['get']);
       entityMapper = jasmine.createSpy('entityMapper');
+      $log = jasmine.createSpyObj('$log', ['error']);
 
       $provide.value('request', request);
       $provide.value('entityMapper', entityMapper);
+      $provide.value('$log', $log);
     });
 
     inject((_albumStore_, _AlbumInfoEntity_, _AlbumListEntity_) => {
@@ -22,6 +25,11 @@ describe('albumStore', () => {
 
   describe('fetch', () => {
     const ALBUM_ID = '4';
+    const response = { data: { albumId: ALBUM_ID }};
+
+    beforeEach(() => {
+      request.get.and.returnValue(response);
+    });
 
     it('should request the album', (done) => {
       (async () => {
@@ -33,21 +41,34 @@ describe('albumStore', () => {
 
     it('should map the album into an AlbumInfoEntity', (done) => {
       (async () => {
-        const response = { albumId: ALBUM_ID };
-        request.get.and.returnValue(response);
         await albumStore.fetch(ALBUM_ID);
-        expect(entityMapper).toHaveBeenCalledWith(response, AlbumInfoEntity);
+        expect(entityMapper).toHaveBeenCalledWith(response.data, AlbumInfoEntity);
         done();
       })();
     });
+
+    it('should log an error if an error is thrown', (done) => {
+      (async () => {
+        request.get.and.throwError(error);
+        await albumStore.fetch(ALBUM_ID);
+        expect($log.error).toHaveBeenCalledWith(error);
+        done();
+      })();
+    });
+
   });
 
   describe('fetchAll', () => {
     const GENRE = 'rock';
+    const response = { data: { albums: [] } };
+
+    beforeEach(() => {
+      request.get.and.returnValue(response);
+    });
 
     it('should browse the albums', (done) => {
       (async () => {
-        const params = { params: {facets: GENRE } };
+        const params = { params: { facets: GENRE } };
         await albumStore.fetchAll(GENRE);
         expect(request.get).toHaveBeenCalledWith('/api/v1/catalogedge/browse/album', params);
         done();
@@ -56,12 +77,20 @@ describe('albumStore', () => {
 
     it('should map the response into a AlbumListEntity', (done) => {
       (async () => {
-        const response = { albums: [] };
-        request.get.and.returnValue(response);
         await albumStore.fetchAll(GENRE);
-        expect(entityMapper).toHaveBeenCalledWith(response, AlbumListEntity);
+        expect(entityMapper).toHaveBeenCalledWith(response.data, AlbumListEntity);
         done();
       })();
     });
+
+    it('should log an error if an error is thrown', (done) => {
+      (async () => {
+        request.get.and.throwError(error);
+        await albumStore.fetchAll(GENRE);
+        expect($log.error).toHaveBeenCalledWith(error);
+        done();
+      })();
+    });
+
   });
 });

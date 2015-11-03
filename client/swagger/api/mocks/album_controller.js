@@ -12,16 +12,16 @@
   function getAlbums(req, res) {
     var genre = req.swagger.params.genreName.value;
     if (genre !== undefined && genre !== null && genre.length > 0) {
-      res.json(getAlbumsFilteredByGenre(genre));
+      res.json({data: getAlbumsFilteredByGenre(genre)});
     } else {
-      res.json({ albums: data.albums });
+      res.json({ data: { albums: data.albums } });
     }
   }
 
   function getAlbumById(req, res) {
     var albumId = req.swagger.params.albumId.value;
     var album = _.findWhere(data.albums, { album_id: albumId });
-    res.json(album);
+    res.json({ data: album });
   }
 
   function getAlbumsFilteredByGenre(genre) {
