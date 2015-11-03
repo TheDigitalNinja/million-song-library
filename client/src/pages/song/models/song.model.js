@@ -1,6 +1,5 @@
 /**
  * Song model
- * @author anram88
  * @param {$log} $log
  * @param {songStore} songStore
  * @param {$rootScope} $rootScope
@@ -24,7 +23,8 @@ export default function songModel($log, songStore, $rootScope) {
     try {
       _model.song = await songStore.fetch(songId);
       $rootScope.$new().$evalAsync();
-    } catch (err) {
+    }
+    catch(err) {
       $log.warn(err);
     }
   }
@@ -51,7 +51,7 @@ export default function songModel($log, songStore, $rootScope) {
    */
   async function filterSongs(rating, genre, done) {
     try {
-      const songsList = await songStore.fetchAll({ rating: rating, genre: genre });
+      const songsList = await songStore.fetchAll({ rating, genre });
       const songs = songsList.songs;
       if(done) {
         done(songs);
