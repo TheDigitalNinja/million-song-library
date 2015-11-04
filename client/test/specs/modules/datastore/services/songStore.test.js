@@ -77,7 +77,7 @@ describe('songStore', () => {
     it('should map the response into a SongListEntity', (done) => {
       (async () => {
         await songStore.fetchAll(opts);
-        expect(entityMapper).toHaveBeenCalledWith(response, SongListEntity);
+        expect(entityMapper).toHaveBeenCalledWith(response.data, SongListEntity);
         done();
       })();
     });
