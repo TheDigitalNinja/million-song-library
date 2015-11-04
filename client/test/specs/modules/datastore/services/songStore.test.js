@@ -58,7 +58,7 @@ describe('songStore', () => {
 
   describe('fetchAll', () => {
     const opts = { genre: 'rock', rating: 4 };
-    const response = 'a_response';
+    const response = { data: 'a_response' };
 
 
     beforeEach(() => {

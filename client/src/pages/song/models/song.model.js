@@ -18,11 +18,14 @@ export default function songModel($log, songStore, $rootScope) {
   /**
    * Retrieves information of a single song
    * @param {int} songId
+   * @param {function} done
    */
-  async function getSong(songId) {
+  async function getSong(songId, done) {
     try {
-      _model.song = await songStore.fetch(songId);
-      $rootScope.$new().$evalAsync();
+      const song = await songStore.fetch(songId);
+      if(done) {
+        done(song);
+      }
     }
     catch(err) {
       $log.warn(err);
