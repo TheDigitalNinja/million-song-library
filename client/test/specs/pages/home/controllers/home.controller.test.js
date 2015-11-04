@@ -42,34 +42,59 @@ describe('homeCtrl', () => {
     $scope.$destroy();
   });
 
-  it('should get the list of songs', (done) => {
-    (async () => {
-      songModel.getSongs.and.returnValue({ songs: SONGS_LIST });
-      await songModel.getSongs($scope);
+  describe('constructor', () => {
+    it('should get the list of songs', (done) => {
+      (async () => {
+        songModel.getSongs.and.returnValue({ songs: SONGS_LIST });
+        await songModel.getSongs($scope);
 
-      expect(songModel.getSongs).toHaveBeenCalled();
-      done();
-    })();
+        expect(songModel.getSongs).toHaveBeenCalled();
+        done();
+      })();
+    });
+
+    it('should get the list of albums', (done) => {
+      (async () => {
+        albumModel.getAlbums.and.returnValue({ albums: ALBUMS_LIST });
+        await albumModel.getAlbums($scope);
+
+        expect(albumModel.getAlbums).toHaveBeenCalled();
+        done();
+      })();
+    });
+
+    it('should get the list of artists', (done) => {
+      (async () => {
+        artistModel.getArtists.and.returnValue({ artists: ARTISTS_LIST });
+        await artistModel.getArtists($scope);
+
+        expect(artistModel.getArtists).toHaveBeenCalled();
+        done();
+      })();
+    });
   });
 
-  it('should get the list of albums', (done) => {
-    (async () => {
-      albumModel.getAlbums.and.returnValue({ albums: ALBUMS_LIST });
-      await albumModel.getAlbums($scope);
-
-      expect(albumModel.getAlbums).toHaveBeenCalled();
-      done();
-    })();
+  describe('songsFiltered', () => {
+    it('should set the songModel songs', () => {
+      const songs = ['song'];
+      homeCtrl.songsFiltered(songs);
+      expect(songModel.songs).toBe(songs);
+    });
   });
 
-  it('should get the list of artists', (done) => {
-    (async () => {
-      artistModel.getArtists.and.returnValue({ artists: ARTISTS_LIST });
-      await artistModel.getArtists($scope);
-
-      expect(artistModel.getArtists).toHaveBeenCalled();
-      done();
-    })();
+  describe('albumsFiltered', () => {
+    it('should set the albumModel albums', () => {
+      const albums = ['album'];
+      homeCtrl.albumsFiltered(albums);
+      expect(albumModel.albums).toBe(albums);
+    });
   });
 
+  describe('artistsFiltered', () => {
+    it('should set the artistModel artists', () => {
+      const artists = ['artist'];
+      homeCtrl.artistsFiltered(artists);
+      expect(artistModel.artists).toBe(artists);
+    });
+  });
 });
