@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-3">
       <div class="image-container image-container-margin">
-        <img class="img-responsive center-block" ng-src="{{vm.model.song.imageLink}}" alt="{{vm.model.song.songName}}"/>
+        <img class="img-responsive center-block" ng-src="{{vm.song.imageLink}}" alt="{{vm.song.songName}}"/>
       </div>
       <p class="text-center">Album cover from ???</p>
     </div>
@@ -15,21 +15,21 @@
             <i class="fa fa-heart-o"></i> Add Song to Library
           </a>
         </span>
-          <h1 class="song-name">{{vm.model.song.songName}}</h1>
+          <h1 class="song-name">{{vm.song.songName}}</h1>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <span>Artist:</span>
-          <a class="link-black" ui-sref="default.artist">{{vm.model.song.artistName}}</a><br>
+          <a class="link-black" ui-sref="default.artist">{{vm.song.artistName}}</a><br>
           <span>Album:</span>
           <a class="link-black" ui-sref="default.album">Some Album</a><br>
           <span>Genre:</span>
-          <span class="genre-name">{{vm.model.song.genre}}</span><br>
+          <span class="genre-name">{{vm.song.genre}}</span><br>
           <span>Year:</span>
-          <span class="song-release">{{vm.model.song.year}}</span><br>
+          <span class="song-release">{{vm.song.year}}</span><br>
           <span>Rating:</span>
-          <div star-rating="vm.model.song.averageRating" song-id="vm.model.song.songId"></div><br>
+          <div star-rating="vm.song.averageRating" song-id="vm.song.songId"></div><br>
         </div>
       </div>
 

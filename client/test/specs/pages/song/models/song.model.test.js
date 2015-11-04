@@ -27,12 +27,21 @@ describe('songModel', () => {
   });
 
   describe('getSong', () => {
-    it('should get the song information', (done) => {
+    it('should fetch the song from the songStore', (done) => {
       (async () => {
+        await songModel.getSong(SONG_ID);
+        expect(songStore.fetch).toHaveBeenCalledWith(SONG_ID);
+        done();
+      })();
+    });
+
+    it('should call the done callback with the returned song', (done) => {
+      (async () => {
+        const doneFn = jasmine.createSpy('doneFn');
         const song = jasmine.createSpy('a_song');
         songStore.fetch.and.returnValue(song);
-        await songModel.getSong(SONG_ID);
-        expect(songModel.song).toEqual(song);
+        await songModel.getSong(SONG_ID, doneFn);
+        expect(doneFn).toHaveBeenCalledWith(song);
         done();
       })();
     });
