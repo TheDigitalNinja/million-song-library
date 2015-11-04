@@ -10,7 +10,6 @@
 - Locate the Asciidoctor.js Live Preview extension
 - Check the "Allow access to file URLs" box
 - Click the Options link (just above the "Allow access to file URLs" box)
-- Check the "Preview .txt files" box
 - Click the Save button
 
 ### Use
