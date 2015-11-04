@@ -223,7 +223,7 @@ paths:
   /api/v1/catalogedge/browse/album:
     x-swagger-router-controller: catalog_controller
     get:
-      description: Get browsing data for albums in the catalog
+      description: "Get browsing data for albums in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by album name, if no facets are passed then the results will be in featured order."
       tags:
         - Catalog
       operationId: browse_albums
@@ -234,8 +234,6 @@ paths:
           $ref: "#/parameters/Items"
         -
           $ref: "#/parameters/Facets"
-        -
-          $ref: "#/parameters/SortFields"
       responses:
         "200":
           description: Success
@@ -252,7 +250,7 @@ paths:
   /api/v1/catalogedge/browse/artist:
     x-swagger-router-controller: catalog_controller
     get:
-      description: Get browsing data for artists in the catalog
+      description: "Get browsing data for artists in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by artist name, if no facets are passed then the results will be in featured order."
       tags:
         - Catalog
       operationId: browse_artists
@@ -263,8 +261,6 @@ paths:
           $ref: "#/parameters/Items"
         -
           $ref: "#/parameters/Facets"
-        -
-          $ref: "#/parameters/SortFields"
       responses:
         "200":
           description: Success
@@ -281,7 +277,7 @@ paths:
   /api/v1/catalogedge/browse/song:
     x-swagger-router-controller: catalog_controller
     get:
-      description: Get browsing data for songs in the catalog
+      description: "Get browsing data for songs in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by song name, if no facets are passed then the results will be in featured order."
       tags:
         - Catalog
       operationId: browse_songs
@@ -292,8 +288,6 @@ paths:
           $ref: "#/parameters/Items"
         -
           $ref: "#/parameters/Facets"
-        -
-          $ref: "#/parameters/SortFields"
       responses:
         "200":
           description: Success
@@ -578,7 +572,7 @@ parameters:
   Facets:
     name: facets
     in: query
-    description: Comma delimited list of facets to use as filters. If not provided, no filters will be applied.
+    description: Comma delimited list of facet IDs to use as filters. If not provided, no filters will be applied.
     type: string
   Items:
     name: items
@@ -588,13 +582,8 @@ parameters:
   PagingState:
     name: pagingState
     in: query
-    description: PagingState is use to retrieve the next page in a pagenated query. A  PagingState instance contains a GUID key to an EVCache entry on the server. The value of the EVCache entry contains the original Cassandra query and the PagingState returned after execution of the Cassandra paginated query.
+    description: PagingState is used to retrieve the next page in a paginated query. A  PagingState instance contains a UUID key to an object in Cassandra on the server. The data within the object allows the server to retrieve the next page of data.
     required: false
-    type: string
-  SortFields:
-    name: sortFields
-    in: query
-    description: Comma delimited list of fields on which to sort. If not provided, results will be sorted by album name.
     type: string
 
 # complex objects have schema definitions
@@ -668,7 +657,7 @@ definitions:
       children:
         type: array
         items:
-          $ref: "#/definitions/FacetInfoWithChildren"
+          $ref: "#/definitions/FacetInfo"
   MyLibrary:
     properties:
       albums:
