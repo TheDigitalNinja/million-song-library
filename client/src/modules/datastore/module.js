@@ -13,6 +13,7 @@ import rateStore from './services/rateStore';
 import genreStore from './services/genreStore';
 import ArtistInfoEntity from './entities/ArtistInfoEntity';
 import ArtistListEntity from './entities/ArtistListEntity';
+import GenreInfoEntity from './entities/GenreInfoEntity';
 import GenreListEntity from './entities/GenreListEntity';
 import AlbumInfoEntity from './entities/AlbumInfoEntity';
 import AlbumListEntity from './entities/AlbumListEntity';
@@ -37,6 +38,7 @@ export default angular.module('msl.datastore', [])
   .factory('genreStore', genreStore)
   .value('ArtistInfoEntity', ArtistInfoEntity)
   .value('ArtistListEntity', ArtistListEntity)
+  .value('GenreInfoEntity', GenreInfoEntity)
   .value('GenreListEntity', GenreListEntity)
   .value('AlbumInfoEntity', AlbumInfoEntity)
   .value('AlbumListEntity', AlbumListEntity)

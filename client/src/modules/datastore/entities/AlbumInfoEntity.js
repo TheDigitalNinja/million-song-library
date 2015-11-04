@@ -9,7 +9,7 @@
  * @property {Number} averageRating
  * @property {Number} personalRating
  * @property {String} imageLink
- * @property {String []} songsList
+ * @property {String[]} songsList
  */
 class AlbumInfoEntity {
   constructor() {
