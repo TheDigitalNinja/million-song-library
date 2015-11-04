@@ -9,8 +9,8 @@
               <i class="fa fa-heart-o"></i> Add Artist to Library
             </a>
           </span>
-          <h1 class="artist-name">{{vm.model.artist.artistInfo.artistName}}</h1>
-          <div star-rating="vm.model.artist.artistInfo.averageRating" song-id="vm.model.artist.artistInfo.artistId"></div>
+          <h1 class="artist-name">{{vm.artist.artistName}}</h1>
+          <div star-rating="vm.artist.averageRating" song-id="vm.artist.artistId"></div>
         </div>
       </div>
 
@@ -39,7 +39,7 @@
         <div role="tabpanel"
              ng-class="{'active': vm.activeTab === 'songs'}"
              class="tab-pane" id="home">
-          <songs-table loading="!vm.displaySongs" songs="vm.model.artist.artistSongs.songs"></songs-table>
+          <songs-table loading="!vm.displaySongs" songs="vm.songs"></songs-table>
         </div>
         <div role="tabpanel"
              ng-class="{'active': vm.activeTab === 'albums'}"
