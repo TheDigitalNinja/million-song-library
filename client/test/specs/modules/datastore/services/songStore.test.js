@@ -33,7 +33,7 @@ describe('songStore', () => {
     it('should get the song info from the api endpoint', (done) => {
       (async () => {
         await songStore.fetch(SONG_ID);
-        expect(request.get).toHaveBeenCalledWith(`/api/v1/catalogedge/song/${ SONG_ID }`);
+        expect(request.get).toHaveBeenCalledWith(`/msl/v1/catalogedge/song/${ SONG_ID }`);
         done();
       })();
     });
@@ -69,7 +69,7 @@ describe('songStore', () => {
       (async () => {
         const params = { facets: JSON.stringify(opts) };
         await songStore.fetchAll(opts);
-        expect(request.get).toHaveBeenCalledWith('/api/v1/catalogedge/browse/song', { params });
+        expect(request.get).toHaveBeenCalledWith('/msl/v1/catalogedge/browse/song', { params });
         done();
       })();
     });

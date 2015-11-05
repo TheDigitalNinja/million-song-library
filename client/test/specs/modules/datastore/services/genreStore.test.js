@@ -25,7 +25,7 @@ describe('genreStore', () => {
         const GENRE = 'rock';
 
         await genreStore.fetch(GENRE);
-        expect(request.get).toHaveBeenCalledWith(`/api/v1/catalogedge/facet/${GENRE}`);
+        expect(request.get).toHaveBeenCalledWith(`/msl/v1/catalogedge/facet/${GENRE}`);
         done();
       })();
     });
@@ -33,7 +33,7 @@ describe('genreStore', () => {
     it('should use the default facet when called without genre', (done) => {
       (async () => {
         await genreStore.fetch();
-        expect(request.get).toHaveBeenCalledWith('/api/v1/catalogedge/facet/~');
+        expect(request.get).toHaveBeenCalledWith('/msl/v1/catalogedge/facet/~');
         done();
       })();
     });

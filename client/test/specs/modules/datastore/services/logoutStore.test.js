@@ -23,7 +23,7 @@ describe('logoutStore', () => {
     it('should post to the logout endpoint', () => {
       (async () => {
         await logoutStore.push();
-        expect(request.post).toHaveBeenCalledWith('/api/v1/loginedge/logout');
+        expect(request.post).toHaveBeenCalledWith('/msl/v1/loginedge/logout');
       })();
     });
 

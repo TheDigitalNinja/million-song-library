@@ -25,7 +25,7 @@ describe('rateStore', () => {
     it('should make a put to the ratesong endpoint', () => {
       (async () => {
         await rateStore.push(SONG_ID, RATING);
-        expect(request.put).toHaveBeenCalledWith(`/api/v1/ratingsedge/ratesong/${SONG_ID}`, { rating: RATING });
+        expect(request.put).toHaveBeenCalledWith(`/msl/v1/ratingsedge/ratesong/${SONG_ID}`, { rating: RATING });
       })();
     });
 

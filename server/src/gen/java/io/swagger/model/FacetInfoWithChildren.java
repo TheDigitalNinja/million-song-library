@@ -1,5 +1,6 @@
 package io.swagger.model;
 
+import io.swagger.model.FacetInfo;
 import java.util.*;
 
 import io.swagger.annotations.*;
@@ -7,12 +8,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-10-27T19:06:46.559-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-04T16:53:15.265-07:00")
 public class FacetInfoWithChildren  {
   
   private String facetId = null;
   private String name = null;
-  public List<FacetInfoWithChildren> children = new ArrayList<FacetInfoWithChildren>();
+  private List<FacetInfo> children = new ArrayList<FacetInfo>();
 
   
   /**
@@ -43,10 +44,10 @@ public class FacetInfoWithChildren  {
    **/
   @ApiModelProperty(value = "")
   @JsonProperty("children")
-  public List<FacetInfoWithChildren> getChildren() {
+  public List<FacetInfo> getChildren() {
     return children;
   }
-  public void setChildren(List<FacetInfoWithChildren> children) {
+  public void setChildren(List<FacetInfo> children) {
     this.children = children;
   }
 

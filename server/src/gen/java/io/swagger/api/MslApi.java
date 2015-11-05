@@ -1,16 +1,17 @@
 package io.swagger.api;
 
 import io.swagger.model.*;
-import io.swagger.api.ApiApiService;
-import io.swagger.api.factories.ApiApiServiceFactory;
+import io.swagger.api.MslApiService;
+import io.swagger.api.factories.MslApiServiceFactory;
 
 import io.swagger.annotations.ApiParam;
 
 import com.sun.jersey.multipart.FormDataParam;
 
+import io.swagger.model.MyLibrary;
 import io.swagger.model.ErrorResponse;
-import io.swagger.model.SongList;
 import io.swagger.model.UserInfo;
+import io.swagger.model.SongList;
 import io.swagger.model.AlbumInfo;
 import io.swagger.model.NotFoundResponse;
 import io.swagger.model.ArtistInfo;
@@ -36,26 +37,26 @@ import com.sun.jersey.multipart.FormDataParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
 
-@Path("/api")
+@Path("//msl")
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
-@io.swagger.annotations.Api(value = "/api", description = "the api API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-10-27T19:06:46.559-06:00")
-public class ApiApi  {
+@io.swagger.annotations.Api(value = "/msl", description = "the msl API")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-04T16:53:15.265-07:00")
+public class MslApi  {
 
-   private final ApiApiService delegate = ApiApiServiceFactory.getApiApi();
+   private final MslApiService delegate = MslApiServiceFactory.getMslApi();
 
     @GET
     @Path("/v1/accountedge/users/mylibrary")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Get the user's library of songs", response = SongList.class, authorizations = {
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Get the user's library of favorites", response = MyLibrary.class, authorizations = {
         @io.swagger.annotations.Authorization(value = "session_id")
     })
     @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Retrieved user library", response = SongList.class),
+        @io.swagger.annotations.ApiResponse(code = 200, message = "Retrieved user library", response = MyLibrary.class),
         
-        @io.swagger.annotations.ApiResponse(code = 500, message = "Server Error", response = SongList.class) })
+        @io.swagger.annotations.ApiResponse(code = 500, message = "Server Error", response = MyLibrary.class) })
 
     public Response getMyLibrary()
     throws NotFoundException {
@@ -129,7 +130,7 @@ public class ApiApi  {
     @Path("/v1/catalogedge/browse/album")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Get browsing data for albums in the catalog", response = AlbumList.class)
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Get browsing data for albums in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by album name, if no facets are passed then the results will be in featured order.", response = AlbumList.class)
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Success", response = AlbumList.class),
         
@@ -137,18 +138,17 @@ public class ApiApi  {
         
         @io.swagger.annotations.ApiResponse(code = 500, message = "Server Error", response = AlbumList.class) })
 
-    public Response browseAlbums(@ApiParam(value = "PagingState is use to retrieve the next page in a pagenated query. A  PagingState instance contains a GUID key to an EVCache entry on the server. The value of the EVCache entry contains the original Cassandra query and the PagingState returned after execution of the Cassandra paginated query.") @QueryParam("pagingState") String pagingState,
+    public Response browseAlbums(@ApiParam(value = "PagingState is used to retrieve the next page in a paginated query. A  PagingState instance contains a UUID key to an object in Cassandra on the server. The data within the object allows the server to retrieve the next page of data.") @QueryParam("pagingState") String pagingState,
     @ApiParam(value = "Number of items to return. Used for paginating results. The maximum is 100. If not provided, or falls outside the inclusive range 1-100, defaults to 25.") @QueryParam("items") Integer items,
-    @ApiParam(value = "Comma delimited list of facets to use as filters. If not provided, no filters will be applied.") @QueryParam("facets") String facets,
-    @ApiParam(value = "Comma delimited list of fields on which to sort. If not provided, results will be sorted by album name.") @QueryParam("sortFields") String sortFields)
+    @ApiParam(value = "Comma delimited list of facet IDs to use as filters. If not provided, no filters will be applied.") @QueryParam("facets") String facets)
     throws NotFoundException {
-        return delegate.browseAlbums(pagingState,items,facets,sortFields);
+        return delegate.browseAlbums(pagingState,items,facets);
     }
     @GET
     @Path("/v1/catalogedge/browse/artist")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Get browsing data for artists in the catalog", response = ArtistList.class)
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Get browsing data for artists in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by artist name, if no facets are passed then the results will be in featured order.", response = ArtistList.class)
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Success", response = ArtistList.class),
         
@@ -156,18 +156,17 @@ public class ApiApi  {
         
         @io.swagger.annotations.ApiResponse(code = 500, message = "Server Error", response = ArtistList.class) })
 
-    public Response browseArtists(@ApiParam(value = "PagingState is use to retrieve the next page in a pagenated query. A  PagingState instance contains a GUID key to an EVCache entry on the server. The value of the EVCache entry contains the original Cassandra query and the PagingState returned after execution of the Cassandra paginated query.") @QueryParam("pagingState") String pagingState,
+    public Response browseArtists(@ApiParam(value = "PagingState is used to retrieve the next page in a paginated query. A  PagingState instance contains a UUID key to an object in Cassandra on the server. The data within the object allows the server to retrieve the next page of data.") @QueryParam("pagingState") String pagingState,
     @ApiParam(value = "Number of items to return. Used for paginating results. The maximum is 100. If not provided, or falls outside the inclusive range 1-100, defaults to 25.") @QueryParam("items") Integer items,
-    @ApiParam(value = "Comma delimited list of facets to use as filters. If not provided, no filters will be applied.") @QueryParam("facets") String facets,
-    @ApiParam(value = "Comma delimited list of fields on which to sort. If not provided, results will be sorted by album name.") @QueryParam("sortFields") String sortFields)
+    @ApiParam(value = "Comma delimited list of facet IDs to use as filters. If not provided, no filters will be applied.") @QueryParam("facets") String facets)
     throws NotFoundException {
-        return delegate.browseArtists(pagingState,items,facets,sortFields);
+        return delegate.browseArtists(pagingState,items,facets);
     }
     @GET
     @Path("/v1/catalogedge/browse/song")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Get browsing data for songs in the catalog", response = SongList.class)
+    @io.swagger.annotations.ApiOperation(value = "", notes = "Get browsing data for songs in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by song name, if no facets are passed then the results will be in featured order.", response = SongList.class)
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 200, message = "Success", response = SongList.class),
         
@@ -175,12 +174,11 @@ public class ApiApi  {
         
         @io.swagger.annotations.ApiResponse(code = 500, message = "Server Error", response = SongList.class) })
 
-    public Response browseSongs(@ApiParam(value = "PagingState is use to retrieve the next page in a pagenated query. A  PagingState instance contains a GUID key to an EVCache entry on the server. The value of the EVCache entry contains the original Cassandra query and the PagingState returned after execution of the Cassandra paginated query.") @QueryParam("pagingState") String pagingState,
+    public Response browseSongs(@ApiParam(value = "PagingState is used to retrieve the next page in a paginated query. A  PagingState instance contains a UUID key to an object in Cassandra on the server. The data within the object allows the server to retrieve the next page of data.") @QueryParam("pagingState") String pagingState,
     @ApiParam(value = "Number of items to return. Used for paginating results. The maximum is 100. If not provided, or falls outside the inclusive range 1-100, defaults to 25.") @QueryParam("items") Integer items,
-    @ApiParam(value = "Comma delimited list of facets to use as filters. If not provided, no filters will be applied.") @QueryParam("facets") String facets,
-    @ApiParam(value = "Comma delimited list of fields on which to sort. If not provided, results will be sorted by album name.") @QueryParam("sortFields") String sortFields)
+    @ApiParam(value = "Comma delimited list of facet IDs to use as filters. If not provided, no filters will be applied.") @QueryParam("facets") String facets)
     throws NotFoundException {
-        return delegate.browseSongs(pagingState,items,facets,sortFields);
+        return delegate.browseSongs(pagingState,items,facets);
     }
     @GET
     @Path("/v1/catalogedge/facet/{facetId}")

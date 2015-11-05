@@ -1,20 +1,40 @@
 package io.swagger.api.impl;
 
 import io.swagger.api.*;
-import io.swagger.mock.ArtistMockData;
-import io.swagger.mock.FacetMockData;
-import io.swagger.mock.SongMockData;
 import io.swagger.model.*;
-import io.swagger.mock.AlbumMockData;
 
+import com.sun.jersey.multipart.FormDataParam;
+
+import io.swagger.model.MyLibrary;
+import io.swagger.model.ErrorResponse;
+import io.swagger.model.UserInfo;
+import io.swagger.model.SongList;
+import io.swagger.model.AlbumInfo;
+import io.swagger.model.NotFoundResponse;
+import io.swagger.model.ArtistInfo;
+import io.swagger.model.AlbumList;
+import io.swagger.model.ArtistList;
+import io.swagger.model.FacetInfoWithChildren;
+import io.swagger.model.SongInfo;
+import java.io.File;
+import io.swagger.model.LoginSuccessResponse;
+import io.swagger.model.StatusResponse;
+import io.swagger.model.SessionInfo;
 import java.math.BigDecimal;
+import io.swagger.model.SearchResponse;
 
+import java.util.List;
 import io.swagger.api.NotFoundException;
+
+import java.io.InputStream;
+
+import com.sun.jersey.core.header.FormDataContentDisposition;
+import com.sun.jersey.multipart.FormDataParam;
 
 import javax.ws.rs.core.Response;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-10-19T15:56:09.144-06:00")
-public class ApiApiServiceImpl extends ApiApiService {
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-04T16:53:15.265-07:00")
+public class MslApiServiceImpl extends MslApiService {
 
     // ========================================================================================================== ALBUMS
     // =================================================================================================================

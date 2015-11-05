@@ -27,7 +27,7 @@ describe('loginStore', () => {
     it('should do a post request to the login edge', (done) => {
       (async () => {
         await loginStore.push(EMAIL, PASSWORD);
-        expect(request.post).toHaveBeenCalledWith('/api/v1/loginedge/login', params, jasmine.any(Object));
+        expect(request.post).toHaveBeenCalledWith('/msl/v1/loginedge/login', params, jasmine.any(Object));
         done();
       })();
     });

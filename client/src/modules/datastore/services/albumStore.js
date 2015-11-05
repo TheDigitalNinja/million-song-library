@@ -10,7 +10,7 @@
 function albumStore(request, entityMapper, AlbumInfoEntity, AlbumListEntity, $log) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/v1/catalogedge/';
+  const API_REQUEST_PATH = '/msl/v1/catalogedge/';
   return {
     /**
      * fetch album from catalogue endpoint

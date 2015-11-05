@@ -5,9 +5,10 @@ import io.swagger.model.*;
 
 import com.sun.jersey.multipart.FormDataParam;
 
+import io.swagger.model.MyLibrary;
 import io.swagger.model.ErrorResponse;
-import io.swagger.model.SongList;
 import io.swagger.model.UserInfo;
+import io.swagger.model.SongList;
 import io.swagger.model.AlbumInfo;
 import io.swagger.model.NotFoundResponse;
 import io.swagger.model.ArtistInfo;
@@ -32,8 +33,8 @@ import com.sun.jersey.multipart.FormDataParam;
 
 import javax.ws.rs.core.Response;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-10-27T19:06:46.559-06:00")
-public abstract class ApiApiService {
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-04T16:53:15.265-07:00")
+public abstract class MslApiService {
   
       public abstract Response getMyLibrary()
       throws NotFoundException;
@@ -50,13 +51,13 @@ public abstract class ApiApiService {
       public abstract Response getArtist(String artistId)
       throws NotFoundException;
   
-      public abstract Response browseAlbums(String pagingState,Integer items,String facets,String sortFields)
+      public abstract Response browseAlbums(String pagingState,Integer items,String facets)
       throws NotFoundException;
   
-      public abstract Response browseArtists(String pagingState,Integer items,String facets,String sortFields)
+      public abstract Response browseArtists(String pagingState,Integer items,String facets)
       throws NotFoundException;
   
-      public abstract Response browseSongs(String pagingState,Integer items,String facets,String sortFields)
+      public abstract Response browseSongs(String pagingState,Integer items,String facets)
       throws NotFoundException;
   
       public abstract Response getFacet(String facetId)

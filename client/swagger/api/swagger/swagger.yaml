@@ -18,7 +18,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /api/v1/loginedge/login:
+  /msl/v1/loginedge/login:
     x-swagger-router-controller: login_controller
     post:
       description: Logs a user into the system
@@ -51,7 +51,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/loginedge/logout:
+  /msl/v1/loginedge/logout:
     x-swagger-router-controller: login_controller
     post:
       description: Logs a user out of the system
@@ -69,7 +69,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/loginedge/resetpassword:
+  /msl/v1/loginedge/resetpassword:
     # binds a127 app logic to a route
     x-swagger-router-controller: login_controller
     post:
@@ -94,7 +94,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/loginedge/sessioninfo:
+  /msl/v1/loginedge/sessioninfo:
     x-swagger-router-controller: session_controller
     get:
       description: Endpoint for api services to get session data from session token
@@ -112,7 +112,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/catalogedge/song/{songId}:
+  /msl/v1/catalogedge/song/{songId}:
     x-swagger-router-controller: catalog_controller
     get:
       description: Get a song's info from the database
@@ -139,7 +139,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/catalogedge/album/{albumId}:
+  /msl/v1/catalogedge/album/{albumId}:
     x-swagger-router-controller: catalog_controller
     get:
       description: Get data for an Album of songs
@@ -166,7 +166,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/catalogedge/artist/{artistId}:
+  /msl/v1/catalogedge/artist/{artistId}:
     x-swagger-router-controller: catalog_controller
     get:
       description: Get data on an Artist
@@ -193,7 +193,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/catalogedge/facet/{facetId}:
+  /msl/v1/catalogedge/facet/{facetId}:
     x-swagger-router-controller: facet_controller
     get:
       description: Get a facet in the heirarchy. Passing a facetId of '~' retrieves the root facet.
@@ -220,7 +220,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/catalogedge/browse/album:
+  /msl/v1/catalogedge/browse/album:
     x-swagger-router-controller: catalog_controller
     get:
       description: "Get browsing data for albums in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by album name, if no facets are passed then the results will be in featured order."
@@ -247,7 +247,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/catalogedge/browse/artist:
+  /msl/v1/catalogedge/browse/artist:
     x-swagger-router-controller: catalog_controller
     get:
       description: "Get browsing data for artists in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by artist name, if no facets are passed then the results will be in featured order."
@@ -274,7 +274,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/catalogedge/browse/song:
+  /msl/v1/catalogedge/browse/song:
     x-swagger-router-controller: catalog_controller
     get:
       description: "Get browsing data for songs in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by song name, if no facets are passed then the results will be in featured order."
@@ -301,7 +301,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/imageedge/artist/{artistId}:
+  /msl/v1/imageedge/artist/{artistId}:
     x-swagger-router-controller: image_controller
     get:
       description: "Get an artist's picture. Result will be an image (png, jpg, etc.)."
@@ -328,7 +328,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/imageedge/album/{albumId}:
+  /msl/v1/imageedge/album/{albumId}:
     x-swagger-router-controller: image_controller
     get:
       description: Get an album cover image. Result will be an image (png, jpg, etc.).
@@ -355,7 +355,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/imageedge/song/{songId}:
+  /msl/v1/imageedge/song/{songId}:
     x-swagger-router-controller: image_controller
     get:
       description: Get a song cover. Result will be an image (png, jpg, etc.).
@@ -382,7 +382,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/ratingsedge/ratesong/{songId}:
+  /msl/v1/ratingsedge/ratesong/{songId}:
     x-swagger-router-controller: rating_controller
     put:
       description: Update your rating of a song.
@@ -417,7 +417,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/ratingsedge/commentsong/{songId}:
+  /msl/v1/ratingsedge/commentsong/{songId}:
     x-swagger-router-controller: rating_controller
     put:
       description: Make a comment about a song
@@ -446,7 +446,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/searchedge/search:
+  /msl/v1/searchedge/search:
     x-swagger-router-controller: search_controller
     get:
       description: Search things that match a user provided string
@@ -479,7 +479,7 @@ paths:
           description: Bad Request
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/playeredge/play/{songId}:
+  /msl/v1/playeredge/play/{songId}:
     x-swagger-router-controller: player_controller
     get:
       description: Request to begin streaming a song. Result will be an mp3.
@@ -506,7 +506,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/accountedge/users/recentsongs:
+  /msl/v1/accountedge/users/recentsongs:
     x-swagger-router-controller: history_controller
     get:
       description: Get recently played songs
@@ -524,7 +524,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/accountedge/users/mylibrary:
+  /msl/v1/accountedge/users/mylibrary:
     x-swagger-router-controller: history_controller
     get:
       description: Get the user's library of favorites
@@ -542,7 +542,7 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /api/v1/accountedge/users/profile:
+  /msl/v1/accountedge/users/profile:
     x-swagger-router-controller: catalog_controller
     get:
       description: Get the current user's account info

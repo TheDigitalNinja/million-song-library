@@ -22,7 +22,7 @@ describe('myLibraryStore', () => {
     it('should request the list of songs', () => {
       (async () => {
         await myLibraryStore.fetch();
-        expect(request.get).toHaveBeenCalledWith('/api/v1/accountedge/users/mylibrary');
+        expect(request.get).toHaveBeenCalledWith('/msl/v1/accountedge/users/mylibrary');
       })();
     });
 

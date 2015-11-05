@@ -23,7 +23,7 @@ describe('recentSongsStore', () => {
     it('should request the user recent songs', () => {
       (async () => {
         await recentSongsStore.fetch();
-        expect(request.get).toHaveBeenCalledWith('/api/v1/accountedge/users/recentsongs');
+        expect(request.get).toHaveBeenCalledWith('/msl/v1/accountedge/users/recentsongs');
       })();
     });
 

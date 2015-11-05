@@ -35,7 +35,7 @@ describe('artistStore', () => {
     it('should get the artist', (done) => {
       (async () => {
         await artistStore.fetch(ARTIST_ID);
-        expect(request.get).toHaveBeenCalledWith(`/api/v1/catalogedge/artist/${ARTIST_ID}`);
+        expect(request.get).toHaveBeenCalledWith(`/msl/v1/catalogedge/artist/${ARTIST_ID}`);
         done();
       })();
     });
@@ -71,7 +71,7 @@ describe('artistStore', () => {
 
         const params = { params: { facets: GENRE } };
         await artistStore.fetchAll(GENRE);
-        expect(request.get).toHaveBeenCalledWith('/api/v1/catalogedge/browse/artist', params);
+        expect(request.get).toHaveBeenCalledWith('/msl/v1/catalogedge/browse/artist', params);
         done();
       })();
     });
