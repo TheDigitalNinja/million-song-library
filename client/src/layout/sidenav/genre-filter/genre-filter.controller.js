@@ -57,7 +57,7 @@ export default class genreFilterCtrl {
       this.genres = genresList.children;
       this.$scope.$evalAsync();
     }
-    catch (err) {
+    catch(err) {
       this.genres = [];
       this.$log.warn(err);
     }

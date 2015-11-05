@@ -41,7 +41,7 @@ export default function songModel($log, songStore, $rootScope) {
       _model.songs = songList.songs;
       $rootScope.$new().$evalAsync();
     }
-    catch (error) {
+    catch(error) {
       $log.warn(error);
     }
   }

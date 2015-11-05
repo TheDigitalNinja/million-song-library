@@ -51,7 +51,7 @@ export default class ratingFilterCtrl {
   _updateRatings() {
     const maxRates = 4;
 
-    for (let i = maxRates; i > 0; i--) {
+    for(let i = maxRates; i > 0; i--) {
       this.rates.push({ rate: i, stars: this._updateStars(i) });
     }
   }
@@ -63,7 +63,7 @@ export default class ratingFilterCtrl {
     const max = 5;
     let stars = [];
 
-    for (let i = 0; i < max; i++) {
+    for(let i = 0; i < max; i++) {
       stars.push({
         filled: i < starRating,
       });

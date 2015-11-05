@@ -37,7 +37,7 @@ export default function authorisation (
    * otherwise delete data from cookies
    */
   function onAuthorisationStateChange () {
-    if (authorised) {
+    if(authorised) {
       $cookies.putObject(COOKIE_NAMESPACE, authorisedData);
     }
     else {
@@ -88,7 +88,7 @@ export default function authorisation (
      * @return {*}
      */
     getUserData(param = null) {
-      if (_.isNull(param)) {
+      if(_.isNull(param)) {
         return authorisedData;
       }
       else {

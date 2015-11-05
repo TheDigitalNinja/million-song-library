@@ -36,7 +36,7 @@ export default class navbarCtrl {
      */
     this.onStateChange = () => {
       this.authorised = this.authorisation.isAuthorised();
-      if (this.authorised) {
+      if(this.authorised) {
         this.email = this.authorisation.getUserData('userEmail');
       }
       else {
@@ -52,7 +52,7 @@ export default class navbarCtrl {
   }
 
   isHomeCheck(newState) {
-    if (newState === 'msl.home') {
+    if(newState === 'msl.home') {
       return true;
     }
     return false;

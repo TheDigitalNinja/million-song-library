@@ -12,19 +12,19 @@ export default function timeFilter() {
       let minutes = Math.floor((secNum - (hours * 3600)) / 60);
       let seconds = secNum - (hours * 3600) - (minutes * 60);
 
-      if (hours < 10) {
+      if(hours < 10) {
         hours = `0${hours}`;
       }
-      if (minutes < 10) {
+      if(minutes < 10) {
         minutes = `0${minutes}`;
       }
-      if (seconds < 10) {
+      if(seconds < 10) {
         seconds = `0${seconds}`;
       }
 
       let result = '';
 
-      switch (format) {
+      switch(format) {
         case 'MM:SS':
           result = `${minutes}:${seconds}`;
           break;
@@ -37,7 +37,7 @@ export default function timeFilter() {
       }
       return result;
 
-    } catch (err) {
+    } catch(err) {
       return input;
     }
   };

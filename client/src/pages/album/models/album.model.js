@@ -27,7 +27,7 @@ export default function albumModel(albumStore, songStore, $log, $rootScope) {
     try {
       _model.album = await albumStore.fetch(albumId);
       $rootScope.$new().$evalAsync();
-    } catch (err) {
+    } catch(err) {
       $log.warn(err);
     }
   }
@@ -76,7 +76,7 @@ export default function albumModel(albumStore, songStore, $log, $rootScope) {
       _model.albums = albumList.albums;
       $rootScope.$new().$evalAsync();
     }
-    catch (error) {
+    catch(error) {
       $log.warn(error);
     }
   }

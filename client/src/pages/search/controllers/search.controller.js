@@ -8,7 +8,7 @@ export default class searchCtrl {
   constructor($stateParams, $log) {
     // Get search query from $stateParams
     this.searchQuery = $stateParams.query;
-    if (this.searchQuery) {
+    if(this.searchQuery) {
       $log.debug(`searched for: ${ this.searchQuery }`);
     }
     else {

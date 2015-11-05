@@ -18,7 +18,7 @@ export default class loginCtrl {
         await authorisation.authorise(this.email, this.password);
         // if authorisation is success then redirect user to home page
         $state.go('msl.home');
-      } catch (e) {
+      } catch(e) {
         this.hasError = true;
         $scope.$evalAsync();
       }

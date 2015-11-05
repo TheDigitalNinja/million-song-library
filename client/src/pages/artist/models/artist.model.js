@@ -44,7 +44,7 @@ export default function artistModel(albumStore, artistStore, songStore, $log, $r
       }
 
       $rootScope.$new().$evalAsync();
-    } catch (err) {
+    } catch(err) {
       $log.warn(err);
     }
   }
@@ -58,7 +58,7 @@ export default function artistModel(albumStore, artistStore, songStore, $log, $r
       _model.artists = artistList.artists;
       $rootScope.$new().$evalAsync();
     }
-    catch (err) {
+    catch(err) {
       _model.artists = [];
       $log.warn(err);
     }

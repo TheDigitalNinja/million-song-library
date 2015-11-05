@@ -14,7 +14,7 @@ export default class songCtrl {
    * @param {songModel} songModel
    */
   constructor(artistModel, $scope, $state, $stateParams, songModel) {
-    if (angular.isDefined($stateParams.songId) && $stateParams.songId.length > 0) {
+    if(angular.isDefined($stateParams.songId) && $stateParams.songId.length > 0) {
       this.artistModel = artistModel;
       this.$scope = $scope;
       this.songId = $stateParams.songId;
@@ -28,8 +28,8 @@ export default class songCtrl {
   }
 
   /**
-   * @private
    * Gets the song using the songId
+   * @private
    */
   _getSong() {
     this.model.getSong(this.songId, (song) => {
@@ -39,9 +39,9 @@ export default class songCtrl {
   }
 
   /**
-   * @private
    * Gets the similar artists of the song's artist
    * @param {SongInfoEntity} song
+   * @private
    */
   _getSimilarArtists(song) {
     this.artistModel.getSimilarArtists(song.artistId, (artists) => {

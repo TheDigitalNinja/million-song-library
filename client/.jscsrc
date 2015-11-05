@@ -37,6 +37,13 @@
     "disallowKeywords": ["var"],
     "requireKeywordsOnNewLine": ["else"],
 
+    "disallowSpaceAfterKeywords": [
+      "catch",
+      "if",
+      "for",
+      "switch",
+      "while"
+    ],
     "requireSpaceAfterKeywords": [
       "else",
       "do",
