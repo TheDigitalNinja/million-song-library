@@ -29,7 +29,7 @@ export default function entityMapper () {
         // camel case response map key
         const method = _.camelCase(key);
         // check if we can create instance of key type
-        if (_.isFunction(entity[method])) {
+        if(_.isFunction(entity[method])) {
           // create new key type instance
           const Instance = entity[method];
           // assign it response value and get its instance
@@ -38,7 +38,7 @@ export default function entityMapper () {
           keys = _.without(keys, method);
         }
         // check if map value is a array
-        else if (_.isArray(entity[method])) {
+        else if(_.isArray(entity[method])) {
           // map response items to type instance
           entity[method] = _.map(response[key], (item) => mapper(item, entity[method][0]));
           // remove key from needed to map keys list

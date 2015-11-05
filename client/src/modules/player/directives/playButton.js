@@ -14,7 +14,7 @@ function playButtonController ($scope, player) {
    */
   let onPlayerStateChange = () => {
     const songEntity = player.getSongEntity();
-    if (songEntity) {
+    if(songEntity) {
       this.currentlyPlayingSong = songEntity.songId === $scope.songId;
     }
     else {
@@ -27,7 +27,7 @@ function playButtonController ($scope, player) {
    * play button user action
    */
   this.play = function () {
-    if (this.currentlyPlayingSong) {
+    if(this.currentlyPlayingSong) {
       player.stop();
     }
     else {

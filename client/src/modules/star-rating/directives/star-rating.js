@@ -7,13 +7,13 @@ function ratingController ($scope, rateStore, $log) {
   this.max = 5;
 
   this.readOnly = true;
-  if (_.isUndefined($scope.readOnly) || $scope.readOnly === false) {
+  if(_.isUndefined($scope.readOnly) || $scope.readOnly === false) {
     this.readOnly = false;
   }
 
   let updateStars = () => {
     this.stars = [];
-    for (let i = 0; i < this.max; i++) {
+    for(let i = 0; i < this.max; i++) {
       this.stars.push({
         filled: i < $scope.starRating,
       });
@@ -21,12 +21,12 @@ function ratingController ($scope, rateStore, $log) {
   };
 
   this.rate = async (index) => {
-    if (!this.readOnly && $scope.starRating !== (index + 1)) {
+    if(!this.readOnly && $scope.starRating !== (index + 1)) {
       this.readOnly = true;
       $scope.starRating = index + 1;
       try {
         await rateStore.push($scope.songId, $scope.starRating);
-      } catch (err) {
+      } catch(err) {
         // TODO: Handle the error
         $log.warn(err);
       }
@@ -36,7 +36,7 @@ function ratingController ($scope, rateStore, $log) {
   };
 
   $scope.$watch('starRating', (newVal) => {
-    if (newVal >= 0) {
+    if(newVal >= 0) {
       updateStars();
     }
   });

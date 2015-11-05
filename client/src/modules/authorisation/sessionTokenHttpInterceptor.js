@@ -22,10 +22,10 @@ export default function sessionTokenHttpInterceptor (sessionToken) {
      */
     request(config) {
       // check if we have session token
-      if (sessionToken.has()) {
+      if(sessionToken.has()) {
         const configUrl = url.parse(config.url);
         // add session token only for api urls
-        if (configUrl.host === apiUrl.host) {
+        if(configUrl.host === apiUrl.host) {
           config.headers.SessionId = sessionToken.get();
         }
       }

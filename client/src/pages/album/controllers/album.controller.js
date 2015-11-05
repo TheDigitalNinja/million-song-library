@@ -16,7 +16,7 @@ export default class albumCtrl {
    * @param {ui.router.state.$stateParams} $stateParams
    */
   constructor(albumModel, artistModel, $log, $scope, $state, $stateParams) {
-    if (angular.isDefined($stateParams.albumId) && $stateParams.albumId.length > 0) {
+    if(angular.isDefined($stateParams.albumId) && $stateParams.albumId.length > 0) {
       this.$scope = $scope;
       this.$log = $log;
       this.artistModel = artistModel;
@@ -27,7 +27,7 @@ export default class albumCtrl {
       albumModel.getAlbum(this.albumId);
       $scope.$watch(() => albumModel.album,
         () => {
-          if (albumModel.album !== null) {
+          if(albumModel.album !== null) {
             albumModel.getAlbumSongs(albumModel.album.artistId, (songs) => {
               this.albumSongs = songs;
             });
