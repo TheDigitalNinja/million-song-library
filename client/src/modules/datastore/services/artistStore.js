@@ -10,7 +10,7 @@
 function artistStore(request, entityMapper, ArtistInfoEntity, ArtistListEntity, $log) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/v1/catalogedge/';
+  const API_REQUEST_PATH = '/msl/v1/catalogedge/';
   return {
     /**
      * fetch artist from catalogue endpoint

@@ -9,7 +9,7 @@
 function logoutStore (request, entityMapper, StatusResponseEntity) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/v1/loginedge/logout';
+  const API_REQUEST_PATH = '/msl/v1/loginedge/logout';
   return {
     /**
      * make logout request

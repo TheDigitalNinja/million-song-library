@@ -1,7 +1,7 @@
 import datastoreModule from 'modules/datastore/module';
 
 describe('request', () => {
-  const A_PATH = '/api/v1';
+  const A_PATH = '/msl/v1';
   const config = { sessionId: 1 };
   const content = { songId: 2 };
   const expectedData = 'data';

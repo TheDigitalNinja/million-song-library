@@ -12,7 +12,7 @@ function songStore(request, entityMapper, SongInfoEntity, SongListEntity, $log) 
 
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/v1/catalogedge/';
+  const API_REQUEST_PATH = '/msl/v1/catalogedge/';
   return {
     /**
      * fetch songs from catalogue endpoint

@@ -9,7 +9,7 @@
 function loginStore (request, entityMapper, LoginSuccessResponseEntity) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/v1/loginedge/login';
+  const API_REQUEST_PATH = '/msl/v1/loginedge/login';
   return {
     /**
      * make login request

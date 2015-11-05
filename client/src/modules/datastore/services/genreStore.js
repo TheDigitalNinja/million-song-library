@@ -8,7 +8,7 @@
 function genreStore(request, entityMapper, GenreListEntity) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/v1/catalogedge/facet/';
+  const API_REQUEST_PATH = '/msl/v1/catalogedge/facet/';
 
   return {
     /**

@@ -25,7 +25,7 @@ describe('sessionInfoStore', () => {
     it('should fetch the session info', () => {
       (async () => {
         await sessionInfoStore.fetch(SESSION_ID);
-        expect(request.get).toHaveBeenCalledWith('/api/v1/loginedge/sessioninfo/');
+        expect(request.get).toHaveBeenCalledWith('/msl/v1/loginedge/sessioninfo/');
       })();
     });
 

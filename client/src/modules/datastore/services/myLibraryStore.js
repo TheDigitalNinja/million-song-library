@@ -10,7 +10,7 @@ import StatusResponseEntity from '../entities/StatusResponseEntity';
 function myLibraryStore(request, entityMapper, SongListEntity) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/api/v1/accountedge/users/mylibrary';
+  const API_REQUEST_PATH = '/msl/v1/accountedge/users/mylibrary';
   return {
     /**
      * fetch songs from account library endpoint

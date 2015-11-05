@@ -34,7 +34,7 @@ describe('albumStore', () => {
     it('should request the album', (done) => {
       (async () => {
         await albumStore.fetch(ALBUM_ID);
-        expect(request.get).toHaveBeenCalledWith(`/api/v1/catalogedge/album/${ ALBUM_ID }`);
+        expect(request.get).toHaveBeenCalledWith(`/msl/v1/catalogedge/album/${ ALBUM_ID }`);
         done();
       })();
     });
@@ -70,7 +70,7 @@ describe('albumStore', () => {
       (async () => {
         const params = { params: { facets: GENRE } };
         await albumStore.fetchAll(GENRE);
-        expect(request.get).toHaveBeenCalledWith('/api/v1/catalogedge/browse/album', params);
+        expect(request.get).toHaveBeenCalledWith('/msl/v1/catalogedge/browse/album', params);
         done();
       })();
     });
