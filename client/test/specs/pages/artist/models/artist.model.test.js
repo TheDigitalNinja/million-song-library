@@ -42,10 +42,10 @@ describe('artistModel', () => {
 
     it('should call the done function', (done) => {
       (async () => {
-        const artistInfo = { artist: ['anArtist'] };
-        artistModel.artist = artistInfo;
+        const artist = 'an_artist';
+        artistStore.fetch.and.returnValue(artist);
         await artistModel.getArtist('1', doneFn);
-        expect(doneFn).toHaveBeenCalledWith(artistModel.artist);
+        expect(doneFn).toHaveBeenCalledWith(artist);
         done();
       })();
     });
@@ -102,10 +102,10 @@ describe('artistModel', () => {
 
     it('should call the done function', (done) => {
       (async () => {
-        const ambumList = { albums: ['anAlbum'] };
-        artistModel.albums = ambumList;
+        const album = 'anAlbum';
+        albumStore.fetch.and.returnValue(album);
         await artistModel.getArtistAlbums(['1'], doneFn);
-        expect(doneFn).toHaveBeenCalledWith(artistModel.albums);
+        expect(doneFn).toHaveBeenCalledWith([album]);
         done();
       })();
     });
@@ -145,14 +145,14 @@ describe('artistModel', () => {
 
     it('should call the done function with the list of artists', (done) => {
       (async () => {
-        const artist_list = ['artist1'];
+        const artistList = ['artist 1'];
 
-        artistStore.fetch.and.returnValue({ similarArtistsList: []});
+        artistStore.fetch.and.returnValue({ similarArtistsList: ['1']});
         spyOn(artistModel, 'getArtistsById');
-        artistModel.getArtistsById.and.callFake(() => artistModel.artists = artist_list );
+        artistModel.getArtistsById.and.callFake((_, cb) => cb(artistList) );
 
         await artistModel.getSimilarArtists(ARTIST_ID, doneFn);
-        expect(doneFn).toHaveBeenCalledWith(artist_list);
+        expect(doneFn).toHaveBeenCalledWith(artistList);
         done();
       })();
     });
@@ -170,10 +170,10 @@ describe('artistModel', () => {
   describe('getArtistsById', () => {
     it('should call the done function', (done) => {
       (async () => {
-        const artistList = { artists: ['anArtist'] };
-        artistModel.artists = artistList;
+        const artist = 'anArtist';
+        artistStore.fetch.and.returnValue(artist);
         await artistModel.getArtistsById(['1'], doneFn);
-        expect(doneFn).toHaveBeenCalledWith(artistModel.artists);
+        expect(doneFn).toHaveBeenCalledWith([artist]);
         done();
       })();
     });
@@ -211,6 +211,38 @@ describe('artistModel', () => {
       (async () => {
         artistStore.fetchAll.and.throwError(error);
         await artistModel.filterArtists(RATING, GENRE, doneFn);
+        expect($log.warn).toHaveBeenCalledWith(error);
+        done();
+      })();
+    });
+  });
+
+  describe('getArtistSongs', () => {
+    const artist = { songsList: ['1', '2'] };
+
+    it('should fetch the songs', (done) => {
+      (async () => {
+        await artistModel.getArtistSongs(artist);
+        expect(songStore.fetch).toHaveBeenCalledWith('1');
+        expect(songStore.fetch).toHaveBeenCalledWith('2');
+        done();
+      })();
+    });
+
+    it('should call the done function', (done) => {
+      (async () => {
+        const song = 'a_song';
+        songStore.fetch.and.returnValue(song);
+        await artistModel.getArtistSongs(artist, doneFn);
+        expect(doneFn).toHaveBeenCalledWith([song, song]);
+        done();
+      })();
+    });
+
+    it('should log a warn when an error is thrown', (done) => {
+      (async () => {
+        songStore.fetch.and.throwError(error);
+        await artistModel.getArtistSongs(artist);
         expect($log.warn).toHaveBeenCalledWith(error);
         done();
       })();

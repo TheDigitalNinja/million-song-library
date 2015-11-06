@@ -34,6 +34,7 @@ export default class albumCtrl {
             this.displaySongs = true;
             artistModel.getSimilarArtists(albumModel.album.artistId, (artists) => {
               this.similarArtists = artists;
+              this.$scope.$evalAsync();
             });
           }
         }

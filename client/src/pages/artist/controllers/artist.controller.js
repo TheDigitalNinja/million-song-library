@@ -33,8 +33,10 @@ export default class artistCtrl {
    */
   getArtist() {
     this.model.getArtist(this.artistId, (artist) => {
-      this.getSimilarArtists(artist.artistInfo.similarArtistsList);
-      this.getAlbums(artist.artistInfo.albumsList);
+      this.artist = artist;
+      this.getSongs(artist);
+      this.getAlbums(artist.albumsList);
+      this.getSimilarArtists(artist.similarArtistsList);
     });
   }
 
@@ -57,5 +59,16 @@ export default class artistCtrl {
       this.artistAlbums = albums;
     });
   }
+
+  /**
+   * Gets songs from the artist
+   * @param {ArtistInfoEntity} artist
+   */
+  getSongs(artist) {
+    this.model.getArtistSongs(artist, (songs) => {
+      this.songs = songs;
+    });
+  }
+
 }
 

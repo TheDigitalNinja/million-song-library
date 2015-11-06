@@ -46,6 +46,7 @@ export default class songCtrl {
   _getSimilarArtists(song) {
     this.artistModel.getSimilarArtists(song.artistId, (artists) => {
       this.similarArtists = artists;
+      this.$scope.$evalAsync();
     });
   }
 }
