@@ -31,6 +31,7 @@ export default class filterModel {
    */
   setSelectedGenre(genreId) {
     this.selectedGenre = genreId;
+    this.selectedRating = null;
   }
 
   /**
@@ -39,6 +40,7 @@ export default class filterModel {
    */
   setSelectedRating(ratingId) {
     this.selectedRating = ratingId;
+    this.selectedGenre = null;
   }
 
   /**

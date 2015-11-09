@@ -25,6 +25,34 @@ describe('ratingFilterDirective', () => {
     listener = jasmine.createSpyObj('listener', ['artistsFiltered', 'songsFiltered', 'albumsFiltered']);
   });
 
+  describe('setSelectedRating', () => {
+    beforeEach(() => {
+      filterModel.setSelectedRating(RATING);
+    });
+
+    it('should set the selectedRating to the received value', () => {
+      expect(filterModel.selectedRating).toEqual(RATING);
+    });
+
+    it('should set the selectedGenre to null', () => {
+      expect(filterModel.selectedGenre).toBeNull();
+    });
+  });
+
+  describe('setSelectedGenre', () => {
+    beforeEach(() => {
+      filterModel.setSelectedGenre(GENRE);
+    });
+
+    it('should set the selectedGenre to the received value', () => {
+      expect(filterModel.selectedGenre).toEqual(GENRE);
+    });
+
+    it('should set the selectedRating to null', () => {
+      expect(filterModel.selectedRating).toBeNull();
+    });
+  });
+
   describe('filter', () => {
     beforeEach(() => {
       spyOn(filterModel, '_filterSongs');

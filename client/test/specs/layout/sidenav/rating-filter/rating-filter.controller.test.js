@@ -37,13 +37,14 @@ describe('ratingFilterCtrl', () => {
       };
     });
 
+    filterModel.setSelectedRating.and.callFake((rating) => filterModel.selectedRating = rating);
   });
 
   describe('activeRating', () => {
     it('should return true if the rating is the selectedRating', () => {
       const rate = RATE;
       const controller = ratingFilterCtrl();
-      controller.selectedRating = RATE;
+      filterModel.selectedRating = RATE;
 
       expect(controller.isActiveRating(rate)).toBeTruthy();
     });
@@ -80,34 +81,19 @@ describe('ratingFilterCtrl', () => {
   });
 
   describe('applyRatingFilter', () => {
-    let controller, rate;
+    let controller;
 
-    describe('when object is null', () => {
-      beforeEach(() => {
-        controller = ratingFilterCtrl();
-        controller.applyRatingFilter(null);
-      });
-
-      it('should set the controller rating filter', () => {
-        expect(controller.selectedRating).toEqual(null);
-      });
+    beforeEach(() => {
+      controller = ratingFilterCtrl();
+      controller.applyRatingFilter(RATE);
     });
 
-    describe('when object exist', () => {
+    it('should update the search query', () => {
+      expect($location.search).toHaveBeenCalledWith('rating', RATE);
+    });
 
-      beforeEach(() => {
-        controller = ratingFilterCtrl();
-        rate = RATE;
-        controller.applyRatingFilter(rate);
-      });
-
-      it('should update the search query', () => {
-        expect($location.search).toHaveBeenCalledWith('rating', RATE);
-      });
-
-      it('should filter by the rating', () => {
-        expect(filterModel.filter).toHaveBeenCalledWith(listener);
-      });
+    it('should filter by the rating', () => {
+      expect(filterModel.filter).toHaveBeenCalledWith(listener);
     });
   });
 

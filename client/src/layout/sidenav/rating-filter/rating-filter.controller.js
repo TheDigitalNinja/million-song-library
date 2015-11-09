@@ -30,7 +30,7 @@ export default class ratingFilterCtrl {
    * @return {Boolean}
    */
   isActiveRating(ratingId) {
-    return ratingId === this.selectedRating;
+    return ratingId === this.filterModel.selectedRating;
   }
 
   /**
@@ -38,10 +38,10 @@ export default class ratingFilterCtrl {
    * @param {string} ratingId
    */
   applyRatingFilter(ratingId) {
-    this.selectedRating = ratingId;
-    this.$location.search('rating', ratingId);
     this.filterModel.setSelectedRating(ratingId);
     this.filterModel.filter(this.$scope.listener);
+    this.$location.search('rating', this.filterModel.selectedRating);
+    this.$location.search('genre', this.filterModel.selectedGenre);
   }
 
   /**

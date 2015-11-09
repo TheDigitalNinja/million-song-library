@@ -35,6 +35,7 @@ describe('genreFilterCtrl', () => {
       };
     });
 
+    filterModel.setSelectedGenre.and.callFake((genre) => filterModel.selectedGenre = genre);
   });
 
   describe('getGenres', () => {
@@ -51,7 +52,7 @@ describe('genreFilterCtrl', () => {
   describe('activeGenre', () => {
     it('should return true if the genre is the selectedGenre', () => {
       const controller = genreFilterCtrl();
-      controller.selectedGenre = genres[0];
+      filterModel.selectedGenre = genres[0];
       const genre = genres[0];
 
       expect(controller.activeGenre(genre)).toBeTruthy();
@@ -77,10 +78,6 @@ describe('genreFilterCtrl', () => {
 
     it('should update the search query', () => {
       expect($location.search).toHaveBeenCalledWith('genre', genre);
-    });
-
-    it('should update the selected genre', () => {
-      expect(controller.selectedGenre).toEqual(genre);
     });
 
     it('should filter by the genre', () => {
