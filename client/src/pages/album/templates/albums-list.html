@@ -1,5 +1,8 @@
 <div layout="row" layout-wrap>
-  <div layout-padding flex="33" flex-sm="100" ng-repeat="album in albums track by $index">
+  <div ng-if="albums" layout-padding flex="33" flex-sm="100" ng-repeat="album in albums track by $index">
     <album-box album="album"></album-box>
+  </div>
+  <div ng-if="albums && !albums.length">
+    <p> Sorry, no albums matched your filtering criteria. </p>
   </div>
 </div>
