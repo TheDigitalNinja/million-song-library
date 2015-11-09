@@ -30,7 +30,7 @@ export default class genreFilterCtrl {
    * @return {Boolean}
    */
   activeGenre(genreId) {
-    return this.selectedGenre === genreId;
+    return this.filterModel.selectedGenre === genreId;
   }
 
   /**
@@ -38,10 +38,10 @@ export default class genreFilterCtrl {
    * @param {string} genreId
    */
   applyFilterByGenre(genreId) {
-    this.$location.search('genre', genreId);
-    this.selectedGenre = genreId;
     this.filterModel.setSelectedGenre(genreId);
     this.filterModel.filter(this.$scope.listener);
+    this.$location.search('rating', this.filterModel.selectedRating);
+    this.$location.search('genre', this.filterModel.selectedGenre);
   }
 
   /**
