@@ -39,10 +39,13 @@ h6, {
 }
 
 h1, .h1 {
-  color: $blue-1;
+  color: $blue-3;
   font-weight: 400;
 }
 
+.msl-page-title {
+  margin-top: 1rem;
+}
 
 // Text colors
 //
@@ -88,5 +91,12 @@ h1, .h1 {
   color: $gray-1 !important;
   @include pseudo-class {
     color: $gray-1 !important;
+  }
+}
+
+a {
+  color: $blue-2;
+  @include pseudo-class {
+    color: $blue-2;
   }
 }

@@ -1,0 +1,40 @@
+// Material Design Style Overrides
+
+html, body {
+	height: auto;
+}
+
+md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-ink-bar {
+	background-color: $orange-1;
+	height: 3px;
+}
+
+a.md-button.md-default-theme:not([disabled]):hover,
+a.md-button:not([disabled]):hover,
+.md-button.md-default-theme:not([disabled]):hover,
+.md-button:not([disabled]):hover,
+.md-button.active {
+	background-color: rgba(0,0,0,.2);
+}
+
+md-toolbar.md-warn > md-tabs.md-default-theme,
+md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active,
+md-toolbar.md-warn > md-tabs.md-default-theme,
+md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {
+	color: $blue-1;
+}
+
+md-toolbar.md-warn > md-tabs.md-default-theme,
+md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {
+	color: $orange-1;
+}
+
+.md-button.md-icon-button {
+    margin: 0 0.6rem;
+    height: 4.8rem;
+    min-width: 0;
+    line-height: 4.8rem;
+    padding-left: 0;
+    padding-right: 0;
+    width: 4.8rem;
+}

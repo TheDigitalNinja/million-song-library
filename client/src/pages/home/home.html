@@ -1,58 +1,40 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-3 msl-sidebar">
+
+  <div layout="row" layout-sm="column">
+    <div flex="25" flex-sm="100" class="msl-sidebar">
         <genre-filter listener='vm'></genre-filter>
         <rating-filter listener='vm'></rating-filter>
     </div>
 
-    <div class="col-lg-9 msl-main-content">
-      <div class="row">
-        <div class="col-xs-12">
-          <h1 ng-hide="!!vm.model.selectedGenre">Featured</h1>
+    <div flex="75" flex-sm="100" class="msl-main-content">
+      <h1 class="md-display-2 msl-page-title" ng-hide="!!vm.model.selectedGenre">Featured</h1>
 
-          <h1 ng-show="!!vm.model.selectedGenre">{{vm.model.selectedGenre}}</h1>
-        </div>
-      </div>
+      <h1 class="md-display-2 msl-page-title" ng-show="!!vm.model.selectedGenre">{{vm.model.selectedGenre}}</h1>
 
-      <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link"
-             ng-class="{'active': vm.activeTab === 'songs'}"
-             ng-click="vm.activeTab = 'songs'"
-             href="" role="tab" data-toggle="tab">Songs</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"
-             ng-class="{'active': vm.activeTab === 'albums'}"
-             ng-click="vm.activeTab = 'albums'"
-             href="" role="tab" data-toggle="tab">Albums</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"
-             ng-class="{'active': vm.activeTab === 'artists'}"
-             ng-click="vm.activeTab = 'artists'"
-             href="" role="tab" data-toggle="tab">Artists</a>
-        </li>
-      </ul>
-
-      <div class="tab-content">
-        <div role="tabpanel"
-             ng-class="{'active': vm.activeTab === 'songs'}"
-             class="tab-pane" id="home">
-          <songs-list songs="vm.songModel.songs"></songs-list>
-        </div>
-        <div role="tabpanel"
-             ng-class="{'active': vm.activeTab === 'albums'}"
-             class="tab-pane" id="profile">
-          <albums-list albums="vm.albumModel.albums"></albums-list>
-        </div>
-        <div role="tabpanel"
-             ng-class="{'active': vm.activeTab === 'artists'}"
-             class="tab-pane" id="messages">
-          <artists-list artists="vm.artistModel.artists"></artists-list>
-        </div>
-      </div>
-
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab>
+          <md-tab-label>
+            Songs
+          </md-tab-label>
+          <md-tab-body>
+            <songs-list songs="vm.songModel.songs"></songs-list>
+          </md-tab-body>
+        </md-tab>
+        <md-tab>
+          <md-tab-label>
+            Albums
+          </md-tab-label>
+          <md-tab-body>
+            <albums-list albums="vm.albumModel.albums"></albums-list>
+          </md-tab-body>
+        </md-tab>
+        <md-tab>
+          <md-tab-label>
+            Artists
+          </md-tab-label>
+          <md-tab-body>
+            <artists-list artists="vm.artistModel.artists"></artists-list>
+          </md-tab-body>
+        </md-tab>
+      </md-tabs>
     </div>
   </div>
-</div>

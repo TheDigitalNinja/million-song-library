@@ -13,8 +13,8 @@
         <span>&amp; up</span>
       </a>
     </ul>
-    <button ng-click="vm.applyRatingFilter('')" ng-show="vm.isActiveRating(rating.facetId)" type="button" class="close deselecFilter{{rating.name[0]}}">
+    <md-button class="btn-facet-clear deselecFilter{{rating.name[0]}}" ng-click="vm.applyRatingFilter('')" ng-show="vm.isActiveRating(rating.facetId)">
       <span aria-hidden="true">&times;</span>
-    </button>
+    </md-button>
   </li>
 </ul>

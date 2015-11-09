@@ -1,41 +1,32 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="image-container image-container-margin">
-        <img class="img-responsive center-block" ng-src="{{vm.model.album.imageLink}}" alt="{{vm.model.album.albumName}}"/>
-      </div>
-      <p class="text-center">Album cover from ???</p>
-    </div>
-
-    <div class="album-info col-md-9">
-      <div class="row">
-        <div class="col-md-12">
-        <span class="pull-right">
-          <a href="" add-to-library id="vm.albumId" type="album">
-            <i class="fa fa-heart-o"></i> Add Album to Library
-          </a>
-        </span>
-          <h1 class="album-name">{{vm.model.album.albumName}}</h1>
-          <span>Artist:</span>
-          <a class="link-black" ui-sref="default.genre">{{vm.model.album.artistName}}</a><br>
-          <span>Genre:</span>
-          <span class="genre-name">{{vm.model.album.genre}}</span><br>
-          <span>Year:</span>
-          <span class="album-year">{{vm.model.album.year}}</span><br>
-          <span>Rating:</span>
-          <div star-rating="vm.model.album.averageRating" song-id="vm.model.album.albumId"></div><br>
-
-        </div>
-      </div>
-
-      <h3>Album Songs</h3>
-      <songs-table loading="!vm.displaySongs" songs="vm.albumSongs"></songs-table>
-
-      <h3>Similar Artists</h3>
-      <artists-list artists="vm.similarArtists"></artists-list>
-
-    </div>
-    <div class="clearfix"></div>
+<div layout="row" class="msl-padding">
+  <div class="image-container" flex="25" layout-padding flex-sm="100">
+    <img class="img-responsive" ng-src="{{vm.model.album.imageLink}}" alt="{{vm.model.album.albumName}}"/>
   </div>
-
+  <div flex="75" class="msl-padding" flex-sm="100">
+    <span class="pull-right">
+      <a href="" add-to-library id="vm.albumId" type="album">
+        <i class="fa fa-heart-o"></i> Add Album to Library
+      </a>
+    </span>
+    <h1 class="album-name">{{vm.model.album.albumName}}</h1>
+    <span>Artist:</span>
+    <a class="link-black" ui-sref="default.genre">{{vm.model.album.artistName}}</a><br>
+    <span>Genre:</span>
+    <span class="genre-name">{{vm.model.album.genre}}</span><br>
+    <span>Year:</span>
+    <span class="album-year">{{vm.model.album.year}}</span><br>
+    <span>Rating:</span>
+    <div star-rating="vm.model.album.averageRating" song-id="vm.model.album.albumId"></div>
+  </div>
 </div>
+<section layout="row" class="msl-extras msl-padding">
+  <div class="msl-padding" flex="75" flex-offset="25" flex-sm="100" flex-offset-sm="0">
+    <h3>Album Songs</h3>
+    <songs-table loading="!vm.displaySongs" songs="vm.albumSongs"></songs-table>
+
+    <h3 class="msl-box-grid-title">Similar Artists</h3>
+    <div class="msl-box-grid">
+      <artists-list artists="vm.similarArtists"></artists-list>
+    </div>
+  </div>
+</section>
