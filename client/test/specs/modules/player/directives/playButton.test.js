@@ -3,6 +3,7 @@ import _ from 'lodash';
 import $ from 'jquery';
 import angular from 'angular';
 import playerModule from 'modules/player/module';
+import angularMaterial from 'angular-material';
 
 describe('play button directive', () => {
   /** @type {player} */
@@ -11,6 +12,7 @@ describe('play button directive', () => {
   let $compile;
 
   beforeEach(() => {
+    angular.mock.module(angularMaterial);
     angular.mock.module(playerModule, ($provide) => {
       player = jasmine.createSpyObj('player', [
         'stop',
@@ -30,24 +32,6 @@ describe('play button directive', () => {
 
   afterEach(() => {
     $scope.$destroy();
-  });
-
-  it('should create play button without size class', () => {
-    const template = $($compile(`<play-button song-id="'id'"></play-button>`)($scope));
-
-    $scope.$digest();
-    expect(template.find('.fa.fa-play').length).toBe(1);
-    expect(template.find('button').hasClass('btn-xs')).toBeFalsy();
-    expect(_.trim(template.text())).toBe('Play');
-  });
-
-  it('should create xs size play button', () => {
-    const template = $($compile(`<play-button size="xs" song-id="'id'"></play-button>`)($scope));
-
-    $scope.$digest();
-    expect(template.find('.fa.fa-play').length).toBe(1);
-    expect(template.find('button').hasClass('btn-xs')).toBeTruthy();
-    expect(_.trim(template.text())).toBe('Play');
   });
 
   it('should change to stop button when playing current track', () => {
@@ -110,5 +94,22 @@ describe('play button directive', () => {
     template.find('button').click();
     $scope.$digest();
     expect(player.stop).toHaveBeenCalled();
+  });
+
+  it('should not change to stop when the the songEntity is undefined', () => {
+    let onPlayerStateChange;
+    player.addStateChangeListener.and.callFake((fn) => { onPlayerStateChange = fn; });
+
+    const template = $($compile(`<play-button song-id="'id'"></play-button>`)($scope));
+    $scope.$digest();
+    expect(template.find('.fa.fa-play').length).toBe(1);
+    expect(template.find('.fa.fa-stop').length).toBe(0);
+    expect(_.trim(template.text())).toBe('Play');
+    onPlayerStateChange();
+    $scope.$digest();
+    expect(template.find('.fa.fa-play').length).toBe(1);
+    expect(template.find('.fa.fa-stop').length).toBe(0);
+    expect(_.trim(template.text())).toBe('Play');
+    expect(player.getSongEntity).toHaveBeenCalled();
   });
 });

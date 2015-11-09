@@ -51,7 +51,6 @@ export default function playButton () {
     controllerAs: 'pb',
     template: require('../templates/playButton.html'),
     scope: {
-      size: '@',
       songId: '=',
     },
   };
