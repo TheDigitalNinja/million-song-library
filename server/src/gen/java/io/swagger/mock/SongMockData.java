@@ -103,7 +103,7 @@ public class SongMockData {
         songMockData1.setAlbumName("Alien Love Secrets");
         songMockData1.setDuration(230);
         songMockData1.setGenre("Rock");
-        songMockData1.setAverageRating(new BigDecimal("4.5"));
+        songMockData1.setAverageRating(new BigDecimal("4"));
         songs.add(songMockData1);
 
         SongInfo songMockData2 = new SongInfo();
@@ -116,7 +116,7 @@ public class SongMockData {
         songMockData2.setAlbumName("The Wall");
         songMockData2.setDuration(230);
         songMockData2.setGenre("Rock");
-        songMockData2.setAverageRating(new BigDecimal("4.5"));
+        songMockData2.setAverageRating(new BigDecimal("4"));
         songs.add(songMockData2);
 
         SongInfo songMockData3 = new SongInfo();
@@ -129,7 +129,7 @@ public class SongMockData {
         songMockData3.setAlbumName("Farewell song");
         songMockData3.setDuration(230);
         songMockData3.setGenre("Rock and Roll");
-        songMockData3.setAverageRating(new BigDecimal("3.7"));
+        songMockData3.setAverageRating(new BigDecimal("3"));
         songs.add(songMockData3);
 
         SongInfo songMockData4 = new SongInfo();
@@ -142,7 +142,7 @@ public class SongMockData {
         songMockData4.setAlbumName("Led Zeppelin III");
         songMockData4.setDuration(230);
         songMockData4.setGenre("Rock and Roll");
-        songMockData4.setAverageRating(new BigDecimal("4.5"));
+        songMockData4.setAverageRating(new BigDecimal("4"));
         songs.add(songMockData4);
 
         SongInfo songMockData5 = new SongInfo();
@@ -155,7 +155,7 @@ public class SongMockData {
         songMockData5.setAlbumName("Uncle Jam Wants You");
         songMockData5.setDuration(230);
         songMockData5.setGenre("Funk");
-        songMockData5.setAverageRating(new BigDecimal("2.5"));
+        songMockData5.setAverageRating(new BigDecimal("2"));
         songs.add(songMockData5);
 
         SongInfo songMockData6 = new SongInfo();
@@ -167,7 +167,7 @@ public class SongMockData {
         songMockData6.setAlbumId("6");
         songMockData6.setAlbumName("Rainbow Connection");
         songMockData6.setDuration(230);
-        songMockData6.setAverageRating(new BigDecimal("1.5"));
+        songMockData6.setAverageRating(new BigDecimal("1"));
         songMockData6.setGenre("Country");
         songs.add(songMockData6);
 
@@ -180,7 +180,7 @@ public class SongMockData {
         songMockData7.setAlbumId("7");
         songMockData7.setAlbumName("Surfing with the alien");
         songMockData7.setDuration(230);
-        songMockData7.setAverageRating(new BigDecimal("4.5"));
+        songMockData7.setAverageRating(new BigDecimal("4"));
         songMockData7.setGenre("Rock");
         songs.add(songMockData7);
 
@@ -193,7 +193,7 @@ public class SongMockData {
         songMockData8.setAlbumId("8");
         songMockData8.setAlbumName("Is There Love in Space?");
         songMockData8.setDuration(230);
-        songMockData8.setAverageRating(new BigDecimal("4.5"));
+        songMockData8.setAverageRating(new BigDecimal("4"));
         songMockData8.setGenre("Rock");
         songs.add(songMockData8);
         
@@ -206,7 +206,7 @@ public class SongMockData {
         songMockData9.setAlbumId("9");
         songMockData9.setAlbumName("That's the Way of the World");
         songMockData9.setDuration(230);
-        songMockData9.setAverageRating(new BigDecimal("2.5"));
+        songMockData9.setAverageRating(new BigDecimal("2"));
         songMockData9.setGenre("Funk");
         songs.add(songMockData9);
 
