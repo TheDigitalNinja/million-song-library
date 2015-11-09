@@ -13,61 +13,118 @@ public class FacetMockData {
 
     public List<FacetInfoWithChildren> mockFacets;
 
-    public FacetMockData() {
-
-        FacetInfoWithChildren genreFacets = new FacetInfoWithChildren();
-        genreFacets.setFacetId("0");
-        genreFacets.setName("genres");
-        genreFacets.setChildren(getGenreFacetList());
-
-        FacetInfoWithChildren ratingFacets = new FacetInfoWithChildren();
-        ratingFacets.setFacetId("1");
-        ratingFacets.setName("rating");
-        ratingFacets.setChildren(getRatingFacetList());
+    public FacetMockData () {
 
         mockFacets = new ArrayList<FacetInfoWithChildren>();
-        mockFacets.add(genreFacets);
-        mockFacets.add(ratingFacets);
+        List<FacetInfo> genreFacets = getGenreFacetList();
+        List<FacetInfo> ratingFacets = getRatingFacetList();
+
+        for (FacetInfo facet : genreFacets) {
+            FacetInfoWithChildren result = new FacetInfoWithChildren();
+            result.setFacetId(facet.getFacetId());
+            result.setName(facet.getName());
+            mockFacets.add(result);
+        }
+
+        for (FacetInfo facet : ratingFacets) {
+            FacetInfoWithChildren result = new FacetInfoWithChildren();
+            result.setFacetId(facet.getFacetId());
+            result.setName(facet.getName());
+            mockFacets.add(result);
+        }
+
+        FacetInfoWithChildren genreFacet = new FacetInfoWithChildren();
+        genreFacet.setFacetId("0");
+        genreFacet.setName("genres");
+        genreFacet.setChildren(genreFacets);
+        mockFacets.add(genreFacet);
+
+        FacetInfoWithChildren ratingFacet = new FacetInfoWithChildren();
+        ratingFacet.setFacetId("1");
+        ratingFacet.setName("ratings");
+        ratingFacet.setChildren(ratingFacets);
+        mockFacets.add(ratingFacet);
 
     }
 
-    private List<FacetInfoWithChildren> getGenreFacetList() {
-        List<FacetInfoWithChildren> genreFacetList = new ArrayList<FacetInfoWithChildren>();
+    public List<FacetInfoWithChildren> getRatingFacets () {
+        List<FacetInfoWithChildren> result = new ArrayList<FacetInfoWithChildren>();
+        for (FacetInfo facet : getRatingFacetList()) {
+            FacetInfoWithChildren _facet = new FacetInfoWithChildren();
+            _facet.setFacetId(facet.getFacetId());
+            _facet.setName(facet.getName());
+            result.add(_facet);
+        }
+        return result;
+    }
 
-        List<FacetInfoWithChildren> rockSubFacetList = new ArrayList<FacetInfoWithChildren>();
+    public FacetInfoWithChildren getFacet(String facet_id) {
+        // ~ should return root facet
+        if (facet_id.equals("~")) {
+            return getRootFacet();
+        } else {
+            for (FacetInfoWithChildren facet : mockFacets) {
+                if (facet.getFacetId().equals(facet_id)) {
+                    return facet;
+                }
+            }
+        }
+        return new FacetInfoWithChildren();
+    }
 
-        FacetInfoWithChildren facetInfoMock2 = new FacetInfoWithChildren();
+    private FacetInfoWithChildren getRootFacet () {
+        List<FacetInfo> mainFacets = new ArrayList<FacetInfo>();
+        FacetInfo _genreFacets = new FacetInfo();
+        _genreFacets.setFacetId("0");
+        _genreFacets.setName("genres");
+        mainFacets.add(_genreFacets);
+
+        FacetInfo _ratingFacets = new FacetInfo();
+        _ratingFacets.setFacetId("1");
+        _ratingFacets.setName("rating");
+        mainFacets.add(_ratingFacets);
+
+        FacetInfoWithChildren result = new FacetInfoWithChildren();
+        result.setFacetId("99");
+        result.setName("root");
+        result.setChildren(mainFacets);
+        return result;
+    }
+
+    private List<FacetInfo> getGenreFacetList() {
+        List<FacetInfo> genreFacetList = new ArrayList<FacetInfo>();
+
+        FacetInfo facetInfoMock2 = new FacetInfo();
         facetInfoMock2.setFacetId("3");
         facetInfoMock2.setName("Rock and Roll");
-        rockSubFacetList.add(facetInfoMock2);
+        genreFacetList.add(facetInfoMock2);
 
-        FacetInfoWithChildren facetInfoMock6 = new FacetInfoWithChildren();
+        FacetInfo facetInfoMock6 = new FacetInfo();
         facetInfoMock6.setFacetId("4");
         facetInfoMock6.setName("Progressive Rock");
-        rockSubFacetList.add(facetInfoMock6);
+        genreFacetList.add(facetInfoMock6);
 
-        FacetInfoWithChildren facetInfoMock7 = new FacetInfoWithChildren();
+        FacetInfo facetInfoMock7 = new FacetInfo();
         facetInfoMock7.setFacetId("5");
         facetInfoMock7.setName("Alternative Rock");
-        rockSubFacetList.add(facetInfoMock7);
+        genreFacetList.add(facetInfoMock7);
 
-        FacetInfoWithChildren facetInfoMock1 = new FacetInfoWithChildren();
+        FacetInfo facetInfoMock1 = new FacetInfo();
         facetInfoMock1.setFacetId("2");
         facetInfoMock1.setName("Rock");
-        facetInfoMock1.setChildren(rockSubFacetList);
         genreFacetList.add(facetInfoMock1);
 
-        FacetInfoWithChildren facetInfoMock3 = new FacetInfoWithChildren();
+        FacetInfo facetInfoMock3 = new FacetInfo();
         facetInfoMock3.setFacetId("6");
         facetInfoMock3.setName("Pop");
         genreFacetList.add(facetInfoMock3);
 
-        FacetInfoWithChildren facetInfoMock4 = new FacetInfoWithChildren();
+        FacetInfo facetInfoMock4 = new FacetInfo();
         facetInfoMock4.setFacetId("7");
         facetInfoMock4.setName("Country");
         genreFacetList.add(facetInfoMock4);
 
-        FacetInfoWithChildren facetInfoMock5 = new FacetInfoWithChildren();
+        FacetInfo facetInfoMock5 = new FacetInfo();
         facetInfoMock5.setFacetId("8");
         facetInfoMock5.setName("Funk");
         genreFacetList.add(facetInfoMock5);
@@ -75,49 +132,29 @@ public class FacetMockData {
         return genreFacetList;
     }
 
-    private List<FacetInfoWithChildren> getRatingFacetList() {
-        List<FacetInfoWithChildren> ratingFacetList = new ArrayList<FacetInfoWithChildren>();
+    private List<FacetInfo> getRatingFacetList() {
+        List<FacetInfo> ratingFacetList = new ArrayList<FacetInfo>();
 
-        FacetInfoWithChildren facetInfoMock1 = new FacetInfoWithChildren();
+        FacetInfo facetInfoMock1 = new FacetInfo();
         facetInfoMock1.setFacetId("14");
         facetInfoMock1.setName("4 stars and up");
         ratingFacetList.add(facetInfoMock1);
 
-        FacetInfoWithChildren facetInfoMock2 = new FacetInfoWithChildren();
+        FacetInfo facetInfoMock2 = new FacetInfo();
         facetInfoMock2.setFacetId("13");
         facetInfoMock2.setName("3 stars and up");
         ratingFacetList.add(facetInfoMock2);
 
-        FacetInfoWithChildren facetInfoMock3 = new FacetInfoWithChildren();
+        FacetInfo facetInfoMock3 = new FacetInfo();
         facetInfoMock3.setFacetId("12");
         facetInfoMock3.setName("2 stars and up");
         ratingFacetList.add(facetInfoMock3);
 
-        FacetInfoWithChildren facetInfoMock4 = new FacetInfoWithChildren();
+        FacetInfo facetInfoMock4 = new FacetInfo();
         facetInfoMock4.setFacetId("11");
         facetInfoMock4.setName("1 star and up");
         ratingFacetList.add(facetInfoMock4);
 
         return ratingFacetList;
     }
-
-    public FacetInfoWithChildren getFacet(String facet_id) {
-        // ~ should return root facet
-        if (facet_id.equals("~")) {
-            FacetInfoWithChildren allFacets = new FacetInfoWithChildren();
-            allFacets.setName("All");
-            List<FacetInfoWithChildren> facets = new ArrayList<FacetInfoWithChildren>();
-            facets.add(mockFacets.get(0));
-            facets.add(mockFacets.get(1));
-            allFacets.setChildren(facets);
-            return allFacets;
-        } else {
-            FacetInfoWithChildren result = FacetServiceFactory.getFacet(facet_id, mockFacets);
-            if (result != null) {
-                return result;
-            }
-        }
-        return new FacetInfoWithChildren();
-    }
-
 }

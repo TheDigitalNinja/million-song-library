@@ -1,3 +1,4 @@
+import {RATING_FACET_ID} from '../../../constants.js';
 /**
  * Rating filter controller
  */
@@ -10,54 +11,62 @@ export default class ratingFilterCtrl {
    * @param {$location} $location
    * @param {$scope} $scope
    * @param {filterModel} filterModel
+   * @param {facetStore} facetStore
+   * @param {$log} $log
    */
-  constructor($location, $scope, filterModel) {
+  constructor($location, $scope, filterModel, facetStore, $log) {
     this.$scope = $scope;
     this.$location = $location;
     this.filterModel = filterModel;
+    this.facetStore = facetStore;
+    this.$log = $log;
 
-    this.rates = [];
-
-    this._updateRatings();
+    this._getRatingFacets();
   }
 
   /**
    * Determines if the given rating is the active one
-   * @param {rate} rate
+   * @param {string} ratingId
    * @return {Boolean}
    */
-  activeRating(rate) {
-    if(this.ratingFilter) {
-      return this.ratingFilter === rate.rate;
-    }
-    else {
-      return false;
-    }
+  isActiveRating(ratingId) {
+    return ratingId === this.selectedRating;
   }
 
   /**
    * Applies rating filter on change
-   * @param {rate} rate
+   * @param {string} ratingId
    */
-  applyRatingFilter(rate) {
-    this.ratingFilter = rate == null ? null : rate.rate;
-    this.$location.search('rating', this.ratingFilter);
-    this.filterModel.filter({ rating: this.ratingFilter }, this.$scope.listener);
+  applyRatingFilter(ratingId) {
+    this.selectedRating = ratingId;
+    this.$location.search('rating', ratingId);
+    this.filterModel.setSelectedRating(ratingId);
+    this.filterModel.filter(this.$scope.listener);
   }
 
   /**
-   * Updates the array of rates
+   * Gets the the star list from a particular rating
+   * @param {Object} rating
+   * @returns {Object[]}
    */
-  _updateRatings() {
-    const maxRates = 4;
-
-    for(let i = maxRates; i > 0; i--) {
-      this.rates.push({ rate: i, stars: this._updateStars(i) });
+  getStars(rating) {
+    try {
+      let chars = rating.name.split(' ');
+      let index = parseInt(chars[0]);
+      if(isNaN(index)) {
+        throw 'NaN';
+      }
+      return this._updateStars(index);
+    } catch(error) {
+      this.$log.error(error);
     }
   }
 
   /**
    * Update the stars for each rate
+   * @param {int} starRating
+   * @returns {Object[]}
+   * @private
    */
   _updateStars(starRating) {
     const max = 5;
@@ -69,5 +78,19 @@ export default class ratingFilterCtrl {
       });
     }
     return stars;
+  }
+
+  /**
+   * Gets all rating facets
+   * @private
+   */
+  async _getRatingFacets () {
+    try {
+      const facetList = await this.facetStore.fetch(RATING_FACET_ID);
+      this.ratingFacets = facetList.children;
+      this.$scope.$evalAsync();
+    } catch(error) {
+      this.$log.error(error);
+    }
   }
 }

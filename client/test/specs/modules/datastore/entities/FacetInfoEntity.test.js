@@ -1,6 +1,6 @@
 import datastoreModule from 'modules/datastore/module';
 
-describe('GenreInfoEntity', () => {
+describe('FacetInfoEntity', () => {
   const schema = {
     facetId: String,
     name: String,
@@ -11,8 +11,8 @@ describe('GenreInfoEntity', () => {
   beforeEach(() => {
     angular.mock.module(datastoreModule);
 
-    inject((GenreInfoEntity) => {
-      entity = new GenreInfoEntity();
+    inject((FacetInfoEntity) => {
+      entity = new FacetInfoEntity();
     });
   });
 

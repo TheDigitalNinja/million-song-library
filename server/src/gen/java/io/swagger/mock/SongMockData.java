@@ -15,6 +15,78 @@ import java.util.List;
 public class SongMockData {
 
     public SongList songList;
+    private FacetMockData facetMockData = new FacetMockData();
+
+    public SongInfo getSong(String songId) {
+        for (SongInfo song : songList.getSongs()) {
+            if (songId.equals(song.getSongId())) {
+                return song;
+            }
+        }
+        return new SongInfo();
+    }
+
+    private List<SongInfo> applyGenreFacet (String [] facets, List<SongInfo> songList){
+        List<SongInfo> result = new ArrayList<SongInfo>();
+        boolean hasRatingFacet = false;
+        for (String facet: facets) {
+            if (!FacetServiceFactory.isRatingFacet(facet, facetMockData.getRatingFacets())) {
+                hasRatingFacet = true;
+                for (SongInfo artist : songList) {
+                    String facetName = FacetServiceFactory.getFacet(facet, facetMockData.mockFacets).getName();
+                    if (artist.getGenre().equals(facetName)) {
+                        result.add(artist);
+                    }
+                }
+            }
+        }
+
+        if (hasRatingFacet) {
+            return result;
+        }else {
+            return songList;
+        }
+    }
+
+    private List<SongInfo> applyRatingFacet (String [] facets, List<SongInfo> songList) {
+        for (String facet : facets) {
+            if (FacetServiceFactory.isRatingFacet(facet, facetMockData.getRatingFacets())) {
+                return FacetServiceFactory.filterSongsByRatingFacet(songList, facet);
+            }
+        }
+        return songList;
+    }
+
+    public SongList browseSongs(String pagingState, Integer items, String facetList) {
+        List<SongInfo> browsedSongs = songList.getSongs();
+
+        if (pagingState != null && !pagingState.isEmpty()) {
+            // TODO implement pagination
+            System.out.println("Pagination: " + pagingState);
+        }
+
+        if (facetList != null && facetList.length() > 0) {
+            //TODO replace reference to mock data
+            System.out.println("Filtering by facet(s): " + facetList);
+            String[] facets = facetList.split(",");
+            browsedSongs = applyRatingFacet(facets, browsedSongs);
+            browsedSongs = applyGenreFacet(facets, browsedSongs);
+        }
+
+        // TODO if no items are provided should return 25 results
+        if (items != null && items > 0) {
+            List<SongInfo> pivotSongs = browsedSongs;
+            browsedSongs = new ArrayList<SongInfo>();
+            for (int i = 0; i < items && i < pivotSongs.size(); i++) {
+                browsedSongs.add(pivotSongs.get(i));
+            }
+        }
+
+        SongList results = new SongList();
+        results.setSongs(browsedSongs);
+
+        return results;
+    }
 
     public SongMockData() {
 
@@ -44,7 +116,7 @@ public class SongMockData {
         songMockData2.setAlbumName("The Wall");
         songMockData2.setDuration(230);
         songMockData2.setGenre("Rock");
-        songMockData2.setAverageRating(new BigDecimal("3.5"));
+        songMockData2.setAverageRating(new BigDecimal("4.5"));
         songs.add(songMockData2);
 
         SongInfo songMockData3 = new SongInfo();
@@ -70,7 +142,7 @@ public class SongMockData {
         songMockData4.setAlbumName("Led Zeppelin III");
         songMockData4.setDuration(230);
         songMockData4.setGenre("Rock and Roll");
-        songMockData4.setAverageRating(new BigDecimal("3.5"));
+        songMockData4.setAverageRating(new BigDecimal("4.5"));
         songs.add(songMockData4);
 
         SongInfo songMockData5 = new SongInfo();
@@ -99,72 +171,46 @@ public class SongMockData {
         songMockData6.setGenre("Country");
         songs.add(songMockData6);
 
+        SongInfo songMockData7 = new SongInfo();
+        songMockData7.setSongId("7");
+        songMockData7.setSongName("Surfing with the alien");
+        songMockData7.setImageLink("http://www.satriani.com/discography/Surfing_With_The_Alien/Surfing_With_The_Alien.jpg");
+        songMockData7.setArtistId("7");
+        songMockData7.setArtistName("Joe Satriani");
+        songMockData7.setAlbumId("7");
+        songMockData7.setAlbumName("Surfing with the alien");
+        songMockData7.setDuration(230);
+        songMockData7.setAverageRating(new BigDecimal("4.5"));
+        songMockData7.setGenre("Rock");
+        songs.add(songMockData7);
+
+        SongInfo songMockData8 = new SongInfo();
+        songMockData8.setSongId("8");
+        songMockData8.setSongName("Up In Flames");
+        songMockData8.setImageLink("https://upload.wikimedia.org/wikipedia/en/5/50/Joespace.jpg");
+        songMockData8.setArtistId("7");
+        songMockData8.setArtistName("Joe Satriani");
+        songMockData8.setAlbumId("8");
+        songMockData8.setAlbumName("Is There Love in Space?");
+        songMockData8.setDuration(230);
+        songMockData8.setAverageRating(new BigDecimal("4.5"));
+        songMockData8.setGenre("Rock");
+        songs.add(songMockData8);
+        
+        SongInfo songMockData9 = new SongInfo();
+        songMockData9.setSongId("9");
+        songMockData9.setSongName("That's the Way of the World");
+        songMockData9.setImageLink("https://upload.wikimedia.org/wikipedia/en/0/03/Whiskeytown-Stranger%27s_Almanac_%28album_cover%29.jpg");
+        songMockData9.setArtistId("8");
+        songMockData9.setArtistName("Earth wind and fire");
+        songMockData9.setAlbumId("9");
+        songMockData9.setAlbumName("That's the Way of the World");
+        songMockData9.setDuration(230);
+        songMockData9.setAverageRating(new BigDecimal("2.5"));
+        songMockData9.setGenre("Funk");
+        songs.add(songMockData9);
+
         songList.setSongs(songs);
-    }
-
-    public SongInfo getSong(String songId) {
-        for (SongInfo song : songList.getSongs()) {
-            if (songId.equals(song.getSongId())) {
-                return song;
-            }
-        }
-        return new SongInfo();
-    }
-
-    public SongList browseSongs(String pagingState, Integer items, String facetList, String sortFields) {
-        List<SongInfo> browsedSongs = songList.getSongs();
-
-        if (pagingState != null && !pagingState.isEmpty()) {
-            // TODO implement pagination
-            System.out.println("Pagination: " + pagingState);
-        }
-
-        if (facetList != null && facetList.length() > 0) {
-
-            //TODO replace reference to mock data
-            FacetMockData facetMockData = new FacetMockData();
-
-            System.out.println("Filtering by facet(s): " + facetList);
-
-            List<SongInfo> pivotSongs = browsedSongs;
-            browsedSongs = new ArrayList<SongInfo>();
-
-            String[] facets = facetList.split(",");
-            for (String facet : facets) {
-                //TODO replace reference to mock data
-                if (FacetServiceFactory.isRatingFacet(facet, facetMockData.mockFacets)) {
-                    browsedSongs = FacetServiceFactory.filterSongsByRatingFacet(pivotSongs, facet);
-                } else {
-                    for (SongInfo song : pivotSongs) {
-                        if (FacetServiceFactory.getFacet(facet, facetMockData.mockFacets) != null) {
-                            String facetName = FacetServiceFactory.getFacet(facet, facetMockData.mockFacets).getName();
-                            if (song.getGenre().equals(facetName)) {
-                                browsedSongs.add(song);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // TODO if no items are provided should return 25 results
-        if (items != null && items > 0) {
-            List<SongInfo> pivotSongs = browsedSongs;
-            browsedSongs = new ArrayList<SongInfo>();
-            for (int i = 0; i < items && i < pivotSongs.size(); i++) {
-                browsedSongs.add(pivotSongs.get(i));
-            }
-        }
-
-        if (sortFields != null && !sortFields.isEmpty()) {
-            //TODO implement sorting by sortFields
-            System.out.println("Sorting results by: " + sortFields);
-        }
-
-        SongList results = new SongList();
-        results.setSongs(browsedSongs);
-
-        return results;
     }
 
 }

@@ -9,10 +9,10 @@ describe('genreFilterDirective', () => {
 
   beforeEach(() => {
     angular.mock.module(genreFilter, ($provide) => {
-      const genreStore = jasmine.createSpyObj('genreStore', ['fetch']);
+      const facetStore = jasmine.createSpyObj('facetStore', ['fetch']);
       const filterModel = jasmine.createSpyObj('filterModel', ['filter']);
 
-      $provide.value('genreStore', genreStore);
+      $provide.value('facetStore', facetStore);
       $provide.value('filterModel', filterModel);
     });
 

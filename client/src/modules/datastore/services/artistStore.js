@@ -7,7 +7,12 @@
  * @param {$log} $log
  * @returns {*}
  */
-function artistStore(request, entityMapper, ArtistInfoEntity, ArtistListEntity, $log) {
+
+export default function artistStore(request,
+                                    entityMapper,
+                                    ArtistInfoEntity,
+                                    ArtistListEntity,
+                                    $log) {
   'ngInject';
 
   const API_REQUEST_PATH = '/msl/v1/catalogedge/';
@@ -31,12 +36,12 @@ function artistStore(request, entityMapper, ArtistInfoEntity, ArtistListEntity, 
     /**
      * fetch all artists from catalogue endpoint
      * @name artistStore#fetchAll
-     * @param {string} genre
+     * @param {string} facets - comma separated list of facetIds
      * @return {ArtistListEntity}
      */
-    async fetchAll(genre) {
+    async fetchAll(facets) {
       try {
-        const params = { params: { facets: genre } };
+        const params = { params: { facets: facets } };
         const response = await request.get(`${ API_REQUEST_PATH }browse/artist`, params);
         return entityMapper(response.data, ArtistListEntity);
       } catch(error) {
@@ -45,5 +50,3 @@ function artistStore(request, entityMapper, ArtistInfoEntity, ArtistListEntity, 
     },
   };
 }
-
-export default artistStore;

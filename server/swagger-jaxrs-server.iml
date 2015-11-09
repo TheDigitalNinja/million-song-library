@@ -11,20 +11,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: io.swagger:swagger-jersey-jaxrs:1.5.4" level="project" />
     <orderEntry type="library" name="Maven: io.swagger:swagger-jaxrs:1.5.4" level="project" />
-    <orderEntry type="library" name="Maven: io.swagger:swagger-core:1.5.4" level="project" />
-    <orderEntry type="library" name="Maven: io.swagger:swagger-models:1.5.4" level="project" />
-    <orderEntry type="library" name="Maven: io.swagger:swagger-annotations:1.5.4" level="project" />
-    <orderEntry type="library" name="Maven: org.reflections:reflections:0.9.10" level="project" />
-    <orderEntry type="library" name="Maven: org.javassist:javassist:3.19.0-GA" level="project" />
-    <orderEntry type="library" name="Maven: io.swagger:swagger-jersey-jaxrs:1.5.4" level="project" />
-    <orderEntry type="library" name="Maven: io.swagger:swagger-jaxrs:1.5.4" level="project" />
-    <orderEntry type="library" name="Maven: io.swagger:swagger-core:1.5.4" level="project" />
-    <orderEntry type="library" name="Maven: io.swagger:swagger-models:1.5.4" level="project" />
-    <orderEntry type="library" name="Maven: io.swagger:swagger-annotations:1.5.4" level="project" />
-    <orderEntry type="library" name="Maven: org.reflections:reflections:0.9.10" level="project" />
-    <orderEntry type="library" name="Maven: org.javassist:javassist:3.19.0-GA" level="project" />
-    <orderEntry type="library" name="Maven: io.swagger:swagger-jersey-jaxrs:1.5.4" level="project" />
-    <orderEntry type="library" name="Maven: io.swagger:swagger-jaxrs:1.5.4" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.12" level="project" />

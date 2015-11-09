@@ -3,18 +3,22 @@
 import ratingFilter from 'layout/sidenav/rating-filter/rating-filter.module.js';
 
 describe('ratingFilterCtrl', () => {
-  const RATE = 4;
+  const RATE = '4';
   const listener = {};
 
-  let $scope, element, ratingFilterCtrl, $location, filterModel;
+  let $scope, element, facetStore, ratingFilterCtrl, $location, filterModel, $log;
 
   beforeEach(() => {
     angular.mock.module(ratingFilter, ($provide) => {
-      filterModel = jasmine.createSpyObj('filterModel', ['filter']);
+      facetStore = jasmine.createSpyObj('facetStore', ['fetch']);
+      filterModel = jasmine.createSpyObj('filterModel', ['filter', 'setSelectedRating']);
       $location = jasmine.createSpyObj('$location', ['search']);
+      $log = jasmine.createSpyObj('$log', ['error']);
 
+      $provide.value('facetStore', facetStore);
       $provide.value('filterModel', filterModel);
       $provide.value('$location', $location);
+      $provide.value('$log', $log);
     });
 
     inject(($compile, $rootScope) => {
@@ -36,24 +40,47 @@ describe('ratingFilterCtrl', () => {
   });
 
   describe('activeRating', () => {
-    it('should return true if the rating is the ratingFilter', () => {
-      const rate = { rate: 4 };
+    it('should return true if the rating is the selectedRating', () => {
+      const rate = RATE;
       const controller = ratingFilterCtrl();
-      controller.ratingFilter = 4;
+      controller.selectedRating = RATE;
 
-      expect(controller.activeRating(rate)).toBeTruthy();
+      expect(controller.isActiveRating(rate)).toBeTruthy();
     });
 
     it('should return false when the rating is not the ratingFilter', () => {
       const controller = ratingFilterCtrl();
-      const rate = { rate: 3 };
+      const rate = RATE;
 
-      expect(controller.activeRating(rate)).toBeFalsy();
+      expect(controller.isActiveRating(rate)).toBeFalsy();
+    });
+  });
+
+  describe('getStars', () => {
+    it('should return four filled stars', () => {
+      const rating = {name: '4 stars and up'};
+      const controller = ratingFilterCtrl();
+      const response = controller.getStars(rating);
+      const filledStar = { filled: true };
+      const emptyStar = { filled: false };
+      const expected = [filledStar, filledStar, filledStar, filledStar, emptyStar];
+      expect(response).toEqual(expected);
+    });
+
+    it('should log a warn if an error is thrown', (done) => {
+      (async () => {
+        const rating = {name: 'sdfgh'};
+        const controller = ratingFilterCtrl();
+        const response = controller.getStars(rating);
+
+        expect($log.error).toHaveBeenCalledWith('NaN');
+        done();
+      })();
     });
   });
 
   describe('applyRatingFilter', () => {
-    let controller, rateObj;
+    let controller, rate;
 
     describe('when object is null', () => {
       beforeEach(() => {
@@ -62,7 +89,7 @@ describe('ratingFilterCtrl', () => {
       });
 
       it('should set the controller rating filter', () => {
-        expect(controller.ratingFilter).toEqual(null);
+        expect(controller.selectedRating).toEqual(null);
       });
     });
 
@@ -70,21 +97,30 @@ describe('ratingFilterCtrl', () => {
 
       beforeEach(() => {
         controller = ratingFilterCtrl();
-        rateObj = { rate: RATE };
-        controller.applyRatingFilter(rateObj);
-      });
-
-      it('should set the controller rating filter', () => {
-        expect(controller.ratingFilter).toEqual(RATE);
+        rate = RATE;
+        controller.applyRatingFilter(rate);
       });
 
       it('should update the search query', () => {
         expect($location.search).toHaveBeenCalledWith('rating', RATE);
       });
 
-      it('should filter by the given rating', () => {
-        expect(filterModel.filter).toHaveBeenCalledWith({ rating: RATE}, listener);
+      it('should filter by the rating', () => {
+        expect(filterModel.filter).toHaveBeenCalledWith(listener);
       });
+    });
+  });
+
+  describe('getRatingFacets', () => {
+    it('should set the children of the facetList', (done) => {
+      (async () => {
+        let controller = ratingFilterCtrl();
+        const ratingFacets = { children: ['aFacetId'] };
+        facetStore.fetch.and.returnValue(ratingFacets);
+        await controller._getRatingFacets();
+        expect(controller.ratingFacets).toEqual(ratingFacets.children);
+        done();
+      })();
     });
   });
 });

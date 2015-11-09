@@ -112,13 +112,12 @@ export default function artistModel(albumStore, artistStore, songStore, $log, $r
 
   /**
    * Gets a list of artists filtered by rating and genre
-   * @param {number} rating
-   * @param {string} genre
+   * @param {string} facets
    * @param {function} done
    */
-  async function filterArtists(rating, genre, done) {
+  async function filterArtists(facets, done) {
     try {
-      const artistList = await artistStore.fetchAll(genre);
+      const artistList = await artistStore.fetchAll(facets);
       if(done) {
         done(artistList.artists);
       }

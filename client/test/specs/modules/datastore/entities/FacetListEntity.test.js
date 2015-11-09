@@ -1,18 +1,18 @@
 import datastoreModule from 'modules/datastore/module';
 
-describe('GenreListEntity', () => {
+describe('FacetListEntity', () => {
   let entity, schema;
 
   beforeEach(() => {
     angular.mock.module(datastoreModule);
 
-    inject((GenreListEntity, GenreInfoEntity) => {
-      entity = new GenreListEntity();
+    inject((FacetListEntity, FacetInfoEntity) => {
+      entity = new FacetListEntity();
 
       schema = {
         facetId: Number,
         name: String,
-        children: [GenreInfoEntity],
+        children: [FacetInfoEntity],
       };
     });
   });

@@ -34,7 +34,7 @@ use `npm run dev`.
 ### Dev Server
 
 Start dev server by calling `npm run dev`, this will automatically mount a server on `3000` localhost port.
-If any change is made during dev server run, source files will be automatically rebuilt.
+If any change is made during dev server run, source files will be automatically rebuilt. 
 
 ### Prod Server
 
@@ -113,7 +113,8 @@ Swagger config file is placed in `./swagger/api/swagger/swagger.yaml`
 #### Swagger Mock Server
 
 Start mock server by running `npm run serve-mock`. **Note** that if you want that your dev server would
-use swagger mock server you need to start it with `--mock` argument, for e.g. `npm run dev --mock`.
+use swagger mock server you need to start it with `--mock` argument, for e.g. `npm run dev --mock`. Mock
+server runs in port 10010
 
 #### Swagger Docs Editor
 

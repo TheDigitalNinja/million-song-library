@@ -30,12 +30,12 @@ function albumStore(request, entityMapper, AlbumInfoEntity, AlbumListEntity, $lo
     /**
      * fetch all albums from catalogue endpoint
      * @name albumStore#fetchAll
-     * @param {string} genre
+     * @param {string} facets - comma separated list of facetIds
      * @return {AlbumListEntity}
      */
-    async fetchAll(genre) {
+    async fetchAll(facets) {
       try {
-        const params = { params: { facets: genre } };
+        const params = { params: { facets: facets } };
         const response = await request.get(`${ API_REQUEST_PATH }browse/album`, params);
         return entityMapper(response.data, AlbumListEntity);
       } catch(error) {

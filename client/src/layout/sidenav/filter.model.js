@@ -1,3 +1,4 @@
+import _ from 'lodash';
 /**
  * Filter Model
  * Filters the songs, artists and albums by genre and rating
@@ -10,39 +11,54 @@ export default class filterModel {
    * @param {songModel} songModel
    * @param {albumModel} albumModel
    * @param {artistModel} artistModel
-   * @property {number} minRating     - minimun rating to filter catalogs
-   * @property {string} selectedGenre - genre to filter catalogs
-   * @property {object} listener      - object who receive the filter messages
+   * @property {string} selectedRating - rating to filter catalog
+   * @property {string} selectedGenre  - genre to filter catalog
+   * @property {object} listener       - object who receive the filter messages
    */
   constructor(songModel, albumModel, artistModel) {
     this.songModel = songModel;
     this.albumModel = albumModel;
     this.artistModel = artistModel;
 
-    this.minRating = null;
     this.selectedGenre = null;
+    this.selectedRating = null;
     this.listener = null;
   }
 
   /**
+   * Sets the selected genre
+   * @param {string} genreId
+   */
+  setSelectedGenre(genreId) {
+    this.selectedGenre = genreId;
+  }
+
+  /**
+   * Sets the selected rating
+   * @param {string} ratingId
+   */
+  setSelectedRating(ratingId) {
+    this.selectedRating = ratingId;
+  }
+
+  /**
    * Applies the filters on songs albums and artists
-   * @param {{genre: string, rating: string}} filters
    * @param {Object} listener
    */
-  filter(filters, listener) {
-    this._applyFilters(filters);
+  filter(listener) {
     this.listener = listener;
 
-    this.filterSongs();
-    this.filterAlbums();
-    this.filterArtists();
+    this._filterSongs();
+    this._filterAlbums();
+    this._filterArtists();
   }
 
   /**
    * Applies the filters on the songs catalog
+   * @private
    */
-  filterSongs() {
-    this.songModel.filterSongs(this.minRating, this.selectedGenre, (songs) => {
+  _filterSongs() {
+    this.songModel.filterSongs(this._getFacets(), (songs) => {
       if(this.listener && this.listener.songsFiltered) {
         this.listener.songsFiltered(songs);
       }
@@ -51,9 +67,10 @@ export default class filterModel {
 
   /**
    * Applies the filters on the albums catalog
+   * @private
    */
-  filterAlbums() {
-    this.albumModel.filterAlbums(this.minRating, this.selectedGenre, (albums) => {
+  _filterAlbums() {
+    this.albumModel.filterAlbums(this._getFacets(), (albums) => {
       if(this.listener && this.listener.albumsFiltered) {
         this.listener.albumsFiltered(albums);
       }
@@ -62,9 +79,10 @@ export default class filterModel {
 
   /**
    * Applies the filters on the artists catalog
+   * @private
    */
-  filterArtists() {
-    this.artistModel.filterArtists(this.minRating, this.selectedGenre, (artists) => {
+  _filterArtists() {
+    this.artistModel.filterArtists(this._getFacets(), (artists) => {
       if(this.listener && this.listener.artistsFiltered) {
         this.listener.artistsFiltered(artists);
       }
@@ -72,11 +90,15 @@ export default class filterModel {
   }
 
   /**
-   * Processes the filter options
+   * Retrieves the facets in string format
+   * @returns {string}
    * @private
    */
-  _applyFilters(filters) {
-    this.minRating = filters.rating === undefined ? this.minRating : filters.rating;
-    this.selectedGenre = filters.genre === undefined ? this.selectedGenre : filters.genre;
+  _getFacets() {
+    const rating = this.selectedRating;
+    const genre = this.selectedGenre;
+    const facets = _.filter([rating, genre], (facet) => facet != null).join();
+    return facets.length > 0 ? facets : undefined;
   }
+
 }

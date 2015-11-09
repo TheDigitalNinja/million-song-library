@@ -9,8 +9,10 @@ describe('ratingFilterDirective', () => {
 
   beforeEach(() => {
     angular.mock.module(ratingFilter, ($provide) => {
+      const facetStore = jasmine.createSpyObj('facetStore', ['fetch']);
       const filterModel = jasmine.createSpyObj('filterModel', ['filter']);
 
+      $provide.value('facetStore', facetStore);
       $provide.value('filterModel', filterModel);
     });
 

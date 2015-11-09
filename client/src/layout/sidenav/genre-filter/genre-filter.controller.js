@@ -1,3 +1,4 @@
+import {GENRE_FACET_ID} from '../../../constants.js';
 /**
  * Genre filter controller
  */
@@ -10,51 +11,47 @@ export default class genreFilterCtrl {
    * @param {$scope} $scope
    * @param {$log} $log
    * @param {$location} $location
-   * @param {genreStore} genreStore
+   * @param {facetStore} facetStore
    * @param {filterModel} filterModel
    */
-  constructor($scope, $log, $location, genreStore, filterModel) {
+  constructor($scope, $log, $location, facetStore, filterModel) {
     this.$scope = $scope;
     this.$log = $log;
     this.$location = $location;
-    this.genreStore = genreStore;
+    this.facetStore = facetStore;
     this.filterModel = filterModel;
 
-    this.getGenres();
+    this._getGenreFacets();
   }
 
   /**
    * Determines if the given genre is the active one
-   * @param {GenreEntity} genre
+   * @param {string} genreId
    * @return {Boolean}
    */
-  activeGenre(genre) {
-    if(this.selectedGenre) {
-      return this.selectedGenre.toLowerCase() === genre.name.toLowerCase();
-    }
-    else {
-      return false;
-    }
+  activeGenre(genreId) {
+    return this.selectedGenre === genreId;
   }
 
   /**
    * Applies genre filter on change
-   * @param {string} genre
+   * @param {string} genreId
    */
-  applyFilterByGenre(genre) {
-    this.$location.search('genre', genre);
-    this.selectedGenre = genre;
-
-    this.filterModel.filter({ genre: genre }, this.$scope.listener);
+  applyFilterByGenre(genreId) {
+    this.$location.search('genre', genreId);
+    this.selectedGenre = genreId;
+    this.filterModel.setSelectedGenre(genreId);
+    this.filterModel.filter(this.$scope.listener);
   }
 
   /**
    * Gets all genres
+   * @private
    */
-  async getGenres() {
+  async _getGenreFacets() {
     try {
-      const genresList = await this.genreStore.fetch(this.$scope.activeGenre);
-      this.genres = genresList.children;
+      const facetList = await this.facetStore.fetch(GENRE_FACET_ID);
+      this.genres = facetList.children;
       this.$scope.$evalAsync();
     }
     catch(err) {

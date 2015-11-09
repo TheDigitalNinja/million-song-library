@@ -1,6 +1,6 @@
 import ratingFilterCtrl from './rating-filter.controller.js';
 
-class RatingFilter {
+export default class RatingFilter {
   /*@ngInject*/
 
   constructor() {
@@ -18,5 +18,3 @@ class RatingFilter {
     return RatingFilter.instance;
   }
 }
-
-export default RatingFilter;

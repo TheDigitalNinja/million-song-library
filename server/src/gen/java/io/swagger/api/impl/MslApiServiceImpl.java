@@ -1,6 +1,10 @@
 package io.swagger.api.impl;
 
 import io.swagger.api.*;
+import io.swagger.mock.AlbumMockData;
+import io.swagger.mock.ArtistMockData;
+import io.swagger.mock.FacetMockData;
+import io.swagger.mock.SongMockData;
 import io.swagger.model.*;
 
 import com.sun.jersey.multipart.FormDataParam;
@@ -36,10 +40,13 @@ import javax.ws.rs.core.Response;
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-04T16:53:15.265-07:00")
 public class MslApiServiceImpl extends MslApiService {
 
+    private AlbumMockData albumMockData = new AlbumMockData();
+    private ArtistMockData artistMockData = new ArtistMockData();
+    private SongMockData songMockData = new SongMockData();
+    private FacetMockData facetMockData = new FacetMockData();
+
     // ========================================================================================================== ALBUMS
     // =================================================================================================================
-
-    private AlbumMockData albumMockData = new AlbumMockData();
 
     @Override
     public Response getAlbum(String albumId)
@@ -56,16 +63,14 @@ public class MslApiServiceImpl extends MslApiService {
     }
 
     @Override
-    public Response browseAlbums(String pagingState, Integer items, String facets, String sortFields)
+    public Response browseAlbums(String pagingState, Integer items, String facets)
             throws NotFoundException {
         // TODO replace current mock data
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", albumMockData.browseAlbums(pagingState, items, facets, sortFields))).build();
+        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", albumMockData.browseAlbums(pagingState, items, facets))).build();
     }
 
     // ========================================================================================================== ARTIST
     // =================================================================================================================
-
-    private ArtistMockData artistMockData = new ArtistMockData();
 
     @Override
     public Response getArtist(String artistId)
@@ -82,16 +87,14 @@ public class MslApiServiceImpl extends MslApiService {
     }
 
     @Override
-    public Response browseArtists(String pagingState, Integer items, String facets, String sortFields)
+    public Response browseArtists(String pagingState, Integer items, String facets)
             throws NotFoundException {
         // TODO replace current mock implementation
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", artistMockData.browseArtists(pagingState, items, facets, sortFields))).build();
+        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", artistMockData.browseArtists(pagingState, items, facets))).build();
     }
 
     // =========================================================================================================== SONGS
     // =================================================================================================================
-
-    private SongMockData songMockData = new SongMockData();
 
     @Override
     public Response getSong(String songId)
@@ -115,10 +118,10 @@ public class MslApiServiceImpl extends MslApiService {
     }
 
     @Override
-    public Response browseSongs(String pagingState, Integer items, String facets, String sortFields)
+    public Response browseSongs(String pagingState, Integer items, String facets)
             throws NotFoundException {
         // TODO replace current mock data
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", songMockData.browseSongs(pagingState, items, facets, sortFields))).build();
+        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", songMockData.browseSongs(pagingState, items, facets))).build();
     }
 
     @Override
@@ -192,8 +195,6 @@ public class MslApiServiceImpl extends MslApiService {
 
     // ----------------------------------------------------------------------------------------------------------- OTHER
     // =================================================================================================================
-
-    FacetMockData facetMockData = new FacetMockData();
 
     @Override
     public Response getFacet(String facetId)

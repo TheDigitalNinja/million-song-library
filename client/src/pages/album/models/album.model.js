@@ -83,13 +83,12 @@ export default function albumModel(albumStore, songStore, $log, $rootScope) {
 
   /**
    * Gets a list of albums filtered by rating and genre
-   * @param {number} rating
-   * @param {string} genre
+   * @param {string} facets
    * @param {function} done
    */
-  async function filterAlbums(rating, genre, done) {
+  async function filterAlbums(facets, done) {
     try {
-      const albumList = await albumStore.fetchAll(genre);
+      const albumList = await albumStore.fetchAll(facets);
       if(done) {
         done(albumList.albums);
       }

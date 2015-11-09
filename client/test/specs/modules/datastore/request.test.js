@@ -1,7 +1,8 @@
 import datastoreModule from 'modules/datastore/module';
 
 describe('request', () => {
-  const A_PATH = '/msl/v1';
+  const host = process.env.API_HOST;
+  const A_PATH = '/api/v1';
   const config = { sessionId: 1 };
   const content = { songId: 2 };
   const expectedData = 'data';
@@ -28,7 +29,7 @@ describe('request', () => {
     it('should make a get request with the path and the given config', (done) => {
       (async () => {
         await request.get(A_PATH, config);
-        expect($http.get).toHaveBeenCalledWith(A_PATH, config);
+        expect($http.get).toHaveBeenCalledWith(`${host}${A_PATH}`, config);
         done();
       })();
     });
@@ -46,7 +47,7 @@ describe('request', () => {
     it('should make a post request with the path and the given content and config', (done) => {
       (async () => {
         await request.post(A_PATH, content, config);
-        expect($http.post).toHaveBeenCalledWith(A_PATH, content, config);
+        expect($http.post).toHaveBeenCalledWith(`${host}${A_PATH}`, content, config);
         done();
       })();
     });
@@ -64,7 +65,7 @@ describe('request', () => {
     it('should make a put request with the path and the given content and config', (done) => {
       (async () => {
         await request.put(A_PATH, content, config);
-        expect($http.put).toHaveBeenCalledWith(A_PATH, content, config);
+        expect($http.put).toHaveBeenCalledWith(`${host}${A_PATH}`, content, config);
         done();
       })();
     });
