@@ -1,10 +1,7 @@
 package io.swagger.api.impl;
 
 import io.swagger.api.*;
-import io.swagger.mock.AlbumMockData;
-import io.swagger.mock.ArtistMockData;
-import io.swagger.mock.FacetMockData;
-import io.swagger.mock.SongMockData;
+import io.swagger.mock.*;
 import io.swagger.model.*;
 
 import com.sun.jersey.multipart.FormDataParam;
@@ -44,6 +41,7 @@ public class MslApiServiceImpl extends MslApiService {
     private ArtistMockData artistMockData = new ArtistMockData();
     private SongMockData songMockData = new SongMockData();
     private FacetMockData facetMockData = new FacetMockData();
+    private LogInMockData logInMockData = new LogInMockData();
 
     // ========================================================================================================== ALBUMS
     // =================================================================================================================
@@ -168,8 +166,8 @@ public class MslApiServiceImpl extends MslApiService {
     @Override
     public Response login(String email, String password)
             throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        // TODO replace current mock data
+        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", logInMockData.getSessionToken(email, password))).build();
     }
 
     @Override
