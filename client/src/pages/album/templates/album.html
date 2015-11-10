@@ -10,7 +10,7 @@
     </span>
     <h1 class="album-name">{{vm.model.album.albumName}}</h1>
     <span>Artist:</span>
-    <a class="link-black" ui-sref="default.genre">{{vm.model.album.artistName}}</a><br>
+    <a class="link-black" ui-sref="msl.artist({artistId: vm.model.album.artistId})">{{vm.model.album.artistName}}</a><br>
     <span>Genre:</span>
     <span class="genre-name">{{vm.model.album.genre}}</span><br>
     <span>Year:</span>

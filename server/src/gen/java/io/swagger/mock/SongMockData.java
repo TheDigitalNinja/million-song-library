@@ -104,6 +104,7 @@ public class SongMockData {
         songMockData1.setDuration(230);
         songMockData1.setGenre("Rock");
         songMockData1.setAverageRating(new BigDecimal("4"));
+        songMockData1.setYear(new BigDecimal("2009"));
         songs.add(songMockData1);
 
         SongInfo songMockData2 = new SongInfo();
@@ -117,6 +118,7 @@ public class SongMockData {
         songMockData2.setDuration(230);
         songMockData2.setGenre("Rock");
         songMockData2.setAverageRating(new BigDecimal("4"));
+        songMockData2.setYear(new BigDecimal("1979"));
         songs.add(songMockData2);
 
         SongInfo songMockData3 = new SongInfo();
@@ -130,6 +132,7 @@ public class SongMockData {
         songMockData3.setDuration(230);
         songMockData3.setGenre("Rock and Roll");
         songMockData3.setAverageRating(new BigDecimal("3"));
+        songMockData3.setYear(new BigDecimal("1982"));
         songs.add(songMockData3);
 
         SongInfo songMockData4 = new SongInfo();
@@ -143,6 +146,7 @@ public class SongMockData {
         songMockData4.setDuration(230);
         songMockData4.setGenre("Rock and Roll");
         songMockData4.setAverageRating(new BigDecimal("4"));
+        songMockData4.setYear(new BigDecimal("1970"));
         songs.add(songMockData4);
 
         SongInfo songMockData5 = new SongInfo();
@@ -156,6 +160,7 @@ public class SongMockData {
         songMockData5.setDuration(230);
         songMockData5.setGenre("Funk");
         songMockData5.setAverageRating(new BigDecimal("2"));
+        songMockData5.setYear(new BigDecimal("1979"));
         songs.add(songMockData5);
 
         SongInfo songMockData6 = new SongInfo();
@@ -169,6 +174,7 @@ public class SongMockData {
         songMockData6.setDuration(230);
         songMockData6.setAverageRating(new BigDecimal("1"));
         songMockData6.setGenre("Country");
+        songMockData6.setYear(new BigDecimal("2011"));
         songs.add(songMockData6);
 
         SongInfo songMockData7 = new SongInfo();
@@ -182,6 +188,7 @@ public class SongMockData {
         songMockData7.setDuration(230);
         songMockData7.setAverageRating(new BigDecimal("4"));
         songMockData7.setGenre("Rock");
+        songMockData7.setYear(new BigDecimal("1987"));
         songs.add(songMockData7);
 
         SongInfo songMockData8 = new SongInfo();
@@ -195,6 +202,7 @@ public class SongMockData {
         songMockData8.setDuration(230);
         songMockData8.setAverageRating(new BigDecimal("4"));
         songMockData8.setGenre("Rock");
+        songMockData8.setYear(new BigDecimal("2011"));
         songs.add(songMockData8);
         
         SongInfo songMockData9 = new SongInfo();
@@ -208,6 +216,7 @@ public class SongMockData {
         songMockData9.setDuration(230);
         songMockData9.setAverageRating(new BigDecimal("2"));
         songMockData9.setGenre("Funk");
+        songMockData9.setYear(new BigDecimal("1975"));
         songs.add(songMockData9);
 
         songList.setSongs(songs);
