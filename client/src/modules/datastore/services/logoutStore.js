@@ -17,8 +17,11 @@ function logoutStore (request, entityMapper, StatusResponseEntity) {
      * @return {StatusResponseEntity}
      */
     async push() {
-      const response = await request.post(API_REQUEST_PATH);
-      return entityMapper(response, StatusResponseEntity);
+
+      const headers = { headers: { 'Content-Type': 'application/json' } };
+
+      const response = await request.post(API_REQUEST_PATH, null, headers);
+      return entityMapper(response.data, StatusResponseEntity);
     },
   };
 }

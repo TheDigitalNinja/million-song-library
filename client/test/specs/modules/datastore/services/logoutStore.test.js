@@ -1,11 +1,11 @@
 /* global describe, it, expect, beforeEach, inject */
-import datastoreModule from 'modules/datastore/module';
+import  dataStoreModule from 'modules/datastore/module';
 
 describe('logoutStore', () => {
   let logoutStore, request, entityMapper, StatusResponseEntity;
 
   beforeEach(() => {
-    angular.mock.module(datastoreModule, ($provide) => {
+    angular.mock.module( dataStoreModule, ($provide) => {
       request = jasmine.createSpyObj('request', ['post']);
       entityMapper = jasmine.createSpy('entityMapper');
 
@@ -20,19 +20,23 @@ describe('logoutStore', () => {
   });
 
   describe('push', () => {
+    const response = { status: 'ok', message: 'successfully logged out' };
+
+    beforeEach(() => {
+      request.post.and.returnValue(response);
+    });
+
     it('should post to the logout endpoint', () => {
       (async () => {
         await logoutStore.push();
-        expect(request.post).toHaveBeenCalledWith('/msl/v1/loginedge/logout');
+        expect(request.post).toHaveBeenCalledWith('/msl/v1/loginedge/logout', jasmine.any(Object), jasmine.any(Object));
       })();
     });
 
-    it('should map the response inta a StatusResponseEntity', () => {
+    it('should map the response into a StatusResponseEntity', () => {
       (async () => {
-        const response = { status: 'ok' };
-        request.post.and.returnValue(response);
         await logoutStore.push();
-        expect(entityMapper).toHaveBeenCalledWith(response, StatusResponseEntity);
+        expect(entityMapper).toHaveBeenCalledWith(response.data, StatusResponseEntity);
       })();
     });
   });

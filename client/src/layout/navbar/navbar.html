@@ -21,17 +21,17 @@
         <a ui-sref="msl.home">Million Songs Library</a>
       </h2>
       <span flex></span>
-      <md-button ng-if="vm.authorised === false" aria-label="Login" ui-sref="msl.login" ui-sref-active="active">
+      <md-button ng-if="!vm.authorisation.isAuthorised()" aria-label="Login" ui-sref="msl.login" ui-sref-active="active">
         Login
       </md-button>
-      <md-button ng-if="vm.authorised === false" aria-label="Register">
+      <md-button ng-if="!vm.authorisation.isAuthorised()" aria-label="Register">
         Register
       </md-button>
 
-      <md-button ng-if="vm.authorised === true" aria-label="My Library" ui-sref="msl.library" ui-sref-active="active">
+      <md-button ng-if="vm.authorisation.isAuthorised()" aria-label="My Library" ui-sref="msl.library" ui-sref-active="active">
         My Library
       </md-button>
-      <md-button ng-if="vm.authorised === true" aria-label="Logout" ui-sref="#" ng-click="$event.preventDefault(); vm.logout();">
+      <md-button ng-if="vm.authorisation.isAuthorised()" aria-label="Logout" ui-sref="#" ng-click="$event.preventDefault(); vm.logout();">
         Logout
       </md-button>
     </div>

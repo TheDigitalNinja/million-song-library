@@ -20,7 +20,6 @@ import io.swagger.model.SongInfo;
 import java.io.File;
 import io.swagger.model.LoginSuccessResponse;
 import io.swagger.model.StatusResponse;
-import io.swagger.model.SessionInfo;
 import java.math.BigDecimal;
 import io.swagger.model.SearchResponse;
 
@@ -174,18 +173,11 @@ public class MslApiServiceImpl extends MslApiService {
     public Response logout()
             throws NotFoundException {
         // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", logInMockData.logOut())).build();
     }
 
     @Override
     public Response resetPassword(String email)
-            throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
-    }
-
-    @Override
-    public Response getSessionInfo()
             throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

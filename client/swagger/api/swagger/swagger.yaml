@@ -24,8 +24,13 @@ paths:
       description: Logs a user into the system
       tags:
         - Login
-      consumes: ["application/x-www-form-urlencoded"]
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/html
       schemes: ["https"]
+      security: [sessionToken: []]
       operationId: login
       parameters:
         -
@@ -57,8 +62,9 @@ paths:
       description: Logs a user out of the system
       tags:
         - Login
-      schemes: ["https"]
-      security: [session_id: []]
+      produces:
+        - application/json
+        - text/html
       operationId: logout
       responses:
         "200":
@@ -90,24 +96,6 @@ paths:
           schema:
             # a pointer to a definition
             $ref: "#/definitions/StatusResponse"
-        "500":
-          description: Server Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-  /msl/v1/loginedge/sessioninfo:
-    x-swagger-router-controller: session_controller
-    get:
-      description: Endpoint for api services to get session data from session token
-      tags:
-        - Login
-      schemes: ["https"]
-      security: [session_id: []]
-      operationId: get_session_info
-      responses:
-        "200":
-          description: Success
-          schema:
-            $ref: "#/definitions/SessionInfo"
         "500":
           description: Server Error
           schema:
@@ -389,7 +377,7 @@ paths:
       tags:
         - Rating
       schemes: ["https"]
-      security: [session_id: []]
+      security: [sessionToken: []]
       operationId: rate_song
       parameters:
         -
@@ -424,7 +412,7 @@ paths:
       tags:
         - Rating
       schemes: ["https"]
-      security: [session_id: []]
+      security: [sessionToken: []]
       operationId: comment_song
       parameters:
         -
@@ -513,7 +501,7 @@ paths:
       tags:
         - Account
       schemes: ["https"]
-      security: [session_id: []]
+      security: [sessionToken: []]
       operationId: get_recent_songs
       responses:
         "200":
@@ -531,7 +519,7 @@ paths:
       tags:
         - Account
       schemes: ["https"]
-      security: [session_id: []]
+      security: [sessionToken: []]
       operationId: get_my_library
       responses:
         "200":
@@ -549,7 +537,7 @@ paths:
       tags:
         - Account
       schemes: ["https"]
-      security: [session_id: []]
+      security: [sessionToken: []]
       operationId: get_user_info
       responses:
         "200":
@@ -561,9 +549,9 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
 securityDefinitions:
-  session_id:
+  sessionToken:
     type: apiKey
-    name: SessionId
+    name: sessionToken
     in: header
 #
 # Reuseable Parameters
@@ -732,12 +720,6 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/ArtistInfo"
-  SessionInfo:
-    properties:
-      userId:
-        type: string
-      userEmail:
-        type: string
   SongList:
     properties:
       pagingState:
@@ -757,8 +739,6 @@ definitions:
       message:
         type: string
   LoginSuccessResponse:
-    required:
-      - sessionToken
     properties:
       sessionToken:
         type: string
@@ -773,8 +753,6 @@ definitions:
         items:
           type: string
   StatusResponse:
-    required:
-      - message
     properties:
       message:
         type: string

@@ -19,11 +19,11 @@ function loginStore (request, entityMapper, LoginSuccessResponseEntity) {
      * @return {LoginSuccessResponseEntity}
      */
     async push(email, password) {
-      const data = { email, password };
-      const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+      const data = `email=${ email }&password=${ password }`;
+      const headers = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
 
       const response = await request.post(API_REQUEST_PATH, data, headers);
-      return entityMapper(response, LoginSuccessResponseEntity);
+      return entityMapper(response.data, LoginSuccessResponseEntity);
     },
   };
 }

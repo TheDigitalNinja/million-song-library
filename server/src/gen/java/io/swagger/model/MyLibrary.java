@@ -1,15 +1,15 @@
 package io.swagger.model;
 
+import io.swagger.model.ArtistList;
 import io.swagger.model.AlbumList;
 import io.swagger.model.SongList;
-import io.swagger.model.ArtistList;
 
 import io.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-04T16:53:15.265-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-10T16:56:12.664-06:00")
 public class MyLibrary  {
   
   private AlbumList albums = null;
