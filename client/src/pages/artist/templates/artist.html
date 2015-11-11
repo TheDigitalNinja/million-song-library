@@ -1,8 +1,11 @@
 <div layout="row" layout-align="center">
   <div class="artist-info" flex="90">
     <span class="pull-right">
-      <a href="" add-to-library id="vm.artistId" type="artist">
+      <a href="" ng-if="!vm.artist.inMyLibrary" add-to-library id="vm.artistId" type="artist">
         <i class="fa fa-heart-o"></i> Add Artist to Library
+      </a>
+      <a href="" ng-if="vm.artist.inMyLibrary">
+        <i class="fa fa-ban"></i> Remove Artist from Library
       </a>
     </span>
     <h1 class="artist-name">{{vm.artist.artistName}}</h1>

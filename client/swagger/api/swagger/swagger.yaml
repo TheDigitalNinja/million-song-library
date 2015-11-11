@@ -603,6 +603,8 @@ definitions:
         type: array
         items:
           type: string
+      in_my_library:
+        type: boolean
   ArtistInfo:
     properties:
       artist_id:
@@ -629,6 +631,8 @@ definitions:
         type: array
         items:
           type: string
+      in_my_library:
+        type: boolean
   FacetInfo:
     properties:
       facet_id:
@@ -691,6 +695,8 @@ definitions:
       year:
         description: The year the song was released
         type: number
+      in_my_library:
+        type: boolean
   UserInfo:
     properties:
       userId:

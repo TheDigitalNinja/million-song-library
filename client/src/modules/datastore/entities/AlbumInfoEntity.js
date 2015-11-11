@@ -10,6 +10,7 @@
  * @property {Number} personalRating
  * @property {String} imageLink
  * @property {String[]} songsList
+ * @property {Boolean} inMyLibrary
  */
 class AlbumInfoEntity {
   constructor() {
@@ -23,6 +24,7 @@ class AlbumInfoEntity {
     this.personalRating = Number;
     this.imageLink = String;
     this.songsList = [String];
+    this.inMyLibrary = Boolean;
   }
 }
 

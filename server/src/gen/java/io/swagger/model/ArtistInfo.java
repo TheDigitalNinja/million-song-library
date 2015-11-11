@@ -8,9 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-10T16:56:12.664-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-12T17:31:41.997-06:00")
 public class ArtistInfo  {
-  
+
   private String artistId = null;
   private String artistName = null;
   private List<String> albumsList = new ArrayList<String>();
@@ -20,8 +20,9 @@ public class ArtistInfo  {
   private List<String> songsList = new ArrayList<String>();
   private String genre = null;
   private List<String> similarArtistsList = new ArrayList<String>();
+  private Boolean inMyLibrary = null;
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -33,7 +34,7 @@ public class ArtistInfo  {
     this.artistId = artistId;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -45,7 +46,7 @@ public class ArtistInfo  {
     this.artistName = artistName;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -57,7 +58,7 @@ public class ArtistInfo  {
     this.albumsList = albumsList;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -69,7 +70,7 @@ public class ArtistInfo  {
     this.averageRating = averageRating;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -81,7 +82,7 @@ public class ArtistInfo  {
     this.personalRating = personalRating;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -93,7 +94,7 @@ public class ArtistInfo  {
     this.imageLink = imageLink;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -105,7 +106,7 @@ public class ArtistInfo  {
     this.songsList = songsList;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -117,7 +118,7 @@ public class ArtistInfo  {
     this.genre = genre;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -129,13 +130,25 @@ public class ArtistInfo  {
     this.similarArtistsList = similarArtistsList;
   }
 
-  
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("in_my_library")
+  public Boolean getInMyLibrary() {
+    return inMyLibrary;
+  }
+  public void setInMyLibrary(Boolean inMyLibrary) {
+    this.inMyLibrary = inMyLibrary;
+  }
+
+
 
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
     sb.append("class ArtistInfo {\n");
-    
+
     sb.append("  artistId: ").append(artistId).append("\n");
     sb.append("  artistName: ").append(artistName).append("\n");
     sb.append("  albumsList: ").append(albumsList).append("\n");
@@ -145,6 +158,7 @@ public class ArtistInfo  {
     sb.append("  songsList: ").append(songsList).append("\n");
     sb.append("  genre: ").append(genre).append("\n");
     sb.append("  similarArtistsList: ").append(similarArtistsList).append("\n");
+    sb.append("  inMyLibrary: ").append(inMyLibrary).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

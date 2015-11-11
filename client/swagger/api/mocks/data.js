@@ -13,7 +13,8 @@ module.exports = {
       average_rating: 4,
       year: 1919,
       song_hotttnesss: 100,
-      genre: 'Classic'
+      genre: 'Classic',
+      in_my_library: true,
     },
     {
       song_id: '2',
@@ -28,7 +29,8 @@ module.exports = {
       average_rating: 3,
       year: 1999,
       song_hotttnesss: 1,
-      genre: 'Rock'
+      genre: 'Rock',
+      in_my_library: false,
     },
     {
       song_id: '3',
@@ -43,7 +45,8 @@ module.exports = {
       average_rating: 2,
       year: 2014,
       song_hotttnesss: 1,
-      genre: 'Rock'
+      genre: 'Rock',
+      in_my_library: false,
     },
     {
       song_id: '4',
@@ -58,7 +61,8 @@ module.exports = {
       average_rating: 4,
       year: 1941,
       song_hotttnesss: 1,
-      genre: 'Merengue'
+      genre: 'Merengue',
+      in_my_library: true,
     },
     {
       song_id: '5',
@@ -73,7 +77,8 @@ module.exports = {
       average_rating: 5,
       year: 2002,
       song_hotttnesss: 1,
-      genre: 'Salsa'
+      genre: 'Salsa',
+      in_my_library: true,
     },
     {
       song_id: '6',
@@ -88,7 +93,8 @@ module.exports = {
       average_rating: 1,
       year: 2010,
       song_hotttnesss: 1,
-      genre: 'Jazz'
+      genre: 'Jazz',
+      in_my_library: false,
     },
   ],
   artists: [
@@ -101,6 +107,7 @@ module.exports = {
       songs_list: ['1'],
       similar_artists_list: ['2', '3'],
       genre: 'Jazz',
+      in_my_library: true,
     },
     {
       artist_id: '2',
@@ -111,6 +118,7 @@ module.exports = {
       songs_list: ['2'],
       similar_artists_list: ['1', '3'],
       genre: 'Metal',
+      in_my_library: false,
     },
     {
       artist_id: '3',
@@ -121,6 +129,7 @@ module.exports = {
       songs_list: ['3'],
       similar_artists_list: ['5', '6'],
       genre: 'Pop',
+      in_my_library: false,
     },
     {
       artist_id: '4',
@@ -131,6 +140,7 @@ module.exports = {
       songs_list: ['4'],
       similar_artists_list: ['4', '6'],
       genre: 'Rock',
+      in_my_library: true,
     },
     {
       artist_id: '5',
@@ -141,6 +151,7 @@ module.exports = {
       songs_list: ['5'],
       similar_artists_list: ['1'],
       genre: 'Merenge',
+      in_my_library: false,
     },
     {
       artist_id: '6',
@@ -151,6 +162,7 @@ module.exports = {
       songs_list: ['6'],
       similar_artists_list: ['1', '3', '5'],
       genre: 'Pop',
+      in_my_library: false,
     }
   ],
   albums: [
@@ -164,6 +176,7 @@ module.exports = {
       artist_name: 'La 12',
       genre: 'Jazz',
       songs_list: ['1','2'],
+      in_my_library: true,
     },
     {
       album_id: '2',
@@ -175,6 +188,7 @@ module.exports = {
       artist_name: 'Mercyful Fate',
       genre: 'Rock',
       songs_list: ['3','4'],
+      in_my_library: false,
     },
     {
       album_id: '3',
@@ -186,6 +200,7 @@ module.exports = {
       artist_name: 'Mercyful Fate',
       genre: 'Rock',
       songs_list: ['5','6'],
+      in_my_library: false,
     },
     {
       album_id: '4',
@@ -197,6 +212,7 @@ module.exports = {
       artist_name: 'Katy Perry',
       genre: 'Pop',
       songs_list: ['1','2','3','4'],
+      in_my_library: true,
     }
   ],
   genres: [

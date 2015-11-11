@@ -9,13 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-10T16:56:12.664-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-12T17:31:41.997-06:00")
 public class SongList  {
-  
+
   private PagingState pagingState = null;
   private List<SongInfo> songs = new ArrayList<SongInfo>();
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -27,7 +27,7 @@ public class SongList  {
     this.pagingState = pagingState;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -39,13 +39,13 @@ public class SongList  {
     this.songs = songs;
   }
 
-  
+
 
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
     sb.append("class SongList {\n");
-    
+
     sb.append("  pagingState: ").append(pagingState).append("\n");
     sb.append("  songs: ").append(songs).append("\n");
     sb.append("}\n");

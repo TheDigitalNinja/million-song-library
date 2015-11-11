@@ -6,14 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-10T16:56:12.664-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-12T17:31:41.997-06:00")
 public class UserInfo  {
-  
+
   private String userId = null;
   private String name = null;
   private String email = null;
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -25,7 +25,7 @@ public class UserInfo  {
     this.userId = userId;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -37,7 +37,7 @@ public class UserInfo  {
     this.name = name;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -49,13 +49,13 @@ public class UserInfo  {
     this.email = email;
   }
 
-  
+
 
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserInfo {\n");
-    
+
     sb.append("  userId: ").append(userId).append("\n");
     sb.append("  name: ").append(name).append("\n");
     sb.append("  email: ").append(email).append("\n");
