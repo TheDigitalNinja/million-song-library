@@ -1,12 +1,8 @@
-package io.swagger.mock;
+package com.kenzan.msl.server.mock;
 
 import io.swagger.api.factories.FacetServiceFactory;
 import io.swagger.model.ArtistList;
 import io.swagger.model.ArtistInfo;
-import io.swagger.model.FacetInfo;
-import io.swagger.model.FacetInfoWithChildren;
-
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,9 +37,9 @@ public class ArtistMockData {
 
         if (hasRatingFacet) {
             return result;
-        }else {
-            return artistList;
         }
+        
+        return artistList;
     }
 
     private List<ArtistInfo> applyRatingFacet (String [] facets, List<ArtistInfo> artistList) {
@@ -93,7 +89,7 @@ public class ArtistMockData {
         artistMockData1.setArtistId("1");
         artistMockData1.setArtistName("Vai, Steve");
         artistMockData1.setImageLink("https://veggiesrock.files.wordpress.com/2011/07/vai2009_promo11.jpg");
-        artistMockData1.setAverageRating(new BigDecimal("4"));
+        artistMockData1.setAverageRating(4);
         List<String> artistMockAlbums1 = new ArrayList<String>();
         artistMockAlbums1.add("1");
         artistMockData1.setAlbumsList(artistMockAlbums1);
@@ -110,7 +106,7 @@ public class ArtistMockData {
         artistMockData2.setArtistId("2");
         artistMockData2.setArtistName("Pink Floyd");
         artistMockData2.setImageLink("http://www.billboard.com/files/styles/promo_650/public/media/pink-floyd-1973-billboard-650.jpg");
-        artistMockData2.setAverageRating(new BigDecimal("4"));
+        artistMockData2.setAverageRating(4);
         List<String> artistMockAlbums2 = new ArrayList<String>();
         artistMockAlbums2.add("2");
         artistMockData2.setAlbumsList(artistMockAlbums2);
@@ -124,7 +120,7 @@ public class ArtistMockData {
         artistMockData3.setArtistId("3");
         artistMockData3.setArtistName("Janis Joplin");
         artistMockData3.setImageLink("http://www.thisdayinmusic.com/upload/janis_joplin_6727.jpg");
-        artistMockData3.setAverageRating(new BigDecimal("3"));
+        artistMockData3.setAverageRating(3);
         artists.add(artistMockData3);
         List<String> artistMockAlbums3 = new ArrayList<String>();
         artistMockData3.setAlbumsList(artistMockAlbums3);
@@ -141,7 +137,7 @@ public class ArtistMockData {
         artistMockData4.setArtistId("4");
         artistMockData4.setArtistName("Led Zeppelin");
         artistMockData4.setImageLink("http://d2x3wmakafwqf5.cloudfront.net/wordpress/wp-content/blogs.dir/106/files/2014/06/led_zeppelin_wallpaper_blac_and_white.jpg");
-        artistMockData4.setAverageRating(new BigDecimal("4"));
+        artistMockData4.setAverageRating(4);
         List<String> artistMockAlbums4 = new ArrayList<String>();
         artistMockAlbums4.add("4");
         artistMockData4.setAlbumsList(artistMockAlbums4);
@@ -159,7 +155,7 @@ public class ArtistMockData {
         artistMockData5.setArtistName("Funkadelic");
         artistMockData5.setImageLink("http://acerecords.co.uk/images/CDSEW2-055.jpg");
         artistMockData5.setGenre("Funk");
-        artistMockData5.setAverageRating(new BigDecimal("2"));
+        artistMockData5.setAverageRating(2);
         List<String> artistMockAlbums5 = new ArrayList<String>();
         artistMockAlbums5.add("5");
         artistMockData5.setAlbumsList(artistMockAlbums5);
@@ -175,7 +171,7 @@ public class ArtistMockData {
         artistMockData6.setArtistId("6");
         artistMockData6.setArtistName("Willie Nelson");
         artistMockData6.setImageLink("http://kom.net/~dbrick/music/willie/willie2.jpg");
-        artistMockData6.setAverageRating(new BigDecimal("1"));
+        artistMockData6.setAverageRating(1);
         List<String> artistMockAlbums6 = new ArrayList<String>();
         artistMockAlbums6.add("6");
         artistMockData6.setGenre("Country");
@@ -189,7 +185,7 @@ public class ArtistMockData {
         artistMockData7.setArtistId("7");
         artistMockData7.setArtistName("Joe Satriani");
         artistMockData7.setImageLink("http://www.spirit-of-metal.com/membre_groupe/photo/Joe_Satriani-14020.jpg");
-        artistMockData7.setAverageRating(new BigDecimal("4"));
+        artistMockData7.setAverageRating(4);
         List<String> artistMockAlbums7 = new ArrayList<String>();
         artistMockAlbums7.add("7");
         artistMockAlbums7.add("8");
@@ -208,7 +204,7 @@ public class ArtistMockData {
         artistMockData8.setArtistId("8");
         artistMockData8.setArtistName("Earth wind and fire");
         artistMockData8.setImageLink("http://www.myplay.com/files/imagecache/photo_345_square/files/artist_images/dxc__qp1046245.jpg");
-        artistMockData8.setAverageRating(new BigDecimal("2"));
+        artistMockData8.setAverageRating(2);
         List<String> artistMockAlbums8 = new ArrayList<String>();
         artistMockAlbums8.add("9");
         artistMockData8.setAlbumsList(artistMockAlbums8);
