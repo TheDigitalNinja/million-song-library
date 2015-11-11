@@ -1,0 +1,62 @@
+/*
+ * Copyright 2015, Kenzan,  All rights reserved.
+ */
+package com.kenzan.msl.server.dao;
+
+import com.datastax.driver.mapping.annotations.Column;
+import com.datastax.driver.mapping.annotations.PartitionKey;
+import com.datastax.driver.mapping.annotations.Table;
+
+/**
+ *
+ *
+ * @author billschwanitz
+ */
+@Table(name = "featured_songs")
+public class FeaturedSongsDao extends AbstractSongDao {
+	@PartitionKey(value = 0)
+	@Column (name = "hotness_bucket")
+	private String hotnessBucket;
+	@PartitionKey(value = 1)
+	@Column (name = "content_type")
+	private String contentType;
+	@Column (name = "hotness_value")
+	private Float hotnessValue;
+	
+	/**
+	 * @return the hotnessBucket
+	 */
+	public String getHotnessBucket() {
+		return hotnessBucket;
+	}
+	/**
+	 * @param hotnessBucket the hotnessBucket to set
+	 */
+	public void setHotnessBucket(String hotnessBucket) {
+		this.hotnessBucket = hotnessBucket;
+	}
+	/**
+	 * @return the contentType
+	 */
+	public String getContentType() {
+		return contentType;
+	}
+	/**
+	 * @param contentType the contentType to set
+	 */
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+	/**
+	 * @return the hotnessValue
+	 */
+	public Float getHotnessValue() {
+		return hotnessValue;
+	}
+	/**
+	 * @param hotnessValue the hotnessValue to set
+	 */
+	public void setHotnessValue(Float hotnessValue) {
+		this.hotnessValue = hotnessValue;
+	}
+}

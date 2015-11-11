@@ -50,7 +50,6 @@ public class MslApiResponseMessage{
                 setType("unknown");
                 break;
         }
-        this.message = message;
     }
 
     @XmlTransient

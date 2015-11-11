@@ -1,9 +1,8 @@
-package io.swagger.mock;
+package com.kenzan.msl.server.mock;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import io.swagger.api.factories.FacetServiceFactory;
 import io.swagger.model.*;
 
 public class FacetMockData {
@@ -59,13 +58,14 @@ public class FacetMockData {
         // ~ should return root facet
         if (facet_id.equals("~")) {
             return getRootFacet();
-        } else {
-            for (FacetInfoWithChildren facet : mockFacets) {
-                if (facet.getFacetId().equals(facet_id)) {
-                    return facet;
-                }
+        }
+        
+        for (FacetInfoWithChildren facet : mockFacets) {
+            if (facet.getFacetId().equals(facet_id)) {
+                return facet;
             }
         }
+
         return new FacetInfoWithChildren();
     }
 
