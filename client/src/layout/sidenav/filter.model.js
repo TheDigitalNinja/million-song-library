@@ -15,10 +15,11 @@ export default class filterModel {
    * @property {string} selectedGenre  - genre to filter catalog
    * @property {object} listener       - object who receive the filter messages
    */
-  constructor(songModel, albumModel, artistModel) {
+  constructor(songModel, albumModel, artistModel, $location) {
     this.songModel = songModel;
     this.albumModel = albumModel;
     this.artistModel = artistModel;
+    this.$location = $location;
 
     this.selectedGenre = null;
     this.selectedRating = null;
@@ -53,6 +54,23 @@ export default class filterModel {
     this._filterSongs();
     this._filterAlbums();
     this._filterArtists();
+  }
+
+  /**
+   * Gets the current location search params and applies the filters
+   * @param {Object} listener
+   */
+  applyCurrentFilters(listener) {
+    const currentGenre = this.$location.search().genre;
+    const currentRating = this.$location.search().rating;
+
+    if(currentRating) {
+      this.setSelectedRating(currentRating);
+    }
+    if(currentGenre) {
+      this.setSelectedGenre(currentGenre);
+    }
+    this.filter(listener);
   }
 
   /**
@@ -102,5 +120,4 @@ export default class filterModel {
     const facets = _.filter([rating, genre], (facet) => facet != null).join();
     return facets.length > 0 ? facets : undefined;
   }
-
 }

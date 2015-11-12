@@ -17,7 +17,8 @@ export default class homeCtrl {
               $log,
               albumModel,
               artistModel,
-              songModel) {
+              songModel,
+              filterModel) {
     this.$scope = $scope;
     this.$log = $log;
     this.artistModel = artistModel;
@@ -25,10 +26,7 @@ export default class homeCtrl {
     this.songModel = songModel;
     this.activeTab = 'songs';
 
-    //Initializes data
-    songModel.getSongs();
-    artistModel.getArtists();
-    albumModel.getAlbums();
+    filterModel.applyCurrentFilters(this);
   }
 
   /**

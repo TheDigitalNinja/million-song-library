@@ -5,17 +5,19 @@ import sidenav from 'layout/sidenav/sidenav.module.js';
 describe('ratingFilterDirective', () => {
   const RATING = '4';
   const GENRE = '2';
-  let filterModel, listener, songModel, albumModel, artistModel;
+  let filterModel, listener, songModel, albumModel, artistModel, $location;
 
   beforeEach(() => {
     angular.mock.module(sidenav, ($provide) => {
       songModel = jasmine.createSpyObj('songModel', ['filterSongs']);
       albumModel = jasmine.createSpyObj('albumModel', ['filterAlbums']);
       artistModel = jasmine.createSpyObj('artistModel', ['filterArtists']);
+      $location = jasmine.createSpyObj('$location', ['search']);
 
       $provide.value('songModel', songModel);
       $provide.value('albumModel', albumModel);
       $provide.value('artistModel', artistModel);
+      $provide.value('$location', $location);
     });
 
     inject((_filterModel_) => {
@@ -77,6 +79,27 @@ describe('ratingFilterDirective', () => {
 
     it('should filter artists', () => {
       expect(filterModel._filterArtists).toHaveBeenCalled();
+    });
+  });
+
+  describe('applyCurrentFilters', () => {
+    it('should set the selected rating', () => {
+      $location.search.and.returnValue({ rating: RATING });
+      filterModel.applyCurrentFilters(listener);
+      expect(filterModel.selectedRating).toBe(RATING);
+    });
+
+    it('should set the selected genre', () => {
+      $location.search.and.returnValue({ genre: GENRE });
+      filterModel.applyCurrentFilters(listener);
+      expect(filterModel.selectedGenre).toBe(GENRE);
+    });
+
+    it('should call the filter function with the listener', () => {
+      $location.search.and.returnValue({});
+      spyOn(filterModel, 'filter');
+      filterModel.applyCurrentFilters(listener);
+      expect(filterModel.filter).toHaveBeenCalledWith(listener);
     });
   });
 
