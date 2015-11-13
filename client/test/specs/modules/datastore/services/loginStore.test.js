@@ -24,9 +24,16 @@ describe('loginStore', () => {
   });
 
   describe('push', () => {
+
+    const response = { data: 'a response' };
+    beforeEach(() => {
+      request.post.and.returnValue(response);
+    });
+
     it('should do a post request to the login edge', (done) => {
       (async () => {
         await loginStore.push(EMAIL, PASSWORD);
+        var params = `email=${ EMAIL }&password=${ PASSWORD }`;
         expect(request.post).toHaveBeenCalledWith('/msl/v1/loginedge/login', params, jasmine.any(Object));
         done();
       })();
@@ -34,10 +41,8 @@ describe('loginStore', () => {
 
     it('should map the response into a LoginSuccessResponseEntity', (done) => {
       (async () => {
-        const response = 'a response';
-        request.post.and.returnValue(response);
         await loginStore.push(EMAIL, PASSWORD);
-        expect(entityMapper).toHaveBeenCalledWith(response, LoginSuccessResponseEntity);
+        expect(entityMapper).toHaveBeenCalledWith(response.data, LoginSuccessResponseEntity);
         done();
       })();
     });

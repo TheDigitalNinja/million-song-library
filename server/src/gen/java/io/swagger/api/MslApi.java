@@ -22,7 +22,6 @@ import io.swagger.model.SongInfo;
 import java.io.File;
 import io.swagger.model.LoginSuccessResponse;
 import io.swagger.model.StatusResponse;
-import io.swagger.model.SessionInfo;
 import java.math.BigDecimal;
 import io.swagger.model.SearchResponse;
 
@@ -41,7 +40,7 @@ import javax.ws.rs.*;
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
 @io.swagger.annotations.Api(value = "/msl", description = "the msl API")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-04T16:53:15.265-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-10T16:56:12.664-06:00")
 public class MslApi  {
 
    private final MslApiService delegate = MslApiServiceFactory.getMslApi();
@@ -308,22 +307,6 @@ public class MslApi  {
         return delegate.resetPassword(email);
     }
     @GET
-    @Path("/v1/loginedge/sessioninfo")
-    @Consumes({ "application/json" })
-    @Produces({ "application/json" })
-    @io.swagger.annotations.ApiOperation(value = "", notes = "Endpoint for api services to get session data from session token", response = SessionInfo.class, authorizations = {
-        @io.swagger.annotations.Authorization(value = "session_id")
-    })
-    @io.swagger.annotations.ApiResponses(value = { 
-        @io.swagger.annotations.ApiResponse(code = 200, message = "Success", response = SessionInfo.class),
-        
-        @io.swagger.annotations.ApiResponse(code = 500, message = "Server Error", response = SessionInfo.class) })
-
-    public Response getSessionInfo()
-    throws NotFoundException {
-        return delegate.getSessionInfo();
-    }
-    @GET
     @Path("/v1/playeredge/play/{songId}")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
@@ -392,3 +375,4 @@ public class MslApi  {
         return delegate.searchFor(searchText,searchType);
     }
 }
+

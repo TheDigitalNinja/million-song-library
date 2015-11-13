@@ -19,7 +19,6 @@ import io.swagger.model.SongInfo;
 import java.io.File;
 import io.swagger.model.LoginSuccessResponse;
 import io.swagger.model.StatusResponse;
-import io.swagger.model.SessionInfo;
 import java.math.BigDecimal;
 import io.swagger.model.SearchResponse;
 
@@ -33,7 +32,7 @@ import com.sun.jersey.multipart.FormDataParam;
 
 import javax.ws.rs.core.Response;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-04T16:53:15.265-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-10T16:56:12.664-06:00")
 public abstract class MslApiService {
   
       public abstract Response getMyLibrary()
@@ -82,9 +81,6 @@ public abstract class MslApiService {
       throws NotFoundException;
   
       public abstract Response resetPassword(String email)
-      throws NotFoundException;
-  
-      public abstract Response getSessionInfo()
       throws NotFoundException;
   
       public abstract Response playSong(String songId)

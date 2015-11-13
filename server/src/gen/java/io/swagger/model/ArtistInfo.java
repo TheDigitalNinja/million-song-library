@@ -1,14 +1,14 @@
 package io.swagger.model;
 
-import java.util.*;
 import java.math.BigDecimal;
+import java.util.*;
 
 import io.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-04T16:53:15.265-07:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-10T16:56:12.664-06:00")
 public class ArtistInfo  {
   
   private String artistId = null;

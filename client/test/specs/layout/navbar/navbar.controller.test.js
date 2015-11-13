@@ -21,7 +21,7 @@ describe('navbarCtrl', () => {
       $provide.value('$state', $state);
       $provide.value('authorisation', authorisation);
 
-      $state.current.and.returnValue({name: 'state'});
+      $state.current.and.returnValue({ name: 'state' });
     });
 
     inject((_$controller_, $rootScope) => {
@@ -42,57 +42,4 @@ describe('navbarCtrl', () => {
     })();
   });
 
-  it('should change authorised scope data', () => {
-    const navbarCtrl = $controller('navbarCtrl', { $scope });
-    expect(authorisation.addChangeListener).toHaveBeenCalledWith(navbarCtrl.onStateChange);
-  });
-
-  it('should not call change listener when state changes after scope is destroyed', () => {
-    const navbarCtrl = $controller('navbarCtrl', { $scope });
-    $scope.$destroy();
-    expect(authorisation.removeChangeListener).toHaveBeenCalledWith(navbarCtrl.onStateChange);
-  });
-
-  describe('onStateChange', () => {
-    let navbarCtrl;
-
-    beforeEach(() => {
-      navbarCtrl = $controller('navbarCtrl', { $scope });
-    });
-
-    describe('when is not authorised', () => {
-      beforeEach(() => {
-        authorisation.isAuthorised.and.returnValue(false);
-        navbarCtrl.onStateChange();
-      });
-
-      it('should set the authorised property to false', () => {
-        expect(navbarCtrl.authorised).toBeFalsy();
-      });
-
-      it('should not get user data', () => {
-        expect(authorisation.getUserData).not.toHaveBeenCalled();
-      });
-    });
-
-    describe('when it is authorised', () => {
-      beforeEach(() => {
-        authorisation.isAuthorised.and.returnValue(true);
-        authorisation.getUserData.and.returnValue('login@email');
-        navbarCtrl.onStateChange();
-      });
-
-      it('should set the authorised property to true', () => {
-        expect(navbarCtrl.authorised).toBeTruthy();
-      });
-
-      it('should get user data', () => {
-        expect(authorisation.getUserData).toHaveBeenCalledWith('userEmail');
-      });
-
-      it('should set the email', () => {
-        expect(navbarCtrl.email).toBe('login@email');
-      });
-    });
-  });
 });

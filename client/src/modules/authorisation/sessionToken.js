@@ -7,7 +7,7 @@
 export default function sessionToken ($cookies) {
   'ngInject';
 
-  const STORAGE_NAMESPACE = 'sessionId';
+  const STORAGE_NAMESPACE = 'sessionToken';
 
   return {
     /**

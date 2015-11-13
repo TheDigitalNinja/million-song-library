@@ -19,23 +19,23 @@ describe('sessionToken', () => {
 
   it('should set token to cookie', () => {
     sessionToken.set('token');
-    expect($cookies.put).toHaveBeenCalledWith('sessionId', 'token');
+    expect($cookies.put).toHaveBeenCalledWith('sessionToken', 'token');
   });
 
   it('should get token from cookie', () => {
     $cookies.get.and.returnValue('token');
     expect(sessionToken.get()).toBe('token');
-    expect($cookies.get).toHaveBeenCalledWith('sessionId');
+    expect($cookies.get).toHaveBeenCalledWith('sessionToken');
   });
 
   it('should have cookie data set', () => {
     $cookies.get.and.returnValue('token');
     expect(sessionToken.has()).toBeTruthy();
-    expect($cookies.get).toHaveBeenCalledWith('sessionId');
+    expect($cookies.get).toHaveBeenCalledWith('sessionToken');
   });
 
   it('should remove cookie data', () => {
     sessionToken.destroy();
-    expect($cookies.remove).toHaveBeenCalledWith('sessionId');
+    expect($cookies.remove).toHaveBeenCalledWith('sessionToken');
   });
 });

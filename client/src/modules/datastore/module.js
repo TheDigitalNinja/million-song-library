@@ -4,7 +4,6 @@ import entityMapper from './entityMapper';
 import myLibraryStore from './services/myLibraryStore';
 import recentSongsStore from './services/recentSongsStore';
 import songStore from './services/songStore';
-import sessionInfoStore from './services/sessionInfoStore';
 import artistStore from './services/artistStore';
 import albumStore from './services/albumStore';
 import loginStore from './services/loginStore';
@@ -20,7 +19,6 @@ import AlbumListEntity from './entities/AlbumListEntity';
 import SongListEntity from './entities/SongListEntity';
 import StatusResponseEntity from './entities/StatusResponseEntity';
 import LoginSuccessResponseEntity from './entities/LoginSuccessResponseEntity';
-import SessionInfoEntity from './entities/SessionInfoEntity';
 import SongInfoEntity from './entities/SongInfoEntity';
 
 export default angular.module('msl.datastore', [])
@@ -29,7 +27,6 @@ export default angular.module('msl.datastore', [])
   .factory('myLibraryStore', myLibraryStore)
   .factory('recentSongsStore', recentSongsStore)
   .factory('songStore', songStore)
-  .factory('sessionInfoStore', sessionInfoStore)
   .factory('artistStore', artistStore)
   .factory('albumStore', albumStore)
   .factory('loginStore', loginStore)
@@ -45,6 +42,5 @@ export default angular.module('msl.datastore', [])
   .value('SongListEntity', SongListEntity)
   .value('StatusResponseEntity', StatusResponseEntity)
   .value('LoginSuccessResponseEntity', LoginSuccessResponseEntity)
-  .value('SessionInfoEntity', SessionInfoEntity)
   .value('SongInfoEntity', SongInfoEntity)
   .name;
