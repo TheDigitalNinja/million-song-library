@@ -42,4 +42,10 @@ $orange-2: #E65100;
       cursor: default;
     }
   }
+
+  &.personal-rating {
+    button, a {
+      color: $orange-1;
+    }
+  }
 }
