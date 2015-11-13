@@ -14,6 +14,7 @@
  * @property {Number} personalRating
  * @property {Number} songHotttnesss
  * @property {Number} year
+ * @property {Boolean} inMyLibrary
  */
 class SongInfoEntity {
   constructor() {
@@ -31,6 +32,7 @@ class SongInfoEntity {
     this.personalRating = Number;
     this.songHotttnesss = Number;
     this.year = Number;
+    this.inMyLibrary = Boolean;
   }
 }
 

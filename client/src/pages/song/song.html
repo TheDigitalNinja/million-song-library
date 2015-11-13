@@ -4,8 +4,11 @@
   </div>
   <div flex="75" class="msl-padding">
     <span class="pull-right">
-      <a href="" add-to-library id="vm.songId" type="song">
+      <a href="" ng-if="!vm.song.inMyLibrary" add-to-library id="vm.songId" type="song">
         <i class="fa fa-heart-o"></i> Add Song to Library
+      </a>
+      <a href="" ng-if="vm.song.inMyLibrary">
+        <i class="fa fa-ban"></i> Remove Song from Library
       </a>
     </span>
     <h1 class="song-name">{{vm.song.songName}}</h1>

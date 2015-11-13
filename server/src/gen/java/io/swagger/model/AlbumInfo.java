@@ -8,9 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-10T16:56:12.664-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-12T17:31:41.997-06:00")
 public class AlbumInfo  {
-  
+
   private String albumId = null;
   private String albumName = null;
   private String artistId = null;
@@ -21,8 +21,9 @@ public class AlbumInfo  {
   private BigDecimal personalRating = null;
   private String imageLink = null;
   private List<String> songsList = new ArrayList<String>();
+  private Boolean inMyLibrary = null;
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -34,7 +35,7 @@ public class AlbumInfo  {
     this.albumId = albumId;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -46,7 +47,7 @@ public class AlbumInfo  {
     this.albumName = albumName;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -58,7 +59,7 @@ public class AlbumInfo  {
     this.artistId = artistId;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -70,7 +71,7 @@ public class AlbumInfo  {
     this.artistName = artistName;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -82,7 +83,7 @@ public class AlbumInfo  {
     this.genre = genre;
   }
 
-  
+
   /**
    * The year the album was released
    **/
@@ -95,7 +96,7 @@ public class AlbumInfo  {
     this.year = year;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -107,7 +108,7 @@ public class AlbumInfo  {
     this.averageRating = averageRating;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -119,7 +120,7 @@ public class AlbumInfo  {
     this.personalRating = personalRating;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -131,7 +132,7 @@ public class AlbumInfo  {
     this.imageLink = imageLink;
   }
 
-  
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -143,13 +144,25 @@ public class AlbumInfo  {
     this.songsList = songsList;
   }
 
-  
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  @JsonProperty("in_my_library")
+  public Boolean getInMyLibrary() {
+    return inMyLibrary;
+  }
+  public void setInMyLibrary(Boolean inMyLibrary) {
+    this.inMyLibrary = inMyLibrary;
+  }
+
+
 
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
     sb.append("class AlbumInfo {\n");
-    
+
     sb.append("  albumId: ").append(albumId).append("\n");
     sb.append("  albumName: ").append(albumName).append("\n");
     sb.append("  artistId: ").append(artistId).append("\n");
@@ -160,6 +173,7 @@ public class AlbumInfo  {
     sb.append("  personalRating: ").append(personalRating).append("\n");
     sb.append("  imageLink: ").append(imageLink).append("\n");
     sb.append("  songsList: ").append(songsList).append("\n");
+    sb.append("  inMyLibrary: ").append(inMyLibrary).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

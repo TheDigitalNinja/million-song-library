@@ -9,8 +9,11 @@
       </div>
       <div class="media-box-overlay">
         <div class="media-box-overlay-control">
-          <a href="" add-to-library id="artist.artistId" type="artist">
+          <a href="" ng-if="!artist.inMyLibrary" add-to-library id="artist.artistId" type="artist">
             <i class="fa fa-heart"></i> Add to library
+          </a>
+          <a href="" ng-if="artist.inMyLibrary">
+            <i class="fa fa-ban"></i> Remove from library
           </a>
         </div>
       </div>

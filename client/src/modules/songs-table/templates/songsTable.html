@@ -7,7 +7,7 @@
     <th>Song</th>
     <th>Album</th>
     <th class="th-med">Rating</th>
-    <th>Add to Library</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
@@ -30,8 +30,11 @@
       <div star-rating="song.averageRating" song-id="song.songId"></div>
     </td>
     <td>
-      <a href="" add-to-library id="song.songId" type="song">
-        <i class="fa fa-heart"></i>
+      <a href="" ng-if="!song.inMyLibrary" add-to-library id="song.songId" type="song">
+        <i class="fa fa-heart"></i> Add to Library
+      </a>
+      <a href="" ng-if="song.inMyLibrary">
+        <i class="fa fa-ban"></i> Remove from Library
       </a>
     </td>
   </tr>

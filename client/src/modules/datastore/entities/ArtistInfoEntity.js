@@ -8,6 +8,7 @@
  * @property {String} imageLink
  * @property {String} songsList
  * @property {String} similarArtistsList
+ * @property {Boolean} inMyLibrary
  */
 class ArtistInfoEntity {
   constructor() {
@@ -19,6 +20,7 @@ class ArtistInfoEntity {
     this.imageLink = String;
     this.songsList = [String];
     this.similarArtistsList = [String];
+    this.inMyLibrary = Boolean;
   }
 }
 
