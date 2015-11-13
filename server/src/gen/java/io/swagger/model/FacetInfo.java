@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-12T17:31:41.997-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-13T16:33:04.991-06:00")
 public class FacetInfo  {
-
+  
   private String facetId = null;
   private String name = null;
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -24,7 +24,7 @@ public class FacetInfo  {
     this.facetId = facetId;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -36,13 +36,13 @@ public class FacetInfo  {
     this.name = name;
   }
 
-
+  
 
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
     sb.append("class FacetInfo {\n");
-
+    
     sb.append("  facetId: ").append(facetId).append("\n");
     sb.append("  name: ").append(name).append("\n");
     sb.append("}\n");

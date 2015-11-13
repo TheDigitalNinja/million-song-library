@@ -32,7 +32,7 @@ import com.sun.jersey.multipart.FormDataParam;
 
 import javax.ws.rs.core.Response;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-10T16:56:12.664-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-13T16:33:04.991-06:00")
 public abstract class MslApiService {
   
       public abstract Response getMyLibrary()
@@ -86,10 +86,16 @@ public abstract class MslApiService {
       public abstract Response playSong(String songId)
       throws NotFoundException;
   
-      public abstract Response commentSong(String songId)
+      public abstract Response commentSong(String songId,String sessionToken)
       throws NotFoundException;
   
-      public abstract Response rateSong(String songId,BigDecimal rating)
+      public abstract Response rateAlbum(String albumId,BigDecimal rating,String sessionToken)
+      throws NotFoundException;
+  
+      public abstract Response rateArtist(String artistId,BigDecimal rating,String sessionToken)
+      throws NotFoundException;
+  
+      public abstract Response rateSong(String songId,BigDecimal rating,String sessionToken)
       throws NotFoundException;
   
       public abstract Response searchFor(String searchText,String searchType)

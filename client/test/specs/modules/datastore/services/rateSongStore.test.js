@@ -22,19 +22,22 @@ describe('rateSongStore', () => {
   });
 
   describe('push', () => {
+    const response = { data: 'a_response' };
+    beforeEach(() => {
+      request.put.and.returnValue(response);
+    });
+
     it('should make a put to the ratesong endpoint', () => {
       (async () => {
         await rateSongStore.push(SONG_ID, RATING);
-        expect(request.put).toHaveBeenCalledWith(`/msl/v1/ratingsedge/ratesong/${SONG_ID}`, { rating: RATING });
+        expect(request.put).toHaveBeenCalledWith(`/msl/v1/ratingsedge/ratesong/${SONG_ID}`, `rating=${ RATING }}`, jasmine.any(Object));
       })();
     });
 
     it('should map the response into a StatusResponseEntity', () => {
       (async () => {
-        const response = 'a_response';
-        request.put.and.returnValue(response);
         await rateSongStore.push(SONG_ID, RATING);
-        expect(entityMapper).toHaveBeenCalledWith(response, StatusResponseEntity);
+        expect(entityMapper).toHaveBeenCalledWith(response.data, StatusResponseEntity);
       })();
     });
   });

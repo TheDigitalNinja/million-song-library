@@ -8,14 +8,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-12T17:31:41.997-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-13T16:33:04.991-06:00")
 public class FacetInfoWithChildren  {
-
+  
   private String facetId = null;
   private String name = null;
   private List<FacetInfo> children = new ArrayList<FacetInfo>();
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -27,7 +27,7 @@ public class FacetInfoWithChildren  {
     this.facetId = facetId;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -39,7 +39,7 @@ public class FacetInfoWithChildren  {
     this.name = name;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -51,13 +51,13 @@ public class FacetInfoWithChildren  {
     this.children = children;
   }
 
-
+  
 
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
     sb.append("class FacetInfoWithChildren {\n");
-
+    
     sb.append("  facetId: ").append(facetId).append("\n");
     sb.append("  name: ").append(name).append("\n");
     sb.append("  children: ").append(children).append("\n");
