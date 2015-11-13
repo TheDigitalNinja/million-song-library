@@ -13,7 +13,8 @@ function starRatingDirective () {
     scope: {
       starRating: '=',
       readOnly: '=',
-      songId: '=',
+      entityId: '=',
+      entityType: '@',
       isPersonalRating: '=',
     },
   };

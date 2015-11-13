@@ -6,24 +6,26 @@ import starRatingModule from 'modules/star-rating/module';
 
 describe('starRating controller', () => {
   const error = new Error('an error');
-  let $scope, rateStore, compileElement, $log;
+  const entityType = 'song';
+  let $scope, ratingModel, compileElement, $log;
 
   beforeEach(() => {
     angular.mock.module(starRatingModule, ($provide) => {
-      rateStore = jasmine.createSpyObj('rateStore', ['push']);
+      ratingModel = jasmine.createSpyObj('ratingModel', ['rate']);
       $log = jasmine.createSpyObj('$log', ['warn']);
-      $provide.value('rateStore', rateStore);
+
+      $provide.value('ratingModel', ratingModel);
       $provide.value('$log', $log);
     });
 
     inject(($rootScope, $compile) => {
       $scope = $rootScope.$new();
-      $scope.songId = 'songId';
+      $scope.entityId = 'entityId';
       $scope.rating = 1;
       $scope.readOnly = false;
 
       compileElement = function () {
-        const element = `<div star-rating='rating' song-id='songId' read-only='readOnly'></div>`;
+        const element = `<div star-rating='rating' entity-id='entityId' entity-type='song' read-only='readOnly'></div>`;
         const compile = $compile(element)($scope);
         $scope.$digest();
         return compile;
@@ -65,7 +67,7 @@ describe('starRating controller', () => {
     const element = compileElement();
 
     $(element).find('button.fa-star-o').first().click();
-    expect(rateStore.push).toHaveBeenCalledWith($scope.songId, $scope.rating + 1);
+    expect(ratingModel.rate).toHaveBeenCalledWith($scope.entityId, entityType, $scope.rating + 1);
   });
 
   it('', () => {
@@ -78,7 +80,7 @@ describe('starRating controller', () => {
 
   it('should log a warn if an error is thrown', (done) => {
     (async () => {
-      rateStore.push.and.throwError(error);
+      ratingModel.rate.and.throwError(error);
       const element = compileElement();
 
       $(element).find('.btn').click();
