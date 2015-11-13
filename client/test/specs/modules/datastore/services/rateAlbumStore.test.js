@@ -27,17 +27,21 @@ describe('rateAlbumStore', () => {
       request.put.and.returnValue(response);
     });
 
-    it('should make a put to the ratealbum endpoint', () => {
+    it('should make a put to the ratealbum endpoint', (done) => {
       (async () => {
+        const data = `rating=${ RATING }`;
+        const headers = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
         await rateAlbumStore.push(ALBUM_ID, RATING);
-        expect(request.put).toHaveBeenCalledWith(`/msl/v1/ratingsedge/ratealbum/${ALBUM_ID}`, `rating: ${ RATING }`, jasmine.any(Object) );
+        expect(request.put).toHaveBeenCalledWith(`/msl/v1/ratingsedge/ratealbum/${ALBUM_ID}`, data, headers);
+        done();
       })();
     });
 
-    it('should map the response into a StatusResponseEntity', () => {
+    it('should map the response into a StatusResponseEntity', (done) => {
       (async () => {
         await rateAlbumStore.push(ALBUM_ID, RATING);
         expect(entityMapper).toHaveBeenCalledWith(response.data, StatusResponseEntity);
+        done();
       })();
     });
   });

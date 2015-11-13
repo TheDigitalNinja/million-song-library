@@ -4,17 +4,20 @@ describe('ratingModel', () => {
 
   const SONG_ID = '1';
   const ALBUM_ID = '1';
+  const ARTIST_ID = '1';
   const RATING = 3;
 
-  let ratingModel, rateSongStore, rateAlbumStore;
+  let ratingModel, rateSongStore, rateAlbumStore, rateArtistStore;
 
   beforeEach(() => {
     angular.mock.module(ratingModule, ($provide) => {
       rateSongStore = jasmine.createSpyObj('rateSongStore', ['push']);
       rateAlbumStore = jasmine.createSpyObj('rateAlbumStore', ['push']);
+      rateArtistStore = jasmine.createSpyObj('rateArtistStore', ['push']);
 
       $provide.value('rateSongStore', rateSongStore);
       $provide.value('rateAlbumStore', rateAlbumStore);
+      $provide.value('rateArtistStore', rateArtistStore);
     });
 
     inject((_ratingModel_) => {
@@ -39,6 +42,14 @@ describe('ratingModel', () => {
       (async () => {
         await ratingModel.rate(ALBUM_ID, 'album', RATING);
         expect(rateAlbumStore.push).toHaveBeenCalledWith(ALBUM_ID, RATING);
+        done();
+      })();
+    });
+
+    it('should push the artist rating', (done) => {
+      (async () => {
+        await ratingModel.rate(ARTIST_ID, 'artist', RATING);
+        expect(rateArtistStore.push).toHaveBeenCalledWith(ARTIST_ID, RATING);
         done();
       })();
     });
