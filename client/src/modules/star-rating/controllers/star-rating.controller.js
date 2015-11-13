@@ -8,12 +8,12 @@ export default class ratingController {
    * @constructor
    * @this {rating}
    * @param {$rootScope.Scope} $scope
-   * @param {rateStore} rateStore
+   * @param {ratingModel} ratingModel
    * @param {$log} $log
    */
-  constructor($scope, rateStore, $log) {
+  constructor($scope, ratingModel, $log) {
     this.$scope = $scope;
-    this.rateStore = rateStore;
+    this.ratingModel = ratingModel;
     this.$log = $log;
     this.max = 5;
     this.readOnly = !!$scope.readOnly;
@@ -31,7 +31,7 @@ export default class ratingController {
     if(!this.readOnly && this.$scope.starRating !== newRating) {
       this.readOnly = true;
       try {
-        await this.rateStore.push(this.$scope.songId, newRating);
+        await this.ratingModel.rate(this.$scope.entityId, this.$scope.entityType, newRating);
         this._setStarRating(newRating);
       } catch(err) {
         this.$log.warn(err);

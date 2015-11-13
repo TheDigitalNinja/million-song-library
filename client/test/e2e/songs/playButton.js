@@ -1,4 +1,3 @@
-/* global describe, it, expect, beforeEach, pending */
 describe('play button in home page', () => {
 
   beforeEach(() => {

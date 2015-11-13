@@ -16,7 +16,7 @@ SwaggerExpress.create({
 
   swaggerExpress.runner.config.swagger.securityHandlers = {
     sessionToken: function (req, authOrSecDef, scopesOrApiKey, callback) {
-      assert.notEqual(req.headers.sessionToken, null);
+      assert.notEqual(req.headers.sessiontoken, null);
       callback();
     }
   };

@@ -1,19 +1,19 @@
 /**
- * rate store service
- * @name rateStore
+ * rate song store service
+ * @name rateSongStore
  * @param {request} request
  * @param {entityMapper} entityMapper
  * @param {StatusResponseEntity} StatusResponseEntity
  * @returns {*}
  */
-function rateStore (request, entityMapper, StatusResponseEntity) {
+function rateSongStore (request, entityMapper, StatusResponseEntity) {
   'ngInject';
 
   const API_REQUEST_PATH = '/msl/v1/ratingsedge/ratesong/';
   return {
     /**
      * make rate song request
-     * @name rateStore#push
+     * @name rateSongStore#push
      * @param {string} songId
      * @param {number} rating
      * @return {StatusResponseEntity}
@@ -25,4 +25,4 @@ function rateStore (request, entityMapper, StatusResponseEntity) {
   };
 }
 
-export default rateStore;
+export default rateSongStore;

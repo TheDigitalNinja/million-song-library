@@ -8,7 +8,8 @@ import artistStore from './services/artistStore';
 import albumStore from './services/albumStore';
 import loginStore from './services/loginStore';
 import logoutStore from './services/logoutStore';
-import rateStore from './services/rateStore';
+import rateSongStore from './services/rateSongStore';
+import rateAlbumStore from './services/rateAlbumStore';
 import facetStore from './services/facetStore';
 import ArtistInfoEntity from './entities/ArtistInfoEntity';
 import ArtistListEntity from './entities/ArtistListEntity';
@@ -31,7 +32,8 @@ export default angular.module('msl.datastore', [])
   .factory('albumStore', albumStore)
   .factory('loginStore', loginStore)
   .factory('logoutStore', logoutStore)
-  .factory('rateStore', rateStore)
+  .factory('rateSongStore', rateSongStore)
+  .factory('rateAlbumStore', rateAlbumStore)
   .factory('facetStore', facetStore)
   .value('ArtistInfoEntity', ArtistInfoEntity)
   .value('ArtistListEntity', ArtistListEntity)

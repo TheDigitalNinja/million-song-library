@@ -5,7 +5,7 @@ import angular from 'angular';
 import starRatingModule from 'modules/star-rating/module';
 
 describe('starRating directive', () => {
-  let $scope, rateStore, compileElement;
+  let $scope, compileElement;
   let element;
 
   beforeEach(() => {
@@ -13,10 +13,10 @@ describe('starRating directive', () => {
 
     inject(($rootScope, $compile) => {
       $scope = $rootScope.$new();
-      $scope.songId = 'songId';
+      $scope.entityId = 'entityId';
       $scope.readOnly = false;
 
-      const elementHTML = `<div star-rating='rating' song-id='songId' read-only='readOnly'></div>`;
+      const elementHTML = `<div star-rating='rating' entity-id='entityId' entity-type='song' read-only='readOnly'></div>`;
       element = $compile(elementHTML)($scope);
       $scope.$digest();
     });
@@ -27,9 +27,9 @@ describe('starRating directive', () => {
   });
 
   describe('scope', () => {
-    it('should set the songId on the scope', () => {
+    it('should set the entityId on the scope', () => {
       const isolatedScope = element.isolateScope();
-      expect(isolatedScope.songId).toEqual('songId');
+      expect(isolatedScope.entityId).toEqual('entityId');
     });
 
     it('should set the readOnly on the scope', () => {

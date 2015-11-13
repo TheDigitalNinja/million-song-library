@@ -1,10 +1,10 @@
 import datastoreModule from 'modules/datastore/module';
 
-describe('rateStore', () => {
-  const SONG_ID = '2';
+describe('rateAlbumStore', () => {
+  const ALBUM_ID = '2';
   const RATING = '4';
 
-  let rateStore, request, entityMapper, StatusResponseEntity;
+  let rateAlbumStore, request, entityMapper, StatusResponseEntity;
 
   beforeEach(() => {
     angular.mock.module(datastoreModule, ($provide) => {
@@ -15,17 +15,17 @@ describe('rateStore', () => {
       $provide.value('entityMapper', entityMapper);
     });
 
-    inject((_rateStore_, _StatusResponseEntity_) => {
-      rateStore = _rateStore_;
+    inject((_rateAlbumStore_, _StatusResponseEntity_) => {
+      rateAlbumStore = _rateAlbumStore_;
       StatusResponseEntity = _StatusResponseEntity_;
     });
   });
 
   describe('push', () => {
-    it('should make a put to the ratesong endpoint', () => {
+    it('should make a put to the ratealbum endpoint', () => {
       (async () => {
-        await rateStore.push(SONG_ID, RATING);
-        expect(request.put).toHaveBeenCalledWith(`/msl/v1/ratingsedge/ratesong/${SONG_ID}`, { rating: RATING });
+        await rateAlbumStore.push(ALBUM_ID, RATING);
+        expect(request.put).toHaveBeenCalledWith(`/msl/v1/ratingsedge/ratealbum/${ALBUM_ID}`, { rating: RATING });
       })();
     });
 
@@ -33,7 +33,7 @@ describe('rateStore', () => {
       (async () => {
         const response = 'a_response';
         request.put.and.returnValue(response);
-        await rateStore.push(SONG_ID, RATING);
+        await rateAlbumStore.push(ALBUM_ID, RATING);
         expect(entityMapper).toHaveBeenCalledWith(response, StatusResponseEntity);
       })();
     });
