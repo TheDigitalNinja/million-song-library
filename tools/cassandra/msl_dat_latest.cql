@@ -1,4 +1,4 @@
-USE msl2;
+USE msl;
 
 // Q4:
 TRUNCATE featured_songs;
