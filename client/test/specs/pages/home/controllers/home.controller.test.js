@@ -8,7 +8,7 @@ describe('homeCtrl', () => {
   const ARTISTS_LIST = ['artist1', 'artist2'];
 
   let $scope, $controller, homeCtrl;
-  let songModel, albumModel, artistModel, $log, filterModel;
+  let songModel, albumModel, artistModel, $log, filterModel, $location;
 
   beforeEach(() => {
     angular.mock.module(homePage, ($provide) => {
@@ -17,26 +17,32 @@ describe('homeCtrl', () => {
       albumModel = jasmine.createSpyObj('albumModel', ['getAlbums']);
       artistModel = jasmine.createSpyObj('artistModel', ['getArtists']);
       filterModel = jasmine.createSpyObj('filterModel', ['applyCurrentFilters']);
+      $location = jasmine.createSpyObj('$location', ['search']);
 
       $provide.value('$log', $log);
       $provide.value('songModel', songModel);
       $provide.value('albumModel', albumModel);
       $provide.value('artistModel', artistModel);
       $provide.value('filterModel', filterModel);
+      $provide.value('$location', $location);
     });
 
     inject((_$controller_, $rootScope) => {
       $controller = _$controller_;
       $scope = $rootScope.$new();
 
-      homeCtrl = $controller('homeCtrl', {
-        albumModel: albumModel,
-        artistModel: artistModel,
-        $log: $log,
-        $scope: $scope,
-        songModel: songModel,
-      });
+      homeCtrl = () => {
+        return $controller('homeCtrl', {
+          albumModel: albumModel,
+          artistModel: artistModel,
+          $log: $log,
+          $scope: $scope,
+          songModel: songModel,
+        });
+      };
     });
+
+    $location.search.and.returnValue({});
 
   });
 
@@ -74,12 +80,31 @@ describe('homeCtrl', () => {
         done();
       })();
     });
+
+    it('should get the current selected tab', () => {
+      $location.search.and.returnValue({ tab: 'albums' });
+      expect(homeCtrl().selectedTab).toBe(1);
+    });
+
+    it('should use 0 as default selected tab', () => {
+      $location.search.and.returnValue({ tab: 'nonExistingTab' });
+      expect(homeCtrl().selectedTab).toBe(0);
+    });
+  });
+
+  describe('selectTab', () => {
+    it('should set the tab attribu on the search query', () => {
+      const tab = 'songs';
+      const controller = homeCtrl();
+      controller.selectTab(tab);
+      expect($location.search).toHaveBeenCalledWith('tab', tab);
+    });
   });
 
   describe('songsFiltered', () => {
     it('should set the songModel songs', () => {
       const songs = ['song'];
-      homeCtrl.songsFiltered(songs);
+      homeCtrl().songsFiltered(songs);
       expect(songModel.songs).toBe(songs);
     });
   });
@@ -87,7 +112,7 @@ describe('homeCtrl', () => {
   describe('albumsFiltered', () => {
     it('should set the albumModel albums', () => {
       const albums = ['album'];
-      homeCtrl.albumsFiltered(albums);
+      homeCtrl().albumsFiltered(albums);
       expect(albumModel.albums).toBe(albums);
     });
   });
@@ -95,7 +120,7 @@ describe('homeCtrl', () => {
   describe('artistsFiltered', () => {
     it('should set the artistModel artists', () => {
       const artists = ['artist'];
-      homeCtrl.artistsFiltered(artists);
+      homeCtrl().artistsFiltered(artists);
       expect(artistModel.artists).toBe(artists);
     });
   });
