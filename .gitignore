@@ -15,3 +15,8 @@ npm-debug.log
 *.sublime-project
 *.sublime-workspace
 *.pyc
+*.project
+*.classpath
+*.settings
+*.csv
+*.txt
