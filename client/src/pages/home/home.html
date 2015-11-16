@@ -10,8 +10,8 @@
 
       <h1 class="md-display-2 msl-page-title" ng-show="!!vm.model.selectedGenre">{{vm.model.selectedGenre}}</h1>
 
-      <md-tabs md-dynamic-height md-border-bottom>
-        <md-tab>
+      <md-tabs md-dynamic-height md-border-bottom md-selected="vm.selectedTab">
+        <md-tab ng-click="vm.selectTab('songs');">
           <md-tab-label>
             Songs
           </md-tab-label>
@@ -19,7 +19,7 @@
             <songs-list songs="vm.songModel.songs"></songs-list>
           </md-tab-body>
         </md-tab>
-        <md-tab>
+        <md-tab ng-click="vm.selectTab('albums');">
           <md-tab-label>
             Albums
           </md-tab-label>
@@ -27,7 +27,7 @@
             <albums-list albums="vm.albumModel.albums"></albums-list>
           </md-tab-body>
         </md-tab>
-        <md-tab>
+        <md-tab ng-click="vm.selectTab('artists');">
           <md-tab-label>
             Artists
           </md-tab-label>

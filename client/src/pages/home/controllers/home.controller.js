@@ -8,12 +8,14 @@ export default class homeCtrl {
    * @constructor
    * @this {vm}
    * @param {$rootScope.Scope} $scope
+   * @param {$location} $location
    * @param {$log} $log
    * @param {albumModel} albumModel
    * @param {artistModel} artistModel
    * @param {songModel} songModel
    */
   constructor($scope,
+              $location,
               $log,
               albumModel,
               artistModel,
@@ -24,9 +26,18 @@ export default class homeCtrl {
     this.artistModel = artistModel;
     this.albumModel = albumModel;
     this.songModel = songModel;
-    this.activeTab = 'songs';
+    this.$location = $location;
 
+    this._getCurrentTab();
     filterModel.applyCurrentFilters(this);
+  }
+
+  /**
+   * Sets the selected tab on the search params
+   * @param {string} tab
+   */
+  selectTab(tab) {
+    this.$location.search('tab', tab);
   }
 
   /**
@@ -55,5 +66,15 @@ export default class homeCtrl {
     this.artistModel.artists = artists;
     this.$scope.$evalAsync();
   }
-}
 
+  /**
+   * Gets the current active tab from $location search
+   * @private
+   */
+  _getCurrentTab() {
+    const tabs = ['songs', 'albums', 'artists'];
+    const tabLabel = this.$location.search().tab;
+    const index = tabs.indexOf(tabLabel);
+    this.selectedTab = index > 0 ? index : 0;
+  }
+}
