@@ -1,31 +1,6 @@
 <h3 class="slider-header">{{ vm.title }}</h3>
 <div layout-wrap id="{{ vm.sliderId }}">
-  <div class="media-box" ng-repeat="slide in vm.slides track by $index" repeat-complete="vm.repeatComplete()">
-    <md-card>
-      <div class="media-box-inner">
-        <img class="media-box-inner-image" ng-src="{{song.imageLink}}" alt="{{ song.artistName }}"/>
-        <div class="media-box-meta">
-          <a ui-sref="msl.song({songId: song.songId})">
-              {{ song.song_name }}
-          </a>
-          <span class="track-length">{{ song.duration | timeFilter: 'MM:SS'}}</span>
-        </div>
-        <div class="media-box-overlay">
-          <div class="media-box-overlay-control">
-            <i class="fa fa-play"></i> Play
-          </div>
-          <div class="media-box-overlay-control">
-            <a href="" add-to-library id="song.songId" type="song">
-              <i class="fa fa-close"></i> Remove from library
-            </a>
-          </div>
-        </div>
-      </div>
-    </md-card>
-    <div class="info-panel">
-      <div><a ui-sref="msl.artist({artistId: song.artistId})">{{ song.artistName }}</a></div>
-      <div>{{ song.songName }}: {{ song.albumName }}, {{ song.year }}</div>
-      <div star-rating="song.averageRating" song-id="song.songId"></div>
-    </div>
-  </div>
+  <song-box ng-if="vm.entity == 'song'" song="song" ng-repeat="song in vm.slides track by $index" repeat-complete="vm.repeatComplete()"> </song-box>
+  <artist-box ng-if="vm.entity == 'artist'" artist="artist" ng-repeat="artist in vm.slides track by $index" repeat-complete="vm.repeatComplete()"> </artist-box>
+  <album-box ng-if="vm.entity == 'album'" album="album" ng-repeat="album in vm.slides track by $index" repeat-complete="vm.repeatComplete()"> </album-box>
 </div>

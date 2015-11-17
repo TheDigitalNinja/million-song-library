@@ -21,16 +21,14 @@ export default class libraryCtrl {
     this.albumSlides = [];
   }
 
-  getLibrarySongs() {
-    (async () => {
-      try {
-        const response = await this.myLibraryStore.fetch();
-        this.songs = response.songs;
-        this.$scope.$evalAsync();
-      }
-      catch(error) {
-        this.$log.warn(error);
-      }
-    })();
+  async getLibrarySongs() {
+    try {
+      const response = await this.myLibraryStore.fetch();
+      this.songs = response.songs;
+      this.$scope.$evalAsync();
+    }
+    catch(error) {
+      this.$log.warn(error);
+    }
   }
 }

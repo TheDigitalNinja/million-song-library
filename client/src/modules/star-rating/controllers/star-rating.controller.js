@@ -17,7 +17,7 @@ export default class ratingController {
     this.$log = $log;
     this.max = 5;
     this.readOnly = !!$scope.readOnly;
-    this.isPersonalRating = $scope.isPersonalRating;
+    this.isPersonalRating = $scope.isPersonalRating || false;
 
     $scope.$watch('starRating', (newVal) => this._updateStars());
   }
