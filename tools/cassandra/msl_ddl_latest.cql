@@ -165,7 +165,7 @@ CREATE TABLE artists_by_user (
   content_type text,
   favorites_timestamp timestamp,
   artist_id uuid,
-  aritst_mbid uuid,
+  artist_mbid uuid,
   artist_name text,
   PRIMARY KEY ((user_id, content_type), favorites_timestamp, artist_id)
 ) WITH CLUSTERING ORDER BY (favorites_timestamp DESC, artist_id ASC);
