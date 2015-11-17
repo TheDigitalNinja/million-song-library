@@ -4,9 +4,10 @@
 class ratingModel {
   /*@ngInject*/
 
-  constructor(rateSongStore, rateAlbumStore) {
+  constructor(rateSongStore, rateAlbumStore, rateArtistStore) {
     this.rateSongStore = rateSongStore;
     this.rateAlbumStore = rateAlbumStore;
+    this.rateArtistStore = rateArtistStore;
   }
 
   /**
@@ -16,13 +17,16 @@ class ratingModel {
    * @param {string} entityType
    * @param {number} rating
    */
-  rate(entityId, entityType, rating) {
+  async rate(entityId, entityType, rating) {
     switch(entityType) {
       case 'song':
-        this._rateSong(entityId, rating);
+        await this._rateSong(entityId, rating);
         break;
       case 'album':
-        this._rateAlbum(entityId, rating);
+        await this._rateAlbum(entityId, rating);
+        break;
+      case 'artist':
+        await this._rateArtist(entityId, rating);
         break;
     }
   }
@@ -33,8 +37,8 @@ class ratingModel {
    * @param {number} rating
    * @private
    */
-  _rateAlbum(albumId, rating) {
-    this.rateAlbumStore.push(albumId, rating);
+  async _rateAlbum(albumId, rating) {
+    await this.rateAlbumStore.push(albumId, rating);
   }
 
   /**
@@ -43,8 +47,18 @@ class ratingModel {
    * @param {number} rating
    * @private
    */
-  _rateSong(songId, rating) {
-    this.rateSongStore.push(songId, rating);
+  async _rateSong(songId, rating) {
+    await this.rateSongStore.push(songId, rating);
+  }
+
+  /**
+   * Push to the artist store the new rating
+   * @param {string} artistId
+   * @param {number} rating
+   * @private
+   */
+  async _rateArtist(artistId, rating) {
+    await this.rateArtistStore.push(artistId, rating);
   }
 }
 
