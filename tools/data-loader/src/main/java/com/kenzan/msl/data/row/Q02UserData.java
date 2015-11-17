@@ -58,11 +58,15 @@ public class Q02UserData {
 		userData.add(contentType.toString());
 		userData.add(contentId.toString());
 		if (favoritesTimestamp != null) {
-		    userData.add(favoritesTimestamp.toString());
+		    userData.add(RowUtil.formatTimestamp(favoritesTimestamp));
 		} else {
 		    userData.add("");
 		}
-		userData.add(Integer.toString(rating));
+		if (rating > 0) {
+		    userData.add(Integer.toString(rating));
+		} else {
+		    userData.add("");
+		}
 		return String.join(",", userData);
 	}
 }

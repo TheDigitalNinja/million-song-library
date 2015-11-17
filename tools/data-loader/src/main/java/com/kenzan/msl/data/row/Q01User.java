@@ -14,21 +14,21 @@ import java.util.UUID;
  */
 public class Q01User {
 	
-	private final UUID id;
+	private final UUID userId;
 	private final String username;
 	private final String password;
 	private final Date timestamp;
 
 	private Q01User(final UserBuilder builder) {
 		
-		this.id = builder.id;
+		this.userId = builder.userId;
 		this.username = builder.username;
 		this.password = builder.password;
 		this.timestamp = builder.timestamp;
 	}
 
 	public UUID getId() {
-		return id;
+		return userId;
 	}
 
 	public String getUsername() {
@@ -46,23 +46,23 @@ public class Q01User {
 	public String toString() {
 		
 		final List<String> user = new ArrayList<String>();
-		user.add(id.toString());
 		user.add(RowUtil.formatText(username));
+        user.add(RowUtil.formatTimestamp(timestamp));
 		user.add(RowUtil.formatText(password));
-		user.add(timestamp.toString());
+        user.add(userId.toString());
 		return String.join(",", user);
 	}
 	
 	public static class UserBuilder {
 		
-		private final UUID id;
+		private final UUID userId;
 		private final String username;
 		private final String password;
 		private final Date timestamp;
 		
-		public UserBuilder(final UUID id, final String username, final String password, final Date timestamp) {
+		public UserBuilder(final UUID userId, final String username, final String password, final Date timestamp) {
 			
-			this.id = id;
+			this.userId = userId;
 			this.username = username;
 			this.password = password;
 			this.timestamp = timestamp;

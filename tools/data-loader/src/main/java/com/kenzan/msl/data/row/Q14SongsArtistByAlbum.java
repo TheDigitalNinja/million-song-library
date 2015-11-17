@@ -9,10 +9,11 @@ import java.util.UUID;
 import com.kenzan.msl.data.Genre;
 import com.kenzan.msl.data.NormalizedRow;
 
-public class Q15AlbumArtistBySong {
+public class Q14SongsArtistByAlbum {
 
-    private final UUID songId;
     private final UUID albumId;
+    private final String songName;
+    private final UUID songId;
     private final String albumName;
     private final int albumYear;
     private final List<Genre> artistGenres;
@@ -21,12 +22,12 @@ public class Q15AlbumArtistBySong {
     private final String artistName;
     private final Map<UUID, String> similarArtists;
     private final int songDuration;
-    private final String songName;
     
-    public Q15AlbumArtistBySong(final NormalizedRow normalizedRow) {
+    public Q14SongsArtistByAlbum(final NormalizedRow normalizedRow) {
 
-        this.songId = normalizedRow.getSong().getId();
         this.albumId = normalizedRow.getAlbum().getId();
+        this.songName = normalizedRow.getSong().getName();
+        this.songId = normalizedRow.getSong().getId();
         this.albumName = normalizedRow.getAlbum().getName();
         this.albumYear = normalizedRow.getAlbum().getYear();
         this.artistGenres = normalizedRow.getArtist().getGenres();
@@ -40,14 +41,14 @@ public class Q15AlbumArtistBySong {
         }
         this.similarArtists = artistMap;
         this.songDuration = normalizedRow.getSong().getDuration();
-        this.songName = normalizedRow.getSong().getName();
     }
     
     public String toString() {
         
         final List<String> row = new ArrayList<String>();
-        row.add(songId.toString());
         row.add(albumId.toString());
+        row.add(RowUtil.formatText(songName));
+        row.add(songId.toString());
         row.add(RowUtil.formatText(albumName));
         row.add(RowUtil.formatYear(albumYear));
         final List<String> genres = new ArrayList<String>();
@@ -64,7 +65,6 @@ public class Q15AlbumArtistBySong {
         }
         row.add(String.format("\"{%s}\"", String.join(", ", similars)));
         row.add(Integer.toString(songDuration));
-        row.add(RowUtil.formatText(songName));
         return String.join(",", row);
     }
 }

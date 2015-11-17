@@ -40,7 +40,7 @@
 							<programs>
 								<program>
 									<mainClass>com.kenzan.msl.data.H5ToCSV</mainClass>
-									<name>test</name>
+									<name>msl</name>
 								</program>
 							</programs>
 						</configuration>

@@ -23,7 +23,7 @@ public class RowUtil {
 
     public static String formatTextInCollection(final String name) {
 
-        return String.format("\'%s\'", name.replaceAll("'", "\'\'"));
+        return String.format("\'%s\'", name.replaceAll("'", "\'\'").replaceAll("\"", "\\\\\""));
     }
 
     public static String formatYear(final int year) {
@@ -34,6 +34,11 @@ public class RowUtil {
     public static Date randomDate() {
 
         return new Date(0L + (long) (Math.random() * (new Date().getTime() - 0L)));
+    }
+
+    public static String formatTimestamp(final Date date) {
+
+        return Long.toString(date.getTime());
     }
 
 }
