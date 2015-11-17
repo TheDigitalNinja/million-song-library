@@ -19,8 +19,11 @@ function rateAlbumStore (request, entityMapper, StatusResponseEntity) {
      * @return {StatusResponseEntity}
      */
     async push(albumId, rating) {
-      const response = await request.put(API_REQUEST_PATH + albumId, { rating });
-      return entityMapper(response, StatusResponseEntity);
+      const data = `rating=${ rating }`;
+      const headers = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
+
+      const response = await request.put(API_REQUEST_PATH + albumId, data, headers);
+      return entityMapper(response.data, StatusResponseEntity);
     },
   };
 }

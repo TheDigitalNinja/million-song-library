@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-12T17:31:41.997-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-13T16:33:04.991-06:00")
 public class SongInfo  {
-
+  
   private String songId = null;
   private String songName = null;
   private String imageLink = null;
@@ -26,7 +26,7 @@ public class SongInfo  {
   private BigDecimal year = null;
   private Boolean inMyLibrary = null;
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -38,7 +38,7 @@ public class SongInfo  {
     this.songId = songId;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -50,7 +50,7 @@ public class SongInfo  {
     this.songName = songName;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -62,7 +62,7 @@ public class SongInfo  {
     this.imageLink = imageLink;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -74,7 +74,7 @@ public class SongInfo  {
     this.artistId = artistId;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -86,7 +86,7 @@ public class SongInfo  {
     this.artistName = artistName;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -98,7 +98,7 @@ public class SongInfo  {
     this.albumId = albumId;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -110,7 +110,7 @@ public class SongInfo  {
     this.albumName = albumName;
   }
 
-
+  
   /**
    * Length of song in seconds
    **/
@@ -123,7 +123,7 @@ public class SongInfo  {
     this.duration = duration;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -135,7 +135,7 @@ public class SongInfo  {
     this.genre = genre;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -147,7 +147,7 @@ public class SongInfo  {
     this.danceability = danceability;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -159,7 +159,7 @@ public class SongInfo  {
     this.averageRating = averageRating;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -171,7 +171,7 @@ public class SongInfo  {
     this.personalRating = personalRating;
   }
 
-
+  
   /**
    * The Echo Nest hotttnesss score
    **/
@@ -184,7 +184,7 @@ public class SongInfo  {
     this.songHotttnesss = songHotttnesss;
   }
 
-
+  
   /**
    * The year the song was released
    **/
@@ -197,7 +197,7 @@ public class SongInfo  {
     this.year = year;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -209,13 +209,13 @@ public class SongInfo  {
     this.inMyLibrary = inMyLibrary;
   }
 
-
+  
 
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
     sb.append("class SongInfo {\n");
-
+    
     sb.append("  songId: ").append(songId).append("\n");
     sb.append("  songName: ").append(songName).append("\n");
     sb.append("  imageLink: ").append(imageLink).append("\n");

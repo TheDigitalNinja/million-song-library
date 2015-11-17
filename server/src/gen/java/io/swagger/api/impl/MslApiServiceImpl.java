@@ -129,17 +129,43 @@ public class MslApiServiceImpl extends MslApiService {
     }
 
     @Override
-    public Response commentSong(String songId)
+    public Response commentSong(String songId, String sessionToken)
             throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
 
     @Override
-    public Response rateSong(String songId, BigDecimal rating)
+    public Response rateArtist(String artistId, BigDecimal rating, String sessionToken)
             throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        // TODO replace current mock data
+        if (sessionToken.isEmpty()){
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        } else {
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        }
+    }
+
+    @Override
+    public Response rateAlbum(String albumId, BigDecimal rating, String sessionToken)
+            throws NotFoundException {
+        // TODO replace current mock data
+        if (sessionToken.isEmpty()){
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        } else {
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        }
+    }
+
+    @Override
+    public Response rateSong(String songId, BigDecimal rating, String sessionToken)
+            throws NotFoundException {
+        // TODO replace current mock data
+        if (sessionToken.isEmpty()){
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        } else {
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        }
     }
 
     // ========================================================================================================= LIBRARY

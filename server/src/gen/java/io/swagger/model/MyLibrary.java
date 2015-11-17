@@ -9,14 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-12T17:31:41.997-06:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-13T16:33:04.991-06:00")
 public class MyLibrary  {
-
+  
   private AlbumList albums = null;
   private ArtistList artists = null;
   private SongList songs = null;
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -28,7 +28,7 @@ public class MyLibrary  {
     this.albums = albums;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -40,7 +40,7 @@ public class MyLibrary  {
     this.artists = artists;
   }
 
-
+  
   /**
    **/
   @ApiModelProperty(value = "")
@@ -52,13 +52,13 @@ public class MyLibrary  {
     this.songs = songs;
   }
 
-
+  
 
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
     sb.append("class MyLibrary {\n");
-
+    
     sb.append("  albums: ").append(albums).append("\n");
     sb.append("  artists: ").append(artists).append("\n");
     sb.append("  songs: ").append(songs).append("\n");

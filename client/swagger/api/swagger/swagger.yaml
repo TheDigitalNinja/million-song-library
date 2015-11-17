@@ -369,6 +369,92 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /msl/v1/ratingsedge/rateartist/{artistId}:
+    x-swagger-router-controller: rating_controller
+    put:
+      description: Update your rating of an album.
+      tags:
+        - Rating
+      schemes: ["https"]
+      security: [sessionToken: []]
+      consumes:
+        - application/x-www-form-urlencoded
+      operationId: rate_artist
+      parameters:
+        -
+          name: artistId
+          in: path
+          description: Id for the artist that is being rated
+          required: true
+          type: string
+        -
+          name: rating
+          in: formData
+          description: Value between 1-5 that represents the user's rating of the artist
+          required: true
+          type: number
+        -
+          name: sessionToken
+          in: header
+          description: Authenticated user session token
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Successfully sent rating data to the server
+          schema:
+            $ref: "#/definitions/StatusResponse"
+        "404":
+          description: Song not found
+          schema:
+            $ref: "#/definitions/NotFoundResponse"
+        "500":
+          description: Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /msl/v1/ratingsedge/ratealbum/{albumId}:
+    x-swagger-router-controller: rating_controller
+    put:
+      description: Update your rating of an album.
+      tags:
+        - Rating
+      schemes: ["https"]
+      security: [sessionToken: []]
+      consumes:
+        - application/x-www-form-urlencoded
+      operationId: rate_album
+      parameters:
+        -
+          name: albumId
+          in: path
+          description: Id for the album that is being rated
+          required: true
+          type: string
+        -
+          name: rating
+          in: formData
+          description: Value between 1-5 that represents the user's rating of the album
+          required: true
+          type: number
+        -
+          name: sessionToken
+          in: header
+          description: Authenticated user session token
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Successfully sent rating data to the server
+          schema:
+            $ref: "#/definitions/StatusResponse"
+        "404":
+          description: Song not found
+          schema:
+            $ref: "#/definitions/NotFoundResponse"
+        "500":
+          description: Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /msl/v1/ratingsedge/ratesong/{songId}:
     x-swagger-router-controller: rating_controller
     put:
@@ -377,6 +463,8 @@ paths:
         - Rating
       schemes: ["https"]
       security: [sessionToken: []]
+      consumes:
+        - application/x-www-form-urlencoded
       operationId: rate_song
       parameters:
         -
@@ -391,6 +479,12 @@ paths:
           description: Value between 1-5 that represents the user's rating of the song
           required: true
           type: number
+        -
+          name: sessionToken
+          in: header
+          description: Authenticated user session token
+          type: string
+          required: true
       responses:
         "200":
           description: Successfully sent rating data to the server
@@ -420,6 +514,12 @@ paths:
           description: Id of the song you want to comment on
           required: true
           type: string
+        -
+          name: sessionToken
+          in: header
+          description: Authenticated user session token
+          type: string
+          required: true
       responses:
         "200":
           description: Successfully sent comment data to the server
