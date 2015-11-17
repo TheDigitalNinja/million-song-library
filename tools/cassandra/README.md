@@ -1,5 +1,11 @@
-Before running msl.cql in Cassandra 2.1:
-Edit the hdf5_to_csv.py file to point to the million song data directory.
-Run the hdf5_to_csv.py file, it will run for approximatly 9 mins producing the csv data files needed for import.
-Edit the msl.cql to point to the newly created csv data files.
-Run the msl.cql file from cqlsh with the SOURCE command.
+Running locally
+Step 1: (from the data-loader directory)
+  $ mvn clean package
+  $ sh target/appassembler/bin/msl '/{Path to}/MillionSongSubset/data'
+Step 2: (new tab start Cassandra)
+  $ sh /{Path to}/dsc-cassandra-2.1.11/bin/cassandra
+Step 3: (from the cassandra directory)
+  $ sh /{Path to}/dsc-cassandra-2.1.11/bin/cqlsh
+Step 4: (cqlsh)
+  cqlsh> SOURCE 'msl_ddl_latest.cql';
+  cqlsh> SOURCE 'msl_dat_latest.cql';

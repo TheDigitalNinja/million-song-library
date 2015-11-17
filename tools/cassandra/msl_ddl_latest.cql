@@ -108,7 +108,7 @@ CREATE TABLE artists_by_facet (
   content_type text,
   artist_name text,
   artist_id uuid,
-  aritst_mbid, uuid,
+  aritst_mbid uuid,
   PRIMARY KEY ((facet_name, content_type), artist_name, artist_id)
 ) WITH CLUSTERING ORDER BY (artist_name ASC, artist_id ASC);
 
@@ -121,12 +121,12 @@ CREATE TABLE songs_albums_by_artist (
   song_name text,
   song_id uuid,
   artist_genres set<text> static,
-  aritst_mbid uuid static,
+  artist_mbid uuid static,
   artist_name text static,
   similar_artists map<uuid, text> static,
   song_duration int,
-  PRIMARY KEY ((artist_id), album_year, album_name, song_name, song_id)
-) WITH CLUSTERING ORDER BY (album_year DESC, album_name ASC, song_name ASC, song_id ASC);
+  PRIMARY KEY ((artist_id), album_year, album_name, album_id, song_name, song_id)
+) WITH CLUSTERING ORDER BY (album_year DESC, album_name ASC, album_id ASC, song_name ASC, song_id ASC);
 
 // Q11:
 CREATE TABLE songs_by_user (
@@ -165,6 +165,7 @@ CREATE TABLE artists_by_user (
   content_type text,
   favorites_timestamp timestamp,
   artist_id uuid,
+  artist_mbid uuid,
   artist_name text,
   PRIMARY KEY ((user_id, content_type), favorites_timestamp, artist_id)
 ) WITH CLUSTERING ORDER BY (favorites_timestamp DESC, artist_id ASC);
@@ -176,9 +177,9 @@ CREATE TABLE songs_artist_by_album (
   song_id uuid,
   album_name text static,
   album_year int static,
-  artist_id uuid static,
   artist_genres set<text> static,
-  aritst_mbid uuid static,
+  artist_id uuid static,
+  artist_mbid uuid static,
   artist_name text static,
   similar_artists map<uuid, text> static,
   song_duration int,
@@ -191,9 +192,9 @@ CREATE TABLE album_artist_by_song (
   album_id uuid,
   album_name text,
   album_year int,
-  artist_id uuid,
   artist_genres set<text>,
-  aritst_mbid uuid,
+  artist_id uuid,
+  artist_mbid uuid,
   artist_name text,
   similar_artists map<uuid, text>,
   song_duration int,
