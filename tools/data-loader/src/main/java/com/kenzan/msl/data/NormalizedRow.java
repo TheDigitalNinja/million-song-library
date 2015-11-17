@@ -10,6 +10,8 @@ import java.util.UUID;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
+import com.kenzan.msl.data.row.RowUtil;
+
 /**
  * @author peterburt
  *
@@ -47,7 +49,7 @@ public class NormalizedRow {
         csv[Field.ARTIST_ID.getIndex()] = artist.getId().toString();
         csv[Field.ARTIST_MBID.getIndex()] = artist.getMbid().toString();
         csv[Field.ARTIST_NAME.getIndex()] = artist.getName();
-        csv[Field.ARTIST_HOTNESS.getIndex()] = String.format("%.12f", artist.getHotness());
+        csv[Field.ARTIST_HOTNESS.getIndex()] = RowUtil.formatHotness(artist.getHotness());
         final List<String> genres = new ArrayList<String>();
         if (!artist.getGenres().isEmpty()) {
             for (final Genre genre : artist.getGenres()) {
@@ -58,12 +60,12 @@ public class NormalizedRow {
         csv[Field.ARTIST_SIMILAR_ARTISTS.getIndex()] = String.join("|", artist.getSimilarArtists());
         csv[Field.ALBUM_ID.getIndex()] = album.getId().toString();
         csv[Field.ALBUM_NAME.getIndex()] = album.getName();
-        csv[Field.ALBUM_YEAR.getIndex()] = String.format("%04d", album.getYear());
-        csv[Field.ALBUM_HOTNESS.getIndex()] = String.format("%.12f", album.getHotness());
+        csv[Field.ALBUM_YEAR.getIndex()] = RowUtil.formatYear(album.getYear());
+        csv[Field.ALBUM_HOTNESS.getIndex()] = RowUtil.formatHotness(album.getHotness());
         csv[Field.SONG_ID.getIndex()] = song.getId().toString();
         csv[Field.SONG_NAME.getIndex()] = song.getName();
         csv[Field.SONG_DURATION.getIndex()] = Integer.toString(song.getDuration());
-        csv[Field.SONG_HOTNESS.getIndex()] = String.format("%.12f", song.getHotness());
+        csv[Field.SONG_HOTNESS.getIndex()] = RowUtil.formatHotness(song.getHotness());
         return String.join(FIELD_DELIMITER, csv);
     }
 

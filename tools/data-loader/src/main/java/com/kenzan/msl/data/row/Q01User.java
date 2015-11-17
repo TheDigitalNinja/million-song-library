@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.kenzan.msl.data.table;
+package com.kenzan.msl.data.row;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,14 +12,14 @@ import java.util.UUID;
  * @author peterburt
  *
  */
-public class User {
+public class Q01User {
 	
 	private final UUID id;
 	private final String username;
 	private final String password;
 	private final Date timestamp;
 
-	private User(final UserBuilder builder) {
+	private Q01User(final UserBuilder builder) {
 		
 		this.id = builder.id;
 		this.username = builder.username;
@@ -47,8 +47,8 @@ public class User {
 		
 		final List<String> user = new ArrayList<String>();
 		user.add(id.toString());
-		user.add(username);
-		user.add(password);
+		user.add(RowUtil.formatText(username));
+		user.add(RowUtil.formatText(password));
 		user.add(timestamp.toString());
 		return String.join(",", user);
 	}
@@ -68,9 +68,9 @@ public class User {
 			this.timestamp = timestamp;
 		}
 		
-		public User build() {
+		public Q01User build() {
 			
-			return new User(this);
+			return new Q01User(this);
 		}
 		
 	}

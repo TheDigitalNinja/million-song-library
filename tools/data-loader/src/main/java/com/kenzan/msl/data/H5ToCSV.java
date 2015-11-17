@@ -2,6 +2,7 @@ package com.kenzan.msl.data;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
@@ -24,7 +26,14 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.io.Files;
-import com.kenzan.msl.data.table.User;
+import com.kenzan.msl.data.row.Q01User;
+import com.kenzan.msl.data.row.Q02UserData;
+import com.kenzan.msl.data.row.Q03AverageRatings;
+import com.kenzan.msl.data.row.Q04FeaturedSong;
+import com.kenzan.msl.data.row.Q05SongsByFacet;
+import com.kenzan.msl.data.row.Q11SongsByUser;
+import com.kenzan.msl.data.row.Q15AlbumArtistBySong;
+import com.kenzan.msl.data.row.RowUtil;
 
 /**
  * @author peterburt
@@ -50,6 +59,26 @@ public class H5ToCSV {
     private static final String ARTIST_ID_MAP = "09_artist_id_map.txt";
     private static final String RAW_DATA_NORMALIZED_SIMILAR_ARTISTS = "10_raw_data_normalized_similar_artists.txt";
     private static final String CLEAN_DATA = "11_clean_data.txt";
+    private static final String CLEAN_DATA_BY_SONG_ID = "12_clean_data_by_song_id.txt";
+
+    private static final String Q01_USERS = "../data/Q01_users.csv";
+    private static final String Q02_USER_DATA = "../data/Q02_user_data.csv";
+    private static final String Q03_AVERAGE_RATING = "../data/Q03_average_rating.csv";
+
+    private static final String Q04_FEATURED_SONGS = "../data/Q04_featured_songs.csv";
+    private static final String Q05_SONGS_BY_FACET = "../data/Q05_songs_by_facet.csv";
+    private static final String Q15_ALBUM_ARTIST_BY_SONG = "../data/Q15_album_artist_by_song.csv";
+    private static final String Q11_SONGS_BY_USER = "../data/Q11_songs_by_user.csv";
+
+    private static final String Q06_FEATURED_ALBUMS = "../data/Q06_featured_albums.csv";
+    private static final String Q07_ALBUMS_BY_FACET = "../data/Q07_albums_by_facet.csv";
+    private static final String Q14_SONGS_ARTIST_BY_ALBUM = "../data/Q14_songs_artist_by_album.csv";
+    private static final String Q12_ALBUMS_BY_USER = "../data/Q12_albums_by_user.csv";
+
+    private static final String Q08_FEATURED_ARTISTS = "../data/Q08_featured_artists.csv";
+    private static final String Q09_ARTISTS_BY_FACET = "../data/Q09_artists_by_facet.csv";
+    private static final String Q10_SONGS_ALBUM_BY_ARTIST = "../data/Q10_songs_album_by_artist.csv";
+    private static final String Q13_ARTISTS_BY_USER = "../data/Q13_artists_by_user.csv";
 
     // 12_clean_data_by_song_id
     // Q4, Q5, Q15, Q11
@@ -62,24 +91,24 @@ public class H5ToCSV {
 
     public H5ToCSV(final String directory) throws IOException {
 
-         this.writeH5List(directory, H5_LIST);
-         this.readDataWriteData(H5_LIST, RAW_DATA, H5_TO_CSV);
-         this.mergeSortData(RAW_DATA, RAW_DATA_BY_SONG_ID, Field.SONG_ID);
-         this.readDataWriteData(RAW_DATA_BY_SONG_ID,
-         RAW_DATA_NORMALIZED_SONGS, NORMALIZE_SONGS);
-         this.mergeSortData(RAW_DATA_NORMALIZED_SONGS, RAW_DATA_BY_ALBUM_ID,
-         Field.ALBUM_ID);
-         this.readDataWriteData(RAW_DATA_BY_ALBUM_ID,
-         RAW_DATA_NORMALIZED_ALBUMS, NORMALIZE_ALBUMS);
-         this.mergeSortData(RAW_DATA_NORMALIZED_ALBUMS, RAW_DATA_BY_ARTIST_ID,
-         Field.ARTIST_ID);
-         this.readDataWriteData(RAW_DATA_BY_ARTIST_ID,
-         RAW_DATA_NORMALIZED_ARTISTS, NORMALIZE_ARTISTS);
-         this.readDataWriteData(RAW_DATA_NORMALIZED_ARTISTS,
-         RAW_DATA_NORMALIZED_SIMILAR_ARTISTS, NORMALIZE_SIMILAR_ARTISTS);
-         this.readDataWriteData(RAW_DATA_NORMALIZED_SIMILAR_ARTISTS,
-         CLEAN_DATA, NORMALIZE_CLEAN);
-        this.generateUsers();
+        this.writeH5List(directory, H5_LIST);
+        this.readDataWriteData(H5_LIST, RAW_DATA, H5_TO_CSV);
+        this.mergeSortData(RAW_DATA, RAW_DATA_BY_SONG_ID, Field.SONG_ID);
+        this.readDataWriteData(RAW_DATA_BY_SONG_ID, RAW_DATA_NORMALIZED_SONGS, NORMALIZE_SONGS);
+        this.mergeSortData(RAW_DATA_NORMALIZED_SONGS, RAW_DATA_BY_ALBUM_ID, Field.ALBUM_ID);
+        this.readDataWriteData(RAW_DATA_BY_ALBUM_ID, RAW_DATA_NORMALIZED_ALBUMS, NORMALIZE_ALBUMS);
+        this.mergeSortData(RAW_DATA_NORMALIZED_ALBUMS, RAW_DATA_BY_ARTIST_ID, Field.ARTIST_ID);
+        this.readDataWriteData(RAW_DATA_BY_ARTIST_ID, RAW_DATA_NORMALIZED_ARTISTS, NORMALIZE_ARTISTS);
+        this.readDataWriteData(RAW_DATA_NORMALIZED_ARTISTS, RAW_DATA_NORMALIZED_SIMILAR_ARTISTS,
+                NORMALIZE_SIMILAR_ARTISTS);
+        this.readDataWriteData(RAW_DATA_NORMALIZED_SIMILAR_ARTISTS, CLEAN_DATA, NORMALIZE_CLEAN);
+
+        // create table csv
+        final List<Q01User> users = this.generateUsers(Q01_USERS);
+        new File(Q02_USER_DATA).delete();
+        new File(Q03_AVERAGE_RATING).delete();
+        this.mergeSortData(CLEAN_DATA, CLEAN_DATA_BY_SONG_ID, Field.SONG_ID);
+        this.createSongTables(CLEAN_DATA_BY_SONG_ID, users);
     }
 
     public static void main(String[] args) throws IOException {
@@ -90,15 +119,83 @@ public class H5ToCSV {
         System.out.println(elapsedTime);
     }
 
-    private void generateUsers() {
+    private void createSongTables(final String readFilePath, final List<Q01User> users)
+            throws FileNotFoundException, IOException {
 
-        final List<User> users = new ArrayList<User>();
-        for (int i = 1; i < 100; i++) {
-            final User user = new User.UserBuilder(UUID.randomUUID(), String.format("username%02d", i),
-                    String.format("password%02d", i), new Date()).build();
-            users.add(user);
-            System.out.println(user);
+        final File readFile = new File(readFilePath);
+        int count = 0;
+        try (final BufferedReader bufferedReader = new BufferedReader(new FileReader(readFile));
+                final PrintWriter q2Writer = new PrintWriter(new FileWriter(Q02_USER_DATA, true));
+                final PrintWriter q3Writer = new PrintWriter(new FileWriter(Q03_AVERAGE_RATING, true));
+                final PrintWriter q4Writer = new PrintWriter(new FileWriter(Q04_FEATURED_SONGS));
+                final PrintWriter q5Writer = new PrintWriter(new FileWriter(Q05_SONGS_BY_FACET));
+                final PrintWriter q11Writer = new PrintWriter(new FileWriter(Q11_SONGS_BY_USER));
+                final PrintWriter q15Writer = new PrintWriter(new FileWriter(Q15_ALBUM_ARTIST_BY_SONG))) {
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                final NormalizedRow normalizedRow = new NormalizedRow.NormalizedRowBuilder(line).build();
+                final Random random = new Random();
+                final int[] ratings = new int[3];
+                ratings[0] = random.nextInt(6);
+                ratings[1] = random.nextInt(6);
+                ratings[2] = random.nextInt(6);
+                int numRating = 0;
+                int sumRating = 0;
+                for (int x = 0; x < ratings.length; x++) {
+                    if (ratings[x] > 0) {
+                        numRating += 1;
+                        sumRating += ratings[x];
+                    }
+                }
+                final int averageRating = numRating > 0 ? sumRating / numRating : 0;
+                final Q01User[] randomUsers = new Q01User[3];
+                randomUsers[0] = users.get(random.nextInt(100));
+                randomUsers[1] = users.get(random.nextInt(100));
+                randomUsers[2] = users.get(random.nextInt(100));
+
+                for (int x = 0; x < randomUsers.length; x++) {
+                    final boolean favorited = random.nextBoolean();
+                    final Date timestamp = RowUtil.randomDate();
+                    if (favorited) {
+                        q2Writer.println(new Q02UserData(randomUsers[x].getId(), ContentType.SONG,
+                                normalizedRow.getSong().getId(), timestamp, ratings[x]));
+                        q11Writer.println(new Q11SongsByUser(normalizedRow, randomUsers[x].getId(), timestamp));
+                    } else {
+                        q2Writer.println(new Q02UserData(randomUsers[x].getId(), ContentType.SONG,
+                                normalizedRow.getSong().getId(), null, ratings[x]));
+                    }
+                }
+
+                q3Writer.println(
+                        new Q03AverageRatings(normalizedRow.getSong().getId(), ContentType.SONG, numRating, sumRating));
+
+                q4Writer.println(new Q04FeaturedSong(normalizedRow));
+                for (int x = averageRating; x >= 1; x--) {
+                    q5Writer.println(new Q05SongsByFacet(normalizedRow, Rating.values()[x - 1].toString()));
+                }
+                for (final Genre genre : normalizedRow.getArtist().getGenres()) {
+                    q5Writer.println(new Q05SongsByFacet(normalizedRow, genre.toString()));
+                }
+                q15Writer.println(new Q15AlbumArtistBySong(normalizedRow));
+                count += 1;
+                line = bufferedReader.readLine();
+            }
         }
+    }
+
+    private List<Q01User> generateUsers(final String writeFilePath) throws IOException {
+
+        final List<Q01User> users = new ArrayList<Q01User>();
+        final File writeFile = new File(writeFilePath);
+        try (final PrintWriter printWriter = new PrintWriter(new FileWriter(writeFile))) {
+            for (int i = 0; i < 100; i++) {
+                final Q01User user = new Q01User.UserBuilder(UUID.randomUUID(), String.format("username%02d", i),
+                        String.format("password%02d", i), RowUtil.randomDate()).build();
+                users.add(user);
+                printWriter.println(user);
+            }
+        }
+        return users;
     }
 
     private void writeH5List(final String readDirectoryPath, final String writeFilePath) throws IOException {
