@@ -49,21 +49,21 @@ public class MslApiServiceImpl extends MslApiService {
     public Response getAlbum(String albumId)
             throws NotFoundException {
         // TODO getAlbum actual method
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", albumMockData.getAlbum(albumId))).build();
+        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", albumMockData.getAlbum(albumId))).build();
     }
 
     @Override
     public Response getAlbumImage(String albumId)
             throws NotFoundException {
         // TODO replace current mock data
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", albumMockData.getAlbum(albumId).getImageLink())).build();
+        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", albumMockData.getAlbum(albumId).getImageLink())).build();
     }
 
     @Override
     public Response browseAlbums(String pagingState, Integer items, String facets)
             throws NotFoundException {
         // TODO replace current mock data
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", albumMockData.browseAlbums(pagingState, items, facets))).build();
+        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", albumMockData.browseAlbums(pagingState, items, facets))).build();
     }
 
     // ========================================================================================================== ARTIST
@@ -73,21 +73,21 @@ public class MslApiServiceImpl extends MslApiService {
     public Response getArtist(String artistId)
             throws NotFoundException {
         // TODO replace current mock implementation
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", artistMockData.getArtist(artistId))).build();
+        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", artistMockData.getArtist(artistId))).build();
     }
 
     @Override
     public Response getArtistImage(String artistId)
             throws NotFoundException {
         // TODO replace current mock implementation
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", artistMockData.getArtist(artistId).getImageLink())).build();
+        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", artistMockData.getArtist(artistId).getImageLink())).build();
     }
 
     @Override
     public Response browseArtists(String pagingState, Integer items, String facets)
             throws NotFoundException {
         // TODO replace current mock implementation
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", artistMockData.browseArtists(pagingState, items, facets))).build();
+        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", artistMockData.browseArtists(pagingState, items, facets))).build();
     }
 
     // =========================================================================================================== SONGS
@@ -97,7 +97,7 @@ public class MslApiServiceImpl extends MslApiService {
     public Response getSong(String songId)
             throws NotFoundException {
         // TODO replace current mock data
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", songMockData.getSong(songId))).build();
+        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", songMockData.getSong(songId))).build();
     }
 
     @Override
@@ -111,14 +111,14 @@ public class MslApiServiceImpl extends MslApiService {
     public Response getSongImage(String songId)
             throws NotFoundException {
         // TODO replace current mock data
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", songMockData.getSong(songId).getImageLink())).build();
+        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", songMockData.getSong(songId).getImageLink())).build();
     }
 
     @Override
     public Response browseSongs(String pagingState, Integer items, String facets)
             throws NotFoundException {
         // TODO replace current mock data
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", songMockData.browseSongs(pagingState, items, facets))).build();
+        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", songMockData.browseSongs(pagingState, items, facets))).build();
     }
 
     @Override
@@ -192,14 +192,14 @@ public class MslApiServiceImpl extends MslApiService {
     public Response login(String email, String password)
             throws NotFoundException {
         // TODO replace current mock data
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", logInMockData.getSessionToken(email, password))).build();
+        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", logInMockData.getSessionToken(email, password))).build();
     }
 
     @Override
     public Response logout()
             throws NotFoundException {
         // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", logInMockData.logOut())).build();
+        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", logInMockData.logOut())).build();
     }
 
     @Override
@@ -216,7 +216,7 @@ public class MslApiServiceImpl extends MslApiService {
     public Response getFacet(String facetId)
             throws NotFoundException {
         // TODO replace current mock data
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "success", facetMockData.getFacet(facetId))).build();
+        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", facetMockData.getFacet(facetId))).build();
     }
 
 

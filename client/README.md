@@ -34,7 +34,7 @@ use `npm run dev`.
 ### Dev Server
 
 Start dev server by calling `npm run dev`, this will automatically mount a server on `3000` localhost port.
-If any change is made during dev server run, source files will be automatically rebuilt. 
+If any change is made during dev server run, source files will be automatically rebuilt.
 
 ### Prod Server
 
@@ -123,6 +123,7 @@ Start docs editor by running `npm run docs`.
 #### Swagger CodeGen
 
 Run `../common/./gen_server_stubs.sh [/output_directory]` to use the swagger-codegen tools to generate stubs from the swagger specification. If output not specified script will generate stubs into `../server` (https://github.com/swagger-api/swagger-codegen/blob/master/README.md)
+Using maven file run `../server mvn -f build.xml clean generate-sources jetty:run` or from the client directory run `npm run start-server`
 
 
 #### Swagger UI

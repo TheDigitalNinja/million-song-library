@@ -1,10 +1,11 @@
-package io.swagger.api;
+package io.swagger.api.impl;
 
 import javax.xml.bind.annotation.XmlTransient;
 
-@javax.xml.bind.annotation.XmlRootElement
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JaxRSServerCodegen", date = "2015-11-12T17:31:41.997-06:00")
-public class ApiResponseMessage {
+/**
+ * Created by anram88 on 11/17/15.
+ */
+public class MslApiResponseMessage{
     public static final int ERROR = 1;
     public static final int WARNING = 2;
     public static final int INFO = 3;
@@ -16,18 +17,18 @@ public class ApiResponseMessage {
     String message;
     Object data;
 
-    public ApiResponseMessage() {
+    public MslApiResponseMessage() {
     }
 
-    public ApiResponseMessage(int code, String message) {
+    public MslApiResponseMessage(int code, String message) {
         initCode(code);
         this.message = message;
     }
 
-    public ApiResponseMessage(int code, String message, Object song) {
+    public MslApiResponseMessage(int code, String message, Object obj) {
         initCode(code);
         this.message = message;
-        this.data = song;
+        this.data = obj;
     }
 
     private void initCode(int code) {
@@ -89,3 +90,4 @@ public class ApiResponseMessage {
     }
 
 }
+
