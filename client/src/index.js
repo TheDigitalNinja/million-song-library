@@ -1,12 +1,19 @@
 //Dependencies
 import 'font-awesome/scss/font-awesome.scss';
 import 'angular-material/angular-material.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/fonts/slick.eot';
+import 'slick-carousel/slick/fonts/slick.svg';
+import 'slick-carousel/slick/fonts/slick.ttf';
+import 'slick-carousel/slick/fonts/slick.woff';
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import angularAria from 'angular-aria';
 import angularAnimate from 'angular-animate';
 import angularMaterial from 'angular-material';
 import bootstrap from './modules/bootstrap/module';
+import slick from 'slick-carousel';
 
 //Layout
 import layout from './layout/layout.module.js';
