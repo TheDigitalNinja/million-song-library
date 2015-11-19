@@ -13,7 +13,7 @@
       <md-tabs md-dynamic-height md-border-bottom md-selected="vm.selectedTab">
         <md-tab ng-click="vm.selectTab('songs');">
           <md-tab-label>
-            Songs
+            <span>Songs</span>
           </md-tab-label>
           <md-tab-body>
             <songs-list songs="vm.songModel.songs"></songs-list>
@@ -21,7 +21,7 @@
         </md-tab>
         <md-tab ng-click="vm.selectTab('albums');">
           <md-tab-label>
-            Albums
+            <span>Albums</span>
           </md-tab-label>
           <md-tab-body>
             <albums-list albums="vm.albumModel.albums"></albums-list>
@@ -29,7 +29,7 @@
         </md-tab>
         <md-tab ng-click="vm.selectTab('artists');">
           <md-tab-label>
-            Artists
+            <span>Artists</span>
           </md-tab-label>
           <md-tab-body>
             <artists-list artists="vm.artistModel.artists"></artists-list>
