@@ -28,9 +28,8 @@ function myLibraryStore(request, entityMapper, MyLibraryEntity, StatusResponseEn
      * @return {StatusResponseEntity}
      */
     async addSong(songId) {
-      const headers = { headers: { 'Content-Type': 'application/json' } };
-      const response = await request.put(`${ API_REQUEST_PATH }/addsong/${ songId }`,
-          null, headers);
+      const apiPath = `${ API_REQUEST_PATH }/addsong/${ songId }`;
+      const response = await request.put(apiPath);
       return entityMapper(response.data, StatusResponseEntity);
     },
 
@@ -45,7 +44,16 @@ function myLibraryStore(request, entityMapper, MyLibraryEntity, StatusResponseEn
       return entityMapper(response.data, StatusResponseEntity);
     },
 
-    // TODO: Implement add Artist to Library
+     /**
+     * Add artist to my library
+     * @param {string} artistId
+     * @return {StatusResponseEntity}
+     */
+    async addArtist(artistId) {
+      const apiPath = `${ API_REQUEST_PATH }/addartist/${ artistId }`;
+      const response = await request.put(apiPath);
+      return entityMapper(response.data, StatusResponseEntity);
+    },
   };
 }
 

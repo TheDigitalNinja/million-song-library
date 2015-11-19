@@ -43,7 +43,7 @@ export default function request ($http) {
      * @param {Object} config
      * @return {*}
      */
-    async put(path, content, config = {}) {
+    async put(path, content = null, config = {}) {
       const response = await $http.put(withHost(path), content, config);
       return response.data;
     },

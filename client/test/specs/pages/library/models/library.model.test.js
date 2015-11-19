@@ -11,7 +11,7 @@ describe('libraryModel', () => {
   beforeEach(() => {
     angular.mock.module(libraryModule, ($provide) => {
       $log = jasmine.createSpyObj('$log', ['info']);
-      myLibraryStore = jasmine.createSpyObj('myLibraryStore', ['fetch', 'addSong', 'addAlbum']);
+      myLibraryStore = jasmine.createSpyObj('myLibraryStore', ['fetch', 'addSong', 'addAlbum', 'addArtist']);
 
       $provide.value('$log', $log);
       $provide.value('myLibraryStore', myLibraryStore);
@@ -63,7 +63,7 @@ describe('libraryModel', () => {
   describe('addArtistToLibrary', () => {
     it('should log the a message with the ARTIST_ID', () => {
       libraryModel.addArtistToLibrary(ARTIST_ID);
-      expect($log.info).toHaveBeenCalledWith(`Adding artist ${ARTIST_ID} to library`);
+      expect(myLibraryStore.addArtist).toHaveBeenCalledWith(ARTIST_ID);
     });
   });
 

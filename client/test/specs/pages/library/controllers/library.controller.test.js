@@ -36,7 +36,7 @@ describe('libraryCtrl', () => {
     expect(libraryCtrl).toBeDefined();
   });
 
-  describe('getMyLibrary', () => {
+  describe('_getMyLibrary', () => {
     it('should get the list of songs', (done) => {
       (async () => {
         await libraryCtrl._getMyLibrary();
@@ -61,6 +61,16 @@ describe('libraryCtrl', () => {
         myLibraryStore.fetch.and.returnValue({ albums });
         await libraryCtrl._getMyLibrary();
         expect(libraryCtrl.albums).toBe(albums);
+        done();
+      })();
+    });
+
+    it('should assing the artists to the scope', (done) => {
+      (async () => {
+        const artists = ['artist1'];
+        myLibraryStore.fetch.and.returnValue({ artists });
+        await libraryCtrl._getMyLibrary();
+        expect(libraryCtrl.artists).toBe(artists);
         done();
       })();
     });

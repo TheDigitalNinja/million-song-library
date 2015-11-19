@@ -53,8 +53,7 @@ describe('myLibraryStore', () => {
     it('should make a put request to add the song to the library endpoint', (done) => {
       (async () => {
         await myLibraryStore.addSong(SONG_ID);
-        const headers = { headers: { 'Content-Type': 'application/json' } };
-        expect(request.put).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/addsong/${ SONG_ID }`, null, headers);
+        expect(request.put).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/addsong/${ SONG_ID }`);
         done();
       })();
     });
@@ -79,7 +78,6 @@ describe('myLibraryStore', () => {
     it('should make a put request to add the album to the library endpoint', (done) => {
       (async () => {
         await myLibraryStore.addAlbum(ALBUM_ID);
-        const headers = { headers: { 'Content-Type': 'application/json' } };
         expect(request.put).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/addalbum/${ ALBUM_ID }`);
         done();
       })();
@@ -88,6 +86,31 @@ describe('myLibraryStore', () => {
     it('should map the response into a StatusResponnseEntity', (done) => {
       (async () => {
         await myLibraryStore.addAlbum(ALBUM_ID);
+        expect(entityMapper).toHaveBeenCalledWith(response, StatusResponseEntity);
+        done();
+      })();
+    });
+  });
+
+  describe('addArtist', () => {
+    const ARTIST_ID = '2';
+    const response = 'a_response';
+
+    beforeEach(() => {
+      request.put.and.returnValue({ data: response });
+    });
+
+    it('should make a put request to add the artist to the library endpoint', (done) => {
+      (async () => {
+        await myLibraryStore.addArtist(ARTIST_ID);
+        expect(request.put).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/addartist/${ ARTIST_ID }`);
+        done();
+      })();
+    });
+
+    it('should map the response into a StatusResponseEntity', (done) => {
+      (async () => {
+        await myLibraryStore.addArtist(ARTIST_ID);
         expect(entityMapper).toHaveBeenCalledWith(response, StatusResponseEntity);
         done();
       })();
