@@ -16,15 +16,19 @@ export default class libraryCtrl {
     this.$log = $log;
     this.myLibraryStore = myLibraryStore;
 
-    this.getLibrarySongs();
+    this._getMyLibrary();
     this.artistSlides = [];
-    this.albumSlides = [];
   }
 
-  async getLibrarySongs() {
+  /**
+   * Gets songs, albums and artists into library
+   * @private
+   */
+  async _getMyLibrary() {
     try {
       const response = await this.myLibraryStore.fetch();
       this.songs = response.songs;
+      this.albums = response.albums;
       this.$scope.$evalAsync();
     }
     catch(error) {

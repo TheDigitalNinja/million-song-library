@@ -36,10 +36,10 @@ describe('libraryCtrl', () => {
     expect(libraryCtrl).toBeDefined();
   });
 
-  describe('getLibrarySongs', () => {
+  describe('getMyLibrary', () => {
     it('should get the list of songs', (done) => {
       (async () => {
-        await libraryCtrl.getLibrarySongs();
+        await libraryCtrl._getMyLibrary();
         expect(myLibraryStore.fetch).toHaveBeenCalled();
         done();
       })();
@@ -49,8 +49,18 @@ describe('libraryCtrl', () => {
       (async () => {
         const songs = ['song1'];
         myLibraryStore.fetch.and.returnValue({ songs });
-        await libraryCtrl.getLibrarySongs();
+        await libraryCtrl._getMyLibrary();
         expect(libraryCtrl.songs).toBe(songs);
+        done();
+      })();
+    });
+
+    it('should assing the albums to the scope', (done) => {
+      (async () => {
+        const albums = ['album1'];
+        myLibraryStore.fetch.and.returnValue({ albums });
+        await libraryCtrl._getMyLibrary();
+        expect(libraryCtrl.albums).toBe(albums);
         done();
       })();
     });
@@ -59,7 +69,7 @@ describe('libraryCtrl', () => {
       (async () => {
         const error = new Error('an error');
         myLibraryStore.fetch.and.throwError(error);
-        await libraryCtrl.getLibrarySongs();
+        await libraryCtrl._getMyLibrary();
         expect($log.warn).toHaveBeenCalledWith(error);
         done();
       })();

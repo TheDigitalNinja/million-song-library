@@ -67,4 +67,30 @@ describe('myLibraryStore', () => {
       })();
     });
   });
+
+  describe('addAlbum', () => {
+    const ALBUM_ID = '2';
+    const response = 'a_response';
+
+    beforeEach(() => {
+      request.put.and.returnValue({ data: response });
+    });
+
+    it('should make a put request to add the album to the library endpoint', (done) => {
+      (async () => {
+        await myLibraryStore.addAlbum(ALBUM_ID);
+        const headers = { headers: { 'Content-Type': 'application/json' } };
+        expect(request.put).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/addalbum/${ ALBUM_ID }`);
+        done();
+      })();
+    });
+
+    it('should map the response into a StatusResponnseEntity', (done) => {
+      (async () => {
+        await myLibraryStore.addAlbum(ALBUM_ID);
+        expect(entityMapper).toHaveBeenCalledWith(response, StatusResponseEntity);
+        done();
+      })();
+    });
+  });
 });

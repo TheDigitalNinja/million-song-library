@@ -34,7 +34,18 @@ function myLibraryStore(request, entityMapper, MyLibraryEntity, StatusResponseEn
       return entityMapper(response.data, StatusResponseEntity);
     },
 
-    // TODO: Implement add Album/Artist to Library
+    /**
+     * Add album to my library
+     * @param {string} albumId
+     * @return {StatusResponseEntity}
+     */
+    async addAlbum(albumId) {
+      const apiPath = `${ API_REQUEST_PATH }/addalbum/${ albumId }`;
+      const response = await request.put(apiPath);
+      return entityMapper(response.data, StatusResponseEntity);
+    },
+
+    // TODO: Implement add Artist to Library
   };
 }
 
