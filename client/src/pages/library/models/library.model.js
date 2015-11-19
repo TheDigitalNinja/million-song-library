@@ -36,10 +36,10 @@ export default class libraryModel {
 
   /**
    * Adds selected artist into library
-   * @param {int} artistId
+   * @param {string} artistId
    */
   addArtistToLibrary(artistId) {
-    this.$log.info(`Adding artist ${artistId} to library`);
+    this.myLibraryStore.addArtist(artistId);
   }
 
 }

@@ -29,6 +29,7 @@ export default class libraryCtrl {
       const response = await this.myLibraryStore.fetch();
       this.songs = response.songs;
       this.albums = response.albums;
+      this.artists = response.artists;
       this.$scope.$evalAsync();
     }
     catch(error) {

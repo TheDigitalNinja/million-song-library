@@ -711,6 +711,38 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
 
+  /msl/v1/accountedge/users/mylibrary/addartist/{artistId}:
+    x-swagger-router-controller: mylibrary_controller
+    put:
+      description: "Adds a artist to the user library"
+      tags:
+        - Account
+      schemes: ["https"]
+      security: [sessionToken: []]
+      operationId: add_artist
+      parameters:
+        -
+          name: artistId
+          in: path
+          description: Artist id for the artist to add to the library
+          type: string
+          required: true
+        -
+          name: sessionToken
+          in: header
+          description: Authenticated user session token
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/StatusResponse"
+        "500":
+          description: Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
 securityDefinitions:
   sessionToken:
     type: apiKey

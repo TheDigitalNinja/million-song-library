@@ -8,6 +8,7 @@
     get_my_library: get_my_library,
     add_song: add_song,
     add_album: add_album,
+    add_artist: add_artist,
   }
 
   function get_my_library(req, res) {
@@ -25,5 +26,9 @@
 
   function add_album(req, res) {
     res.json({ data: { message: "Album " + req.swagger.params.albumId.value + " added to the library" } });
+  }
+
+  function add_artist(req, res) {
+    res.json({ data: { message: "Artist " + req.swagger.params.artistId.value + " added to the library" } });
   }
 })();
