@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.kenzan.msl.data;
 
 import java.util.ArrayList;
@@ -13,8 +10,10 @@ import org.apache.commons.lang3.text.WordUtils;
 import com.kenzan.msl.data.row.RowUtil;
 
 /**
- * @author peterburt
+ * {@link NormalizedRow} contains "normalized" content objects with appropriate
+ * data types
  *
+ * @author peterburt
  */
 public class NormalizedRow {
 
@@ -77,7 +76,7 @@ public class NormalizedRow {
 
         public NormalizedRowBuilder(final String csvRow) {
 
-            final String[] parts = csvRow.split(FIELD_DELIMITER);
+            final String[] parts = csvRow.split(FIELD_DELIMITER, -1);
 
             final ArrayList<Genre> genres = new ArrayList<Genre>();
             if (StringUtils.isNotBlank(parts[Field.ARTIST_GENRES.getIndex()])) {

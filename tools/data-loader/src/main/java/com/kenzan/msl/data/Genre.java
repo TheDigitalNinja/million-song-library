@@ -1,8 +1,9 @@
 package com.kenzan.msl.data;
 
 /**
- * @author peterburt
+ * {@link Genre} are the available genre facets
  *
+ * @author peterburt
  */
 public enum Genre {
     ALTERNATIVE("Alternative"), BIG_BAND("Big Band"), BLUEGRASS("Bluegrass"), BLUES("Blues"), CAJUN("Cajun"), CELTIC(

@@ -49,22 +49,14 @@ public class Q15AlbumArtistBySong {
         row.add(songId.toString());
         row.add(albumId.toString());
         row.add(RowUtil.formatText(albumName));
-        row.add(RowUtil.formatYear(albumYear));
-        final List<String> genres = new ArrayList<String>();
-        for (final Genre genre : artistGenres) {
-            genres.add(RowUtil.formatTextInCollection(genre.toString()));
-        }
-        row.add(String.format("\"{%s}\"", String.join(", ", genres)));
+        row.add(RowUtil.formatInt(albumYear));
+        row.add(RowUtil.formatGenres(artistGenres));
         row.add(aritstId.toString());
         row.add(artistMbid.toString());
         row.add(RowUtil.formatText(artistName));
-        final List<String> similars = new ArrayList<String>();
-        for (final UUID id : similarArtists.keySet()) {
-            similars.add(id.toString() + ": " + RowUtil.formatTextInCollection(similarArtists.get(id)));
-        }
-        row.add(String.format("\"{%s}\"", String.join(", ", similars)));
-        row.add(Integer.toString(songDuration));
+        row.add(RowUtil.formatSimilarArtists(similarArtists));
+        row.add(RowUtil.formatInt(songDuration));
         row.add(RowUtil.formatText(songName));
-        return String.join(",", row);
+        return String.join(RowUtil.FIELD_DELIMITER, row);
     }
 }

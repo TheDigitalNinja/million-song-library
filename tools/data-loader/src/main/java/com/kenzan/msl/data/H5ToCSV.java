@@ -13,7 +13,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +20,6 @@ import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.io.Files;
@@ -40,22 +38,23 @@ import com.kenzan.msl.data.row.Q12AlbumsByUser;
 import com.kenzan.msl.data.row.Q13ArtistsByUser;
 import com.kenzan.msl.data.row.Q14SongsArtistByAlbum;
 import com.kenzan.msl.data.row.Q15AlbumArtistBySong;
-import com.kenzan.msl.data.row.RowUtil;
 
 /**
+ * {@link H5ToCSV} takes the path of the million song data directory as an
+ * argument. Then sorts, normalizes, and distributes the data across multiple
+ * CSV files ready for copying into Cassandra.
+ *
  * @author peterburt
  */
 public class H5ToCSV {
 
     private static final String SORT_DIRECTORY = "sort";
     private static final int FILE_SIZE_LIMIT = 1250;
-    private static final int H5_TO_CSV = 0;
     private static final int NORMALIZE_SONGS = 1;
     private static final int NORMALIZE_ALBUMS = 2;
     private static final int NORMALIZE_ARTISTS = 3;
     private static final int NORMALIZE_SIMILAR_ARTISTS = 4;
     private static final int NORMALIZE_CLEAN = 5;
-    private static final String H5_LIST = "01_h5_list.txt";
     private static final String RAW_DATA = "02_raw_data.txt";
     private static final String RAW_DATA_BY_SONG_ID = "03_raw_data_by_song_id.txt";
     private static final String RAW_DATA_NORMALIZED_SONGS = "04_raw_data_normalized_songs.txt";
@@ -89,10 +88,9 @@ public class H5ToCSV {
     private static final String Q10_SONGS_ALBUMS_BY_ARTIST = "../data/Q10_songs_albums_by_artist.csv";
     private static final String Q13_ARTISTS_BY_USER = "../data/Q13_artists_by_user.csv";
 
-    public H5ToCSV(final String directory) throws IOException {
+    public H5ToCSV(final String directory) throws IOException, InterruptedException {
 
-        this.writeH5List(directory, H5_LIST);
-        this.readDataWriteData(H5_LIST, RAW_DATA, H5_TO_CSV);
+        this.h5ToCsv(directory);
         this.mergeSortData(RAW_DATA, RAW_DATA_BY_SONG_ID, Field.SONG_ID);
         this.readDataWriteData(RAW_DATA_BY_SONG_ID, RAW_DATA_NORMALIZED_SONGS, NORMALIZE_SONGS);
         this.mergeSortData(RAW_DATA_NORMALIZED_SONGS, RAW_DATA_BY_ALBUM_ID, Field.ALBUM_ID);
@@ -115,12 +113,13 @@ public class H5ToCSV {
         this.createArtistTables(CLEAN_DATA_BY_ARTIST_ID, users);
     }
 
-    public static void main(String[] args) throws IOException {
-        long startTime = System.currentTimeMillis();
+    public static void main(String[] args) throws IOException, InterruptedException {
+        final long startTime = System.currentTimeMillis();
         new H5ToCSV(args[0]);
-        long stopTime = System.currentTimeMillis();
-        long elapsedTime = stopTime - startTime;
-        System.out.println(elapsedTime);
+        final long stopTime = System.currentTimeMillis();
+        final long elapsedTime = stopTime - startTime;
+        final String minutesSeconds = String.format("%02d:%02d", elapsedTime / 1000 / 60, elapsedTime / 1000 % 60);
+        System.out.println(minutesSeconds);
     }
 
     private void createArtistTables(final String readFilePath, final List<Q01User> users) throws IOException {
@@ -164,7 +163,7 @@ public class H5ToCSV {
 
                     for (int x = 0; x < randomUsers.length; x++) {
                         final boolean favorited = random.nextBoolean();
-                        final Date timestamp = RowUtil.randomDate();
+                        final Date timestamp = randomDate();
                         if (favorited) {
                             q2Writer.println(new Q02UserData(randomUsers[x].getId(), ContentType.ARTIST,
                                     group.get(0).getSong().getId(), timestamp, ratings[x]));
@@ -235,7 +234,7 @@ public class H5ToCSV {
 
                     for (int x = 0; x < randomUsers.length; x++) {
                         final boolean favorited = random.nextBoolean();
-                        final Date timestamp = RowUtil.randomDate();
+                        final Date timestamp = randomDate();
                         if (favorited) {
                             q2Writer.println(new Q02UserData(randomUsers[x].getId(), ContentType.ALBUM,
                                     group.get(0).getSong().getId(), timestamp, ratings[x]));
@@ -299,7 +298,7 @@ public class H5ToCSV {
 
                 for (int x = 0; x < randomUsers.length; x++) {
                     final boolean favorited = random.nextBoolean();
-                    final Date timestamp = RowUtil.randomDate();
+                    final Date timestamp = randomDate();
                     if (favorited) {
                         q2Writer.println(new Q02UserData(randomUsers[x].getId(), ContentType.SONG,
                                 normalizedRow.getSong().getId(), timestamp, ratings[x]));
@@ -334,9 +333,9 @@ public class H5ToCSV {
         final File writeFile = new File(writeFilePath);
         try (final PrintWriter printWriter = new PrintWriter(new FileWriter(writeFile))) {
             for (int i = 0; i < 100; i++) {
-                final Q01User user = new Q01User.UserBuilder(UUID.randomUUID(),
+                final Q01User user = new Q01User(UUID.randomUUID(),
                         String.format("username%02d@kenzan.com", i), String.format("password%02d", i),
-                        RowUtil.randomDate()).build();
+                        randomDate());
                 users.add(user);
                 printWriter.println(user);
             }
@@ -344,43 +343,21 @@ public class H5ToCSV {
         return users;
     }
 
-    private void writeH5List(final String readDirectoryPath, final String writeFilePath) throws IOException {
+    private void h5ToCsv(final String readDirectoryPath) throws IOException, InterruptedException {
 
-        final File writeFile = new File(writeFilePath);
-        writeFile.delete();
-        final File readDirectory = new File(readDirectoryPath);
-        final String[] extensions = new String[] { "h5" };
-        final Iterator<File> files = FileUtils.iterateFiles(readDirectory, extensions, true);
-        int count = 0;
-        try (final PrintWriter printWriter = new PrintWriter(new FileWriter(writeFile))) {
-            while (files.hasNext()) {
-                final File file = files.next();
-                final String absolutePath = file.getAbsolutePath();
-                printWriter.println(absolutePath);
-                count += 1;
-            }
-            System.out.println("writeH5List: " + count + " h5 files");
-        }
-    }
-
-    private void h5ToCsv(final BufferedReader bufferedReader, final PrintWriter printWriter) throws IOException {
-
-        String line = bufferedReader.readLine();
-        int count = 0;
-        while (line != null) {
-            final ProcessBuilder processBuilder = new ProcessBuilder("python", "src/main/python/hdf5_to_csv.py", line);
-            final Process process = processBuilder.start();
-            try (final BufferedReader pythonOutput = new BufferedReader(
-                    new InputStreamReader(process.getInputStream()))) {
-                final String rawLine = pythonOutput.readLine();
-                final RawRow rawRow = new RawRow.RawRowBuilder(rawLine).build();
-                printWriter.println(rawRow.toString());
-                count += 1;
-                System.out.println(count);
-                line = bufferedReader.readLine();
+        final ProcessBuilder processBuilder = new ProcessBuilder("python", "src/main/python/hdf5_to_csv.py", readDirectoryPath);
+        System.out.println("h5ToCsv: running python process");
+        final Process process = processBuilder.start();
+        try (final BufferedReader pythonOutput = new BufferedReader(
+                new InputStreamReader(process.getInputStream()))) {
+            String line = pythonOutput.readLine();
+            while (line != null) {
+                System.out.println(line);
+                line = pythonOutput.readLine();
             }
         }
-        System.out.println("h5ToCsv: " + count + " lines");
+        int exitValue = process.waitFor();
+        System.out.println("h5ToCsv: python process complete " + exitValue);
     }
 
     private void normalizeSongs(final BufferedReader bufferedReader, final PrintWriter printWriter) throws IOException {
@@ -677,9 +654,6 @@ public class H5ToCSV {
 
         try (final BufferedReader bufferedReader = new BufferedReader(new FileReader(readFile));
                 final PrintWriter printWriter = new PrintWriter(new FileWriter(writeFile))) {
-            if (step == H5_TO_CSV) {
-                h5ToCsv(bufferedReader, printWriter);
-            }
             if (step == NORMALIZE_SONGS) {
                 normalizeSongs(bufferedReader, printWriter);
             }
@@ -791,5 +765,10 @@ public class H5ToCSV {
             sortDirectory.delete();
             System.out.println("mergeSortData: " + count + " lines");
         }
+    }
+
+    private static Date randomDate() {
+
+        return new Date(0L + (long) (Math.random() * (new Date().getTime() - 0L)));
     }
 }

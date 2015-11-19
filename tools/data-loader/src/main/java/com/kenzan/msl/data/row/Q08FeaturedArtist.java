@@ -33,6 +33,6 @@ public class Q08FeaturedArtist {
         row.add(aritstId.toString());
         row.add(artistMbid.toString());
         row.add(RowUtil.formatText(artistName));
-        return String.join(",", row);
+        return String.join(RowUtil.FIELD_DELIMITER, row);
     }
 }

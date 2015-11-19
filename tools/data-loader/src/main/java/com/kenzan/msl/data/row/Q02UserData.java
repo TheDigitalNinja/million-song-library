@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.kenzan.msl.data.row;
 
 import java.util.ArrayList;
@@ -10,10 +7,6 @@ import java.util.UUID;
 
 import com.kenzan.msl.data.ContentType;
 
-/**
- * @author peterburt
- *
- */
 public class Q02UserData {
 	
 	private final UUID userId;
@@ -57,16 +50,8 @@ public class Q02UserData {
 		userData.add(userId.toString());
 		userData.add(contentType.toString());
 		userData.add(contentId.toString());
-		if (favoritesTimestamp != null) {
-		    userData.add(RowUtil.formatTimestamp(favoritesTimestamp));
-		} else {
-		    userData.add("");
-		}
-		if (rating > 0) {
-		    userData.add(Integer.toString(rating));
-		} else {
-		    userData.add("");
-		}
-		return String.join(",", userData);
+		userData.add(RowUtil.formatTimestamp(favoritesTimestamp));
+		userData.add(RowUtil.formatInt(rating));
+		return String.join(RowUtil.FIELD_DELIMITER, userData);
 	}
 }

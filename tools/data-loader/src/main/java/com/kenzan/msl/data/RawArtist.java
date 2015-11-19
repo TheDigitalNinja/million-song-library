@@ -1,12 +1,5 @@
-/**
- * 
- */
 package com.kenzan.msl.data;
 
-/**
- * @author peterburt
- *
- */
 public class RawArtist {
 
     private final String id;

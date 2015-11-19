@@ -44,11 +44,11 @@ public class Q05SongsByFacet {
         row.add(songId.toString());
         row.add(albumId.toString());
         row.add(RowUtil.formatText(albumName));
-        row.add(Integer.toString(albumYear));
+        row.add(RowUtil.formatInt(albumYear));
         row.add(aritstId.toString());
         row.add(artistMbid.toString());
         row.add(RowUtil.formatText(artistName));
-        row.add(Integer.toString(songDuration));
-        return String.join(",", row);
+        row.add(RowUtil.formatInt(songDuration));
+        return String.join(RowUtil.FIELD_DELIMITER, row);
     }
 }

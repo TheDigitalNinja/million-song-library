@@ -31,6 +31,6 @@ public class Q09ArtistsByFacet {
         row.add(RowUtil.formatText(artistName));
         row.add(aritstId.toString());
         row.add(artistMbid.toString());
-        return String.join(",", row);
+        return String.join(RowUtil.FIELD_DELIMITER, row);
     }
 }
