@@ -20,7 +20,7 @@ export default class libraryModel {
 
   /**
    * Adds selected song to library
-   * @param {int} songId
+   * @param {string} songId
    */
   addSongToLibrary(songId) {
     this.myLibraryStore.addSong(songId);
@@ -28,10 +28,10 @@ export default class libraryModel {
 
   /**
    * Adds selected album into library
-   * @param {int} albumId
+   * @param {string} albumId
    */
   addAlbumToLibrary(albumId) {
-    this.$log.info(`Adding album ${albumId} to library`);
+    this.myLibraryStore.addAlbum(albumId);
   }
 
   /**
