@@ -27,5 +27,5 @@ export default angular.module('msl.library', [
   .directive('libraryCarousel', libraryCarouselDirective)
   .directive('addToLibrary', addToLibrary)
   .directive('repeatComplete', repeatComplete)
-  .factory('libraryModel', libraryModel)
+  .service('libraryModel', libraryModel)
   .name;

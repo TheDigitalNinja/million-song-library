@@ -6,13 +6,15 @@ describe('libraryModel', () => {
   const ALBUM_ID = 4;
   const ARTIST_ID = 2;
 
-  let libraryModel, $log;
+  let libraryModel, $log, myLibraryStore;
 
   beforeEach(() => {
     angular.mock.module(libraryModule, ($provide) => {
       $log = jasmine.createSpyObj('$log', ['info']);
+      myLibraryStore = jasmine.createSpyObj('myLibraryStore', ['fetch', 'addSong']);
 
       $provide.value('$log', $log);
+      $provide.value('myLibraryStore', myLibraryStore);
     });
 
     inject((_libraryModel_) => {
@@ -24,10 +26,30 @@ describe('libraryModel', () => {
     expect(libraryModel).toBeDefined();
   });
 
+  describe('getLibrary', () => {
+    it('should fetch my library', (done) => {
+      (async () => {
+        await libraryModel.getLibrary();
+        expect(myLibraryStore.fetch).toHaveBeenCalled();
+        done();
+      })();
+    });
+
+    it('should return my library fetch result', (done) => {
+      (async () => {
+        const expectedResponse = 'a_response';
+        myLibraryStore.fetch.and.returnValue(expectedResponse);
+        const response = await libraryModel.getLibrary();
+        expect(response).toBe(expectedResponse);
+        done();
+      })();
+    });
+  });
+
   describe('addSongToLibrary', () => {
     it('should log a message with the SONG_ID', () => {
       libraryModel.addSongToLibrary(SONG_ID);
-      expect($log.info).toHaveBeenCalledWith(`Adding song ${SONG_ID} to library`);
+      expect(myLibraryStore.addSong).toHaveBeenCalledWith(SONG_ID);
     });
   });
 

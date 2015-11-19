@@ -1,11 +1,15 @@
+import _ from 'lodash';
+
 class libraryCarouselCtrl {
   /*@ngInject*/
 
   constructor($scope) {
-    this.title = $scope.title;
+    this.entity = $scope.entity;
     this.slides = $scope.slides;
+
     this.slider = `slider-`;
-    this.sliderId = `${this.slider}${this.title}`;
+    this.title = `${ _.capitalize(this.entity) }s`;
+    this.sliderId = `${this.slider}${this.entity}`;
     this.triggerSlick = false;
 
     // Callback handler for the end of ng-repeat.
@@ -28,7 +32,7 @@ export default function LibraryCarousel() {
     controller: libraryCarouselCtrl,
     controllerAs: 'vm',
     scope: {
-      title: '@',
+      entity: '@',
       sliderId: '@',
       slides: '=',
       triggerSlick: '@',
@@ -42,7 +46,7 @@ export default function LibraryCarousel() {
     function slickIt() {
       // Slick requires jQuery objects
       (($) => {
-        slider = document.getElementById(ctrl.sliderId);
+        slider = $(element).find(`#${ ctrl.sliderId }`);
         $(slider).slick({
           slidesToShow: 2,
           slidesToScroll: 1,
