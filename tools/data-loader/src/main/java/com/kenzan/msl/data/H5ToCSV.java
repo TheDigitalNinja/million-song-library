@@ -371,9 +371,14 @@ public class H5ToCSV {
             line = bufferedReader.readLine();
             if (line == null
                     || !rawRow.getSong().getId().equals(new RawRow.RawRowBuilder(line).build().getSong().getId())) {
+                final List<String> names = new ArrayList<String>();
                 final List<Integer> durations = new ArrayList<Integer>();
                 final List<Float> hotnesses = new ArrayList<Float>();
                 for (final RawRow row : rowsToNormalize) {
+                    final String name = row.getSong().getName();
+                    if (StringUtils.isNotBlank(name)) {
+                        names.add(name);
+                    }
                     final String duration = row.getSong().getDuration();
                     if (StringUtils.isNotBlank(duration)) {
                         durations.add(Integer.parseInt(duration));
@@ -383,24 +388,36 @@ public class H5ToCSV {
                         hotnesses.add(Float.parseFloat(hotness));
                     }
                 }
-                // new id
-                final UUID uuid = UUID.randomUUID();
-                // new durate (average duration)
+                // new name (shortest recorded name)
+                String shortest = "";
+                if (!names.isEmpty()) {
+                    shortest = names.get(0);
+                    for (final String name : names) {
+                        if (name.length() < shortest.length()) {
+                            shortest = name;
+                        }
+                    }
+                }
+                // new duration (average duration)
                 Integer sumDuration = 0;
                 for (final Integer duration : durations) {
                     sumDuration += duration;
                 }
+                final Integer averageDuration = sumDuration / rowsToNormalize.size();
                 // new hotness (average hotness)
                 Float sumHotness = 0.0f;
                 for (final Float hotness : hotnesses) {
                     sumHotness += hotness;
                 }
+                final Float averageHotness = sumHotness / rowsToNormalize.size();
                 // replace
                 for (final RawRow row : rowsToNormalize) {
                     final RawSong oldSong = row.getSong();
-                    final RawSong newSong = new RawSong.SongBuilder(uuid.toString(), oldSong.getName(),
-                            sumDuration.toString(), sumHotness.toString()).build();
-                    if (StringUtils.isNotBlank(oldSong.getName())) {
+                    // songs are treated as tracks, the same song may have many id's
+                    final UUID uuid = UUID.randomUUID();
+                    final RawSong newSong = new RawSong.SongBuilder(uuid.toString(), shortest,
+                            averageDuration.toString(), averageHotness.toString()).build();
+                    if (StringUtils.isNotBlank(shortest)) {
                         printWriter.println(
                                 new RawRow.RawRowBuilder(newSong, row.getAlbum(), row.getArtist()).build().toString());
                         count += 1;
