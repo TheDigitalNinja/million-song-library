@@ -52,7 +52,7 @@
 
   .container {
     @include display-box;
-    @include box-direction(row); 
+    @include box-direction(row);
     @include justify-content(center);
     @include align-items(center);
 
