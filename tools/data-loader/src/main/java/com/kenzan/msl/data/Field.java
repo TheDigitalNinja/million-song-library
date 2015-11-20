@@ -4,8 +4,9 @@
 package com.kenzan.msl.data;
 
 /**
- * @author peterburt
+ * {@link Field} matches with the corresponding index from the python script csv output
  *
+ * @author peterburt
  */
 public enum Field {
     SONG_ID(0), SONG_NAME(1), SONG_DURATION(2), SONG_HOTNESS(3), ALBUM_ID(4), ALBUM_NAME(5), ALBUM_YEAR(

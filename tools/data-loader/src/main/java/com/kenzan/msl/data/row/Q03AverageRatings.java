@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.kenzan.msl.data.row;
 
 import java.util.StringJoiner;
@@ -8,10 +5,6 @@ import java.util.UUID;
 
 import com.kenzan.msl.data.ContentType;
 
-/**
- * @author peterburt
- *
- */
 public class Q03AverageRatings {
 
     private final UUID contentId;
@@ -29,13 +22,6 @@ public class Q03AverageRatings {
     }
 
     public String toString() {
-
-        // final List<String> AverageRating = new ArrayList<String>();
-        // AverageRating.add(contentId.toString());
-        // AverageRating.add(contentType.toString());
-        // AverageRating.add(Integer.toString(numRating));
-        // AverageRating.add(Integer.toString(sumRating));
-        // return String.join(",", AverageRating);
 
         final StringJoiner statement = new StringJoiner(" ");
         statement.add("UPDATE msl.average_ratings SET");

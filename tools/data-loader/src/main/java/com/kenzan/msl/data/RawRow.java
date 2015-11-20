@@ -1,13 +1,12 @@
-/**
- * 
- */
 package com.kenzan.msl.data;
 
 import java.util.Comparator;
 
 /**
- * @author peterburt
+ * {@link RawRow} contains the "raw" content objects with {@link String} values
+ * and {@link Comparator} methods for sorting
  *
+ * @author peterburt
  */
 public class RawRow {
 
@@ -97,7 +96,7 @@ public class RawRow {
 
         public RawRowBuilder(final String csvRow) {
 
-            final String[] parts = csvRow.split(FIELD_DELIMITER);
+            final String[] parts = csvRow.split(FIELD_DELIMITER, -1);
             this.artist = new RawArtist.ArtistBuilder(parts[Field.ARTIST_ID.getIndex()],
                     parts[Field.ARTIST_MBID.getIndex()], parts[Field.ARTIST_NAME.getIndex()],
                     parts[Field.ARTIST_HOTNESS.getIndex()], parts[Field.ARTIST_GENRES.getIndex()],

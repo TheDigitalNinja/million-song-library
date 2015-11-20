@@ -47,12 +47,12 @@ public class Q11SongsByUser {
         row.add(songId.toString());
         row.add(albumId.toString());
         row.add(RowUtil.formatText(albumName));
-        row.add(RowUtil.formatYear(albumYear));
+        row.add(RowUtil.formatInt(albumYear));
         row.add(aritstId.toString());
         row.add(artistMbid.toString());
         row.add(RowUtil.formatText(artistName));
-        row.add(Integer.toString(songDuration));
+        row.add(RowUtil.formatInt(songDuration));
         row.add(RowUtil.formatText(songName));
-        return String.join(",", row);
+        return String.join(RowUtil.FIELD_DELIMITER, row);
     }
 }

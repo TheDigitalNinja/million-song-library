@@ -38,10 +38,10 @@ public class Q06FeaturedAlbum {
         row.add(RowUtil.formatHotness(albumHotness));
         row.add(albumId.toString());
         row.add(RowUtil.formatText(albumName));
-        row.add(RowUtil.formatYear(albumYear));
+        row.add(RowUtil.formatInt(albumYear));
         row.add(aritstId.toString());
         row.add(artistMbid.toString());
         row.add(RowUtil.formatText(artistName));
-        return String.join(",", row);
+        return String.join(RowUtil.FIELD_DELIMITER, row);
     }
 }

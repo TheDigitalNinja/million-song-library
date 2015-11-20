@@ -1,15 +1,8 @@
-/**
- * 
- */
 package com.kenzan.msl.data;
 
 import java.util.List;
 import java.util.UUID;
 
-/**
- * @author peterburt
- *
- */
 public class NormalizedArtist {
 
     private final UUID id;

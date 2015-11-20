@@ -1,8 +1,9 @@
 package com.kenzan.msl.data;
 
 /**
- * @author peterburt
+ * {@link Rating} are the available rating facets
  *
+ * @author peterburt
  */
 public enum Rating {
     ONE("1 & UP"), TWO("2 & UP"), THREE("3 & UP"), FOUR("4 & UP"), FIVE("4 & UP");
