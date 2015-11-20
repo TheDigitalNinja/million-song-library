@@ -4,6 +4,19 @@ body {
   background-color: $gray-3;
 }
 
+.navbar-brand {
+  overflow: hidden;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+md-card {
+  display: inline;
+}
+
 .layout-container {
   background-color: $white;
   margin: 0 auto;
