@@ -39,6 +39,7 @@ describe('library-carousel directive', () => {
   });
 
   describe('link', () => {
+    const carousel = '.carousel';
     let compiledElement, isolatedScope;
 
     beforeEach(() => {
@@ -47,13 +48,13 @@ describe('library-carousel directive', () => {
     });
 
     it('should initialize the slick slider', () => {
-      const slider = $(compiledElement).find(`#${ isolatedScope.vm.sliderId }`);
+      const slider = $(compiledElement).find(carousel);
       expect(slider.hasClass('slick-initialized')).toBeTruthy();
     });
 
     it('should unslick the slider when the scope is destroyed', () => {
       $scope.$destroy();
-      const slider = $(compiledElement).find(`#${ isolatedScope.vm.sliderId }`);
+      const slider = $(compiledElement).find(carousel);
       expect(slider.hasClass('slick-initialized')).toBeFalsy();
     });
   });

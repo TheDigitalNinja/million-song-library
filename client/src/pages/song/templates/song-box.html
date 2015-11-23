@@ -10,14 +10,14 @@
       </div>
       <div class="media-box-overlay">
         <div class="media-box-overlay-control">
-          <i class="fa fa-play"></i> Play
+          <i class="material-icons">play_circle_filled</i> <span class="icon-label">Play</span>
         </div>
         <div class="media-box-overlay-control">
           <a href="" ng-if="!song.inMyLibrary" add-to-library id="song.songId" type="song">
-            <i class="fa fa-heart"></i> Add to library
+            <i class="material-icons">favorite</i> <span class="icon-label">Add to library</span>
           </a>
           <a href="" ng-if="song.inMyLibrary" remove-from-library id="song.songId" type="song">
-            <i class="fa fa-ban"></i> Remove from library
+            <i class="material-icons">not_interested</i> <span class="icon-label">Remove from library</span>
           </a>
         </div>
       </div>

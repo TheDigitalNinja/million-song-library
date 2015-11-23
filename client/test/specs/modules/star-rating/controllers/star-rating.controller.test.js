@@ -43,10 +43,10 @@ describe('starRating controller', () => {
     let filledStars = 0;
 
     _.forEach($(element).find('li'), (el) => {
-      if ($(el).children('button').hasClass('fa-star')) {
+      if ($(el).children('button').text() == 'star') {
         emptyStars++;
       }
-      if ($(el).children('button').hasClass('fa-star-o')) {
+      if ($(el).children('button').text() == 'star_outline') {
         filledStars++;
       }
     });
@@ -58,7 +58,7 @@ describe('starRating controller', () => {
     $scope.readOnly = true;
     const element = compileElement();
 
-    $(element).find('button.fa-star-o').first().click();
+    $(element).find('button').first().click();
     const isolatedScope = element.isolateScope();
     expect(isolatedScope.starRating).toBe(1);
   });
@@ -66,7 +66,7 @@ describe('starRating controller', () => {
   it('should change rating when user clicks on a star', () => {
     const element = compileElement();
 
-    $(element).find('button.fa-star-o').first().click();
+    $(element).find('button:contains("star")').click();
     expect(ratingModel.rate).toHaveBeenCalledWith($scope.entityId, entityType, $scope.rating + 1);
   });
 
@@ -83,7 +83,7 @@ describe('starRating controller', () => {
       ratingModel.rate.and.throwError(error);
       const element = compileElement();
 
-      $(element).find('.btn').click();
+      $(element).find('.material-icons').click();
       expect($log.warn).toHaveBeenCalledWith(error);
       done();
     })();

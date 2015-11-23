@@ -1,5 +1,4 @@
 //Dependencies
-import 'font-awesome/scss/font-awesome.scss';
 import 'angular-material/angular-material.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -12,7 +11,6 @@ import uiRouter from 'angular-ui-router';
 import angularAria from 'angular-aria';
 import angularAnimate from 'angular-animate';
 import angularMaterial from 'angular-material';
-import bootstrap from './modules/bootstrap/module';
 import slick from 'slick-carousel';
 
 //Layout
@@ -59,7 +57,6 @@ export default angular.module('msl', [
   authorisation,
   player,
   permission,
-  bootstrap,
 
   starRating,
   filters,

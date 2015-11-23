@@ -1,5 +1,5 @@
 <h3 class="slider-header">{{ vm.title }}</h3>
-<div layout-wrap id="{{ vm.sliderId }}">
+<div layout-wrap class="carousel">
   <song-box ng-if="vm.entity == 'song'" song="song" ng-repeat="song in vm.slides track by $index" repeat-complete="vm.repeatComplete()"> </song-box>
   <artist-box ng-if="vm.entity == 'artist'" artist="artist" ng-repeat="artist in vm.slides track by $index" repeat-complete="vm.repeatComplete()"> </artist-box>
   <album-box ng-if="vm.entity == 'album'" album="album" ng-repeat="album in vm.slides track by $index" repeat-complete="vm.repeatComplete()"> </album-box>

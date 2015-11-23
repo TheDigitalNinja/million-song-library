@@ -5,10 +5,10 @@
   <div flex="75" class="msl-padding">
     <span class="pull-right">
       <a href="" ng-if="!vm.song.inMyLibrary" add-to-library id="vm.songId" type="song">
-        <i class="fa fa-heart-o"></i> Add Song to Library
+        <i class="material-icons">favorite</i> <span class="icon-label">Add Song to library</span>
       </a>
       <a href="" ng-if="vm.song.inMyLibrary" remove-from-library id="vm.songId" type="song">
-        <i class="fa fa-ban"></i> Remove Song from Library
+        <i class="material-icons">not_interested</i> <span class="icon-label">Remove Song from library</span>
       </a>
     </span>
     <h1 data-pt-id="song-name">{{vm.song.songName}}</h1>

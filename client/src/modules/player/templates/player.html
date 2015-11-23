@@ -1,24 +1,24 @@
 <footer class="player-footer" ng-if="player.active">
   <div class="container">
-    <div class="btn-group">
-      <button class="btn btn-default">
-        <i class="fa fa-backward"></i>
+    <div class="player-buttons">
+      <button class="md-raised md-button icon-button">
+        <i class="material-icons">fast_rewind</i>
       </button>
-      <button class="btn btn-default">
-        <i class="fa fw fa-play"></i>
+      <button class="md-raised md-button icon-button">
+        <i class="material-icons">play_arrow</i>
       </button>
-      <button class="btn btn-default">
-        <i class="fa fw fa-forward"></i>
+      <button class="md-raised md-button icon-button">
+        <i class="material-icons">fast_forward</i>
       </button>
-      <button class="btn btn-default">
-        <i class="fa fw fa-volume-up"></i>
+      <button class="md-raised md-button icon-button">
+        <i class="material-icons">volume_up</i>
       </button>
     </div>
     <div class="song-title">{{player.songEntity.artistName}} - {{player.songEntity.songName}}</div>
     <div class="track-timeline"></div>
     <div class="song-close">
-      <button class="btn btn-default" ng-click="player.close()">
-        <i class="fa fw fa-times"></i>
+      <button class="md-raised md-button icon-button" ng-click="player.close()">
+        <i class="material-icons">highlight_off</i>
       </button>
     </div>
   </div>

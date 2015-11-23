@@ -5,10 +5,10 @@
   <div flex="75" class="msl-padding" flex-sm="100">
     <span class="pull-right">
       <a href="" ng-if="!vm.model.album.inMyLibrary" add-to-library id="vm.albumId" type="album">
-        <i class="fa fa-heart-o"></i> Add Album to Library
+        <i class="material-icons">favorite</i> <span class="icon-label">Add Album to library</span>
       </a>
       <a href="" ng-if="vm.model.album.inMyLibrary" remove-from-library id="vm.albumId" type="album">
-        <i class="fa fa-ban"></i> Remove Album from Library
+        <i class="material-icons">not_interested</i> <span class="icon-label">Remove Album from library</span>
       </a>
     </span>
     <h1 data-pt-id="album-name">{{vm.model.album.albumName}}</h1>

@@ -10,10 +10,10 @@
       <div class="media-box-overlay">
         <div class="media-box-overlay-control">
           <a href="" ng-if="!album.inMyLibrary" add-to-library id="album.albumId" type="album">
-            <i class="fa fa-heart"></i> Add to library
+            <i class="material-icons">favorite</i> <span class="icon-label">Add to library</span>
           </a>
           <a href="" ng-if="album.inMyLibrary" remove-from-library id="album.albumId" type="album">
-            <i class="fa fa-ban"></i> Remove from library
+            <i class="material-icons">not_interested</i> <span class="icon-label">Remove from library</span>
           </a>
         </div>
       </div>
