@@ -32,4 +32,8 @@
 // Material Design Overrides
 @import "material";
 
+// KSS Specific
 .kss-modifier__example { overflow: hidden; }
+.kss-main {
+	background-color: $white;
+}

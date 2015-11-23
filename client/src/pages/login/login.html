@@ -14,16 +14,14 @@
              placeholder="Password"
              password
              required>
-      <ul ng-if="credentials.password.$dirty && credentials.password.$viewValue.length > 0" >
-        <li ng-show="credentials.password.$error.password">
-          <span class="input-field-error">Must contain:
-            <ul>
-              <li>At least a number</li>
-              <li>A capitalized letter </li>
-              <li>A special character (!#$%&*+,./:;<=>?@\^_~-)</li>
-              <li>More than 10 characters </li>
-            </ul>
-          </span>
+      <ul class="form-errors" ng-if="credentials.password.$dirty && credentials.password.$viewValue.length > 0" >
+        <li ng-show="credentials.password.$error.password" class="input-field-error">Must contain:
+          <ul>
+            <li>At least a number</li>
+            <li>A capitalized letter </li>
+            <li>A special character (!#$%&*+,./:;<=>?@\^_~-)</li>
+            <li>More than 10 characters </li>
+          </ul>
         </li>
       </ul>
     </div>
@@ -31,7 +29,7 @@
       <strong>Oh snap!</strong>
       Credentials are invalid!
     </div>
-    <button name="login" class="btn btn-primary btn-block" type="submit" ng-disabled="credentials.$invalid">
+    <button name="login" class="md-button md-ink-ripple" type="submit" ng-disabled="credentials.$invalid">
       Sign in
     </button>
   </form>

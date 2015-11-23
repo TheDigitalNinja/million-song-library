@@ -1,6 +1,6 @@
 @import "core";
 
-body {
+html, body {
   background-color: $gray-3;
 }
 
@@ -15,13 +15,15 @@ button::-moz-focus-inner {
 
 md-card {
   display: block;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .layout-container {
   background-color: $white;
   margin: 0 auto;
   max-width: 1200px;
-  padding: 1em 0 0;
+  padding: 1em 0;
 }
 
 .msl-box-grid {

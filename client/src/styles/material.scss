@@ -9,12 +9,21 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-ink-bar 
 	height: 3px;
 }
 
+.md-button {
+    background-color: $blue-1;
+    color: $white;
+}
+
 a.md-button.md-default-theme:not([disabled]):hover,
 a.md-button:not([disabled]):hover,
 .md-button.md-default-theme:not([disabled]):hover,
 .md-button:not([disabled]):hover,
 .md-button.active {
 	background-color: rgba(0,0,0,.2);
+}
+
+.md-button[disabled] {
+    background-color: rgba(0,0,0,.2);
 }
 
 md-toolbar.md-warn > md-tabs.md-default-theme,
