@@ -1,11 +1,15 @@
 package io.swagger.client;
 
+import io.swagger.api.impl.MslApiResponseMessage;
 import io.swagger.model.SongInfo;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
+import javax.ws.rs.client.Client;
+
+import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.math.BigDecimal;
@@ -22,33 +26,48 @@ public class SongClient {
         client = new ResteasyClientBuilder().build();
     }
 
-    public Response get (String id) {
-        ResteasyWebTarget target = client.target(baseUrl + "/v1/catalogedge/");
+    public MslApiResponseMessage get (String id) {
+        WebTarget target = client.target(baseUrl + "/v1/catalogedge/");
         Response response = target
                 .path("song/" + id)
                 .request()
                 .get();
-        return response;
+        if (response.getStatus() != 200) {
+            throw new RuntimeException("Failed : HTTP error code : "
+                    + response.getStatus());
+        }
+        MslApiResponseMessage song = response.readEntity(MslApiResponseMessage.class);
+        return song;
     }
 
-    public Response browse(String facets) {
-        ResteasyWebTarget target;
+    public MslApiResponseMessage browse(String facets) {
+        WebTarget target;
         if (!facets.isEmpty()){
             target = client.target(baseUrl + "/v1/catalogedge/browse/song?facets=" + facets);
         }else {
             target = client.target(baseUrl + "/v1/catalogedge/browse/song");
         }
         Response response = target.request().get();
-        return response;
+        if (response.getStatus() != 200) {
+            throw new RuntimeException("Failed : HTTP error code : "
+                    + response.getStatus());
+        }
+        MslApiResponseMessage responseWrapper = response.readEntity(MslApiResponseMessage.class);
+        return responseWrapper;
     }
 
-    public Response addSong (String songId, String sessionToken) {
-        ResteasyWebTarget target = client.target(baseUrl + "/v1/accountedge/users/mylibrary/addsong/" + songId);
+    public MslApiResponseMessage addSong (String songId, String sessionToken) {
+        WebTarget target = client.target(baseUrl + "/v1/accountedge/users/mylibrary/addsong/" + songId);
 
         Response response = target
                 .request()
                 .header("sessionToken", sessionToken)
                 .put(Entity.entity(songId, MediaType.APPLICATION_JSON));
-        return response;
+        if (response.getStatus() != 200) {
+            throw new RuntimeException("Failed : HTTP error code : "
+                    + response.getStatus());
+        }
+        MslApiResponseMessage responseWrapper = response.readEntity(MslApiResponseMessage.class);
+        return responseWrapper;
     }
 }

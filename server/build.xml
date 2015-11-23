@@ -31,6 +31,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.1.1</version>
             </plugin>
+
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.6</version>
@@ -119,7 +120,26 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.glassfish.jersey</groupId>
+                <artifactId>jersey-bom</artifactId>
+                <version>${jersey.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet-core</artifactId>
+            <!-- use the following artifactId if you don't need servlet 2.x compatibility -->
+            <!-- artifactId>jersey-container-servlet</artifactId -->
+        </dependency>
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-codegen-maven-plugin</artifactId>
@@ -173,20 +193,9 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-            <version>${java-ws-rs-api}</version>
-        </dependency>
-        <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-client</artifactId>
             <version>${resteasy-client}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-client</artifactId>
-            <version>${jersey-client-version}</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -215,7 +224,15 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>${jersey.version}</version>
+        </dependency>
+
     </dependencies>
+
 
     <repositories>
         <repository>
@@ -233,13 +250,11 @@
         <jetty-version>9.2.9.v20150224</jetty-version>
         <jersey-version>1.18.1</jersey-version>
         <slf4j-version>1.6.3</slf4j-version>
-        <junit-version>4.12</junit-version>
+        <junit-version>4.10</junit-version>
         <servlet-api-version>2.5</servlet-api-version>
         <swagger-codegen-maven-plugin>2.1.4</swagger-codegen-maven-plugin>
-
-        <java-ws-rs-api>2.0.1</java-ws-rs-api>
+        <jersey.version>2.2</jersey.version>
         <resteasy-client>3.0.2.Final</resteasy-client>
-        <jersey-client-version>1.18.4</jersey-client-version>
     </properties>
 
 </project>

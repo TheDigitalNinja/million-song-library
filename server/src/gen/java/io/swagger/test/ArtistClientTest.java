@@ -1,18 +1,18 @@
 package io.swagger.test;
 
+import io.swagger.api.impl.MslApiResponseMessage;
 import io.swagger.client.ArtistClient;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.ws.rs.core.Response;
-
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
- * Created by anram88 on 11/19/15.
- */
+* Created by anram88 on 11/19/15.
+*/
 public class ArtistClientTest {
 
     private ArtistClient artistClient;
@@ -27,28 +27,44 @@ public class ArtistClientTest {
     @Test
     public void testGet() {
         logger.debug("ArtistClient.testGet");
-        Response artist = artistClient.get("1");
-        assertEquals("artist get call is successful", 200, artist.getStatus());
+        MslApiResponseMessage artist = artistClient.get("1");
+        assertNotNull(artist);
+        assertEquals("artist get call is successful", "success", artist.getMessage());
+    }
+
+    @Test (expected = java.lang.RuntimeException.class)
+    public void testGetExceptionIsThrown() {
+        logger.debug("ArtistClient.testGetExceptionIsThrown");
+        artistClient.get("");
     }
 
     @Test
     public void testBrowse() {
         logger.debug("ArtistClient.testBrowse");
-        Response artistList = artistClient.browse("");
-        assertEquals("artist browse call is successful", 200, artistList.getStatus());
+        MslApiResponseMessage artistList = artistClient.browse("");
+        assertNotNull(artistList);
+        assertEquals("artist browse call is successful", "success", artistList.getMessage());
     }
 
     @Test
     public void testBrowseFilteredByFacets() {
         logger.debug("ArtistClient.testBrowseFilteredByFacets");
-        Response artistList = artistClient.browse("3");
-        assertEquals("artist browse facet filtered call is successful", 200, artistList.getStatus());
+        MslApiResponseMessage artistList = artistClient.browse("3");
+        assertNotNull(artistList);
+        assertEquals("artist browse facet filtered call is successful", "success", artistList.getMessage());
     }
 
     @Test
     public void testAddArtist(){
         logger.debug("ArtistClient.testAddArtist");
-        Response response = artistClient.addArtist("1", "someToken");
-        assertEquals("addArtist response is successful", 200, response.getStatus());
+        MslApiResponseMessage response = artistClient.addArtist("1", "someToken");
+        assertNotNull(response);
+        assertEquals("addArtist response is successful", "magic!", response.getMessage());
+    }
+
+    @Test (expected=java.lang.RuntimeException.class)
+    public void testAddArtistThrowException (){
+        logger.debug("ArtistClient.testAddArtistThrowException");
+        artistClient.addArtist("", "");
     }
 }
