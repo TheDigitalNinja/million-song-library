@@ -6,12 +6,11 @@ import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.math.BigDecimal;
 
-/**
-* Created by anram88 on 11/19/15.
-*/
 public class ArtistClient {
 
     private String baseUrl = "http://localhost:9000/msl";
@@ -22,19 +21,19 @@ public class ArtistClient {
     }
 
     public MslApiResponseMessage get (String id) {
+
         ResteasyWebTarget target = client.target(baseUrl + "/v1/catalogedge/");
         Response response = target
                 .path("artist/" + id)
                 .request()
                 .get();
+
         if (response.getStatus() != 200) {
             throw new RuntimeException("Failed : HTTP error code : "
                     + response.getStatus());
         }
 
-        MslApiResponseMessage responseWrapper = response.readEntity(MslApiResponseMessage.class);
-
-        return responseWrapper;
+        return response.readEntity(MslApiResponseMessage.class);
     }
 
     public MslApiResponseMessage browse(String facets) {
@@ -52,9 +51,8 @@ public class ArtistClient {
             throw new RuntimeException("Failed : HTTP error code : "
                     + response.getStatus());
         }
-        MslApiResponseMessage responseWrapper = response.readEntity(MslApiResponseMessage.class);
 
-        return responseWrapper;
+        return response.readEntity(MslApiResponseMessage.class);
     }
 
     public MslApiResponseMessage addArtist (String artistId, String sessionToken) {
@@ -69,8 +67,25 @@ public class ArtistClient {
             throw new RuntimeException("Failed : HTTP error code : "
                     + response.getStatus());
         }
-        MslApiResponseMessage responseWrapper = response.readEntity(MslApiResponseMessage.class);
+        return response.readEntity(MslApiResponseMessage.class);
+    }
 
-        return responseWrapper;
+    public MslApiResponseMessage rateArtist (String artistId, BigDecimal rating, String sessionToken) {
+        ResteasyWebTarget target = client.target(baseUrl + "/v1/ratingsedge/rateartist/" + artistId);
+
+        Form form = new Form();
+        form.param("rating", rating.toString());
+
+        Response response = target
+                .request()
+                .header("sessionToken", sessionToken)
+                .put(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
+
+        if (response.getStatus() != 200) {
+            throw new RuntimeException("Failed : HTTP error code : "
+                    + response.getStatus());
+        }
+        return response.readEntity(MslApiResponseMessage.class);
+
     }
 }

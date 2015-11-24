@@ -6,9 +6,6 @@ import java.util.List;
 import io.swagger.api.factories.FacetServiceFactory;
 import io.swagger.model.*;
 
-/**
- * Created by anram88 on 10/27/15.
- */
 public class FacetMockData {
 
     public List<FacetInfoWithChildren> mockFacets;

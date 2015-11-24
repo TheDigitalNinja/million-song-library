@@ -9,9 +9,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by anram88 on 10/21/15.
- */
 public class SongMockData {
 
     public SongList songList;

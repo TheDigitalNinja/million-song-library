@@ -7,12 +7,11 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-/**
-* Created by anram88 on 11/19/15.
-*/
 public class ArtistClientTest {
 
     private ArtistClient artistClient;
@@ -66,5 +65,19 @@ public class ArtistClientTest {
     public void testAddArtistThrowException (){
         logger.debug("ArtistClient.testAddArtistThrowException");
         artistClient.addArtist("", "");
+    }
+
+    @Test
+    public void testRateArtist(){
+        logger.debug("ArtistClient.testRateArtist");
+        MslApiResponseMessage response = artistClient.rateArtist("1", new BigDecimal("3"), "someToken");
+        assertNotNull(response);
+        assertEquals("rateArtist response is successful", "magic!", response.getMessage());
+    }
+
+    @Test (expected = java.lang.RuntimeException.class)
+    public void testRateArtistThrowException () {
+        logger.debug("ArtistClient.testRateArtistThrowException");
+        artistClient.rateArtist("", null, "");
     }
 }

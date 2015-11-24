@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by anram88 on 10/21/15.
- */
 public class AlbumMockData {
 
     public AlbumList albumList;

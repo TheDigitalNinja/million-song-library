@@ -2,9 +2,6 @@ package io.swagger.api.impl;
 
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- * Created by anram88 on 11/17/15.
- */
 public class MslApiResponseMessage{
     public static final int ERROR = 1;
     public static final int WARNING = 2;
