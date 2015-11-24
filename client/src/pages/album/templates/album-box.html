@@ -12,7 +12,7 @@
           <a href="" ng-if="!album.inMyLibrary" add-to-library id="album.albumId" type="album">
             <i class="fa fa-heart"></i> Add to library
           </a>
-          <a href="" ng-if="album.inMyLibrary">
+          <a href="" ng-if="album.inMyLibrary" remove-from-library id="album.albumId" type="album">
             <i class="fa fa-ban"></i> Remove from library
           </a>
         </div>

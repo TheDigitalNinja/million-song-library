@@ -17,7 +17,6 @@ export default class libraryCtrl {
     this.myLibraryStore = myLibraryStore;
 
     this._getMyLibrary();
-    this.artistSlides = [];
   }
 
   /**

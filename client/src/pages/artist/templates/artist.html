@@ -4,7 +4,7 @@
       <a href="" ng-if="!vm.artist.inMyLibrary" add-to-library id="vm.artistId" type="artist">
         <i class="fa fa-heart-o"></i> Add Artist to Library
       </a>
-      <a href="" ng-if="vm.artist.inMyLibrary">
+      <a href="" ng-if="vm.artist.inMyLibrary" remove-from-library id="vm.artistId" type="artist">
         <i class="fa fa-ban"></i> Remove Artist from Library
       </a>
     </span>

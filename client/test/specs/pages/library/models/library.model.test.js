@@ -11,7 +11,7 @@ describe('libraryModel', () => {
   beforeEach(() => {
     angular.mock.module(libraryModule, ($provide) => {
       $log = jasmine.createSpyObj('$log', ['info']);
-      myLibraryStore = jasmine.createSpyObj('myLibraryStore', ['fetch', 'addSong', 'addAlbum', 'addArtist']);
+      myLibraryStore = jasmine.createSpyObj('myLibraryStore', ['fetch', 'addSong', 'addAlbum', 'addArtist', 'removeSong', 'removeAlbum', 'removeArtist']);
 
       $provide.value('$log', $log);
       $provide.value('myLibraryStore', myLibraryStore);
@@ -64,6 +64,27 @@ describe('libraryModel', () => {
     it('should log the a message with the ARTIST_ID', () => {
       libraryModel.addArtistToLibrary(ARTIST_ID);
       expect(myLibraryStore.addArtist).toHaveBeenCalledWith(ARTIST_ID);
+    });
+  });
+
+  describe('removeSongFromLibrary', () => {
+    it('should log a message with the SONG_ID', () => {
+      libraryModel.removeSongFromLibrary(SONG_ID);
+      expect(myLibraryStore.removeSong).toHaveBeenCalledWith(SONG_ID);
+    });
+  });
+
+  describe('removeAlbumToLibrary', () => {
+    it('should log a message with the ALBUM_ID', () => {
+      libraryModel.removeAlbumFromLibrary(ALBUM_ID);
+      expect(myLibraryStore.removeAlbum).toHaveBeenCalledWith(ALBUM_ID);
+    });
+  });
+
+  describe('removeArtistFromLibrary', () => {
+    it('should log the a message with the ARTIST_ID', () => {
+      libraryModel.removeArtistFromLibrary(ARTIST_ID);
+      expect(myLibraryStore.removeArtist).toHaveBeenCalledWith(ARTIST_ID);
     });
   });
 

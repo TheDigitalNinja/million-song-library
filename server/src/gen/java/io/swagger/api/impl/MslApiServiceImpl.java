@@ -248,4 +248,37 @@ public class MslApiServiceImpl extends MslApiService {
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
 
+    @Override
+    public Response removeSong(String songId, String sessionToken)
+            throws NotFoundException {
+
+        if (sessionToken.isEmpty()){
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        } else {
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        }
+    }
+
+    @Override
+    public Response removeAlbum(String albumId, String sessionToken)
+            throws NotFoundException {
+
+        if (sessionToken.isEmpty()){
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        } else {
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        }
+    }
+
+    @Override
+    public Response removeArtist(String artistId, String sessionToken)
+            throws NotFoundException {
+
+        if (sessionToken.isEmpty()){
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        } else {
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        }
+    }
+
 }
