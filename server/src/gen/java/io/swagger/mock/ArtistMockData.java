@@ -10,9 +10,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by anram88 on 10/22/15.
- */
 public class ArtistMockData {
 
     public ArtistList artistList;

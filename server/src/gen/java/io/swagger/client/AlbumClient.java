@@ -1,18 +1,15 @@
 package io.swagger.client;
 
-import io.swagger.api.MslApi;
 import io.swagger.api.impl.MslApiResponseMessage;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
-
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.math.BigDecimal;
 
-/**
-* Created by anram88 on 11/19/15.
-*/
 public class AlbumClient {
 
     private String baseUrl = "http://localhost:9000/msl";
@@ -62,6 +59,24 @@ public class AlbumClient {
                 .request()
                 .header("sessionToken", sessionToken)
                 .put(Entity.entity(albumId, MediaType.APPLICATION_JSON));
+        if (response.getStatus() != 200) {
+            throw new RuntimeException("Failed : HTTP error code : "
+                    + response.getStatus());
+        }
+        MslApiResponseMessage responseWrapper = response.readEntity(MslApiResponseMessage.class);
+        return responseWrapper;
+    }
+
+    public MslApiResponseMessage rateAlbum (String albumId, BigDecimal rating, String sessionToken) {
+        ResteasyWebTarget target = client.target(baseUrl + "/v1/ratingsedge/ratealbum/" + albumId);
+
+        Form form = new Form();
+        form.param("rating", rating.toString());
+
+        Response response = target
+                .request()
+                .header("sessionToken", sessionToken)
+                .put(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
         if (response.getStatus() != 200) {
             throw new RuntimeException("Failed : HTTP error code : "
                     + response.getStatus());
