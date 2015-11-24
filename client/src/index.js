@@ -32,7 +32,7 @@ import libraryPage from './pages/library/library.module.js';
 import starRating from './modules/star-rating/module.js';
 
 //Modules
-import authorisation from 'modules/authorisation/module';
+import authentication from 'modules/authentication/module';
 import player from 'modules/player/module';
 import permission from './modules/permission/module';
 import routing from './routing.js';
@@ -56,7 +56,7 @@ export default angular.module('msl', [
   userPage,
   libraryPage,
 
-  authorisation,
+  authentication,
   player,
   permission,
   bootstrap,

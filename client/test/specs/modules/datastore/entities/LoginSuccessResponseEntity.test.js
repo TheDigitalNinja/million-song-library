@@ -2,7 +2,7 @@ import datastoreModule from 'modules/datastore/module';
 
 describe('LoginSuccessResponseEntity', () => {
   const schema = {
-    sessionToken: String,
+    authenticated: String,
   };
 
   let entity;

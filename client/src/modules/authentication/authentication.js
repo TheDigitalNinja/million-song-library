@@ -5,16 +5,16 @@ const LOGIN_EMPTY = 'Login is empty!';
 const PASSWORD_EMPTY = 'Password is empty!';
 
 /**
- * @name authorisation
+ * @name authentication
  * @param {$cookies} $cookies
- * @param {sessionToken} sessionToken
+ * @param {authCookie} authCookie
  * @param {loginStore} loginStore
  * @param {logoutStore} logoutStore
  * @returns {*}
  */
-export default function authorisation (
+export default function authentication (
   $cookies,
-  sessionToken,
+  authCookie,
   loginStore,
   logoutStore
 ) {
@@ -22,39 +22,37 @@ export default function authorisation (
 
   return {
     /**
-     * authorise user and create user session
+     * authenticate user and create user session
      * and emit state change event
-     * @name authorisation#authorise
+     * @name authentication#authenticate
      * @param {string} login
      * @param {string} password
      */
-    async authorise(login, password) {
+    async authenticate(login, password) {
       assert.ok(!_.isEmpty(login), LOGIN_EMPTY);
       assert.ok(!_.isEmpty(password), PASSWORD_EMPTY);
       // make api request
       const response = await loginStore.push(login, password);
-      if(response.sessionToken) {
-        const token = response.sessionToken;
-        // save session token
-        sessionToken.set(token);
+      if(response.authenticated) {
+        authCookie.set(response.authenticated);
       }
     },
     /**
      * destroy user session
      * and emit state change event
-     * @name authorisation#destory
+     * @name authentication#destory
      */
     async destroy() {
-      sessionToken.destroy();
+      authCookie.destroy();
       await logoutStore.push();
     },
     /**
-     * returns if user is authorised
-     * @name authorisation#isAuthorised
+     * returns if user is authorized
+     * @name authentication#isAuthenticated
      * @return {boolean}
      */
-    isAuthorised() {
-      return sessionToken.has();
+    isAuthenticated() {
+      return authCookie.has();
     },
   };
 }

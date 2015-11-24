@@ -68,7 +68,7 @@ describe('albumStore', () => {
 
     it('should browse the albums', (done) => {
       (async () => {
-        const params = { params: { facets: GENRE } };
+        const params = { params: { items: 10, facets: GENRE } };
         await albumStore.fetchAll(GENRE);
         expect(request.get).toHaveBeenCalledWith('/msl/v1/catalogedge/browse/album', params);
         done();

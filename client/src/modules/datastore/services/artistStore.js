@@ -1,3 +1,5 @@
+import {PAGE_SIZE} from '../../../constants.js';
+
 /**
  * artist store
  * @param {request} request
@@ -41,7 +43,7 @@ export default function artistStore(request,
      */
     async fetchAll(facets) {
       try {
-        const params = { params: { facets: facets } };
+        const params = { params: { items: PAGE_SIZE, facets: facets } };
         const response = await request.get(`${ API_REQUEST_PATH }browse/artist`, params);
         return entityMapper(response.data, ArtistListEntity);
       } catch(error) {

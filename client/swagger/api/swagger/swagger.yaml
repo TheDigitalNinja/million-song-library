@@ -61,9 +61,10 @@ paths:
       description: Logs a user out of the system
       tags:
         - Login
+      schemes: ["https"]
+      security: [sessionToken: []]
       produces:
         - application/json
-        - text/html
       operationId: logout
       responses:
         "200":
@@ -393,12 +394,6 @@ paths:
           description: "Value between 1-5 that represents the user's rating of the artist"
           required: true
           type: integer
-        -
-          name: sessionToken
-          in: header
-          description: Authenticated user session token
-          type: string
-          required: true
       responses:
         "200":
           description: Successfully sent rating data to the server
@@ -436,12 +431,6 @@ paths:
           description: "Value between 1-5 that represents the user's rating of the album"
           required: true
           type: integer
-        -
-          name: sessionToken
-          in: header
-          description: Authenticated user session token
-          type: string
-          required: true
       responses:
         "200":
           description: Successfully sent rating data to the server
@@ -479,12 +468,6 @@ paths:
           description: "Value between 1-5 that represents the user's rating of the song"
           required: true
           type: integer
-        -
-          name: sessionToken
-          in: header
-          description: Authenticated user session token
-          type: string
-          required: true
       responses:
         "200":
           description: Successfully sent rating data to the server
@@ -514,12 +497,6 @@ paths:
           description: Id of the song you want to comment on
           required: true
           type: string
-        -
-          name: sessionToken
-          in: header
-          description: Authenticated user session token
-          type: string
-          required: true
       responses:
         "200":
           description: Successfully sent comment data to the server
@@ -663,12 +640,6 @@ paths:
           description: Song id for the song to add to the library
           type: string
           required: true
-        -
-          name: sessionToken
-          in: header
-          description: Authenticated user session token
-          type: string
-          required: true
       responses:
         "200":
           description: Success
@@ -693,12 +664,6 @@ paths:
           name: albumId
           in: path
           description: Album id for the album to add to the library
-          type: string
-          required: true
-        -
-          name: sessionToken
-          in: header
-          description: Authenticated user session token
           type: string
           required: true
       responses:
@@ -727,12 +692,6 @@ paths:
           description: Artist id for the artist to add to the library
           type: string
           required: true
-        -
-          name: sessionToken
-          in: header
-          description: Authenticated user session token
-          type: string
-          required: true
       responses:
         "200":
           description: Success
@@ -757,12 +716,6 @@ paths:
           name: songId
           in: path
           description: Song id for the song to remove to the library
-          type: string
-          required: true
-        -
-          name: sessionToken
-          in: header
-          description: Authenticated user session token
           type: string
           required: true
       responses:
@@ -791,12 +744,6 @@ paths:
           description: Album id for the album to remove to the library
           type: string
           required: true
-        -
-          name: sessionToken
-          in: header
-          description: Authenticated user session token
-          type: string
-          required: true
       responses:
         "200":
           description: Success
@@ -823,12 +770,6 @@ paths:
           description: Artist id for the artist to remove to the library
           type: string
           required: true
-        -
-          name: sessionToken
-          in: header
-          description: Authenticated user session token
-          type: string
-          required: true
       responses:
         "200":
           description: Success
@@ -838,7 +779,6 @@ paths:
           description: Server Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-
 securityDefinitions:
   sessionToken:
     type: apiKey
@@ -858,6 +798,7 @@ parameters:
     in: query
     description: Number of items to return. Used for paginating results. The maximum is 100. If not provided, or falls outside the inclusive range 1-100, defaults to 25.
     type: integer
+    required: true
   PagingState:
     name: pagingState
     in: query
@@ -1043,7 +984,7 @@ definitions:
         type: string
   LoginSuccessResponse:
     properties:
-      sessionToken:
+      authenticated:
         type: string
   NotFoundResponse:
     properties:

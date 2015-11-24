@@ -1,3 +1,5 @@
+import {PAGE_SIZE} from '../../../constants.js';
+
 /**
  * songs store
  * @param {request} request
@@ -41,7 +43,7 @@ export default function songStore(request,
      */
     async fetchAll(facets) {
       try {
-        const params = { params: { facets: facets } };
+        const params = { params: { items: PAGE_SIZE, facets: facets } };
         const response = await request.get(`${ API_REQUEST_PATH }browse/song`, params);
         return entityMapper(response.data, SongListEntity);
       } catch(error) {

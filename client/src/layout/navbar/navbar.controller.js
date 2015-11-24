@@ -10,12 +10,12 @@ export default class navbarCtrl {
    * Class constructor
    * @param {$rootScope.Scope} $scope
    * @param {ui.router.state.$state} $state
-   * @param {msl.authorisation} authorisation
+   * @param {msl.authentication} authentication
    */
-  constructor($scope, $state, authorisation) {
+  constructor($scope, $state, authentication) {
     this.$scope = $scope;
     this.$state = $state;
-    this.authorisation = authorisation;
+    this.authentication = authentication;
   }
 
   /**
@@ -23,7 +23,7 @@ export default class navbarCtrl {
    * after logout redirect user to login page
    */
   async logout() {
-    await this.authorisation.destroy();
+    await this.authentication.destroy();
     if(this.$state.is('msl.library')) {
       this.$state.go('msl.home');
     }

@@ -1,8 +1,8 @@
 import {ROLE_ANONYMOUS, ROLE_USER} from 'constants';
 
-export default function defaultRun(Permission, authorisation) {
+export default function defaultRun(Permission, authentication) {
   'ngInject';
   Permission
-    .defineRole(ROLE_ANONYMOUS, () => !authorisation.isAuthorised())
-    .defineRole(ROLE_USER, () => authorisation.isAuthorised());
+    .defineRole(ROLE_ANONYMOUS, () => !authentication.isAuthenticated())
+    .defineRole(ROLE_USER, () => authentication.isAuthenticated());
 }

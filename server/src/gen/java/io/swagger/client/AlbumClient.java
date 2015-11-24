@@ -33,12 +33,12 @@ public class AlbumClient {
         return responseWrapper;
     }
 
-    public MslApiResponseMessage browse(String facets) {
+    public MslApiResponseMessage browse(String facets, String items) {
         ResteasyWebTarget target;
         if (!facets.isEmpty()){
-            target = client.target(baseUrl + "/v1/catalogedge/browse/album?facets=" + facets);
+            target = client.target(baseUrl + "/v1/catalogedge/browse/album?facets=" + facets + "&items=" + items);
         }else {
-            target = client.target(baseUrl + "/v1/catalogedge/browse/album");
+            target = client.target(baseUrl + "/v1/catalogedge/browse/album?items=" + items);
         }
         Response response = target
                 .request()
@@ -57,7 +57,7 @@ public class AlbumClient {
 
         Response response = target
                 .request()
-                .header("sessionToken", sessionToken)
+                .header("Cookie", sessionToken)
                 .put(Entity.entity(albumId, MediaType.APPLICATION_JSON));
         if (response.getStatus() != 200) {
             throw new RuntimeException("Failed : HTTP error code : "
@@ -75,7 +75,7 @@ public class AlbumClient {
 
         Response response = target
                 .request()
-                .header("sessionToken", sessionToken)
+                .header("Cookie", sessionToken)
                 .put(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
         if (response.getStatus() != 200) {
             throw new RuntimeException("Failed : HTTP error code : "

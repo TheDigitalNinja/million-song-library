@@ -5,7 +5,7 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 
 //Modules
-import authorisation from 'modules/authorisation/module';
+import authentication from 'modules/authentication/module';
 import player from 'modules/player/module';
 
 import sideNavModule from './sidenav/sidenav.module.js';
@@ -14,7 +14,7 @@ import layoutRoute from './layout.route.js';
 
 export default angular.module('msl.layout', [
   uiRouter,
-  authorisation,
+  authentication,
   player,
   navbarModule,
   sideNavModule,

@@ -2,10 +2,8 @@
  * @name LoginSuccessResponseEntity
  * @property {string} sessionToken
  */
-class LoginSuccessResponseEntity {
+export default class LoginSuccessResponseEntity {
   constructor() {
-    this.sessionToken = String;
+    this.authenticated = String;
   }
 }
-
-export default LoginSuccessResponseEntity;

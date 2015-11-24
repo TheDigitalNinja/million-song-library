@@ -5,7 +5,7 @@
     <packaging>jar</packaging>
     <version>4.0.0</version>
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
+        <sourceDirectory>src/gen/java</sourceDirectory>
         <testSourceDirectory>src/gen/java/io/swagger/test</testSourceDirectory>
         <plugins>
             <plugin>

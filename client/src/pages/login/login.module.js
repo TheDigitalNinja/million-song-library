@@ -4,14 +4,14 @@ import './stylesheets/login.scss';
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 //Module
-import authorisation from 'modules/authorisation/module';
+import authentication from 'modules/authentication/module';
 
 import loginRoute from './login.route.js';
 import loginCtrl from './controllers/login.controller.js';
 
 export default angular.module('msl.login', [
   uiRouter,
-    authorisation,
+    authentication,
   ])
   .config(loginRoute)
   .controller('loginCtrl', loginCtrl)

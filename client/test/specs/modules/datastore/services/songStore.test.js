@@ -67,7 +67,7 @@ describe('songStore', () => {
 
     it('should request the songs to the endpoint', (done) => {
       (async () => {
-        const params = { facets: opts };
+        const params = { items: 10, facets: opts };
         await songStore.fetchAll(opts);
         expect(request.get).toHaveBeenCalledWith('/msl/v1/catalogedge/browse/song', { params });
         done();

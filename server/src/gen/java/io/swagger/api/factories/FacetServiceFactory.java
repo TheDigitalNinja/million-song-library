@@ -5,9 +5,6 @@ import io.swagger.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by anram88 on 10/29/15.
- */
 public class FacetServiceFactory {
 
 

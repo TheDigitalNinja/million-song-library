@@ -1,3 +1,5 @@
+import {PAGE_SIZE} from '../../../constants.js';
+
 /**
  * album store
  * @param {request} request
@@ -35,7 +37,7 @@ function albumStore(request, entityMapper, AlbumInfoEntity, AlbumListEntity, $lo
      */
     async fetchAll(facets) {
       try {
-        const params = { params: { facets: facets } };
+        const params = { params: { items: PAGE_SIZE, facets: facets } };
         const response = await request.get(`${ API_REQUEST_PATH }browse/album`, params);
         return entityMapper(response.data, AlbumListEntity);
       } catch(error) {
