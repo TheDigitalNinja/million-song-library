@@ -372,7 +372,7 @@ paths:
   /msl/v1/ratingsedge/rateartist/{artistId}:
     x-swagger-router-controller: rating_controller
     put:
-      description: Update your rating of an album.
+      description: Update your rating of an artist.
       tags:
         - Rating
       schemes: ["https"]
@@ -405,7 +405,7 @@ paths:
           schema:
             $ref: "#/definitions/StatusResponse"
         "404":
-          description: Song not found
+          description: Artist not found
           schema:
             $ref: "#/definitions/NotFoundResponse"
         "500":
@@ -448,7 +448,7 @@ paths:
           schema:
             $ref: "#/definitions/StatusResponse"
         "404":
-          description: Song not found
+          description: Album not found
           schema:
             $ref: "#/definitions/NotFoundResponse"
         "500":

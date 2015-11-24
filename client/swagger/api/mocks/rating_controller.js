@@ -2,9 +2,9 @@
   'use strict';
 
   module.exports = {
-    rateAlbum: rateAlbum,
-    rateSong: rateSong,
-    rateArtist: rateArtist,
+    rate_album: rateAlbum,
+    rate_song: rateSong,
+    rate_artist: rateArtist,
   };
 
   function rateAlbum(req, res) {
@@ -23,7 +23,7 @@
   }
 
   function rateArtist(req, res) {
-    var artistId = req.swagger.params.songId.value;
+    var artistId = req.swagger.params.artistId.value;
     var rating = req.swagger.params.rating.value;
 
     res.json({ data: { message: "successfully updated artist " + artistId + " with rating: " + rating } });
