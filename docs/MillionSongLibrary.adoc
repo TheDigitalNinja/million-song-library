@@ -91,100 +91,30 @@ That is a *LOT* of information. Let's summarize...
 |Reactive Code Library 		|RxJava 		|Netflix 		|link:http://techblog.netflix.com/2013/02/rxjava-netflix-api.html[html]
 |=======================
 
-Artwork
-~~~~~~~
-Album, artist and song artwork is being retrieved from MusicBrainz (http://musicbrainz.org), "an open music encyclopedia that collects music metadata and makes it available to the public." The Million Song Library data contains an artist's MusicBrainz ID (artist_mbid). As part of the data import process, this identifier is used via the MusicBrainz REST API to retrieve the links to artwork.
+Album Cover Artwork
+~~~~~~~~~~~~~~~~~~~
+Album cover artwork is being retrieved from MusicBrainz (http://musicbrainz.org), "an open music encyclopedia that collects music metadata and makes it available to the public," and Cover Art Archive (http://converartarchive.org), "whose goal is to make cover art images available to everyone on the Internet in an organised and convenient way." The Million Song Library data contains an artist's MusicBrainz ID (artist_mbid). As part of the data import process, this identifier is used via the MusicBrainz and Cover Art Archive APIs to retrieve the links to artwork. All interactions with MusicBrains and the Cover Art Archive will be performed during the data import process - no queries to either of these sites will occur when the Kenzan MSL server is running.
 
-MusicBrainz REST API
-^^^^^^^^^^^^^^^^^^^^
+MusicBrainz Access
+^^^^^^^^^^^^^^^^^^
+We use the musicbrainzws2-java Java library (https://github.com/schnatterer/musicbrainzws2-java) to access the MusicBrainz API.
 
-MusicBrainz REST Request
-++++++++++++++++++++++++
-[source,http]
-http://musicbrainz.org/ws/2/release?artist=<artist_mbid>
-
-For Example
-[source,http]
-http://musicbrainz.org/ws/2/release?artist=65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab
-
-MusicBrainz REST Response
-+++++++++++++++++++++++++
-[source,xml]
-<metadata xmlns="http://musicbrainz.org/ns/mmd-2.0#">
-    <release-list count="939">
-        <release id="026eac53-f87d-4c08-8f55-d7c925619c02">
-            <title>San Francisco, CA March 15, 1985</title>
-            <quality>normal</quality>
-            <text-representation>
-                <language>eng</language>
-                <script>Latn</script>
-            </text-representation>
-            <date>1985-03-15</date>
-            <country>US</country>
-            <release-event-list count="1">
-                <release-event>
-                    <date>1985-03-15</date>
-                    <area id="489ce91b-6658-3307-9877-795b68554c98">
-                        <name>United States</name>
-                        <sort-name>United States</sort-name>
-                        <iso-3166-1-code-list>
-                            <iso-3166-1-code>US</iso-3166-1-code>
-                        </iso-3166-1-code-list>
-                    </area>
-                </release-event>
-            </release-event-list>
-            <cover-art-archive>
-                <artwork>false</artwork>
-                <count>0</count>
-                <front>false</front>
-                <back>false</back>
-            </cover-art-archive>
-        </release>
-        <release id="0e014d5a-6266-4f13-aa63-badbd34406e4">
-            <title>Ride the Lightning</title>
-            <status>Official</status>
-            <quality>normal</quality>
-            <packaging>Cassette Case</packaging>
-            <text-representation>
-                <language>eng</language>
-                <script>Latn</script>
-            </text-representation>
-            <date>1984</date>
-            <country>US</country>
-            <release-event-list count="1">
-                <release-event>
-                    <date>1984</date>
-                    <area id="489ce91b-6658-3307-9877-795b68554c98">
-                        <name>United States</name>
-                        <sort-name>United States</sort-name>
-                        <iso-3166-1-code-list>
-                            <iso-3166-1-code>US</iso-3166-1-code>
-                        </iso-3166-1-code-list>
-                    </area>
-                </release-event>
-            </release-event-list>
-            <barcode>075596039642</barcode>
-            <cover-art-archive>
-                <artwork>true</artwork>
-                <count>5</count>
-                <front>true</front>
-                <back>true</back>
-            </cover-art-archive>
-        </release>
-        .
-        .
-        .
-    </release-list>
-</metadata>
+Code Snippet
+++++++++++++
+[source,java]
+Controller controller = new Controller();
+Artist artist = new Artist();
+artist.setId(<MusicBrainz artist mbid>);
+artist = controller.lookUp(artist);
 
 Parsing and Using MusicBrainz Data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As can be seen in the example REST response, above, multiple "releases" (AKA albums) can be returned for the requested artist. The data import code will review the available releases/albums for the artist and select album art using the following algorithm:
 
-. Consider only those releases/albums whose <title> matches (case-INsensitively) the name of the album from the MSL data
-. Consider only those release/albums with <cover-art-archive><front>=true
-. Give preference to possibly multiple candidates based on <packaging> in this order:
+. Consider only those releases/albums whose title matches (case-INsensitively) the name of the album from the MSL data
+. Consider only those release/albums with cover-art-archive/front = true
+. Give preference to possibly multiple candidates based on packaging in this order:
 .. "Jewel Case" (this is a CD)
 .. "Cardboard/Paper Sleeve" (this is an LP)
 .. "Cassette Case" (this is a cassette, obviously)
@@ -192,12 +122,12 @@ As can be seen in the example REST response, above, multiple "releases" (AKA alb
 
 If a particular piece of art is NOT available, the image link field in the database will be left blank/null. If artwork is available, then the data import process will retrieve the image URL from the Cover Art Archive (http://coverartarchive.org) REST API (using CoverArtArchiveClient) and write it into the database.
 
-CoverArtArchiveClient
-^^^^^^^^^^^^^^^^^^^^^
+Cover Art Archive Access
+^^^^^^^^^^^^^^^^^^^^^^^^
 The CoverArtArchiveClient class from http://github.com/lastfm/coverartarchive-api will be used to retrieve the image URL using the release MBID.
 
-CoverArtArchive Code Snippet
-++++++++++++++++++++++++++++
+Code Snippet
+++++++++++++
 [source,java]
 CoverArtArchiveClient client = new DefaultCoverArtArchiveClient();
 UUID releaseMbid = UUID.fromString(<MusicBrainz release mbid>);
