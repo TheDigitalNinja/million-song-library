@@ -11,15 +11,15 @@
         <i class="fa fa-ban"></i> Remove Song from Library
       </a>
     </span>
-    <h1 class="song-name">{{vm.song.songName}}</h1>
+    <h1 data-pt-id="song-name">{{vm.song.songName}}</h1>
     <span>Artist:</span>
-    <a class="link-black" ui-sref="msl.artist({artistId: vm.song.artistId})">{{vm.song.artistName}}</a><br>
+    <a class="link-black" ui-sref="msl.artist({artistId: vm.song.artistId})" data-pt-id="song-artist-name">{{vm.song.artistName}}</a><br>
     <span>Album:</span>
-    <a class="link-black" ui-sref="msl.album({albumId: vm.song.albumId})">{{vm.song.albumName}}</a><br>
+    <a class="link-black" data-pt-id="song-album-name" ui-sref="msl.album({albumId: vm.song.albumId})">{{vm.song.albumName}}</a><br>
     <span>Genre:</span>
-    <span class="genre-name">{{vm.song.genre}}</span><br>
+    <span data-pt-id="song-genre">{{vm.song.genre}}</span><br>
     <span>Year:</span>
-    <span class="song-release">{{vm.song.year}}</span><br>
+    <span data-pt-id="song-year">{{vm.song.year}}</span><br>
     <span>Rating:</span>
     <div star-rating="vm.song.averageRating" entity-id="vm.song.songId" entity-type="song"></div>
   </div>

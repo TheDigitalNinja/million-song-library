@@ -11,13 +11,13 @@
         <i class="fa fa-ban"></i> Remove Album from Library
       </a>
     </span>
-    <h1 class="album-name">{{vm.model.album.albumName}}</h1>
+    <h1 data-pt-id="album-name">{{vm.model.album.albumName}}</h1>
     <span>Artist:</span>
-    <a class="link-black" ui-sref="msl.artist({artistId: vm.model.album.artistId})">{{vm.model.album.artistName}}</a><br>
+    <a class="link-black" data-pt-id="album-artist-name" ui-sref="msl.artist({artistId: vm.model.album.artistId})">{{vm.model.album.artistName}}</a><br>
     <span>Genre:</span>
-    <span class="genre-name">{{vm.model.album.genre}}</span><br>
+    <span data-pt-id="album-genre">{{vm.model.album.genre}}</span><br>
     <span>Year:</span>
-    <span class="album-year">{{vm.model.album.year}}</span><br>
+    <span data-pt-id="album-year">{{vm.model.album.year}}</span><br>
     <span>Rating:</span>
     <div star-rating="vm.model.album.averageRating" entity-id="vm.model.album.albumId" entity-type="album"></div>
   </div>

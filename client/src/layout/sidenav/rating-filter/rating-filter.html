@@ -4,7 +4,6 @@
     <ul class="star-rating list-unstyled" ng-class='rating-readonly'>
       <a href=""
          ng-click="vm.applyRatingFilter(rating.facetId)"
-         class="stars{{rating.name[0]}}"
          ng-init="rating.stars = vm.getStars(rating)"
          ng-class="{ 'active': vm.isActiveRating(rating.facetId) }">
         <li ng-repeat="star in rating.stars track by $index">
@@ -13,7 +12,7 @@
         <span>&amp; up</span>
       </a>
     </ul>
-    <md-button class="btn-facet-clear deselecFilter{{rating.name[0]}}" ng-click="vm.applyRatingFilter('')" ng-show="vm.isActiveRating(rating.facetId)">
+    <md-button class="btn-facet-clear" ng-click="vm.applyRatingFilter('')" ng-show="vm.isActiveRating(rating.facetId)">
       <span aria-hidden="true">&times;</span>
     </md-button>
   </li>

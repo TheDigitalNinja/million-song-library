@@ -8,7 +8,7 @@
         <i class="fa fa-ban"></i> Remove Artist from Library
       </a>
     </span>
-    <h1 class="artist-name">{{vm.artist.artistName}}</h1>
+    <h1 data-pt-id="artist-name">{{vm.artist.artistName}}</h1>
     <div star-rating="vm.artist.averageRating" entity-id="vm.artist.artistId" entity-type="artist"></div>
   </div>
 </div>
@@ -16,7 +16,7 @@
   <md-tabs md-dynamic-height md-border-bottom flex="90">
     <md-tab>
       <md-tab-label>
-        Songs
+        <span>Songs</span>
       </md-tab-label>
       <md-tab-body>
         <songs-table loading="!vm.displaySongs" songs="vm.songs"></songs-table>
@@ -24,7 +24,7 @@
     </md-tab>
     <md-tab>
       <md-tab-label>
-        Albums
+        <span>Albums</span>
       </md-tab-label>
       <md-tab-body>
         <albums-list albums="vm.artistAlbums"></albums-list>
@@ -32,7 +32,7 @@
     </md-tab>
     <md-tab>
       <md-tab-label>
-        Similar Artists
+        <span>Similar Artists</span>
       </md-tab-label>
       <md-tab-body>
         <artists-list artists="vm.similarArtists"></artists-list>
