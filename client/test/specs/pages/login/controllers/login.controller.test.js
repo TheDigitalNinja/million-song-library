@@ -67,7 +67,11 @@ describe('loginCtrl', () => {
   });
 
   describe('password verification', () => {
-    const loginCtrl = $controller('loginCtrl', { $scope });
+    let loginCtrl;
+
+    beforeEach(() => {
+      loginCtrl = $controller('loginCtrl', { $scope });
+    });
 
     it('must reject password without a capitalized letter, a number and a special character', () => {
       loginCtrl.password = 'somepassword';
@@ -75,13 +79,13 @@ describe('loginCtrl', () => {
       expect(loginCtrl.isPasswordCompliant).toBeFalsy();
     });
 
-    it ('should reject password without capitalized letter', () => {
+    it('should reject password without capitalized letter', () => {
       loginCtrl.password = 'somepassword*9';
       loginCtrl.checkIfPasswordCompliant();
       expect(loginCtrl.isPasswordCompliant).toBeFalsy();
     });
 
-    it ('should accept a compliant password', () => {
+    it('should accept a compliant password', () => {
       loginCtrl.password = 'some_pasSword9';
       loginCtrl.checkIfPasswordCompliant();
       expect(loginCtrl.isPasswordCompliant).toBeTruthy();

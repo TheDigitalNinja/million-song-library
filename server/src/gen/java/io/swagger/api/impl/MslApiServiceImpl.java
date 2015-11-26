@@ -139,8 +139,8 @@ public class MslApiServiceImpl extends MslApiService {
     public Response rateArtist(String artistId, BigDecimal rating, String sessionToken)
             throws NotFoundException {
         // TODO replace current mock data
-        if (sessionToken.isEmpty()){
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        if (sessionToken == null || sessionToken.isEmpty()){
+            return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
         } else {
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
         }
@@ -150,8 +150,8 @@ public class MslApiServiceImpl extends MslApiService {
     public Response rateAlbum(String albumId, BigDecimal rating, String sessionToken)
             throws NotFoundException {
         // TODO replace current mock data
-        if (sessionToken.isEmpty()){
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        if (sessionToken == null || sessionToken.isEmpty()){
+            return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
         } else {
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
         }
@@ -161,8 +161,8 @@ public class MslApiServiceImpl extends MslApiService {
     public Response rateSong(String songId, BigDecimal rating, String sessionToken)
             throws NotFoundException {
         // TODO replace current mock data
-        if (sessionToken.isEmpty()){
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        if (sessionToken == null || sessionToken.isEmpty()){
+            return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
         } else {
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
         }
@@ -230,30 +230,42 @@ public class MslApiServiceImpl extends MslApiService {
     @Override
     public Response addSong(String songId, String sessionToken)
             throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+
+        if (sessionToken == null || sessionToken.isEmpty()){
+            return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        } else {
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        }
     }
 
     @Override
     public Response addAlbum(String albumId, String sessionToken)
             throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+
+        if (sessionToken == null || sessionToken.isEmpty()){
+            return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        } else {
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        }
     }
 
     @Override
     public Response addArtist(String artistId, String sessionToken)
             throws NotFoundException {
-        // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+
+        if (sessionToken == null || sessionToken.isEmpty()){
+            return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        } else {
+            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        }
     }
 
     @Override
     public Response removeSong(String songId, String sessionToken)
             throws NotFoundException {
 
-        if (sessionToken.isEmpty()){
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        if (sessionToken == null || sessionToken.isEmpty()){
+            return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
         } else {
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
         }
@@ -263,8 +275,8 @@ public class MslApiServiceImpl extends MslApiService {
     public Response removeAlbum(String albumId, String sessionToken)
             throws NotFoundException {
 
-        if (sessionToken.isEmpty()){
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        if (sessionToken == null || sessionToken.isEmpty()){
+            return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
         } else {
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
         }
@@ -274,8 +286,8 @@ public class MslApiServiceImpl extends MslApiService {
     public Response removeArtist(String artistId, String sessionToken)
             throws NotFoundException {
 
-        if (sessionToken.isEmpty()){
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        if (sessionToken == null || sessionToken.isEmpty()){
+            return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
         } else {
             return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
         }
