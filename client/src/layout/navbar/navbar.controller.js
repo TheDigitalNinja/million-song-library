@@ -24,7 +24,12 @@ export default class navbarCtrl {
    */
   async logout() {
     await this.authorisation.destroy();
-    this.$state.go('msl.login');
+    if(this.$state.is('msl.library')) {
+      this.$state.go('msl.home');
+    }
+    else {
+      this.$state.go('msl.login');
+    }
   }
 
 }

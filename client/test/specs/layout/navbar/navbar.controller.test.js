@@ -10,7 +10,7 @@ describe('navbarCtrl', () => {
 
   beforeEach(() => {
     angular.mock.module(navbarModule, ($provide) => {
-      $state = jasmine.createSpyObj('$state', ['go', 'current']);
+      $state = jasmine.createSpyObj('$state', ['go', 'current', 'is']);
       authorisation = jasmine.createSpyObj('authorisation', [
         'destroy',
         'isAuthorised',
@@ -33,11 +33,20 @@ describe('navbarCtrl', () => {
   it('should change authorise flag when state changed and change current state', (done) => {
     (async () => {
       const navbarCtrl = $controller('navbarCtrl', { $scope });
-
-      authorisation.destroy.and.returnValue(Promise.resolve());
+      $state.is.and.returnValue(false);
       await navbarCtrl.logout();
       expect(authorisation.destroy).toHaveBeenCalled();
       expect($state.go).toHaveBeenCalledWith('msl.login');
+      done();
+    })();
+  });
+
+  it('should redirect to home page on logout if state is msl.library', (done) => {
+    (async () => {
+      const navbarCtrl = $controller('navbarCtrl', { $scope });
+      $state.is.and.returnValue(true);
+      await navbarCtrl.logout();
+      expect($state.go).toHaveBeenCalledWith('msl.home');
       done();
     })();
   });
