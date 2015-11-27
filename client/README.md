@@ -123,9 +123,17 @@ Start docs editor by running `npm run docs`.
 #### Swagger CodeGen
 
 Run `../common/./gen_server_stubs.sh [/output_directory]` to use the swagger-codegen tools to generate stubs from the swagger specification. If output not specified script will generate stubs into `../server` (https://github.com/swagger-api/swagger-codegen/blob/master/README.md)
-Using maven file run `../server mvn -f build.xml clean generate-sources jetty:run` or from the client directory run `npm run start-server`
 
 
 #### Swagger UI
 
 Runs on port 5000/docs alongside swagger mock server when running it `npm run serve-mock`.
+
+### Jersey API
+
+To run the jersey api from the client directory use the npm task `start-server` or from the server directory `../server mvn -f build.xml clean generate-sources jetty:run`
+
+#### Coverage report on jersey
+
+With the server running and from the server directory, run `mvn -f build.xml site` to generate the coverage reporter for the jersey API. Optionally from
+the client directory run the npm task `server-coverage`. This will generate a html file under `/server/target/site/index.html`
