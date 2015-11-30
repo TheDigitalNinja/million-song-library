@@ -1,7 +1,7 @@
-describe('login', () => {
+describe('login modal', () => {
 
   beforeEach(() => {
-    browser.driver.get(`${ browser.baseUrl }/login`);
+    browser.driver.get(`${ browser.baseUrl }/my-library`);
     browser.driver.sleep(600);
   });
 
@@ -26,7 +26,7 @@ describe('login', () => {
         loginURL = browser.driver.getCurrentUrl();
         browser.driver.findElement(By.name('email')).sendKeys('fail@email.com');
         browser.driver.findElement(By.name('password')).sendKeys('1234');
-        browser.driver.findElement(By.css('form button')).click();
+        browser.driver.findElement(By.css('#login-modal button[type=submit]')).click();
       });
 
       it('should remain on the same page', () => {
@@ -34,7 +34,7 @@ describe('login', () => {
       });
 
       it('should display the button disable', () => {
-        const button = browser.driver.findElement(By.css('form button'));
+        const button = browser.driver.findElement(By.css('#login-modal button[type=submit]'));
         expect(button.getAttribute('disabled')).toBe('true');
       });
     });
@@ -43,11 +43,10 @@ describe('login', () => {
       it('Correct email or password', () => {
         browser.driver.findElement(by.name('email')).sendKeys('correct@email.com');
         browser.driver.findElement(by.name('password')).sendKeys('12345678A?');
-        browser.driver.findElement(By.css('form button')).click();
-        loginURL = browser.driver.getCurrentUrl();
-        expect(loginURL).toBe(`${ browser.baseUrl }/`);
+        browser.driver.findElement(By.css('#login-modal button[type=submit]')).click();
         browser.driver.sleep(600);
-        browser.driver.findElement(By.css('[data-pt-id=logout]')).click();
+        loginURL = browser.driver.getCurrentUrl();
+        expect(loginURL).toBe(`${ browser.baseUrl }/my-library`);
       });
     });
   });

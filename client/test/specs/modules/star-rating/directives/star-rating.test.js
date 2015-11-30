@@ -9,7 +9,13 @@ describe('starRating directive', () => {
   let element;
 
   beforeEach(() => {
-    angular.mock.module(starRatingModule);
+    angular.mock.module(starRatingModule, ($provide) => {
+      const loginModal = jasmine.createSpyObj('loginModal', ['show']);
+      const Permission = jasmine.createSpyObj('Permission', ['authorize']);
+
+      $provide.value('loginModal', loginModal);
+      $provide.value('Permission', Permission);
+    });
 
     inject(($rootScope, $compile) => {
       $scope = $rootScope.$new();

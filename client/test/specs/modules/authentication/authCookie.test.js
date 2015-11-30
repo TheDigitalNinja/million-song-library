@@ -1,13 +1,13 @@
 /* global describe, beforeEach, inject, it, expect, jasmine */
 import angular from 'angular';
-import authorisationModule from 'modules/authentication/module';
+import authenticationModule from 'modules/authentication/module';
 
 describe('authCookie', () => {
   let $cookies;
   let authCookie;
 
   beforeEach(() => {
-    angular.mock.module(authorisationModule, ($provide) => {
+    angular.mock.module(authenticationModule, ($provide) => {
       $cookies = jasmine.createSpyObj('$cookies', ['put', 'get', 'remove']);
       $provide.value('$cookies', $cookies);
     });

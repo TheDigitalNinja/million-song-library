@@ -1,3 +1,5 @@
+export const USER_REDIRECT_TO = 'msl.login';
+export const ANONYMOUS_REDIRECT_TO = 'msl.home';
 export const ROLE_USER = 'user';
 export const ROLE_ANONYMOUS = 'anonymous';
 export const GENRE_FACET_ID = 0;

@@ -1,9 +1,8 @@
-import _ from 'lodash';
 /**
  * login page main controller
  * @param {$rootScope.Scope} $scope
- * @param {ui.router.state.$state} $state
  * @param {authentication} authentication
+ * @param {ui.router.state.$state} $state
  */
 export default class loginCtrl {
   /*@ngInject*/
@@ -13,7 +12,6 @@ export default class loginCtrl {
    */
 
   constructor($scope, authentication, $state) {
-    this.isPasswordCompliant = true;
     this.submit = async() => {
       delete this.hasError;
       try {
@@ -25,21 +23,6 @@ export default class loginCtrl {
         $scope.$evalAsync();
       }
     };
-  }
-
-  /**
-   * Checks if password is compliant with security patterns
-   * @returns {boolean}
-   */
-  checkIfPasswordCompliant() {
-    if(angular.isDefined(this.password)) {
-      let passwordRules = [
-        /\w*[\d]+\w*/,
-        /\w*[A-Z]+\w*/,
-        /\w*[!#$%&*+,./:;<=>?@\^_~-]+\w*/,
-      ];
-      this.isPasswordCompliant = _.all(passwordRules, (rule) => rule.test(this.password));
-    }
   }
 
 }

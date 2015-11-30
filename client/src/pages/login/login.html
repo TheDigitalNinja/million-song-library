@@ -12,15 +12,18 @@
              ng-model="vm.password"
              class="form-control"
              placeholder="Password"
-             ng-change="vm.checkIfPasswordCompliant()"
-             ng-minlength="10"
+             password
              required>
-      <ul ng-if="credentials.password.$dirty && credentials.password.$viewValue.length > 0">
-        <li ng-show="!vm.isPasswordCompliant">
-          <span class="input-field-error">Please provide a password with at least a number, a capitalized letter and a special character (!#$%&*+,./:;<=>?@\^_~-)</span>
-        </li>
-        <li ng-show="credentials.password.$error.minlength">
-          <span class="input-field-error">Password must be at least 10 characters long</span>
+      <ul ng-if="credentials.password.$dirty && credentials.password.$viewValue.length > 0" >
+        <li ng-show="credentials.password.$error.password">
+          <span class="input-field-error">Must contain:
+            <ul>
+              <li>At least a number</li>
+              <li>A capitalized letter </li>
+              <li>A special character (!#$%&*+,./:;<=>?@\^_~-)</li>
+              <li>More than 10 characters </li>
+            </ul>
+          </span>
         </li>
       </ul>
     </div>

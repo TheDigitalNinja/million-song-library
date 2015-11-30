@@ -1,3 +1,5 @@
+import { ROLE_USER } from '../../../constants.js';
+
 /**
  * start rating controller
  */
@@ -10,11 +12,16 @@ export default class ratingController {
    * @param {$rootScope.Scope} $scope
    * @param {ratingModel} ratingModel
    * @param {$log} $log
+   * @param {loginModal} loginModal
+   * @param {Permission} Permission
    */
-  constructor($scope, ratingModel, $log) {
+  constructor($scope, ratingModel, $log, loginModal, Permission) {
     this.$scope = $scope;
     this.ratingModel = ratingModel;
     this.$log = $log;
+    this.loginModal = loginModal;
+    this.Permission = Permission;
+
     this.max = 5;
     this.readOnly = !!$scope.readOnly;
     this.isPersonalRating = $scope.isPersonalRating || false;
@@ -31,9 +38,12 @@ export default class ratingController {
     if(!this.readOnly && this.$scope.starRating !== newRating) {
       this.readOnly = true;
       try {
-        await this.ratingModel.rate(this.$scope.entityId, this.$scope.entityType, newRating);
+        await this.Permission.authorize({ only: [ROLE_USER] });
+
+        this.ratingModel.rate(this.$scope.entityId, this.$scope.entityType, newRating);
         this._setStarRating(newRating);
       } catch(err) {
+        this.loginModal.show();
         this.$log.warn(err);
       }
       this.readOnly = false;
