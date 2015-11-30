@@ -33,8 +33,7 @@ public class AuthenticationClient {
             throw new RuntimeException("Failed : HTTP error code : "
                     + response.getStatus());
         }
-        MslApiResponseMessage responseWrapper = response.readEntity(MslApiResponseMessage.class);
-        return responseWrapper;
+        return response.readEntity(MslApiResponseMessage.class);
     }
 
     public MslApiResponseMessage logOut () {
@@ -46,8 +45,7 @@ public class AuthenticationClient {
             throw new RuntimeException("Failed : HTTP error code : "
                     + response.getStatus());
         }
-        MslApiResponseMessage responseWrapper = response.readEntity(MslApiResponseMessage.class);
-        return responseWrapper;
+        return response.readEntity(MslApiResponseMessage.class);
     }
 
 }

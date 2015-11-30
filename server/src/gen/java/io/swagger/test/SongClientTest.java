@@ -1,21 +1,21 @@
 package io.swagger.tests;
 
 import io.swagger.api.impl.MslApiResponseMessage;
-import io.swagger.api.impl.MslSessionToken;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.junit.Test;
-import org.junit.Before;
+import javax.ws.rs.core.NewCookie;
+import java.math.BigDecimal;
 import io.swagger.client.SongClient;
 
-import javax.ws.rs.core.NewCookie;
-
-import java.math.BigDecimal;
+import org.junit.Test;
+import org.junit.Before;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class SongClientTest {
+
+    private final String PAGE_SIZE = "10";
 
     private SongClient songClient;
     static Logger logger = Logger.getLogger(SongClientTest.class);
@@ -42,19 +42,17 @@ public class SongClientTest {
         songClient.get("");
     }
 
-
     @Test
     public void testBrowse() {
         logger.debug("songClient.testBrowse");
-        MslApiResponseMessage songList = songClient.browse("", "10");
+        MslApiResponseMessage songList = songClient.browse(PAGE_SIZE);
         assertEquals("song browse call is successful", "success", songList.getMessage());
     }
 
-    @Test
-    public void testBrowseFilteredByFacets() {
-        logger.debug("songClient.testBrowseFilteredByFacets");
-        MslApiResponseMessage albumList = songClient.browse("3", "10");
-        assertEquals("songs browse facet filtered call is successful", "success", albumList.getMessage());
+    @Test(expected = java.lang.RuntimeException.class)
+    public void testBrowsExceptionIsThrown() {
+        logger.debug("songClient.testBrowsExceptionIsThrown");
+        songClient.browse("");
     }
 
     @Test
@@ -69,14 +67,14 @@ public class SongClientTest {
     @Test(expected = java.lang.RuntimeException.class)
     public void testAddSongThrowException() {
         logger.debug("songClient.testAddSongThrowException");
-        songClient.addSong("1", "");
+        songClient.addSong(TEST_SONG_ID, "");
     }
 
     @Test
     public void testRateSong() {
         logger.debug("songClient.testRateSong");
         NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);
-        MslApiResponseMessage response = songClient.rateSong(TEST_SONG_ID, new BigDecimal("2"), cookie.toString());
+        MslApiResponseMessage response = songClient.rateSong(TEST_SONG_ID, 2, cookie.toString());
         assertNotNull(response);
         assertEquals("rateSong response is successful", "magic!", response.getMessage());
     }
@@ -84,7 +82,7 @@ public class SongClientTest {
     @Test(expected = java.lang.RuntimeException.class)
     public void testRateSongThrowException() {
         logger.debug("songClient.testRateSongThrowException");
-        songClient.rateSong(TEST_SONG_ID, new BigDecimal("4"), "");
+        songClient.rateSong(TEST_SONG_ID, 3, "");
     }
 
 }
