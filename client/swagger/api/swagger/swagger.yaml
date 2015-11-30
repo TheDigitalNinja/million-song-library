@@ -110,7 +110,7 @@ paths:
         -
           name: songId
           in: path
-          description: "The song's identification number"
+          description: The song's unique identifier
           required: true
           type: string
       responses:
@@ -137,7 +137,7 @@ paths:
         -
           name: albumId
           in: path
-          description: Album identification number
+          description: The album's unique identifier
           required: true
           type: string
       responses:
@@ -392,7 +392,7 @@ paths:
           in: formData
           description: "Value between 1-5 that represents the user's rating of the artist"
           required: true
-          type: number
+          type: integer
         -
           name: sessionToken
           in: header
@@ -435,7 +435,7 @@ paths:
           in: formData
           description: "Value between 1-5 that represents the user's rating of the album"
           required: true
-          type: number
+          type: integer
         -
           name: sessionToken
           in: header
@@ -478,7 +478,7 @@ paths:
           in: formData
           description: "Value between 1-5 that represents the user's rating of the song"
           required: true
-          type: number
+          type: integer
         -
           name: sessionToken
           in: header
@@ -884,11 +884,11 @@ definitions:
         type: string
       year:
         description: The year the album was released
-        type: number
+        type: integer
       average_rating:
-        type: number
+        type: integer
       personal_rating:
-        type: number
+        type: integer
       image_link:
         type: string
       songs_list:
@@ -908,9 +908,9 @@ definitions:
         items:
           type: string
       average_rating:
-        type: number
+        type: integer
       personal_rating:
-        type: number
+        type: integer
       image_link:
         type: string
       songs_list:
@@ -984,15 +984,15 @@ definitions:
       danceability:
         type: number
       average_rating:
-        type: number
+        type: integer
       personal_rating:
-        type: number
+        type: integer
       song_hotttnesss:
         description: The Echo Nest hotttnesss score
         type: number
       year:
         description: The year the song was released
-        type: number
+        type: integer
       in_my_library:
         type: boolean
   UserInfo:

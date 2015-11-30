@@ -1,12 +1,10 @@
-package io.swagger.mock;
+package com.kenzan.msl.server.mock;
 
 import io.swagger.api.factories.FacetServiceFactory;
 import io.swagger.model.AlbumInfo;
 import io.swagger.model.AlbumList;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class AlbumMockData {
@@ -40,9 +38,9 @@ public class AlbumMockData {
 
         if (hasRatingFacet) {
             return result;
-        }else {
-            return albumList;
         }
+        
+        return albumList;
     }
 
     private List<AlbumInfo> applyRatingFacet (String [] facets, List<AlbumInfo> albumList) {
@@ -96,9 +94,9 @@ public class AlbumMockData {
         albumInfoMock1.setArtistId("1");
         albumInfoMock1.setArtistName("Vai, Steve");
         albumInfoMock1.setGenre("Rock");
-        albumInfoMock1.setYear(new BigDecimal("2000"));
-        albumInfoMock1.setAverageRating(new BigDecimal("4"));
-        albumInfoMock1.setPersonalRating(new BigDecimal("3"));
+        albumInfoMock1.setYear(2000);
+        albumInfoMock1.setAverageRating(4);
+        albumInfoMock1.setPersonalRating(3);
         albumInfoMock1.setImageLink("https://upload.wikimedia.org/wikipedia/en/6/6d/SteveVaiAlienLoveSecrets.jpg");
         List<String> album1songsList = new ArrayList<String>();
         album1songsList.add("1");
@@ -111,9 +109,9 @@ public class AlbumMockData {
         albumInfoMock2.setArtistId("2");
         albumInfoMock2.setArtistName("Pink Floyd");
         albumInfoMock2.setGenre("Rock");
-        albumInfoMock2.setYear(new BigDecimal("1977"));
-        albumInfoMock2.setAverageRating(new BigDecimal("4"));
-        albumInfoMock2.setPersonalRating(new BigDecimal("4"));
+        albumInfoMock2.setYear(1977);
+        albumInfoMock2.setAverageRating(4);
+        albumInfoMock2.setPersonalRating(4);
         albumInfoMock2.setImageLink("http://wordsushi.com/wp-content/uploads/2012/11/The+Wall++high+resolution+png.png");
         List<String> album2songsList = new ArrayList<String>();
         album2songsList.add("2");
@@ -126,9 +124,9 @@ public class AlbumMockData {
         albumInfoMock3.setArtistId("3");
         albumInfoMock3.setArtistName("Janis Joplin");
         albumInfoMock3.setGenre("Rock and Roll");
-        albumInfoMock3.setYear(new BigDecimal("1965"));
-        albumInfoMock3.setAverageRating(new BigDecimal("3"));
-        albumInfoMock3.setPersonalRating(new BigDecimal("3"));
+        albumInfoMock3.setYear(1965);
+        albumInfoMock3.setAverageRating(3);
+        albumInfoMock3.setPersonalRating(3);
         albumInfoMock3.setImageLink("https://upload.wikimedia.org/wikipedia/en/0/0f/FSJanis.jpg");
         List<String> album3songsList = new ArrayList<String>();
         album3songsList.add("3");
@@ -141,9 +139,9 @@ public class AlbumMockData {
         albumInfoMock4.setArtistId("4");
         albumInfoMock4.setArtistName("Led Zeppelin");
         albumInfoMock4.setGenre("Rock and Roll");
-        albumInfoMock4.setYear(new BigDecimal("1975"));
-        albumInfoMock4.setAverageRating(new BigDecimal("4"));
-        albumInfoMock4.setPersonalRating(new BigDecimal("5"));
+        albumInfoMock4.setYear(1975);
+        albumInfoMock4.setAverageRating(4);
+        albumInfoMock4.setPersonalRating(5);
         albumInfoMock4.setImageLink("https://upload.wikimedia.org/wikipedia/en/5/5f/Led_Zeppelin_-_Led_Zeppelin_III.png");
         List<String> album4songsList = new ArrayList<String>();
         album4songsList.add("4");
@@ -156,9 +154,9 @@ public class AlbumMockData {
         albumInfoMock5.setArtistId("5");
         albumInfoMock5.setArtistName("Funkadelic");
         albumInfoMock5.setGenre("Funk");
-        albumInfoMock5.setYear(new BigDecimal("1990"));
-        albumInfoMock5.setAverageRating(new BigDecimal("2"));
-        albumInfoMock5.setPersonalRating(new BigDecimal("4"));
+        albumInfoMock5.setYear(1990);
+        albumInfoMock5.setAverageRating(2);
+        albumInfoMock5.setPersonalRating(4);
         albumInfoMock5.setImageLink("https://upload.wikimedia.org/wikipedia/en/a/ad/UncleJamWantsYou.jpg");
         List<String> album5songsList = new ArrayList<String>();
         album5songsList.add("5");
@@ -171,9 +169,9 @@ public class AlbumMockData {
         albumInfoMock6.setArtistId("6");
         albumInfoMock6.setArtistName("Willie Nelson");
         albumInfoMock6.setGenre("Country");
-        albumInfoMock6.setYear(new BigDecimal("1970"));
-        albumInfoMock6.setAverageRating(new BigDecimal("1"));
-        albumInfoMock6.setPersonalRating(new BigDecimal("3"));
+        albumInfoMock6.setYear(1970);
+        albumInfoMock6.setAverageRating(1);
+        albumInfoMock6.setPersonalRating(3);
         albumInfoMock6.setImageLink("https://upload.wikimedia.org/wikipedia/en/7/7c/Willie-Nelson-Rainbow-Connection.jpg");
         List<String> album6songsList = new ArrayList<String>();
         album6songsList.add("6");
@@ -186,9 +184,9 @@ public class AlbumMockData {
         albumInfoMock7.setArtistId("7");
         albumInfoMock7.setArtistName("Joe Satriani");
         albumInfoMock7.setGenre("Rock");
-        albumInfoMock7.setYear(new BigDecimal("1990"));
-        albumInfoMock7.setAverageRating(new BigDecimal("4"));
-        albumInfoMock7.setPersonalRating(new BigDecimal("3"));
+        albumInfoMock7.setYear(1990);
+        albumInfoMock7.setAverageRating(4);
+        albumInfoMock7.setPersonalRating(3);
         albumInfoMock7.setImageLink("http://www.satriani.com/discography/Surfing_With_The_Alien/Surfing_With_The_Alien.jpg");
         List<String> album7songsList = new ArrayList<String>();
         album7songsList.add("7");
@@ -201,9 +199,9 @@ public class AlbumMockData {
         albumInfoMock8.setArtistId("8");
         albumInfoMock8.setArtistName("Joe Satriani");
         albumInfoMock8.setGenre("Rock");
-        albumInfoMock8.setYear(new BigDecimal("1988"));
-        albumInfoMock8.setAverageRating(new BigDecimal("4"));
-        albumInfoMock8.setPersonalRating(new BigDecimal("4"));
+        albumInfoMock8.setYear(1988);
+        albumInfoMock8.setAverageRating(4);
+        albumInfoMock8.setPersonalRating(4);
         albumInfoMock8.setImageLink("https://upload.wikimedia.org/wikipedia/en/5/50/Joespace.jpg");
         List<String> album8songsList = new ArrayList<String>();
         album8songsList.add("8");
@@ -216,9 +214,9 @@ public class AlbumMockData {
         albumInfoMock9.setArtistId("9");
         albumInfoMock9.setArtistName("Earth wind and fire");
         albumInfoMock9.setGenre("Funk");
-        albumInfoMock9.setYear(new BigDecimal("1960"));
-        albumInfoMock9.setAverageRating(new BigDecimal("2"));
-        albumInfoMock9.setPersonalRating(new BigDecimal("2"));
+        albumInfoMock9.setYear(1960);
+        albumInfoMock9.setAverageRating(2);
+        albumInfoMock9.setPersonalRating(2);
         albumInfoMock9.setImageLink("https://upload.wikimedia.org/wikipedia/en/0/03/Whiskeytown-Stranger%27s_Almanac_%28album_cover%29.jpg");
         List<String> album9songsList = new ArrayList<String>();
         album9songsList.add("9");

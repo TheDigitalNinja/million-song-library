@@ -2,7 +2,6 @@ package io.swagger.api.factories;
 
 import io.swagger.model.*;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,28 +73,16 @@ public class FacetServiceFactory {
      * @param facet_id
      * @return
      */
-    private static boolean fitsInRating(BigDecimal rating, String facet_id) {
+    private static boolean fitsInRating(Integer rating, String facet_id) {
         switch (Integer.parseInt(facet_id)) {
             case 14:
-                if (rating.compareTo(new BigDecimal("4")) >= 0) {
-                    return true;
-                }
-                break;
+                return rating >= 4;
             case 13:
-                if (rating.compareTo(new BigDecimal("3")) >= 0) {
-                    return true;
-                }
-                break;
+                return rating >= 3;
             case 12:
-                if (rating.compareTo(new BigDecimal("2")) >= 0) {
-                    return true;
-                }
-                break;
+                return rating >= 2;
             case 11:
-                if (rating.compareTo(new BigDecimal("1")) >= 0) {
-                    return true;
-                }
-                break;
+                return rating >= 1;
         }
         return false;
     }

@@ -1,11 +1,9 @@
-package io.swagger.mock;
+package com.kenzan.msl.server.mock;
 
 import io.swagger.api.factories.FacetServiceFactory;
-import io.swagger.model.AlbumInfo;
 import io.swagger.model.SongInfo;
 import io.swagger.model.SongList;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,9 +38,9 @@ public class SongMockData {
 
         if (hasRatingFacet) {
             return result;
-        }else {
-            return songList;
         }
+        
+        return songList;
     }
 
     private List<SongInfo> applyRatingFacet (String [] facets, List<SongInfo> songList) {
@@ -100,8 +98,8 @@ public class SongMockData {
         songMockData1.setAlbumName("Alien Love Secrets");
         songMockData1.setDuration(230);
         songMockData1.setGenre("Rock");
-        songMockData1.setAverageRating(new BigDecimal("4"));
-        songMockData1.setYear(new BigDecimal("2009"));
+        songMockData1.setAverageRating(4);
+        songMockData1.setYear(2009);
         songs.add(songMockData1);
 
         SongInfo songMockData2 = new SongInfo();
@@ -114,8 +112,8 @@ public class SongMockData {
         songMockData2.setAlbumName("The Wall");
         songMockData2.setDuration(230);
         songMockData2.setGenre("Rock");
-        songMockData2.setAverageRating(new BigDecimal("4"));
-        songMockData2.setYear(new BigDecimal("1979"));
+        songMockData2.setAverageRating(4);
+        songMockData2.setYear(1979);
         songs.add(songMockData2);
 
         SongInfo songMockData3 = new SongInfo();
@@ -128,8 +126,8 @@ public class SongMockData {
         songMockData3.setAlbumName("Farewell song");
         songMockData3.setDuration(230);
         songMockData3.setGenre("Rock and Roll");
-        songMockData3.setAverageRating(new BigDecimal("3"));
-        songMockData3.setYear(new BigDecimal("1982"));
+        songMockData3.setAverageRating(3);
+        songMockData3.setYear(1982);
         songs.add(songMockData3);
 
         SongInfo songMockData4 = new SongInfo();
@@ -142,8 +140,8 @@ public class SongMockData {
         songMockData4.setAlbumName("Led Zeppelin III");
         songMockData4.setDuration(230);
         songMockData4.setGenre("Rock and Roll");
-        songMockData4.setAverageRating(new BigDecimal("4"));
-        songMockData4.setYear(new BigDecimal("1970"));
+        songMockData4.setAverageRating(4);
+        songMockData4.setYear(1970);
         songs.add(songMockData4);
 
         SongInfo songMockData5 = new SongInfo();
@@ -156,8 +154,8 @@ public class SongMockData {
         songMockData5.setAlbumName("Uncle Jam Wants You");
         songMockData5.setDuration(230);
         songMockData5.setGenre("Funk");
-        songMockData5.setAverageRating(new BigDecimal("2"));
-        songMockData5.setYear(new BigDecimal("1979"));
+        songMockData5.setAverageRating(2);
+        songMockData5.setYear(1979);
         songs.add(songMockData5);
 
         SongInfo songMockData6 = new SongInfo();
@@ -169,9 +167,9 @@ public class SongMockData {
         songMockData6.setAlbumId("6");
         songMockData6.setAlbumName("Rainbow Connection");
         songMockData6.setDuration(230);
-        songMockData6.setAverageRating(new BigDecimal("1"));
         songMockData6.setGenre("Country");
-        songMockData6.setYear(new BigDecimal("2011"));
+        songMockData6.setAverageRating(1);
+        songMockData6.setYear(2011);
         songs.add(songMockData6);
 
         SongInfo songMockData7 = new SongInfo();
@@ -183,9 +181,9 @@ public class SongMockData {
         songMockData7.setAlbumId("7");
         songMockData7.setAlbumName("Surfing with the alien");
         songMockData7.setDuration(230);
-        songMockData7.setAverageRating(new BigDecimal("4"));
         songMockData7.setGenre("Rock");
-        songMockData7.setYear(new BigDecimal("1987"));
+        songMockData7.setAverageRating(4);
+        songMockData7.setYear(1987);
         songs.add(songMockData7);
 
         SongInfo songMockData8 = new SongInfo();
@@ -197,9 +195,9 @@ public class SongMockData {
         songMockData8.setAlbumId("8");
         songMockData8.setAlbumName("Is There Love in Space?");
         songMockData8.setDuration(230);
-        songMockData8.setAverageRating(new BigDecimal("4"));
         songMockData8.setGenre("Rock");
-        songMockData8.setYear(new BigDecimal("2011"));
+        songMockData8.setAverageRating(4);
+        songMockData8.setYear(2011);
         songs.add(songMockData8);
         
         SongInfo songMockData9 = new SongInfo();
@@ -211,9 +209,9 @@ public class SongMockData {
         songMockData9.setAlbumId("9");
         songMockData9.setAlbumName("That's the Way of the World");
         songMockData9.setDuration(230);
-        songMockData9.setAverageRating(new BigDecimal("2"));
         songMockData9.setGenre("Funk");
-        songMockData9.setYear(new BigDecimal("1975"));
+        songMockData9.setAverageRating(2);
+        songMockData9.setYear(1975);
         songs.add(songMockData9);
 
         songList.setSongs(songs);
