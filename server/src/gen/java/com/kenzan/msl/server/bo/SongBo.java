@@ -15,12 +15,12 @@ public class SongBo extends AbstractBo {
 	private UUID songId;
 	private String songName;
 	private String genre;
-	private int duration;
+	private Integer duration;
 	private BigDecimal danceability;
 	private BigDecimal songHotttnesss;
-	private int year;
-	private int averageRating;
-	private int personalRating;
+	private Integer year;
+	private Integer averageRating;
+	private Integer personalRating;
 	private String imageLink;
 	private UUID artistId;
 	private String artistName;
@@ -66,13 +66,13 @@ public class SongBo extends AbstractBo {
 	/**
 	 * @return the duration
 	 */
-	public int getDuration() {
+	public Integer getDuration() {
 		return duration;
 	}
 	/**
 	 * @param duration the duration to set
 	 */
-	public void setDuration(int duration) {
+	public void setDuration(Integer duration) {
 		this.duration = duration;
 	}
 	/**
@@ -102,37 +102,37 @@ public class SongBo extends AbstractBo {
 	/**
 	 * @return the year
 	 */
-	public int getYear() {
+	public Integer getYear() {
 		return year;
 	}
 	/**
 	 * @param year the year to set
 	 */
-	public void setYear(int year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 	/**
 	 * @return the averageRating
 	 */
-	public int getAverageRating() {
+	public Integer getAverageRating() {
 		return averageRating;
 	}
 	/**
 	 * @param averageRating the averageRating to set
 	 */
-	public void setAverageRating(int averageRating) {
+	public void setAverageRating(Integer averageRating) {
 		this.averageRating = averageRating;
 	}
 	/**
 	 * @return the personalRating
 	 */
-	public int getPersonalRating() {
+	public Integer getPersonalRating() {
 		return personalRating;
 	}
 	/**
 	 * @param personalRating the personalRating to set
 	 */
-	public void setPersonalRating(int personalRating) {
+	public void setPersonalRating(Integer personalRating) {
 		this.personalRating = personalRating;
 	}
 	/**

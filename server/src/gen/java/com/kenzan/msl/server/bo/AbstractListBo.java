@@ -7,6 +7,7 @@ import com.kenzan.msl.server.dao.AbstractDao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  *
@@ -14,16 +15,16 @@ import java.util.List;
  * @author billschwanitz
  */
 public abstract class AbstractListBo<T extends AbstractBo> {
-	private String pagingState;
+	private UUID pagingState;
 	private List<AbstractDao> daoList =  new ArrayList<AbstractDao>();
 	private List<T> boList =  new ArrayList<T>();
 	private boolean isDaoToBoConversionComplete = false;
 	
-	public String getPagingState() {
+	public UUID getPagingState() {
 		return pagingState;
 	}
 	
-	public void setPagingState(String pagingState) {
+	public void setPagingState(UUID pagingState) {
 		this.pagingState = pagingState;
 	}
 	

@@ -27,7 +27,7 @@ public class UserDataByUserDao extends AbstractDao {
 	@Column (name = "favorites_timestamp")
 	private Date favoritesTimestamp;
 	@Column (name = "rating")
-	private int rating;
+	private Integer rating;
 	
 	/**
 	 * @return the userId
@@ -80,13 +80,13 @@ public class UserDataByUserDao extends AbstractDao {
 	/**
 	 * @return the rating
 	 */
-	public int getRating() {
+	public Integer getRating() {
 		return rating;
 	}
 	/**
 	 * @param rating the rating to set
 	 */
-	public void setRating(int rating) {
+	public void setRating(Integer rating) {
 		this.rating = rating;
 	}
 	

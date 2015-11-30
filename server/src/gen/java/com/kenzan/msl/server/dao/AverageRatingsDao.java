@@ -22,9 +22,9 @@ public class AverageRatingsDao extends AbstractDao {
 	@Column (name = "content_type")
 	private String contentType;
 	@Column (name = "num_rating")
-	private int numRating;
+	private Long numRating;
 	@Column (name = "sum_rating")
-	private int sumRating;
+	private Long sumRating;
 	
 	/**
 	 * @return the contentId
@@ -53,25 +53,25 @@ public class AverageRatingsDao extends AbstractDao {
 	/**
 	 * @return the numRating
 	 */
-	public int getNumRating() {
+	public Long getNumRating() {
 		return numRating;
 	}
 	/**
 	 * @param numRating the numRating to set
 	 */
-	public void setNumRating(int numRating) {
+	public void setNumRating(Long numRating) {
 		this.numRating = numRating;
 	}
 	/**
 	 * @return the sumRating
 	 */
-	public int getSumRating() {
+	public Long getSumRating() {
 		return sumRating;
 	}
 	/**
 	 * @param sumRating the sumRating to set
 	 */
-	public void setSumRating(int sumRating) {
+	public void setSumRating(Long sumRating) {
 		this.sumRating = sumRating;
 	}
 }

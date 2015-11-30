@@ -9,7 +9,6 @@ import com.kenzan.msl.server.bo.ArtistBo;
 import com.kenzan.msl.server.bo.ArtistListBo;
 import com.kenzan.msl.server.bo.SongBo;
 import com.kenzan.msl.server.bo.SongListBo;
-import com.kenzan.msl.server.dao.AbstractAlbumDao;
 import com.kenzan.msl.server.dao.FacetDao;
 import com.kenzan.msl.server.dao.FacetWithChildrenDao;
 
@@ -42,30 +41,29 @@ public class Translators {
 		AlbumList model = new AlbumList();
 		
 		PagingState pagingState = new PagingState();
-		pagingState.setPagingState(listBo.getPagingState()); 
+		pagingState.setPagingState(null == listBo.getPagingState() ? null : listBo.getPagingState().toString()); 
 		model.setPagingState(pagingState);
 		
 		for (AlbumBo albumBo : listBo.getBoList()) {
-			//model.getAlbums().add(Translators.translate(albumBo));
+			model.getAlbums().add(Translators.translate(albumBo));
 		}
 		
 		return model;
 	}
 	
-	public static AlbumInfo translate(AbstractAlbumDao dao) {
+	public static AlbumInfo translate(AlbumBo bo) {
 		AlbumInfo model = new AlbumInfo();
 		
-		model.setAlbumId(dao.getAlbumId().toString());
-		model.setAlbumName(dao.getAlbumName());
-		model.setArtistId(dao.getArtistId().toString());
-		model.setArtistName(dao.getArtistName());
-		//model.setGenre(dao.getGenre());
-		model.setYear(dao.getAlbumYear());
-		//model.setAverageRating(dao.getAverageRating());
-		//model.setPersonalRating(dao.getPersonalRating());
-		//model.setImageLink(dao.getImageLink());
-		//model.getSongsList().addAll(dao.getSongsList());
-		
+		model.setAlbumId(bo.getAlbumId().toString());
+		model.setAlbumName(bo.getAlbumName());
+		model.setArtistId(bo.getArtistId().toString());
+		model.setArtistName(bo.getArtistName());
+		model.setGenre(bo.getGenre());
+		model.setYear(bo.getYear());
+		model.setAverageRating(bo.getAverageRating());
+		model.setPersonalRating(bo.getPersonalRating());
+		model.setImageLink(bo.getImageLink());
+		model.getSongsList().addAll(bo.getSongsList());
 		
 		return model;
 	}
@@ -78,7 +76,7 @@ public class Translators {
 		ArtistList model = new ArtistList();
 		
 		PagingState pagingState = new PagingState();
-		pagingState.setPagingState(listBo.getPagingState()); 
+		pagingState.setPagingState(null == listBo.getPagingState() ? null : listBo.getPagingState().toString()); 
 		model.setPagingState(pagingState);
 		
 		
@@ -109,14 +107,16 @@ public class Translators {
     // =========================================================================================================== SONGS
     // =================================================================================================================
 	
-	public static SongList translate(SongListBo dao) {
+	public static SongList translate(SongListBo listBo) {
 		SongList model = new SongList();
 		
 		PagingState pagingState = new PagingState();
-		pagingState.setPagingState(dao.getPagingState()); 
+		pagingState.setPagingState(null == listBo.getPagingState() ? null : listBo.getPagingState().toString()); 
 		model.setPagingState(pagingState);
 		
-		//model.setSongs(translateSongList(dao.getContentList()));
+		for (SongBo songBo : listBo.getBoList()) {
+			model.getSongs().add(Translators.translate(songBo));
+		}
 		
 		return model;
 	}

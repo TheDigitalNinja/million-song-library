@@ -51,11 +51,13 @@ public class CassandraConstants {
 	
 	public static final String MSL_DEFAULT_HOTNESS_BUCKET	= "Hotness01";
 
+	public static final String MSL_COLUMN_ALBUM_ID			= "album_id";
 	public static final String MSL_COLUMN_ARTIST_ID			= "artist_id";
 	public static final String MSL_COLUMN_CONTENT_ID		= "content_id";
 	public static final String MSL_COLUMN_CONTENT_TYPE		= "content_type";
 	public static final String MSL_COLUMN_FACET_NAME		= "facet_name";
 	public static final String MSL_COLUMN_HOTNESS_BUCKET	= "hotness_bucket";
+	public static final String MSL_COLUMN_SONG_ID			= "song_id";
 	public static final String MSL_COLUMN_USER_ID			= "user_id";
 
 	public static enum MSL_CONTENT_TYPE {

@@ -8,8 +8,8 @@ import com.datastax.driver.core.ResultSetFuture;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.datastax.driver.mapping.MappingManager;
-import com.kenzan.msl.server.bo.ArtistBo;
-import com.kenzan.msl.server.bo.ArtistListBo;
+import com.kenzan.msl.server.bo.AlbumBo;
+import com.kenzan.msl.server.bo.AlbumListBo;
 import com.kenzan.msl.server.cassandra.CassandraConstants;
 import com.kenzan.msl.server.cassandra.CassandraConstants.MSL_CONTENT_TYPE;
 import com.kenzan.msl.server.dao.AverageRatingsDao;
@@ -20,24 +20,24 @@ import java.util.UUID;
 
 /**
  * Performs queries to numerous Cassandra tables to assemble all the pieces that make up an
- * ArtistList response. This is a paginated query, so the initial query will select a page
- * of artists from a single table (based on the facets, if any, that were passed from the
+ * AlbumList response. This is a paginated query, so the initial query will select a page
+ * of albums from a single table (based on the facets, if any, that were passed from the
  * caller).
  * 
- *  The much of the artist's data is read from the songs_albums_by_artist table. This includes
- *  the artist name, genre, similar artists, albums and songs. Some of this data is denormalized
+ *  The much of the album's data is read from the songs_artist_by_album table. This includes
+ *  the album name, album year, genre, artists and songs. Some of this data is denormalized
  *  so it is only retrieved from the first of potentially multiple rows.
  *  
- *  The artist's community rating is retrieved from the average_ratings table. 
+ *  The album's community rating is retrieved from the average_ratings table. 
  *
- *  The artist's user rating is retrieved from the user_data_by_user table. 
+ *  The album's user rating is retrieved from the user_data_by_user table. 
  *
  * @author billschwanitz
  */
-public class ArtistListQuery {
+public class AlbumListQuery {
 	/*
 	 * Performs queries to numerous Cassandra tables to assemble all the pieces that make up an
-	 * ArtistList response.
+	 * AlbumList response.
 	 * 
 	 * @param session			the Datastax session through which queries and mappings should be executed
 	 * @param pagingStateUuid	Used for pagination control.
@@ -55,92 +55,92 @@ public class ArtistListQuery {
 	 * @param userUuid		Specifies a user UUID identifying the currently logged-in
 	 * 							user. Will be null for unauthenticated requests.
 	 * 
-	 * @return the ArtistList instance with all the info for the requested page
+	 * @return the AlbumList instance with all the info for the requested page
 	 */
-	public static ArtistListBo get(final Session session, final UUID pagingStateUuid, final Integer items, final String facets, final UUID userUuid) {
-		ArtistListBo artistListBo = new ArtistListBo();
+	public static AlbumListBo get(final Session session, final UUID pagingStateUuid, final Integer items, final String facets, final UUID userUuid) {
+		AlbumListBo albumListBo = new AlbumListBo();
 
-		// Retrieve the requested page of Artists
-		new Paginator(CassandraConstants.MSL_CONTENT_TYPE.ARTIST, session, pagingStateUuid, items, facets).getPage(artistListBo);
+		// Retrieve the requested page of Albums
+		new Paginator(CassandraConstants.MSL_CONTENT_TYPE.ALBUM, session, pagingStateUuid, items, facets).getPage(albumListBo);
 		
 		/*
-		 *  Asynchronously query for the average and user ratings for each artist.
+		 *  Asynchronously query for the average and user ratings for each album.
 		 *  
 		 *  NOTE: this could be done using CQL's IN keyword, but that leads to scalability issues. See the great discussion of this issue
 		 *  here: https://lostechies.com/ryansvihla/2014/09/22/cassandra-query-patterns-not-using-the-in-query-for-multiple-partitions
 		 */
-		Set<ResultSetFuture> averageRatingFutures = fireAverageRatingQueries(session, artistListBo);
+		Set<ResultSetFuture> averageRatingFutures = fireAverageRatingQueries(session, albumListBo);
 		Set<ResultSetFuture> userRatingFutures = null;
 		if (null != userUuid) {
-			userRatingFutures = fireUserRatingQueries(session, artistListBo, userUuid);
+			userRatingFutures = fireUserRatingQueries(session, albumListBo, userUuid);
 		}
 		
 		// Now wait for the asynchronous queries to complete and roll the data into the list
-		processAverageRatingResults(session, artistListBo, averageRatingFutures);
+		processAverageRatingResults(session, albumListBo, averageRatingFutures);
 		if (null != userUuid) {
-			processUserRatingResults(session, artistListBo, userRatingFutures);
+			processUserRatingResults(session, albumListBo, userRatingFutures);
 		}
 		
-		return artistListBo;
+		return albumListBo;
 	}
 
 	/*
-	 * Query for average rating for each artist DAO in the list.
+	 * Query for average rating for each album DAO in the list.
 	 * Instead of using a single query with an IN clause on a partition key column, which can have scalability issues,
-	 * we will fire of one asynchronous query for each artist in the list.
+	 * we will fire of one asynchronous query for each album in the list.
 	 */
-	private static Set<ResultSetFuture> fireAverageRatingQueries(final Session session, final ArtistListBo artistListBo) {
+	private static Set<ResultSetFuture> fireAverageRatingQueries(final Session session, final AlbumListBo albumListBo) {
 		PreparedStatement statement = session.prepare(QueryBuilder.select()
 				.all()
 				.from(CassandraConstants.MSL_TABLE_AVERAGE_RATINGS)
 				.where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker()))
-					.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.ARTIST.dbContentType)));
+					.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.ALBUM.dbContentType)));
 		
-		Set<ResultSetFuture> returnSet = new HashSet<ResultSetFuture>(artistListBo.getBoList().size());
+		Set<ResultSetFuture> returnSet = new HashSet<ResultSetFuture>(albumListBo.getBoList().size());
 		
-		for (ArtistBo artistBo : artistListBo.getBoList()) {
-			returnSet.add(session.executeAsync(statement.bind(artistBo.getArtistId())));
+		for (AlbumBo albumBo : albumListBo.getBoList()) {
+			returnSet.add(session.executeAsync(statement.bind(albumBo.getAlbumId())));
 		}
 		
 		return returnSet;
 	}
 
 	/*
-	 * Query for user's rating for each artist DAO in the list.
+	 * Query for user's rating for each album DAO in the list.
 	 * 
 	 * Instead of using a single query with an IN clause on a partition key column, which can have scalability issues,
-	 * we will fire of one asynchronous query for each artist in the list.
+	 * we will fire of one asynchronous query for each album in the list.
 	 */
-	private static Set<ResultSetFuture> fireUserRatingQueries(final Session session, final ArtistListBo artistListBo, final UUID userUuid) {
+	private static Set<ResultSetFuture> fireUserRatingQueries(final Session session, final AlbumListBo albumListBo, final UUID userUuid) {
 		PreparedStatement statement = session.prepare(QueryBuilder.select()
 				.all()
 				.from(CassandraConstants.MSL_TABLE_USER_DATA_BY_USER)
 				.where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_USER_ID, userUuid))
-					.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.ARTIST.dbContentType))
+					.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.ALBUM.dbContentType))
 					.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker())));
 
-		Set<ResultSetFuture> returnSet = new HashSet<ResultSetFuture>(artistListBo.getBoList().size());
+		Set<ResultSetFuture> returnSet = new HashSet<ResultSetFuture>(albumListBo.getBoList().size());
 		
-		for (ArtistBo artistBo : artistListBo.getBoList()) {
-			returnSet.add(session.executeAsync(statement.bind(artistBo.getArtistId())));
+		for (AlbumBo albumBo : albumListBo.getBoList()) {
+			returnSet.add(session.executeAsync(statement.bind(albumBo.getAlbumId())));
 		}
 		
 		return returnSet;
 	}
 
 	/*
-	 * Process the results from the queries for average rating for each artist DAO in the list.
+	 * Process the results from the queries for average rating for each album DAO in the list.
 	 */
-	private static void processAverageRatingResults(final Session session, final ArtistListBo artistListBo, final Set<ResultSetFuture> resultFutures) {
+	private static void processAverageRatingResults(final Session session, final AlbumListBo albumListBo, final Set<ResultSetFuture> resultFutures) {
 		for (ResultSetFuture future : resultFutures) {
 			// Wait for the query to complete and map single result row to a DAO POJOs
 			AverageRatingsDao averageRatingsDao = new MappingManager(session).mapper(AverageRatingsDao.class).map(future.getUninterruptibly()).one();
 			
 			if (null != averageRatingsDao) {
-				// Find and update the matching ArtistBo
-				for (ArtistBo artistBo : artistListBo.getBoList()) {
-					if (artistBo.getArtistId().equals(averageRatingsDao.getContentId())) {
-						artistBo.setAverageRating((int) (averageRatingsDao.getSumRating() / averageRatingsDao.getNumRating()));
+				// Find and update the matching AlbumBo
+				for (AlbumBo albumBo : albumListBo.getBoList()) {
+					if (albumBo.getAlbumId().equals(averageRatingsDao.getContentId())) {
+						albumBo.setAverageRating((int) (averageRatingsDao.getSumRating() / averageRatingsDao.getNumRating()));
 						break;
 					}
 				}
@@ -151,14 +151,14 @@ public class ArtistListQuery {
 	/*
 	 * Process the results from the queries for user rating for each artist DAO in the list.
 	 */
-	private static void processUserRatingResults(final Session session, final ArtistListBo artistListBo, final Set<ResultSetFuture> resultFutures) {
+	private static void processUserRatingResults(final Session session, final AlbumListBo artistListBo, final Set<ResultSetFuture> resultFutures) {
 		for (ResultSetFuture future : resultFutures) {
 			// Wait for the query to complete and map single result row to a DAO POJOs
 			UserDataByUserDao userDataByUserDao = new MappingManager(session).mapper(UserDataByUserDao.class).map(future.getUninterruptibly()).one();
 			
-			// Find and update the matching ArtistBo
-			for (ArtistBo artistBo : artistListBo.getBoList()) {
-				if (artistBo.getArtistId().equals(userDataByUserDao.getContentUuid())) {
+			// Find and update the matching AlbumBo
+			for (AlbumBo artistBo : artistListBo.getBoList()) {
+				if (artistBo.getAlbumId().equals(userDataByUserDao.getContentUuid())) {
 					artistBo.setPersonalRating(userDataByUserDao.getRating());
 					break;
 				}

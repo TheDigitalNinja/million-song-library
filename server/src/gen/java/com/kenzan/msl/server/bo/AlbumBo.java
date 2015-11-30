@@ -5,6 +5,7 @@ package com.kenzan.msl.server.bo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  *
@@ -12,27 +13,27 @@ import java.util.List;
  * @author billschwanitz
  */
 public class AlbumBo extends AbstractBo {
-	private String albumId;
+	private UUID albumId;
 	private String albumName;
 	private String genre;
-	private int year;
-	private int averageRating;
-	private int personalRating;
+	private Integer year;
+	private Integer averageRating;
+	private Integer personalRating;
 	private String imageLink;
-	private String artistId;
+	private UUID artistId;
 	private String artistName;
 	private List<String> songsList = new ArrayList<String>();
 	
 	/**
 	 * @return the albumId
 	 */
-	public String getAlbumId() {
+	public UUID getAlbumId() {
 		return albumId;
 	}
 	/**
 	 * @param albumId the albumId to set
 	 */
-	public void setAlbumId(String albumId) {
+	public void setAlbumId(UUID albumId) {
 		this.albumId = albumId;
 	}
 	/**
@@ -62,37 +63,37 @@ public class AlbumBo extends AbstractBo {
 	/**
 	 * @return the year
 	 */
-	public int getYear() {
+	public Integer getYear() {
 		return year;
 	}
 	/**
 	 * @param year the year to set
 	 */
-	public void setYear(int year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 	/**
 	 * @return the averageRating
 	 */
-	public int getAverageRating() {
+	public Integer getAverageRating() {
 		return averageRating;
 	}
 	/**
 	 * @param averageRating the averageRating to set
 	 */
-	public void setAverageRating(int averageRating) {
+	public void setAverageRating(Integer averageRating) {
 		this.averageRating = averageRating;
 	}
 	/**
 	 * @return the personalRanking
 	 */
-	public int getPersonalRating() {
+	public Integer getPersonalRating() {
 		return personalRating;
 	}
 	/**
 	 * @param personalRating the personalRating to set
 	 */
-	public void setPersonalRating(int personalRating) {
+	public void setPersonalRating(Integer personalRating) {
 		this.personalRating = personalRating;
 	}
 	/**
@@ -110,13 +111,13 @@ public class AlbumBo extends AbstractBo {
 	/**
 	 * @return the artistId
 	 */
-	public String getArtistId() {
+	public UUID getArtistId() {
 		return artistId;
 	}
 	/**
 	 * @param artistId the artistId to set
 	 */
-	public void setArtistId(String artistId) {
+	public void setArtistId(UUID artistId) {
 		this.artistId = artistId;
 	}
 	/**
