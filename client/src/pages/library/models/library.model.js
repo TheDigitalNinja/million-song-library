@@ -5,7 +5,6 @@
  */
 export default class libraryModel {
 
-  // TODO: Use myLibraryStore methods to add to the library once they are defined
   constructor($log, myLibraryStore) {
     this.$log = $log;
     this.myLibraryStore = myLibraryStore;
@@ -40,6 +39,30 @@ export default class libraryModel {
    */
   addArtistToLibrary(artistId) {
     this.myLibraryStore.addArtist(artistId);
+  }
+
+  /**
+   * Removes selected song from library
+   * @param {string} songId
+   */
+  removeSongFromLibrary(songId) {
+    this.myLibraryStore.removeSong(songId);
+  }
+
+  /**
+   * Removes selected album from library
+   * @param {string} albumId
+   */
+  removeAlbumFromLibrary(albumId) {
+    this.myLibraryStore.removeAlbum(albumId);
+  }
+
+  /**
+   * Removes selected artist from library
+   * @param {string} artistId
+   */
+  removeArtistFromLibrary(artistId) {
+    this.myLibraryStore.removeArtist(artistId);
   }
 
 }

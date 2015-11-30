@@ -7,6 +7,7 @@ import libraryRoute from './library.route.js';
 import libraryCtrl from './controllers/library.controller.js';
 import libraryModel from './models/library.model.js';
 import addToLibrary from './directives/add-to-library.js';
+import removeFromLibrary from './directives/remove-from-library.js';
 import dataStore from 'modules/datastore/module';
 import libraryCarouselDirective from './library-carousel.directive.js';
 import repeatComplete from './directives/repeat-complete.js';
@@ -26,6 +27,7 @@ export default angular.module('msl.library', [
   .controller('libraryCtrl', libraryCtrl)
   .directive('libraryCarousel', libraryCarouselDirective)
   .directive('addToLibrary', addToLibrary)
+  .directive('removeFromLibrary', removeFromLibrary)
   .directive('repeatComplete', repeatComplete)
   .service('libraryModel', libraryModel)
   .name;

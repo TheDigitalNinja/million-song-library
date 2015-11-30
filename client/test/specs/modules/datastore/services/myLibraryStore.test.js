@@ -116,4 +116,79 @@ describe('myLibraryStore', () => {
       })();
     });
   });
+
+  describe('removeSong', () => {
+    const SONG_ID = '2';
+    const response = 'a_response';
+
+    beforeEach(() => {
+      request.put.and.returnValue({ data: response });
+    });
+
+    it('should make a put request to remove the song from the library endpoint', (done) => {
+      (async () => {
+        await myLibraryStore.removeSong(SONG_ID);
+        expect(request.put).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/removesong/${ SONG_ID }`);
+        done();
+      })();
+    });
+
+    it('should map the response into a StatusResponseEntity', (done) => {
+      (async () => {
+        await myLibraryStore.removeSong(SONG_ID);
+        expect(entityMapper).toHaveBeenCalledWith(response, StatusResponseEntity);
+        done();
+      })();
+    });
+  });
+
+  describe('removeAlbum', () => {
+    const ALBUM_ID = '2';
+    const response = 'a_response';
+
+    beforeEach(() => {
+      request.put.and.returnValue({ data: response });
+    });
+
+    it('should make a put request to remove the album from the library endpoint', (done) => {
+      (async () => {
+        await myLibraryStore.removeAlbum(ALBUM_ID);
+        expect(request.put).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/removealbum/${ ALBUM_ID }`);
+        done();
+      })();
+    });
+
+    it('should map the response into a StatusResponnseEntity', (done) => {
+      (async () => {
+        await myLibraryStore.removeAlbum(ALBUM_ID);
+        expect(entityMapper).toHaveBeenCalledWith(response, StatusResponseEntity);
+        done();
+      })();
+    });
+  });
+
+  describe('removeArtist', () => {
+    const ARTIST_ID = '2';
+    const response = 'a_response';
+
+    beforeEach(() => {
+      request.put.and.returnValue({ data: response });
+    });
+
+    it('should make a put request to remove the artist from the library endpoint', (done) => {
+      (async () => {
+        await myLibraryStore.removeArtist(ARTIST_ID);
+        expect(request.put).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/removeartist/${ ARTIST_ID }`);
+        done();
+      })();
+    });
+
+    it('should map the response into a StatusResponseEntity', (done) => {
+      (async () => {
+        await myLibraryStore.removeArtist(ARTIST_ID);
+        expect(entityMapper).toHaveBeenCalledWith(response, StatusResponseEntity);
+        done();
+      })();
+    });
+  });
 });

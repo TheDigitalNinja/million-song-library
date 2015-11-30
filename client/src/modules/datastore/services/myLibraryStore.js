@@ -54,6 +54,39 @@ function myLibraryStore(request, entityMapper, MyLibraryEntity, StatusResponseEn
       const response = await request.put(apiPath);
       return entityMapper(response.data, StatusResponseEntity);
     },
+
+    /**
+     * Remove song to my library
+     * @param {string} songId
+     * @return {StatusResponseEntity}
+     */
+    async removeSong(songId) {
+      const apiPath = `${ API_REQUEST_PATH }/removesong/${ songId }`;
+      const response = await request.put(apiPath);
+      return entityMapper(response.data, StatusResponseEntity);
+    },
+
+    /**
+     * Remove album to my library
+     * @param {string} albumId
+     * @return {StatusResponseEntity}
+     */
+    async removeAlbum(albumId) {
+      const apiPath = `${ API_REQUEST_PATH }/removealbum/${ albumId }`;
+      const response = await request.put(apiPath);
+      return entityMapper(response.data, StatusResponseEntity);
+    },
+
+    /**
+     * Remove artist to my library
+     * @param {string} artistId
+     * @return {StatusResponseEntity}
+     */
+    async removeArtist(artistId) {
+      const apiPath = `${ API_REQUEST_PATH }/removeartist/${ artistId }`;
+      const response = await request.put(apiPath);
+      return entityMapper(response.data, StatusResponseEntity);
+    },
   };
 }
 

@@ -99,5 +99,15 @@ describe('songModel', () => {
         done();
       })();
     });
+
+    it('should log a warn when a error is thrown', (done) => {
+      (async () => {
+        const params = facets;
+        songStore.fetchAll.and.throwError(error);
+        await songModel.filterSongs(facets);
+        expect($log.warn).toHaveBeenCalledWith(error);
+        done();
+      })();
+    });
   });
 });

@@ -7,7 +7,7 @@
       <a href="" ng-if="!vm.model.album.inMyLibrary" add-to-library id="vm.albumId" type="album">
         <i class="fa fa-heart-o"></i> Add Album to Library
       </a>
-      <a href="" ng-if="vm.model.album.inMyLibrary">
+      <a href="" ng-if="vm.model.album.inMyLibrary" remove-from-library id="vm.albumId" type="album">
         <i class="fa fa-ban"></i> Remove Album from Library
       </a>
     </span>

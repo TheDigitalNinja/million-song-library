@@ -7,7 +7,7 @@
       <a href="" ng-if="!vm.song.inMyLibrary" add-to-library id="vm.songId" type="song">
         <i class="fa fa-heart-o"></i> Add Song to Library
       </a>
-      <a href="" ng-if="vm.song.inMyLibrary">
+      <a href="" ng-if="vm.song.inMyLibrary" remove-from-library id="vm.songId" type="song">
         <i class="fa fa-ban"></i> Remove Song from Library
       </a>
     </span>

@@ -1,3 +1,4 @@
+import _ from 'lodash';
 /**
  * login page main controller
  * @param {$rootScope.Scope} $scope
@@ -12,6 +13,7 @@ export default class loginCtrl {
    */
 
   constructor($scope, authorisation, $state) {
+    this.isPasswordCompliant = true;
     this.submit = async() => {
       delete this.hasError;
       try {
@@ -25,5 +27,19 @@ export default class loginCtrl {
     };
   }
 
-}
+  /**
+   * Checks if password is compliant with security patterns
+   * @returns {boolean}
+   */
+  checkIfPasswordCompliant() {
+    if(angular.isDefined(this.password)) {
+      let passwordRules = [
+        /\w*[\d]+\w*/,
+        /\w*[A-Z]+\w*/,
+        /\w*[!#$%&*+,./:;<=>?@\^_~-]+\w*/,
+      ];
+      this.isPasswordCompliant = _.all(passwordRules, (rule) => rule.test(this.password));
+    }
+  }
 
+}

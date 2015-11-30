@@ -16,8 +16,21 @@ SwaggerExpress.create({
 
   swaggerExpress.runner.config.swagger.securityHandlers = {
     sessionToken: function (req, authOrSecDef, scopesOrApiKey, callback) {
-      assert.notEqual(req.headers.sessiontoken, null);
-      callback();
+     function UnauthorizedError() {
+       this.code = "Unauthorized";
+       this.message = "You are not authorized to perform this request.";
+       this.statusCode = 401;
+       this.headers = [];
+     }
+     UnauthorizedError.prototype.toString = function() {
+       return this.code + ": " + this.message;
+     }
+
+      if(!req.headers.sessiontoken) {
+        callback(new UnauthorizedError());
+      } else {
+        callback();
+      }
     }
   };
   swaggerExpress.register(app);

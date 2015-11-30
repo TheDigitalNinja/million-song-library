@@ -16,7 +16,7 @@
           <a href="" ng-if="!song.inMyLibrary" add-to-library id="song.songId" type="song">
             <i class="fa fa-heart"></i> Add to library
           </a>
-          <a href="" ng-if="song.inMyLibrary">
+          <a href="" ng-if="song.inMyLibrary" remove-from-library id="song.songId" type="song">
             <i class="fa fa-ban"></i> Remove from library
           </a>
         </div>
