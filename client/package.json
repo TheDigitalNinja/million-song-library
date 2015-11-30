@@ -17,7 +17,8 @@
     "docs": "swagger project edit swagger",
     "parse-swagger-src": "cat swagger/api/swagger/swagger.yaml | ruby -ryaml -rjson -e 'puts JSON.pretty_generate(YAML::load(ARGF.read))' > swagger/api/swagger/swagger.json",
     "serve-mock": "npm run parse-swagger-src && swagger project start --mock swagger",
-    "start-server": "cd ../server && mvn -f build.xml clean generate-sources jetty:run"
+    "start-server": "cd ../server && mvn -f build.xml clean generate-sources jetty:run",
+    "server-coverage": "cd ../server && mvn -f build.xml site"
   },
   "author": "",
   "license": "ISC",

@@ -121,6 +121,16 @@
         </plugins>
     </build>
 
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>${maven-surefire-report-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </reporting>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -270,6 +280,7 @@
         <swagger-codegen-maven-plugin>2.1.4</swagger-codegen-maven-plugin>
         <jersey.version>2.2</jersey.version>
         <resteasy-client>3.0.2.Final</resteasy-client>
+        <maven-surefire-report-plugin.version>2.19</maven-surefire-report-plugin.version>
     </properties>
 
 </project>
