@@ -38,3 +38,23 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
     padding-right: 0;
     width: 4.8rem;
 }
+
+.material-icons {
+    float: left;
+    font-size: 20px;
+}
+
+.icon-label {
+    float: left;
+    line-height: 1.4;
+    margin-left: 6px;
+}
+
+.icon-button {
+    line-height: 1;
+    min-width: 60px;
+    text-align: center;
+    .material-icons {
+        float: none;
+    }
+}

@@ -5,7 +5,8 @@
   ],
   "destination": "build/styleguide/",
   "css": [
-    "../stylesheet.css"
+    "../stylesheet.css",
+    "https://fonts.googleapis.com/icon?family=Material+Icons"
   ],
   "js": [
   ],

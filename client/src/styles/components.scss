@@ -75,11 +75,11 @@ $image-size-sm: 150px;
 //       </div>
 //       <div class="media-box-overlay">
 //         <div class="media-box-overlay-control">
-//           <i class="fa fa-play"></i> Play
+//           <i class="material-icons">play_circle_filled</i> <span class="icon-label">Play</span>
 //         </div>
 //         <div class="media-box-overlay-control">
 //           <a href="" add-to-library id="song.songId" type="song">
-//             <i class="fa fa-heart"></i> Add to library
+//             <i class="material-icons">favorite</i> <span class="icon-label">Add to library</span>
 //           </a>
 //         </div>
 //       </div>
@@ -89,74 +89,16 @@ $image-size-sm: 150px;
 //     <div><a href="#">Artist Name</a></div>
 //     <div>Song Name: Album Name, 1990</div>
 //     <ul class="star-rating list-unstyled">
-//       <li><button type="button" class="btn fa fa-star"></button></li>
-//       <li><button type="button" class="btn fa fa-star"></button></li>
-//       <li><button type="button" class="btn fa fa-star"></button></li>
-//       <li><button type="button" class="btn fa fa-star-o"></button></li>
-//       <li><button type="button" class="btn fa fa-star-o"></button></li>
+//       <li><button type="button" class="material-icons">star</button></li>
+//       <li><button type="button" class="material-icons">star</button></li>
+//       <li><button type="button" class="material-icons">star</button></li>
+//       <li><button type="button" class="material-icons">star</button></li>
+//       <li><button type="button" class="material-icons">star</button></li>
 //     </ul>
 //   </div>
 // </div>
 //
 // Styleguide 3.3
-
-
-
-// List of elements (layout 2, horizontal)
-//
-// List of elements, for example: Song list. Uses `[Image container]` for
-// showing image.
-//
-// Markup:
-// <div class="horizontal-layout">
-//   <div class="image-container small-image">
-//     <img class="img-responsive" src="" alt="" />
-//     <div class="image-overlay">
-//       <div class="overlay-control first-control">
-//         <i class="fa fa-play"></i> Play
-//       </div>
-//       <div class="overlay-control">
-//         <i class="fa fa-heart"></i> Add to library
-//       </div>
-//     </div>
-//   </div>
-//   <div class="track-info">
-//     <div class="track-artist-name-container">
-//       <h2>Track ID</h2>
-//       <p>Artist Name</p>
-//     </div>
-//     <div>
-//       <span class="text-gray">7:21</span> | <span class="text-gray">Genre Name</span>
-//     </div>
-//   </div>
-//   <div class="clear"></div>
-// </div>
-//
-// Styleguide 3.4
-
-.horizontal-layout {
-  padding-bottom: 10px;
-
-  .image-container {
-    float: left;
-    margin-right: 10px;
-  }
-
-  .track-info {
-    float: none;
-    overflow: hidden;
-    word-wrap: break-word;
-
-    h2 {
-      margin-top: 5px;
-    }
-
-    .track-artist-name-container {
-      min-height: 120px;
-
-    }
-  }
-}
 
 .song-box,
 .album-box,
@@ -235,6 +177,8 @@ $image-size-sm: 150px;
   }
 
     .media-box-overlay-control {
+      @include clearfix;
+      clear: both;
       cursor: pointer;
       margin-bottom: 8px;
 
@@ -283,84 +227,6 @@ $image-size-sm: 150px;
 
 }
 
-// List of elements (layout 3, list)
-//
-// List of elements, for example: Song list. Uses `[Image container]` for
-// showing image.
-//
-// Markup:
-// <table class="list-layout">
-//   <thead>
-//     <tr>
-//       <th> # </th>
-//       <th> Song </th>
-//     </tr>
-//   </thead>
-//   <tbody>
-//     <tr>
-//       <td class="marker"> 1 </td>
-//       <td>
-//         <div class="image-container small-image">
-//           <img class="img-responsive" src="" alt="" />
-//           <div class="image-overlay">
-//             <div class="overlay-control first-control">
-//               <i class="fa fa-play"></i> Play
-//             </div>
-//             <div class="overlay-control">
-//               <i class="fa fa-heart"></i> Add to library
-//             </div>
-//           </div>
-//         </div>
-//         <div class="track-info">
-//           <div class="track-artist-name-container">
-//             <h2>Track ID</h2>
-//             <p>Artist Name</p>
-//           </div>
-//           <div>
-//             <span class="text-gray">7:21</span> | <span class="text-gray">Genre Name</span>
-//           </div>
-//         </div>
-//       </td>
-//     </tr>
-//   </tbody>
-// </table>
-//
-// Styleguide 3.5
-
-.list-layout {
-  width: 90%;
-  margin: 0 auto;
-
-  th {
-    font-size: 2em;
-    font-weight: normal;
-
-    &:first-child {
-      text-align: center;
-    }
-  }
-
-  td {
-    border-top: 1px solid $gray-3;
-    border-bottom: 1px solid $gray-3;
-  }
-
-  .marker {
-    font-size: 4em;
-    width: 55px;
-    text-align: center;
-  }
-
-  .image-container {
-    float: left;
-    margin-right: 10px;
-  }
-
-  .track-info {
-    float: left;
-  }
-}
-
 // Navigation Bar
 //
 // Angular Material markup for top navigation bar.
@@ -383,13 +249,13 @@ $image-size-sm: 150px;
 //   </md-toolbar>
 // </nav>
 //
-// Styleguide 3.6
+// Styleguide 3.4
 
 
 // KSS doesn't render this properly due to the angular directives
 // so we will hide the rendering to reduce confusion
 
-#kssref-3-6 .kss-modifier__wrapper {
+#kssref-3-4 .kss-modifier__wrapper {
   display: none;
 }
 .kz-logo {
@@ -517,11 +383,11 @@ $image-size-sm: 150px;
 //     <rating-filter listener='vm'></rating-filter>
 // </div>
 //
-// Styleguide 3.7
+// Styleguide 3.5
 
 // KSS doesn't render this properly due to the angular directives
 // so we will hide the rendering to reduce confusion
-#kssref-3-7 .kss-modifier__wrapper {
+#kssref-3-5 .kss-modifier__wrapper {
   display: none;
 }
 
@@ -594,7 +460,7 @@ $image-size-sm: 150px;
 //   </md-tab>
 // </md-tabs>
 //
-// Styleguide 3.11
+// Styleguide 3.9
 
 .tab-content {
   padding: 2em 1em 1em;
@@ -602,7 +468,7 @@ $image-size-sm: 150px;
 
 // KSS doesn't render this properly due to the angular directives
 // so we will hide the rendering to reduce confusion
-#kssref-3-11 .kss-modifier__wrapper {
+#kssref-3-9 .kss-modifier__wrapper {
   display: none;
 }
 

@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import $ from 'jquery';
 
 class libraryCarouselCtrl {
   /*@ngInject*/
@@ -7,9 +8,7 @@ class libraryCarouselCtrl {
     this.entity = $scope.entity;
     this.slides = $scope.slides;
 
-    this.slider = `slider-`;
     this.title = `${ _.capitalize(this.entity) }s`;
-    this.sliderId = `${this.slider}${this.entity}`;
     this.triggerSlick = false;
 
     // Callback handler for the end of ng-repeat.
@@ -33,9 +32,7 @@ export default function LibraryCarousel() {
     controllerAs: 'vm',
     scope: {
       entity: '@',
-      sliderId: '@',
       slides: '=',
-      triggerSlick: '@',
     },
     link: link,
   };
@@ -45,37 +42,33 @@ export default function LibraryCarousel() {
 
     function slickIt() {
       // Slick requires jQuery objects
-      (($) => {
-        slider = $(element).find(`#${ ctrl.sliderId }`);
-        $(slider).slick({
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          mobileFirst: true,
-          responsive: [
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 3,
-              },
+      slider = $(element).find('.carousel');
+      $(slider).slick({
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        mobileFirst: true,
+        responsive: [
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 3,
             },
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 4,
-              },
+          },
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 4,
             },
-          ],
-        });
-      })(jQuery);
+          },
+        ],
+      });
     }
 
     function destroy() {
       // Slick requires jQuery objects
-      (($) => {
-        if(slider) {
-          $(slider).slick('unslick');
-        }
-      })(jQuery);
+      if(slider) {
+        $(slider).slick('unslick');
+      }
     }
 
     scope.$watch('triggerSlick',

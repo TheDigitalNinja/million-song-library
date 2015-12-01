@@ -7,7 +7,8 @@
          ng-init="rating.stars = vm.getStars(rating)"
          ng-class="{ 'active': vm.isActiveRating(rating.facetId) }">
         <li ng-repeat="star in rating.stars track by $index">
-          <button type="button" class="btn fa" ng-class="star.filled ? 'fa-star' : 'fa-star-o'"></button>
+          <button ng-if="star.filled" type="button" class="material-icons">star</button>
+          <button ng-if="!star.filled" type="button" class="material-icons">star_outline</button>
         </li>
         <span>&amp; up</span>
       </a>

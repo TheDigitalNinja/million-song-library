@@ -31,10 +31,10 @@
     </td>
     <td>
       <a href="" ng-if="!song.inMyLibrary" add-to-library id="song.songId" type="song">
-        <i class="fa fa-heart"></i> Add to Library
+        <i class="material-icons">favorite</i> <span class="icon-label">Add to library</span>
       </a>
       <a href="" ng-if="song.inMyLibrary">
-        <i class="fa fa-ban"></i> Remove from Library
+        <i class="material-icons">not_interested</i> <span class="icon-label">Remove from library</span>
       </a>
     </td>
   </tr>

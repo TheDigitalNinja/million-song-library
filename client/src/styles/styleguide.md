@@ -7,7 +7,7 @@ This is the first draft of the CSS styleguide for Million Songs Library.
   1. [Sass CSS Preprocessor](#the-setup-sass-css-preprocessor)
   2. [KSS](#the-setup-kss)
   3. [Material Design](#the-setup-material)
-  4. [Font Awesome](#the-setup-font-awesome)
+  4. [Material Icons](#the-setup-icons)
 
 
 
@@ -36,8 +36,8 @@ At the root of this CSS and Angular architecture lies Google's Material Design [
 - [Material Design](http://www.getmdl.io/)
 - [Angular Material](https://material.angularjs.org/latest/)
 
-<a name="the-setup-font-awesome"></a>
-### Font Awesome
-Font Awesome gives you scalable vector icons that can instantly be customized - size, color, drop shadow, and anything that can be done with the power of CSS.
+<a name="the-setup-icons"></a>
+### Material Icons
+Material Icons give you scalable vector icons in the form of an icon font that can instantly be customized via CSS - size, color, drop shadow, etc.
 
-- [Font Awesome: Homepage](http://fortawesome.github.io/Font-Awesome/)
+- [Material Icons: Homepage](https://www.google.com/design/icons/)

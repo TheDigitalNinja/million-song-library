@@ -41,14 +41,10 @@ describe('play button directive', () => {
 
     const template = $($compile(`<play-button song-id="'id'"></play-button>`)($scope));
     $scope.$digest();
-    expect(template.find('.fa.fa-play').length).toBe(1);
-    expect(template.find('.fa.fa-stop').length).toBe(0);
-    expect(_.trim(template.text())).toBe('Play');
+    expect(_.trim(template.find('.icon-label').text())).toBe('Play');
     onPlayerStateChange();
     $scope.$digest();
-    expect(template.find('.fa.fa-play').length).toBe(0);
-    expect(template.find('.fa.fa-stop').length).toBe(1);
-    expect(_.trim(template.text())).toBe('Stop');
+    expect(_.trim(template.find('.icon-label').text())).toBe('Stop');
     expect(player.getSongEntity).toHaveBeenCalled();
   });
 
@@ -59,14 +55,10 @@ describe('play button directive', () => {
 
     const template = $($compile(`<play-button song-id="'id'"></play-button>`)($scope));
     $scope.$digest();
-    expect(template.find('.fa.fa-play').length).toBe(1);
-    expect(template.find('.fa.fa-stop').length).toBe(0);
-    expect(_.trim(template.text())).toBe('Play');
+    expect(_.trim(template.find('.icon-label').text())).toBe('Play');
     onPlayerStateChange();
     $scope.$digest();
-    expect(template.find('.fa.fa-play').length).toBe(1);
-    expect(template.find('.fa.fa-stop').length).toBe(0);
-    expect(_.trim(template.text())).toBe('Play');
+    expect(_.trim(template.find('.icon-label').text())).toBe('Play');
     expect(player.getSongEntity).toHaveBeenCalled();
   });
 
@@ -86,9 +78,7 @@ describe('play button directive', () => {
 
     const template = $($compile(`<play-button song-id="'id'"></play-button>`)($scope));
     $scope.$digest();
-    expect(template.find('.fa.fa-play').length).toBe(1);
-    expect(template.find('.fa.fa-stop').length).toBe(0);
-    expect(_.trim(template.text())).toBe('Play');
+    expect(_.trim(template.find('.icon-label').text())).toBe('Play');
     onPlayerStateChange();
     $scope.$digest();
     template.find('button').click();
@@ -102,14 +92,10 @@ describe('play button directive', () => {
 
     const template = $($compile(`<play-button song-id="'id'"></play-button>`)($scope));
     $scope.$digest();
-    expect(template.find('.fa.fa-play').length).toBe(1);
-    expect(template.find('.fa.fa-stop').length).toBe(0);
-    expect(_.trim(template.text())).toBe('Play');
+    expect(_.trim(template.find('.icon-label').text())).toBe('Play');
     onPlayerStateChange();
     $scope.$digest();
-    expect(template.find('.fa.fa-play').length).toBe(1);
-    expect(template.find('.fa.fa-stop').length).toBe(0);
-    expect(_.trim(template.text())).toBe('Play');
+    expect(_.trim(template.find('.icon-label').text())).toBe('Play');
     expect(player.getSongEntity).toHaveBeenCalled();
   });
 });
