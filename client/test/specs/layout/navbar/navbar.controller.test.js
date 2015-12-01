@@ -6,20 +6,20 @@ describe('navbarCtrl', () => {
   let $controller;
   let $scope;
   let $state;
-  let authorisation;
+  let authentication;
 
   beforeEach(() => {
     angular.mock.module(navbarModule, ($provide) => {
       $state = jasmine.createSpyObj('$state', ['go', 'current', 'is']);
-      authorisation = jasmine.createSpyObj('authorisation', [
+      authentication = jasmine.createSpyObj('authentication', [
         'destroy',
-        'isAuthorised',
+        'isAuthenticated',
         'addChangeListener',
         'removeChangeListener',
         'getUserData',
         ]);
       $provide.value('$state', $state);
-      $provide.value('authorisation', authorisation);
+      $provide.value('authentication', authentication);
 
       $state.current.and.returnValue({ name: 'state' });
     });
@@ -30,12 +30,12 @@ describe('navbarCtrl', () => {
     });
   });
 
-  it('should change authorise flag when state changed and change current state', (done) => {
+  it('should change authenticate flag when state changed and change current state', (done) => {
     (async () => {
       const navbarCtrl = $controller('navbarCtrl', { $scope });
       $state.is.and.returnValue(false);
       await navbarCtrl.logout();
-      expect(authorisation.destroy).toHaveBeenCalled();
+      expect(authentication.destroy).toHaveBeenCalled();
       expect($state.go).toHaveBeenCalledWith('msl.login');
       done();
     })();

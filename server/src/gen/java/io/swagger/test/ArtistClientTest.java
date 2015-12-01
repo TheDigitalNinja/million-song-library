@@ -1,12 +1,14 @@
 package io.swagger.test;
 
 import io.swagger.api.impl.MslApiResponseMessage;
+import io.swagger.api.impl.MslSessionToken;
 import io.swagger.client.ArtistClient;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.ws.rs.core.NewCookie;
 import java.math.BigDecimal;
 
 import static org.junit.Assert.assertEquals;
@@ -40,7 +42,7 @@ public class ArtistClientTest {
     @Test
     public void testBrowse() {
         logger.debug("ArtistClient.testBrowse");
-        MslApiResponseMessage artistList = artistClient.browse("");
+        MslApiResponseMessage artistList = artistClient.browse("", "10");
         assertNotNull(artistList);
         assertEquals("artist browse call is successful", "success", artistList.getMessage());
     }
@@ -48,7 +50,7 @@ public class ArtistClientTest {
     @Test
     public void testBrowseFilteredByFacets() {
         logger.debug("ArtistClient.testBrowseFilteredByFacets");
-        MslApiResponseMessage artistList = artistClient.browse("3");
+        MslApiResponseMessage artistList = artistClient.browse("3", "10");
         assertNotNull(artistList);
         assertEquals("artist browse facet filtered call is successful", "success", artistList.getMessage());
     }
@@ -56,7 +58,8 @@ public class ArtistClientTest {
     @Test
     public void testAddArtist(){
         logger.debug("ArtistClient.testAddArtist");
-        MslApiResponseMessage response = artistClient.addArtist("1", "someToken");
+        NewCookie cookie = new NewCookie("sessionToken", "someToken");
+        MslApiResponseMessage response = artistClient.addArtist("1", cookie.toString());
         assertNotNull(response);
         assertEquals("addArtist response is successful", "magic!", response.getMessage());
     }
@@ -64,13 +67,14 @@ public class ArtistClientTest {
     @Test (expected=java.lang.RuntimeException.class)
     public void testAddArtistThrowException (){
         logger.debug("ArtistClient.testAddArtistThrowException");
-        artistClient.addArtist("", "");
+        artistClient.addArtist("1", "");
     }
 
     @Test
     public void testRateArtist(){
         logger.debug("ArtistClient.testRateArtist");
-        MslApiResponseMessage response = artistClient.rateArtist("1", new BigDecimal("3"), "someToken");
+        NewCookie cookie = new NewCookie("sessionToken", "someToken");
+        MslApiResponseMessage response = artistClient.rateArtist("1", new BigDecimal("3"), cookie.toString());
         assertNotNull(response);
         assertEquals("rateArtist response is successful", "magic!", response.getMessage());
     }
@@ -78,6 +82,6 @@ public class ArtistClientTest {
     @Test (expected = java.lang.RuntimeException.class)
     public void testRateArtistThrowException () {
         logger.debug("ArtistClient.testRateArtistThrowException");
-        artistClient.rateArtist("", null, "");
+        artistClient.rateArtist("1", new BigDecimal("3"), "");
     }
 }

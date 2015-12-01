@@ -29,7 +29,7 @@ describe('logoutStore', () => {
     it('should post to the logout endpoint', () => {
       (async () => {
         await logoutStore.push();
-        expect(request.post).toHaveBeenCalledWith('/msl/v1/loginedge/logout', jasmine.any(Object), jasmine.any(Object));
+        expect(request.post).toHaveBeenCalledWith('/msl/v1/loginedge/logout', jasmine.any(Object));
       })();
     });
 

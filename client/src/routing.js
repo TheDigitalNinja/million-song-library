@@ -1,9 +1,8 @@
 export default function defaultRoute ($urlRouterProvider, $httpProvider) {
   'ngInject';
 
-  // this interceptor provides session id header when user is authorised
-  $httpProvider.interceptors.push('sessionTokenHttpInterceptor');
-
+  // makes possible to send httpOnly cookie on query requests and responses
+  $httpProvider.defaults.withCredentials = true;
   // when user comes with empty url - this means first page open
   // then redirect it to root page
   $urlRouterProvider.when('', '/');

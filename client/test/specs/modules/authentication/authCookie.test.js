@@ -1,10 +1,10 @@
 /* global describe, beforeEach, inject, it, expect, jasmine */
 import angular from 'angular';
-import authorisationModule from 'modules/authorisation/module';
+import authorisationModule from 'modules/authentication/module';
 
-describe('sessionToken', () => {
+describe('authCookie', () => {
   let $cookies;
-  let sessionToken;
+  let authCookie;
 
   beforeEach(() => {
     angular.mock.module(authorisationModule, ($provide) => {
@@ -12,30 +12,30 @@ describe('sessionToken', () => {
       $provide.value('$cookies', $cookies);
     });
 
-    inject((_sessionToken_) => {
-      sessionToken = _sessionToken_;
+    inject((_authCookie_) => {
+      authCookie = _authCookie_;
     });
   });
 
   it('should set token to cookie', () => {
-    sessionToken.set('token');
-    expect($cookies.put).toHaveBeenCalledWith('sessionToken', 'token');
+    authCookie.set('token');
+    expect($cookies.put).toHaveBeenCalledWith('authenticated', 'token');
   });
 
   it('should get token from cookie', () => {
     $cookies.get.and.returnValue('token');
-    expect(sessionToken.get()).toBe('token');
-    expect($cookies.get).toHaveBeenCalledWith('sessionToken');
+    expect(authCookie.get()).toBe('token');
+    expect($cookies.get).toHaveBeenCalledWith('authenticated');
   });
 
   it('should have cookie data set', () => {
     $cookies.get.and.returnValue('token');
-    expect(sessionToken.has()).toBeTruthy();
-    expect($cookies.get).toHaveBeenCalledWith('sessionToken');
+    expect(authCookie.has()).toBeTruthy();
+    expect($cookies.get).toHaveBeenCalledWith('authenticated');
   });
 
   it('should remove cookie data', () => {
-    sessionToken.destroy();
-    expect($cookies.remove).toHaveBeenCalledWith('sessionToken');
+    authCookie.destroy();
+    expect($cookies.remove).toHaveBeenCalledWith('authenticated');
   });
 });

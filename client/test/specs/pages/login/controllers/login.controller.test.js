@@ -6,14 +6,14 @@ describe('loginCtrl', () => {
   let $scope;
   let $state;
   let $controller;
-  let authorisation;
+  let authentication;
 
   beforeEach(() => {
     angular.mock.module(loginPage, ($provide) => {
       $state = jasmine.createSpyObj('$state', ['go']);
-      authorisation = jasmine.createSpyObj('authorisation', ['authorise']);
+      authentication = jasmine.createSpyObj('authentication', ['authenticate']);
       $provide.value('$state', $state);
-      $provide.value('authorisation', authorisation);
+      $provide.value('authentication', authentication);
     });
 
     inject((_$controller_, $rootScope) => {
@@ -22,25 +22,25 @@ describe('loginCtrl', () => {
     });
   });
 
-  it('should authorise with credentials', (done) => {
+  it('should authenticate with credentials', (done) => {
     (async () => {
       const loginCtrl = $controller('loginCtrl', { $scope });
 
-      authorisation.authorise.and.returnValue(Promise.resolve());
+      authentication.authenticate.and.returnValue(Promise.resolve());
       loginCtrl.email = 'test@test.com';
       loginCtrl.password = 'password';
       await loginCtrl.submit();
-      expect(authorisation.authorise).toHaveBeenCalledWith(loginCtrl.email, loginCtrl.password);
+      expect(authentication.authenticate).toHaveBeenCalledWith(loginCtrl.email, loginCtrl.password);
       expect($state.go).toHaveBeenCalledWith('msl.home');
       done();
     })();
   });
 
-  it('should fail to authorise and set hasError as true', (done) => {
+  it('should fail to authenticate and set hasError as true', (done) => {
     (async () => {
       const loginCtrl = $controller('loginCtrl', { $scope });
 
-      authorisation.authorise.and.returnValue(Promise.reject());
+      authentication.authenticate.and.returnValue(Promise.reject());
       await loginCtrl.submit();
       expect(loginCtrl.hasError).toBe(true);
       expect($state.go).not.toHaveBeenCalled();
@@ -52,15 +52,15 @@ describe('loginCtrl', () => {
     (async () => {
       const loginCtrl = $controller('loginCtrl', { $scope });
 
-      authorisation.authorise.and.returnValue(Promise.reject());
+      authentication.authenticate.and.returnValue(Promise.reject());
       await loginCtrl.submit();
       expect(loginCtrl.hasError).toBeTruthy();
-      authorisation.authorise.and.returnValue(Promise.resolve());
+      authentication.authenticate.and.returnValue(Promise.resolve());
       loginCtrl.email = 'test@test.com';
       loginCtrl.password = 'password';
       await loginCtrl.submit();
       expect(loginCtrl.hasError).toBeUndefined();
-      expect(authorisation.authorise).toHaveBeenCalledWith(loginCtrl.email, loginCtrl.password);
+      expect(authentication.authenticate).toHaveBeenCalledWith(loginCtrl.email, loginCtrl.password);
       expect($state.go).toHaveBeenCalledWith('msl.home');
       done();
     })();

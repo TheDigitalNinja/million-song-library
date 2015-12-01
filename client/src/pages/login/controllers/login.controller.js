@@ -3,7 +3,7 @@ import _ from 'lodash';
  * login page main controller
  * @param {$rootScope.Scope} $scope
  * @param {ui.router.state.$state} $state
- * @param {authorisation} authorisation
+ * @param {authentication} authentication
  */
 export default class loginCtrl {
   /*@ngInject*/
@@ -12,13 +12,13 @@ export default class loginCtrl {
    * user form submit action
    */
 
-  constructor($scope, authorisation, $state) {
+  constructor($scope, authentication, $state) {
     this.isPasswordCompliant = true;
     this.submit = async() => {
       delete this.hasError;
       try {
-        await authorisation.authorise(this.email, this.password);
-        // if authorisation is success then redirect user to home page
+        await authentication.authenticate(this.email, this.password);
+        // if authentication is success then redirect user to home page
         $state.go('msl.home');
       } catch(e) {
         this.hasError = true;

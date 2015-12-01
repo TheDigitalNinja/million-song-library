@@ -8,7 +8,6 @@
   };
 
   function rateAlbum(req, res) {
-
     var albumId = req.swagger.params.albumId.value;
     var rating = req.swagger.params.rating.value;
 

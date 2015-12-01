@@ -6,7 +6,7 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 
 //Modules
-import authorisation from 'modules/authorisation/module';
+import authentication from 'modules/authentication/module';
 import player from 'modules/player/module';
 
 import navbarDirective from './navbar.directive.js';
@@ -15,7 +15,7 @@ import navbarSearchCtrl from './navbar-search.controller.js';
 
 export default angular.module('msl.layout.navbar', [
   uiRouter,
-  authorisation,
+  authentication,
   player,
 ])
   .directive('navbar', navbarDirective)

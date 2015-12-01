@@ -1,20 +1,20 @@
 /**
  * session token storage service
- * @name sessionToken
+ * @name authCookie
  * @param {$cookies} $cookies
  * @returns {*}
  */
-export default function sessionToken ($cookies) {
+export default function authCookie ($cookies) {
   'ngInject';
 
-  const STORAGE_NAMESPACE = 'sessionToken';
+  const STORAGE_NAMESPACE = 'authenticated';
 
   return {
     /**
      * save session token
-     * @name sessionToken#set
+     * @name authCookie#set
      * @param {string} token
-     * @return {sessionToken}
+     * @return {authCookie}
      */
     set(token) {
       $cookies.put(STORAGE_NAMESPACE, token);
@@ -22,7 +22,7 @@ export default function sessionToken ($cookies) {
     },
     /**
      * get current session token
-     * @name sessionToken#get
+     * @name authCookie#get
      * @return {*}
      */
     get() {
@@ -30,7 +30,7 @@ export default function sessionToken ($cookies) {
     },
     /**
      * check if session token is set
-     * @name sessionToken#has
+     * @name authCookie#has
      * @return {boolean}
      */
     has() {
@@ -38,8 +38,8 @@ export default function sessionToken ($cookies) {
     },
     /**
      * destroy session token
-     * @name sessionToken#destroy
-     * @return {sessionToken}
+     * @name authCookie#destroy
+     * @return {authCookie}
      */
     destroy() {
       $cookies.remove(STORAGE_NAMESPACE);

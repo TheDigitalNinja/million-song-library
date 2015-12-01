@@ -25,6 +25,13 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <session-config>
+        <cookie-config>
+            <http-only>true</http-only>
+            <secure>true</secure>
+        </cookie-config>
+    </session-config>
+
     <servlet>
         <servlet-name>DefaultJaxrsConfig</servlet-name>
         <servlet-class>io.swagger.jaxrs.config.DefaultJaxrsConfig</servlet-class>

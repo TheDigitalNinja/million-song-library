@@ -7,7 +7,9 @@
   };
 
   function login(req, res) {
-    res.json({ data: { sessionToken: req.swagger.params.email.value } });
+    res.setHeader('Set-Cookie', 'sessionToken=' + req.swagger.params.email.value + '; path=/; HttpOnly');
+
+    res.json({ data: { authenticated: true } });
   }
 
   function logout(req, res) {

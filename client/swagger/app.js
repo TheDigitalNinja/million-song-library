@@ -5,6 +5,7 @@ var assert = require("assert");
 var conn = require('connect')();
 var http = require('http');
 var swaggerTools = require('swagger-tools');
+var cookieParser = require('cookie-parser');
 
 var port = process.env.PORT || 10010;
 var swaggerUiPort = 5000;
@@ -16,23 +17,34 @@ SwaggerExpress.create({
 
   swaggerExpress.runner.config.swagger.securityHandlers = {
     sessionToken: function (req, authOrSecDef, scopesOrApiKey, callback) {
-     function UnauthorizedError() {
-       this.code = "Unauthorized";
-       this.message = "You are not authorized to perform this request.";
-       this.statusCode = 401;
-       this.headers = [];
-     }
-     UnauthorizedError.prototype.toString = function() {
-       return this.code + ": " + this.message;
-     }
+      function UnauthorizedError() {
+        this.code = "Unauthorized";
+        this.message = "You are not authorized to perform this request.";
+        this.statusCode = 401;
+        this.headers = [];
+      }
+      UnauthorizedError.prototype.toString = function() {
+        return this.code + ": " + this.message;
+      }
 
-      if(!req.headers.sessiontoken) {
-        callback(new UnauthorizedError());
-      } else {
+      if(req.cookies.sessionToken) {
         callback();
+      }
+      else {
+        callback(new UnauthorizedError());
       }
     }
   };
+
+  swaggerExpress.sysConfig.corsOptions = {
+    origin: true,
+    methods: ['GET', 'PUT', 'POST', 'OPTIONS'],
+    credentials: true,
+  };
+
+  app.use(swaggerExpress.cors());
+  app.use(cookieParser());
+
   swaggerExpress.register(app);
   app.listen(port);
 
