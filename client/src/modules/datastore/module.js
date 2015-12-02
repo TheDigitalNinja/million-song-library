@@ -6,6 +6,7 @@ import recentSongsStore from './services/recentSongsStore';
 import songStore from './services/songStore';
 import artistStore from './services/artistStore';
 import albumStore from './services/albumStore';
+import registrationStore from './services/registrationStore';
 import loginStore from './services/loginStore';
 import logoutStore from './services/logoutStore';
 import rateSongStore from './services/rateSongStore';
@@ -32,6 +33,7 @@ export default angular.module('msl.datastore', [])
   .factory('songStore', songStore)
   .factory('artistStore', artistStore)
   .factory('albumStore', albumStore)
+  .factory('registrationStore', registrationStore)
   .factory('loginStore', loginStore)
   .factory('logoutStore', logoutStore)
   .factory('rateSongStore', rateSongStore)
