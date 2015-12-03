@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 
 public class SongClient {
 
-    private String baseUrl = "http://localhost:9000/msl";
+    private String baseUrl = "http://local.msl.dev:9000/msl";
     private ResteasyClient client;
 
     public SongClient() {

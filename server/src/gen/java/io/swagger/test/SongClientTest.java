@@ -8,7 +8,6 @@ import org.junit.Test;
 import org.junit.Before;
 import io.swagger.client.SongClient;
 
-import javax.management.RuntimeErrorException;
 import javax.ws.rs.core.NewCookie;
 
 import java.math.BigDecimal;
@@ -20,6 +19,8 @@ public class SongClientTest {
 
     private SongClient songClient;
     static Logger logger = Logger.getLogger(SongClientTest.class);
+    private final String TEST_TOKEN = "2883607a-176d-4729-a20b-ec441c285afb";
+    private final String TEST_SONG_ID = "a71d214c-ee76-45c5-a9f3-9b57fc15ef36";
 
     @Before
     public void init() {
@@ -30,7 +31,7 @@ public class SongClientTest {
     @Test
     public void testGet() {
         logger.debug("songClient.testGet");
-        MslApiResponseMessage song = songClient.get("1");
+        MslApiResponseMessage song = songClient.get(TEST_SONG_ID);
         assertNotNull(song);
         assertEquals("song get call is successful", "success", song.getMessage());
     }
@@ -59,8 +60,8 @@ public class SongClientTest {
     @Test
     public void testAddSong() {
         logger.debug("songClient.testAddSong");
-        NewCookie cookie = new NewCookie("sessionToken", "someToken");
-        MslApiResponseMessage response = songClient.addSong("1", cookie.toString());
+        NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);
+        MslApiResponseMessage response = songClient.addSong(TEST_SONG_ID, cookie.toString());
         assertNotNull(response);
         assertEquals("addSong response is successful", "magic!", response.getMessage());
     }
@@ -74,8 +75,8 @@ public class SongClientTest {
     @Test
     public void testRateSong() {
         logger.debug("songClient.testRateSong");
-        NewCookie cookie = new NewCookie("sessionToken", "someToken");
-        MslApiResponseMessage response = songClient.rateSong("1", new BigDecimal("2"), cookie.toString());
+        NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);
+        MslApiResponseMessage response = songClient.rateSong(TEST_SONG_ID, new BigDecimal("2"), cookie.toString());
         assertNotNull(response);
         assertEquals("rateSong response is successful", "magic!", response.getMessage());
     }
@@ -83,7 +84,7 @@ public class SongClientTest {
     @Test(expected = java.lang.RuntimeException.class)
     public void testRateSongThrowException() {
         logger.debug("songClient.testRateSongThrowException");
-        songClient.rateSong("1", new BigDecimal("4"), "");
+        songClient.rateSong(TEST_SONG_ID, new BigDecimal("4"), "");
     }
 
 }
