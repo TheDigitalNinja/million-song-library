@@ -3,11 +3,11 @@ package io.swagger.api.impl;
 import javax.xml.bind.annotation.XmlTransient;
 
 public class MslApiResponseMessage{
+    public static final int OK = 0;
     public static final int ERROR = 1;
     public static final int WARNING = 2;
     public static final int INFO = 3;
-    public static final int OK = 4;
-    public static final int TOO_BUSY = 5;
+    public static final int TOO_BUSY = 4;
 
     int code;
     String type;

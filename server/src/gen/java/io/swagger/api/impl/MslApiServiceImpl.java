@@ -19,7 +19,6 @@ import com.kenzan.msl.server.mock.SongMockData;
 import com.kenzan.msl.server.services.CassandraCatalogService;
 import com.kenzan.msl.server.services.CatalogService;
 
-import io.swagger.api.ApiResponseMessage;
 import io.swagger.api.MslApiService;
 import io.swagger.api.NotFoundException;
 
@@ -52,7 +51,7 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
     	// Validate required parameters
     	if (StringUtils.isEmpty(albumId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
     	}
 
     	AlbumInfo albumInfo;
@@ -73,7 +72,7 @@ public class MslApiServiceImpl extends MslApiService {
     		return Response.status(Response.Status.NOT_FOUND).entity(notFoundResponse).build();
     	}
         
-        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", albumInfo)).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", albumInfo)).build();
     }
 
     @Override
@@ -81,11 +80,11 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(albumId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
     	}
 
         // TODO replace current mock data
-        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", albumMockData.getAlbum(albumId).getImageLink())).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", albumMockData.getAlbum(albumId).getImageLink())).build();
     }
 
     @Override
@@ -103,7 +102,7 @@ public class MslApiServiceImpl extends MslApiService {
     		return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
     	}
 
-        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", albumList)).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", albumList)).build();
     }
 
     // ========================================================================================================== ARTIST
@@ -114,7 +113,7 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
     	// Validate required parameters
     	if (StringUtils.isEmpty(artistId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
     	}
 
     	ArtistInfo artistInfo;
@@ -135,7 +134,7 @@ public class MslApiServiceImpl extends MslApiService {
     		return Response.status(Response.Status.NOT_FOUND).entity(notFoundResponse).build();
     	}
 
-        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", artistInfo)).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", artistInfo)).build();
     }
 
     @Override
@@ -143,11 +142,11 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(artistId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
     	}
     	
         // TODO replace current mock implementation
-        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", artistMockData.getArtist(artistId).getImageLink())).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", artistMockData.getArtist(artistId).getImageLink())).build();
     }
 
     @Override
@@ -165,7 +164,7 @@ public class MslApiServiceImpl extends MslApiService {
     		return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
     	}
 
-        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", artistList)).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", artistList)).build();
     }
 
     // =========================================================================================================== SONGS
@@ -176,7 +175,7 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
     	// Validate required parameters
     	if (StringUtils.isEmpty(songId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
     	}
 
         SongInfo songInfo;
@@ -197,14 +196,14 @@ public class MslApiServiceImpl extends MslApiService {
     		return Response.status(Response.Status.NOT_FOUND).entity(notFoundResponse).build();
     	}
 
-        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", songInfo)).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", songInfo)).build();
     }
 
     @Override
     public Response getRecentSongs()
             throws NotFoundException {
         // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
     }
 
     @Override
@@ -212,11 +211,11 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(songId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
     	}
 
         // TODO replace current mock data
-        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", songMockData.getSong(songId).getImageLink())).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", songMockData.getSong(songId).getImageLink())).build();
     }
 
     @Override
@@ -234,7 +233,7 @@ public class MslApiServiceImpl extends MslApiService {
     		return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
     	}
 
-        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", songList)).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", songList)).build();
     }
 
     @Override
@@ -242,11 +241,11 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(songId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
     	}
 
     	// do some magic !
-        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
     }
 
     @Override
@@ -254,14 +253,14 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(songId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
     	}
 
         if (MslSessionToken.isValidToken()) {
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
     	// TODO Use Response.Status.x constant instead of hard coded number
-		return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+		return Response.status(401).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
@@ -269,17 +268,17 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(artistId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
     	}
         if (null == rating) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'rating' is null.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'rating' is null.")).build();
         }
 
         if (MslSessionToken.isValidToken()) {
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
     	// TODO Use Response.Status.x constant instead of hard coded number
-		return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+		return Response.status(401).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
@@ -287,17 +286,17 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(albumId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
     	}
         if (null == rating) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'rating' is null.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'rating' is null.")).build();
         }
 
         if (MslSessionToken.isValidToken()) {
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
     	// TODO Use Response.Status.x constant instead of hard coded number
-		return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+		return Response.status(401).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
@@ -305,17 +304,17 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(songId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
     	}
         if (null == rating) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'rating' is null.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'rating' is null.")).build();
         }
 
         if (MslSessionToken.isValidToken()) {
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
     	// TODO Use Response.Status.x constant instead of hard coded number
-		return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+		return Response.status(401).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     // ========================================================================================================= LIBRARY
@@ -325,7 +324,7 @@ public class MslApiServiceImpl extends MslApiService {
     public Response getMyLibrary()
             throws NotFoundException {
         // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
     }
 
     // ========================================================================================================= SESSION
@@ -335,7 +334,7 @@ public class MslApiServiceImpl extends MslApiService {
     public Response getUserInfo()
             throws NotFoundException {
         // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
     }
 
     @Override
@@ -343,10 +342,10 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(email)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'email' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'email' is null or empty.")).build();
     	}
     	if (StringUtils.isEmpty(password)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'password' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'password' is null or empty.")).build();
     	}
 
         // TODO replace current mock data
@@ -354,7 +353,7 @@ public class MslApiServiceImpl extends MslApiService {
         cookie = new NewCookie("sessionToken", MslSessionToken.value);
         return Response.ok()
                 .header("Set-Cookie", cookie.toString() + "; Domain=local.msl.dev ; Path=/; HttpOnly")
-                .entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", logInMockData.getAuthenticatedFlag(email, password))).build();
+                .entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", logInMockData.getAuthenticatedFlag(email, password))).build();
     }
 
     @Override
@@ -365,7 +364,7 @@ public class MslApiServiceImpl extends MslApiService {
         cookie = new NewCookie("sessionToken", MslSessionToken.value);
         return Response.ok()
                 .header("Set-Cookie", cookie.toString() + ";Max-Age=0; Domain=local.msl.dev; Path=/; HttpOnly")
-                .entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", logInMockData.logOut())).build();
+                .entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", logInMockData.logOut())).build();
     }
 
     @Override
@@ -373,12 +372,12 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(email)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'email' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'email' is null or empty.")).build();
     	}
 
         // do some magic!
         return Response.ok()
-                .entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+                .entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
     }
 
     // ----------------------------------------------------------------------------------------------------------- OTHER
@@ -389,13 +388,13 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(facetId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'facetId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'facetId' is null or empty.")).build();
     	}
 
     	// TODO replace mock data
         //FacetInfoWithChildren facetInfoWithChildren = catalogService.getFacet(facetId).toBlocking().first();
-        //return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", facetInfoWithChildren)).build();
-        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", facetMockData.getFacet(facetId))).build();
+        //return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", facetInfoWithChildren)).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", facetMockData.getFacet(facetId))).build();
     }
 
 
@@ -404,14 +403,14 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(searchText)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'searchText' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'searchText' is null or empty.")).build();
     	}
     	if (StringUtils.isEmpty(searchType)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'searchType' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'searchType' is null or empty.")).build();
     	}
 
         // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
     }
 
     @Override
@@ -419,14 +418,14 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(songId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
     	}
 
         if (MslSessionToken.isValidToken()) {
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
     	// TODO Use Response.Status.x constant instead of hard coded number
-		return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+		return Response.status(401).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
@@ -434,14 +433,14 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(artistId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
     	}
 
         if (MslSessionToken.isValidToken()) {
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
     	// TODO Use Response.Status.x constant instead of hard coded number
-		return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+		return Response.status(401).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
@@ -449,14 +448,14 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(albumId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
     	}
 
         if (MslSessionToken.isValidToken()) {
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
     	// TODO Use Response.Status.x constant instead of hard coded number
-		return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+		return Response.status(401).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
@@ -464,14 +463,14 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(albumId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
     	}
 
         if (MslSessionToken.isValidToken()) {
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
     	// TODO Use Response.Status.x constant instead of hard coded number
-		return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+		return Response.status(401).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
@@ -479,14 +478,14 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(artistId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
     	}
 
         if (MslSessionToken.isValidToken()) {
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
     	// TODO Use Response.Status.x constant instead of hard coded number
-		return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+		return Response.status(401).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
@@ -494,14 +493,14 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
     	if (StringUtils.isEmpty(songId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
     	}
 
         if (MslSessionToken.isValidToken()) {
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
     	// TODO Use Response.Status.x constant instead of hard coded number
-		return Response.status(401).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "no sessionToken provided")).build();
+		return Response.status(401).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
 }
