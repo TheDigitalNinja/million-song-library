@@ -13,132 +13,95 @@ import java.util.UUID;
  * @author billschwanitz
  */
 public abstract class AbstractSongDao extends AbstractDao {
-	@Column (name = "song_id")
-	private UUID songId;
-	@Column (name = "song_name")
-	private String songName;
-	@Column (name = "song_duration")
-	private int songDuration;
-	@Column (name = "album_id")
-	private UUID albumId;
-	@Column (name = "album_name")
-	private String albumName;
-	@Column (name = "album_year")
-	private int albumYear;
-	@Column (name = "artist_id")
-	private UUID artistId;
-	@Column (name = "artist_name")
-	private String artistName;
-	@Column (name = "artist_mbid")
-	private UUID artistMbid;
 	
 	/**
 	 * @return the songId
 	 */
-	public UUID getSongId() {
-		return songId;
-	}
+	public abstract UUID getSongId();
+	
 	/**
 	 * @param songId the songId to set
 	 */
-	public void setSongId(UUID songId) {
-		this.songId = songId;
-	}
+	public abstract void setSongId(UUID songId);
+	
 	/**
 	 * @return the songName
 	 */
-	public String getSongName() {
-		return songName;
-	}
+	public abstract String getSongName();
+	
 	/**
 	 * @param songName the songName to set
 	 */
-	public void setSongName(String songName) {
-		this.songName = songName;
-	}
+	public abstract void setSongName(String songName);
+	
 	/**
 	 * @return the songDuration
 	 */
-	public int getSongDuration() {
-		return songDuration;
-	}
+	public abstract Integer getSongDuration();
+	
 	/**
 	 * @param songDuration the songDuration to set
 	 */
-	public void setSongDuration(int songDuration) {
-		this.songDuration = songDuration;
-	}
+	public abstract void setSongDuration(Integer songDuration);
+	
 	/**
 	 * @return the albumId
 	 */
-	public UUID getAlbumId() {
-		return albumId;
-	}
+	public abstract UUID getAlbumId();
+	
 	/**
 	 * @param albumId the albumId to set
 	 */
-	public void setAlbumId(UUID albumId) {
-		this.albumId = albumId;
-	}
+	public abstract void setAlbumId(UUID albumId);
+	
 	/**
 	 * @return the albumName
 	 */
-	public String getAlbumName() {
-		return albumName;
-	}
+	public abstract String getAlbumName();
+	
 	/**
 	 * @param albumName the albumName to set
 	 */
-	public void setAlbumName(String albumName) {
-		this.albumName = albumName;
-	}
+	public abstract void setAlbumName(String albumName);
+	
 	/**
 	 * @return the albumYear
 	 */
-	public int getAlbumYear() {
-		return albumYear;
-	}
+	public abstract Integer getAlbumYear();
+	
 	/**
 	 * @param albumYear the albumYear to set
 	 */
-	public void setAlbumYear(int albumYear) {
-		this.albumYear = albumYear;
-	}
+	public abstract void setAlbumYear(Integer albumYear);
+	
 	/**
 	 * @return the artistId
 	 */
-	public UUID getArtistId() {
-		return artistId;
-	}
+	public abstract UUID getArtistId();
+	
 	/**
 	 * @param artistId the artistId to set
 	 */
-	public void setArtistId(UUID artistId) {
-		this.artistId = artistId;
-	}
+	public abstract void setArtistId(UUID artistId);
+	
 	/**
 	 * @return the artistName
 	 */
-	public String getArtistName() {
-		return artistName;
-	}
+	public abstract String getArtistName();
+	
 	/**
 	 * @param artistName the artistName to set
 	 */
-	public void setArtistName(String artistName) {
-		this.artistName = artistName;
-	}
+	public abstract void setArtistName(String artistName);
+	
 	/**
 	 * @return the artistMbid
 	 */
-	public UUID getArtistMbid() {
-		return artistMbid;
-	}
+	public abstract UUID getArtistMbid();
+	
 	/**
 	 * @param artistMbid the artistMbid to set
 	 */
-	public void setArtistMbid(UUID artistMbid) {
-		this.artistMbid = artistMbid;
-	}
-
+	public abstract void setArtistMbid(UUID artistMbid);
+	
 }

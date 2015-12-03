@@ -19,10 +19,10 @@ public class AlbumListBo extends AbstractListBo<AlbumBo> {
 			AbstractAlbumDao abstractAlbumDao = (AbstractAlbumDao)abstractDao;
 			
 			AlbumBo albumBo = new AlbumBo();
-			albumBo.setAlbumId(abstractAlbumDao.getAlbumId().toString());
+			albumBo.setAlbumId(abstractAlbumDao.getAlbumId());
 			albumBo.setAlbumName(abstractAlbumDao.getArtistName());
 			albumBo.setYear(abstractAlbumDao.getAlbumYear());
-			albumBo.setArtistId(abstractAlbumDao.getArtistId().toString());
+			albumBo.setArtistId(abstractAlbumDao.getArtistId());
 			albumBo.setArtistName(abstractAlbumDao.getArtistName());
 			
 			addBo(albumBo);

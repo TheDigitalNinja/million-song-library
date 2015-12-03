@@ -7,8 +7,12 @@ import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.mapping.MappingManager;
 import com.kenzan.msl.server.cassandra.CassandraConstants;
+import com.kenzan.msl.server.cassandra.query.AlbumInfoQuery;
+import com.kenzan.msl.server.cassandra.query.AlbumListQuery;
 import com.kenzan.msl.server.cassandra.query.ArtistInfoQuery;
 import com.kenzan.msl.server.cassandra.query.ArtistListQuery;
+import com.kenzan.msl.server.cassandra.query.SongInfoQuery;
+import com.kenzan.msl.server.cassandra.query.SongListQuery;
 import com.kenzan.msl.server.dao.FacetWithChildrenDao;
 import com.kenzan.msl.server.dao.translate.Translators;
 
@@ -87,8 +91,7 @@ public class CassandraCatalogService implements CatalogService {
 		UUID pagingStateUuid = StringUtils.isEmpty(pagingState) ? null : UUID.fromString(pagingState);
 		UUID userUuid = StringUtils.isEmpty(userId) ? null : UUID.fromString(userId);
 
-		//return Observable.just(Translators.translate(AlbumListQuery.get(session, pagingStateUuid, items, facets, userUuid)));
-		return null;
+		return Observable.just(Translators.translate(AlbumListQuery.get(session, pagingStateUuid, items, facets, userUuid)));
 	}
 
 	/*
@@ -102,8 +105,7 @@ public class CassandraCatalogService implements CatalogService {
 		UUID artistUuid = UUID.fromString(artistId);
 		UUID userUuid = null == userId ? null : UUID.fromString(userId);
 		
-		//return Observable.just(Translators.translate(ArtistInfoQuery.get(session, userUuid, artistUuid)));
-		return null;
+		return Observable.just(Translators.translate(AlbumInfoQuery.get(session, userUuid, artistUuid)));
 	}
 
 	
@@ -228,8 +230,7 @@ public class CassandraCatalogService implements CatalogService {
 		UUID pagingStateUuid = StringUtils.isEmpty(pagingState) ? null : UUID.fromString(pagingState);
 		UUID userUuid = StringUtils.isEmpty(userId) ? null : UUID.fromString(userId);
 
-		//return Observable.just(Translators.translate(SongListQuery.get(session, pagingStateUuid, items, facets, userUuid)));
-		return null;
+		return Observable.just(Translators.translate(SongListQuery.get(session, pagingStateUuid, items, facets, userUuid)));
 	}
 
 	/*
@@ -243,8 +244,7 @@ public class CassandraCatalogService implements CatalogService {
 		UUID artistUuid = UUID.fromString(artistId);
 		UUID userUuid = null == userId ? null : UUID.fromString(userId);
 		
-		//return Observable.just(Translators.translate(ArtistInfoQuery.get(session, userUuid, artistUuid)));
-		return null;
+		return Observable.just(Translators.translate(SongInfoQuery.get(session, userUuid, artistUuid)));
 	}
 		
 }

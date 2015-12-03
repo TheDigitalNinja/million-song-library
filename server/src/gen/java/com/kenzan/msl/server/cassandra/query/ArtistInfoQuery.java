@@ -88,12 +88,17 @@ public class ArtistInfoQuery {
 				artistBo.getSongsList().add(songsAlbumsByArtistDao.getSongId().toString());
 			}
 		}
-		
+
+		// If we didn't retrieved a DAO, then return null 
+		if (!processedOneRow) {
+			return null;
+		}
+
 		/*
 		 * Retrieve data from the average_ratings table
 		 */
 		
-		// Build query to select all rows for the given artist from the songs_albums_by_artist table 
+		// Build query to select all rows for the given artist from the average_ratings table 
 		Statement statement2 = QueryBuilder.select()
 				.all()
 				.from(CassandraConstants.MSL_TABLE_AVERAGE_RATINGS)
@@ -105,7 +110,7 @@ public class ArtistInfoQuery {
 		
 		// If we retrieved a DAO, then include that info into the ArtistInfo 
 		if (null != averageRatingsDao) {
-			artistBo.setAverageRating(averageRatingsDao.getSumRating() / averageRatingsDao.getNumRating());
+			artistBo.setAverageRating((int) (averageRatingsDao.getSumRating() / averageRatingsDao.getNumRating()));
 		}
 		
 		/*
@@ -113,7 +118,7 @@ public class ArtistInfoQuery {
 		 */
 		
 		if (userUuid != null) {
-			// Build query to select all rows for the given artist from the songs_albums_by_artist table 
+			// Build query to select all rows for the given artist from the user_data_by_user table 
 			Statement statement3 = QueryBuilder.select()
 					.all()
 					.from(CassandraConstants.MSL_TABLE_USER_DATA_BY_USER)
