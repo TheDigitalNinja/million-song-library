@@ -13,7 +13,16 @@ import com.kenzan.msl.server.bo.AbstractBo;
 public class FacetDao extends AbstractBo {
 	private String facetId;
 	private String facetName;
-	
+
+    public FacetDao () {}
+    /**
+     * @param facetId facetId to set
+     * @param facetName facetName to set
+     */
+    public FacetDao(String facetId, String facetName) {
+        setFacetId(facetId);
+        setFacetName(facetName);
+    }
 	/**
 	 * @return the facetId
 	 */

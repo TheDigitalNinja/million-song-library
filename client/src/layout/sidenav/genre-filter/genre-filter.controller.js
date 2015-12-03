@@ -13,13 +13,15 @@ export default class genreFilterCtrl {
    * @param {$location} $location
    * @param {facetStore} facetStore
    * @param {filterModel} filterModel
+   * @param {$filter} $filter
    */
-  constructor($scope, $log, $location, facetStore, filterModel) {
+  constructor($scope, $log, $location, facetStore, filterModel, $filter) {
     this.$scope = $scope;
     this.$log = $log;
     this.$location = $location;
     this.facetStore = facetStore;
     this.filterModel = filterModel;
+    this.$filter = $filter;
 
     this._getGenreFacets();
   }
@@ -51,7 +53,7 @@ export default class genreFilterCtrl {
   async _getGenreFacets() {
     try {
       const facetList = await this.facetStore.fetch(GENRE_FACET_ID);
-      this.genres = facetList.children;
+      this.genres = this.$filter('orderBy')(facetList.children, 'name');
       this.$scope.$evalAsync();
     }
     catch(err) {
