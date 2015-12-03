@@ -1,0 +1,55 @@
+<div id="registration-form" class="text-center">
+  <h1> Register </h1>
+  <form name="credentials" ng-submit="vm.submit()">
+    <md-input-container class="form-group">
+      <input type="email" name="email" ng-model="vm.email" class="form-control" placeholder="Email address" required autofocus>
+      <div ng-messages="credentials.email.$error"  ng-show="credentials.email.$dirty">
+        <div ng-message="email">Should be a valid email format</div>
+        <div ng-message="required">This is required!</div>
+      </div>
+    </md-input-container>
+
+    <md-input-container>
+      <input type="password"
+             name="password"
+             ng-model="vm.password"
+             placeholder="Password"
+             ng-change="vm.checkIfPasswordCompliant()"
+             password
+             required>
+      <div ng-messages="credentials.password.$error" ng-show="credentials.password.$dirty">
+        <div ng-message="required">This is required!</div>
+        <div ng-message="password">
+          <span class="input-field-error">Must contain:
+            <ul>
+              <li>At least a number</li>
+              <li>A capitalized letter </li>
+              <li>A special character (!#$%&*+,./:;<=>?@\^_~-)</li>
+              <li>More than 10 characters </li>
+            </ul>
+          </span>
+        </div>
+      </div>
+    </md-input-container>
+
+    <md-input-container>
+      <input type="password"
+             name="confirmationPassword"
+             ng-model="vm.confirmationPassword"
+             placeholder="Confirmation Password"
+             required>
+      <div ng-messages="credentials.confirmationPassword.$error" ng-show="credentials.confirmationPassword.$dirty">
+        <div ng-message="required">This is required!</div>
+      </div>
+    </md-input-container>
+
+    <div class="alert alert-danger" ng-if="vm.hasError" role="alert">
+      <strong>Oh snap!</strong>
+      Credentials are invalid!
+    </div>
+
+    <md-button name="registration" class="md-primary md-raised" type="submit" ng-disabled="credentials.$invalid">
+      Sign up
+    </md-button>
+  </form>
+</div>

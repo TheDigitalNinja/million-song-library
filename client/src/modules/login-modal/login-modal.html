@@ -15,8 +15,8 @@
           <md-input-container>
             <input type="email" name="email" ng-model="vm.email" class="form-control" placeholder="Email address" required autofocus>
             <div class="error-messages" ng-messages="credentials.email.$error" ng-show="credentials.email.$dirty">
-              <div ng-message="email" ng-show="credentials.email.$error.email">Should be a valid email format</div>
-              <div ng-message="required" ng-show="credentials.email.$error.required">This is required!</div>
+              <div ng-message="email">Should be a valid email format</div>
+              <div ng-message="required">This is required!</div>
             </div>
           </md-input-container>
         </div>
@@ -24,8 +24,8 @@
           <md-input-container>
             <input type="password" name="password" ng-model="vm.password" class="form-control" placeholder="Password" required password>
               <div class="error-messages" ng-messages="credentials.password.$error" ng-show="credentials.password.$dirty">
-                <div ng-message="required" ng-show="credentials.password.$error.required">This is required!</div>
-                <div ng-message="password" ng-show="credentials.password.$error.password">
+                <div ng-message="required">This is required!</div>
+                <div ng-message="password">
                   <span class="input-field-error">Must contain:
                     <ul>
                       <li>At least a number</li>
