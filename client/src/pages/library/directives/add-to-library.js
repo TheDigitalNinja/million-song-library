@@ -1,11 +1,11 @@
+import { ROLE_USER } from '../../../constants.js';
+
 /**
  * Add to library directive
- * @author anram88
  * @param libraryModel
  * @returns {{restrict: string, scope: {type: string, id: string}, link: Function}}
  */
-export default function addToLibrary (libraryModel) {
-
+export default function addToLibrary(libraryModel, loginModal, Permission) {
   'ngInject';
 
   return {
@@ -14,20 +14,35 @@ export default function addToLibrary (libraryModel) {
       type: '@',
       id: '=',
     },
-    link: function(scope, elem) {
-      elem.bind('click', () => {
-        switch(scope.type) {
-          case 'album':
-            libraryModel.addAlbumToLibrary(scope.id);
-            break;
-          case 'artist':
-            libraryModel.addArtistToLibrary(scope.id);
-            break;
-          case 'song':
-            libraryModel.addSongToLibrary(scope.id);
-            break;
-        }
-      });
-    },
+
+    link,
   };
+
+  function link(scope, elem) {
+    async function clickEvent() {
+      try {
+        await Permission.authorize({ only: [ROLE_USER] });
+        addToLibrary(scope.type, scope.id);
+      }
+      catch(error) {
+        loginModal.show();
+      }
+    }
+
+    elem.bind('click', clickEvent);
+  }
+
+  async function addToLibrary(type, id) {
+    switch(type) {
+      case 'album':
+        await libraryModel.addAlbumToLibrary(id);
+        break;
+      case 'artist':
+        await libraryModel.addArtistToLibrary(id);
+        break;
+      case 'song':
+        await libraryModel.addSongToLibrary(id);
+        break;
+    }
+  }
 }

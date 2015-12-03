@@ -31,7 +31,7 @@
       <md-button ng-if="vm.authentication.isAuthenticated()" aria-label="My Library" ui-sref="msl.library" ui-sref-active="active">
         My Library
       </md-button>
-      <md-button ng-if="vm.authentication.isAuthenticated()" aria-label="Logout" ui-sref="#" ng-click="$event.preventDefault(); vm.logout();">
+      <md-button data-pt-id="logout" ng-if="vm.authentication.isAuthenticated()" aria-label="Logout" ui-sref="#" ng-click="$event.preventDefault(); vm.logout();">
         Logout
       </md-button>
     </div>

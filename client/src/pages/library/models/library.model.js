@@ -21,24 +21,24 @@ export default class libraryModel {
    * Adds selected song to library
    * @param {string} songId
    */
-  addSongToLibrary(songId) {
-    this.myLibraryStore.addSong(songId);
+  async addSongToLibrary(songId) {
+    await this.myLibraryStore.addSong(songId);
   }
 
   /**
    * Adds selected album into library
    * @param {string} albumId
    */
-  addAlbumToLibrary(albumId) {
-    this.myLibraryStore.addAlbum(albumId);
+  async addAlbumToLibrary(albumId) {
+    await this.myLibraryStore.addAlbum(albumId);
   }
 
   /**
    * Adds selected artist into library
    * @param {string} artistId
    */
-  addArtistToLibrary(artistId) {
-    this.myLibraryStore.addArtist(artistId);
+  async addArtistToLibrary(artistId) {
+    await this.myLibraryStore.addArtist(artistId);
   }
 
   /**

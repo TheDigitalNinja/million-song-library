@@ -1,4 +1,4 @@
-import {ROLE_ANONYMOUS, ROLE_USER} from 'constants';
+import { ROLE_ANONYMOUS, ROLE_USER } from 'constants';
 
 export default function defaultRun(Permission, authentication) {
   'ngInject';

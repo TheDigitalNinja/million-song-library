@@ -3,16 +3,17 @@ import libraryModule from 'pages/library/library.module.js';
 
 describe('libraryCtrl', () => {
 
-  let $scope, $controller, libraryCtrl,
-      myLibraryStore, $log;
+  let $scope, $controller, libraryCtrl, myLibraryStore, $log, loginModal;
 
   beforeEach(() => {
     angular.mock.module(libraryModule, ($provide) => {
       $log = jasmine.createSpyObj('$log', ['warn']);
       myLibraryStore = jasmine.createSpyObj('myLibraryStore', ['fetch']);
+      loginModal = jasmine.createSpyObj('loginModal', ['show']);
 
       $provide.value('$log', $log);
       $provide.value('myLibraryStore', myLibraryStore);
+      $provide.value('loginModal', loginModal);
     });
 
     inject((_$controller_, $rootScope) => {
