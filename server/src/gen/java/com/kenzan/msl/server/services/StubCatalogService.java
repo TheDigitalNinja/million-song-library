@@ -15,6 +15,7 @@ import io.swagger.model.ArtistInfo;
 import io.swagger.model.ArtistList;
 import io.swagger.model.SongInfo;
 import io.swagger.model.SongList;
+import io.swagger.model.MyLibrary;
 import rx.Observable;
 
 import java.util.UUID;
@@ -200,6 +201,16 @@ public class StubCatalogService implements CatalogService {
      */
     public Observable<Optional<UUID>> logIn(String email, String password) {
         return Observable.just(Optional.of(UUID.fromString(logInMockData.getAuthenticatedFlag(email, password).getAuthenticated())));
+    }
+
+    /**
+     * Retrieves the user library data
+     *
+     * @param sessionToken   user uuid
+     * @return Observable<MyLibrary>
+     */
+    public Observable<MyLibrary> getMyLibrary(String sessionToken){
+        return Observable.just(new MyLibrary());
     }
 
 }

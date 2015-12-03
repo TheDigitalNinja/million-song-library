@@ -9,9 +9,10 @@ import io.swagger.model.AlbumInfo;
 import io.swagger.model.AlbumList;
 import io.swagger.model.ArtistInfo;
 import io.swagger.model.ArtistList;
-import io.swagger.model.FacetInfoWithChildren;
 import io.swagger.model.SongInfo;
 import io.swagger.model.SongList;
+import io.swagger.model.MyLibrary;
+
 import rx.Observable;
 
 import java.util.UUID;
@@ -67,5 +68,10 @@ public interface CatalogService {
 	 * Gets the UUID for that user if password matches
 	 */
     Observable<Optional<UUID>> logIn (String email, String password);
+
+    /*
+     * Gets the MyLibrary object
+     */
+    Observable<MyLibrary> getMyLibrary(String sessionToken);
 
 }

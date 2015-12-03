@@ -20,10 +20,8 @@ import com.kenzan.msl.server.cassandra.query.SongInfoQuery;
 import com.kenzan.msl.server.cassandra.query.SongListQuery;
 import com.kenzan.msl.server.translate.Translators;
 import com.kenzan.msl.server.cassandra.query.AuthenticationQuery;
-
+import com.kenzan.msl.server.cassandra.query.LibraryQuery;
 import java.util.UUID;
-
-import org.apache.commons.lang3.StringUtils;
 
 import io.swagger.model.AlbumInfo;
 import io.swagger.model.AlbumList;
@@ -31,6 +29,9 @@ import io.swagger.model.ArtistInfo;
 import io.swagger.model.ArtistList;
 import io.swagger.model.SongInfo;
 import io.swagger.model.SongList;
+import io.swagger.model.MyLibrary;
+
+import org.apache.commons.lang3.StringUtils;
 import rx.Observable;
 
 /**
@@ -43,6 +44,7 @@ public class CassandraCatalogService implements CatalogService {
 
     private Session session;
     private QueryAccessor queryAccessor;
+    private MappingManager manager;
 
     public CassandraCatalogService() {
         // TODO: Get the contact point from config param
@@ -51,7 +53,7 @@ public class CassandraCatalogService implements CatalogService {
         // TODO: Get the keyspace from config param
         session = cluster.connect(CassandraConstants.MSL_KEYSPACE);
 
-        MappingManager manager = new MappingManager (session);
+        manager = new MappingManager (session);
         queryAccessor = manager.createAccessor(QueryAccessor.class);
     }
 
@@ -257,5 +259,15 @@ public class CassandraCatalogService implements CatalogService {
     // TODO move this to a dedicated CassandraAuthenticationService
     public Observable<Optional<UUID>> logIn(String email, String password) {
         return Observable.just(AuthenticationQuery.authenticate(queryAccessor, email, password));
+    }
+
+    /**
+     * Retrieves the user library data
+     *
+     * @param sessionToken   user uuid
+     * @return Observable<MyLibrary>
+     */
+    public Observable<MyLibrary> getMyLibrary(String sessionToken){
+        return Observable.just(LibraryQuery.get(queryAccessor, manager, sessionToken));
     }
 }

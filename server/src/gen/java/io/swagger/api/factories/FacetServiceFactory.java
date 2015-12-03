@@ -31,7 +31,7 @@ public class FacetServiceFactory {
                 return _facet;
             }
         }
-        return null;
+        return new FacetInfoWithChildren();
     }
 
     public static List<AlbumInfo> filterAlbumByRatingFacet(List<AlbumInfo> albumList, String facet_id) {
