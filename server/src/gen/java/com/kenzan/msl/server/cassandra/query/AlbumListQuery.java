@@ -3,17 +3,17 @@
  */
 package com.kenzan.msl.server.cassandra.query;
 
-import com.datastax.driver.core.PreparedStatement;
+import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.ResultSetFuture;
 import com.datastax.driver.core.Session;
-import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.datastax.driver.mapping.MappingManager;
 import com.kenzan.msl.server.bo.AlbumBo;
 import com.kenzan.msl.server.bo.AlbumListBo;
 import com.kenzan.msl.server.cassandra.CassandraConstants;
-import com.kenzan.msl.server.cassandra.CassandraConstants.MSL_CONTENT_TYPE;
+import com.kenzan.msl.server.cassandra.PreparedStatementFactory;
 import com.kenzan.msl.server.dao.AverageRatingsDao;
 import com.kenzan.msl.server.dao.UserDataByUserDao;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -90,16 +90,14 @@ public class AlbumListQuery {
 	 * we will fire of one asynchronous query for each album in the list.
 	 */
 	private static Set<ResultSetFuture> fireAverageRatingQueries(final Session session, final AlbumListBo albumListBo) {
-		PreparedStatement statement = session.prepare(QueryBuilder.select()
-				.all()
-				.from(CassandraConstants.MSL_TABLE_AVERAGE_RATINGS)
-				.where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker()))
-					.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.ALBUM.dbContentType)));
-		
 		Set<ResultSetFuture> returnSet = new HashSet<ResultSetFuture>(albumListBo.getBoList().size());
 		
 		for (AlbumBo albumBo : albumListBo.getBoList()) {
-			returnSet.add(session.executeAsync(statement.bind(albumBo.getAlbumId())));
+			BoundStatement statement = PreparedStatementFactory.getInstance()
+					.getPreparedStatement(session,PreparedStatementFactory.PreparedStatementId.ALBUM_AVERAGE_RATING_QUERY)
+					.bind(albumBo.getAlbumId());
+
+			returnSet.add(session.executeAsync(statement));
 		}
 		
 		return returnSet;
@@ -112,17 +110,15 @@ public class AlbumListQuery {
 	 * we will fire of one asynchronous query for each album in the list.
 	 */
 	private static Set<ResultSetFuture> fireUserRatingQueries(final Session session, final AlbumListBo albumListBo, final UUID userUuid) {
-		PreparedStatement statement = session.prepare(QueryBuilder.select()
-				.all()
-				.from(CassandraConstants.MSL_TABLE_USER_DATA_BY_USER)
-				.where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_USER_ID, userUuid))
-					.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.ALBUM.dbContentType))
-					.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker())));
-
 		Set<ResultSetFuture> returnSet = new HashSet<ResultSetFuture>(albumListBo.getBoList().size());
 		
 		for (AlbumBo albumBo : albumListBo.getBoList()) {
-			returnSet.add(session.executeAsync(statement.bind(albumBo.getAlbumId())));
+			BoundStatement statement = PreparedStatementFactory.getInstance()
+					.getPreparedStatement(session,PreparedStatementFactory.PreparedStatementId.ALBUM_USER_RATING_QUERY)
+					.bind(userUuid)
+					.bind(albumBo.getAlbumId());
+
+			returnSet.add(session.executeAsync(statement));
 		}
 		
 		return returnSet;

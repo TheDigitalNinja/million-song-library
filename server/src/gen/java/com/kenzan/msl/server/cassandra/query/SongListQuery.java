@@ -3,15 +3,14 @@
  */
 package com.kenzan.msl.server.cassandra.query;
 
-import com.datastax.driver.core.PreparedStatement;
+import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.ResultSetFuture;
 import com.datastax.driver.core.Session;
-import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.datastax.driver.mapping.MappingManager;
 import com.kenzan.msl.server.bo.SongBo;
 import com.kenzan.msl.server.bo.SongListBo;
 import com.kenzan.msl.server.cassandra.CassandraConstants;
-import com.kenzan.msl.server.cassandra.CassandraConstants.MSL_CONTENT_TYPE;
+import com.kenzan.msl.server.cassandra.PreparedStatementFactory;
 import com.kenzan.msl.server.dao.AverageRatingsDao;
 import com.kenzan.msl.server.dao.UserDataByUserDao;
 
@@ -90,16 +89,14 @@ public class SongListQuery {
 	 * we will fire of one asynchronous query for each song in the list.
 	 */
 	private static Set<ResultSetFuture> fireAverageRatingQueries(final Session session, final SongListBo songListBo) {
-		PreparedStatement statement = session.prepare(QueryBuilder.select()
-				.all()
-				.from(CassandraConstants.MSL_TABLE_AVERAGE_RATINGS)
-				.where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker()))
-					.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.SONG.dbContentType)));
-		
 		Set<ResultSetFuture> returnSet = new HashSet<ResultSetFuture>(songListBo.getBoList().size());
 		
 		for (SongBo songBo : songListBo.getBoList()) {
-			returnSet.add(session.executeAsync(statement.bind(songBo.getSongId())));
+			BoundStatement statement = PreparedStatementFactory.getInstance()
+					.getPreparedStatement(session,PreparedStatementFactory.PreparedStatementId.SONG_AVERAGE_RATING_QUERY)
+					.bind(songBo.getSongId());
+
+			returnSet.add(session.executeAsync(statement));
 		}
 		
 		return returnSet;
@@ -112,17 +109,15 @@ public class SongListQuery {
 	 * we will fire of one asynchronous query for each song in the list.
 	 */
 	private static Set<ResultSetFuture> fireUserRatingQueries(final Session session, final SongListBo songListBo, final UUID userUuid) {
-		PreparedStatement statement = session.prepare(QueryBuilder.select()
-				.all()
-				.from(CassandraConstants.MSL_TABLE_USER_DATA_BY_USER)
-				.where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_USER_ID, userUuid))
-					.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.SONG.dbContentType))
-					.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker())));
-
 		Set<ResultSetFuture> returnSet = new HashSet<ResultSetFuture>(songListBo.getBoList().size());
 		
 		for (SongBo songBo : songListBo.getBoList()) {
-			returnSet.add(session.executeAsync(statement.bind(songBo.getSongId())));
+			BoundStatement statement = PreparedStatementFactory.getInstance()
+					.getPreparedStatement(session,PreparedStatementFactory.PreparedStatementId.SONG_USER_RATING_QUERY)
+					.bind(userUuid)
+					.bind(songBo.getSongId());
+
+			returnSet.add(session.executeAsync(statement));
 		}
 		
 		return returnSet;
