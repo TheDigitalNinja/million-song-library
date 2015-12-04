@@ -1,7 +1,9 @@
 package io.swagger.api.impl;
 
+import com.kenzan.msl.server.manager.FacetManager;
 import com.kenzan.msl.server.mock.FacetMockData;
 
+import io.swagger.api.ApiResponseMessage;
 import io.swagger.model.AlbumInfo;
 import io.swagger.model.AlbumList;
 import io.swagger.model.ArtistInfo;
@@ -90,6 +92,10 @@ public class MslApiServiceImpl extends MslApiService {
     @Override
     public Response browseAlbums(Integer items, String pagingState, String facets)
             throws NotFoundException {
+        if (null == items){
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'items' is null or empty.")).build();
+        }
+
         AlbumList albumList;
     	try {
     		albumList = catalogService.browseAlbums(pagingState, items, facets, null).toBlocking().first();
@@ -152,6 +158,9 @@ public class MslApiServiceImpl extends MslApiService {
     @Override
     public Response browseArtists(Integer items, String pagingState, String facets)
             throws NotFoundException {
+        if (null == items){
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'items' is null or empty.")).build();
+        }
         ArtistList artistList;
     	try {
     		artistList = catalogService.browseArtists(pagingState, items, facets, null).toBlocking().first();
@@ -221,6 +230,9 @@ public class MslApiServiceImpl extends MslApiService {
     @Override
     public Response browseSongs(Integer items, String pagingState, String facets)
             throws NotFoundException {
+        if (null == items){
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'items' is null or empty.")).build();
+        }
         SongList songList;
     	try {
     		songList = catalogService.browseSongs(pagingState, items, facets, null).toBlocking().first();
@@ -382,19 +394,14 @@ public class MslApiServiceImpl extends MslApiService {
 
     // ----------------------------------------------------------------------------------------------------------- OTHER
     // =================================================================================================================
-
     @Override
     public Response getFacet(String facetId)
             throws NotFoundException {
         // Validate required parameters
-    	if (StringUtils.isEmpty(facetId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'facetId' is null or empty.")).build();
-    	}
-
-    	// TODO replace mock data
-        //FacetInfoWithChildren facetInfoWithChildren = catalogService.getFacet(facetId).toBlocking().first();
-        //return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", facetInfoWithChildren)).build();
-        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", facetMockData.getFacet(facetId))).build();
+        if (StringUtils.isEmpty(facetId)) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'facetId' is null or empty.")).build();
+        }
+        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", FacetManager.getInstance().getRestFacets(facetId))).build();
     }
 
 

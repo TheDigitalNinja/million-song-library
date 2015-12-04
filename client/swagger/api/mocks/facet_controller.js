@@ -11,13 +11,13 @@
     var facetId = req.swagger.params.facetId.value;
 
     var genreFacet = {
-      facet_id: '0',
+      facet_id: 'A1',
       name: 'genres',
       children: data.genres,
     };
 
     var ratingFacet = {
-      facet_id: '1',
+      facet_id: 'A2',
       name: 'ratings',
       children: data.ratings,
     };
@@ -27,16 +27,16 @@
         var allFacets = [ratingFacet, genreFacet];
         res.json({
           data: {
-            facet_id: '99',
+            facet_id: '00',
             name: 'root',
             children: allFacets,
           }
         });
         break;
-      case '0':
+      case 'A1':
         res.json({ data: genreFacet });
         break;
-      case '1':
+      case 'A2':
         res.json({ data: ratingFacet });
         break;
       default:

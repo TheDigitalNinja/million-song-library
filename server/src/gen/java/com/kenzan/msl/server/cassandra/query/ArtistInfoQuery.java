@@ -127,7 +127,10 @@ public class ArtistInfoQuery {
 						.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, artistUuid));
 			
 			// Execute the query and map single result row to a DAO POJOs
-			UserDataByUserDao userDataByUserDao = new MappingManager(session).mapper(UserDataByUserDao.class).map(session.execute(statement3)).one();
+			UserDataByUserDao userDataByUserDao = new MappingManager(session)
+                    .mapper(UserDataByUserDao.class)
+                    .map(session.execute(statement3))
+                    .one();
 
 			// If we retrieved a DAO, then include that info into the ArtistInfo 
 			if (null != userDataByUserDao) {

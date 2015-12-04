@@ -164,7 +164,6 @@ public class Translators {
 		
 		return model;
 	}
-	
 
 	/*
 	 * +-----------------+
@@ -193,7 +192,7 @@ public class Translators {
 		return modelList;
 	}
 	*/
-	private static List<FacetInfo> translateFacetList(List<FacetDao> daoList) {
+	public static List<FacetInfo> translateFacetList(List<FacetDao> daoList) {
 		List<FacetInfo> modelList = new ArrayList<FacetInfo>(daoList.size());
 		
 		for (FacetDao dao : daoList) {

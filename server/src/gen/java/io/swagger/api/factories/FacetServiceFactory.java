@@ -5,6 +5,8 @@ import io.swagger.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Service for mock facets *
+
 public class FacetServiceFactory {
 
 

@@ -198,17 +198,18 @@
         <dependency>
             <groupId>com.netflix.rxjava</groupId>
             <artifactId>rxjava-core</artifactId>
-            <version>0.20.7</version>
+            <version>${rxjava-core.version}</version>
         </dependency>
         <dependency>
             <groupId>com.datastax.cassandra</groupId>
             <artifactId>cassandra-driver-core</artifactId>
-            <version>2.1.9</version>
+            <version>${cassandra-driver-core.version}</version>
+
         </dependency>
         <dependency>
             <groupId>com.datastax.cassandra</groupId>
             <artifactId>cassandra-driver-mapping</artifactId>
-            <version>2.1.9</version>
+            <version>${cassandra-driver-core.version}</version>
         </dependency>
 
         <dependency>
@@ -281,6 +282,8 @@
         <jersey.version>2.2</jersey.version>
         <resteasy-client>3.0.2.Final</resteasy-client>
         <maven-surefire-report-plugin.version>2.19</maven-surefire-report-plugin.version>
+        <rxjava-core.version>0.20.7</rxjava-core.version>
+        <cassandra-driver-core.version>2.1.9</cassandra-driver-core.version>
     </properties>
 
 </project>
