@@ -15,7 +15,7 @@ import com.kenzan.msl.server.cassandra.query.ArtistListQuery;
 import com.kenzan.msl.server.cassandra.query.SongInfoQuery;
 import com.kenzan.msl.server.cassandra.query.SongListQuery;
 import com.kenzan.msl.server.dao.FacetWithChildrenDao;
-import com.kenzan.msl.server.dao.translate.Translators;
+import com.kenzan.msl.server.translate.Translators;
 
 import java.util.UUID;
 

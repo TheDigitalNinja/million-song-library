@@ -1,4 +1,4 @@
-package io.swagger.tests;
+package io.swagger.test;
 
 import io.swagger.api.impl.MslApiResponseMessage;
 import io.swagger.api.impl.MslSessionToken;

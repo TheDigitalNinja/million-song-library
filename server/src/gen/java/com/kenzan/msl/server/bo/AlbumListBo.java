@@ -14,19 +14,17 @@ import com.kenzan.msl.server.dao.AbstractDao;
  */
 public class AlbumListBo extends AbstractListBo<AlbumBo> {
 	@Override
-	public void convertDaosToBos() {
-		for (AbstractDao abstractDao : getDaoList()) {
-			AbstractAlbumDao abstractAlbumDao = (AbstractAlbumDao)abstractDao;
+	public AlbumBo convertDaoToBo(AbstractDao abstractDao) {
+		AbstractAlbumDao abstractAlbumDao = (AbstractAlbumDao)abstractDao;
+		
+		AlbumBo albumBo = new AlbumBo();
+		albumBo.setAlbumId(abstractAlbumDao.getAlbumId());
+		albumBo.setAlbumName(abstractAlbumDao.getAlbumName());
+		albumBo.setYear(abstractAlbumDao.getAlbumYear());
+		albumBo.setArtistId(abstractAlbumDao.getArtistId());
+		albumBo.setArtistName(abstractAlbumDao.getArtistName());
 			
-			AlbumBo albumBo = new AlbumBo();
-			albumBo.setAlbumId(abstractAlbumDao.getAlbumId());
-			albumBo.setAlbumName(abstractAlbumDao.getArtistName());
-			albumBo.setYear(abstractAlbumDao.getAlbumYear());
-			albumBo.setArtistId(abstractAlbumDao.getArtistId());
-			albumBo.setArtistName(abstractAlbumDao.getArtistName());
-			
-			addBo(albumBo);
-		}
+		return albumBo;
 	}
 
 }

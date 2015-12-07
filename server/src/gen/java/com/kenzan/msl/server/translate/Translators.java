@@ -1,7 +1,7 @@
 /*
  * Copyright 2015, Kenzan,  All rights reserved.
  */
-package com.kenzan.msl.server.dao.translate;
+package com.kenzan.msl.server.translate;
 
 import com.kenzan.msl.server.bo.AlbumBo;
 import com.kenzan.msl.server.bo.AlbumListBo;
@@ -54,16 +54,20 @@ public class Translators {
 	public static AlbumInfo translate(AlbumBo bo) {
 		AlbumInfo model = new AlbumInfo();
 		
-		model.setAlbumId(bo.getAlbumId().toString());
+		model.setAlbumId(null == bo.getAlbumId() ? null : bo.getAlbumId().toString());
 		model.setAlbumName(bo.getAlbumName());
-		model.setArtistId(bo.getArtistId().toString());
+		model.setArtistId(null == bo.getArtistId() ? null : bo.getArtistId().toString());
 		model.setArtistName(bo.getArtistName());
 		model.setGenre(bo.getGenre());
 		model.setYear(bo.getYear());
 		model.setAverageRating(bo.getAverageRating());
 		model.setPersonalRating(bo.getPersonalRating());
 		model.setImageLink(bo.getImageLink());
-		model.getSongsList().addAll(bo.getSongsList());
+		if (null == bo.getSongsList() || bo.getSongsList().isEmpty()) {
+			model.setSongsList(null);
+		} else {
+			model.getSongsList().addAll(bo.getSongsList());
+		}
 		
 		return model;
 	}
@@ -78,10 +82,13 @@ public class Translators {
 		PagingState pagingState = new PagingState();
 		pagingState.setPagingState(null == listBo.getPagingState() ? null : listBo.getPagingState().toString()); 
 		model.setPagingState(pagingState);
-		
-		
-		for (ArtistBo artistBo : listBo.getBoList()) {
-			model.getArtists().add(Translators.translate(artistBo));
+
+		if (null == listBo.getBoList() || listBo.getBoList().isEmpty()) {
+			model.setArtists(null);
+		} else {
+			for (ArtistBo artistBo : listBo.getBoList()) {
+				model.getArtists().add(Translators.translate(artistBo));
+			}
 		}
 		
 		return model;
@@ -90,12 +97,12 @@ public class Translators {
 	public static ArtistInfo translate(ArtistBo bo) {
 		ArtistInfo model = new ArtistInfo();
 		
-		model.setArtistId(bo.getArtistId().toString());
+		model.setArtistId(null == bo.getArtistId() ? null : bo.getArtistId().toString());
 		model.setArtistName(bo.getArtistName());
 		model.setGenre(StringUtils.isEmpty(bo.getGenre()) ? null : bo.getGenre());
 		model.setAverageRating(bo.getAverageRating());
 		model.setPersonalRating(bo.getPersonalRating());
-		model.setImageLink(StringUtils.isEmpty(bo.getImageLink()) ? null : bo.getImageLink());
+		model.setImageLink(bo.getImageLink());
 		model.setAlbumsList((null == bo.getAlbumsList() || bo.getAlbumsList().isEmpty()) ? null : bo.getAlbumsList());
 		model.setSongsList((null == bo.getSongsList() || bo.getSongsList().isEmpty()) ? null : bo.getSongsList());
 		model.setSimilarArtistsList((null == bo.getSimilarArtistsList() || bo.getSimilarArtistsList().isEmpty()) ? null : bo.getSimilarArtistsList());
@@ -114,30 +121,34 @@ public class Translators {
 		pagingState.setPagingState(null == listBo.getPagingState() ? null : listBo.getPagingState().toString()); 
 		model.setPagingState(pagingState);
 		
-		for (SongBo songBo : listBo.getBoList()) {
-			model.getSongs().add(Translators.translate(songBo));
+		if (null == listBo.getBoList() || listBo.getBoList().isEmpty()) {
+			model.setSongs(null);
+		} else {
+			for (SongBo songBo : listBo.getBoList()) {
+				model.getSongs().add(Translators.translate(songBo));
+			}
 		}
 		
 		return model;
 	}
 	
-	public static SongInfo translate(SongBo dao) {
+	public static SongInfo translate(SongBo bo) {
 		SongInfo model = new SongInfo();
 		
-		model.setSongId(dao.getSongId().toString());
-		model.setSongName(dao.getSongName());
-		model.setGenre(dao.getGenre());
-		model.setDuration(dao.getDuration());
-		model.setDanceability(dao.getDanceability());
-		model.setSongHotttnesss(dao.getSongHotttnesss());
-		model.setYear(dao.getYear());
-		model.setAverageRating(dao.getAverageRating());
-		model.setPersonalRating(dao.getPersonalRating());
-		model.setImageLink(dao.getImageLink());
-		model.setArtistId(dao.getArtistId().toString());
-		model.setArtistName(dao.getArtistName());
-		model.setAlbumId(dao.getAlbumId().toString());
-		model.setAlbumName(dao.getAlbumName());
+		model.setSongId(null == bo.getSongId() ? null : bo.getSongId().toString());
+		model.setSongName(bo.getSongName());
+		model.setGenre(bo.getGenre());
+		model.setDuration(bo.getDuration());
+		model.setDanceability(bo.getDanceability());
+		model.setSongHotttnesss(bo.getSongHotttnesss());
+		model.setYear(bo.getYear());
+		model.setAverageRating(bo.getAverageRating());
+		model.setPersonalRating(bo.getPersonalRating());
+		model.setImageLink(bo.getImageLink());
+		model.setArtistId(null == bo.getArtistId() ? null : bo.getArtistId().toString());
+		model.setArtistName(bo.getArtistName());
+		model.setAlbumId(null == bo.getAlbumId() ? null : bo.getAlbumId().toString());
+		model.setAlbumName(bo.getAlbumName());
 		
 		return model;
 	}
