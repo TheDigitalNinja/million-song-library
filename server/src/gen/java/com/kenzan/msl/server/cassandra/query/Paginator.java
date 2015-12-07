@@ -63,7 +63,7 @@ public class Paginator {
 		this.items = (null == items || items < CassandraConstants.MSL_BROWSE_MIN_PAGE_SIZE || items > CassandraConstants.MSL_BROWSE_MAX_PAGE_SIZE) ? CassandraConstants.MSL_BROWSE_DEFAULT_PAGE_SIZE : items;
 		
 		// Parse the comma delimited list of facet Ids
-		this.facets = new ArrayList<FacetDao>();
+		this.facets = new ArrayList<>();
 		if (!StringUtils.isEmpty(facets)) {
 			String[] facetIds = facets.split(",");
 

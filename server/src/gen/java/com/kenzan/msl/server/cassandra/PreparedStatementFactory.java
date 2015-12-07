@@ -21,7 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class PreparedStatementFactory {
     private static PreparedStatementFactory instance = new PreparedStatementFactory();
 
-    private Map<PreparedStatementId, PreparedStatement> idToPreparedStatementMap = new ConcurrentHashMap<PreparedStatementId, PreparedStatement>();
+    private Map<PreparedStatementId, PreparedStatement> idToPreparedStatementMap = new ConcurrentHashMap<>();
 
     public static enum PreparedStatementId {
         ALBUM_AVERAGE_RATING_QUERY,

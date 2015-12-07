@@ -16,8 +16,8 @@ import java.util.UUID;
  */
 public abstract class AbstractListBo<T extends AbstractBo> {
 	private UUID pagingState;
-	private List<AbstractDao> daoList =  new ArrayList<AbstractDao>();
-	private List<T> boList =  new ArrayList<T>();
+	private List<AbstractDao> daoList =  new ArrayList<>();
+	private List<T> boList =  new ArrayList<>();
 	private boolean isDaoToBoConversionComplete = false;
 	
 	public UUID getPagingState() {
