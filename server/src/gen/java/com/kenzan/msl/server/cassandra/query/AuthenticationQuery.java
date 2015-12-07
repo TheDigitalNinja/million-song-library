@@ -1,6 +1,7 @@
 package com.kenzan.msl.server.cassandra.query;
 
 import com.datastax.driver.core.Row;
+import com.google.common.base.Optional;
 import com.kenzan.msl.server.cassandra.QueryAccessor;
 
 import java.util.UUID;
@@ -13,16 +14,16 @@ public class AuthenticationQuery {
      * @param queryAccessor    datastax QueryAccessor object
      * @param email            user email
      * @param password         user password
-     * @return UUID
+     * @return Optional UUID
      */
-    public static UUID authenticate (final QueryAccessor queryAccessor, String email, String password) {
+    public static Optional<UUID> authenticate(final QueryAccessor queryAccessor, String email, String password) {
         Row row = queryAccessor.logIn(email).one();
         if (row != null) {
             if (row.getString("password").equals(password)) {
-                return row.getUUID("user_id");
+                return Optional.of(row.getUUID("user_id"));
             }
         }
-        return new UUID(0L, 0L);
+        return Optional.absent();
     }
 
 }

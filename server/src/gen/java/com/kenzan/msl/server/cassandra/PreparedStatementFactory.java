@@ -105,6 +105,10 @@ public class PreparedStatementFactory {
                 break;
         }
 
+        if (null == preparedStatement) {
+        	throw new IllegalArgumentException("PreparedStatementId " + preparedStatementId.name() + " is not handled when creating prepared statement.");
+        }
+        
         return preparedStatement;
     }
 }

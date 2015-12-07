@@ -11,6 +11,7 @@ import com.datastax.driver.core.Statement;
 import com.datastax.driver.mapping.Mapper;
 import com.datastax.driver.mapping.MappingManager;
 import com.datastax.driver.mapping.Result;
+import com.google.common.base.Optional;
 import com.kenzan.msl.server.bo.AbstractBo;
 import com.kenzan.msl.server.bo.AbstractListBo;
 import com.kenzan.msl.server.cassandra.CassandraConstants;
@@ -68,13 +69,13 @@ public class Paginator {
 			String[] facetIds = facets.split(",");
 
 			for (String facetId : facetIds) {
-				FacetDao facetDao = FacetManager.getInstance().getFacet(facetId);
+				Optional<FacetDao> optFacetDao = FacetManager.getInstance().getFacet(facetId);
 				
-				if (null == facetDao) {
+				if (!optFacetDao.isPresent()) {
 					// TODO Do something here
 				}
 				
-				this.facets.add(facetDao);
+				this.facets.add(optFacetDao.get());
 			}
 		}
 		
@@ -141,13 +142,15 @@ public class Paginator {
 	 */
 	private boolean getSubsequentPage(AbstractListBo<? extends AbstractBo> abstractListBo) {
 		// Attempt to retrieve the paging state DAO by primary key
-		PagingStateDao pagingStateDao = retrievePagingState(pagingStateUuid);
+		Optional<PagingStateDao> optPagingStateDao = retrievePagingState(pagingStateUuid);
 
 		// If the paging state DAO does not exist
-		if (null == pagingStateDao) {
+		if (!optPagingStateDao.isPresent()) {
 			return false;
 		}
 
+		PagingStateDao pagingStateDao = optPagingStateDao.get();
+		
 		Statement statement = new SimpleStatement(pagingStateDao.getPagingState().getQuery())
 									.setPagingStateUnsafe(pagingStateDao.getPagingState().getPageStateBlob())
 									.setFetchSize(pagingStateDao.getPagingState().getPageSize());
@@ -307,10 +310,9 @@ public class Paginator {
 	 * @param pagingStateUuid	the paging state UUID sent to the client as a response to the query for
 	 * 								the previous page
 	 * 
-	 * @returns the paging state DAO retrieved from Cassandra and with a non-null buffer populated by the background thread,
-	 * 				or null if not found or timed out waiting for background thread to populate the buffer
+	 * @returns Optional paging state DAO retrieved from Cassandra, or absent() if not found.
 	 */
-	private PagingStateDao retrievePagingState(UUID pagingStateUuid) {
+	private Optional<PagingStateDao> retrievePagingState(UUID pagingStateUuid) {
 		// Get a mapper to do the read
 		Mapper<PagingStateDao> mapper = mappingManager.mapper(PagingStateDao.class);
 		
@@ -319,35 +321,10 @@ public class Paginator {
 
 		// If the paging state DAO does not exist then return
 		if (null == pagingStateDao) {
-			return null;
+			return Optional.absent();
 		}
 		
-		/*
-		 * Eventually, the background thread will populate the buffer, so, we'll wait for that to happen
-		// Loop while the background thread has not populated the buffer and retry limit has not been exceeded
-		for (int retries = 0; null == pagingStateDao.getPagingState().getBuffer() && retries < MAX_RETRIES; retries++) {
-			// Wait a bit for the background thread to populate the buffer
-			try {
-				Thread.sleep(SLEEP_DURATION);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-				break;
-			}
-			
-			// Re-retrieve the paging state DAO
-			pagingStateDao = mapper.get(pagingStateUuid);
-			// Handle the edge case where the paging state DAO existed initially but is now gone (TTL will cause this)
-			if (null == pagingStateDao) {
-				return null;
-			}
-		}
-		
-		if (null == pagingStateDao.getPagingState().getBuffer()) {
-			return null;
-		}
-		*/
-		
-		return pagingStateDao;
+		return Optional.of(pagingStateDao);
 	}
 	
 	private void deletePagingState(UUID pagingStateUuid) {

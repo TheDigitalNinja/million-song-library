@@ -3,9 +3,9 @@
  */
 package com.kenzan.msl.server.services;
 
+import com.google.common.base.Optional;
 import com.kenzan.msl.server.mock.AlbumMockData;
 import com.kenzan.msl.server.mock.ArtistMockData;
-import com.kenzan.msl.server.mock.FacetMockData;
 import com.kenzan.msl.server.mock.SongMockData;
 import com.kenzan.msl.server.mock.LogInMockData;
 
@@ -13,7 +13,6 @@ import io.swagger.model.AlbumInfo;
 import io.swagger.model.AlbumList;
 import io.swagger.model.ArtistInfo;
 import io.swagger.model.ArtistList;
-import io.swagger.model.FacetInfoWithChildren;
 import io.swagger.model.SongInfo;
 import io.swagger.model.SongList;
 import rx.Observable;
@@ -81,8 +80,8 @@ public class StubCatalogService implements CatalogService {
      * @param albumId Specifies the UUID of the album to retrieve.
      * @return Observable<AlbumInfo>
      */
-    public Observable<AlbumInfo> getAlbum(String albumId, String userId) {
-        return Observable.just(albumMockData.getAlbum(albumId));
+    public Observable<Optional<AlbumInfo>> getAlbum(String albumId, String userId) {
+        return Observable.just(Optional.of(albumMockData.getAlbum(albumId)));
     }
 
 
@@ -135,8 +134,8 @@ public class StubCatalogService implements CatalogService {
      * @param userId   Specifies the UUID of the authenticated user
      * @return Observable<ArtistInfo>
      */
-    public Observable<ArtistInfo> getArtist(String artistId, String userId) {
-        return Observable.just(artistMockData.getArtist(artistId));
+    public Observable<Optional<ArtistInfo>> getArtist(String artistId, String userId) {
+        return Observable.just(Optional.of(artistMockData.getArtist(artistId)));
     }
 
     // =========================================================================================================== SONGS
@@ -188,8 +187,8 @@ public class StubCatalogService implements CatalogService {
      * @param userId   Specifies the UUID of the authenticated user
      * @return Observable<SongInfo>
      */
-    public Observable<SongInfo> getSong(String songId, String userId) {
-        return Observable.just(songMockData.getSong(songId));
+    public Observable<Optional<SongInfo>> getSong(String songId, String userId) {
+        return Observable.just(Optional.of(songMockData.getSong(songId)));
     }
 
     /**
@@ -197,10 +196,10 @@ public class StubCatalogService implements CatalogService {
      *
      * @param email    user email
      * @param password user password
-     * @return Observable<UUID>
+     * @return Observable<Optional<UUID>>
      */
-    public Observable<UUID> logIn(String email, String password) {
-        return Observable.just(UUID.fromString(logInMockData.getAuthenticatedFlag(email, password).getAuthenticated()));
+    public Observable<Optional<UUID>> logIn(String email, String password) {
+        return Observable.just(Optional.of(UUID.fromString(logInMockData.getAuthenticatedFlag(email, password).getAuthenticated())));
     }
 
 }
