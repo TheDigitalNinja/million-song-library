@@ -90,7 +90,7 @@ public class ArtistListQuery {
 	 * we will fire of one asynchronous query for each artist in the list.
 	 */
 	private static Set<ResultSetFuture> fireAverageRatingQueries(final Session session, final ArtistListBo artistListBo) {
-		Set<ResultSetFuture> returnSet = new HashSet<ResultSetFuture>(artistListBo.getBoList().size());
+		Set<ResultSetFuture> returnSet = new HashSet<>(artistListBo.getBoList().size());
 		
 		for (ArtistBo artistBo : artistListBo.getBoList()) {
 			BoundStatement statement = PreparedStatementFactory.getInstance()
@@ -110,7 +110,7 @@ public class ArtistListQuery {
 	 * we will fire of one asynchronous query for each artist in the list.
 	 */
 	private static Set<ResultSetFuture> fireUserRatingQueries(final Session session, final ArtistListBo artistListBo, final UUID userUuid) {
-		Set<ResultSetFuture> returnSet = new HashSet<ResultSetFuture>(artistListBo.getBoList().size());
+		Set<ResultSetFuture> returnSet = new HashSet<>(artistListBo.getBoList().size());
 		
 		for (ArtistBo artistBo : artistListBo.getBoList()) {
 			BoundStatement statement = PreparedStatementFactory.getInstance()

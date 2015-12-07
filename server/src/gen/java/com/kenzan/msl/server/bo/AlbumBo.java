@@ -22,7 +22,7 @@ public class AlbumBo extends AbstractBo {
 	private String imageLink;
 	private UUID artistId;
 	private String artistName;
-	private List<String> songsList = new ArrayList<String>();
+	private List<String> songsList = new ArrayList<>();
 	
 	/**
 	 * @return the albumId

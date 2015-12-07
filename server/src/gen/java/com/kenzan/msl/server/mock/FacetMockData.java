@@ -11,7 +11,7 @@ public class FacetMockData {
 
     public FacetMockData () {
 
-        mockFacets = new ArrayList<FacetInfoWithChildren>();
+        mockFacets = new ArrayList<>();
         List<FacetInfo> genreFacets = getGenreFacetList();
         List<FacetInfo> ratingFacets = getRatingFacetList();
 
@@ -44,7 +44,7 @@ public class FacetMockData {
     }
 
     public List<FacetInfoWithChildren> getRatingFacets () {
-        List<FacetInfoWithChildren> result = new ArrayList<FacetInfoWithChildren>();
+        List<FacetInfoWithChildren> result = new ArrayList<>();
         for (FacetInfo facet : getRatingFacetList()) {
             FacetInfoWithChildren _facet = new FacetInfoWithChildren();
             _facet.setFacetId(facet.getFacetId());
@@ -70,7 +70,7 @@ public class FacetMockData {
     }
 
     private FacetInfoWithChildren getRootFacet () {
-        List<FacetInfo> mainFacets = new ArrayList<FacetInfo>();
+        List<FacetInfo> mainFacets = new ArrayList<>();
         FacetInfo _genreFacets = new FacetInfo();
         _genreFacets.setFacetId("0");
         _genreFacets.setName("genres");
@@ -89,7 +89,7 @@ public class FacetMockData {
     }
 
     private List<FacetInfo> getGenreFacetList() {
-        List<FacetInfo> genreFacetList = new ArrayList<FacetInfo>();
+        List<FacetInfo> genreFacetList = new ArrayList<>();
 
         FacetInfo facetInfoMock2 = new FacetInfo();
         facetInfoMock2.setFacetId("3");
@@ -130,7 +130,7 @@ public class FacetMockData {
     }
 
     private List<FacetInfo> getRatingFacetList() {
-        List<FacetInfo> ratingFacetList = new ArrayList<FacetInfo>();
+        List<FacetInfo> ratingFacetList = new ArrayList<>();
 
         FacetInfo facetInfoMock1 = new FacetInfo();
         facetInfoMock1.setFacetId("14");

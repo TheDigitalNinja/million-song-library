@@ -22,7 +22,7 @@ public class SongMockData {
     }
 
     private List<SongInfo> applyGenreFacet (String [] facets, List<SongInfo> songList){
-        List<SongInfo> result = new ArrayList<SongInfo>();
+        List<SongInfo> result = new ArrayList<>();
         boolean hasRatingFacet = false;
         for (String facet: facets) {
             if (!FacetServiceFactory.isRatingFacet(facet, facetMockData.getRatingFacets())) {
@@ -71,7 +71,7 @@ public class SongMockData {
         // TODO if no items are provided should return 25 results
         if (items != null && items > 0) {
             List<SongInfo> pivotSongs = browsedSongs;
-            browsedSongs = new ArrayList<SongInfo>();
+            browsedSongs = new ArrayList<>();
             for (int i = 0; i < items && i < pivotSongs.size(); i++) {
                 browsedSongs.add(pivotSongs.get(i));
             }
@@ -86,7 +86,7 @@ public class SongMockData {
     public SongMockData() {
 
         this.songList = new SongList();
-        List<SongInfo> songs = new ArrayList<SongInfo>();
+        List<SongInfo> songs = new ArrayList<>();
 
         SongInfo songMockData1 = new SongInfo();
         songMockData1.setSongId("1");

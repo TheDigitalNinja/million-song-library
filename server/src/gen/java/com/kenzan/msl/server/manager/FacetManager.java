@@ -47,7 +47,7 @@ public class FacetManager {
                 "Funk", "Cajun", "Celtic", "Folk", "Big Band", "Alternative", "Reggae", "Bluegrass",
                 "Punk", "Rap", "Rock", "Hip Hop", "Gospel", "Heavy Metal", "Country", "Salsa", "Opera", "Pop"};
 
-        ArrayList<FacetDao> result = new ArrayList<FacetDao>();
+        ArrayList<FacetDao> result = new ArrayList<>();
         for (int i = 0; i < genres.length; i++) {
             result.add(new FacetDao(Integer.toString(i + 5), genres[i]));
         }
@@ -59,7 +59,7 @@ public class FacetManager {
         for (int i = 1; i < 5; i++) {
             ratings[i - 1] = i + " & UP";
         }
-        ArrayList<FacetDao> result = new ArrayList<FacetDao>();
+        ArrayList<FacetDao> result = new ArrayList<>();
         for (int i = 0; i < ratings.length; i++) {
             result.add(new FacetDao(Integer.toString(i + 1), ratings[i]));
         }
@@ -101,7 +101,7 @@ public class FacetManager {
     }
 
     private FacetInfoWithChildren getRootFacet() {
-        List<FacetInfo> mainFacets = new ArrayList<FacetInfo>();
+        List<FacetInfo> mainFacets = new ArrayList<>();
         FacetInfo genreFacets = new FacetInfo();
         genreFacets.setFacetId("A1");
         genreFacets.setName("genres");
