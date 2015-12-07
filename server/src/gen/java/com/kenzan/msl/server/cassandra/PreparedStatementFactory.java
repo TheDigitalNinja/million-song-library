@@ -19,91 +19,92 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author billschwanitz
  */
 public class PreparedStatementFactory {
-	private static PreparedStatementFactory instance = new PreparedStatementFactory();
-	
-	private Map<PreparedStatementId, PreparedStatement> idToPreparedStatementMap = new ConcurrentHashMap<PreparedStatementId, PreparedStatement>();
-	
-	public static enum PreparedStatementId {
-		ALBUM_AVERAGE_RATING_QUERY,
-		ALBUM_USER_RATING_QUERY,
-		ARTIST_AVERAGE_RATING_QUERY,
-		ARTIST_USER_RATING_QUERY,
-		SONG_AVERAGE_RATING_QUERY,
-		SONG_USER_RATING_QUERY
-	}
+    private static PreparedStatementFactory instance = new PreparedStatementFactory();
 
-	/*
-	 * Private constructor to enforce singleton-ness
-	 */
-	private PreparedStatementFactory() {}
-	
-	public static PreparedStatementFactory getInstance() {
-		return instance;
-	}
-	
-	public BoundStatement getPreparedStatement(Session session, PreparedStatementId preparedStatementId) {
-		PreparedStatement preparedStatement = idToPreparedStatementMap.get(preparedStatementId);
-		if (null == preparedStatement) {
-			preparedStatement = buildPreparedStatement(session, preparedStatementId);
-					
-			if (preparedStatement != null) {
-				idToPreparedStatementMap.put(preparedStatementId, preparedStatement);
-			}
-		}
-		return new BoundStatement(preparedStatement);
-	}
-	
-	private PreparedStatement buildPreparedStatement(Session session, PreparedStatementId preparedStatementId) {
-		PreparedStatement preparedStatement = null;
-		
-		switch (preparedStatementId) {
-		case ALBUM_AVERAGE_RATING_QUERY:
-			preparedStatement = session.prepare(QueryBuilder.select()
-					.all()
-					.from(CassandraConstants.MSL_TABLE_AVERAGE_RATINGS)
-					.where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker()))
-						.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.ALBUM.dbContentType)));
-			break;
-		case ALBUM_USER_RATING_QUERY:
-			preparedStatement = session.prepare(QueryBuilder.select()
-					.all()
-					.from(CassandraConstants.MSL_TABLE_USER_DATA_BY_USER)
-					.where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_USER_ID, QueryBuilder.bindMarker()))
-						.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.ALBUM.dbContentType))
-						.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker())));
-			break;
-		case ARTIST_AVERAGE_RATING_QUERY:
-			preparedStatement = session.prepare(QueryBuilder.select()
-					.all()
-					.from(CassandraConstants.MSL_TABLE_AVERAGE_RATINGS)
-					.where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker()))
-						.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.ARTIST.dbContentType)));
-			break;
-		case ARTIST_USER_RATING_QUERY:
-			preparedStatement = session.prepare(QueryBuilder.select()
-					.all()
-					.from(CassandraConstants.MSL_TABLE_USER_DATA_BY_USER)
-					.where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_USER_ID, QueryBuilder.bindMarker()))
-						.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.ARTIST.dbContentType))
-						.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker())));
-			break;
-		case SONG_AVERAGE_RATING_QUERY:
-			preparedStatement = session.prepare(QueryBuilder.select()
-					.all()
-					.from(CassandraConstants.MSL_TABLE_AVERAGE_RATINGS)
-					.where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker()))
-						.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.SONG.dbContentType)));
-			break;
-		case SONG_USER_RATING_QUERY:
-			preparedStatement = session.prepare(QueryBuilder.select()
-					.all()
-					.from(CassandraConstants.MSL_TABLE_USER_DATA_BY_USER)
-					.where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_USER_ID, QueryBuilder.bindMarker()))
-						.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.SONG.dbContentType))
-						.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker())));
-			break;
-		}
-		
-		return preparedStatement;
-	}
+    private Map<PreparedStatementId, PreparedStatement> idToPreparedStatementMap = new ConcurrentHashMap<PreparedStatementId, PreparedStatement>();
+
+    public static enum PreparedStatementId {
+        ALBUM_AVERAGE_RATING_QUERY,
+        ALBUM_USER_RATING_QUERY,
+        ARTIST_AVERAGE_RATING_QUERY,
+        ARTIST_USER_RATING_QUERY,
+        SONG_AVERAGE_RATING_QUERY,
+        SONG_USER_RATING_QUERY
+    }
+
+    /*
+     * Private constructor to enforce singleton-ness
+     */
+    private PreparedStatementFactory() {
+    }
+
+    public static PreparedStatementFactory getInstance() {
+        return instance;
+    }
+
+    public BoundStatement getPreparedStatement(Session session, PreparedStatementId preparedStatementId) {
+        PreparedStatement preparedStatement = idToPreparedStatementMap.get(preparedStatementId);
+        if (null == preparedStatement) {
+            preparedStatement = buildPreparedStatement(session, preparedStatementId);
+
+            if (preparedStatement != null) {
+                idToPreparedStatementMap.put(preparedStatementId, preparedStatement);
+            }
+        }
+        return new BoundStatement(preparedStatement);
+    }
+
+    private PreparedStatement buildPreparedStatement(Session session, PreparedStatementId preparedStatementId) {
+        PreparedStatement preparedStatement = null;
+
+        switch (preparedStatementId) {
+            case ALBUM_AVERAGE_RATING_QUERY:
+                preparedStatement = session.prepare(QueryBuilder.select()
+                        .all()
+                        .from(CassandraConstants.MSL_TABLE_AVERAGE_RATINGS)
+                        .where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker()))
+                        .and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.ALBUM.dbContentType)));
+                break;
+            case ALBUM_USER_RATING_QUERY:
+                preparedStatement = session.prepare(QueryBuilder.select()
+                        .all()
+                        .from(CassandraConstants.MSL_TABLE_USER_DATA_BY_USER)
+                        .where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_USER_ID, QueryBuilder.bindMarker()))
+                        .and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.ALBUM.dbContentType))
+                        .and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker())));
+                break;
+            case ARTIST_AVERAGE_RATING_QUERY:
+                preparedStatement = session.prepare(QueryBuilder.select()
+                        .all()
+                        .from(CassandraConstants.MSL_TABLE_AVERAGE_RATINGS)
+                        .where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker()))
+                        .and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.ARTIST.dbContentType)));
+                break;
+            case ARTIST_USER_RATING_QUERY:
+                preparedStatement = session.prepare(QueryBuilder.select()
+                        .all()
+                        .from(CassandraConstants.MSL_TABLE_USER_DATA_BY_USER)
+                        .where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_USER_ID, QueryBuilder.bindMarker()))
+                        .and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.ARTIST.dbContentType))
+                        .and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker())));
+                break;
+            case SONG_AVERAGE_RATING_QUERY:
+                preparedStatement = session.prepare(QueryBuilder.select()
+                        .all()
+                        .from(CassandraConstants.MSL_TABLE_AVERAGE_RATINGS)
+                        .where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker()))
+                        .and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.SONG.dbContentType)));
+                break;
+            case SONG_USER_RATING_QUERY:
+                preparedStatement = session.prepare(QueryBuilder.select()
+                        .all()
+                        .from(CassandraConstants.MSL_TABLE_USER_DATA_BY_USER)
+                        .where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_USER_ID, QueryBuilder.bindMarker()))
+                        .and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.SONG.dbContentType))
+                        .and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, QueryBuilder.bindMarker())));
+                break;
+        }
+
+        return preparedStatement;
+    }
 }

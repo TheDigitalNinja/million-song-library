@@ -19,6 +19,9 @@ public class ArtistClientTest {
     private ArtistClient artistClient;
     static Logger logger = Logger.getLogger(ArtistClientTest.class);
 
+    private final String TEST_ARTIST_ID = "3f213d36-0e22-45e1-a688-e14fda3bace3";
+    private final String TEST_TOKEN = "2883607a-176d-4729-a20b-ec441c285afb";
+
     @Before
     public void init () {
         artistClient = new ArtistClient();
@@ -28,7 +31,7 @@ public class ArtistClientTest {
     @Test
     public void testGet() {
         logger.debug("ArtistClient.testGet");
-        MslApiResponseMessage artist = artistClient.get("1");
+        MslApiResponseMessage artist = artistClient.get(TEST_ARTIST_ID);
         assertNotNull(artist);
         assertEquals("artist get call is successful", "success", artist.getMessage());
     }
@@ -58,7 +61,7 @@ public class ArtistClientTest {
     @Test
     public void testAddArtist(){
         logger.debug("ArtistClient.testAddArtist");
-        NewCookie cookie = new NewCookie("sessionToken", "someToken");
+        NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);
         MslApiResponseMessage response = artistClient.addArtist("1", cookie.toString());
         assertNotNull(response);
         assertEquals("addArtist response is successful", "magic!", response.getMessage());
@@ -73,8 +76,8 @@ public class ArtistClientTest {
     @Test
     public void testRateArtist(){
         logger.debug("ArtistClient.testRateArtist");
-        NewCookie cookie = new NewCookie("sessionToken", "someToken");
-        MslApiResponseMessage response = artistClient.rateArtist("1", new BigDecimal("3"), cookie.toString());
+        NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);
+        MslApiResponseMessage response = artistClient.rateArtist(TEST_ARTIST_ID, new BigDecimal("3"), cookie.toString());
         assertNotNull(response);
         assertEquals("rateArtist response is successful", "magic!", response.getMessage());
     }
@@ -82,6 +85,6 @@ public class ArtistClientTest {
     @Test (expected = java.lang.RuntimeException.class)
     public void testRateArtistThrowException () {
         logger.debug("ArtistClient.testRateArtistThrowException");
-        artistClient.rateArtist("1", new BigDecimal("3"), "");
+        artistClient.rateArtist(TEST_ARTIST_ID, new BigDecimal("3"), "");
     }
 }

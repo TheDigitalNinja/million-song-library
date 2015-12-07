@@ -13,6 +13,8 @@ import io.swagger.model.SongList;
 
 import rx.Observable;
 
+import java.util.UUID;
+
 /**
  *
  *
@@ -59,5 +61,10 @@ public interface CatalogService {
 	 * Get data on a song in the catalog.
 	 */
 	Observable<SongInfo> getSong(String songId, String userId);
+
+    /*
+	 * Gets the UUID for that user if password matches
+	 */
+    Observable<UUID> logIn (String email, String password);
 
 }
