@@ -19,9 +19,9 @@ public class ArtistBo extends AbstractBo {
 	private Integer averageRating;
 	private Integer personalRating;
 	private String imageLink;
-	private List<String> albumsList = new ArrayList<String>();
-	private List<String> songsList = new ArrayList<String>();
-	private List<String> similarArtistsList = new ArrayList<String>();
+	private List<String> albumsList = new ArrayList<>();
+	private List<String> songsList = new ArrayList<>();
+	private List<String> similarArtistsList = new ArrayList<>();
 	/**
 	 * @return the artistId
 	 */

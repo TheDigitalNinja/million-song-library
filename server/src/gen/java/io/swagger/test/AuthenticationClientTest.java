@@ -15,8 +15,8 @@ import static org.junit.Assert.assertNotNull;
  */
 public class AuthenticationClientTest {
 
-    private final String MOCK_EMAIL = "someemail@gmail.com";
-    private final String MOCK_PASSWORD = "somePassword";
+    private final String MOCK_EMAIL = "username12@kenzan.com";
+    private final String MOCK_PASSWORD = "password12";
 
     private AuthenticationClient authenticationClient;
     static Logger logger = Logger.getLogger(AuthenticationClientTest.class);

@@ -3,6 +3,7 @@
  */
 package com.kenzan.msl.server.manager;
 
+import com.google.common.base.Optional;
 import com.kenzan.msl.server.dao.FacetDao;
 import com.kenzan.msl.server.translate.Translators;
 
@@ -23,24 +24,24 @@ public class FacetManager {
         return instance;
     }
 
-    public FacetDao getFacet(String id) {
+    public Optional<FacetDao> getFacet(String id) {
 
         ArrayList<FacetDao> genreFacets = getGenreFacets();
         ArrayList<FacetDao> ratingFacets = getRatingFacets();
 
         for (FacetDao genreFacet : genreFacets) {
             if (genreFacet.getFacetId().equals(id)) {
-                return genreFacet;
+                return Optional.of(genreFacet);
             }
         }
 
         for (FacetDao ratingFacet : ratingFacets) {
             if (ratingFacet.getFacetId().equals(id)) {
-                return ratingFacet;
+                return Optional.of(ratingFacet);
             }
         }
 
-        return null;
+        return Optional.absent();
     }
 
 
@@ -49,7 +50,7 @@ public class FacetManager {
                 "Funk", "Cajun", "Celtic", "Folk", "Big Band", "Alternative", "Reggae", "Bluegrass",
                 "Punk", "Rap", "Rock", "Hip Hop", "Gospel", "Heavy Metal", "Country", "Salsa", "Opera", "Pop"};
 
-        ArrayList<FacetDao> result = new ArrayList<FacetDao>();
+        ArrayList<FacetDao> result = new ArrayList<>();
         for (int i = 0; i < genres.length; i++) {
             result.add(new FacetDao(Integer.toString(i + 5), genres[i]));
         }
@@ -61,7 +62,7 @@ public class FacetManager {
         for (int i = 1; i < 5; i++) {
             ratings[i - 1] = i + " & UP";
         }
-        ArrayList<FacetDao> result = new ArrayList<FacetDao>();
+        ArrayList<FacetDao> result = new ArrayList<>();
         for (int i = 0; i < ratings.length; i++) {
             result.add(new FacetDao(Integer.toString(i + 1), ratings[i]));
         }
@@ -82,20 +83,19 @@ public class FacetManager {
                 genreFacet.setChildren((Translators.translateFacetList(getGenreFacets())));
                 return genreFacet;
 
-            } else { // - rating facet case
-                FacetInfoWithChildren ratingFacet = new FacetInfoWithChildren();
-                ratingFacet.setFacetId("1");
-                ratingFacet.setName("ratings");
-                ratingFacet.setChildren(Translators.translateFacetList(getRatingFacets()));
-                return ratingFacet;
             }
+			FacetInfoWithChildren ratingFacet = new FacetInfoWithChildren();
+			ratingFacet.setFacetId("1");
+			ratingFacet.setName("ratings");
+			ratingFacet.setChildren(Translators.translateFacetList(getRatingFacets()));
+			return ratingFacet;
         }
 
-        FacetDao response = getFacet(facet_id);
-        if (null != response) {
+        Optional<FacetDao> optResponse = getFacet(facet_id);
+        if (optResponse.isPresent()) {
             FacetInfoWithChildren responseFacet = new FacetInfoWithChildren();
-            responseFacet.setFacetId(response.getFacetId());
-            responseFacet.setName(response.getFacetName());
+            responseFacet.setFacetId(optResponse.get().getFacetId());
+            responseFacet.setName(optResponse.get().getFacetName());
             return responseFacet;
         }
 
@@ -103,7 +103,7 @@ public class FacetManager {
     }
 
     private FacetInfoWithChildren getRootFacet() {
-        List<FacetInfo> mainFacets = new ArrayList<FacetInfo>();
+        List<FacetInfo> mainFacets = new ArrayList<>();
         FacetInfo genreFacets = new FacetInfo();
         genreFacets.setFacetId("A1");
         genreFacets.setName("genres");

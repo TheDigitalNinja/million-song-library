@@ -3,6 +3,8 @@
  */
 package com.kenzan.msl.server.services;
 
+import com.google.common.base.Optional;
+
 import io.swagger.model.AlbumInfo;
 import io.swagger.model.AlbumList;
 import io.swagger.model.ArtistInfo;
@@ -10,8 +12,9 @@ import io.swagger.model.ArtistList;
 import io.swagger.model.FacetInfoWithChildren;
 import io.swagger.model.SongInfo;
 import io.swagger.model.SongList;
-
 import rx.Observable;
+
+import java.util.UUID;
 
 /**
  *
@@ -31,7 +34,7 @@ public interface CatalogService {
 	/*
 	 * Get data on an album in the catalog.
 	 */
-	Observable<AlbumInfo> getAlbum(String albumId, String userId);
+	Observable<Optional<AlbumInfo>> getAlbum(String albumId, String userId);
 
 
     // ========================================================================================================= ARTISTS
@@ -45,7 +48,7 @@ public interface CatalogService {
 	/*
 	 * Get data on an artist in the catalog.
 	 */
-	Observable<ArtistInfo> getArtist(String artistId, String userId);
+	Observable<Optional<ArtistInfo>> getArtist(String artistId, String userId);
 
     // =========================================================================================================== SONGS
     // =================================================================================================================
@@ -58,6 +61,11 @@ public interface CatalogService {
 	/*
 	 * Get data on a song in the catalog.
 	 */
-	Observable<SongInfo> getSong(String songId, String userId);
+	Observable<Optional<SongInfo>> getSong(String songId, String userId);
+
+    /*
+	 * Gets the UUID for that user if password matches
+	 */
+    Observable<Optional<UUID>> logIn (String email, String password);
 
 }

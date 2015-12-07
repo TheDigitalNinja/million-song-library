@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 
 public class ArtistClient {
 
-    private String baseUrl = "http://localhost:9000/msl";
+    private String baseUrl = "http://local.msl.dev:9000/msl";
     private ResteasyClient client;
 
     public ArtistClient() {
@@ -36,13 +36,9 @@ public class ArtistClient {
         return response.readEntity(MslApiResponseMessage.class);
     }
 
-    public MslApiResponseMessage browse(String facets, String items) {
+    public MslApiResponseMessage browse(String items) {
         ResteasyWebTarget target;
-        if (!facets.isEmpty()){
-            target = client.target(baseUrl + "/v1/catalogedge/browse/artist?facets=" + facets + "&items=" + items);
-        }else {
-            target = client.target(baseUrl + "/v1/catalogedge/browse/artist?items=" + items);
-        }
+        target = client.target(baseUrl + "/v1/catalogedge/browse/artist?items=" + items);
         Response response = target
                 .request()
                 .get();
@@ -70,7 +66,7 @@ public class ArtistClient {
         return response.readEntity(MslApiResponseMessage.class);
     }
 
-    public MslApiResponseMessage rateArtist (String artistId, BigDecimal rating, String sessionToken) {
+    public MslApiResponseMessage rateArtist (String artistId, Integer rating, String sessionToken) {
         ResteasyWebTarget target = client.target(baseUrl + "/v1/ratingsedge/rateartist/" + artistId);
 
         Form form = new Form();

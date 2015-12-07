@@ -8,6 +8,7 @@ import com.datastax.driver.core.Statement;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.datastax.driver.mapping.MappingManager;
 import com.datastax.driver.mapping.Result;
+import com.google.common.base.Optional;
 import com.kenzan.msl.server.bo.SongBo;
 import com.kenzan.msl.server.cassandra.CassandraConstants;
 import com.kenzan.msl.server.cassandra.CassandraConstants.MSL_CONTENT_TYPE;
@@ -40,9 +41,9 @@ public class SongInfoQuery {
 	 * @param userId		the UUID of the logged in user making the query (will be null if user not logged in)
 	 * @param songUuid	the UUID of the song to be retrieved
 	 * 
-	 * @return the SongInfo instance with all the info on the requested user
+	 * @return Optional SongInfo instance with all the info on the requested user
 	 */
-	public static SongBo get(final Session session, final UUID userUuid, final UUID songUuid) {
+	public static Optional<SongBo> get(final Session session, final UUID userUuid, final UUID songUuid) {
 		SongBo songBo = new SongBo();
 		
 		/*
@@ -58,9 +59,9 @@ public class SongInfoQuery {
 		// Execute the query and map result to DAO POJO
 		AlbumArtistBySongDao albumArtistBySongDao = new MappingManager(session).mapper(AlbumArtistBySongDao.class).map(session.execute(statement1)).one();
 
-		// If we didn't retrieved a DAO, then return null 
+		// If we didn't retrieved a DAO, then return absent() 
 		if (null == albumArtistBySongDao) {
-			return null;
+			return Optional.absent();
 		}
 		
 		songBo.setSongId(albumArtistBySongDao.getSongId());
@@ -117,6 +118,6 @@ public class SongInfoQuery {
 			}
 		}
 		
-		return songBo;
+		return Optional.of(songBo);
 	}
 }

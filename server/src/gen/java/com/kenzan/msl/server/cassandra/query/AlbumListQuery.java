@@ -90,7 +90,7 @@ public class AlbumListQuery {
 	 * we will fire of one asynchronous query for each album in the list.
 	 */
 	private static Set<ResultSetFuture> fireAverageRatingQueries(final Session session, final AlbumListBo albumListBo) {
-		Set<ResultSetFuture> returnSet = new HashSet<ResultSetFuture>(albumListBo.getBoList().size());
+		Set<ResultSetFuture> returnSet = new HashSet<>(albumListBo.getBoList().size());
 		
 		for (AlbumBo albumBo : albumListBo.getBoList()) {
 			BoundStatement statement = PreparedStatementFactory.getInstance()
@@ -110,7 +110,7 @@ public class AlbumListQuery {
 	 * we will fire of one asynchronous query for each album in the list.
 	 */
 	private static Set<ResultSetFuture> fireUserRatingQueries(final Session session, final AlbumListBo albumListBo, final UUID userUuid) {
-		Set<ResultSetFuture> returnSet = new HashSet<ResultSetFuture>(albumListBo.getBoList().size());
+		Set<ResultSetFuture> returnSet = new HashSet<>(albumListBo.getBoList().size());
 		
 		for (AlbumBo albumBo : albumListBo.getBoList()) {
 			BoundStatement statement = PreparedStatementFactory.getInstance()

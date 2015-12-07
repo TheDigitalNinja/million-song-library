@@ -204,7 +204,7 @@ public class Translators {
 	}
 	*/
 	public static List<FacetInfo> translateFacetList(List<FacetDao> daoList) {
-		List<FacetInfo> modelList = new ArrayList<FacetInfo>(daoList.size());
+		List<FacetInfo> modelList = new ArrayList<>(daoList.size());
 		
 		for (FacetDao dao : daoList) {
 			modelList.add(translate(dao));

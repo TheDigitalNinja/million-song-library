@@ -14,7 +14,7 @@ public class MslApiOriginFilter implements javax.servlet.Filter {
         res.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
         res.addHeader("Access-Control-Allow-Headers", "Content-Type");
         res.addHeader("Access-Control-Allow-Credentials", "true");
-        MslSessionToken.updateSessionToken(req);
+        MslSessionToken.getInstance().updateSessionToken(req);
         chain.doFilter(request, response);
     }
 

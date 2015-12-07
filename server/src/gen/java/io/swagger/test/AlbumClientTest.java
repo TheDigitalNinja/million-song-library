@@ -1,7 +1,6 @@
 package io.swagger.test;
 
 import io.swagger.api.impl.MslApiResponseMessage;
-import io.swagger.api.impl.MslSessionToken;
 import io.swagger.client.AlbumClient;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -19,6 +18,10 @@ public class AlbumClientTest {
     private AlbumClient albumClient;
     static Logger logger = Logger.getLogger(AlbumClientTest.class);
 
+    private final String PAGE_SIZE = "10";
+    private final String TEST_TOKEN = "2883607a-176d-4729-a20b-ec441c285afb";
+    private final String TEST_ALBUM_ID = "389f9181-99f9-4377-9114-c63b53245355";
+
     @Before
     public void init () {
         albumClient = new AlbumClient();
@@ -28,7 +31,7 @@ public class AlbumClientTest {
     @Test
     public void testGet() {
         logger.debug("AlbumClient.testGet");
-        MslApiResponseMessage album = albumClient.get("1");
+        MslApiResponseMessage album = albumClient.get(TEST_ALBUM_ID);
         assertNotNull(album);
         assertEquals("album get call is successful", "success", album.getMessage());
     }
@@ -42,24 +45,22 @@ public class AlbumClientTest {
     @Test
     public void testBrowse() {
         logger.debug("AlbumClient.testBrowse");
-        MslApiResponseMessage albumList = albumClient.browse("", "10");
+        MslApiResponseMessage albumList = albumClient.browse(PAGE_SIZE);
         assertNotNull(albumList);
         assertEquals("album browse call is successful", "success", albumList.getMessage());
     }
 
-    @Test
-    public void testBrowseFilteredByFacets() {
-        logger.debug("AlbumClient.testBrowseFilteredByFacets");
-        MslApiResponseMessage albumList = albumClient.browse("3", "10");
-        assertNotNull(albumList);
-        assertEquals("album browse facet filtered call is successful", "success", albumList.getMessage());
+    @Test (expected = java.lang.RuntimeException.class)
+    public void testBrowseExceptionIsThrown() {
+        logger.debug("AlbumClient.testBrowseExceptionIsThrown");
+        albumClient.browse("");
     }
 
     @Test
     public void testAddAlbum(){
         logger.debug("AlbumClient.testAddAlbum");
-        NewCookie cookie = new NewCookie("sessionToken", "someToken");
-        MslApiResponseMessage response = albumClient.addAlbum("1", cookie.toString());
+        NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);
+        MslApiResponseMessage response = albumClient.addAlbum(TEST_ALBUM_ID, cookie.toString());
         assertNotNull(response);
         assertEquals("addAlbum response is successful", "magic!", response.getMessage());
     }
@@ -67,14 +68,14 @@ public class AlbumClientTest {
     @Test (expected = java.lang.RuntimeException.class)
     public void testAddAlbumThrowException () {
         logger.debug("AlbumClient.testAddAlbumThrowException");
-        albumClient.addAlbum("1", "");
+        albumClient.addAlbum(TEST_ALBUM_ID, "");
     }
 
     @Test
     public void testRateAlbum () {
         logger.debug("AlbumClient.testRateAlbum");
-        NewCookie cookie = new NewCookie("sessionToken", "someToken");
-        MslApiResponseMessage response = albumClient.rateAlbum("1", new BigDecimal("4"), cookie.toString());
+        NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);
+        MslApiResponseMessage response = albumClient.rateAlbum(TEST_ALBUM_ID, 4, cookie.toString());
         assertNotNull(response);
         assertEquals("rateAlbum response is successful", "magic!", response.getMessage());
     }
@@ -82,6 +83,6 @@ public class AlbumClientTest {
     @Test (expected = java.lang.RuntimeException.class)
     public void testRateAlbumThrowException () {
         logger.debug("AlbumClient.testRateAlbumThrowException");
-        albumClient.rateAlbum("1", new BigDecimal("3"), "");
+        albumClient.rateAlbum(TEST_ALBUM_ID, 3, "");
     }
 }

@@ -10,12 +10,9 @@ import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-/**
- * Created by anram88 on 11/23/15.
- */
 public class AuthenticationClient {
 
-    private String baseUrl = "http://localhost:9000/msl";
+    private String baseUrl = "http://local.msl.dev:9000/msl";
     private ResteasyClient client;
 
     public AuthenticationClient () {
@@ -36,8 +33,7 @@ public class AuthenticationClient {
             throw new RuntimeException("Failed : HTTP error code : "
                     + response.getStatus());
         }
-        MslApiResponseMessage responseWrapper = response.readEntity(MslApiResponseMessage.class);
-        return responseWrapper;
+        return response.readEntity(MslApiResponseMessage.class);
     }
 
     public MslApiResponseMessage logOut () {
@@ -49,8 +45,7 @@ public class AuthenticationClient {
             throw new RuntimeException("Failed : HTTP error code : "
                     + response.getStatus());
         }
-        MslApiResponseMessage responseWrapper = response.readEntity(MslApiResponseMessage.class);
-        return responseWrapper;
+        return response.readEntity(MslApiResponseMessage.class);
     }
 
 }

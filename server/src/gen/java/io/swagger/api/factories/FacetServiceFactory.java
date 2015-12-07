@@ -35,7 +35,7 @@ public class FacetServiceFactory {
     }
 
     public static List<AlbumInfo> filterAlbumByRatingFacet(List<AlbumInfo> albumList, String facet_id) {
-        List<AlbumInfo> result = new ArrayList<AlbumInfo>();
+        List<AlbumInfo> result = new ArrayList<>();
         for (AlbumInfo album : albumList) {
             if (fitsInRating(album.getAverageRating(), facet_id)) {
                 result.add(album);
@@ -45,7 +45,7 @@ public class FacetServiceFactory {
     }
 
     public static List<SongInfo> filterSongsByRatingFacet(List<SongInfo> songList, String facet_id) {
-        List<SongInfo> result = new ArrayList<SongInfo>();
+        List<SongInfo> result = new ArrayList<>();
 
         for (SongInfo song : songList) {
             if (fitsInRating(song.getAverageRating(), facet_id)) {
@@ -56,7 +56,7 @@ public class FacetServiceFactory {
     }
 
     public static List<ArtistInfo> filterArtistByRatingFacet(List<ArtistInfo> artistList, String facet_id) {
-        List<ArtistInfo> result = new ArrayList<ArtistInfo>();
+        List<ArtistInfo> result = new ArrayList<>();
 
         for (ArtistInfo artist : artistList) {
             if (fitsInRating(artist.getAverageRating(), facet_id)) {

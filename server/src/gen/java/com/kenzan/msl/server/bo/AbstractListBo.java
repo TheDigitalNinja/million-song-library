@@ -4,8 +4,6 @@
 package com.kenzan.msl.server.bo;
 
 import com.kenzan.msl.server.dao.AbstractDao;
-import com.kenzan.msl.server.translate.Translators;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -18,7 +16,6 @@ import java.util.UUID;
 public abstract class AbstractListBo<T extends AbstractBo> {
 	private UUID pagingState;
 	private List<T> boList =  new ArrayList<T>();
-	private boolean isDaoToBoConversionComplete = false;
 	
 	public UUID getPagingState() {
 		return pagingState;

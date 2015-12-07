@@ -22,7 +22,7 @@ public class AlbumMockData {
     }
 
     private List<AlbumInfo> applyGenreFacet (String [] facets, List<AlbumInfo> albumList){
-        List<AlbumInfo> result = new ArrayList<AlbumInfo>();
+        List<AlbumInfo> result = new ArrayList<>();
         boolean hasRatingFacet = false;
         for (String facet: facets) {
             if (!FacetServiceFactory.isRatingFacet(facet, facetMockData.getRatingFacets())) {
@@ -71,7 +71,7 @@ public class AlbumMockData {
         // TODO if no items are provided should return 25 results
         if (items != null && items > 0) {
             List<AlbumInfo> pivotAlbums = browsedAlbums;
-            browsedAlbums = new ArrayList<AlbumInfo>();
+            browsedAlbums = new ArrayList<>();
             for (int i = 0; i < items && i < pivotAlbums.size(); i++) {
                 browsedAlbums.add(pivotAlbums.get(i));
             }
@@ -86,7 +86,7 @@ public class AlbumMockData {
     public AlbumMockData() {
 
         this.albumList = new AlbumList();
-        List<AlbumInfo> albums = new ArrayList<AlbumInfo>();
+        List<AlbumInfo> albums = new ArrayList<>();
 
         AlbumInfo albumInfoMock1 = new AlbumInfo();
         albumInfoMock1.setAlbumId("1");
@@ -98,7 +98,7 @@ public class AlbumMockData {
         albumInfoMock1.setAverageRating(4);
         albumInfoMock1.setPersonalRating(3);
         albumInfoMock1.setImageLink("https://upload.wikimedia.org/wikipedia/en/6/6d/SteveVaiAlienLoveSecrets.jpg");
-        List<String> album1songsList = new ArrayList<String>();
+        List<String> album1songsList = new ArrayList<>();
         album1songsList.add("1");
         albumInfoMock1.setSongsList(album1songsList);
         albums.add(albumInfoMock1);
@@ -113,7 +113,7 @@ public class AlbumMockData {
         albumInfoMock2.setAverageRating(4);
         albumInfoMock2.setPersonalRating(4);
         albumInfoMock2.setImageLink("http://wordsushi.com/wp-content/uploads/2012/11/The+Wall++high+resolution+png.png");
-        List<String> album2songsList = new ArrayList<String>();
+        List<String> album2songsList = new ArrayList<>();
         album2songsList.add("2");
         albumInfoMock2.setSongsList(album2songsList);
         albums.add(albumInfoMock2);
@@ -128,7 +128,7 @@ public class AlbumMockData {
         albumInfoMock3.setAverageRating(3);
         albumInfoMock3.setPersonalRating(3);
         albumInfoMock3.setImageLink("https://upload.wikimedia.org/wikipedia/en/0/0f/FSJanis.jpg");
-        List<String> album3songsList = new ArrayList<String>();
+        List<String> album3songsList = new ArrayList<>();
         album3songsList.add("3");
         albumInfoMock3.setSongsList(album3songsList);
         albums.add(albumInfoMock3);
@@ -143,7 +143,7 @@ public class AlbumMockData {
         albumInfoMock4.setAverageRating(4);
         albumInfoMock4.setPersonalRating(5);
         albumInfoMock4.setImageLink("https://upload.wikimedia.org/wikipedia/en/5/5f/Led_Zeppelin_-_Led_Zeppelin_III.png");
-        List<String> album4songsList = new ArrayList<String>();
+        List<String> album4songsList = new ArrayList<>();
         album4songsList.add("4");
         albumInfoMock4.setSongsList(album4songsList);
         albums.add(albumInfoMock4);
@@ -158,7 +158,7 @@ public class AlbumMockData {
         albumInfoMock5.setAverageRating(2);
         albumInfoMock5.setPersonalRating(4);
         albumInfoMock5.setImageLink("https://upload.wikimedia.org/wikipedia/en/a/ad/UncleJamWantsYou.jpg");
-        List<String> album5songsList = new ArrayList<String>();
+        List<String> album5songsList = new ArrayList<>();
         album5songsList.add("5");
         albumInfoMock5.setSongsList(album5songsList);
         albums.add(albumInfoMock5);
@@ -173,7 +173,7 @@ public class AlbumMockData {
         albumInfoMock6.setAverageRating(1);
         albumInfoMock6.setPersonalRating(3);
         albumInfoMock6.setImageLink("https://upload.wikimedia.org/wikipedia/en/7/7c/Willie-Nelson-Rainbow-Connection.jpg");
-        List<String> album6songsList = new ArrayList<String>();
+        List<String> album6songsList = new ArrayList<>();
         album6songsList.add("6");
         albumInfoMock6.setSongsList(album6songsList);
         albums.add(albumInfoMock6);
@@ -188,7 +188,7 @@ public class AlbumMockData {
         albumInfoMock7.setAverageRating(4);
         albumInfoMock7.setPersonalRating(3);
         albumInfoMock7.setImageLink("http://www.satriani.com/discography/Surfing_With_The_Alien/Surfing_With_The_Alien.jpg");
-        List<String> album7songsList = new ArrayList<String>();
+        List<String> album7songsList = new ArrayList<>();
         album7songsList.add("7");
         albumInfoMock7.setSongsList(album7songsList);
         albums.add(albumInfoMock7);
@@ -203,7 +203,7 @@ public class AlbumMockData {
         albumInfoMock8.setAverageRating(4);
         albumInfoMock8.setPersonalRating(4);
         albumInfoMock8.setImageLink("https://upload.wikimedia.org/wikipedia/en/5/50/Joespace.jpg");
-        List<String> album8songsList = new ArrayList<String>();
+        List<String> album8songsList = new ArrayList<>();
         album8songsList.add("8");
         albumInfoMock8.setSongsList(album8songsList);
         albums.add(albumInfoMock8);
@@ -218,7 +218,7 @@ public class AlbumMockData {
         albumInfoMock9.setAverageRating(2);
         albumInfoMock9.setPersonalRating(2);
         albumInfoMock9.setImageLink("https://upload.wikimedia.org/wikipedia/en/0/03/Whiskeytown-Stranger%27s_Almanac_%28album_cover%29.jpg");
-        List<String> album9songsList = new ArrayList<String>();
+        List<String> album9songsList = new ArrayList<>();
         album9songsList.add("9");
         albumInfoMock9.setSongsList(album9songsList);
         albums.add(albumInfoMock9);
