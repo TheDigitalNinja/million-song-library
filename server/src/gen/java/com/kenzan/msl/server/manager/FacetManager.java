@@ -5,7 +5,7 @@ package com.kenzan.msl.server.manager;
 
 import com.google.common.base.Optional;
 import com.kenzan.msl.server.dao.FacetDao;
-import com.kenzan.msl.server.dao.translate.Translators;
+import com.kenzan.msl.server.translate.Translators;
 
 import io.swagger.model.FacetInfo;
 import io.swagger.model.FacetInfoWithChildren;

@@ -201,6 +201,11 @@
             <artifactId>junit</artifactId>
             <version>${junit-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito-version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
@@ -267,6 +272,7 @@
         <maven-surefire-report-plugin.version>2.19</maven-surefire-report-plugin.version>
         <rxjava-core.version>0.20.7</rxjava-core.version>
         <cassandra-driver-core.version>2.1.9</cassandra-driver-core.version>
+        <mockito-version>1.9.5</mockito-version>
         <org-jboss-resteasy.version>3.0.13.Final</org-jboss-resteasy.version>
     </properties>
 

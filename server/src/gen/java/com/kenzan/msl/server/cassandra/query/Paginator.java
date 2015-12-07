@@ -239,7 +239,7 @@ public class Paginator {
 		Class<? extends AbstractDao> boClass = hasFacets() ? contentType.facetContentDaoClass : contentType.featuredContentDaoClass;
 		Result<? extends AbstractDao> mappedResults = mappingManager.mapper(boClass).map(resultSet);
 		for (AbstractDao dao : mappedResults) {
-			abstractListBo.addDao(dao);
+			abstractListBo.add(dao);
 			
 			if (resultSet.getAvailableWithoutFetching() == 0) {
 				break;

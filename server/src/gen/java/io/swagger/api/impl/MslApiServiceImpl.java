@@ -94,10 +94,6 @@ public class MslApiServiceImpl extends MslApiService {
     @Override
     public Response browseAlbums(Integer items, String pagingState, String facets)
             throws NotFoundException {
-        if (null == items){
-            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'items' is null or empty.")).build();
-        }
-
         AlbumList albumList;
     	try {
     		albumList = catalogService.browseAlbums(pagingState, items, facets, null).toBlocking().first();
@@ -160,9 +156,6 @@ public class MslApiServiceImpl extends MslApiService {
     @Override
     public Response browseArtists(Integer items, String pagingState, String facets)
             throws NotFoundException {
-        if (null == items){
-            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'items' is null or empty.")).build();
-        }
         ArtistList artistList;
     	try {
     		artistList = catalogService.browseArtists(pagingState, items, facets, null).toBlocking().first();
@@ -231,9 +224,6 @@ public class MslApiServiceImpl extends MslApiService {
     @Override
     public Response browseSongs(Integer items, String pagingState, String facets)
             throws NotFoundException {
-        if (null == items){
-            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'items' is null or empty.")).build();
-        }
         SongList songList;
     	try {
     		songList = catalogService.browseSongs(pagingState, items, facets, null).toBlocking().first();
