@@ -1,8 +1,9 @@
 package io.swagger.api.impl;
 
+import com.google.common.base.Optional;
 import com.kenzan.msl.server.manager.FacetManager;
-
 import com.kenzan.msl.server.services.AuthenticationService;
+
 import io.swagger.api.ApiResponseMessage;
 import io.swagger.model.AlbumInfo;
 import io.swagger.model.AlbumList;
@@ -57,9 +58,9 @@ public class MslApiServiceImpl extends MslApiService {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
     	}
 
-    	AlbumInfo albumInfo;
+    	Optional<AlbumInfo> optAlbumInfo;
     	try {
-    		albumInfo = catalogService.getAlbum(albumId, null).toBlocking().first();
+    		optAlbumInfo = catalogService.getAlbum(albumId, null).toBlocking().first();
     	}
     	catch (Exception e) {
     		e.printStackTrace();
@@ -69,13 +70,13 @@ public class MslApiServiceImpl extends MslApiService {
     		return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
     	}
     	
-    	if (null == albumInfo) {
+    	if (!optAlbumInfo.isPresent()) {
     		NotFoundResponse notFoundResponse = new NotFoundResponse();
     		notFoundResponse.setMessage("Unable to find album with id=" + albumId);
     		return Response.status(Response.Status.NOT_FOUND).entity(notFoundResponse).build();
     	}
         
-        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", albumInfo)).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", optAlbumInfo.get())).build();
     }
 
     @Override
@@ -123,9 +124,9 @@ public class MslApiServiceImpl extends MslApiService {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
     	}
 
-    	ArtistInfo artistInfo;
+    	Optional<ArtistInfo> optArtistInfo;
     	try {
-    		artistInfo = catalogService.getArtist(artistId, null).toBlocking().first();
+    		optArtistInfo = catalogService.getArtist(artistId, null).toBlocking().first();
     	}
     	catch (Exception e) {
     		e.printStackTrace();
@@ -135,13 +136,13 @@ public class MslApiServiceImpl extends MslApiService {
     		return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
     	}
     	
-    	if (null == artistInfo) {
+    	if (!optArtistInfo.isPresent()) {
     		NotFoundResponse notFoundResponse = new NotFoundResponse();
     		notFoundResponse.setMessage("Unable to find artist with id=" + artistId);
     		return Response.status(Response.Status.NOT_FOUND).entity(notFoundResponse).build();
     	}
 
-        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", artistInfo)).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", optArtistInfo.get())).build();
     }
 
     @Override
@@ -188,9 +189,9 @@ public class MslApiServiceImpl extends MslApiService {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
     	}
 
-        SongInfo songInfo;
+        Optional<SongInfo> optSongInfo;
     	try {
-    		songInfo = catalogService.getSong(songId, null).toBlocking().first();
+    		optSongInfo = catalogService.getSong(songId, null).toBlocking().first();
     	}
     	catch (Exception e) {
     		e.printStackTrace();
@@ -199,13 +200,13 @@ public class MslApiServiceImpl extends MslApiService {
     		return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
     	}
     	
-    	if (null == songInfo) {
+    	if (!optSongInfo.isPresent()) {
     		NotFoundResponse notFoundResponse = new NotFoundResponse();
     		notFoundResponse.setMessage("Unable to find song with id=" + songId);
     		return Response.status(Response.Status.NOT_FOUND).entity(notFoundResponse).build();
     	}
 
-        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", songInfo)).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", optSongInfo.get())).build();
     }
 
     @Override

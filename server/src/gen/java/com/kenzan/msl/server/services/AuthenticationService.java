@@ -1,13 +1,17 @@
 package com.kenzan.msl.server.services;
 
+import com.google.common.base.Optional;
+
 import io.swagger.api.impl.MslApiResponseMessage;
 import io.swagger.api.impl.MslSessionToken;
 import io.swagger.model.ErrorResponse;
 import io.swagger.model.LoginSuccessResponse;
 import io.swagger.model.StatusResponse;
+
 import org.apache.commons.lang3.StringUtils;
 
 import javax.ws.rs.core.Response;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -30,9 +34,9 @@ public class AuthenticationService {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'password' is null or empty.")).build();
         }
 
-        UUID sessionToken;
+        Optional<UUID> optSessionToken;
         try {
-            sessionToken = catalogService.logIn(email, password).toBlocking().first();
+            optSessionToken = catalogService.logIn(email, password).toBlocking().first();
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -42,7 +46,7 @@ public class AuthenticationService {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
         }
 
-        if (sessionToken.equals(new UUID(0L, 0L))) {
+        if (!optSessionToken.isPresent()) {
             ErrorResponse errorResponse = new ErrorResponse();
             errorResponse.setMessage("Invalid credentials");
             return Response.status(Response.Status.UNAUTHORIZED).entity(errorResponse).build();
@@ -52,7 +56,7 @@ public class AuthenticationService {
         loginSuccessResponse.setAuthenticated(new Date().toString());
 
         return Response.ok()
-                .cookie(MslSessionToken.getInstance().getSessionCookie(sessionToken))
+                .cookie(MslSessionToken.getInstance().getSessionCookie(optSessionToken.get()))
                 .entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", loginSuccessResponse)).build();
     }
 

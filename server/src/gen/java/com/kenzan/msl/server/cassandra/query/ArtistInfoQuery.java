@@ -8,6 +8,7 @@ import com.datastax.driver.core.Statement;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.datastax.driver.mapping.MappingManager;
 import com.datastax.driver.mapping.Result;
+import com.google.common.base.Optional;
 import com.kenzan.msl.server.bo.ArtistBo;
 import com.kenzan.msl.server.cassandra.CassandraConstants;
 import com.kenzan.msl.server.cassandra.CassandraConstants.MSL_CONTENT_TYPE;
@@ -40,9 +41,9 @@ public class ArtistInfoQuery {
 	 * @param userId		the UUID of the logged in user making the query (will be null if user not logged in)
 	 * @param artistUuid	the UUID of the artist to be retrieved
 	 * 
-	 * @return the ArtistInfo instance with all the info on the requested user
+	 * @return Optional ArtistInfo instance with all the info on the requested user
 	 */
-	public static ArtistBo get(final Session session, final UUID userUuid, final UUID artistUuid) {
+	public static Optional<ArtistBo> get(final Session session, final UUID userUuid, final UUID artistUuid) {
 		ArtistBo artistBo = new ArtistBo();
 		
 		/*
@@ -91,7 +92,7 @@ public class ArtistInfoQuery {
 
 		// If we didn't retrieved a DAO, then return null 
 		if (!processedOneRow) {
-			return null;
+			return Optional.absent();
 		}
 
 		/*
@@ -138,6 +139,6 @@ public class ArtistInfoQuery {
 			}
 		}
 		
-		return artistBo;
+		return Optional.of(artistBo);
 	}
 }
