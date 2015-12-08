@@ -14,7 +14,6 @@
              name="password"
              ng-model="vm.password"
              placeholder="Password"
-             ng-change="vm.checkIfPasswordCompliant()"
              password
              required>
       <div ng-messages="credentials.password.$error" ng-show="credentials.password.$dirty">
@@ -37,9 +36,11 @@
              name="confirmationPassword"
              ng-model="vm.confirmationPassword"
              placeholder="Confirmation Password"
+             match="credentials.password"
              required>
       <div ng-messages="credentials.confirmationPassword.$error" ng-show="credentials.confirmationPassword.$dirty">
         <div ng-message="required">This is required!</div>
+        <div ng-message="match">Must be equal!</div>
       </div>
     </md-input-container>
 

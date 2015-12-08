@@ -1,4 +1,5 @@
 /* global describe, it, expect, beforeEach, afterEach, inject, jasmine */
+import { GENRE_FACET_ID } from '../../../../../src/constants.js';
 
 import genreFilter from 'layout/sidenav/genre-filter/genre-filter.module.js';
 
@@ -45,7 +46,7 @@ describe('genreFilterCtrl', () => {
       facetStore.fetch.and.returnValue({ facets: genres });
 
       controller._getGenreFacets();
-      expect(facetStore.fetch).toHaveBeenCalledWith(0);
+      expect(facetStore.fetch).toHaveBeenCalledWith(GENRE_FACET_ID);
     });
   });
 
