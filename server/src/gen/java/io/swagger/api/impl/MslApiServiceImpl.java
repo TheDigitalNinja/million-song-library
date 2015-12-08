@@ -10,6 +10,9 @@ import io.swagger.model.AlbumInfo;
 import io.swagger.model.AlbumList;
 import io.swagger.model.ArtistInfo;
 import io.swagger.model.ArtistList;
+import io.swagger.model.ErrorResponse;
+import io.swagger.model.NotFoundResponse;
+
 import io.swagger.model.SongInfo;
 import io.swagger.model.SongList;
 import io.swagger.model.MyLibrary;
@@ -18,7 +21,6 @@ import io.swagger.model.NotFoundResponse;
 
 import com.kenzan.msl.server.mock.AlbumMockData;
 import com.kenzan.msl.server.mock.ArtistMockData;
-import com.kenzan.msl.server.mock.LogInMockData;
 import com.kenzan.msl.server.mock.SongMockData;
 import com.kenzan.msl.server.services.CassandraCatalogService;
 import com.kenzan.msl.server.services.CatalogService;
@@ -42,7 +44,6 @@ public class MslApiServiceImpl extends MslApiService {
     private AlbumMockData albumMockData = new AlbumMockData();
     private ArtistMockData artistMockData = new ArtistMockData();
     private SongMockData songMockData = new SongMockData();
-    private LogInMockData logInMockData = new LogInMockData();
 
     // ========================================================================================================== ALBUMS
     // =================================================================================================================

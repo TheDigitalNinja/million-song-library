@@ -4,7 +4,6 @@ import io.swagger.api.impl.MslApiResponseMessage;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import javax.ws.rs.core.NewCookie;
-import java.math.BigDecimal;
 import io.swagger.client.SongClient;
 
 import org.junit.Test;

@@ -7,7 +7,6 @@ import com.datastax.driver.core.Session;
 import com.datastax.driver.core.Statement;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.datastax.driver.mapping.MappingManager;
-import com.datastax.driver.mapping.Result;
 import com.google.common.base.Optional;
 import com.kenzan.msl.server.bo.SongBo;
 import com.kenzan.msl.server.cassandra.CassandraConstants;

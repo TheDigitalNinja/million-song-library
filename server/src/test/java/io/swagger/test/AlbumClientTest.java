@@ -8,8 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.ws.rs.core.NewCookie;
-import java.math.BigDecimal;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
