@@ -3,8 +3,6 @@
  */
 package com.kenzan.msl.server.dao;
 
-import com.datastax.driver.mapping.annotations.Column;
-
 import java.util.UUID;
 
 /**

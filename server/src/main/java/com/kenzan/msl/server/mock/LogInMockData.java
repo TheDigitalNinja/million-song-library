@@ -9,6 +9,10 @@ public class LogInMockData {
 
     LoginSuccessResponse loginMockData = new LoginSuccessResponse();
 
+    /**
+	 * @param email		the email address associated with the user account
+     * @param password	the clear text, case-sensitive password for the user account
+	 */
     public LoginSuccessResponse getAuthenticatedFlag(String email, String password) {
         loginMockData.setAuthenticated(Long.toString(new Date().getTime()));
         return loginMockData;
