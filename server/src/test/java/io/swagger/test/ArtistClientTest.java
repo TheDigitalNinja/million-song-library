@@ -49,12 +49,6 @@ public class ArtistClientTest {
         assertEquals("artist browse call is successful", "success", artistList.getMessage());
     }
 
-    @Test (expected = java.lang.RuntimeException.class)
-    public void testBrowseExceptionIsThrown() {
-        logger.debug("ArtistClient.testBrowseExceptionIsThrown");
-        artistClient.browse("");
-    }
-
     @Test
     public void testAddArtist(){
         logger.debug("ArtistClient.testAddArtist");

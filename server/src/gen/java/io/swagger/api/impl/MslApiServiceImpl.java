@@ -16,8 +16,6 @@ import io.swagger.model.NotFoundResponse;
 import io.swagger.model.SongInfo;
 import io.swagger.model.SongList;
 import io.swagger.model.MyLibrary;
-import io.swagger.model.ErrorResponse;
-import io.swagger.model.NotFoundResponse;
 
 import com.kenzan.msl.server.mock.AlbumMockData;
 import com.kenzan.msl.server.mock.ArtistMockData;

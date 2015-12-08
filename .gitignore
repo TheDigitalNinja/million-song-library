@@ -8,7 +8,7 @@
 /server/target
 /server/src/gen/java/io/swagger/api/*.java
 /server/src/gen/java/io/swagger/model
-/server/src/main
+/server/src/main/webapp
 /server/pom.xml
 /server/swagger-jaxrs-server.iml
 

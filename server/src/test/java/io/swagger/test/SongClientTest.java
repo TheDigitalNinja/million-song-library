@@ -48,12 +48,6 @@ public class SongClientTest {
         assertEquals("song browse call is successful", "success", songList.getMessage());
     }
 
-    @Test(expected = java.lang.RuntimeException.class)
-    public void testBrowsExceptionIsThrown() {
-        logger.debug("songClient.testBrowsExceptionIsThrown");
-        songClient.browse("");
-    }
-
     @Test
     public void testAddSong() {
         logger.debug("songClient.testAddSong");

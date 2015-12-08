@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Table(name="artists_by_user")
 public class ArtistsByUserDao {
+
     @PartitionKey(value = 0)
     @Column(name = "user_id")
     private UUID userId;
