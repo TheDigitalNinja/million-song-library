@@ -48,12 +48,6 @@ public class AlbumClientTest {
         assertEquals("album browse call is successful", "success", albumList.getMessage());
     }
 
-    @Test (expected = java.lang.RuntimeException.class)
-    public void testBrowseExceptionIsThrown() {
-        logger.debug("AlbumClient.testBrowseExceptionIsThrown");
-        albumClient.browse("");
-    }
-
     @Test
     public void testAddAlbum(){
         logger.debug("AlbumClient.testAddAlbum");
