@@ -4,8 +4,6 @@ import com.google.common.base.Optional;
 import com.kenzan.msl.server.manager.FacetManager;
 import com.kenzan.msl.server.services.AuthenticationService;
 
-import io.swagger.api.ApiResponseMessage;
-
 import io.swagger.model.AlbumInfo;
 import io.swagger.model.AlbumList;
 import io.swagger.model.ArtistInfo;
@@ -376,9 +374,9 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // Validate required parameters
         if (StringUtils.isEmpty(facetId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Required parameter 'facetId' is null or empty.")).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'facetId' is null or empty.")).build();
         }
-        return Response.ok().entity(new MslApiResponseMessage(ApiResponseMessage.OK, "success", FacetManager.getInstance().getRestFacets(facetId))).build();
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", FacetManager.getInstance().getRestFacets(facetId))).build();
     }
 
 
