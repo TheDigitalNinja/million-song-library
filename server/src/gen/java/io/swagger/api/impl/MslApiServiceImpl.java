@@ -14,18 +14,12 @@ import io.swagger.model.NotFoundResponse;
 import io.swagger.model.SongInfo;
 import io.swagger.model.SongList;
 import io.swagger.model.MyLibrary;
-
-import com.kenzan.msl.server.mock.AlbumMockData;
-import com.kenzan.msl.server.mock.ArtistMockData;
-import com.kenzan.msl.server.mock.SongMockData;
 import com.kenzan.msl.server.services.CassandraCatalogService;
 import com.kenzan.msl.server.services.CatalogService;
 
 import io.swagger.api.MslApiService;
 import io.swagger.api.NotFoundException;
-
 import javax.ws.rs.core.Response;
-
 import org.apache.commons.lang3.StringUtils;
 
 /*

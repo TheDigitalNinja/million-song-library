@@ -46,6 +46,7 @@ public class LibraryQuery {
         RatingHelper.processAverageSongRatings(queryAccessor, manager, songInfoList);
         RatingHelper.processUserSongRatingResults(queryAccessor, manager, songInfoList, UUID.fromString(sessionToken));
         myLibrary.setSongs(songInfoList);
+
         return myLibrary;
     }
 

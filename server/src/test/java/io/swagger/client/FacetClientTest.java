@@ -1,7 +1,6 @@
-package io.swagger.test;
+package io.swagger.client;
 
 import io.swagger.api.impl.MslApiResponseMessage;
-import io.swagger.client.FacetClient;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.junit.Before;

@@ -1,7 +1,6 @@
-package io.swagger.test;
+package io.swagger.client;
 
 import io.swagger.api.impl.MslApiResponseMessage;
-import io.swagger.client.AlbumClient;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -31,6 +30,7 @@ public class AlbumClientTest {
         logger.debug("AlbumClient.testGet");
         MslApiResponseMessage album = albumClient.get(TEST_ALBUM_ID);
         assertNotNull(album);
+        assertNotNull(album.getData());
         assertEquals("album get call is successful", "success", album.getMessage());
     }
 
@@ -45,6 +45,7 @@ public class AlbumClientTest {
         logger.debug("AlbumClient.testBrowse");
         MslApiResponseMessage albumList = albumClient.browse(PAGE_SIZE);
         assertNotNull(albumList);
+        assertNotNull(albumList.getData());
         assertEquals("album browse call is successful", "success", albumList.getMessage());
     }
 
