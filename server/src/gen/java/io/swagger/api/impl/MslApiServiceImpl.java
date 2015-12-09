@@ -74,18 +74,6 @@ public class MslApiServiceImpl extends MslApiService {
     }
 
     @Override
-    public Response getAlbumImage(String albumId)
-            throws NotFoundException {
-        // Validate required parameters
-    	if (StringUtils.isEmpty(albumId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
-    	}
-
-        // TODO replace current mock data
-        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", albumMockData.getAlbum(albumId).getImageLink())).build();
-    }
-
-    @Override
     public Response browseAlbums(Integer items, String pagingState, String facets)
             throws NotFoundException {
         AlbumList albumList;
@@ -133,18 +121,6 @@ public class MslApiServiceImpl extends MslApiService {
     	}
 
         return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", optArtistInfo.get())).build();
-    }
-
-    @Override
-    public Response getArtistImage(String artistId)
-            throws NotFoundException {
-        // Validate required parameters
-    	if (StringUtils.isEmpty(artistId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
-    	}
-    	
-        // TODO replace current mock implementation
-        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", artistMockData.getArtist(artistId).getImageLink())).build();
     }
 
     @Override
@@ -201,18 +177,6 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
-    }
-
-    @Override
-    public Response getSongImage(String songId)
-            throws NotFoundException {
-        // Validate required parameters
-    	if (StringUtils.isEmpty(songId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
-    	}
-
-        // TODO replace current mock data
-        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", songMockData.getSong(songId).getImageLink())).build();
     }
 
     @Override
