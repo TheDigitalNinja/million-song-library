@@ -481,11 +481,10 @@ public class MslApiServiceImpl extends MslApiService {
 		return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
-        @Override
-        public Response registration(String username, String password, String confirmationPassword)
-                throws NotFoundException {
-            // do some magic!
-            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
-        }
-
+    @Override
+    public Response registration(String username, String password, String confirmationPassword)
+            throws NotFoundException {
+        // do some magic!
+        return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
+    }
 }

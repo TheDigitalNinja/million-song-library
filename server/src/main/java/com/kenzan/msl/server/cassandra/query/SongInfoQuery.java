@@ -3,14 +3,10 @@
  */
 package com.kenzan.msl.server.cassandra.query;
 
-import com.datastax.driver.core.Session;
-import com.datastax.driver.core.Statement;
-import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.datastax.driver.mapping.MappingManager;
 import com.google.common.base.Optional;
 import com.kenzan.msl.server.bo.SongBo;
-import com.kenzan.msl.server.cassandra.CassandraConstants;
-import com.kenzan.msl.server.cassandra.CassandraConstants.MSL_CONTENT_TYPE;
+import com.kenzan.msl.server.cassandra.QueryAccessor;
 import com.kenzan.msl.server.dao.AverageRatingsDao;
 import com.kenzan.msl.server.dao.AlbumArtistBySongDao;
 import com.kenzan.msl.server.dao.UserDataByUserDao;
@@ -36,27 +32,22 @@ public class SongInfoQuery {
 	 * Performs queries to numerous Cassandra tables to assemble all the pieces that make up an
 	 * SongInfo response.
 	 * 
-	 * @param session		the Datastax session through which queries and mappings should be executed
-	 * @param userId		the UUID of the logged in user making the query (will be null if user not logged in)
-	 * @param songUuid	the UUID of the song to be retrieved
+	 * @param queryAccessor		the Datastax QueryAccessor declaring out prepared queries
+	 * @param mappingManager	the Datastax MappingManager responsible for executing queries and mapping results to POJOs
+	 * @param userId			the UUID of the logged in user making the query (will be null if user not logged in)
+	 * @param songUuid			the UUID of the song to be retrieved
 	 * 
 	 * @return Optional SongInfo instance with all the info on the requested user
 	 */
-	public static Optional<SongBo> get(final Session session, final UUID userUuid, final UUID songUuid) {
+	public static Optional<SongBo> get(final QueryAccessor queryAccessor, final MappingManager mappingManager, final UUID userUuid, final UUID songUuid) {
 		SongBo songBo = new SongBo();
 		
 		/*
-		 * Retrieve data from the songs_albums_by_song table
+		 * Retrieve data from the album_artist_by_song table
 		 */
 		
-		// Build query to select all rows for the given song from the album_artist_by_song table 
-		Statement statement1 = QueryBuilder.select()
-				.all()
-				.from(CassandraConstants.MSL_TABLE_ALBUM_ARTIST_BY_SONG)
-				.where(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_SONG_ID, songUuid));
-		
-		// Execute the query and map result to DAO POJO
-		AlbumArtistBySongDao albumArtistBySongDao = new MappingManager(session).mapper(AlbumArtistBySongDao.class).map(session.execute(statement1)).one();
+		// Select all rows for the given song from the album_artist_by_song table 
+		AlbumArtistBySongDao albumArtistBySongDao = mappingManager.mapper(AlbumArtistBySongDao.class).map(queryAccessor.albumArtistBySong(songUuid)).one();
 
 		// If we didn't retrieved a DAO, then return absent() 
 		if (null == albumArtistBySongDao) {
@@ -77,18 +68,11 @@ public class SongInfoQuery {
 		}
 				
 		/*
-		 * Retrieve data from the average_ratings table
+		 * Retrieve average rating for the song
 		 */
 		
-		// Build query to select all rows for the given song from the average_ratings table 
-		Statement statement2 = QueryBuilder.select()
-				.all()
-				.from(CassandraConstants.MSL_TABLE_AVERAGE_RATINGS)
-				.where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, songUuid))
-					.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.SONG.dbContentType));
-		
-		// Execute the query and map single result row to a DAO POJOs
-		AverageRatingsDao averageRatingsDao = new MappingManager(session).mapper(AverageRatingsDao.class).map(session.execute(statement2)).one();
+		// Select the row for the song from the average_ratings table 
+		AverageRatingsDao averageRatingsDao = mappingManager.mapper(AverageRatingsDao.class).map(queryAccessor.songAverageRating(songUuid).getUninterruptibly()).one();
 		
 		// If we retrieved a DAO, then include that info into the SongInfo 
 		if (null != averageRatingsDao) {
@@ -96,20 +80,12 @@ public class SongInfoQuery {
 		}
 		
 		/*
-		 * Retrieve data from the user_data_by_user table if a user UUID was passed
+		 * Retrieve user's rating for the song if a user UUID was passed
 		 */
 		
 		if (userUuid != null) {
-			// Build query to select all rows for the given song from the user_data_by_user table 
-			Statement statement3 = QueryBuilder.select()
-					.all()
-					.from(CassandraConstants.MSL_TABLE_USER_DATA_BY_USER)
-					.where().and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_USER_ID, userUuid))
-						.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_TYPE, MSL_CONTENT_TYPE.SONG.dbContentType))
-						.and(QueryBuilder.eq(CassandraConstants.MSL_COLUMN_CONTENT_ID, songUuid));
-			
-			// Execute the query and map single result row to a DAO POJOs
-			UserDataByUserDao userDataByUserDao = new MappingManager(session).mapper(UserDataByUserDao.class).map(session.execute(statement3)).one();
+			// Select the row for the artist and user from the user_data_by_user table 
+			UserDataByUserDao userDataByUserDao = mappingManager.mapper(UserDataByUserDao.class).map(queryAccessor.songUserRating(userUuid, songUuid).getUninterruptibly()).one();
 
 			// If we retrieved a DAO, then include that info into the SongInfo 
 			if (null != userDataByUserDao) {

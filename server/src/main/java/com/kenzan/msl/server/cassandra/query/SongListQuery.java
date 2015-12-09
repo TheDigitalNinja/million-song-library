@@ -3,14 +3,13 @@
  */
 package com.kenzan.msl.server.cassandra.query;
 
-import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.ResultSetFuture;
-import com.datastax.driver.core.Session;
+import com.datastax.driver.core.Statement;
 import com.datastax.driver.mapping.MappingManager;
 import com.kenzan.msl.server.bo.SongBo;
 import com.kenzan.msl.server.bo.SongListBo;
 import com.kenzan.msl.server.cassandra.CassandraConstants;
-import com.kenzan.msl.server.cassandra.PreparedStatementFactory;
+import com.kenzan.msl.server.cassandra.QueryAccessor;
 import com.kenzan.msl.server.dao.AverageRatingsDao;
 import com.kenzan.msl.server.dao.UserDataByUserDao;
 
@@ -33,12 +32,13 @@ import java.util.UUID;
  *
  * @author billschwanitz
  */
-public class SongListQuery {
+public class SongListQuery implements PaginatorHelper {
 	/*
 	 * Performs queries to numerous Cassandra tables to assemble all the pieces that make up a
 	 * SongList response.
 	 * 
-	 * @param session			the Datastax session through which queries and mappings should be executed
+	 * @param queryAccessor		the Datastax QueryAccessor declaring out prepared queries
+	 * @param mappingManager	the Datastax MappingManager responsible for executing queries and mapping results to POJOs
 	 * @param pagingStateUuid	Used for pagination control.
 	 * 								To retrieve the first page, use <code>null</code>.
 	 * 								To retrieve subsequent pages, use the
@@ -56,11 +56,11 @@ public class SongListQuery {
 	 * 
 	 * @return the SongList instance with all the info for the requested page
 	 */
-	public static SongListBo get(final Session session, final UUID pagingStateUuid, final Integer items, final String facets, final UUID userUuid) {
+	public SongListBo get(final QueryAccessor queryAccessor, final MappingManager mappingManager, final UUID pagingStateUuid, final Integer items, final String facets, final UUID userUuid) {
 		SongListBo songListBo = new SongListBo();
 
 		// Retrieve the requested page of Songs
-		new Paginator(CassandraConstants.MSL_CONTENT_TYPE.SONG, session, pagingStateUuid, items, facets).getPage(songListBo);
+		new Paginator(CassandraConstants.MSL_CONTENT_TYPE.SONG, queryAccessor, mappingManager, this, pagingStateUuid, items, facets).getPage(songListBo);
 		
 		/*
 		 *  Asynchronously query for the average and user ratings for each song.
@@ -68,16 +68,16 @@ public class SongListQuery {
 		 *  NOTE: this could be done using CQL's IN keyword, but that leads to scalability issues. See the great discussion of this issue
 		 *  here: https://lostechies.com/ryansvihla/2014/09/22/cassandra-query-patterns-not-using-the-in-query-for-multiple-partitions
 		 */
-		Set<ResultSetFuture> averageRatingFutures = fireAverageRatingQueries(session, songListBo);
+		Set<ResultSetFuture> averageRatingFutures = fireAverageRatingQueries(queryAccessor, songListBo);
 		Set<ResultSetFuture> userRatingFutures = null;
 		if (null != userUuid) {
-			userRatingFutures = fireUserRatingQueries(session, songListBo, userUuid);
+			userRatingFutures = fireUserRatingQueries(queryAccessor, songListBo, userUuid);
 		}
 		
 		// Now wait for the asynchronous queries to complete and roll the data into the list
-		processAverageRatingResults(session, songListBo, averageRatingFutures);
+		processAverageRatingResults(mappingManager, songListBo, averageRatingFutures);
 		if (null != userUuid) {
-			processUserRatingResults(session, songListBo, userRatingFutures);
+			processUserRatingResults(mappingManager, songListBo, userRatingFutures);
 		}
 		
 		return songListBo;
@@ -88,15 +88,11 @@ public class SongListQuery {
 	 * Instead of using a single query with an IN clause on a partition key column, which can have scalability issues,
 	 * we will fire of one asynchronous query for each song in the list.
 	 */
-	private static Set<ResultSetFuture> fireAverageRatingQueries(final Session session, final SongListBo songListBo) {
+	private Set<ResultSetFuture> fireAverageRatingQueries(final QueryAccessor queryAccessor, final SongListBo songListBo) {
 		Set<ResultSetFuture> returnSet = new HashSet<>(songListBo.getBoList().size());
 		
 		for (SongBo songBo : songListBo.getBoList()) {
-			BoundStatement statement = PreparedStatementFactory.getInstance()
-					.getPreparedStatement(session,PreparedStatementFactory.PreparedStatementId.SONG_AVERAGE_RATING_QUERY)
-					.bind(songBo.getSongId());
-
-			returnSet.add(session.executeAsync(statement));
+			returnSet.add(queryAccessor.songAverageRating(songBo.getSongId()));
 		}
 		
 		return returnSet;
@@ -108,16 +104,11 @@ public class SongListQuery {
 	 * Instead of using a single query with an IN clause on a partition key column, which can have scalability issues,
 	 * we will fire of one asynchronous query for each song in the list.
 	 */
-	private static Set<ResultSetFuture> fireUserRatingQueries(final Session session, final SongListBo songListBo, final UUID userUuid) {
+	private Set<ResultSetFuture> fireUserRatingQueries(final QueryAccessor queryAccessor, final SongListBo songListBo, final UUID userUuid) {
 		Set<ResultSetFuture> returnSet = new HashSet<>(songListBo.getBoList().size());
 		
 		for (SongBo songBo : songListBo.getBoList()) {
-			BoundStatement statement = PreparedStatementFactory.getInstance()
-					.getPreparedStatement(session,PreparedStatementFactory.PreparedStatementId.SONG_USER_RATING_QUERY)
-					.bind(userUuid)
-					.bind(songBo.getSongId());
-
-			returnSet.add(session.executeAsync(statement));
+			returnSet.add(queryAccessor.songUserRating(userUuid, songBo.getSongId()));
 		}
 		
 		return returnSet;
@@ -126,10 +117,10 @@ public class SongListQuery {
 	/*
 	 * Process the results from the queries for average rating for each song DAO in the list.
 	 */
-	private static void processAverageRatingResults(final Session session, final SongListBo songListBo, final Set<ResultSetFuture> resultFutures) {
+	private void processAverageRatingResults(final MappingManager mappingManager, final SongListBo songListBo, final Set<ResultSetFuture> resultFutures) {
 		for (ResultSetFuture future : resultFutures) {
 			// Wait for the query to complete and map single result row to a DAO POJOs
-			AverageRatingsDao averageRatingsDao = new MappingManager(session).mapper(AverageRatingsDao.class).map(future.getUninterruptibly()).one();
+			AverageRatingsDao averageRatingsDao = mappingManager.mapper(AverageRatingsDao.class).map(future.getUninterruptibly()).one();
 			
 			if (null != averageRatingsDao) {
 				// Find and update the matching SongBo
@@ -146,10 +137,10 @@ public class SongListQuery {
 	/*
 	 * Process the results from the queries for user rating for each song DAO in the list.
 	 */
-	private static void processUserRatingResults(final Session session, final SongListBo songListBo, final Set<ResultSetFuture> resultFutures) {
+	private void processUserRatingResults(final MappingManager mappingManager, final SongListBo songListBo, final Set<ResultSetFuture> resultFutures) {
 		for (ResultSetFuture future : resultFutures) {
 			// Wait for the query to complete and map single result row to a DAO POJOs
-			UserDataByUserDao userDataByUserDao = new MappingManager(session).mapper(UserDataByUserDao.class).map(future.getUninterruptibly()).one();
+			UserDataByUserDao userDataByUserDao = mappingManager.mapper(UserDataByUserDao.class).map(future.getUninterruptibly()).one();
 			
 			// Find and update the matching SongBo
 			for (SongBo songBo : songListBo.getBoList()) {
@@ -159,5 +150,26 @@ public class SongListQuery {
 				}
 			}
 		}
+	}
+
+	/*
+	 * Methods to support being a PaginatorHelper 
+	 */
+	
+	public Statement prepareFacetedQuery(final QueryAccessor queryAccessor, final String facetName) {
+		return queryAccessor.songsByFacet(facetName);
+	}
+
+	public Statement prepareFeaturedQuery(final QueryAccessor queryAccessor) {
+		return queryAccessor.featuredSongs();
+	}
+
+	public String getFacetedQueryString(final String facetName) {
+		return QueryAccessor.FACETED_SONGS_QUERY
+				.replace(":facet_name", "'" + facetName + "'");
+	}
+
+	public String getFeaturedQueryString() {
+		return QueryAccessor.FEATURED_SONGS_QUERY;
 	}
 }

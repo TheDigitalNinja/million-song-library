@@ -3,14 +3,13 @@
  */
 package com.kenzan.msl.server.cassandra.query;
 
-import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.ResultSetFuture;
-import com.datastax.driver.core.Session;
+import com.datastax.driver.core.Statement;
 import com.datastax.driver.mapping.MappingManager;
 import com.kenzan.msl.server.bo.ArtistBo;
 import com.kenzan.msl.server.bo.ArtistListBo;
 import com.kenzan.msl.server.cassandra.CassandraConstants;
-import com.kenzan.msl.server.cassandra.PreparedStatementFactory;
+import com.kenzan.msl.server.cassandra.QueryAccessor;
 import com.kenzan.msl.server.dao.AverageRatingsDao;
 import com.kenzan.msl.server.dao.UserDataByUserDao;
 
@@ -34,12 +33,13 @@ import java.util.UUID;
  *
  * @author billschwanitz
  */
-public class ArtistListQuery {
+public class ArtistListQuery implements PaginatorHelper {
 	/*
 	 * Performs queries to numerous Cassandra tables to assemble all the pieces that make up an
 	 * ArtistList response.
 	 * 
-	 * @param session			the Datastax session through which queries and mappings should be executed
+	 * @param queryAccessor		the Datastax QueryAccessor declaring out prepared queries
+	 * @param mappingManager	the Datastax MappingManager responsible for executing queries and mapping results to POJOs
 	 * @param pagingStateUuid	Used for pagination control.
 	 * 								To retrieve the first page, use <code>null</code>.
 	 * 								To retrieve subsequent pages, use the
@@ -57,11 +57,11 @@ public class ArtistListQuery {
 	 * 
 	 * @return the ArtistList instance with all the info for the requested page
 	 */
-	public static ArtistListBo get(final Session session, final UUID pagingStateUuid, final Integer items, final String facets, final UUID userUuid) {
+	public ArtistListBo get(final QueryAccessor queryAccessor, final MappingManager mappingManager, final UUID pagingStateUuid, final Integer items, final String facets, final UUID userUuid) {
 		ArtistListBo artistListBo = new ArtistListBo();
 
 		// Retrieve the requested page of Artists
-		new Paginator(CassandraConstants.MSL_CONTENT_TYPE.ARTIST, session, pagingStateUuid, items, facets).getPage(artistListBo);
+		new Paginator(CassandraConstants.MSL_CONTENT_TYPE.ARTIST, queryAccessor, mappingManager, this, pagingStateUuid, items, facets).getPage(artistListBo);
 		
 		/*
 		 *  Asynchronously query for the average and user ratings for each artist.
@@ -69,16 +69,16 @@ public class ArtistListQuery {
 		 *  NOTE: this could be done using CQL's IN keyword, but that leads to scalability issues. See the great discussion of this issue
 		 *  here: https://lostechies.com/ryansvihla/2014/09/22/cassandra-query-patterns-not-using-the-in-query-for-multiple-partitions
 		 */
-		Set<ResultSetFuture> averageRatingFutures = fireAverageRatingQueries(session, artistListBo);
+		Set<ResultSetFuture> averageRatingFutures = fireAverageRatingQueries(queryAccessor, artistListBo);
 		Set<ResultSetFuture> userRatingFutures = null;
 		if (null != userUuid) {
-			userRatingFutures = fireUserRatingQueries(session, artistListBo, userUuid);
+			userRatingFutures = fireUserRatingQueries(queryAccessor, artistListBo, userUuid);
 		}
 		
 		// Now wait for the asynchronous queries to complete and roll the data into the list
-		processAverageRatingResults(session, artistListBo, averageRatingFutures);
+		processAverageRatingResults(mappingManager, artistListBo, averageRatingFutures);
 		if (null != userUuid) {
-			processUserRatingResults(session, artistListBo, userRatingFutures);
+			processUserRatingResults(mappingManager, artistListBo, userRatingFutures);
 		}
 		
 		return artistListBo;
@@ -89,15 +89,11 @@ public class ArtistListQuery {
 	 * Instead of using a single query with an IN clause on a partition key column, which can have scalability issues,
 	 * we will fire of one asynchronous query for each artist in the list.
 	 */
-	private static Set<ResultSetFuture> fireAverageRatingQueries(final Session session, final ArtistListBo artistListBo) {
+	private Set<ResultSetFuture> fireAverageRatingQueries(final QueryAccessor queryAccessor, final ArtistListBo artistListBo) {
 		Set<ResultSetFuture> returnSet = new HashSet<>(artistListBo.getBoList().size());
 		
 		for (ArtistBo artistBo : artistListBo.getBoList()) {
-			BoundStatement statement = PreparedStatementFactory.getInstance()
-					.getPreparedStatement(session,PreparedStatementFactory.PreparedStatementId.ARTIST_AVERAGE_RATING_QUERY)
-					.bind(artistBo.getArtistId());
-
-			returnSet.add(session.executeAsync(statement));
+			returnSet.add(queryAccessor.artistAverageRating(artistBo.getArtistId()));
 		}
 		
 		return returnSet;
@@ -109,16 +105,11 @@ public class ArtistListQuery {
 	 * Instead of using a single query with an IN clause on a partition key column, which can have scalability issues,
 	 * we will fire of one asynchronous query for each artist in the list.
 	 */
-	private static Set<ResultSetFuture> fireUserRatingQueries(final Session session, final ArtistListBo artistListBo, final UUID userUuid) {
+	private Set<ResultSetFuture> fireUserRatingQueries(final QueryAccessor queryAccessor, final ArtistListBo artistListBo, final UUID userUuid) {
 		Set<ResultSetFuture> returnSet = new HashSet<>(artistListBo.getBoList().size());
 		
 		for (ArtistBo artistBo : artistListBo.getBoList()) {
-			BoundStatement statement = PreparedStatementFactory.getInstance()
-					.getPreparedStatement(session,PreparedStatementFactory.PreparedStatementId.ARTIST_USER_RATING_QUERY)
-					.bind(userUuid)
-					.bind(artistBo.getArtistId());
-
-			returnSet.add(session.executeAsync(statement));
+			returnSet.add(queryAccessor.artistUserRating(userUuid, artistBo.getArtistId()));
 		}
 		
 		return returnSet;
@@ -127,10 +118,10 @@ public class ArtistListQuery {
 	/*
 	 * Process the results from the queries for average rating for each artist DAO in the list.
 	 */
-	private static void processAverageRatingResults(final Session session, final ArtistListBo artistListBo, final Set<ResultSetFuture> resultFutures) {
+	private void processAverageRatingResults(final MappingManager mappingManager, final ArtistListBo artistListBo, final Set<ResultSetFuture> resultFutures) {
 		for (ResultSetFuture future : resultFutures) {
 			// Wait for the query to complete and map single result row to a DAO POJOs
-			AverageRatingsDao averageRatingsDao = new MappingManager(session).mapper(AverageRatingsDao.class).map(future.getUninterruptibly()).one();
+			AverageRatingsDao averageRatingsDao = mappingManager.mapper(AverageRatingsDao.class).map(future.getUninterruptibly()).one();
 			
 			if (null != averageRatingsDao) {
 				// Find and update the matching ArtistBo
@@ -147,10 +138,10 @@ public class ArtistListQuery {
 	/*
 	 * Process the results from the queries for user rating for each artist DAO in the list.
 	 */
-	private static void processUserRatingResults(final Session session, final ArtistListBo artistListBo, final Set<ResultSetFuture> resultFutures) {
+	private void processUserRatingResults(final MappingManager mappingManager, final ArtistListBo artistListBo, final Set<ResultSetFuture> resultFutures) {
 		for (ResultSetFuture future : resultFutures) {
 			// Wait for the query to complete and map single result row to a DAO POJOs
-			UserDataByUserDao userDataByUserDao = new MappingManager(session).mapper(UserDataByUserDao.class).map(future.getUninterruptibly()).one();
+			UserDataByUserDao userDataByUserDao = mappingManager.mapper(UserDataByUserDao.class).map(future.getUninterruptibly()).one();
 			
 			// Find and update the matching ArtistBo
 			for (ArtistBo artistBo : artistListBo.getBoList()) {
@@ -160,5 +151,26 @@ public class ArtistListQuery {
 				}
 			}
 		}
+	}
+
+	/*
+	 * Methods to support being a PaginatorHelper 
+	 */
+	
+	public Statement prepareFacetedQuery(final QueryAccessor queryAccessor, final String facetName) {
+		return queryAccessor.artistsByFacet(facetName);
+	}
+
+	public Statement prepareFeaturedQuery(final QueryAccessor queryAccessor) {
+		return queryAccessor.featuredArtists();
+	}
+
+	public String getFacetedQueryString(final String facetName) {
+		return QueryAccessor.FACETED_ARTISTS_QUERY
+				.replace(":facet_name", "'" + facetName + "'");
+	}
+
+	public String getFeaturedQueryString() {
+		return QueryAccessor.FEATURED_ARTISTS_QUERY;
 	}
 }

@@ -3,9 +3,7 @@
  */
 package com.kenzan.msl.server.cassandra.query;
 
-import com.datastax.driver.core.RegularStatement;
 import com.datastax.driver.core.ResultSet;
-import com.datastax.driver.core.Session;
 import com.datastax.driver.core.SimpleStatement;
 import com.datastax.driver.core.Statement;
 import com.datastax.driver.mapping.Mapper;
@@ -15,6 +13,7 @@ import com.google.common.base.Optional;
 import com.kenzan.msl.server.bo.AbstractBo;
 import com.kenzan.msl.server.bo.AbstractListBo;
 import com.kenzan.msl.server.cassandra.CassandraConstants;
+import com.kenzan.msl.server.cassandra.QueryAccessor;
 import com.kenzan.msl.server.dao.AbstractDao;
 import com.kenzan.msl.server.dao.FacetDao;
 import com.kenzan.msl.server.dao.PagingStateDao;
@@ -34,13 +33,13 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class Paginator {
 	private final CassandraConstants.MSL_CONTENT_TYPE contentType;
-	private final Session session;
+	private final QueryAccessor queryAccessor;
+	private final MappingManager mappingManager;
+	private final PaginatorHelper paginatorHelper;
 	private final UUID pagingStateUuid;
 	private final Integer items;
 	private final List<FacetDao> facets;
 	
-	private final MappingManager mappingManager;
-
 	// TODO put MAX_RETRIES in config param
 	//private static final int MAX_RETRIES = 10;
 	// TODO put SLEEP_DURATION in config param
@@ -50,14 +49,19 @@ public class Paginator {
 	 * Constructor
 	 * 
 	 * @param contentType		the type of content to be retrieved
-	 * @param session			the Datastax session to use to perform queries
+	 * @param queryAccessor		the Datastax QueryAccessor declaring our prepared queries
+	 * @param mappingManager	the Datastax MappingManager responsible for executing queries and mapping results to POJOs
+	 * @param paginatorHelper	a PaginatorHelper instance to make queries to the appropriate tables
 	 * @param pagingStateuid	a UUID identifier of the current paging location. Will be null for the first page and non-null for subsequent pages)
 	 * @param items				the number of items to be included in each page
 	 * @param facets			a comma delimited list of zero or more facet Ids to use to filter the results
 	 */
-	public Paginator(final CassandraConstants.MSL_CONTENT_TYPE contentType, final Session session, final UUID pagingStateUuid, final Integer items, final String facets) {
+	public Paginator(final CassandraConstants.MSL_CONTENT_TYPE contentType, final QueryAccessor queryAccessor, final MappingManager mappingManager,
+			final PaginatorHelper paginatorHelper, final UUID pagingStateUuid, final Integer items, final String facets) {
 		this.contentType = contentType;
-		this.session = session;
+		this.queryAccessor = queryAccessor;
+		this.mappingManager = mappingManager;
+		this.paginatorHelper = paginatorHelper;
 		this.pagingStateUuid = pagingStateUuid;
 
 		// Enforce allowable range of items. If outside the range use a default.
@@ -78,9 +82,6 @@ public class Paginator {
 				this.facets.add(optFacetDao.get());
 			}
 		}
-		
-		// Construct a MappingManager from the session to use later for converting DB rows to DAO POJOs
-		mappingManager = new MappingManager(session);
 	}
 	
 	/*
@@ -114,18 +115,29 @@ public class Paginator {
 		// Generate the pagingState to be used for retrieval of subsequent pages (if any)
 		final UUID pagingStateUuid = UUID.randomUUID();
 
-		// Build the SELECT query
-		RegularStatement statement = buildSelectQuery();
+		// Prepare the query and retrieve the query string based on whether this is a faceted search or just featured ordering
+		Statement statement;
+		String queryString;
+		if (hasFacets()) {
+			statement = paginatorHelper.prepareFacetedQuery(queryAccessor, this.facets.get(0).getFacetName());
+			queryString = paginatorHelper.getFacetedQueryString(this.facets.get(0).getFacetName());
+		} else {
+			statement = paginatorHelper.prepareFeaturedQuery(queryAccessor);
+			queryString = paginatorHelper.getFeaturedQueryString();
+		}
 		
-		// Execute the query
-		ResultSet resultSet = session.execute(statement);
+		// Set the fetch size to the size of a page
+		statement.setFetchSize(items);
 		
+		// Execute the query 
+		ResultSet resultSet = mappingManager.getSession().execute(statement);
+
 		// Populate the AbstractListBo with the results of the query 
 		buildAbstractListBo(resultSet, pagingStateUuid, abstractListBo);
 		
 		// If there is a subsequent page, then add row to paging_state table
 		if (abstractListBo.getPagingState() != null) {
-			addPagingState(pagingStateUuid, statement.getQueryString(), resultSet);
+			addPagingState(pagingStateUuid, queryString, resultSet);
 		}
 		
 		// TODO Queue background thread to retrieve next page
@@ -156,7 +168,7 @@ public class Paginator {
 									.setFetchSize(pagingStateDao.getPagingState().getPageSize());
 
 		// Execute the query
-		ResultSet resultSet = session.execute(statement);
+		ResultSet resultSet = mappingManager.getSession().execute(statement);
 		
 		// Populate the AbstractListBo with the results of the query 
 		buildAbstractListBo(resultSet, pagingStateUuid, abstractListBo);
@@ -171,57 +183,6 @@ public class Paginator {
 		// TODO Queue background thread to retrieve next page
 		
 		return true;
-	}
-	
-	/*
-	 * Build the SELECT query to retrieve data from the appropriate table (based on any facet(s) passed from the caller)
-	 * and limiting the number of results to the page size requested by the caller.
-	 * 
-	 * NOTE: It would be preferable to use QueryBuilder to build the query. Unfortunately, QueryBuilder uses bind variables
-	 * 			for values in the WHERE clause and there does not appear to be simple way to retrieve the query string
-	 * 			with bound values inserted for eventual use with the paging state.   
-	 * 
-	 * @returns a Select query based on the facet(s), if any, or the featured order, and the page size requested by the caller.
-	 */
-	private RegularStatement buildSelectQuery() {
-		StringBuffer query = new StringBuffer();
-		
-		query.append("SELECT * FROM ");
-		if (hasFacets()) {
-			// Add the table name to the FROM clause
-			query.append(contentType.facetTableName);
-			
-			// Add the WHERE clause
-			query.append(" WHERE ");
-			query.append(CassandraConstants.MSL_COLUMN_FACET_NAME);
-			query.append("='");
-			query.append(facets.get(0).getFacetName());
-			query.append("' AND ");
-			query.append(CassandraConstants.MSL_COLUMN_CONTENT_TYPE);
-			query.append("='");
-			query.append(contentType.dbContentType);
-			query.append("'");
-		}
-		else {
-			// Add the table name to the FROM clause
-			query.append(contentType.featuredTableName);
-			
-			// Add the WHERE clause
-			query.append(" WHERE ");
-			query.append(CassandraConstants.MSL_COLUMN_HOTNESS_BUCKET);
-			query.append("='");
-			query.append(CassandraConstants.MSL_DEFAULT_HOTNESS_BUCKET);
-			query.append("' AND ");
-			query.append(CassandraConstants.MSL_COLUMN_CONTENT_TYPE);
-			query.append("='");
-			query.append(contentType.dbContentType);
-			query.append("'");
-		}
-		
-		SimpleStatement statement = new SimpleStatement(query.toString());
-		statement.setFetchSize(items);
-		
-		return statement;
 	}
 
 	/*
@@ -241,12 +202,19 @@ public class Paginator {
 		for (AbstractDao dao : mappedResults) {
 			abstractListBo.add(dao);
 			
+			/*
+			 *  Have we reached the end of the page (set via the fetch size on the Statement)? If this check
+			 *  were not performed, the Datastax driver would silently get the next page of results. This is
+			 *  a cool feature in some use cases, we don't want the Datastax driver to do it in this case.
+			 */
 			if (resultSet.getAvailableWithoutFetching() == 0) {
 				break;
 			}
 		}
 		
+		// Have we reached the end of the table?
 		if (!resultSet.isFullyFetched()) {
+			// If not, then include the paging state UUID in the response so the caller knows there is a subsequent page.
 			abstractListBo.setPagingState(pagingStateUuid);
 		}
 		
