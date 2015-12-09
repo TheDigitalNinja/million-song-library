@@ -22,6 +22,7 @@ public class SongListBo extends AbstractListBo<SongBo> {
         songBo.setDuration(abstractSongDao.getSongDuration());
         songBo.setYear(abstractSongDao.getAlbumYear());
         songBo.setArtistId(abstractSongDao.getArtistId());
+        songBo.setArtistMbid(abstractSongDao.getArtistMbid());
         songBo.setArtistName(abstractSongDao.getArtistName());
         songBo.setAlbumId(abstractSongDao.getAlbumId());
         songBo.setAlbumName(abstractSongDao.getAlbumName());

@@ -23,6 +23,7 @@ public class SongBo extends AbstractBo {
     private Integer personalRating;
     private String imageLink;
     private UUID artistId;
+    private UUID artistMbid;
     private String artistName;
     private UUID albumId;
     private String albumName;
@@ -179,6 +180,20 @@ public class SongBo extends AbstractBo {
      */
     public void setArtistId(UUID artistId) {
         this.artistId = artistId;
+    }
+
+    /**
+     * @return the artistMbid
+     */
+    public UUID getArtistMbid() {
+        return artistMbid;
+    }
+
+    /**
+     * @param artistMbid UUID
+     */
+    public void setArtistMbid(UUID artistMbid) {
+        this.artistMbid = artistMbid;
     }
 
     /**

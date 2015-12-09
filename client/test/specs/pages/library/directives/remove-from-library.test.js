@@ -5,6 +5,7 @@ describe('removeFromLibraryDirective', () => {
   const SONG_TYPE = 'song';
   const ARTIST_TYPE = 'artist';
   const ALBUM_TYPE = 'album';
+  const A_TIMESTAMP = 'Thu Feb 05 00:31:49 CST 2015';
 
   let $scope, element, libraryModel;
 
@@ -17,10 +18,10 @@ describe('removeFromLibraryDirective', () => {
 
     inject(($compile, $rootScope) => {
       $scope = $rootScope.$new();
-      $scope.object = { id: AN_ID };
+      $scope.object = { id: AN_ID, timestamp: A_TIMESTAMP };
 
       element = (type) => {
-        const elementHTML = `<a remove-from-library type='${type}' id='object.id'></a>`;
+        const elementHTML = `<a remove-from-library type='${type}' id='object.id' timestamp='object.timestamp'></a>`;
         const compiledDirective = $compile(elementHTML)($scope);
         $scope.$digest();
         return compiledDirective;
@@ -47,17 +48,17 @@ describe('removeFromLibraryDirective', () => {
   describe('click function', () => {
     it('should remove the album from the library', () => {
       element(ALBUM_TYPE).triggerHandler('click');
-      expect(libraryModel.removeAlbumFromLibrary).toHaveBeenCalledWith(AN_ID);
+      expect(libraryModel.removeAlbumFromLibrary).toHaveBeenCalledWith(AN_ID, A_TIMESTAMP);
     });
 
     it('should remove the artist from the library', () => {
       element(ARTIST_TYPE).triggerHandler('click');
-      expect(libraryModel.removeArtistFromLibrary).toHaveBeenCalledWith(AN_ID);
+      expect(libraryModel.removeArtistFromLibrary).toHaveBeenCalledWith(AN_ID, A_TIMESTAMP);
     });
 
     it('should remove the song from the library', () => {
       element(SONG_TYPE).triggerHandler('click');
-      expect(libraryModel.removeSongFromLibrary).toHaveBeenCalledWith(AN_ID);
+      expect(libraryModel.removeSongFromLibrary).toHaveBeenCalledWith(AN_ID, A_TIMESTAMP);
     });
   });
 });

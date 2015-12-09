@@ -4,6 +4,7 @@
 package com.kenzan.msl.server.services;
 
 import com.google.common.base.Optional;
+import com.kenzan.msl.server.cassandra.query.LibraryQuery;
 import com.kenzan.msl.server.mock.AlbumMockData;
 import com.kenzan.msl.server.mock.ArtistMockData;
 import com.kenzan.msl.server.mock.SongMockData;
@@ -190,6 +191,29 @@ public class StubCatalogService
      */
     public Observable<MyLibrary> getMyLibrary(String sessionToken) {
         return Observable.just(new MyLibrary());
+    }
+
+    /**
+     * Adds content on a user library
+     *
+     * @param object_id album/artist/song uuid
+     * @param sessionToken uuid of user who's library we are adding content on
+     * @param contentType album/artist/song content type
+     */
+    public void addToLibrary(String object_id, String sessionToken, String contentType) {
+        // TODO do something
+    }
+
+    /**
+     * Removes content from a user library
+     *
+     * @param object_id album/artist/song uuid
+     * @param timestamp referenced object timestamp
+     * @param sessionToken uuid of user who's library we are adding content on
+     * @param contentType album/artist/song content type
+     */
+    public void removeFromLibrary(String object_id, String timestamp, String sessionToken, String contentType) {
+        // TODO do something
     }
 
 }

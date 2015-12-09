@@ -661,9 +661,9 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
 
-  /msl/v1/accountedge/users/mylibrary/removesong/{songId}:
+  /msl/v1/accountedge/users/mylibrary/removesong/{songId}/{timestamp}:
     x-swagger-router-controller: mylibrary_controller
-    put:
+    delete:
       description: "Removes a song to the user library"
       tags:
         - Account
@@ -677,6 +677,12 @@ paths:
           description: Song id for the song to remove to the library
           type: string
           required: true
+        -
+          name: timestamp
+          in: path
+          description: timestamp of the time the song was added to the user library
+          type: string
+          required: true
       responses:
         "200":
           description: Success
@@ -687,9 +693,9 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
 
-  /msl/v1/accountedge/users/mylibrary/removealbum/{albumId}:
+  /msl/v1/accountedge/users/mylibrary/removealbum/{albumId}/{timestamp}:
     x-swagger-router-controller: mylibrary_controller
-    put:
+    delete:
       description: "Removes a album to the user library"
       tags:
         - Account
@@ -703,6 +709,12 @@ paths:
           description: Album id for the album to remove to the library
           type: string
           required: true
+        -
+          name: timestamp
+          in: path
+          description: timestamp of the time the album was added to the user library
+          type: string
+          required: true
       responses:
         "200":
           description: Success
@@ -713,9 +725,9 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
 
-  /msl/v1/accountedge/users/mylibrary/removeartist/{artistId}:
+  /msl/v1/accountedge/users/mylibrary/removeartist/{artistId}/{timestamp}:
     x-swagger-router-controller: mylibrary_controller
-    put:
+    delete:
       description: "Removes a artist to the user library"
       tags:
         - Account
@@ -727,6 +739,12 @@ paths:
           name: artistId
           in: path
           description: Artist id for the artist to remove to the library
+          type: string
+          required: true
+        -
+          name: timestamp
+          in: path
+          description: timestamp of the time the artist was added to the user library
           type: string
           required: true
       responses:
@@ -778,6 +796,8 @@ definitions:
         type: string
       artist_id:
         type: string
+      artist_mbid:
+        type: string
       artist_name:
         type: string
       genre:
@@ -785,6 +805,8 @@ definitions:
       year:
         description: The year the album was released
         type: integer
+      favorites_timestamp:
+        type: string
       average_rating:
         type: integer
       personal_rating:
@@ -801,6 +823,8 @@ definitions:
     properties:
       artist_id:
         type: string
+      artist_mbid:
+        type: string
       artist_name:
         type: string
       albums_list:
@@ -811,6 +835,8 @@ definitions:
         type: integer
       personal_rating:
         type: integer
+      favorites_timestamp:
+        type: string
       image_link:
         type: string
       songs_list:
@@ -870,11 +896,15 @@ definitions:
         type: string
       artist_id:
         type: string
+      artist_mbid:
+        type: string
       artist_name:
         type: string
       album_id:
         type: string
       album_name:
+        type: string
+      favorites_timestamp:
         type: string
       duration:
         description: Length of song in seconds

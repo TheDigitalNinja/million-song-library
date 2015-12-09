@@ -2,18 +2,24 @@ package com.kenzan.msl.server.cassandra.query;
 
 import com.datastax.driver.mapping.MappingManager;
 import com.datastax.driver.mapping.Result;
+import com.google.common.base.Optional;
+import com.kenzan.msl.server.bo.AlbumBo;
+import com.kenzan.msl.server.bo.ArtistBo;
+import com.kenzan.msl.server.bo.SongBo;
 import com.kenzan.msl.server.cassandra.QueryAccessor;
 import com.kenzan.msl.server.dao.AlbumsByUserDao;
 import com.kenzan.msl.server.dao.ArtistsByUserDao;
 import com.kenzan.msl.server.dao.SongsByUserDao;
+import com.kenzan.msl.server.translate.Translators;
 import io.swagger.model.AlbumInfo;
 import io.swagger.model.ArtistInfo;
 import io.swagger.model.MyLibrary;
 import io.swagger.model.SongInfo;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import javax.management.RuntimeErrorException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class LibraryQuery {
 
@@ -30,7 +36,120 @@ public class LibraryQuery {
         myLibrary.setAlbums(getMyLibraryAlbums(queryAccessor, manager, sessionToken));
         myLibrary.setArtists(getMyLibraryArtists(queryAccessor, manager, sessionToken));
         myLibrary.setSongs(getMyLibrarySongs(queryAccessor, manager, sessionToken));
+
         return myLibrary;
+    }
+
+    /**
+     * Adds data into a user library
+     *
+     * @param queryAccessor datastax queryAccesor object
+     * @param manager MappingManager object
+     * @param id object uuid
+     * @param sessionToken authenticated user uuid
+     * @param contentType content type (artist|album|song)
+     */
+    public static void add(final QueryAccessor queryAccessor, final MappingManager manager, final String id,
+                           final String sessionToken, final String contentType) {
+        switch ( contentType ) {
+            case "Artist":
+                Optional<ArtistBo> optArtistBo = ArtistInfoQuery.get(queryAccessor, manager, null, UUID.fromString(id));
+                if ( optArtistBo.isPresent() ) {
+                    try {
+                        queryAccessor.addLibraryArtist(UUID.fromString(sessionToken), contentType, new Date(),
+                                                       optArtistBo.get().getArtistId(), optArtistBo.get()
+                                                           .getArtistMbid(), optArtistBo.get().getArtistName());
+                    }
+                    catch ( Exception error ) {
+                        throw error;
+                    }
+                }
+                else {
+                    throw new RuntimeErrorException(new Error("Unable to retrieve artist"));
+                }
+                break;
+            case "Album":
+                Optional<AlbumBo> optAlbumBo = AlbumInfoQuery.get(queryAccessor, manager, null, UUID.fromString(id));
+                if ( optAlbumBo.isPresent() ) {
+                    try {
+                        queryAccessor.addLibraryAlbum(UUID.fromString(sessionToken), contentType, new Date(),
+                                                      optAlbumBo.get().getAlbumId(), optAlbumBo.get().getAlbumName(),
+                                                      optAlbumBo.get().getYear(), optAlbumBo.get().getArtistId(),
+                                                      optAlbumBo.get().getArtistMbid(), optAlbumBo.get()
+                                                          .getArtistName());
+                    }
+                    catch ( Exception error ) {
+                        throw error;
+                    }
+                }
+                else {
+                    throw new RuntimeErrorException(new Error("Unable to retrieve album"));
+                }
+                break;
+            case "Song":
+                Optional<SongBo> optSongBo = SongInfoQuery.get(queryAccessor, manager, null, UUID.fromString(id));
+                if ( optSongBo.isPresent() ) {
+                    try {
+                        queryAccessor.addLibrarySong(UUID.fromString(sessionToken), contentType, new Date(), UUID
+                            .fromString(id), optSongBo.get().getSongName(), optSongBo.get().getDuration(), optSongBo
+                            .get().getAlbumId(), optSongBo.get().getAlbumName(), optSongBo.get().getYear(), optSongBo
+                            .get().getArtistId(), optSongBo.get().getArtistMbid(), optSongBo.get().getArtistName());
+                    }
+                    catch ( Exception error ) {
+                        throw error;
+                    }
+                }
+                else {
+                    throw new RuntimeErrorException(new Error("Unable to retrieve song"));
+                }
+                break;
+        }
+    }
+
+    public static void remove(final QueryAccessor queryAccessor, final MappingManager manager, final String id,
+                              final String inputTimestamp, final String sessionToken, final String contentType) {
+
+        Date timestamp = new Date(Long.valueOf(inputTimestamp).longValue());
+
+        switch ( contentType ) {
+            case "Song":
+                try {
+                    int initialSongsOnLibrary = getMyLibrarySongs(queryAccessor, manager, sessionToken).size();
+                    queryAccessor.deleteLibrarySong(UUID.fromString(id), timestamp, UUID.fromString(sessionToken));
+                    if ( initialSongsOnLibrary == getMyLibrarySongs(queryAccessor, manager, sessionToken).size() ) {
+                        throw new RuntimeErrorException(new Error("Unable to delete song"));
+                    }
+                }
+                catch ( RuntimeErrorException err ) {
+                    throw err;
+                }
+                break;
+            case "Artist":
+                try {
+                    int initialArtistsOnLibrary = getMyLibraryArtists(queryAccessor, manager, sessionToken).size();
+                    queryAccessor.deleteLibraryArtist(UUID.fromString(id), timestamp, UUID.fromString(sessionToken));
+                    if ( initialArtistsOnLibrary == getMyLibraryArtists(queryAccessor, manager, sessionToken).size() ) {
+                        throw new RuntimeErrorException(new Error("Unable to delete artist"));
+                    }
+                }
+                catch ( RuntimeErrorException err ) {
+                    throw err;
+                }
+                break;
+            case "Album":
+                try {
+                    int initialAlbumsOnLibrary = getMyLibraryAlbums(queryAccessor, manager, sessionToken).size();
+                    queryAccessor.deleteLibraryAlbum(UUID.fromString(id), timestamp, UUID.fromString(sessionToken));
+                    if ( initialAlbumsOnLibrary == getMyLibraryArtists(queryAccessor, manager, sessionToken).size() ) {
+                        throw new RuntimeErrorException(new Error("Unable to delete album"));
+                    }
+                }
+                catch ( RuntimeErrorException err ) {
+                    throw err;
+                }
+                break;
+        }
+
     }
 
     /**
@@ -43,24 +162,9 @@ public class LibraryQuery {
      */
     private static List<AlbumInfo> getMyLibraryAlbums(final QueryAccessor queryAccessor, final MappingManager manager,
                                                       final String uuid) {
-
         Result<AlbumsByUserDao> results = manager.mapper(AlbumsByUserDao.class).map(queryAccessor.albumsByUser(UUID
                                                                                         .fromString(uuid)));
-
-        List<AlbumInfo> response = new ArrayList<AlbumInfo>();
-
-        for ( AlbumsByUserDao dao : results ) {
-            AlbumInfo albumInfo = new AlbumInfo();
-            albumInfo.setArtistName(dao.getArtistName());
-            albumInfo.setArtistId(dao.getArtistId().toString());
-            // TODO map artist_mbid
-            albumInfo.setAlbumId(dao.getAlbumId().toString());
-            albumInfo.setArtistName(dao.getAlbumName());
-            albumInfo.setYear(dao.getAlbumYear());
-            response.add(albumInfo);
-        }
-
-        return response;
+        return Translators.translateAlbumsByUserDao(results);
     }
 
     /**
@@ -73,21 +177,9 @@ public class LibraryQuery {
      */
     private static List<ArtistInfo> getMyLibraryArtists(final QueryAccessor queryAccessor,
                                                         final MappingManager manager, final String uuid) {
-
         Result<ArtistsByUserDao> results = manager.mapper(ArtistsByUserDao.class).map(queryAccessor.artistsByUser(UUID
                                                                                           .fromString(uuid)));
-
-        List<ArtistInfo> response = new ArrayList<ArtistInfo>();
-
-        for ( ArtistsByUserDao dao : results ) {
-            ArtistInfo artistInfo = new ArtistInfo();
-            artistInfo.setArtistName(dao.getArtistName());
-            artistInfo.setArtistId(dao.getArtistId().toString());
-            // TODO map artist_mbid
-            response.add(artistInfo);
-        }
-
-        return response;
+        return Translators.translateArtistByUserDao(results);
     }
 
     /**
@@ -100,27 +192,8 @@ public class LibraryQuery {
      */
     private static List<SongInfo> getMyLibrarySongs(final QueryAccessor queryAccessor, final MappingManager manager,
                                                     final String uuid) {
-
         Result<SongsByUserDao> results = manager.mapper(SongsByUserDao.class).map(queryAccessor.songsByUser(UUID
                                                                                       .fromString(uuid)));
-
-        List<SongInfo> response = new ArrayList<SongInfo>();
-
-        for ( SongsByUserDao dao : results ) {
-            SongInfo songInfo = new SongInfo();
-            songInfo.setArtistName(dao.getArtistName());
-            songInfo.setArtistId(dao.getArtistId().toString());
-            // TODO map artist_mbid
-            songInfo.setAlbumName(dao.getAlbumName());
-            songInfo.setAlbumId(dao.getAlbumId().toString());
-            songInfo.setSongId(dao.getSongId().toString());
-            songInfo.setSongName(dao.getSongName());
-            songInfo.setDuration(dao.getSongDuration());
-            songInfo.setYear(dao.getAlbumYear());
-            response.add(songInfo);
-        }
-
-        return response;
+        return Translators.translateSongsByUserDao(results);
     }
-
 }

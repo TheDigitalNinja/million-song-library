@@ -1,11 +1,12 @@
 import datastoreModule from 'modules/datastore/module';
 
 describe('myLibraryStore', () => {
+  const TIMESTAMP = 'Thu Feb 05 00:31:49 CST 2015';
   let myLibraryStore, request, entityMapper, MyLibraryEntity, StatusResponseEntity;
 
   beforeEach(() => {
     angular.mock.module(datastoreModule, ($provide) => {
-      request = jasmine.createSpyObj('request', ['get', 'put']);
+      request = jasmine.createSpyObj('request', ['get', 'put', 'delete']);
       entityMapper = jasmine.createSpy('entityMapper');
 
       $provide.value('request', request);
@@ -44,10 +45,10 @@ describe('myLibraryStore', () => {
 
   describe('addSong', () => {
     const SONG_ID = '2';
-    const response = 'a_response';
+    const response = { message: 'success' };
 
     beforeEach(() => {
-      request.put.and.returnValue({ data: response });
+      request.put.and.returnValue(response);
     });
 
     it('should make a put request to add the song to the library endpoint', (done) => {
@@ -69,10 +70,10 @@ describe('myLibraryStore', () => {
 
   describe('addAlbum', () => {
     const ALBUM_ID = '2';
-    const response = 'a_response';
+    const response = { status: 0, message: 'success' };
 
     beforeEach(() => {
-      request.put.and.returnValue({ data: response });
+      request.put.and.returnValue(response);
     });
 
     it('should make a put request to add the album to the library endpoint', (done) => {
@@ -94,10 +95,10 @@ describe('myLibraryStore', () => {
 
   describe('addArtist', () => {
     const ARTIST_ID = '2';
-    const response = 'a_response';
+    const response = { status: 0, message: 'success' };
 
     beforeEach(() => {
-      request.put.and.returnValue({ data: response });
+      request.put.and.returnValue(response);
     });
 
     it('should make a put request to add the artist to the library endpoint', (done) => {
@@ -119,23 +120,23 @@ describe('myLibraryStore', () => {
 
   describe('removeSong', () => {
     const SONG_ID = '2';
-    const response = 'a_response';
+    const response = { status: 0, message: 'success' };
 
     beforeEach(() => {
-      request.put.and.returnValue({ data: response });
+      request.delete.and.returnValue(response);
     });
 
     it('should make a put request to remove the song from the library endpoint', (done) => {
       (async () => {
-        await myLibraryStore.removeSong(SONG_ID);
-        expect(request.put).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/removesong/${ SONG_ID }`);
+        await myLibraryStore.removeSong(SONG_ID, TIMESTAMP);
+        expect(request.delete).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/removesong/${ SONG_ID }/${ TIMESTAMP }`);
         done();
       })();
     });
 
     it('should map the response into a StatusResponseEntity', (done) => {
       (async () => {
-        await myLibraryStore.removeSong(SONG_ID);
+        await myLibraryStore.removeSong(SONG_ID, TIMESTAMP);
         expect(entityMapper).toHaveBeenCalledWith(response, StatusResponseEntity);
         done();
       })();
@@ -144,23 +145,23 @@ describe('myLibraryStore', () => {
 
   describe('removeAlbum', () => {
     const ALBUM_ID = '2';
-    const response = 'a_response';
+    const response = { status: 0, message: 'success' };
 
     beforeEach(() => {
-      request.put.and.returnValue({ data: response });
+      request.delete.and.returnValue(response);
     });
 
     it('should make a put request to remove the album from the library endpoint', (done) => {
       (async () => {
-        await myLibraryStore.removeAlbum(ALBUM_ID);
-        expect(request.put).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/removealbum/${ ALBUM_ID }`);
+        await myLibraryStore.removeAlbum(ALBUM_ID, TIMESTAMP);
+        expect(request.delete).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/removealbum/${ ALBUM_ID }/${ TIMESTAMP }`);
         done();
       })();
     });
 
     it('should map the response into a StatusResponnseEntity', (done) => {
       (async () => {
-        await myLibraryStore.removeAlbum(ALBUM_ID);
+        await myLibraryStore.removeAlbum(ALBUM_ID, TIMESTAMP);
         expect(entityMapper).toHaveBeenCalledWith(response, StatusResponseEntity);
         done();
       })();
@@ -169,23 +170,23 @@ describe('myLibraryStore', () => {
 
   describe('removeArtist', () => {
     const ARTIST_ID = '2';
-    const response = 'a_response';
+    const response = { status: 0, message: 'success' };
 
     beforeEach(() => {
-      request.put.and.returnValue({ data: response });
+      request.delete.and.returnValue(response);
     });
 
     it('should make a put request to remove the artist from the library endpoint', (done) => {
       (async () => {
-        await myLibraryStore.removeArtist(ARTIST_ID);
-        expect(request.put).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/removeartist/${ ARTIST_ID }`);
+        await myLibraryStore.removeArtist(ARTIST_ID, TIMESTAMP);
+        expect(request.delete).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/removeartist/${ ARTIST_ID }/${ TIMESTAMP }`);
         done();
       })();
     });
 
     it('should map the response into a StatusResponseEntity', (done) => {
       (async () => {
-        await myLibraryStore.removeArtist(ARTIST_ID);
+        await myLibraryStore.removeArtist(ARTIST_ID, TIMESTAMP);
         expect(entityMapper).toHaveBeenCalledWith(response, StatusResponseEntity);
         done();
       })();

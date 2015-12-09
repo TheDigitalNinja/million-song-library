@@ -50,21 +50,6 @@ public class ArtistClientTest {
     }
 
     @Test
-    public void testAddArtist() {
-        logger.debug("ArtistClient.testAddArtist");
-        NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);
-        MslApiResponseMessage response = artistClient.addArtist("1", cookie.toString());
-        assertNotNull(response);
-        assertEquals("addArtist response is successful", "magic!", response.getMessage());
-    }
-
-    @Test(expected = java.lang.RuntimeException.class)
-    public void testAddArtistThrowException() {
-        logger.debug("ArtistClient.testAddArtistThrowException");
-        artistClient.addArtist(TEST_ARTIST_ID, "");
-    }
-
-    @Test
     public void testRateArtist() {
         logger.debug("ArtistClient.testRateArtist");
         NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);

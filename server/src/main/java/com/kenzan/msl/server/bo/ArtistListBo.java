@@ -18,6 +18,7 @@ public class ArtistListBo extends AbstractListBo<ArtistBo> {
 
         ArtistBo artistBo = new ArtistBo();
         artistBo.setArtistId(abstractArtistDao.getArtistId());
+        artistBo.setArtistMbid(abstractArtistDao.getArtistMbid());
         artistBo.setArtistName(abstractArtistDao.getArtistName());
 
         return artistBo;

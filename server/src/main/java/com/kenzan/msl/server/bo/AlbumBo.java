@@ -7,11 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/**
- *
- *
- * @author billschwanitz
- */
 public class AlbumBo extends AbstractBo {
     private UUID albumId;
     private String albumName;
@@ -21,6 +16,7 @@ public class AlbumBo extends AbstractBo {
     private Integer personalRating;
     private String imageLink;
     private UUID artistId;
+    private UUID artistMbid;
     private String artistName;
     private List<String> songsList = new ArrayList<>();
 
@@ -134,6 +130,20 @@ public class AlbumBo extends AbstractBo {
      */
     public void setArtistId(UUID artistId) {
         this.artistId = artistId;
+    }
+
+    /**
+     * @return UUID
+     */
+    public UUID getArtistMbid() {
+        return artistMbid;
+    }
+
+    /**
+     * @param artistMbid uuid
+     */
+    public void setArtistMbid(UUID artistMbid) {
+        this.artistMbid = artistMbid;
     }
 
     /**

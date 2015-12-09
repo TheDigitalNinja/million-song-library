@@ -44,25 +44,28 @@ export default class libraryModel {
   /**
    * Removes selected song from library
    * @param {string} songId
+   * @param {string} timestamp
    */
-  removeSongFromLibrary(songId) {
-    this.myLibraryStore.removeSong(songId);
+  removeSongFromLibrary(songId, timestamp) {
+    this.myLibraryStore.removeSong(songId, timestamp);
   }
 
   /**
    * Removes selected album from library
    * @param {string} albumId
+   * @param {string} timestamp
    */
-  removeAlbumFromLibrary(albumId) {
-    this.myLibraryStore.removeAlbum(albumId);
+  removeAlbumFromLibrary(albumId, timestamp) {
+    this.myLibraryStore.removeAlbum(albumId, timestamp);
   }
 
   /**
    * Removes selected artist from library
    * @param {string} artistId
+   * @param {string} timestamp
    */
-  removeArtistFromLibrary(artistId) {
-    this.myLibraryStore.removeArtist(artistId);
+  removeArtistFromLibrary(artistId, timestamp) {
+    this.myLibraryStore.removeArtist(artistId, timestamp);
   }
 
 }

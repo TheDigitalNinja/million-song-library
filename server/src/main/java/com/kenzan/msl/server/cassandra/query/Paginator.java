@@ -295,7 +295,7 @@ public class Paginator {
             ByteBuffer byteBuffer = ByteBuffer.allocate(cassandraPageState.length);
             byteBuffer.put(cassandraPageState);
             byteBuffer.flip(); // Have to do this to reset the internals of the ByteBuff to prepare
-                               // it to be consumed
+            // it to be consumed
             pagingStateDao.getPagingState().setPageState(byteBuffer);
         }
 

@@ -11,6 +11,7 @@ import rating from 'modules/star-rating/module';
 
 import songPageRoute from './song.route.js';
 import songCtrl from './controllers/song.controller.js';
+import songBoxCtrl from './controllers/song-box.controller.js';
 
 import songsList from './directives/songs-list.js';
 
@@ -25,6 +26,7 @@ export default angular.module('msl.song', [
 ])
   .config(songPageRoute)
   .controller('songCtrl', songCtrl)
+  .controller('songBoxCtrl', songBoxCtrl)
   .directive('songBox', songBox)
   .directive('songsList', songsList)
   .factory('songModel', songModel)

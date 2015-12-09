@@ -18,6 +18,7 @@ public class AlbumListBo extends AbstractListBo<AlbumBo> {
 
         AlbumBo albumBo = new AlbumBo();
         albumBo.setAlbumId(abstractAlbumDao.getAlbumId());
+        albumBo.setArtistMbid(abstractAlbumDao.getArtistMbid());
         albumBo.setAlbumName(abstractAlbumDao.getAlbumName());
         albumBo.setYear(abstractAlbumDao.getAlbumYear());
         albumBo.setArtistId(abstractAlbumDao.getArtistId());
