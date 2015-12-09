@@ -3,14 +3,13 @@
  */
 package com.kenzan.msl.server.cassandra.query;
 
-import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.ResultSetFuture;
-import com.datastax.driver.core.Session;
+import com.datastax.driver.core.Statement;
 import com.datastax.driver.mapping.MappingManager;
 import com.kenzan.msl.server.bo.AlbumBo;
 import com.kenzan.msl.server.bo.AlbumListBo;
 import com.kenzan.msl.server.cassandra.CassandraConstants;
-import com.kenzan.msl.server.cassandra.PreparedStatementFactory;
+import com.kenzan.msl.server.cassandra.QueryAccessor;
 import com.kenzan.msl.server.dao.AverageRatingsDao;
 import com.kenzan.msl.server.dao.UserDataByUserDao;
 
@@ -34,12 +33,13 @@ import java.util.UUID;
  *
  * @author billschwanitz
  */
-public class AlbumListQuery {
+public class AlbumListQuery implements PaginatorHelper {
 	/*
 	 * Performs queries to numerous Cassandra tables to assemble all the pieces that make up an
 	 * AlbumList response.
 	 * 
-	 * @param session			the Datastax session through which queries and mappings should be executed
+	 * @param queryAccessor		the Datastax QueryAccessor declaring out prepared queries
+	 * @param mappingManager	the Datastax MappingManager responsible for executing queries and mapping results to POJOs
 	 * @param pagingStateUuid	Used for pagination control.
 	 * 								To retrieve the first page, use <code>null</code>.
 	 * 								To retrieve subsequent pages, use the
@@ -57,11 +57,11 @@ public class AlbumListQuery {
 	 * 
 	 * @return the AlbumList instance with all the info for the requested page
 	 */
-	public static AlbumListBo get(final Session session, final UUID pagingStateUuid, final Integer items, final String facets, final UUID userUuid) {
+	public AlbumListBo get(final QueryAccessor queryAccessor, final MappingManager mappingManager, final UUID pagingStateUuid, final Integer items, final String facets, final UUID userUuid) {
 		AlbumListBo albumListBo = new AlbumListBo();
 
 		// Retrieve the requested page of Albums
-		new Paginator(CassandraConstants.MSL_CONTENT_TYPE.ALBUM, session, pagingStateUuid, items, facets).getPage(albumListBo);
+		new Paginator(CassandraConstants.MSL_CONTENT_TYPE.ALBUM, queryAccessor, mappingManager, this, pagingStateUuid, items, facets).getPage(albumListBo);
 		
 		/*
 		 *  Asynchronously query for the average and user ratings for each album.
@@ -69,16 +69,16 @@ public class AlbumListQuery {
 		 *  NOTE: this could be done using CQL's IN keyword, but that leads to scalability issues. See the great discussion of this issue
 		 *  here: https://lostechies.com/ryansvihla/2014/09/22/cassandra-query-patterns-not-using-the-in-query-for-multiple-partitions
 		 */
-		Set<ResultSetFuture> averageRatingFutures = fireAverageRatingQueries(session, albumListBo);
+		Set<ResultSetFuture> averageRatingFutures = fireAverageRatingQueries(queryAccessor, albumListBo);
 		Set<ResultSetFuture> userRatingFutures = null;
 		if (null != userUuid) {
-			userRatingFutures = fireUserRatingQueries(session, albumListBo, userUuid);
+			userRatingFutures = fireUserRatingQueries(queryAccessor, albumListBo, userUuid);
 		}
 		
 		// Now wait for the asynchronous queries to complete and roll the data into the list
-		processAverageRatingResults(session, albumListBo, averageRatingFutures);
+		processAverageRatingResults(mappingManager, albumListBo, averageRatingFutures);
 		if (null != userUuid) {
-			processUserRatingResults(session, albumListBo, userRatingFutures);
+			processUserRatingResults(mappingManager, albumListBo, userRatingFutures);
 		}
 		
 		return albumListBo;
@@ -89,15 +89,11 @@ public class AlbumListQuery {
 	 * Instead of using a single query with an IN clause on a partition key column, which can have scalability issues,
 	 * we will fire of one asynchronous query for each album in the list.
 	 */
-	private static Set<ResultSetFuture> fireAverageRatingQueries(final Session session, final AlbumListBo albumListBo) {
+	private Set<ResultSetFuture> fireAverageRatingQueries(final QueryAccessor queryAccessor, final AlbumListBo albumListBo) {
 		Set<ResultSetFuture> returnSet = new HashSet<>(albumListBo.getBoList().size());
 		
 		for (AlbumBo albumBo : albumListBo.getBoList()) {
-			BoundStatement statement = PreparedStatementFactory.getInstance()
-					.getPreparedStatement(session,PreparedStatementFactory.PreparedStatementId.ALBUM_AVERAGE_RATING_QUERY)
-					.bind(albumBo.getAlbumId());
-
-			returnSet.add(session.executeAsync(statement));
+			returnSet.add(queryAccessor.albumAverageRating(albumBo.getAlbumId()));
 		}
 		
 		return returnSet;
@@ -109,16 +105,11 @@ public class AlbumListQuery {
 	 * Instead of using a single query with an IN clause on a partition key column, which can have scalability issues,
 	 * we will fire of one asynchronous query for each album in the list.
 	 */
-	private static Set<ResultSetFuture> fireUserRatingQueries(final Session session, final AlbumListBo albumListBo, final UUID userUuid) {
+	private Set<ResultSetFuture> fireUserRatingQueries(final QueryAccessor queryAccessor, final AlbumListBo albumListBo, final UUID userUuid) {
 		Set<ResultSetFuture> returnSet = new HashSet<>(albumListBo.getBoList().size());
 		
 		for (AlbumBo albumBo : albumListBo.getBoList()) {
-			BoundStatement statement = PreparedStatementFactory.getInstance()
-					.getPreparedStatement(session,PreparedStatementFactory.PreparedStatementId.ALBUM_USER_RATING_QUERY)
-					.bind(userUuid)
-					.bind(albumBo.getAlbumId());
-
-			returnSet.add(session.executeAsync(statement));
+			returnSet.add(queryAccessor.albumUserRating(userUuid, albumBo.getAlbumId()));
 		}
 		
 		return returnSet;
@@ -127,10 +118,10 @@ public class AlbumListQuery {
 	/*
 	 * Process the results from the queries for average rating for each album DAO in the list.
 	 */
-	private static void processAverageRatingResults(final Session session, final AlbumListBo albumListBo, final Set<ResultSetFuture> resultFutures) {
+	private void processAverageRatingResults(final MappingManager mappingManager, final AlbumListBo albumListBo, final Set<ResultSetFuture> resultFutures) {
 		for (ResultSetFuture future : resultFutures) {
 			// Wait for the query to complete and map single result row to a DAO POJOs
-			AverageRatingsDao averageRatingsDao = new MappingManager(session).mapper(AverageRatingsDao.class).map(future.getUninterruptibly()).one();
+			AverageRatingsDao averageRatingsDao = mappingManager.mapper(AverageRatingsDao.class).map(future.getUninterruptibly()).one();
 			
 			if (null != averageRatingsDao) {
 				// Find and update the matching AlbumBo
@@ -147,10 +138,10 @@ public class AlbumListQuery {
 	/*
 	 * Process the results from the queries for user rating for each artist DAO in the list.
 	 */
-	private static void processUserRatingResults(final Session session, final AlbumListBo artistListBo, final Set<ResultSetFuture> resultFutures) {
+	private void processUserRatingResults(final MappingManager mappingManager, final AlbumListBo artistListBo, final Set<ResultSetFuture> resultFutures) {
 		for (ResultSetFuture future : resultFutures) {
 			// Wait for the query to complete and map single result row to a DAO POJOs
-			UserDataByUserDao userDataByUserDao = new MappingManager(session).mapper(UserDataByUserDao.class).map(future.getUninterruptibly()).one();
+			UserDataByUserDao userDataByUserDao = mappingManager.mapper(UserDataByUserDao.class).map(future.getUninterruptibly()).one();
 			
 			// Find and update the matching AlbumBo
 			for (AlbumBo artistBo : artistListBo.getBoList()) {
@@ -160,5 +151,26 @@ public class AlbumListQuery {
 				}
 			}
 		}
+	}
+
+	/*
+	 * Methods to support being a PaginatorHelper 
+	 */
+	
+	public Statement prepareFacetedQuery(final QueryAccessor queryAccessor, final String facetName) {
+		return queryAccessor.albumsByFacet(facetName);
+	}
+
+	public Statement prepareFeaturedQuery(final QueryAccessor queryAccessor) {
+		return queryAccessor.featuredAlbums();
+	}
+
+	public String getFacetedQueryString(final String facetName) {
+		return QueryAccessor.FACETED_ALBUMS_QUERY
+				.replace(":facet_name", "'" + facetName + "'");
+	}
+
+	public String getFeaturedQueryString() {
+		return QueryAccessor.FEATURED_ALBUMS_QUERY;
 	}
 }

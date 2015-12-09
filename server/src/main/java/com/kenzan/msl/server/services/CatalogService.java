@@ -4,7 +4,6 @@
 package com.kenzan.msl.server.services;
 
 import com.google.common.base.Optional;
-
 import io.swagger.model.AlbumInfo;
 import io.swagger.model.AlbumList;
 import io.swagger.model.ArtistInfo;
@@ -12,7 +11,6 @@ import io.swagger.model.ArtistList;
 import io.swagger.model.SongInfo;
 import io.swagger.model.SongList;
 import io.swagger.model.MyLibrary;
-
 import rx.Observable;
 
 import java.util.UUID;
