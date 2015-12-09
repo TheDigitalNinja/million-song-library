@@ -7,6 +7,7 @@ import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.SimpleStatement;
 import com.datastax.driver.core.Statement;
 import com.datastax.driver.mapping.Mapper;
+import com.datastax.driver.mapping.Mapper.Option;
 import com.datastax.driver.mapping.MappingManager;
 import com.datastax.driver.mapping.Result;
 import com.google.common.base.Optional;
@@ -39,11 +40,10 @@ public class Paginator {
 	private final UUID pagingStateUuid;
 	private final Integer items;
 	private final List<FacetDao> facets;
-	
-	// TODO put MAX_RETRIES in config param
-	//private static final int MAX_RETRIES = 10;
-	// TODO put SLEEP_DURATION in config param
-	//private static final int SLEEP_DURATION = 500;
+
+	// TODO put PAGING_STATE_TTL in config param
+	// Number of seconds before a Paging State expires from the DB. Setting to 0 allows Paging States to exist forever, or until explicitly deleted. 
+	private static final int PAGING_STATE_TTL_SECS = 60 * 60;	// 1 hour;
 
 	/*
 	 * Constructor
@@ -268,7 +268,7 @@ public class Paginator {
 		}
 		
 		// Get a mapper and do the add/update
-		mappingManager.mapper(PagingStateDao.class).save(pagingStateDao);
+		mappingManager.mapper(PagingStateDao.class).save(pagingStateDao, Option.ttl(PAGING_STATE_TTL_SECS));
 	}
 
 	/*
