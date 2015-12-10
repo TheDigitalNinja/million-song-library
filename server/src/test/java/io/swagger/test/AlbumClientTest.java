@@ -21,7 +21,7 @@ public class AlbumClientTest {
     private final String TEST_ALBUM_ID = "389f9181-99f9-4377-9114-c63b53245355";
 
     @Before
-    public void init () {
+    public void init() {
         albumClient = new AlbumClient();
         logger.setLevel(Level.DEBUG);
     }
@@ -34,7 +34,7 @@ public class AlbumClientTest {
         assertEquals("album get call is successful", "success", album.getMessage());
     }
 
-    @Test (expected = java.lang.RuntimeException.class)
+    @Test(expected = java.lang.RuntimeException.class)
     public void testGetExceptionIsThrown() {
         logger.debug("AlbumClient.testGetExceptionIsThrown");
         albumClient.get("");
@@ -49,7 +49,7 @@ public class AlbumClientTest {
     }
 
     @Test
-    public void testAddAlbum(){
+    public void testAddAlbum() {
         logger.debug("AlbumClient.testAddAlbum");
         NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);
         MslApiResponseMessage response = albumClient.addAlbum(TEST_ALBUM_ID, cookie.toString());
@@ -57,14 +57,14 @@ public class AlbumClientTest {
         assertEquals("addAlbum response is successful", "magic!", response.getMessage());
     }
 
-    @Test (expected = java.lang.RuntimeException.class)
-    public void testAddAlbumThrowException () {
+    @Test(expected = java.lang.RuntimeException.class)
+    public void testAddAlbumThrowException() {
         logger.debug("AlbumClient.testAddAlbumThrowException");
         albumClient.addAlbum(TEST_ALBUM_ID, "");
     }
 
     @Test
-    public void testRateAlbum () {
+    public void testRateAlbum() {
         logger.debug("AlbumClient.testRateAlbum");
         NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);
         MslApiResponseMessage response = albumClient.rateAlbum(TEST_ALBUM_ID, 4, cookie.toString());
@@ -72,8 +72,8 @@ public class AlbumClientTest {
         assertEquals("rateAlbum response is successful", "magic!", response.getMessage());
     }
 
-    @Test (expected = java.lang.RuntimeException.class)
-    public void testRateAlbumThrowException () {
+    @Test(expected = java.lang.RuntimeException.class)
+    public void testRateAlbumThrowException() {
         logger.debug("AlbumClient.testRateAlbumThrowException");
         albumClient.rateAlbum(TEST_ALBUM_ID, 3, "");
     }

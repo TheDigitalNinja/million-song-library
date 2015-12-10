@@ -22,13 +22,13 @@ public class AuthenticationClientTest {
     static Logger logger = Logger.getLogger(AuthenticationClientTest.class);
 
     @Before
-    public void init (){
+    public void init() {
         authenticationClient = new AuthenticationClient();
         logger.setLevel(Level.DEBUG);
     }
 
     @Test
-    public void testLogin () {
+    public void testLogin() {
         logger.debug("AuthenticationClient.testLogin");
         MslApiResponseMessage response = authenticationClient.login(MOCK_EMAIL, MOCK_PASSWORD);
         assertNotNull(response);
@@ -36,13 +36,12 @@ public class AuthenticationClientTest {
     }
 
     @Test
-    public void testLogOut () {
+    public void testLogOut() {
         logger.debug("AuthenticationClient.testLogOut");
         MslApiResponseMessage response = authenticationClient.logOut();
         logger.info(response);
         assertNotNull(response);
         assertEquals("logout call is successful", "success", response.getMessage());
     }
-
 
 }

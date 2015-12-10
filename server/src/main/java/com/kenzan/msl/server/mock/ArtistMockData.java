@@ -12,39 +12,39 @@ public class ArtistMockData {
     private FacetMockData facetMockData = new FacetMockData();
 
     public ArtistInfo getArtist(String artistId) {
-        for (ArtistInfo artist : artistList.getArtists()) {
-            if (artist.getArtistId().equals(artistId)) {
+        for ( ArtistInfo artist : artistList.getArtists() ) {
+            if ( artist.getArtistId().equals(artistId) ) {
                 return artist;
             }
         }
         return new ArtistInfo();
     }
 
-    private List<ArtistInfo> applyGenreFacet (String [] facets, List<ArtistInfo> artistList){
+    private List<ArtistInfo> applyGenreFacet(String[] facets, List<ArtistInfo> artistList) {
         List<ArtistInfo> result = new ArrayList<>();
         boolean hasRatingFacet = false;
-        for (String facet: facets) {
-            if (!FacetServiceFactory.isRatingFacet(facet, facetMockData.getRatingFacets())) {
+        for ( String facet : facets ) {
+            if ( !FacetServiceFactory.isRatingFacet(facet, facetMockData.getRatingFacets()) ) {
                 hasRatingFacet = true;
-                for (ArtistInfo artist : artistList) {
+                for ( ArtistInfo artist : artistList ) {
                     String facetName = FacetServiceFactory.getFacet(facet, facetMockData.mockFacets).getName();
-                    if (artist.getGenre().equals(facetName)) {
+                    if ( artist.getGenre().equals(facetName) ) {
                         result.add(artist);
                     }
                 }
             }
         }
 
-        if (hasRatingFacet) {
+        if ( hasRatingFacet ) {
             return result;
         }
-        
+
         return artistList;
     }
 
-    private List<ArtistInfo> applyRatingFacet (String [] facets, List<ArtistInfo> artistList) {
-        for (String facet : facets) {
-            if (FacetServiceFactory.isRatingFacet(facet, facetMockData.getRatingFacets())) {
+    private List<ArtistInfo> applyRatingFacet(String[] facets, List<ArtistInfo> artistList) {
+        for ( String facet : facets ) {
+            if ( FacetServiceFactory.isRatingFacet(facet, facetMockData.getRatingFacets()) ) {
                 return FacetServiceFactory.filterArtistByRatingFacet(artistList, facet);
             }
         }
@@ -54,12 +54,12 @@ public class ArtistMockData {
     public ArtistList browseArtists(String pagingState, Integer items, String facetList) {
         List<ArtistInfo> browsedArtists = artistList.getArtists();
 
-        if (pagingState != null && !pagingState.isEmpty()) {
+        if ( pagingState != null && !pagingState.isEmpty() ) {
             // TODO implement pagination
             System.out.println("Paging State: " + pagingState);
         }
 
-        if (facetList != null && facetList.length() > 0) {
+        if ( facetList != null && facetList.length() > 0 ) {
             System.out.println("Filtering by facet(s): " + facetList);
             String[] facets = facetList.split(",");
             browsedArtists = applyRatingFacet(facets, browsedArtists);
@@ -67,10 +67,10 @@ public class ArtistMockData {
         }
 
         // TODO if no items is provided should return 25 results
-        if (items != null && items > 0) {
+        if ( items != null && items > 0 ) {
             List<ArtistInfo> pivotArtists = browsedArtists;
             browsedArtists = new ArrayList<>();
-            for (int i = 0; i < items && i < pivotArtists.size(); i++) {
+            for ( int i = 0; i < items && i < pivotArtists.size(); i++ ) {
                 browsedArtists.add(pivotArtists.get(i));
             }
         }
@@ -105,7 +105,8 @@ public class ArtistMockData {
         ArtistInfo artistMockData2 = new ArtistInfo();
         artistMockData2.setArtistId("2");
         artistMockData2.setArtistName("Pink Floyd");
-        artistMockData2.setImageLink("http://www.billboard.com/files/styles/promo_650/public/media/pink-floyd-1973-billboard-650.jpg");
+        artistMockData2
+            .setImageLink("http://www.billboard.com/files/styles/promo_650/public/media/pink-floyd-1973-billboard-650.jpg");
         artistMockData2.setAverageRating(4);
         List<String> artistMockAlbums2 = new ArrayList<>();
         artistMockAlbums2.add("2");
@@ -136,7 +137,8 @@ public class ArtistMockData {
         ArtistInfo artistMockData4 = new ArtistInfo();
         artistMockData4.setArtistId("4");
         artistMockData4.setArtistName("Led Zeppelin");
-        artistMockData4.setImageLink("http://d2x3wmakafwqf5.cloudfront.net/wordpress/wp-content/blogs.dir/106/files/2014/06/led_zeppelin_wallpaper_blac_and_white.jpg");
+        artistMockData4
+            .setImageLink("http://d2x3wmakafwqf5.cloudfront.net/wordpress/wp-content/blogs.dir/106/files/2014/06/led_zeppelin_wallpaper_blac_and_white.jpg");
         artistMockData4.setAverageRating(4);
         List<String> artistMockAlbums4 = new ArrayList<>();
         artistMockAlbums4.add("4");
@@ -203,7 +205,8 @@ public class ArtistMockData {
         ArtistInfo artistMockData8 = new ArtistInfo();
         artistMockData8.setArtistId("8");
         artistMockData8.setArtistName("Earth wind and fire");
-        artistMockData8.setImageLink("http://www.myplay.com/files/imagecache/photo_345_square/files/artist_images/dxc__qp1046245.jpg");
+        artistMockData8
+            .setImageLink("http://www.myplay.com/files/imagecache/photo_345_square/files/artist_images/dxc__qp1046245.jpg");
         artistMockData8.setAverageRating(2);
         List<String> artistMockAlbums8 = new ArrayList<>();
         artistMockAlbums8.add("9");

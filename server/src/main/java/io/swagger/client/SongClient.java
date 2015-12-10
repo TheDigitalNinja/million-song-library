@@ -22,26 +22,21 @@ public class SongClient {
     public MslApiResponseMessage get(String id) {
 
         WebTarget target = client.target(baseUrl + "/v1/catalogedge/");
-        Response response = target
-                .path("song/" + id)
-                .request()
-                .get();
+        Response response = target.path("song/" + id).request().get();
 
-        if (response.getStatus() != 200) {
-            throw new RuntimeException("Failed : HTTP error code : "
-                    + response.getStatus());
+        if ( response.getStatus() != 200 ) {
+            throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
         }
         return response.readEntity(MslApiResponseMessage.class);
     }
 
     public MslApiResponseMessage browse(String items) {
         WebTarget target;
-            target = client.target(baseUrl + "/v1/catalogedge/browse/song?items=" + items);
+        target = client.target(baseUrl + "/v1/catalogedge/browse/song?items=" + items);
         Response response = target.request().get();
 
-        if (response.getStatus() != 200) {
-            throw new RuntimeException("Failed : HTTP error code : "
-                    + response.getStatus());
+        if ( response.getStatus() != 200 ) {
+            throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
         }
 
         return response.readEntity(MslApiResponseMessage.class);
@@ -50,14 +45,11 @@ public class SongClient {
     public MslApiResponseMessage addSong(String songId, String sessionToken) {
         WebTarget target = client.target(baseUrl + "/v1/accountedge/users/mylibrary/addsong/" + songId);
 
-        Response response = target
-                .request()
-                .header("Cookie", sessionToken)
-                .put(Entity.entity(songId, MediaType.APPLICATION_JSON));
+        Response response = target.request().header("Cookie", sessionToken)
+            .put(Entity.entity(songId, MediaType.APPLICATION_JSON));
 
-        if (response.getStatus() != 200) {
-            throw new RuntimeException("Failed : HTTP error code : "
-                    + response.getStatus());
+        if ( response.getStatus() != 200 ) {
+            throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
         }
         return response.readEntity(MslApiResponseMessage.class);
     }
@@ -68,14 +60,11 @@ public class SongClient {
         Form form = new Form();
         form.param("rating", rating.toString());
 
-        Response response = target
-                .request()
-                .header("Cookie", sessionToken)
-                .put(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
+        Response response = target.request().header("Cookie", sessionToken)
+            .put(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
 
-        if (response.getStatus() != 200) {
-            throw new RuntimeException("Failed : HTTP error code : "
-                    + response.getStatus());
+        if ( response.getStatus() != 200 ) {
+            throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
         }
         return response.readEntity(MslApiResponseMessage.class);
     }

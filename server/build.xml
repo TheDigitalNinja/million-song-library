@@ -128,6 +128,37 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+             <groupId>net.revelc.code</groupId>
+             <artifactId>formatter-maven-plugin</artifactId>
+             <version>${formatter-maven-plugin.version}</version>
+             <configuration>
+               <configFile>${project.basedir}/src/main/resources/maven-styles.xml</configFile>
+               <compilerSource>1.8</compilerSource>
+               <compilerCompliance>1.8</compilerCompliance>
+               <compilerTargetPlatform>1.8</compilerTargetPlatform>
+             </configuration>
+           </plugin>
+
+           <plugin>
+            <groupId>com.googlecode.maven-java-formatter-plugin</groupId>
+            <artifactId>maven-java-formatter-plugin</artifactId>
+            <version>${maven-java-formatter-plugin.version}</version>
+             <configuration>
+               <configFile>${project.basedir}/src/main/resources/maven-styles.xml</configFile>
+               <compilerSource>1.8</compilerSource>
+               <compilerCompliance>1.8</compilerCompliance>
+               <compilerTargetPlatform>1.8</compilerTargetPlatform>
+             </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>format</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
     </build>
 
@@ -245,6 +276,18 @@
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-client</artifactId>
         </dependency>
+
+        <dependency>
+          <groupId>net.revelc.code</groupId>
+          <artifactId>formatter-maven-plugin</artifactId>
+          <version>${formatter-maven-plugin.version}</version>
+        </dependency>
+
+        <dependency>
+          <groupId>com.googlecode.maven-java-formatter-plugin</groupId>
+          <artifactId>maven-java-formatter-plugin</artifactId>
+          <version>${maven-java-formatter-plugin.version}</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -278,6 +321,8 @@
         <cassandra-driver-core.version>2.1.9</cassandra-driver-core.version>
         <mockito-version>1.9.5</mockito-version>
         <org-jboss-resteasy.version>3.0.13.Final</org-jboss-resteasy.version>
+        <formatter-maven-plugin.version>0.5.2</formatter-maven-plugin.version>
+        <maven-java-formatter-plugin.version>0.4</maven-java-formatter-plugin.version>
     </properties>
 
 </project>

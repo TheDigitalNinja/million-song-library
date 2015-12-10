@@ -11,35 +11,28 @@ public class FacetClient {
     private String baseUrl = "http://localhost:9000/msl";
     private ResteasyClient client;
 
-    public FacetClient () {
+    public FacetClient() {
         client = new ResteasyClientBuilder().build();
     }
 
     public MslApiResponseMessage getFacets(String facets) {
         ResteasyWebTarget target;
         target = client.target(baseUrl + "/v1/catalogedge/facet/" + facets);
-        Response response = target
-                .request()
-                .get();
+        Response response = target.request().get();
         MslApiResponseMessage responseWrapper = response.readEntity(MslApiResponseMessage.class);
-        if (response.getStatus() != 200) {
-            throw new RuntimeException("Failed : HTTP error code : "
-                    + response.getStatus());
+        if ( response.getStatus() != 200 ) {
+            throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
         }
         return responseWrapper;
     }
 
-
     public MslApiResponseMessage browseAlbums(String items, String facets) {
         ResteasyWebTarget target;
         target = client.target(baseUrl + "/v1/catalogedge/browse/album?items=" + items + "&facets=" + facets);
-        Response response = target
-                .request()
-                .get();
+        Response response = target.request().get();
         MslApiResponseMessage responseWrapper = response.readEntity(MslApiResponseMessage.class);
-        if (response.getStatus() != 200) {
-            throw new RuntimeException("Failed : HTTP error code : "
-                    + response.getStatus());
+        if ( response.getStatus() != 200 ) {
+            throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
         }
         return responseWrapper;
     }
@@ -47,13 +40,10 @@ public class FacetClient {
     public MslApiResponseMessage browseArtists(String items, String facets) {
         ResteasyWebTarget target;
         target = client.target(baseUrl + "/v1/catalogedge/browse/artist?items=" + items + "&facets=" + facets);
-        Response response = target
-                .request()
-                .get();
+        Response response = target.request().get();
         MslApiResponseMessage responseWrapper = response.readEntity(MslApiResponseMessage.class);
-        if (response.getStatus() != 200) {
-            throw new RuntimeException("Failed : HTTP error code : "
-                    + response.getStatus());
+        if ( response.getStatus() != 200 ) {
+            throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
         }
         return responseWrapper;
     }
@@ -61,13 +51,10 @@ public class FacetClient {
     public MslApiResponseMessage browseSongs(String items, String facets) {
         ResteasyWebTarget target;
         target = client.target(baseUrl + "/v1/catalogedge/browse/song?items=" + items + "&facets=" + facets);
-        Response response = target
-                .request()
-                .get();
+        Response response = target.request().get();
         MslApiResponseMessage responseWrapper = response.readEntity(MslApiResponseMessage.class);
-        if (response.getStatus() != 200) {
-            throw new RuntimeException("Failed : HTTP error code : "
-                    + response.getStatus());
+        if ( response.getStatus() != 200 ) {
+            throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
         }
         return responseWrapper;
     }

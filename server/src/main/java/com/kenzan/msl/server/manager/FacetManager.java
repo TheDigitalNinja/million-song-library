@@ -1,5 +1,5 @@
 /*
- * Copyright 2015, Kenzan,  All rights reserved.
+ * Copyright 2015, Kenzan, All rights reserved.
  */
 package com.kenzan.msl.server.manager;
 
@@ -29,14 +29,14 @@ public class FacetManager {
         ArrayList<FacetDao> genreFacets = getGenreFacets();
         ArrayList<FacetDao> ratingFacets = getRatingFacets();
 
-        for (FacetDao genreFacet : genreFacets) {
-            if (genreFacet.getFacetId().equals(id)) {
+        for ( FacetDao genreFacet : genreFacets ) {
+            if ( genreFacet.getFacetId().equals(id) ) {
                 return Optional.of(genreFacet);
             }
         }
 
-        for (FacetDao ratingFacet : ratingFacets) {
-            if (ratingFacet.getFacetId().equals(id)) {
+        for ( FacetDao ratingFacet : ratingFacets ) {
+            if ( ratingFacet.getFacetId().equals(id) ) {
                 return Optional.of(ratingFacet);
             }
         }
@@ -44,14 +44,36 @@ public class FacetManager {
         return Optional.absent();
     }
 
-
     private ArrayList<FacetDao> getGenreFacets() {
-        String[] genres = {"Classical", "Blues", "Dubstep", "Jazz", "Electronica", "Latin", "Soul",
-                "Funk", "Cajun", "Celtic", "Folk", "Big Band", "Alternative", "Reggae", "Bluegrass",
-                "Punk", "Rap", "Rock", "Hip Hop", "Gospel", "Heavy Metal", "Country", "Salsa", "Opera", "Pop"};
+        String[] genres = {
+            "Classical",
+            "Blues",
+            "Dubstep",
+            "Jazz",
+            "Electronica",
+            "Latin",
+            "Soul",
+            "Funk",
+            "Cajun",
+            "Celtic",
+            "Folk",
+            "Big Band",
+            "Alternative",
+            "Reggae",
+            "Bluegrass",
+            "Punk",
+            "Rap",
+            "Rock",
+            "Hip Hop",
+            "Gospel",
+            "Heavy Metal",
+            "Country",
+            "Salsa",
+            "Opera",
+            "Pop" };
 
         ArrayList<FacetDao> result = new ArrayList<>();
-        for (int i = 0; i < genres.length; i++) {
+        for ( int i = 0; i < genres.length; i++ ) {
             result.add(new FacetDao(Integer.toString(i + 5), genres[i]));
         }
         return result;
@@ -59,24 +81,24 @@ public class FacetManager {
 
     private ArrayList<FacetDao> getRatingFacets() {
         String[] ratings = new String[4];
-        for (int i = 1; i < 5; i++) {
+        for ( int i = 1; i < 5; i++ ) {
             ratings[i - 1] = i + " & UP";
         }
         ArrayList<FacetDao> result = new ArrayList<>();
-        for (int i = 0; i < ratings.length; i++) {
+        for ( int i = 0; i < ratings.length; i++ ) {
             result.add(new FacetDao(Integer.toString(i + 1), ratings[i]));
         }
         return result;
     }
 
     public FacetInfoWithChildren getRestFacets(String facet_id) {
-        if (facet_id.equals("~")) {
+        if ( facet_id.equals("~") ) {
             return getRootFacet();
         }
 
         // genreFacet or ratingFacet
-        if (facet_id.contains("A")) {
-            if (facet_id.equals("A1")) { // - genre facet case
+        if ( facet_id.contains("A") ) {
+            if ( facet_id.equals("A1") ) { // - genre facet case
                 FacetInfoWithChildren genreFacet = new FacetInfoWithChildren();
                 genreFacet.setFacetId("A1");
                 genreFacet.setName("genres");
@@ -84,15 +106,15 @@ public class FacetManager {
                 return genreFacet;
 
             }
-			FacetInfoWithChildren ratingFacet = new FacetInfoWithChildren();
-			ratingFacet.setFacetId("1");
-			ratingFacet.setName("ratings");
-			ratingFacet.setChildren(Translators.translateFacetList(getRatingFacets()));
-			return ratingFacet;
+            FacetInfoWithChildren ratingFacet = new FacetInfoWithChildren();
+            ratingFacet.setFacetId("1");
+            ratingFacet.setName("ratings");
+            ratingFacet.setChildren(Translators.translateFacetList(getRatingFacets()));
+            return ratingFacet;
         }
 
         Optional<FacetDao> optResponse = getFacet(facet_id);
-        if (optResponse.isPresent()) {
+        if ( optResponse.isPresent() ) {
             FacetInfoWithChildren responseFacet = new FacetInfoWithChildren();
             responseFacet.setFacetId(optResponse.get().getFacetId());
             responseFacet.setName(optResponse.get().getFacetName());
