@@ -1,5 +1,9 @@
-<div layout="row" layout-align="center">
-  <div class="artist-info" flex="90">
+<div layout="row" layout-align="center center" ng-if="vm.model.isProcessing">
+  <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+<div ng-if="!vm.model.isProcessing">
+  <div layout="row" layout-align="center">
+    <div class="artist-info" flex="90">
     <span class="pull-right">
       <a href="" ng-if="!vm.artist.inMyLibrary" add-to-library id="vm.artistId" type="artist">
         <i class="material-icons">favorite</i> <span class="icon-label">Add Artist to library</span>
@@ -8,35 +12,38 @@
         <i class="material-icons">not_interested</i> <span class="icon-label">Remove Artist from library</span>
       </a>
     </span>
-    <h1 data-pt-id="artist-name">{{vm.artist.artistName}}</h1>
-    <div star-rating="vm.artist.averageRating" entity-id="vm.artist.artistId" entity-type="artist"></div>
+
+      <h1 data-pt-id="artist-name">{{vm.artist.artistName}}</h1>
+
+      <div star-rating="vm.artist.averageRating" entity-id="vm.artist.artistId" entity-type="artist"></div>
+    </div>
   </div>
-</div>
-<div layout="row" layout-align="center">
-  <md-tabs md-dynamic-height md-border-bottom flex="90">
-    <md-tab>
-      <md-tab-label>
-        <span>Songs</span>
-      </md-tab-label>
-      <md-tab-body>
-        <songs-table loading="!vm.displaySongs" songs="vm.songs"></songs-table>
-      </md-tab-body>
-    </md-tab>
-    <md-tab>
-      <md-tab-label>
-        <span>Albums</span>
-      </md-tab-label>
-      <md-tab-body>
-        <albums-list albums="vm.artistAlbums"></albums-list>
-      </md-tab-body>
-    </md-tab>
-    <md-tab>
-      <md-tab-label>
-        <span>Similar Artists</span>
-      </md-tab-label>
-      <md-tab-body>
-        <artists-list artists="vm.similarArtists"></artists-list>
-      </md-tab-body>
-    </md-tab>
-  </md-tabs>
+  <div layout="row" layout-align="center">
+    <md-tabs md-dynamic-height md-border-bottom flex="90">
+      <md-tab>
+        <md-tab-label>
+          <span>Songs</span>
+        </md-tab-label>
+        <md-tab-body>
+          <songs-table loading="!vm.displaySongs" songs="vm.songs"></songs-table>
+        </md-tab-body>
+      </md-tab>
+      <md-tab>
+        <md-tab-label>
+          <span>Albums</span>
+        </md-tab-label>
+        <md-tab-body>
+          <albums-list albums="vm.artistAlbums"></albums-list>
+        </md-tab-body>
+      </md-tab>
+      <md-tab>
+        <md-tab-label>
+          <span>Similar Artists</span>
+        </md-tab-label>
+        <md-tab-body>
+          <artists-list artists="vm.similarArtists"></artists-list>
+        </md-tab-body>
+      </md-tab>
+    </md-tabs>
+  </div>
 </div>

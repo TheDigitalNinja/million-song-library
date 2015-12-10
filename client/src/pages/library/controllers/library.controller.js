@@ -15,7 +15,7 @@ export default class libraryCtrl {
     this.$scope = $scope;
     this.$log = $log;
     this.myLibraryStore = myLibraryStore;
-
+    this.isProcessing = true;
     this._getMyLibrary();
   }
 
@@ -30,6 +30,7 @@ export default class libraryCtrl {
       this.albums = response.albums;
       this.artists = response.artists;
       this.$scope.$evalAsync();
+      this.isProcessing = false;
     }
     catch(error) {
       this.$log.warn(error);

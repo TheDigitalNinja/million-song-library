@@ -6,9 +6,9 @@
     </div>
 
     <div flex="75" flex-sm="100" class="msl-main-content">
-      <h1 class="md-display-2 msl-page-title" ng-hide="!!vm.model.selectedGenre">Featured</h1>
+      <h1 class="md-display-2 msl-page-title" ng-hide="!!vm.filterModel.selectedGenreName">Featured</h1>
 
-      <h1 class="md-display-2 msl-page-title" ng-show="!!vm.model.selectedGenre">{{vm.model.selectedGenre}}</h1>
+      <h1 class="md-display-2 msl-page-title" ng-show="!!vm.filterModel.selectedGenreName">{{vm.filterModel.selectedGenreName}}</h1>
 
       <md-tabs md-dynamic-height md-border-bottom md-selected="vm.selectedTab">
         <md-tab ng-click="vm.selectTab('songs');">
@@ -16,7 +16,10 @@
             <span>Songs</span>
           </md-tab-label>
           <md-tab-body>
-            <songs-list songs="vm.songModel.songs"></songs-list>
+            <div layout="row" layout-align="center center" ng-if="vm.songModel.isProcessing">
+              <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+            <songs-list songs="vm.songModel.songs" ng-if="!vm.songModel.isProcessing"></songs-list>
           </md-tab-body>
         </md-tab>
         <md-tab ng-click="vm.selectTab('albums');">
@@ -24,7 +27,10 @@
             <span>Albums</span>
           </md-tab-label>
           <md-tab-body>
-            <albums-list albums="vm.albumModel.albums"></albums-list>
+            <div layout="row" layout-align="center center" ng-if="vm.albumModel.isProcessing">
+              <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+            <albums-list albums="vm.albumModel.albums" ng-if="!vm.albumModel.isProcessing"></albums-list>
           </md-tab-body>
         </md-tab>
         <md-tab ng-click="vm.selectTab('artists');">
@@ -32,7 +38,10 @@
             <span>Artists</span>
           </md-tab-label>
           <md-tab-body>
-            <artists-list artists="vm.artistModel.artists"></artists-list>
+            <div layout="row" layout-align="center center" ng-if="vm.artistModel.isProcessing">
+              <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+            <artists-list artists="vm.artistModel.artists" ng-if="!vm.artistModel.isProcessing"></artists-list>
           </md-tab-body>
         </md-tab>
       </md-tabs>

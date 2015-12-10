@@ -27,6 +27,7 @@ export default class homeCtrl {
     this.albumModel = albumModel;
     this.songModel = songModel;
     this.$location = $location;
+    this.filterModel = filterModel;
 
     this._getCurrentTab();
     filterModel.applyCurrentFilters(this);
@@ -65,6 +66,7 @@ export default class homeCtrl {
   artistsFiltered(artists) {
     this.artistModel.artists = artists;
     this.$scope.$evalAsync();
+    this.isProcessing = false;
   }
 
   /**

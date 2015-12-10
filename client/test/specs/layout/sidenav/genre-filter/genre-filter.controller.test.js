@@ -36,7 +36,7 @@ describe('genreFilterCtrl', () => {
       };
     });
 
-    filterModel.setSelectedGenre.and.callFake((genre) => filterModel.selectedGenre = genre);
+    filterModel.setSelectedGenre.and.callFake((genre) => filterModel.selectedGenreId = genre);
   });
 
   describe('getGenres', () => {
@@ -53,7 +53,7 @@ describe('genreFilterCtrl', () => {
   describe('activeGenre', () => {
     it('should return true if the genre is the selectedGenre', () => {
       const controller = genreFilterCtrl();
-      filterModel.selectedGenre = genres[0];
+      filterModel.selectedGenreId = genres[0];
       const genre = genres[0];
 
       expect(controller.activeGenre(genre)).toBeTruthy();

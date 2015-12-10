@@ -1,8 +1,12 @@
-<div layout="row" class="msl-padding">
-  <div class="image-container" flex="25" layout-padding>
-    <img class="img-responsive center-block" ng-src="{{vm.song.imageLink}}" alt="{{vm.song.songName}}"/>
-  </div>
-  <div flex="75" class="msl-padding">
+<div layout="row" layout-align="center center" ng-if="vm.model.isProcessing">
+  <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+<div ng-if="!vm.model.isProcessing">
+  <div layout="row" class="msl-padding">
+    <div class="image-container" flex="25" layout-padding>
+      <img class="img-responsive center-block" ng-src="{{vm.song.imageLink}}" alt="{{vm.song.songName}}"/>
+    </div>
+    <div flex="75" class="msl-padding">
     <span class="pull-right">
       <a href="" ng-if="!vm.song.inMyLibrary" add-to-library id="vm.songId" type="song">
         <i class="material-icons">favorite</i> <span class="icon-label">Add Song to library</span>
@@ -11,22 +15,28 @@
         <i class="material-icons">not_interested</i> <span class="icon-label">Remove Song from library</span>
       </a>
     </span>
-    <h1 data-pt-id="song-name">{{vm.song.songName}}</h1>
-    <span>Artist:</span>
-    <a class="link-black" ui-sref="msl.artist({artistId: vm.song.artistId})" data-pt-id="song-artist-name">{{vm.song.artistName}}</a><br>
-    <span>Album:</span>
-    <a class="link-black" data-pt-id="song-album-name" ui-sref="msl.album({albumId: vm.song.albumId})">{{vm.song.albumName}}</a><br>
-    <span>Genre:</span>
-    <span data-pt-id="song-genre">{{vm.song.genre}}</span><br>
-    <span>Year:</span>
-    <span data-pt-id="song-year">{{vm.song.year}}</span><br>
-    <span>Rating:</span>
-    <div star-rating="vm.song.averageRating" entity-id="vm.song.songId" entity-type="song"></div>
+
+      <h1 data-pt-id="song-name">{{vm.song.songName}}</h1>
+      <span>Artist:</span>
+      <a class="link-black" ui-sref="msl.artist({artistId: vm.song.artistId})" data-pt-id="song-artist-name">{{vm.song.artistName}}</a><br>
+      <span>Album:</span>
+      <a class="link-black" data-pt-id="song-album-name" ui-sref="msl.album({albumId: vm.song.albumId})">{{vm.song.albumName}}</a><br>
+      <span>Genre:</span>
+      <span data-pt-id="song-genre">{{vm.song.genre}}</span><br>
+      <span>Year:</span>
+      <span data-pt-id="song-year">{{vm.song.year}}</span><br>
+      <span>Rating:</span>
+
+      <div star-rating="vm.song.averageRating" entity-id="vm.song.songId" entity-type="song"></div>
+    </div>
   </div>
-</div>
-<div layout="row" class="msl-padding">
-  <div class="song-info msl-padding" flex="75" flex-offset="25">
-    <h3>Similar Artists</h3>
-    <artists-list artists="vm.similarArtists"></artists-list>
+  <div layout="row" class="msl-padding">
+    <div class="song-info msl-padding" flex="75" flex-offset="25">
+      <h3>Similar Artists</h3>
+      <div layout="row" layout-align="center center" ng-if="vm.artistModel.isProcessing">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+      </div>
+      <artists-list artists="vm.similarArtists" ng-if="!vm.artistModel.isProcessing"></artists-list>
+    </div>
   </div>
 </div>
