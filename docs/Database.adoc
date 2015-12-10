@@ -19,14 +19,14 @@ Entity-Relationship Diagram
 Initially, we performed a traditional data analysis - looking at what entities are required based on the use cases, and what are the relationships between those entities.
 
 .Entity Relationship Diagram
-image:images/entity_relationship.png[Entity Relationship Diagram]
+image:images/database/entity_relationship.png[Entity Relationship Diagram]
 
 Access Patterns
 ~~~~~~~~~~~~~~~
 We then used those same use cases to determine how the data in the entities would be accessed. Because of the use patterns of a Cassandra datastore, one must think in terms of queries when designing the schema. This is a difficult transition for those accustomed to building SQL schemas. Even more difficult is the need to denormalize the schema - sacrilege for SQL aficionados. There are many good tutorials and documents on-line dicussing this process.
 
 .Access Patterns Diagram
-image:images/access_patterns.png[Access Patterns Diagram]
+image:images/database/access_patterns.png[Access Patterns Diagram]
 
 Implementation
 --------------
@@ -39,22 +39,22 @@ Note: fields marked with "K" are partition keys, and those marked with "C" are c
 [width="100%",cols="2,4,12",options="header"]
 |=======================
 |Query Number	|Description			|
-|Q1				|Users					|image:images/Q01 users.png[Users]
-|Q2				|User Data by User		|image:images/Q02 user data by user.png[User Data by User]
-|Q3				|Average Ratings		|image:images/Q03 average ratings.png[Average Ratings]
-|Q4				|Featured Songs			|image:images/Q04 featured songs.png[Featured Songs]
-|Q5				|Songs by Facet			|image:images/Q05 songs by facet.png[Songs by Facet]
-|Q6				|Featured Songs			|image:images/Q06 featured songs.png[Featured Songs]
-|Q7				|Songs by Facet			|image:images/Q07 albums by facet.png[Songs by Facet]
-|Q8				|Featured Artists		|image:images/Q08 featured artists.png[Featured Artists]
-|Q9				|Artists by Facet		|image:images/Q09 artists by facet.png[Artists by Facet]
-|Q10			|Songs/Albums by Artist	|image:images/Q10 songs albums by artist.png[Songs/Albums by Artist]
-|Q11			|Songs by User			|image:images/Q11 songs by user.png[Songs by User]
-|Q12			|Albums by User			|image:images/Q12 albums by user.png[Albums by User]
-|Q13			|Artists by User		|image:images/Q13 artists by user.png[Artists by User]
-|Q14			|Songs/Artist by Album	|image:images/Q14 songs artist by album.png[Songs/Artist by Album]
-|Q15			|Album/Artist by Song	|image:images/Q15 album artist by song.png[Album/Artist by Song]
-|Q16			|Paging State			|image:images/Q16 paging state.png[Paging State]
+|Q1				|Users					|image:images/database/Q01 users.png[Users]
+|Q2				|User Data by User		|image:images/database/Q02 user data by user.png[User Data by User]
+|Q3				|Average Ratings		|image:images/database/Q03 average ratings.png[Average Ratings]
+|Q4				|Featured Songs			|image:images/database/Q04 featured songs.png[Featured Songs]
+|Q5				|Songs by Facet			|image:images/database/Q05 songs by facet.png[Songs by Facet]
+|Q6				|Featured Songs			|image:images/database/Q06 featured songs.png[Featured Songs]
+|Q7				|Songs by Facet			|image:images/database/Q07 albums by facet.png[Songs by Facet]
+|Q8				|Featured Artists		|image:images/database/Q08 featured artists.png[Featured Artists]
+|Q9				|Artists by Facet		|image:images/database/Q09 artists by facet.png[Artists by Facet]
+|Q10			|Songs/Albums by Artist	|image:images/database/Q10 songs albums by artist.png[Songs/Albums by Artist]
+|Q11			|Songs by User			|image:images/database/Q11 songs by user.png[Songs by User]
+|Q12			|Albums by User			|image:images/database/Q12 albums by user.png[Albums by User]
+|Q13			|Artists by User		|image:images/database/Q13 artists by user.png[Artists by User]
+|Q14			|Songs/Artist by Album	|image:images/database/Q14 songs artist by album.png[Songs/Artist by Album]
+|Q15			|Album/Artist by Song	|image:images/database/Q15 album artist by song.png[Album/Artist by Song]
+|Q16			|Paging State			|image:images/database/Q16 paging state.png[Paging State]
 |=======================
 
 Data Import

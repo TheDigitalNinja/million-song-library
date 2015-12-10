@@ -62,7 +62,8 @@ Server
 
 Architecture
 ~~~~~~~~~~~~
-[red]#TBA#: a diagram of the client architecture
+.High-level Architecture Diagram
+image:images/High level architecture.jpg[High-level Architecture Diagram]
 
 Language(s) and Frameworks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
