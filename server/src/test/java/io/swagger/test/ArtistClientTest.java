@@ -22,7 +22,7 @@ public class ArtistClientTest {
     private final String TEST_TOKEN = "2883607a-176d-4729-a20b-ec441c285afb";
 
     @Before
-    public void init () {
+    public void init() {
         artistClient = new ArtistClient();
         logger.setLevel(Level.DEBUG);
     }
@@ -35,7 +35,7 @@ public class ArtistClientTest {
         assertEquals("artist get call is successful", "success", artist.getMessage());
     }
 
-    @Test (expected = java.lang.RuntimeException.class)
+    @Test(expected = java.lang.RuntimeException.class)
     public void testGetExceptionIsThrown() {
         logger.debug("ArtistClient.testGetExceptionIsThrown");
         artistClient.get("");
@@ -50,7 +50,7 @@ public class ArtistClientTest {
     }
 
     @Test
-    public void testAddArtist(){
+    public void testAddArtist() {
         logger.debug("ArtistClient.testAddArtist");
         NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);
         MslApiResponseMessage response = artistClient.addArtist("1", cookie.toString());
@@ -58,14 +58,14 @@ public class ArtistClientTest {
         assertEquals("addArtist response is successful", "magic!", response.getMessage());
     }
 
-    @Test (expected=java.lang.RuntimeException.class)
-    public void testAddArtistThrowException (){
+    @Test(expected = java.lang.RuntimeException.class)
+    public void testAddArtistThrowException() {
         logger.debug("ArtistClient.testAddArtistThrowException");
         artistClient.addArtist(TEST_ARTIST_ID, "");
     }
 
     @Test
-    public void testRateArtist(){
+    public void testRateArtist() {
         logger.debug("ArtistClient.testRateArtist");
         NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);
         MslApiResponseMessage response = artistClient.rateArtist(TEST_ARTIST_ID, 3, cookie.toString());
@@ -73,8 +73,8 @@ public class ArtistClientTest {
         assertEquals("rateArtist response is successful", "magic!", response.getMessage());
     }
 
-    @Test (expected = java.lang.RuntimeException.class)
-    public void testRateArtistThrowException () {
+    @Test(expected = java.lang.RuntimeException.class)
+    public void testRateArtistThrowException() {
         logger.debug("ArtistClient.testRateArtistThrowException");
         artistClient.rateArtist(TEST_ARTIST_ID, 3, "");
     }

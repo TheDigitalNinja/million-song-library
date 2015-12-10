@@ -13,39 +13,39 @@ public class AlbumMockData {
     private FacetMockData facetMockData = new FacetMockData();
 
     public AlbumInfo getAlbum(String albumId) {
-        for (AlbumInfo album : albumList.getAlbums()) {
-            if (albumId.equals(album.getAlbumId())) {
+        for ( AlbumInfo album : albumList.getAlbums() ) {
+            if ( albumId.equals(album.getAlbumId()) ) {
                 return album;
             }
         }
         return new AlbumInfo();
     }
 
-    private List<AlbumInfo> applyGenreFacet (String [] facets, List<AlbumInfo> albumList){
+    private List<AlbumInfo> applyGenreFacet(String[] facets, List<AlbumInfo> albumList) {
         List<AlbumInfo> result = new ArrayList<>();
         boolean hasRatingFacet = false;
-        for (String facet: facets) {
-            if (!FacetServiceFactory.isRatingFacet(facet, facetMockData.getRatingFacets())) {
+        for ( String facet : facets ) {
+            if ( !FacetServiceFactory.isRatingFacet(facet, facetMockData.getRatingFacets()) ) {
                 hasRatingFacet = true;
-                for (AlbumInfo artist : albumList) {
+                for ( AlbumInfo artist : albumList ) {
                     String facetName = FacetServiceFactory.getFacet(facet, facetMockData.mockFacets).getName();
-                    if (artist.getGenre().equals(facetName)) {
+                    if ( artist.getGenre().equals(facetName) ) {
                         result.add(artist);
                     }
                 }
             }
         }
 
-        if (hasRatingFacet) {
+        if ( hasRatingFacet ) {
             return result;
         }
-        
+
         return albumList;
     }
 
-    private List<AlbumInfo> applyRatingFacet (String [] facets, List<AlbumInfo> albumList) {
-        for (String facet : facets) {
-            if (FacetServiceFactory.isRatingFacet(facet, facetMockData.getRatingFacets())) {
+    private List<AlbumInfo> applyRatingFacet(String[] facets, List<AlbumInfo> albumList) {
+        for ( String facet : facets ) {
+            if ( FacetServiceFactory.isRatingFacet(facet, facetMockData.getRatingFacets()) ) {
                 return FacetServiceFactory.filterAlbumByRatingFacet(albumList, facet);
             }
         }
@@ -56,12 +56,12 @@ public class AlbumMockData {
 
         List<AlbumInfo> browsedAlbums = albumList.getAlbums();
 
-        if (pagingState != null && !pagingState.isEmpty()) {
+        if ( pagingState != null && !pagingState.isEmpty() ) {
             // TODO implement pagination
             System.out.println("Paging State: " + pagingState);
         }
 
-        if (facetList != null && facetList.length() > 0) {
+        if ( facetList != null && facetList.length() > 0 ) {
             System.out.println("Filtering by facet(s): " + facetList);
             String[] facets = facetList.split(",");
             browsedAlbums = applyRatingFacet(facets, browsedAlbums);
@@ -69,10 +69,10 @@ public class AlbumMockData {
         }
 
         // TODO if no items are provided should return 25 results
-        if (items != null && items > 0) {
+        if ( items != null && items > 0 ) {
             List<AlbumInfo> pivotAlbums = browsedAlbums;
             browsedAlbums = new ArrayList<>();
-            for (int i = 0; i < items && i < pivotAlbums.size(); i++) {
+            for ( int i = 0; i < items && i < pivotAlbums.size(); i++ ) {
                 browsedAlbums.add(pivotAlbums.get(i));
             }
         }
@@ -112,7 +112,8 @@ public class AlbumMockData {
         albumInfoMock2.setYear(1977);
         albumInfoMock2.setAverageRating(4);
         albumInfoMock2.setPersonalRating(4);
-        albumInfoMock2.setImageLink("http://wordsushi.com/wp-content/uploads/2012/11/The+Wall++high+resolution+png.png");
+        albumInfoMock2
+            .setImageLink("http://wordsushi.com/wp-content/uploads/2012/11/The+Wall++high+resolution+png.png");
         List<String> album2songsList = new ArrayList<>();
         album2songsList.add("2");
         albumInfoMock2.setSongsList(album2songsList);
@@ -142,7 +143,8 @@ public class AlbumMockData {
         albumInfoMock4.setYear(1975);
         albumInfoMock4.setAverageRating(4);
         albumInfoMock4.setPersonalRating(5);
-        albumInfoMock4.setImageLink("https://upload.wikimedia.org/wikipedia/en/5/5f/Led_Zeppelin_-_Led_Zeppelin_III.png");
+        albumInfoMock4
+            .setImageLink("https://upload.wikimedia.org/wikipedia/en/5/5f/Led_Zeppelin_-_Led_Zeppelin_III.png");
         List<String> album4songsList = new ArrayList<>();
         album4songsList.add("4");
         albumInfoMock4.setSongsList(album4songsList);
@@ -172,7 +174,8 @@ public class AlbumMockData {
         albumInfoMock6.setYear(1970);
         albumInfoMock6.setAverageRating(1);
         albumInfoMock6.setPersonalRating(3);
-        albumInfoMock6.setImageLink("https://upload.wikimedia.org/wikipedia/en/7/7c/Willie-Nelson-Rainbow-Connection.jpg");
+        albumInfoMock6
+            .setImageLink("https://upload.wikimedia.org/wikipedia/en/7/7c/Willie-Nelson-Rainbow-Connection.jpg");
         List<String> album6songsList = new ArrayList<>();
         album6songsList.add("6");
         albumInfoMock6.setSongsList(album6songsList);
@@ -187,7 +190,8 @@ public class AlbumMockData {
         albumInfoMock7.setYear(1990);
         albumInfoMock7.setAverageRating(4);
         albumInfoMock7.setPersonalRating(3);
-        albumInfoMock7.setImageLink("http://www.satriani.com/discography/Surfing_With_The_Alien/Surfing_With_The_Alien.jpg");
+        albumInfoMock7
+            .setImageLink("http://www.satriani.com/discography/Surfing_With_The_Alien/Surfing_With_The_Alien.jpg");
         List<String> album7songsList = new ArrayList<>();
         album7songsList.add("7");
         albumInfoMock7.setSongsList(album7songsList);
@@ -207,7 +211,7 @@ public class AlbumMockData {
         album8songsList.add("8");
         albumInfoMock8.setSongsList(album8songsList);
         albums.add(albumInfoMock8);
-        
+
         AlbumInfo albumInfoMock9 = new AlbumInfo();
         albumInfoMock9.setAlbumId("9");
         albumInfoMock9.setAlbumName("That's the Way of the World");
@@ -217,7 +221,8 @@ public class AlbumMockData {
         albumInfoMock9.setYear(1960);
         albumInfoMock9.setAverageRating(2);
         albumInfoMock9.setPersonalRating(2);
-        albumInfoMock9.setImageLink("https://upload.wikimedia.org/wikipedia/en/0/03/Whiskeytown-Stranger%27s_Almanac_%28album_cover%29.jpg");
+        albumInfoMock9
+            .setImageLink("https://upload.wikimedia.org/wikipedia/en/0/03/Whiskeytown-Stranger%27s_Almanac_%28album_cover%29.jpg");
         List<String> album9songsList = new ArrayList<>();
         album9songsList.add("9");
         albumInfoMock9.setSongsList(album9songsList);

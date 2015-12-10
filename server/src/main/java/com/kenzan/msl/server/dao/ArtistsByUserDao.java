@@ -7,7 +7,7 @@ import com.datastax.driver.mapping.annotations.Table;
 import java.util.Date;
 import java.util.UUID;
 
-@Table(name="artists_by_user")
+@Table(name = "artists_by_user")
 public class ArtistsByUserDao {
 
     @PartitionKey(value = 0)
@@ -16,13 +16,13 @@ public class ArtistsByUserDao {
     @PartitionKey(value = 1)
     @Column(name = "content_type")
     private String contentType;
-    @Column (name="favorites_timestamp")
+    @Column(name = "favorites_timestamp")
     private Date favoritesTimestamp;
-    @Column (name="artist_id")
+    @Column(name = "artist_id")
     private UUID artistId;
-    @Column (name="artist_mbid")
+    @Column(name = "artist_mbid")
     private UUID artistMbid;
-    @Column (name="artist_name")
+    @Column(name = "artist_name")
     private String artistName;
 
     public UUID getUserId() {

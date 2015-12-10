@@ -9,20 +9,20 @@ public class FacetMockData {
 
     public List<FacetInfoWithChildren> mockFacets;
 
-    public FacetMockData () {
+    public FacetMockData() {
 
         mockFacets = new ArrayList<>();
         List<FacetInfo> genreFacets = getGenreFacetList();
         List<FacetInfo> ratingFacets = getRatingFacetList();
 
-        for (FacetInfo facet : genreFacets) {
+        for ( FacetInfo facet : genreFacets ) {
             FacetInfoWithChildren result = new FacetInfoWithChildren();
             result.setFacetId(facet.getFacetId());
             result.setName(facet.getName());
             mockFacets.add(result);
         }
 
-        for (FacetInfo facet : ratingFacets) {
+        for ( FacetInfo facet : ratingFacets ) {
             FacetInfoWithChildren result = new FacetInfoWithChildren();
             result.setFacetId(facet.getFacetId());
             result.setName(facet.getName());
@@ -43,9 +43,9 @@ public class FacetMockData {
 
     }
 
-    public List<FacetInfoWithChildren> getRatingFacets () {
+    public List<FacetInfoWithChildren> getRatingFacets() {
         List<FacetInfoWithChildren> result = new ArrayList<>();
-        for (FacetInfo facet : getRatingFacetList()) {
+        for ( FacetInfo facet : getRatingFacetList() ) {
             FacetInfoWithChildren _facet = new FacetInfoWithChildren();
             _facet.setFacetId(facet.getFacetId());
             _facet.setName(facet.getName());
@@ -56,12 +56,12 @@ public class FacetMockData {
 
     public FacetInfoWithChildren getFacet(String facet_id) {
         // ~ should return root facet
-        if (facet_id.equals("~")) {
+        if ( facet_id.equals("~") ) {
             return getRootFacet();
         }
-        
-        for (FacetInfoWithChildren facet : mockFacets) {
-            if (facet.getFacetId().equals(facet_id)) {
+
+        for ( FacetInfoWithChildren facet : mockFacets ) {
+            if ( facet.getFacetId().equals(facet_id) ) {
                 return facet;
             }
         }
@@ -69,7 +69,7 @@ public class FacetMockData {
         return new FacetInfoWithChildren();
     }
 
-    private FacetInfoWithChildren getRootFacet () {
+    private FacetInfoWithChildren getRootFacet() {
         List<FacetInfo> mainFacets = new ArrayList<>();
         FacetInfo _genreFacets = new FacetInfo();
         _genreFacets.setFacetId("0");

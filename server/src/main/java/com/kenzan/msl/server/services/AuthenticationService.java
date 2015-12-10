@@ -19,26 +19,32 @@ public class AuthenticationService {
 
     /**
      * Login processing and handling
-     *
-     * @param catalogService  instance of CatalogService
-     * @param email           user email
-     * @param password        user password
+     * 
+     * @param catalogService instance of CatalogService
+     * @param email user email
+     * @param password user password
      * @return Response
      */
     public static Response logIn(final CatalogService catalogService, final String email, final String password) {
         // Validate required parameters
-        if (StringUtils.isEmpty(email)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'email' is null or empty.")).build();
+        if ( StringUtils.isEmpty(email) ) {
+            return Response
+                .status(Response.Status.BAD_REQUEST)
+                .entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR,
+                                                  "Required parameter 'email' is null or empty.")).build();
         }
-        if (StringUtils.isEmpty(password)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'password' is null or empty.")).build();
+        if ( StringUtils.isEmpty(password) ) {
+            return Response
+                .status(Response.Status.BAD_REQUEST)
+                .entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR,
+                                                  "Required parameter 'password' is null or empty.")).build();
         }
 
         Optional<UUID> optSessionToken;
         try {
             optSessionToken = catalogService.logIn(email, password).toBlocking().first();
         }
-        catch (Exception e) {
+        catch ( Exception e ) {
             e.printStackTrace();
 
             ErrorResponse errorResponse = new ErrorResponse();
@@ -46,7 +52,7 @@ public class AuthenticationService {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
         }
 
-        if (!optSessionToken.isPresent()) {
+        if ( !optSessionToken.isPresent() ) {
             ErrorResponse errorResponse = new ErrorResponse();
             errorResponse.setMessage("Invalid credentials");
             return Response.status(Response.Status.UNAUTHORIZED).entity(errorResponse).build();
@@ -55,28 +61,26 @@ public class AuthenticationService {
         LoginSuccessResponse loginSuccessResponse = new LoginSuccessResponse();
         loginSuccessResponse.setAuthenticated(new Date().toString());
 
-        return Response.ok()
-                .cookie(MslSessionToken.getInstance().getSessionCookie(optSessionToken.get()))
-                .entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", loginSuccessResponse)).build();
+        return Response.ok().cookie(MslSessionToken.getInstance().getSessionCookie(optSessionToken.get()))
+            .entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", loginSuccessResponse)).build();
     }
 
     /**
      * LogOut processing and handling
-     *
+     * 
      * @return Response
      */
     public static Response logOut() {
         StatusResponse response = new StatusResponse();
         response.setMessage("Successfully logged out");
 
-        return Response.ok()
-                .cookie(MslSessionToken.getInstance().getSessionCookie(null) )
-                .entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", response)).build();
+        return Response.ok().cookie(MslSessionToken.getInstance().getSessionCookie(null))
+            .entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", response)).build();
     }
 
     /**
      * Checks if current sessionToken is valid
-     *
+     * 
      * @return Boolean
      */
     public static Boolean hasValidToken() {

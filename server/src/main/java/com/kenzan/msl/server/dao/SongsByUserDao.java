@@ -18,28 +18,28 @@ public class SongsByUserDao {
     @Column(name = "content_type")
     private String contentType;
 
-    @Column (name="favorites_timestamp")
+    @Column(name = "favorites_timestamp")
     private Date favoritesTimestamp;
 
-    @Column (name="song_id")
+    @Column(name = "song_id")
     private UUID songId;
-    @Column (name="song_name")
+    @Column(name = "song_name")
     private String songName;
-    @Column(name="song_duration")
+    @Column(name = "song_duration")
     private Integer songDuration;
 
-    @Column (name="album_id")
+    @Column(name = "album_id")
     private UUID albumId;
-    @Column (name="album_name")
+    @Column(name = "album_name")
     private String albumName;
-    @Column (name="album_year")
+    @Column(name = "album_year")
     private Integer albumYear;
 
-    @Column (name="artist_id")
+    @Column(name = "artist_id")
     private UUID artistId;
-    @Column (name="artist_mbid")
+    @Column(name = "artist_mbid")
     private UUID artistMbid;
-    @Column (name="artist_name")
+    @Column(name = "artist_name")
     private String artistName;
 
     public UUID getUserId() {

@@ -16,18 +16,18 @@ public class FacetClientTest {
     private final String ALL_FACETS = "~";
     private final String TEST_FACET = "2";
     private final String ERROR_FACET = " ";
-    
+
     private FacetClient facetClient;
     static Logger logger = Logger.getLogger(FacetClientTest.class);
 
     @Before
-    public void init () {
+    public void init() {
         facetClient = new FacetClient();
         logger.setLevel(Level.DEBUG);
     }
 
     @Test
-    public void testGetFacets(){
+    public void testGetFacets() {
         logger.debug("FacetClient.testGetFacets");
         MslApiResponseMessage facetList = facetClient.getFacets(ALL_FACETS);
         assertNotNull(facetList);
@@ -41,9 +41,9 @@ public class FacetClientTest {
         assertNotNull(albumList);
         assertEquals("album browse facet filtered call is successful", "success", albumList.getMessage());
     }
-    
-    @Test (expected = java.lang.RuntimeException.class)
-    public void testBrowseAlbumFilteredByFacetsThrowException () {
+
+    @Test(expected = java.lang.RuntimeException.class)
+    public void testBrowseAlbumFilteredByFacetsThrowException() {
         logger.debug("FacetClient.testBrowseAlbumFilteredByFacetsThrowException");
         facetClient.browseAlbums(PAGE_SIZE, ERROR_FACET);
     }
@@ -56,8 +56,8 @@ public class FacetClientTest {
         assertEquals("artist browse facet filtered call is successful", "success", artistList.getMessage());
     }
 
-    @Test (expected = java.lang.RuntimeException.class)
-    public void testBrowseArtistFilteredByFacetsThrowException () {
+    @Test(expected = java.lang.RuntimeException.class)
+    public void testBrowseArtistFilteredByFacetsThrowException() {
         logger.debug("FacetClient.testBrowseArtistFilteredByFacetsThrowException");
         facetClient.browseArtists(PAGE_SIZE, ERROR_FACET);
     }
@@ -69,8 +69,8 @@ public class FacetClientTest {
         assertEquals("songs browse facet filtered call is successful", "success", albumList.getMessage());
     }
 
-    @Test (expected = java.lang.RuntimeException.class)
-    public void testBrowseSongFilteredByFacetsThrowException () {
+    @Test(expected = java.lang.RuntimeException.class)
+    public void testBrowseSongFilteredByFacetsThrowException() {
         logger.debug("FacetClient.testBrowseSongFilteredByFacetsThrowException");
         facetClient.browseArtists(PAGE_SIZE, ERROR_FACET);
     }
