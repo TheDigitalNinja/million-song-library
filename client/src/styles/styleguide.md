@@ -3,18 +3,11 @@ This is the first draft of the CSS styleguide for Million Songs Library.
 
 ## Table of contents
 
-1. [The setup](#the-setup)
   1. [Sass CSS Preprocessor](#the-setup-sass-css-preprocessor)
   2. [KSS](#the-setup-kss)
   3. [Material Design](#the-setup-material)
   4. [Material Icons](#the-setup-icons)
 
-
-
-
-
-<a name="the-setup"></a>
-## The setup
 
 <a name="the-setup-sass-css-preprocessor"></a>
 ### Sass CSS Preprocessor

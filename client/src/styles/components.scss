@@ -2,44 +2,20 @@
 // Components
 // ==========================================================================
 
-// Category title
-//
-// Element for showing category title, eg. Genre, Duration, Artist ect.
-//
-// Markup:
-// <span class="item-name">Duration</span>
-// <p>7:21</p>
-//
-// Styleguide 3.1
-
-.item-name {
-  color: $color-text-grey;
-  text-transform: uppercase;
-  font-size: 16px;
-}
 
 // Image container
 //
 // Element for showing image of Artist / Song / Album.
 //
-// .small-image - class makes image container to be `150px` width and height instead of default
-// `200px`.
-// .image-container-margin - class adds `margin-bottom: 10px`
-//
 // Markup:
-// <div class="image-container {{modifier_class}}">
-//   <img class="img-responsive" src="" alt="" />
+// <div class="image-container layout-padding" style="width: 250px;">
+//   <img src="http://kenzan.com/wp-content/themes/kenzan/images/logo-reg-2x.png" alt="Kenzan" />
 // </div>
 //
-// Styleguide 3.2
-
-$image-size-lg: 200px;
-$image-size-sm: 150px;
+// Styleguide 3.1
 
 .image-container {
-  width: 100%;
-  height: $image-size-lg;
-  background-color: $gray-2;
+  border: 1px solid $gray-2;
   position: relative;
   overflow: hidden;
 
@@ -49,21 +25,12 @@ $image-size-sm: 150px;
   }
 }
 
-.image-container-margin {
-  margin-bottom: 10px;
-}
-
-.small-image {
-  width: $image-size-sm;
-  height: $image-size-sm;
-}
-
-// Box View List of Elements (layout 1)
+// Media Box
 //
 // List of box style elements, for example: Song list.
 //
 // Markup:
-// <div class="media-box">
+// <div class="media-box" style="width: 250px;">
 //   <md-card>
 //     <div class="media-box-inner">
 //       <img class="media-box-inner-image" ng-src="{{song.imageLink}}" alt="{{ song.artistName }}"/>
@@ -98,12 +65,16 @@ $image-size-sm: 150px;
 //   </div>
 // </div>
 //
-// Styleguide 3.3
+// Styleguide 3.2
 
 .song-box,
 .album-box,
 .media-box {
   margin-bottom: 1em;
+
+  .slick-slide & {
+    padding: 0 7px;
+  }
 }
 
 .media-box:focus {
@@ -197,6 +168,16 @@ $image-size-sm: 150px;
 .info-panel {
   padding: 0 8px;
 
+  a {
+    color: $blue-1;
+    font-weight: bold;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   .header {
     height: 50px;
     overflow: hidden;
@@ -249,13 +230,13 @@ $image-size-sm: 150px;
 //   </md-toolbar>
 // </nav>
 //
-// Styleguide 3.4
+// Styleguide 3.3
 
 
 // KSS doesn't render this properly due to the angular directives
 // so we will hide the rendering to reduce confusion
 
-#kssref-3-4 .kss-modifier__wrapper {
+#kssref-3-3 .kss-modifier__wrapper {
   display: none;
 }
 .kz-logo {
@@ -383,11 +364,11 @@ $image-size-sm: 150px;
 //     <rating-filter listener='vm'></rating-filter>
 // </div>
 //
-// Styleguide 3.5
+// Styleguide 3.4
 
 // KSS doesn't render this properly due to the angular directives
 // so we will hide the rendering to reduce confusion
-#kssref-3-5 .kss-modifier__wrapper {
+#kssref-3-4 .kss-modifier__wrapper {
   display: none;
 }
 
@@ -428,6 +409,28 @@ $image-size-sm: 150px;
   }
 }
 
+// Loading Animation
+//
+// Note: Markup is used for display purposes only, developers should use
+// `mdProgressCircular` directive.
+//
+// Markup:
+// <md-progress-circular md-mode="indeterminate" aria-valuemin="0" aria-valuemax="100" role="progressbar"style="transform: scale(0.5);">
+//   <div class="md-spinner-wrapper md-mode-indeterminate">
+//     <div class="md-inner">
+//       <div class="md-gap"></div>
+//       <div class="md-left"><div class="md-half-circle"></div></div>
+//       <div class="md-right"><div class="md-half-circle"></div></div>
+//     </div>
+//   </div>
+// </md-progress-circular>
+//
+// Styleguide 3.7
+
+md-progress-circular {
+  color: $blue-1;
+}
+
 // Content Tabs
 //
 // Angular Material markup for content tabs
@@ -460,7 +463,7 @@ $image-size-sm: 150px;
 //   </md-tab>
 // </md-tabs>
 //
-// Styleguide 3.9
+// Styleguide 3.8
 
 .tab-content {
   padding: 2em 1em 1em;
@@ -468,7 +471,7 @@ $image-size-sm: 150px;
 
 // KSS doesn't render this properly due to the angular directives
 // so we will hide the rendering to reduce confusion
-#kssref-3-9 .kss-modifier__wrapper {
+#kssref-3-8 .kss-modifier__wrapper {
   display: none;
 }
 
@@ -495,4 +498,34 @@ $image-size-sm: 150px;
 
 .my-library-header {
   margin-left: 7px;
+}
+
+// Form Inputs
+//
+// Markup:
+// <input type="email" name="email" class="form-control" placeholder="Email address">
+// <button name="login" class="md-button md-ink-ripple" type="submit">Submit</button>
+//
+// Styleguide 3.9
+
+.form-control {
+  border: 1px solid $blue-1;
+  border-radius: 3px;
+  font-size: 14px;
+  margin: 6px 0;
+  min-height: 36px;
+  line-height: 36px;
+  padding: 0 6px;
+}
+
+.form-errors {
+  font-size: 14px;
+  font-weight: normal;
+  list-style: none;
+  margin: 1em 0;
+  padding: 0;
+
+  ul {
+    padding-left: 2em;
+  }
 }

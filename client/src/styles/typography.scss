@@ -59,13 +59,13 @@ h1, .h1 {
 // Styleguide 2.3
 
 .text-black {
-  color: $black !important;
+  color: $black;
 }
 .text-gray {
-  color: $gray-1 !important;
+  color: $gray-1;
 }
 .text-white {
-  color: $white !important;
+  color: $white;
 }
 
 // Link colors
@@ -82,15 +82,15 @@ h1, .h1 {
 // Styleguide 2.4
 
 .link-black {
-  color: $black !important;
+  color: $black;
   @include pseudo-class {
-    color: $black !important;
+    color: $black;
   }
 }
 .link-gray {
-  color: $gray-1 !important;
+  color: $gray-1;
   @include pseudo-class {
-    color: $gray-1 !important;
+    color: $gray-1;
   }
 }
 

@@ -54,13 +54,59 @@
 
 
 // Media Query Breakpoints
+//
+// Easy way to generate media queries.
+//
+// ```
+// .my-div {
+//   width: 100%;
+//
+//   @include breakpoint(480px) {
+//      width: 50%;
+//   }
+//   @include breakpoint(479px, max) {
+//      width: 60%;
+//   }
+// }
+// ```
+// Will output the following CSS.
+//
+// ```
+// .my-div {
+//   width: 100%;
+// }
+//
+// @media screen and (min-width: 480px) {
+//   .my-div {
+//     width: 50%;
+//   }
+// }
+//
+// @media screen and (max-width: 479px) {
+//   .my-div {
+//     width: 60%;
+//   }
+// }
+// ```
+//
+// Styleguide 5.2
 @mixin breakpoint($bp, $direction: min) {
 	@media screen and (#{$direction}-width: $bp)  {
 		@content;
 	}
 }
 
-// Clearfix
+// Standard Clearfix
+//
+// Clears an element with floated children.
+//
+// ```
+// .my-div {
+//   @include clearfix;
+// }
+// ```
+//
+// Styleguide 5.3
 @mixin clearfix() {
   &::after {
     content: "";

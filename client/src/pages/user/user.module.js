@@ -4,7 +4,6 @@ import uiRouter from 'angular-ui-router';
 
 //Modules
 import dataStore from 'modules/datastore/module';
-import loading from 'modules/loading/module';
 import songsTable from 'modules/songs-table/module';
 
 import userRoute from './user.route.js';
@@ -15,7 +14,6 @@ import userLikesCtrl from './controllers/user-likes.controller.js';
 export default angular.module('msl.user', [
   uiRouter,
   dataStore,
-  loading,
   songsTable,
 ])
   .controller('userHistoryCtrl', userHistoryCtrl)
