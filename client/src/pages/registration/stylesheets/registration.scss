@@ -1,13 +1,15 @@
-#registration-form {
-  width: 100%;
-  max-width: 340px;
-  margin: 0 auto;
+$registration-container-width: 340px;
 
-  md-input-container {
-    margin-bottom: 16px;
+#registration-form {
+  width: $registration-container-width;
+  margin: 2em auto;
+  .form-control {
+    box-sizing: border-box;
+    width: 100%;
   }
 
   button {
-    float: right;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
