@@ -85,6 +85,7 @@ CREATE TABLE albums_by_facet (
   album_name text,
   album_id uuid,
   album_year int,
+  image_link text,
   artist_id uuid,
   artist_mbid uuid,
   artist_name text,

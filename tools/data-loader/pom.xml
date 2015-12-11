@@ -4,6 +4,13 @@
   <artifactId>data-loader</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
+	<repositories>
+		<repository>
+			<id>musicbrainzws2-java-mvn-repo</id>
+			<url>https://raw.github.com/schnatterer/musicbrainzws2-java/mvn-repo/</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -19,6 +26,16 @@
 		    <groupId>com.google.guava</groupId>
 		    <artifactId>guava</artifactId>
 		    <version>19.0-rc2</version>
+		</dependency>
+		<dependency>
+			<groupId>fm.last</groupId>
+			<artifactId>coverartarchive-api</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>info.schnatterer.musicbrainzws2-java</groupId>
+			<artifactId>musicbrainzws2-java</artifactId>
+			<version>3.0.0</version>
 		</dependency>
 	</dependencies>
 
