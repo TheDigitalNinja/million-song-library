@@ -12,6 +12,7 @@ export default function songModel($log, songStore, $rootScope) {
     filterSongs: filterSongs,
     song: null,
     songs: null,
+    isProcessing: false,
   };
   return _model;
 
@@ -21,6 +22,7 @@ export default function songModel($log, songStore, $rootScope) {
    * @param {function} done
    */
   async function getSong(songId, done) {
+    _model.isProcessing = true;
     try {
       const song = await songStore.fetch(songId);
       if(done) {
@@ -30,12 +32,14 @@ export default function songModel($log, songStore, $rootScope) {
     catch(err) {
       $log.warn(err);
     }
+    _model.isProcessing = false;
   }
 
   /**
    * Gets all songs
    */
   async function getSongs() {
+    _model.isProcessing = true;
     try {
       const songList = await songStore.fetchAll();
       _model.songs = songList.songs;
@@ -44,6 +48,7 @@ export default function songModel($log, songStore, $rootScope) {
     catch(error) {
       $log.warn(error);
     }
+    _model.isProcessing = false;
   }
 
   /**
@@ -52,6 +57,7 @@ export default function songModel($log, songStore, $rootScope) {
    * @param {function} done
    */
   async function filterSongs(facets, done) {
+    _model.isProcessing = true;
     try {
       const songsList = await songStore.fetchAll(facets);
       if(done) {
@@ -61,6 +67,7 @@ export default function songModel($log, songStore, $rootScope) {
     catch(error) {
       $log.warn(error);
     }
+    _model.isProcessing = false;
   }
 
 }

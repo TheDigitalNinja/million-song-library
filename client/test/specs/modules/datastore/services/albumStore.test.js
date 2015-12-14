@@ -1,4 +1,5 @@
 /* global describe, it, expect, beforeEach, inject */
+import {PAGE_SIZE} from 'constants.js';
 import datastoreModule from 'modules/datastore/module';
 
 describe('albumStore', () => {
@@ -68,7 +69,7 @@ describe('albumStore', () => {
 
     it('should browse the albums', (done) => {
       (async () => {
-        const params = { params: { items: 10, facets: GENRE } };
+        const params = { params: { items: PAGE_SIZE, facets: GENRE } };
         await albumStore.fetchAll(GENRE);
         expect(request.get).toHaveBeenCalledWith('/msl/v1/catalogedge/browse/album', params);
         done();

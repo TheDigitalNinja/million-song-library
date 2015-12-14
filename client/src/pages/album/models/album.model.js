@@ -16,6 +16,7 @@ export default function albumModel(albumStore, songStore, $log, $rootScope) {
     getAlbumSongs: getAlbumSongs,
     album: null,
     albums: null,
+    isProcessing: false,
   };
   return _model;
 
@@ -24,12 +25,14 @@ export default function albumModel(albumStore, songStore, $log, $rootScope) {
    * @param {int} albumId
    */
   async function getAlbum(albumId) {
+    _model.isProcessing = true;
     try {
       _model.album = await albumStore.fetch(albumId);
       $rootScope.$new().$evalAsync();
     } catch(err) {
       $log.warn(err);
     }
+    _model.isProcessing = false;
   }
 
   /**
@@ -38,6 +41,7 @@ export default function albumModel(albumStore, songStore, $log, $rootScope) {
    * @param {function} done
    */
   async function getAlbumSongs(albumId, done) {
+    _model.isProcessing = true;
     try {
       const album = await albumStore.fetch(albumId);
       await getSongsById(album.songsList);
@@ -48,6 +52,7 @@ export default function albumModel(albumStore, songStore, $log, $rootScope) {
     catch(error) {
       $log.warn(error);
     }
+    _model.isProcessing = false;
   }
 
   /**
@@ -55,22 +60,23 @@ export default function albumModel(albumStore, songStore, $log, $rootScope) {
    * @param {string[]} songIds
    */
   async function getSongsById(songIds) {
+    _model.isProcessing = true;
     try {
       const songs = songIds.map(async (songId) => await songStore.fetch(songId));
-
       _model.songs = await* songs;
-
       $rootScope.$new().$evalAsync();
     } catch(err) {
       _model.songs = [];
       $log.warn(err);
     }
+    _model.isProcessing = false;
   }
 
   /**
    * Gets all albums
    */
   async function getAlbums() {
+    _model.isProcessing = true;
     try {
       const albumList = await albumStore.fetchAll();
       _model.albums = albumList.albums;
@@ -79,6 +85,7 @@ export default function albumModel(albumStore, songStore, $log, $rootScope) {
     catch(error) {
       $log.warn(error);
     }
+    _model.isProcessing = false;
   }
 
   /**
@@ -87,6 +94,7 @@ export default function albumModel(albumStore, songStore, $log, $rootScope) {
    * @param {function} done
    */
   async function filterAlbums(facets, done) {
+    _model.isProcessing = true;
     try {
       const albumList = await albumStore.fetchAll(facets);
       if(done) {
@@ -96,5 +104,6 @@ export default function albumModel(albumStore, songStore, $log, $rootScope) {
     catch(error) {
       $log.warn(error);
     }
+    _model.isProcessing = false;
   }
 }

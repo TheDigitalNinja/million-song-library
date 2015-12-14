@@ -1,3 +1,4 @@
+import {PAGE_SIZE} from 'constants.js';
 import datastoreModule from 'modules/datastore/module';
 
 describe('songStore', () => {
@@ -67,7 +68,7 @@ describe('songStore', () => {
 
     it('should request the songs to the endpoint', (done) => {
       (async () => {
-        const params = { items: 10, facets: opts };
+        const params = { items: PAGE_SIZE, facets: opts };
         await songStore.fetchAll(opts);
         expect(request.get).toHaveBeenCalledWith('/msl/v1/catalogedge/browse/song', { params });
         done();

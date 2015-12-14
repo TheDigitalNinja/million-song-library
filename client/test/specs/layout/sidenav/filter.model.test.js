@@ -2,9 +2,10 @@
 
 import sidenav from 'layout/sidenav/sidenav.module.js';
 
-describe('ratingFilterDirective', () => {
+describe('filterModel', () => {
   const RATING = '4';
-  const GENRE = '2';
+  const GENRE_ID = '2';
+  const GENRE = { facetId: GENRE_ID, name: 'SomeGenre' };
   let filterModel, listener, songModel, albumModel, artistModel, $location;
 
   beforeEach(() => {
@@ -36,18 +37,18 @@ describe('ratingFilterDirective', () => {
       expect(filterModel.selectedRating).toEqual(RATING);
     });
 
-    it('should set the selectedGenre to null', () => {
-      expect(filterModel.selectedGenre).toBeNull();
+    it('should set the selectedGenreId to null', () => {
+      expect(filterModel.selectedGenreId).toBeNull();
     });
   });
 
-  describe('setSelectedGenre', () => {
+  describe('setSelectedGenreId', () => {
     beforeEach(() => {
       filterModel.setSelectedGenre(GENRE);
     });
 
     it('should set the selectedGenre to the received value', () => {
-      expect(filterModel.selectedGenre).toEqual(GENRE);
+      expect(filterModel.selectedGenreId).toEqual(GENRE_ID);
     });
 
     it('should set the selectedRating to null', () => {
@@ -92,7 +93,7 @@ describe('ratingFilterDirective', () => {
     it('should set the selected genre', () => {
       $location.search.and.returnValue({ genre: GENRE });
       filterModel.applyCurrentFilters(listener);
-      expect(filterModel.selectedGenre).toBe(GENRE);
+      expect(filterModel.selectedGenreId).toBe(GENRE_ID);
     });
 
     it('should call the filter function with the listener', () => {
@@ -106,7 +107,7 @@ describe('ratingFilterDirective', () => {
   describe('filterSongs', () => {
     beforeEach(() => {
       filterModel.selectedRating = RATING;
-      filterModel.selectedGenre = GENRE;
+      filterModel.selectedGenreId = GENRE;
       filterModel.listener = listener;
     });
 
@@ -130,7 +131,7 @@ describe('ratingFilterDirective', () => {
   describe('filterAlbums', () => {
     beforeEach(() => {
       filterModel.selectedRating = RATING;
-      filterModel.selectedGenre = GENRE;
+      filterModel.selectedGenreId = GENRE_ID;
       filterModel.listener = listener;
     });
 
@@ -154,7 +155,7 @@ describe('ratingFilterDirective', () => {
   describe('filterArtists', () => {
     beforeEach(() => {
       filterModel.selectedRating = RATING;
-      filterModel.selectedGenre = GENRE;
+      filterModel.selectedGenreId = GENRE_ID;
       filterModel.listener = listener;
     });
 
@@ -178,28 +179,28 @@ describe('ratingFilterDirective', () => {
   describe('getFacets', () => {
     it('should concatenate the rating and genre Ids on the returned string', () => {
       filterModel.selectedRating = RATING;
-      filterModel.selectedGenre = GENRE;
+      filterModel.selectedGenreId = GENRE_ID;
       filterModel.listener = listener;
       expect(filterModel._getFacets()).toEqual('4,2');
     });
 
     it('should return just the rating id when the genre is null', () => {
       filterModel.selectedRating = RATING;
-      filterModel.selectedGenre = null;
+      filterModel.selectedGenreId = null;
       filterModel.listener = listener;
       expect(filterModel._getFacets()).toEqual('4');
     });
 
     it('should return just the genre id when the rating is null', () => {
       filterModel.selectedRating = null;
-      filterModel.selectedGenre = GENRE;
+      filterModel.selectedGenreId = GENRE_ID;
       filterModel.listener = listener;
       expect(filterModel._getFacets()).toEqual('2');
     });
 
     it('should return an empty string when the rating and genre are null', () => {
       filterModel.selectedRating = null;
-      filterModel.selectedGenre = null;
+      filterModel.selectedGenreId = null;
       filterModel.listener = listener;
       expect(filterModel._getFacets()).toEqual(undefined);
     });

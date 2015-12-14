@@ -21,17 +21,25 @@ export default class filterModel {
     this.artistModel = artistModel;
     this.$location = $location;
 
-    this.selectedGenre = null;
+    this.selectedGenreId = null;
+    this.selectedGenreName = null;
     this.selectedRating = null;
     this.listener = null;
   }
 
   /**
    * Sets the selected genre
-   * @param {string} genreId
+   * @param {object} genre
    */
-  setSelectedGenre(genreId) {
-    this.selectedGenre = genreId;
+  setSelectedGenre(genre) {
+    if(genre) {
+      this.selectedGenreId = genre.facetId;
+      this.selectedGenreName = genre.name;
+    }
+    else {
+      this.selectedGenreId = null;
+      this.selectedGenreName = null;
+    }
     this.selectedRating = null;
   }
 
@@ -41,7 +49,8 @@ export default class filterModel {
    */
   setSelectedRating(ratingId) {
     this.selectedRating = ratingId;
-    this.selectedGenre = null;
+    this.selectedGenreId = null;
+    this.selectedGenreName = null;
   }
 
   /**
@@ -116,7 +125,7 @@ export default class filterModel {
    */
   _getFacets() {
     const rating = this.selectedRating;
-    const genre = this.selectedGenre;
+    const genre = this.selectedGenreId;
     const facets = _.filter([rating, genre], (facet) => facet != null).join();
     return facets.length > 0 ? facets : undefined;
   }
