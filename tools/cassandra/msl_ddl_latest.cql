@@ -85,10 +85,10 @@ CREATE TABLE albums_by_facet (
   album_name text,
   album_id uuid,
   album_year int,
-  image_link text,
   artist_id uuid,
   artist_mbid uuid,
   artist_name text,
+  image_link text,
   PRIMARY KEY ((facet_name, content_type), album_name, album_id)
 ) WITH CLUSTERING ORDER BY (album_name ASC, album_id ASC);
 

@@ -39,10 +39,10 @@ public class Q07AlbumsByFacet {
         row.add(RowUtil.formatText(albumName));
         row.add(albumId.toString());
         row.add(RowUtil.formatInt(albumYear));
-        row.add(imageLink);
         row.add(aritstId.toString());
         row.add(artistMbid.toString());
         row.add(RowUtil.formatText(artistName));
+        row.add(RowUtil.formatText(imageLink));
         return String.join(RowUtil.FIELD_DELIMITER, row);
     }
 }
