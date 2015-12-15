@@ -4,39 +4,34 @@
       <div class="md-toolbar-tools">
         <h2>LogIn</h2>
         <span flex></span>
-        <md-button class="md-icon-button" ng-click="vm.cancel()">
-          <md-icon md-font-set="fa fa-close" aria-label="Close dialog"></md-icon>
-        </md-button>
+        <md-icon class="cancel-button" ng-click="vm.cancel()" md-font-set="material-icons" aria-label="Close dialog">clear</md-icon>
       </div>
     </md-toolbar>
     <md-dialog-content>
       <div class="md-dialog-content">
         <div class="form-group" ng-class="{'has-error': credentials.email.$invalid && credentials.email.$dirty}">
-          <md-input-container>
-            <input type="email" name="email" ng-model="vm.email" class="form-control" placeholder="Email address" required autofocus>
-            <div class="error-messages" ng-messages="credentials.email.$error" ng-show="credentials.email.$dirty">
-              <div ng-message="email">Should be a valid email format</div>
-              <div ng-message="required">This is required!</div>
-            </div>
-          </md-input-container>
+          <input type="email" name="email" ng-model="vm.email" class="form-control" placeholder="Email address" required autofocus>
+          <div class="input-field-error" ng-messages="credentials.email.$error" ng-show="credentials.email.$dirty">
+            <div ng-message="email">Should be a valid email format</div>
+            <div ng-message="required">This is required!</div>
+          </div>
         </div>
+
         <div class="form-group" ng-class="{'has-error': credentials.password.$invalid && credentials.password.$dirty}">
-          <md-input-container>
-            <input type="password" name="password" ng-model="vm.password" class="form-control" placeholder="Password" required password>
-              <div class="error-messages" ng-messages="credentials.password.$error" ng-show="credentials.password.$dirty">
-                <div ng-message="required">This is required!</div>
-                <div ng-message="password">
-                  <span class="input-field-error">Must contain:
-                    <ul>
-                      <li>At least a number</li>
-                      <li>A capitalized letter </li>
-                      <li>A special character (!#$%&*+,./:;<=>?@\^_~-)</li>
-                      <li>More than 10 characters </li>
-                    </ul>
-                  </span>
-                </div>
-              </div>
-          </md-input-container>
+          <input type="password" name="password" ng-model="vm.password" class="form-control" placeholder="Password" required password>
+          <div class="input-field-error" ng-messages="credentials.password.$error" ng-show="credentials.password.$dirty">
+            <div ng-message="required">This is required!</div>
+            <div ng-message="password">
+              <span class="input-field-error">Must contain:
+                <ul>
+                  <li>At least a number</li>
+                  <li>A capitalized letter </li>
+                  <li>A special character (!#$%&*+,./:;<=>?@\^_~-)</li>
+                  <li>More than 10 characters </li>
+                </ul>
+              </span>
+            </div>
+          </div>
         </div>
         <div class="alert alert-danger" ng-if="vm.hasError" role="alert">
           <strong>Oh snap!</strong>
