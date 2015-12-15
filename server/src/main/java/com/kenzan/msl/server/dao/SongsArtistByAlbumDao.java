@@ -12,8 +12,6 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- *
- *
  * @author billschwanitz
  */
 @Table(name = "songs_album_by_album")

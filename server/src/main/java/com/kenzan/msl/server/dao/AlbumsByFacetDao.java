@@ -10,8 +10,6 @@ import com.datastax.driver.mapping.annotations.Table;
 import java.util.UUID;
 
 /**
- *
- *
  * @author billschwanitz
  */
 
@@ -158,6 +156,6 @@ public class AlbumsByFacetDao extends AbstractAlbumDao {
 	 */
 	@Override
 	public void setImageLink(String imageLink) {
-		this.imageLink = imageLink
+		this.imageLink = imageLink;
 	}
 }

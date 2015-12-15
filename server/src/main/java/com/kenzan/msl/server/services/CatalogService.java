@@ -16,8 +16,6 @@ import rx.Observable;
 import java.util.UUID;
 
 /**
- *
- *
  * @author billschwanitz
  */
 public interface CatalogService {
