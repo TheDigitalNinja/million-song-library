@@ -155,11 +155,13 @@ public class AlbumListQuery
             UserDataByUserDao userDataByUserDao = mappingManager.mapper(UserDataByUserDao.class)
                 .map(future.getUninterruptibly()).one();
 
-            // Find and update the matching AlbumBo
-            for ( AlbumBo artistBo : artistListBo.getBoList() ) {
-                if ( artistBo.getAlbumId().equals(userDataByUserDao.getContentUuid()) ) {
-                    artistBo.setPersonalRating(userDataByUserDao.getRating());
-                    break;
+            if ( userDataByUserDao != null ) {
+                // Find and update the matching AlbumBo
+                for ( AlbumBo artistBo : artistListBo.getBoList() ) {
+                    if ( artistBo.getAlbumId().equals(userDataByUserDao.getContentUuid()) ) {
+                        artistBo.setPersonalRating(userDataByUserDao.getRating());
+                        break;
+                    }
                 }
             }
         }

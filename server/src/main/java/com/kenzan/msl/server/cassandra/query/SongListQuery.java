@@ -153,11 +153,13 @@ public class SongListQuery
             UserDataByUserDao userDataByUserDao = mappingManager.mapper(UserDataByUserDao.class)
                 .map(future.getUninterruptibly()).one();
 
-            // Find and update the matching SongBo
-            for ( SongBo songBo : songListBo.getBoList() ) {
-                if ( songBo.getSongId().equals(userDataByUserDao.getContentUuid()) ) {
-                    songBo.setPersonalRating(userDataByUserDao.getRating());
-                    break;
+            if ( userDataByUserDao != null ) {
+                // Find and update the matching SongBo
+                for ( SongBo songBo : songListBo.getBoList() ) {
+                    if ( songBo.getSongId().equals(userDataByUserDao.getContentUuid()) ) {
+                        songBo.setPersonalRating(userDataByUserDao.getRating());
+                        break;
+                    }
                 }
             }
         }

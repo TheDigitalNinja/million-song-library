@@ -73,7 +73,9 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         AlbumList albumList;
         try {
-            albumList = catalogService.browseAlbums(pagingState, items, facets, null).toBlocking().first();
+            albumList = catalogService.browseAlbums(pagingState, items, facets, MslSessionToken.getInstance().getTokenValue())
+                    .toBlocking()
+                    .first();
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -121,7 +123,9 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         ArtistList artistList;
         try {
-            artistList = catalogService.browseArtists(pagingState, items, facets, null).toBlocking().first();
+            artistList = catalogService.browseArtists(pagingState, items, facets, MslSessionToken.getInstance().getTokenValue())
+                    .toBlocking()
+                    .first();
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -175,7 +179,9 @@ public class MslApiServiceImpl extends MslApiService {
             throws NotFoundException {
         SongList songList;
         try {
-            songList = catalogService.browseSongs(pagingState, items, facets, null).toBlocking().first();
+            songList = catalogService.browseSongs(pagingState, items, facets, MslSessionToken.getInstance().getTokenValue())
+                    .toBlocking()
+                    .first();
         } catch (Exception e) {
             e.printStackTrace();
 

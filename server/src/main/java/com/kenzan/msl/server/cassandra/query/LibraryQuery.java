@@ -16,9 +16,6 @@ import io.swagger.model.ArtistInfo;
 import io.swagger.model.MyLibrary;
 import io.swagger.model.SongInfo;
 import javax.management.RuntimeErrorException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class LibraryQuery {
@@ -26,17 +23,29 @@ public class LibraryQuery {
     /**
      * Retrieves the MyLibrary object with contained albums artist and songs
      *
-     * @param queryAccessor datastax QueryAccessor object
+     * @param queryAccessor com.datastax.driver.mapping.MappingManager query accessor
      * @param sessionToken uuid of authenticated user
      * @return MyLibrary
      */
     public static MyLibrary get(final QueryAccessor queryAccessor, final MappingManager manager,
                                 final String sessionToken) {
         MyLibrary myLibrary = new MyLibrary();
-        myLibrary.setAlbums(getMyLibraryAlbums(queryAccessor, manager, sessionToken));
-        myLibrary.setArtists(getMyLibraryArtists(queryAccessor, manager, sessionToken));
-        myLibrary.setSongs(getMyLibrarySongs(queryAccessor, manager, sessionToken));
+        List<AlbumInfo> albumInfoList = getMyLibraryAlbums(queryAccessor, manager, sessionToken);
+        RatingHelper.processAverageAlbumRatings(queryAccessor, manager, albumInfoList);
+        RatingHelper
+            .processUserAlbumRatingResults(queryAccessor, manager, albumInfoList, UUID.fromString(sessionToken));
+        myLibrary.setAlbums(albumInfoList);
 
+        List<ArtistInfo> artistInfoList = getMyLibraryArtists(queryAccessor, manager, sessionToken);
+        RatingHelper.processAverageArtistRatings(queryAccessor, manager, artistInfoList);
+        RatingHelper.processUserArtistRatingResults(queryAccessor, manager, artistInfoList,
+                                                    UUID.fromString(sessionToken));
+        myLibrary.setArtists(artistInfoList);
+
+        List<SongInfo> songInfoList = getMyLibrarySongs(queryAccessor, manager, sessionToken);
+        RatingHelper.processAverageSongRatings(queryAccessor, manager, songInfoList);
+        RatingHelper.processUserSongRatingResults(queryAccessor, manager, songInfoList, UUID.fromString(sessionToken));
+        myLibrary.setSongs(songInfoList);
         return myLibrary;
     }
 
@@ -149,7 +158,6 @@ public class LibraryQuery {
                 }
                 break;
         }
-
     }
 
     /**
