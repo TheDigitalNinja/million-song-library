@@ -18,8 +18,9 @@ public class Q06FeaturedAlbum {
     private final UUID aritstId;
     private final UUID artistMbid;
     private final String artistName;
+    private final String imageLink;
     
-    public Q06FeaturedAlbum(final NormalizedRow normalizedRow) {
+    public Q06FeaturedAlbum(final NormalizedRow normalizedRow, final String imageLink) {
         
         this.albumHotness = normalizedRow.getAlbum().getHotness();
         this.albumId = normalizedRow.getAlbum().getId();
@@ -28,6 +29,7 @@ public class Q06FeaturedAlbum {
         this.aritstId = normalizedRow.getArtist().getId();
         this.artistMbid = normalizedRow.getArtist().getMbid();
         this.artistName = normalizedRow.getArtist().getName();
+        this.imageLink = imageLink;
     }
     
     public String toString() {
@@ -42,6 +44,7 @@ public class Q06FeaturedAlbum {
         row.add(aritstId.toString());
         row.add(artistMbid.toString());
         row.add(RowUtil.formatText(artistName));
+        row.add(RowUtil.formatText(imageLink));
         return String.join(RowUtil.FIELD_DELIMITER, row);
     }
 }

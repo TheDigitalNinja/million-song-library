@@ -248,8 +248,8 @@ public class H5ToCSV {
                         q3Writer.println(new Q03AverageRatings(group.get(0).getSong().getId(), ContentType.ALBUM,
                                 numRating, sumRating));
                     }
-                    q6Writer.println(new Q06FeaturedAlbum(group.get(0)));
                     AlbumImage albumImage = new AlbumImage(group.get(0));
+                    q6Writer.println(new Q06FeaturedAlbum(group.get(0), albumImage.getUrl()));
                     for (int x = averageRating; x >= 1; x--) {
                         q7Writer.println(new Q07AlbumsByFacet(group.get(0), Rating.values()[x - 1].toString(), albumImage.getUrl()));
                     }

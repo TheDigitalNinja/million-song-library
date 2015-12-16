@@ -75,6 +75,7 @@ CREATE TABLE featured_albums (
   artist_id uuid,
   artist_mbid uuid,
   artist_name text,
+  image_link text,
   PRIMARY KEY ((hotness_bucket, content_type), hotness_value, album_id)
 ) WITH CLUSTERING ORDER BY (hotness_value DESC, album_id ASC);
 
