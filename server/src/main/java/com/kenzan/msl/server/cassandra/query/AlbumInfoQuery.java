@@ -88,6 +88,29 @@ public class AlbumInfoQuery {
             albumBo.setAverageRating((int) (averageRatingsDao.getSumRating() / averageRatingsDao.getNumRating()));
         }
 
+		// Loop through the results rows building up the AlbumInfo
+		boolean processedOneRow = false;
+		for (SongsArtistByAlbumDao songsArtistByAlbumDao : results1) {
+			if (false == processedOneRow) {
+				albumBo.setAlbumId(songsArtistByAlbumDao.getAlbumId());
+				albumBo.setAlbumName(songsArtistByAlbumDao.getAlbumName());
+				albumBo.setArtistId(songsArtistByAlbumDao.getArtistId());
+				albumBo.setArtistName(songsArtistByAlbumDao.getArtistName());
+				albumBo.setImageLink(songsArtistByAlbumDao.getImageLink());
+				
+				if (songsArtistByAlbumDao.getArtistGenres() != null && songsArtistByAlbumDao.getArtistGenres().size()>0) {
+					albumBo.setGenre(songsArtistByAlbumDao.getArtistGenres().iterator().next());
+				}
+				
+				processedOneRow = true;
+			}
+			
+			// Add the song ID from this DAO if it is not already in the list
+			if (!albumBo.getSongsList().contains(songsArtistByAlbumDao.getSongId().toString())) {
+				albumBo.getSongsList().add(songsArtistByAlbumDao.getSongId().toString());
+			}
+		}
+
         // Retrieve user's rating for the album if a user UUID was passed
         if ( userUuid != null ) {
             // Select the row for the album and user from the user_data_by_user table

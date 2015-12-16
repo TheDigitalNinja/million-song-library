@@ -22,8 +22,9 @@ public class Q14SongsArtistByAlbum {
     private final String artistName;
     private final Map<UUID, String> similarArtists;
     private final int songDuration;
+    private final String imageLink;
     
-    public Q14SongsArtistByAlbum(final NormalizedRow normalizedRow) {
+    public Q14SongsArtistByAlbum(final NormalizedRow normalizedRow, String imageLink) {
 
         this.albumId = normalizedRow.getAlbum().getId();
         this.songName = normalizedRow.getSong().getName();
@@ -41,6 +42,7 @@ public class Q14SongsArtistByAlbum {
         }
         this.similarArtists = artistMap;
         this.songDuration = normalizedRow.getSong().getDuration();
+        this.imageLink = imageLink;
     }
     
     public String toString() {
@@ -55,6 +57,7 @@ public class Q14SongsArtistByAlbum {
         row.add(aritstId.toString());
         row.add(artistMbid.toString());
         row.add(RowUtil.formatText(artistName));
+        row.add(RowUtil.formatText(imageLink));
         row.add(RowUtil.formatSimilarArtists(similarArtists));
         row.add(RowUtil.formatInt(songDuration));
         return String.join(RowUtil.FIELD_DELIMITER, row);

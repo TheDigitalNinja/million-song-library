@@ -185,6 +185,7 @@ CREATE TABLE songs_artist_by_album (
   artist_name text static,
   similar_artists map<uuid, text> static,
   song_duration int,
+  image_link text,
   PRIMARY KEY ((album_id), song_name, song_id)
 ) WITH CLUSTERING ORDER BY (song_name ASC, song_id ASC);
 
