@@ -90,7 +90,7 @@ public class H5ToCSV {
 
     public H5ToCSV(final String directory) throws IOException, InterruptedException {
 
-        this.h5ToCsv(directory);
+        //this.h5ToCsv(directory);
         this.mergeSortData(RAW_DATA, RAW_DATA_BY_SONG_ID, Field.SONG_ID);
         this.readDataWriteData(RAW_DATA_BY_SONG_ID, RAW_DATA_NORMALIZED_SONGS, NORMALIZE_SONGS);
         this.mergeSortData(RAW_DATA_NORMALIZED_SONGS, RAW_DATA_BY_ALBUM_ID, Field.ALBUM_ID);
@@ -249,11 +249,12 @@ public class H5ToCSV {
                                 numRating, sumRating));
                     }
                     q6Writer.println(new Q06FeaturedAlbum(group.get(0)));
+                    AlbumImage albumImage = new AlbumImage(group.get(0));
                     for (int x = averageRating; x >= 1; x--) {
-                        q7Writer.println(new Q07AlbumsByFacet(group.get(0), Rating.values()[x - 1].toString()));
+                        q7Writer.println(new Q07AlbumsByFacet(group.get(0), Rating.values()[x - 1].toString(), albumImage.getUrl()));
                     }
                     for (final Genre genre : group.get(0).getArtist().getGenres()) {
-                        q7Writer.println(new Q07AlbumsByFacet(group.get(0), genre.toString()));
+                        q7Writer.println(new Q07AlbumsByFacet(group.get(0), genre.toString(), albumImage.getUrl()));
                     }
                     group = new ArrayList<NormalizedRow>();
                 }
