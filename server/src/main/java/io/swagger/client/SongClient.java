@@ -12,7 +12,6 @@ import javax.ws.rs.core.Response;
 
 public class SongClient {
 
-    private String baseUrl = "http://local.msl.dev:9000/msl";
     private ResteasyClient client;
 
     public SongClient() {
@@ -21,18 +20,19 @@ public class SongClient {
 
     public MslApiResponseMessage get(String id) {
 
-        WebTarget target = client.target(baseUrl + "/v1/catalogedge/");
+        ResteasyWebTarget target = client.target(ClientConstants.BASE_URL + "/v1/catalogedge/");
         Response response = target.path("song/" + id).request().get();
 
         if ( response.getStatus() != 200 ) {
             throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
         }
+
         return response.readEntity(MslApiResponseMessage.class);
     }
 
     public MslApiResponseMessage browse(String items) {
         WebTarget target;
-        target = client.target(baseUrl + "/v1/catalogedge/browse/song?items=" + items);
+        target = client.target(ClientConstants.BASE_URL + "/v1/catalogedge/browse/song?items=" + items);
         Response response = target.request().get();
 
         if ( response.getStatus() != 200 ) {
@@ -42,25 +42,13 @@ public class SongClient {
         return response.readEntity(MslApiResponseMessage.class);
     }
 
-    public MslApiResponseMessage addSong(String songId, String sessionToken) {
-        WebTarget target = client.target(baseUrl + "/v1/accountedge/users/mylibrary/addsong/" + songId);
-
-        Response response = target.request().header("Cookie", sessionToken)
-            .put(Entity.entity(songId, MediaType.APPLICATION_JSON));
-
-        if ( response.getStatus() != 200 ) {
-            throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
-        }
-        return response.readEntity(MslApiResponseMessage.class);
-    }
-
     public MslApiResponseMessage rateSong(String songId, Integer rating, String sessionToken) {
-        ResteasyWebTarget target = client.target(baseUrl + "/v1/ratingsedge/ratesong/" + songId);
+        ResteasyWebTarget target = client.target(ClientConstants.BASE_URL + "/v1/ratingsedge/ratesong/" + songId);
 
         Form form = new Form();
         form.param("rating", rating.toString());
 
-        Response response = target.request().header("Cookie", sessionToken)
+        Response response = target.request().cookie("sessionToken", sessionToken)
             .put(Entity.entity(form, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
 
         if ( response.getStatus() != 200 ) {

@@ -1,10 +1,8 @@
-package io.swagger.test;
+package io.swagger.client;
 
 import io.swagger.api.impl.MslApiResponseMessage;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import javax.ws.rs.core.NewCookie;
-import io.swagger.client.SongClient;
 
 import org.junit.Test;
 import org.junit.Before;
@@ -14,12 +12,10 @@ import static org.junit.Assert.assertNotNull;
 
 public class SongClientTest {
 
-    private final String PAGE_SIZE = "10";
 
     private SongClient songClient;
     static Logger logger = Logger.getLogger(SongClientTest.class);
-    private final String TEST_TOKEN = "2883607a-176d-4729-a20b-ec441c285afb";
-    private final String TEST_SONG_ID = "a71d214c-ee76-45c5-a9f3-9b57fc15ef36";
+
 
     @Before
     public void init() {
@@ -29,30 +25,33 @@ public class SongClientTest {
 
     @Test
     public void testGet() {
-        logger.debug("songClient.testGet");
-        MslApiResponseMessage song = songClient.get(TEST_SONG_ID);
+        logger.debug("SongClient.testGet");
+        MslApiResponseMessage song = songClient.get(ClientConstants.TEST_SONG_ID);
         assertNotNull(song);
+        assertNotNull(song.getData());
         assertEquals("song get call is successful", "success", song.getMessage());
     }
 
     @Test(expected = java.lang.RuntimeException.class)
     public void testGetExceptionIsThrown() {
-        logger.debug("songClient.testGetExceptionIsThrown");
+        logger.debug("SongClient.testGetExceptionIsThrown");
         songClient.get("");
     }
 
     @Test
     public void testBrowse() {
+        String PAGE_SIZE = "12";
         logger.debug("songClient.testBrowse");
         MslApiResponseMessage songList = songClient.browse(PAGE_SIZE);
+        assertNotNull(songList);
+        assertNotNull(songList.getData());
         assertEquals("song browse call is successful", "success", songList.getMessage());
     }
 
     @Test
     public void testRateSong() {
         logger.debug("songClient.testRateSong");
-        NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);
-        MslApiResponseMessage response = songClient.rateSong(TEST_SONG_ID, 2, cookie.toString());
+        MslApiResponseMessage response = songClient.rateSong(ClientConstants.TEST_SONG_ID, 2, ClientConstants.TEST_TOKEN);
         assertNotNull(response);
         assertEquals("rateSong response is successful", "magic!", response.getMessage());
     }
@@ -60,7 +59,7 @@ public class SongClientTest {
     @Test(expected = java.lang.RuntimeException.class)
     public void testRateSongThrowException() {
         logger.debug("songClient.testRateSongThrowException");
-        songClient.rateSong(TEST_SONG_ID, 3, "");
+        songClient.rateSong(ClientConstants.TEST_SONG_ID, 3, "");
     }
 
 }
