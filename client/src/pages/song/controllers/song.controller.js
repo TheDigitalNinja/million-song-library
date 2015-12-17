@@ -12,12 +12,14 @@ export default class songCtrl {
    * @param {ui.router.state.$state} $state
    * @param {ui.router.state.$stateParams} $stateParams
    * @param {songModel} songModel
+   * @param {authentication} authentication
    */
-  constructor(artistModel, $scope, $state, $stateParams, songModel) {
+  constructor(artistModel, $scope, $state, $stateParams, songModel, authentication) {
     if(angular.isDefined($stateParams.songId) && $stateParams.songId.length > 0) {
+      this.authentication = authentication;
       this.artistModel = artistModel;
-      this.$scope = $scope;
       this.songId = $stateParams.songId;
+      this.$scope = $scope;
       this.model = songModel;
       //Initialization
       this._getSong();

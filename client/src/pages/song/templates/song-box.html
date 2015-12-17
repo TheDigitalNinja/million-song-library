@@ -13,10 +13,10 @@
           <i class="material-icons">play_circle_filled</i> <span class="icon-label">Play</span>
         </div>
         <div class="media-box-overlay-control">
-          <a href="" ng-if="!song.inMyLibrary && !vm.isLibraryPage()" add-to-library id="song.songId" type="song">
+          <a href="" ng-if="vm.authentication.isAuthenticated() && !song.inMyLibrary && !vm.isLibraryPage()" add-to-library id="song.songId" type="song">
             <i class="material-icons">favorite</i> <span class="icon-label">Add to library</span>
           </a>
-          <a href="" ng-if="song.inMyLibrary || vm.isLibraryPage()" remove-from-library id="song.songId" timestamp="song.favoritesTimestamp" type="song">
+          <a href="" ng-if="vm.authentication.isAuthenticated() && (song.inMyLibrary || vm.isLibraryPage())" remove-from-library id="song.songId" timestamp="song.favoritesTimestamp" type="song">
             <i class="material-icons">not_interested</i> <span class="icon-label">Remove from library</span>
           </a>
         </div>

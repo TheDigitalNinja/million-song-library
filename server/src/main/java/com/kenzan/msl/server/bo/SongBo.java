@@ -27,6 +27,8 @@ public class SongBo extends AbstractBo {
     private String artistName;
     private UUID albumId;
     private String albumName;
+    private boolean isInMyLibrary;
+    private String favoritesTimestamp;
 
     /**
      * @return the songId
@@ -236,5 +238,33 @@ public class SongBo extends AbstractBo {
      */
     public void setAlbumName(String albumName) {
         this.albumName = albumName;
+    }
+
+    /**
+     * @return boolean
+     */
+    public boolean isInMyLibrary() {
+        return isInMyLibrary;
+    }
+
+    /**
+     * @param isInMyLibrary boolean
+     */
+    public void setInMyLibrary(boolean isInMyLibrary) {
+        this.isInMyLibrary = isInMyLibrary;
+    }
+
+    /**
+     * @return String
+     */
+    public String getFavoritesTimestamp() {
+        return favoritesTimestamp;
+    }
+
+    /**
+     * @param favoritesTimestamp String
+     */
+    public void setFavoritesTimestamp(String favoritesTimestamp) {
+        this.favoritesTimestamp = favoritesTimestamp;
     }
 }

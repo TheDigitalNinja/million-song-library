@@ -12,6 +12,7 @@ import com.kenzan.msl.server.cassandra.CassandraConstants;
 import com.kenzan.msl.server.cassandra.QueryAccessor;
 import com.kenzan.msl.server.dao.AverageRatingsDao;
 import com.kenzan.msl.server.dao.UserDataByUserDao;
+import io.swagger.model.MyLibrary;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -66,6 +67,15 @@ public class ArtistListQuery
         new Paginator(CassandraConstants.MSL_CONTENT_TYPE.ARTIST, queryAccessor, mappingManager, this, pagingStateUuid,
                       items, facets).getPage(artistListBo);
 
+        // Adds isInLibrary tag to artistList results
+        if ( null != userUuid ) {
+            MyLibrary myLibrary = LibraryQuery.get(queryAccessor, mappingManager, userUuid.toString());
+            for ( ArtistBo artistBo : artistListBo.getBoList() ) {
+                if ( LibraryQuery.isInLibrary(artistBo, myLibrary) ) {
+                    artistBo.setInMyLibrary(true);
+                }
+            }
+        }
         /*
          * Asynchronously query for the average and user ratings for each artist.
          * 
@@ -155,9 +165,10 @@ public class ArtistListQuery
             UserDataByUserDao userDataByUserDao = mappingManager.mapper(UserDataByUserDao.class)
                 .map(future.getUninterruptibly()).one();
 
-            if ( userDataByUserDao != null ) {
-                // Find and update the matching ArtistBo
-                for ( ArtistBo artistBo : artistListBo.getBoList() ) {
+            // Find and update the matching ArtistBo
+            for ( ArtistBo artistBo : artistListBo.getBoList() ) {
+
+                if ( userDataByUserDao != null ) {
                     if ( artistBo.getArtistId().equals(userDataByUserDao.getContentUuid()) ) {
                         artistBo.setPersonalRating(userDataByUserDao.getRating());
                         break;

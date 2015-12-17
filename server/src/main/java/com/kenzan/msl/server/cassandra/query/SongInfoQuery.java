@@ -10,6 +10,7 @@ import com.kenzan.msl.server.cassandra.QueryAccessor;
 import com.kenzan.msl.server.dao.AverageRatingsDao;
 import com.kenzan.msl.server.dao.AlbumArtistBySongDao;
 import com.kenzan.msl.server.dao.UserDataByUserDao;
+import io.swagger.model.MyLibrary;
 
 import java.util.UUID;
 
@@ -72,6 +73,14 @@ public class SongInfoQuery {
 
         if ( albumArtistBySongDao.getArtistGenres() != null && albumArtistBySongDao.getArtistGenres().size() > 0 ) {
             songBo.setGenre(albumArtistBySongDao.getArtistGenres().iterator().next());
+        }
+
+        // Adds isInLibrary tag and timestamp to songBo result
+        if ( null != userUuid ) {
+            MyLibrary myLibrary = LibraryQuery.get(queryAccessor, mappingManager, userUuid.toString());
+            if ( LibraryQuery.isInLibrary(songBo, myLibrary) ) {
+                songBo.setInMyLibrary(true);
+            }
         }
 
         /*

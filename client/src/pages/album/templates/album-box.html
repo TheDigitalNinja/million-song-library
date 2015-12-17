@@ -9,10 +9,10 @@
       </div>
       <div class="media-box-overlay">
         <div class="media-box-overlay-control">
-          <a href="" ng-if="!album.inMyLibrary && !vm.isLibraryPage()" add-to-library id="album.albumId" type="album">
+          <a href="" ng-if="vm.authentication.isAuthenticated() && !album.inMyLibrary && !vm.isLibraryPage()" add-to-library id="album.albumId" type="album">
             <i class="material-icons">favorite</i> <span class="icon-label">Add to library</span>
           </a>
-          <a href="" ng-if="album.inMyLibrary || vm.isLibraryPage()" remove-from-library id="album.albumId" timestamp="album.favoritesTimestamp" type="album">
+          <a href="" ng-if="vm.authentication.isAuthenticated() && (album.inMyLibrary || vm.isLibraryPage())" remove-from-library id="album.albumId" timestamp="album.favoritesTimestamp" type="album">
             <i class="material-icons">not_interested</i> <span class="icon-label">Remove from library</span>
           </a>
         </div>

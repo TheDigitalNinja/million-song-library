@@ -8,10 +8,10 @@
     </div>
     <div flex="75" class="msl-padding">
     <span class="pull-right">
-      <a href="" ng-if="!vm.song.inMyLibrary" add-to-library id="vm.songId" type="song">
+      <a href="" ng-if="vm.authentication.isAuthenticated() && !vm.song.inMyLibrary" add-to-library id="vm.songId" type="song">
         <i class="material-icons">favorite</i> <span class="icon-label">Add Song to library</span>
       </a>
-      <a href="" ng-if="vm.song.inMyLibrary" remove-from-library id="vm.songId" type="song">
+      <a href="" ng-if="vm.authentication.isAuthenticated() && vm.song.inMyLibrary" remove-from-library id="vm.songId" type="song">
         <i class="material-icons">not_interested</i> <span class="icon-label">Remove Song from library</span>
       </a>
     </span>

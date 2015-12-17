@@ -11,6 +11,7 @@ import com.kenzan.msl.server.cassandra.QueryAccessor;
 import com.kenzan.msl.server.dao.AverageRatingsDao;
 import com.kenzan.msl.server.dao.SongsAlbumsByArtistDao;
 import com.kenzan.msl.server.dao.UserDataByUserDao;
+import io.swagger.model.MyLibrary;
 
 import java.util.UUID;
 
@@ -92,6 +93,14 @@ public class ArtistInfoQuery {
         // If we didn't retrieved a DAO, then return null
         if ( !processedOneRow ) {
             return Optional.absent();
+        }
+
+        // Adds isInLibrary tag and timestamp to artistBo result
+        if ( null != userUuid ) {
+            MyLibrary myLibrary = LibraryQuery.get(queryAccessor, mappingManager, userUuid.toString());
+            if ( LibraryQuery.isInLibrary(artistBo, myLibrary) ) {
+                artistBo.setInMyLibrary(true);
+            }
         }
 
         /*
