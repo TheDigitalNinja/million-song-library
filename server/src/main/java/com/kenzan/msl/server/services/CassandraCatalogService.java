@@ -252,4 +252,37 @@ public class CassandraCatalogService
     public Observable<MyLibrary> getMyLibrary(String sessionToken) {
         return Observable.just(LibraryQuery.get(queryAccessor, mappingManager, sessionToken));
     }
+
+    /**
+     * Adds content on a user library
+     *
+     * @param object_id album/artist/song uuid
+     * @param sessionToken uuid of user who's library we are adding content on
+     * @param contentType album/artist/song content type
+     */
+    public void addToLibrary(String object_id, String sessionToken, String contentType) {
+        try {
+            LibraryQuery.add(queryAccessor, mappingManager, object_id, sessionToken, contentType);
+        }
+        catch ( RuntimeException err ) {
+            throw err;
+        }
+    }
+
+    /**
+     * Removes content from a user library
+     *
+     * @param object_id album/artist/song uuid
+     * @param timestamp referenced object timestamp
+     * @param sessionToken uuid of user who's library we are adding content on
+     * @param contentType album/artist/song content type
+     */
+    public void removeFromLibrary(String object_id, String timestamp, String sessionToken, String contentType) {
+        try {
+            LibraryQuery.remove(queryAccessor, mappingManager, object_id, timestamp, sessionToken, contentType);
+        }
+        catch ( RuntimeException err ) {
+            throw err;
+        }
+    }
 }

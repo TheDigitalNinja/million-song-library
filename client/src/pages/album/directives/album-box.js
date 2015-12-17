@@ -13,6 +13,8 @@ export default function albumBox() {
       album: '=',
     },
     template: require('../templates/album-box.html'),
+    controller: 'albumBoxCtrl',
+    controllerAs: 'vm',
   };
 }
 

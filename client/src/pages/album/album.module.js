@@ -7,6 +7,7 @@ import dataStore from 'modules/datastore/module';
 
 import albumPageRoute from './album.route.js';
 import albumCtrl from './controllers/album.controller.js';
+import albumBoxCtrl from './controllers/album-box.controller.js';
 
 import albumsList from './directives/albums-list.js';
 import albumBox from './directives/album-box.js';
@@ -21,5 +22,6 @@ export default angular.module('msl.album', [
   .directive('albumsList', albumsList)
   .directive('albumBox', albumBox)
   .controller('albumCtrl', albumCtrl)
+  .controller('albumBoxCtrl', albumBoxCtrl)
   .factory('albumModel', albumModel)
   .name;

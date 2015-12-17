@@ -1,8 +1,10 @@
 /**
  * @name ArtistInfoEntity
  * @property {String} artistId
+ * @property {String} artistMbid
  * @property {String} artistName
  * @property {String} albumsList
+ * @property {String} favoritesTimestamp
  * @property {Number} averageRating
  * @property {Number} personalRating
  * @property {String} imageLink
@@ -13,8 +15,10 @@
 class ArtistInfoEntity {
   constructor() {
     this.artistId = String;
+    this.artistMbid = String;
     this.artistName = String;
     this.albumsList = [String];
+    this.favoritesTimestamp = String;
     this.averageRating = Number;
     this.personalRating = Number;
     this.imageLink = String;

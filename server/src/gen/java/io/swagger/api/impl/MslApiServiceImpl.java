@@ -37,39 +37,34 @@ public class MslApiServiceImpl extends MslApiService {
     // TODO: @Inject
     private CatalogService catalogService = new CassandraCatalogService();
 
-    private AlbumMockData albumMockData = new AlbumMockData();
-    private ArtistMockData artistMockData = new ArtistMockData();
-    private SongMockData songMockData = new SongMockData();
-
     // ========================================================================================================== ALBUMS
     // =================================================================================================================
 
     @Override
     public Response getAlbum(String albumId)
             throws NotFoundException {
-    	// Validate required parameters
-    	if (StringUtils.isEmpty(albumId)) {
+        // Validate required parameters
+        if (StringUtils.isEmpty(albumId)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
-    	}
+        }
 
-    	Optional<AlbumInfo> optAlbumInfo;
-    	try {
-    		optAlbumInfo = catalogService.getAlbum(albumId, null).toBlocking().first();
-    	}
-    	catch (Exception e) {
-    		e.printStackTrace();
-    		
-    		ErrorResponse errorResponse = new ErrorResponse();
-    		errorResponse.setMessage("Server error: " + e.getMessage());
-    		return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
-    	}
-    	
-    	if (!optAlbumInfo.isPresent()) {
-    		NotFoundResponse notFoundResponse = new NotFoundResponse();
-    		notFoundResponse.setMessage("Unable to find album with id=" + albumId);
-    		return Response.status(Response.Status.NOT_FOUND).entity(notFoundResponse).build();
-    	}
-        
+        Optional<AlbumInfo> optAlbumInfo;
+        try {
+            optAlbumInfo = catalogService.getAlbum(albumId, null).toBlocking().first();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            ErrorResponse errorResponse = new ErrorResponse();
+            errorResponse.setMessage("Server error: " + e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
+        }
+
+        if (!optAlbumInfo.isPresent()) {
+            NotFoundResponse notFoundResponse = new NotFoundResponse();
+            notFoundResponse.setMessage("Unable to find album with id=" + albumId);
+            return Response.status(Response.Status.NOT_FOUND).entity(notFoundResponse).build();
+        }
+
         return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", optAlbumInfo.get())).build();
     }
 
@@ -77,16 +72,17 @@ public class MslApiServiceImpl extends MslApiService {
     public Response browseAlbums(Integer items, String pagingState, String facets)
             throws NotFoundException {
         AlbumList albumList;
-    	try {
-    		albumList = catalogService.browseAlbums(pagingState, items, facets, null).toBlocking().first();
-    	}
-    	catch (Exception e) {
-    		e.printStackTrace();
+        try {
+            albumList = catalogService.browseAlbums(pagingState, items, facets, MslSessionToken.getInstance().getTokenValue())
+                    .toBlocking()
+                    .first();
+        } catch (Exception e) {
+            e.printStackTrace();
 
-    		ErrorResponse errorResponse = new ErrorResponse();
-    		errorResponse.setMessage("Server error: " + e.getMessage());
-    		return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
-    	}
+            ErrorResponse errorResponse = new ErrorResponse();
+            errorResponse.setMessage("Server error: " + e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
+        }
 
         return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", albumList)).build();
     }
@@ -97,28 +93,27 @@ public class MslApiServiceImpl extends MslApiService {
     @Override
     public Response getArtist(String artistId)
             throws NotFoundException {
-    	// Validate required parameters
-    	if (StringUtils.isEmpty(artistId)) {
+        // Validate required parameters
+        if (StringUtils.isEmpty(artistId)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
-    	}
+        }
 
-    	Optional<ArtistInfo> optArtistInfo;
-    	try {
-    		optArtistInfo = catalogService.getArtist(artistId, null).toBlocking().first();
-    	}
-    	catch (Exception e) {
-    		e.printStackTrace();
-    		
-    		ErrorResponse errorResponse = new ErrorResponse();
-    		errorResponse.setMessage("Server error: " + e.getMessage());
-    		return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
-    	}
-    	
-    	if (!optArtistInfo.isPresent()) {
-    		NotFoundResponse notFoundResponse = new NotFoundResponse();
-    		notFoundResponse.setMessage("Unable to find artist with id=" + artistId);
-    		return Response.status(Response.Status.NOT_FOUND).entity(notFoundResponse).build();
-    	}
+        Optional<ArtistInfo> optArtistInfo;
+        try {
+            optArtistInfo = catalogService.getArtist(artistId, null).toBlocking().first();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            ErrorResponse errorResponse = new ErrorResponse();
+            errorResponse.setMessage("Server error: " + e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
+        }
+
+        if (!optArtistInfo.isPresent()) {
+            NotFoundResponse notFoundResponse = new NotFoundResponse();
+            notFoundResponse.setMessage("Unable to find artist with id=" + artistId);
+            return Response.status(Response.Status.NOT_FOUND).entity(notFoundResponse).build();
+        }
 
         return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", optArtistInfo.get())).build();
     }
@@ -127,16 +122,17 @@ public class MslApiServiceImpl extends MslApiService {
     public Response browseArtists(Integer items, String pagingState, String facets)
             throws NotFoundException {
         ArtistList artistList;
-    	try {
-    		artistList = catalogService.browseArtists(pagingState, items, facets, null).toBlocking().first();
-    	}
-    	catch (Exception e) {
-    		e.printStackTrace();
-    		
-    		ErrorResponse errorResponse = new ErrorResponse();
-    		errorResponse.setMessage("Server error: " + e.getMessage());
-    		return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
-    	}
+        try {
+            artistList = catalogService.browseArtists(pagingState, items, facets, MslSessionToken.getInstance().getTokenValue())
+                    .toBlocking()
+                    .first();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            ErrorResponse errorResponse = new ErrorResponse();
+            errorResponse.setMessage("Server error: " + e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
+        }
 
         return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", artistList)).build();
     }
@@ -147,27 +143,26 @@ public class MslApiServiceImpl extends MslApiService {
     @Override
     public Response getSong(String songId)
             throws NotFoundException {
-    	// Validate required parameters
-    	if (StringUtils.isEmpty(songId)) {
+        // Validate required parameters
+        if (StringUtils.isEmpty(songId)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
-    	}
+        }
 
         Optional<SongInfo> optSongInfo;
-    	try {
-    		optSongInfo = catalogService.getSong(songId, null).toBlocking().first();
-    	}
-    	catch (Exception e) {
-    		e.printStackTrace();
-    		ErrorResponse errorResponse = new ErrorResponse();
-    		errorResponse.setMessage("Server error: " + e.getMessage());
-    		return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
-    	}
-    	
-    	if (!optSongInfo.isPresent()) {
-    		NotFoundResponse notFoundResponse = new NotFoundResponse();
-    		notFoundResponse.setMessage("Unable to find song with id=" + songId);
-    		return Response.status(Response.Status.NOT_FOUND).entity(notFoundResponse).build();
-    	}
+        try {
+            optSongInfo = catalogService.getSong(songId, null).toBlocking().first();
+        } catch (Exception e) {
+            e.printStackTrace();
+            ErrorResponse errorResponse = new ErrorResponse();
+            errorResponse.setMessage("Server error: " + e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
+        }
+
+        if (!optSongInfo.isPresent()) {
+            NotFoundResponse notFoundResponse = new NotFoundResponse();
+            notFoundResponse.setMessage("Unable to find song with id=" + songId);
+            return Response.status(Response.Status.NOT_FOUND).entity(notFoundResponse).build();
+        }
 
         return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", optSongInfo.get())).build();
     }
@@ -183,16 +178,17 @@ public class MslApiServiceImpl extends MslApiService {
     public Response browseSongs(Integer items, String pagingState, String facets)
             throws NotFoundException {
         SongList songList;
-    	try {
-    		songList = catalogService.browseSongs(pagingState, items, facets, null).toBlocking().first();
-    	}
-    	catch (Exception e) {
-    		e.printStackTrace();
-    		
-    		ErrorResponse errorResponse = new ErrorResponse();
-    		errorResponse.setMessage("Server error: " + e.getMessage());
-    		return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
-    	}
+        try {
+            songList = catalogService.browseSongs(pagingState, items, facets, MslSessionToken.getInstance().getTokenValue())
+                    .toBlocking()
+                    .first();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            ErrorResponse errorResponse = new ErrorResponse();
+            errorResponse.setMessage("Server error: " + e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
+        }
 
         return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", songList)).build();
     }
@@ -201,11 +197,11 @@ public class MslApiServiceImpl extends MslApiService {
     public Response playSong(String songId)
             throws NotFoundException {
         // Validate required parameters
-    	if (StringUtils.isEmpty(songId)) {
+        if (StringUtils.isEmpty(songId)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
-    	}
+        }
 
-    	// do some magic !
+        // do some magic !
         return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
     }
 
@@ -213,23 +209,23 @@ public class MslApiServiceImpl extends MslApiService {
     public Response commentSong(String songId)
             throws NotFoundException {
         // Validate required parameters
-    	if (StringUtils.isEmpty(songId)) {
+        if (StringUtils.isEmpty(songId)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
-    	}
+        }
 
         if (AuthenticationService.hasValidToken()) {
             return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
-		return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
     public Response rateArtist(String artistId, Integer rating)
             throws NotFoundException {
         // Validate required parameters
-    	if (StringUtils.isEmpty(artistId)) {
+        if (StringUtils.isEmpty(artistId)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
-    	}
+        }
         if (null == rating) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'rating' is null.")).build();
         }
@@ -237,16 +233,16 @@ public class MslApiServiceImpl extends MslApiService {
         if (AuthenticationService.hasValidToken()) {
             return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
-		return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
     public Response rateAlbum(String albumId, Integer rating)
             throws NotFoundException {
         // Validate required parameters
-    	if (StringUtils.isEmpty(albumId)) {
+        if (StringUtils.isEmpty(albumId)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
-    	}
+        }
         if (null == rating) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'rating' is null.")).build();
         }
@@ -254,16 +250,16 @@ public class MslApiServiceImpl extends MslApiService {
         if (AuthenticationService.hasValidToken()) {
             return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
-		return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
     public Response rateSong(String songId, Integer rating)
             throws NotFoundException {
         // Validate required parameters
-    	if (StringUtils.isEmpty(songId)) {
+        if (StringUtils.isEmpty(songId)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
-    	}
+        }
         if (null == rating) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'rating' is null.")).build();
         }
@@ -271,7 +267,7 @@ public class MslApiServiceImpl extends MslApiService {
         if (AuthenticationService.hasValidToken()) {
             return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
-		return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no valid sessionToken provided")).build();
+        return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no valid sessionToken provided")).build();
     }
 
     // ========================================================================================================= LIBRARY
@@ -286,8 +282,7 @@ public class MslApiServiceImpl extends MslApiService {
             try {
                 myLibrary = catalogService.getMyLibrary(MslSessionToken.getInstance().getTokenValue()).toBlocking().first();
                 return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success", myLibrary)).build();
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
 
                 ErrorResponse errorResponse = new ErrorResponse();
@@ -322,9 +317,9 @@ public class MslApiServiceImpl extends MslApiService {
     public Response resetPassword(String email)
             throws NotFoundException {
         // Validate required parameters
-    	if (StringUtils.isEmpty(email)) {
+        if (StringUtils.isEmpty(email)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'email' is null or empty.")).build();
-    	}
+        }
 
         // do some magic!
         return Response.ok()
@@ -348,99 +343,146 @@ public class MslApiServiceImpl extends MslApiService {
     public Response searchFor(String searchText, String searchType)
             throws NotFoundException {
         // Validate required parameters
-    	if (StringUtils.isEmpty(searchText)) {
+        if (StringUtils.isEmpty(searchText)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'searchText' is null or empty.")).build();
-    	}
-    	if (StringUtils.isEmpty(searchType)) {
+        }
+        if (StringUtils.isEmpty(searchType)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'searchType' is null or empty.")).build();
-    	}
+        }
 
         // do some magic!
         return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
     }
 
     @Override
-    public Response removeSong(String songId)
+    public Response removeSong(String songId, String timestamp)
             throws NotFoundException {
         // Validate required parameters
-    	if (StringUtils.isEmpty(songId)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
-    	}
-
-        if (AuthenticationService.hasValidToken()) {
-            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
+        if (StringUtils.isEmpty(songId) || StringUtils.isEmpty(timestamp)) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' or 'timestamp' is null or empty.")).build();
         }
-		return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        if (AuthenticationService.hasValidToken()) {
+            try {
+                catalogService.removeFromLibrary(songId, timestamp, MslSessionToken.getInstance().getTokenValue(), "Song");
+                return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success")).build();
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+                ErrorResponse errorResponse = new ErrorResponse();
+                errorResponse.setMessage("Server error: " + e.getCause().getMessage());
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
+            }
+        }
+        return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
-    public Response removeArtist(String artistId)
+    public Response removeArtist(String artistId, String timestamp)
             throws NotFoundException {
         // Validate required parameters
-    	if (StringUtils.isEmpty(artistId)) {
+        if (StringUtils.isEmpty(artistId) || StringUtils.isEmpty(timestamp)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
-    	}
-
-        if (AuthenticationService.hasValidToken()) {
-            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
-		return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        if (AuthenticationService.hasValidToken()) {
+            try {
+                catalogService.removeFromLibrary(artistId, timestamp, MslSessionToken.getInstance().getTokenValue(), "Artist");
+                return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success")).build();
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+                ErrorResponse errorResponse = new ErrorResponse();
+                errorResponse.setMessage("Server error: " + e.getCause().getMessage());
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
+            }
+        }
+        return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
-    public Response removeAlbum(String albumId)
+    public Response removeAlbum(String albumId, String timestamp)
             throws NotFoundException {
         // Validate required parameters
-    	if (StringUtils.isEmpty(albumId)) {
+        if (StringUtils.isEmpty(albumId) || StringUtils.isEmpty(timestamp)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
-    	}
-
-        if (AuthenticationService.hasValidToken()) {
-            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
-		return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        if (AuthenticationService.hasValidToken()) {
+            try {
+                catalogService.removeFromLibrary(albumId, timestamp, MslSessionToken.getInstance().getTokenValue(), "Album");
+                return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success")).build();
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+                ErrorResponse errorResponse = new ErrorResponse();
+                errorResponse.setMessage("Server error: " + e.getCause().getMessage());
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
+            }
+        }
+        return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
     public Response addAlbum(String albumId)
             throws NotFoundException {
         // Validate required parameters
-    	if (StringUtils.isEmpty(albumId)) {
+        if (StringUtils.isEmpty(albumId)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'albumId' is null or empty.")).build();
-    	}
+        }
 
         if (AuthenticationService.hasValidToken()) {
-            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
+            try {
+                catalogService.addToLibrary(albumId, MslSessionToken.getInstance().getTokenValue(), "Album");
+                return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success")).build();
+            } catch (Exception e) {
+                e.printStackTrace();
+
+                ErrorResponse errorResponse = new ErrorResponse();
+                errorResponse.setMessage("Server error: " + e.getMessage());
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
+            }
         }
-		return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
     public Response addArtist(String artistId)
             throws NotFoundException {
         // Validate required parameters
-    	if (StringUtils.isEmpty(artistId)) {
+        if (StringUtils.isEmpty(artistId)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'artistId' is null or empty.")).build();
-    	}
+        }
 
         if (AuthenticationService.hasValidToken()) {
-            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
+            try {
+                catalogService.addToLibrary(artistId, MslSessionToken.getInstance().getTokenValue(), "Artist");
+                return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success")).build();
+            } catch (Exception e) {
+                e.printStackTrace();
+
+                ErrorResponse errorResponse = new ErrorResponse();
+                errorResponse.setMessage("Server error: " + e.getMessage());
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
+            }
         }
-		return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override
     public Response addSong(String songId)
             throws NotFoundException {
         // Validate required parameters
-    	if (StringUtils.isEmpty(songId)) {
+        if (StringUtils.isEmpty(songId)) {
             return Response.status(Response.Status.BAD_REQUEST).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "Required parameter 'songId' is null or empty.")).build();
-    	}
-
-        if (AuthenticationService.hasValidToken()) {
-            return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "magic!")).build();
         }
-		return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
+        if (AuthenticationService.hasValidToken()) {
+            try {
+                catalogService.addToLibrary(songId, MslSessionToken.getInstance().getTokenValue(), "Song");
+                return Response.ok().entity(new MslApiResponseMessage(MslApiResponseMessage.OK, "success")).build();
+            } catch (Exception e) {
+                e.printStackTrace();
+
+                ErrorResponse errorResponse = new ErrorResponse();
+                errorResponse.setMessage("Server error: " + e.getMessage());
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(errorResponse).build();
+            }
+        }
+        return Response.status(Response.Status.UNAUTHORIZED).entity(new MslApiResponseMessage(MslApiResponseMessage.ERROR, "no sessionToken provided")).build();
     }
 
     @Override

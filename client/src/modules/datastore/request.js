@@ -47,5 +47,16 @@ export default function request ($http) {
       const response = await $http.put(withHost(path), content, config);
       return response.data;
     },
+    /**
+     * @name request#delete
+     * @param {string} path
+     * @param {*} content
+     * @param {Object} config
+     * @return {*}
+     */
+    async delete(path, content = null, config = {}) {
+      const response = await $http.delete(withHost(path), content, config);
+      return response.data;
+    },
   };
 }

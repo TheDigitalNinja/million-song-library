@@ -28,18 +28,15 @@ import java.util.UUID;
  * @author billschwanitz
  */
 public class AlbumInfoQuery {
-    /*
+    /**
      * Performs queries to numerous Cassandra tables to assemble all the pieces that make up an
      * AlbumInfo response.
      * 
      * @param queryAccessor the Datastax QueryAccessor declaring out prepared queries
-     * 
      * @param mappingManager the Datastax MappingManager responsible for executing queries and
-     * mapping results to POJOs
-     * 
-     * @param userId the UUID of the logged in user making the query (will be null if user not
-     * logged in)
-     * 
+     *            mapping results to POJOs
+     * @param userUuid the UUID of the logged in user making the query (will be null if user not
+     *            logged in)
      * @param albumUuid the UUID of the album to be retrieved
      * 
      * @return Optional AlbumInfo instance with all the info on the requested user
@@ -48,10 +45,7 @@ public class AlbumInfoQuery {
                                         final UUID userUuid, final UUID albumUuid) {
         AlbumBo albumBo = new AlbumBo();
 
-        /*
-         * Retrieve data from the songs_artist_by_album table
-         */
-
+        // Retrieve data from the songs_artist_by_album table
         // Select all rows for the given album from the songs_artist_by_album table
         Result<SongsArtistByAlbumDao> results1 = mappingManager.mapper(SongsArtistByAlbumDao.class)
             .map(queryAccessor.songsArtistByAlbum(albumUuid));
@@ -84,10 +78,7 @@ public class AlbumInfoQuery {
             return Optional.absent();
         }
 
-        /*
-         * Retrieve average rating for the album
-         */
-
+        // Retrieve average rating for the album
         // Select the row for the album from the average_ratings table
         AverageRatingsDao averageRatingsDao = mappingManager.mapper(AverageRatingsDao.class)
             .map(queryAccessor.albumAverageRating(albumUuid).getUninterruptibly()).one();
@@ -97,10 +88,7 @@ public class AlbumInfoQuery {
             albumBo.setAverageRating((int) (averageRatingsDao.getSumRating() / averageRatingsDao.getNumRating()));
         }
 
-        /*
-         * Retrieve user's rating for the album if a user UUID was passed
-         */
-
+        // Retrieve user's rating for the album if a user UUID was passed
         if ( userUuid != null ) {
             // Select the row for the album and user from the user_data_by_user table
             UserDataByUserDao userDataByUserDao = mappingManager.mapper(UserDataByUserDao.class)

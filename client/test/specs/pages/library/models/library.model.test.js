@@ -5,6 +5,7 @@ describe('libraryModel', () => {
   const SONG_ID = 5;
   const ALBUM_ID = 4;
   const ARTIST_ID = 2;
+  const TIMESTAMP = 'Thu Feb 05 00:31:49 CST 2015';
 
   let libraryModel, $log, myLibraryStore;
 
@@ -69,22 +70,22 @@ describe('libraryModel', () => {
 
   describe('removeSongFromLibrary', () => {
     it('should log a message with the SONG_ID', () => {
-      libraryModel.removeSongFromLibrary(SONG_ID);
-      expect(myLibraryStore.removeSong).toHaveBeenCalledWith(SONG_ID);
+      libraryModel.removeSongFromLibrary(SONG_ID, TIMESTAMP);
+      expect(myLibraryStore.removeSong).toHaveBeenCalledWith(SONG_ID, TIMESTAMP);
     });
   });
 
   describe('removeAlbumToLibrary', () => {
     it('should log a message with the ALBUM_ID', () => {
-      libraryModel.removeAlbumFromLibrary(ALBUM_ID);
-      expect(myLibraryStore.removeAlbum).toHaveBeenCalledWith(ALBUM_ID);
+      libraryModel.removeAlbumFromLibrary(ALBUM_ID, TIMESTAMP);
+      expect(myLibraryStore.removeAlbum).toHaveBeenCalledWith(ALBUM_ID, TIMESTAMP);
     });
   });
 
   describe('removeArtistFromLibrary', () => {
     it('should log the a message with the ARTIST_ID', () => {
-      libraryModel.removeArtistFromLibrary(ARTIST_ID);
-      expect(myLibraryStore.removeArtist).toHaveBeenCalledWith(ARTIST_ID);
+      libraryModel.removeArtistFromLibrary(ARTIST_ID, TIMESTAMP);
+      expect(myLibraryStore.removeArtist).toHaveBeenCalledWith(ARTIST_ID, TIMESTAMP);
     });
   });
 

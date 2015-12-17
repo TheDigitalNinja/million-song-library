@@ -49,21 +49,6 @@ public class AlbumClientTest {
     }
 
     @Test
-    public void testAddAlbum() {
-        logger.debug("AlbumClient.testAddAlbum");
-        NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);
-        MslApiResponseMessage response = albumClient.addAlbum(TEST_ALBUM_ID, cookie.toString());
-        assertNotNull(response);
-        assertEquals("addAlbum response is successful", "magic!", response.getMessage());
-    }
-
-    @Test(expected = java.lang.RuntimeException.class)
-    public void testAddAlbumThrowException() {
-        logger.debug("AlbumClient.testAddAlbumThrowException");
-        albumClient.addAlbum(TEST_ALBUM_ID, "");
-    }
-
-    @Test
     public void testRateAlbum() {
         logger.debug("AlbumClient.testRateAlbum");
         NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);

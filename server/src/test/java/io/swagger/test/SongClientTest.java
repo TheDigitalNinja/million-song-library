@@ -49,21 +49,6 @@ public class SongClientTest {
     }
 
     @Test
-    public void testAddSong() {
-        logger.debug("songClient.testAddSong");
-        NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);
-        MslApiResponseMessage response = songClient.addSong(TEST_SONG_ID, cookie.toString());
-        assertNotNull(response);
-        assertEquals("addSong response is successful", "magic!", response.getMessage());
-    }
-
-    @Test(expected = java.lang.RuntimeException.class)
-    public void testAddSongThrowException() {
-        logger.debug("songClient.testAddSongThrowException");
-        songClient.addSong(TEST_SONG_ID, "");
-    }
-
-    @Test
     public void testRateSong() {
         logger.debug("songClient.testRateSong");
         NewCookie cookie = new NewCookie("sessionToken", TEST_TOKEN);

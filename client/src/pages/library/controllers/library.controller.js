@@ -8,15 +8,20 @@ export default class libraryCtrl {
    * @constructor
    * @this {vm}
    * @param {$scope} $scope
+   * @param {$rootScope} $rootScope
    * @param {$log} $log
    * @param {myLibraryStore} myLibraryStore
    */
-  constructor($scope, $log, myLibraryStore) {
+  constructor($scope, $rootScope, $log, myLibraryStore) {
     this.$scope = $scope;
     this.$log = $log;
     this.myLibraryStore = myLibraryStore;
     this.isProcessing = true;
     this._getMyLibrary();
+
+    $rootScope.$on('deletedFromLibrary', (event, data) => {
+      this._getMyLibrary(data);
+    });
   }
 
   /**

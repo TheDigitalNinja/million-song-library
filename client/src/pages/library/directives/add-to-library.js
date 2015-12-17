@@ -2,7 +2,9 @@ import { ROLE_USER } from '../../../constants.js';
 
 /**
  * Add to library directive
- * @param libraryModel
+ * @param {object} libraryModel
+ * @param {object} loginModal
+ * @param {object} Permission
  * @returns {{restrict: string, scope: {type: string, id: string}, link: Function}}
  */
 export default function addToLibrary(libraryModel, loginModal, Permission) {

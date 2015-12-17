@@ -3,20 +3,19 @@
  */
 package com.kenzan.msl.server.translate;
 
+import com.datastax.driver.mapping.Result;
 import com.kenzan.msl.server.bo.AlbumBo;
 import com.kenzan.msl.server.bo.AlbumListBo;
 import com.kenzan.msl.server.bo.ArtistBo;
 import com.kenzan.msl.server.bo.ArtistListBo;
 import com.kenzan.msl.server.bo.SongBo;
 import com.kenzan.msl.server.bo.SongListBo;
-import com.kenzan.msl.server.dao.FacetDao;
-import com.kenzan.msl.server.dao.FacetWithChildrenDao;
+import com.kenzan.msl.server.dao.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-
 import io.swagger.model.AlbumInfo;
 import io.swagger.model.AlbumList;
 import io.swagger.model.ArtistInfo;
@@ -28,8 +27,6 @@ import io.swagger.model.SongInfo;
 import io.swagger.model.SongList;
 
 /**
- *
- *
  * @author billschwanitz
  */
 public class Translators {
@@ -58,6 +55,7 @@ public class Translators {
         model.setAlbumId(null == bo.getAlbumId() ? null : bo.getAlbumId().toString());
         model.setAlbumName(bo.getAlbumName());
         model.setArtistId(null == bo.getArtistId() ? null : bo.getArtistId().toString());
+        model.setArtistMbid(null == bo.getArtistMbid() ? null : bo.getArtistMbid().toString());
         model.setArtistName(bo.getArtistName());
         model.setGenre(bo.getGenre());
         model.setYear(bo.getYear());
@@ -72,6 +70,23 @@ public class Translators {
         }
 
         return model;
+    }
+
+    public static List<AlbumInfo> translateAlbumsByUserDao(Result<AlbumsByUserDao> input) {
+        List<AlbumInfo> output = new ArrayList<>();
+        for ( AlbumsByUserDao dao : input ) {
+            AlbumInfo albumInfo = new AlbumInfo();
+            albumInfo.setYear(dao.getAlbumYear());
+            albumInfo.setArtistName(dao.getArtistName());
+            albumInfo.setArtistName(dao.getAlbumName());
+            albumInfo.setAlbumId(dao.getAlbumId() == null ? null : dao.getAlbumId().toString());
+            albumInfo.setArtistId(dao.getArtistId() == null ? null : dao.getArtistId().toString());
+            albumInfo.setArtistMbid(dao.getArtistMbid() == null ? null : dao.getArtistMbid().toString());
+            albumInfo.setFavoritesTimestamp(dao.getFavoritesTimestamp() == null ? null : String.valueOf(dao
+                .getFavoritesTimestamp().getTime()));
+            output.add(albumInfo);
+        }
+        return output;
     }
 
     // =========================================================================================================
@@ -101,6 +116,7 @@ public class Translators {
         ArtistInfo model = new ArtistInfo();
 
         model.setArtistId(null == bo.getArtistId() ? null : bo.getArtistId().toString());
+        model.setArtistMbid(null == bo.getArtistMbid() ? null : bo.getArtistMbid().toString());
         model.setArtistName(bo.getArtistName());
         model.setGenre(StringUtils.isEmpty(bo.getGenre()) ? null : bo.getGenre());
         model.setAverageRating(bo.getAverageRating());
@@ -114,6 +130,21 @@ public class Translators {
                                                                                                                : bo.getSimilarArtistsList());
 
         return model;
+    }
+
+    public static List<ArtistInfo> translateArtistByUserDao(Result<ArtistsByUserDao> input) {
+        List<ArtistInfo> output = new ArrayList<>();
+
+        for ( ArtistsByUserDao dao : input ) {
+            ArtistInfo artistInfo = new ArtistInfo();
+            artistInfo.setArtistName(dao.getArtistName());
+            artistInfo.setArtistId(dao.getArtistId() == null ? null : dao.getArtistId().toString());
+            artistInfo.setArtistMbid(dao.getArtistMbid() == null ? null : dao.getArtistMbid().toString());
+            artistInfo.setFavoritesTimestamp(dao.getFavoritesTimestamp() == null ? null : String.valueOf(dao
+                .getFavoritesTimestamp().getTime()));
+            output.add(artistInfo);
+        }
+        return output;
     }
 
     // ===========================================================================================================
@@ -153,11 +184,32 @@ public class Translators {
         model.setPersonalRating(bo.getPersonalRating());
         model.setImageLink(bo.getImageLink());
         model.setArtistId(null == bo.getArtistId() ? null : bo.getArtistId().toString());
+        model.setArtistMbid(null == bo.getArtistMbid() ? null : bo.getArtistMbid().toString());
         model.setArtistName(bo.getArtistName());
         model.setAlbumId(null == bo.getAlbumId() ? null : bo.getAlbumId().toString());
         model.setAlbumName(bo.getAlbumName());
 
         return model;
+    }
+
+    public static List<SongInfo> translateSongsByUserDao(Result<SongsByUserDao> input) {
+        List<SongInfo> output = new ArrayList<>();
+        for ( SongsByUserDao dao : input ) {
+            SongInfo songInfo = new SongInfo();
+            songInfo.setArtistName(dao.getArtistName());
+            songInfo.setAlbumName(dao.getAlbumName());
+            songInfo.setSongName(dao.getSongName());
+            songInfo.setDuration(dao.getSongDuration());
+            songInfo.setYear(dao.getAlbumYear());
+            songInfo.setSongId(dao.getSongId() == null ? null : dao.getSongId().toString());
+            songInfo.setAlbumId(dao.getAlbumId() == null ? null : dao.getAlbumId().toString());
+            songInfo.setArtistId(dao.getArtistId() == null ? null : dao.getArtistId().toString());
+            songInfo.setArtistMbid(dao.getArtistMbid() == null ? null : dao.getArtistMbid().toString());
+            songInfo.setFavoritesTimestamp(dao.getFavoritesTimestamp() == null ? null : String.valueOf(dao
+                .getFavoritesTimestamp().getTime()));
+            output.add(songInfo);
+        }
+        return output;
     }
 
     // ==========================================================================================================
@@ -183,25 +235,6 @@ public class Translators {
         return model;
     }
 
-    /*
-     * +-----------------+ | Private Methods | +-----------------+
-     */
-
-    /*
-     * private static List<AlbumInfo> translateAlbumList(List<AlbumBo> daoList) { List<AlbumInfo>
-     * modelList = new ArrayList<>(daoList.size());
-     * 
-     * for (AlbumBo dao : daoList) { modelList.add(translate(dao)); }
-     * 
-     * return modelList; }
-     * 
-     * private static List<ArtistInfo> translateArtistList(List<ArtistBo> artistBoList) {
-     * List<ArtistInfo> modelList = new ArrayList<>(artistBoList.size());
-     * 
-     * for (ArtistBo artistBo : artistBoList) { modelList.add(translate(artistBo)); }
-     * 
-     * return modelList; }
-     */
     public static List<FacetInfo> translateFacetList(List<FacetDao> daoList) {
         List<FacetInfo> modelList = new ArrayList<>(daoList.size());
 
@@ -211,12 +244,4 @@ public class Translators {
 
         return modelList;
     }
-    /*
-     * private static List<SongInfo> translateSongList(List<SongBo> daoList) { List<SongInfo>
-     * modelList = new ArrayList<>(daoList.size());
-     * 
-     * for (SongBo dao : daoList) { modelList.add(translate(dao)); }
-     * 
-     * return modelList; }
-     */
 }

@@ -4,9 +4,11 @@
  * @property {String} songName
  * @property {String} imageLink
  * @property {String} artistId
+ * @property {String} artistMbid
  * @property {String} artistName
  * @property {String} albumId
  * @property {String} albumName
+ * @property {String} favoritesTimestamp
  * @property {Number} duration
  * @property {String} genre
  * @property {Number} danceability
@@ -22,9 +24,11 @@ class SongInfoEntity {
     this.songName = String;
     this.imageLink = String;
     this.artistId = String;
+    this.artistMbid = String;
     this.artistName = String;
     this.albumId = String;
     this.albumName = String;
+    this.favoritesTimestamp = String;
     this.duration = Number;
     this.genre = String;
     this.danceability = Number;
