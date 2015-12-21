@@ -1,0 +1,24 @@
+x-swagger-router-controller: mylibrary_controller
+put:
+  description: "Adds a album to the user library"
+  tags:
+    - Account
+  schemes: ["https"]
+  security: [sessionToken: []]
+  operationId: add_album
+  parameters:
+    -
+      name: albumId
+      in: path
+      description: Album id for the album to add to the library
+      type: string
+      required: true
+  responses:
+    "200":
+      description: Success
+      schema:
+        $ref: "#/definitions/StatusResponse"
+    "500":
+      description: Server Error
+      schema:
+        $ref: "#/definitions/ErrorResponse"

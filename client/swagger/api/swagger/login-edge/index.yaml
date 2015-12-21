@@ -1,0 +1,40 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Million Songs API
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths
+basePath: /
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /msl/v1/loginedge/login:
+    $ref: ./swagger/api/swagger/login-edge/paths/login.yaml
+
+  /msl/v1/loginedge/logout:
+    $ref: ./swagger/api/swagger/login-edge/paths/logout.yaml
+
+  /msl/v1/loginedge/resetpassword:
+    $ref: ./swagger/api/swagger/login-edge/paths/resetPassword.yaml
+
+securityDefinitions:
+  $ref: ./swagger/api/swagger/security-definitions/index.yaml
+#
+# Reuseable Parameters
+#
+parameters:
+  $ref: ./swagger/api/swagger/parameters/index.yaml
+
+# complex objects have schema definitions
+definitions:
+  $ref: ./swagger/api/swagger/definitions/definitions.yaml

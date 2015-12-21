@@ -1,0 +1,116 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Million Songs API
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths
+basePath: /
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+
+# ACCOUNT EDGE ================================================================
+  /msl/v1/accountedge/users/register:
+    $ref: ./swagger/api/swagger/account-edge/paths/register.yaml
+
+  /msl/v1/accountedge/users/recentsongs:
+    $ref: ./swagger/api/swagger/account-edge/paths/recentSongs.yaml
+
+  /msl/v1/accountedge/users/mylibrary:
+    $ref: ./swagger/api/swagger/account-edge/paths/myLibrary.yaml
+
+  /msl/v1/accountedge/users/profile:
+    $ref: ./swagger/api/swagger/account-edge/paths/profile.yaml
+
+  /msl/v1/accountedge/users/mylibrary/addsong/{songId}:
+    $ref: ./swagger/api/swagger/account-edge/paths/addSong.yaml
+
+  /msl/v1/accountedge/users/mylibrary/addalbum/{albumId}:
+    $ref: ./swagger/api/swagger/account-edge/paths/addAlbum.yaml
+
+  /msl/v1/accountedge/users/mylibrary/addartist/{artistId}:
+    $ref: ./swagger/api/swagger/account-edge/paths/addArtist.yaml
+
+  /msl/v1/accountedge/users/mylibrary/removesong/{songId}:
+    $ref: ./swagger/api/swagger/account-edge/paths/removeSong.yaml
+
+  /msl/v1/accountedge/users/mylibrary/removealbum/{albumId}:
+    $ref: ./swagger/api/swagger/account-edge/paths/removeAlbum.yaml
+
+  /msl/v1/accountedge/users/mylibrary/removeartist/{artistId}:
+    $ref: ./swagger/api/swagger/account-edge/paths/removeArtist.yaml
+
+# CATALOG EDGE ================================================================
+  /msl/v1/catalogedge/song/{songId}:
+    $ref: ./swagger/api/swagger/catalog-edge/paths/getSong.yaml
+
+  /msl/v1/catalogedge/album/{albumId}:
+    $ref: ./swagger/api/swagger/catalog-edge/paths/getAlbum.yaml
+
+  /msl/v1/catalogedge/artist/{artistId}:
+    $ref: ./swagger/api/swagger/catalog-edge/paths/getArtist.yaml
+
+  /msl/v1/catalogedge/facet/{facetId}:
+    $ref: ./swagger/api/swagger/catalog-edge/paths/getFacet.yaml
+
+  /msl/v1/catalogedge/browse/album:
+    $ref: ./swagger/api/swagger/catalog-edge/paths/browseAlbums.yaml
+
+  /msl/v1/catalogedge/browse/artist:
+    $ref: ./swagger/api/swagger/catalog-edge/paths/browseArtists.yaml
+
+  /msl/v1/catalogedge/browse/song:
+    $ref: ./swagger/api/swagger/catalog-edge/paths/browseSongs.yaml
+
+# LOGIN EDGE ==================================================================
+  /msl/v1/loginedge/login:
+    $ref: ./swagger/api/swagger/login-edge/paths/login.yaml
+
+  /msl/v1/loginedge/logout:
+    $ref: ./swagger/api/swagger/login-edge/paths/logout.yaml
+
+  /msl/v1/loginedge/resetpassword:
+    $ref: ./swagger/api/swagger/login-edge/paths/resetPassword.yaml
+
+# PLAYER EDGE =================================================================
+  /msl/v1/playeredge/play/{songId}:
+    $ref: ./swagger/api/swagger/player-edge/paths/playSong.yaml
+
+# RATINGS EDGE ================================================================
+  /msl/v1/ratingsedge/rateartist/{artistId}:
+    $ref: ./swagger/api/swagger/ratings-edge/paths/rateArtist.yaml
+
+  /msl/v1/ratingsedge/ratealbum/{albumId}:
+    $ref: ./swagger/api/swagger/ratings-edge/paths/rateAlbum.yaml
+
+  /msl/v1/ratingsedge/ratesong/{songId}:
+    $ref: ./swagger/api/swagger/ratings-edge/paths/rateSong.yaml
+
+  /msl/v1/ratingsedge/commentsong/{songId}:
+    $ref: ./swagger/api/swagger/ratings-edge/paths/commentSong.yaml
+
+# SEARCH EDGE =================================================================
+  /msl/v1/searchedge/search::
+    $ref: ./swagger/api/swagger/search-edge/paths/search.yaml
+
+securityDefinitions:
+  $ref: ./swagger/api/swagger/security-definitions/index.yaml
+#
+# Reuseable Parameters
+#
+parameters:
+  $ref: ./swagger/api/swagger/parameters/index.yaml
+
+# complex objects have schema definitions
+definitions:
+  $ref: ./swagger/api/swagger/definitions/definitions.yaml

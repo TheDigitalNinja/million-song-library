@@ -1,0 +1,37 @@
+x-swagger-router-controller: registration_controller
+post:
+  description: "Register a new user"
+  tags:
+    - Account
+  consumes:
+    - application/x-www-form-urlencoded
+  schemes: ["https"]
+  operationId: registration
+  parameters:
+    -
+      name: email
+      in: formData
+      description: Email used to identify the account
+      type: string
+      required: true
+    -
+      name: password
+      in: formData
+      description: user password
+      type: string
+      required: true
+    -
+      name: passwordConfirmation
+      in: formData
+      description: user confirmation password
+      type: string
+      required: true
+  responses:
+    "200":
+      description: Success
+      schema:
+        $ref: "#/definitions/StatusResponse"
+    "500":
+      description: Server Error
+      schema:
+        $ref: "#/definitions/ErrorResponse"

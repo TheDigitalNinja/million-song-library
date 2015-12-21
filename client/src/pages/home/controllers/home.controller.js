@@ -13,6 +13,7 @@ export default class homeCtrl {
    * @param {albumModel} albumModel
    * @param {artistModel} artistModel
    * @param {songModel} songModel
+   * @param {filterModel} filterModel
    * @param {$rootScope} $rootScope
    */
   constructor($scope,

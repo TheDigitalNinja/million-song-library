@@ -1,0 +1,30 @@
+x-swagger-router-controller: mylibrary_controller
+put:
+  description: "Removes a album to the user library"
+  tags:
+    - Account
+  schemes: ["https"]
+  security: [sessionToken: []]
+  operationId: remove_album
+  parameters:
+    -
+      name: albumId
+      in: path
+      description: Album id for the album to remove to the library
+      type: string
+      required: true
+    -
+      name: timestamp
+      in: path
+      description: timestamp of the time the album was added to the user library
+      type: string
+      required: true
+  responses:
+    "200":
+      description: Success
+      schema:
+        $ref: "#/definitions/StatusResponse"
+    "500":
+      description: Server Error
+      schema:
+        $ref: "#/definitions/ErrorResponse"

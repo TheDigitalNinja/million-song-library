@@ -1,0 +1,36 @@
+x-swagger-router-controller: rating_controller
+put:
+  description: Update your rating of an artist.
+  tags:
+    - Rating
+  schemes: ["https"]
+  security: [sessionToken: []]
+  consumes:
+    - application/x-www-form-urlencoded
+  operationId: rate_artist
+  parameters:
+    -
+      name: artistId
+      in: path
+      description: Id for the artist that is being rated
+      required: true
+      type: string
+    -
+      name: rating
+      in: formData
+      description: "Value between 1-5 that represents the user's rating of the artist"
+      required: true
+      type: integer
+  responses:
+    "200":
+      description: Successfully sent rating data to the server
+      schema:
+        $ref: "#/definitions/StatusResponse"
+    "404":
+      description: Artist not found
+      schema:
+        $ref: "#/definitions/NotFoundResponse"
+    "500":
+      description: Server Error
+      schema:
+        $ref: "#/definitions/ErrorResponse"

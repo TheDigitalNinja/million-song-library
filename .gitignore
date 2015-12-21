@@ -2,7 +2,7 @@
 /client/node_modules
 /client/build
 /client/coverage
-/client/swagger/api/swagger/swagger.json
+/client/swagger/api/swagger/swagger.yaml
 
 /target
 /server/target

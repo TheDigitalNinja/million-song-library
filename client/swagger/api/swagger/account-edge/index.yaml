@@ -1,0 +1,61 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Million Songs API
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths
+basePath: /
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /msl/v1/accountedge/users/register:
+    $ref: ./swagger/api/swagger/account-edge/paths/register.yaml
+
+  /msl/v1/accountedge/users/recentsongs:
+    $ref: ./swagger/api/swagger/account-edge/paths/recentSongs.yaml
+
+  /msl/v1/accountedge/users/mylibrary:
+    $ref: ./swagger/api/swagger/account-edge/paths/myLibrary.yaml
+
+  /msl/v1/accountedge/users/profile:
+    $ref: ./swagger/api/swagger/account-edge/paths/profile.yaml
+
+  /msl/v1/accountedge/users/mylibrary/addsong/{songId}:
+    $ref: ./swagger/api/swagger/account-edge/paths/addSong.yaml
+
+  /msl/v1/accountedge/users/mylibrary/addalbum/{albumId}:
+    $ref: ./swagger/api/swagger/account-edge/paths/addAlbum.yaml
+
+  /msl/v1/accountedge/users/mylibrary/addartist/{artistId}:
+    $ref: ./swagger/api/swagger/account-edge/paths/addArtist.yaml
+
+  /msl/v1/accountedge/users/mylibrary/removesong/{songId}:
+    $ref: ./swagger/api/swagger/account-edge/paths/removeSong.yaml
+
+  /msl/v1/accountedge/users/mylibrary/removealbum/{albumId}:
+    $ref: ./swagger/api/swagger/account-edge/paths/removeAlbum.yaml
+
+  /msl/v1/accountedge/users/mylibrary/removeartist/{artistId}:
+    $ref: ./swagger/api/swagger/account-edge/paths/removeArtist.yaml
+
+securityDefinitions:
+  $ref: ./swagger/api/swagger/security-definitions/index.yaml
+#
+# Reuseable Parameters
+#
+parameters:
+  $ref: ./swagger/api/swagger/parameters/index.yaml
+
+# complex objects have schema definitions
+definitions:
+  $ref: ./swagger/api/swagger/definitions/definitions.yaml

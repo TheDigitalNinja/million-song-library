@@ -14,8 +14,12 @@
     "styleguide": "kss-node --config=kss-config.json",
     "dev": "npm run validate && webpack-dev-server --port 3000 --content-base build/ --development --progress",
     "serve-prod": "http-server build -p 80",
-    "docs": "swagger project edit swagger",
-    "parse-swagger-src": "cat swagger/api/swagger/swagger.yaml | ruby -ryaml -rjson -e 'puts JSON.pretty_generate(YAML::load(ARGF.read))' > swagger/api/swagger/swagger.json",
+    "parse-swagger-src": "node swagger/resolve.js -- index.yaml",
+    "parse-account-edge-src": "node swagger/resolve.js -- account-edge/index.yaml",
+    "parse-catalog-edge-src": "node swagger/resolve.js -- catalog-edge/index.yaml",
+    "parse-login-edge-src": "node swagger/resolve.js -- login-edge/index.yaml",
+    "parse-player-edge-src": "node swagger/resolve.js -- player-edge/index.yaml",
+    "parse-ratings-edge-src": "node swagger/resolve.js -- ratings-edge/index.yaml",
     "serve-mock": "npm run parse-swagger-src && swagger project start --mock swagger",
     "start-server": "cd ../server && mvn -f build.xml clean generate-sources jetty:run",
     "server-coverage": "cd ../server && mvn -f build.xml site"
@@ -91,8 +95,11 @@
     "font-awesome": "^4.3.0",
     "istanbul": "^0.3.22",
     "jquery": "^1.11.3",
+    "json-refs": "^1.3.0",
+    "json2yaml": "^1.0.3",
     "lodash": "^3.10.0",
     "slick-carousel": "1.5.8",
-    "swagger-tools": "0.9.7"
+    "swagger-tools": "0.9.7",
+    "yaml-js": "^0.1.3"
   }
 }

@@ -1,0 +1,17 @@
+Facets:
+  name: facets
+  in: query
+  description: Comma delimited list of facet IDs to use as filters. If not provided, no filters will be applied.
+  type: string
+Items:
+  name: items
+  in: query
+  description: Number of items to return. Used for paginating results. The maximum is 100. If not provided, or falls outside the inclusive range 1-100, defaults to 25.
+  type: integer
+  required: true
+PagingState:
+  name: pagingState
+  in: query
+  description: PagingState is used to retrieve the next page in a paginated query. A  PagingState instance contains a UUID key to an object in Cassandra on the server. The data within the object allows the server to retrieve the next page of data.
+  required: false
+  type: string
