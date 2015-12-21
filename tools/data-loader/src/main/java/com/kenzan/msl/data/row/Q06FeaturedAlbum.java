@@ -20,7 +20,7 @@ public class Q06FeaturedAlbum {
     private final String artistName;
     private final String imageLink;
     
-    public Q06FeaturedAlbum(final NormalizedRow normalizedRow, final String imageLink) {
+    public Q06FeaturedAlbum(final NormalizedRow normalizedRow) {
         
         this.albumHotness = normalizedRow.getAlbum().getHotness();
         this.albumId = normalizedRow.getAlbum().getId();
@@ -29,7 +29,7 @@ public class Q06FeaturedAlbum {
         this.aritstId = normalizedRow.getArtist().getId();
         this.artistMbid = normalizedRow.getArtist().getMbid();
         this.artistName = normalizedRow.getArtist().getName();
-        this.imageLink = imageLink;
+        this.imageLink = normalizedRow.getAlbum().getImageLink();
     }
     
     public String toString() {

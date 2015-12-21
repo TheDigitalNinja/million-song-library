@@ -158,6 +158,7 @@ CREATE TABLE albums_by_user (
   artist_id uuid,
   artist_mbid uuid,
   artist_name text,
+  image_link text,
   PRIMARY KEY ((user_id, content_type), favorites_timestamp, album_id)
 ) WITH CLUSTERING ORDER BY (favorites_timestamp DESC, album_id ASC);
 

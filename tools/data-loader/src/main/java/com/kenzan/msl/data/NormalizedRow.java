@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
 import com.kenzan.msl.data.row.RowUtil;
+import com.kenzan.msl.data.AlbumImage;
 
 /**
  * {@link NormalizedRow} contains "normalized" content objects with appropriate
@@ -109,6 +110,8 @@ public class NormalizedRow {
         }
 
         public NormalizedRow build() {
+        	AlbumImage albumImage = new AlbumImage(album.getName(), artist.getMbid());
+        	album.setImageLink(albumImage.getUrl());
 
             return new NormalizedRow(this);
         }

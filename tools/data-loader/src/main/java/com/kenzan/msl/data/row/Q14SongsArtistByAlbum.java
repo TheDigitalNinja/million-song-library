@@ -24,7 +24,7 @@ public class Q14SongsArtistByAlbum {
     private final int songDuration;
     private final String imageLink;
     
-    public Q14SongsArtistByAlbum(final NormalizedRow normalizedRow, String imageLink) {
+    public Q14SongsArtistByAlbum(final NormalizedRow normalizedRow) {
 
         this.albumId = normalizedRow.getAlbum().getId();
         this.songName = normalizedRow.getSong().getName();
@@ -42,7 +42,7 @@ public class Q14SongsArtistByAlbum {
         }
         this.similarArtists = artistMap;
         this.songDuration = normalizedRow.getSong().getDuration();
-        this.imageLink = imageLink;
+        this.imageLink = normalizedRow.getAlbum().getImageLink();
     }
     
     public String toString() {
