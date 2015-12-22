@@ -13,17 +13,9 @@
              ng-model="vm.password"
              class="form-control"
              placeholder="Password"
-             password
              required>
-      <ul class="form-errors" ng-if="credentials.password.$dirty && credentials.password.$viewValue.length > 0" >
-        <li ng-show="credentials.password.$error.password" class="input-field-error">Must contain:
-          <ul>
-            <li>At least a number</li>
-            <li>A capitalized letter </li>
-            <li>A special character (!#$%&*+,./:;<=>?@\^_~-)</li>
-            <li>More than 10 characters </li>
-          </ul>
-        </li>
+      <ul ng-messages="credentials.password.$error" ng-show="credentials.password.$dirty" class="form-errors">
+        <li ng-message="required" class="input-field-error"> This is required! </li>
       </ul>
     </div>
     <div class="alert alert-danger" ng-if="vm.hasError" role="alert">

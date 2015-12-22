@@ -18,19 +18,9 @@
         </div>
 
         <div class="form-group" ng-class="{'has-error': credentials.password.$invalid && credentials.password.$dirty}">
-          <input type="password" name="password" ng-model="vm.password" class="form-control" placeholder="Password" required password>
+          <input type="password" name="password" ng-model="vm.password" class="form-control" placeholder="Password" required>
           <div class="input-field-error" ng-messages="credentials.password.$error" ng-show="credentials.password.$dirty">
             <div ng-message="required">This is required!</div>
-            <div ng-message="password">
-              <span class="input-field-error">Must contain:
-                <ul>
-                  <li>At least a number</li>
-                  <li>A capitalized letter </li>
-                  <li>A special character (!#$%&*+,./:;<=>?@\^_~-)</li>
-                  <li>More than 10 characters </li>
-                </ul>
-              </span>
-            </div>
           </div>
         </div>
         <div class="alert alert-danger" ng-if="vm.hasError" role="alert">
