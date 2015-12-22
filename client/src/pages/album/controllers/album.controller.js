@@ -14,14 +14,16 @@ export default class albumCtrl {
    * @param {$rootScope.Scope} $scope
    * @param {ui.router.state.$state} $state
    * @param {ui.router.state.$stateParams} $stateParams
+   * @param {authentication} authentication
    */
-  constructor(albumModel, artistModel, $log, $scope, $state, $stateParams) {
+  constructor(albumModel, artistModel, $log, $scope, $state, $stateParams, authentication) {
     if(angular.isDefined($stateParams.albumId) && $stateParams.albumId.length > 0) {
       this.$scope = $scope;
       this.$log = $log;
       this.artistModel = artistModel;
       this.model = albumModel;
       this.albumId = $stateParams.albumId;
+      this.authentication = authentication;
 
       //Initialization
       albumModel.getAlbum(this.albumId);

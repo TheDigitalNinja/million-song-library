@@ -12,6 +12,7 @@ import com.kenzan.msl.server.cassandra.CassandraConstants;
 import com.kenzan.msl.server.cassandra.QueryAccessor;
 import com.kenzan.msl.server.dao.AverageRatingsDao;
 import com.kenzan.msl.server.dao.UserDataByUserDao;
+import io.swagger.model.MyLibrary;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -66,6 +67,15 @@ public class AlbumListQuery
         new Paginator(CassandraConstants.MSL_CONTENT_TYPE.ALBUM, queryAccessor, mappingManager, this, pagingStateUuid,
                       items, facets).getPage(albumListBo);
 
+        // Adds isInLibrary tag to albumList results
+        if ( null != userUuid ) {
+            MyLibrary myLibrary = LibraryQuery.get(queryAccessor, mappingManager, userUuid.toString());
+            for ( AlbumBo albumBo : albumListBo.getBoList() ) {
+                if ( LibraryQuery.isInLibrary(albumBo, myLibrary) ) {
+                    albumBo.setInMyLibrary(true);
+                }
+            }
+        }
         /*
          * Asynchronously query for the average and user ratings for each album.
          * 
@@ -157,9 +167,9 @@ public class AlbumListQuery
 
             if ( userDataByUserDao != null ) {
                 // Find and update the matching AlbumBo
-                for ( AlbumBo artistBo : artistListBo.getBoList() ) {
-                    if ( artistBo.getAlbumId().equals(userDataByUserDao.getContentUuid()) ) {
-                        artistBo.setPersonalRating(userDataByUserDao.getRating());
+                for ( AlbumBo albumBo : artistListBo.getBoList() ) {
+                    if ( albumBo.getAlbumId().equals(userDataByUserDao.getContentUuid()) ) {
+                        albumBo.setPersonalRating(userDataByUserDao.getRating());
                         break;
                     }
                 }

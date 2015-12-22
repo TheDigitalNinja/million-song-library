@@ -18,8 +18,11 @@ public class ArtistBo extends AbstractBo {
     private List<String> albumsList = new ArrayList<>();
     private List<String> songsList = new ArrayList<>();
     private List<String> similarArtistsList = new ArrayList<>();
+    private boolean inMyLibrary;
+    private String favoritesTimestamp;
 
     /**
+     * 
      * @return the artistId
      */
     public UUID getArtistId() {
@@ -157,5 +160,33 @@ public class ArtistBo extends AbstractBo {
      */
     public void setSimilarArtistsList(List<String> similarArtistsList) {
         this.similarArtistsList = similarArtistsList;
+    }
+
+    /**
+     * @return boolean
+     */
+    public boolean isInMyLibrary() {
+        return inMyLibrary;
+    }
+
+    /**
+     * @param inMyLibrary boolean
+     */
+    public void setInMyLibrary(boolean inMyLibrary) {
+        this.inMyLibrary = inMyLibrary;
+    }
+
+    /**
+     * @return String
+     */
+    public String getFavoritesTimestamp() {
+        return favoritesTimestamp;
+    }
+
+    /**
+     * @param favoritesTimestamp String
+     */
+    public void setFavoritesTimestamp(String favoritesTimestamp) {
+        this.favoritesTimestamp = favoritesTimestamp;
     }
 }

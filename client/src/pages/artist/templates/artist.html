@@ -5,10 +5,10 @@
   <div layout="row" layout-align="center">
     <div class="artist-info" flex="90">
     <span class="pull-right">
-      <a href="" ng-if="!vm.artist.inMyLibrary" add-to-library id="vm.artistId" type="artist">
+      <a href="" ng-if="vm.authentication.isAuthenticated() && !vm.artist.inMyLibrary" add-to-library id="vm.artistId" type="artist">
         <i class="material-icons">favorite</i> <span class="icon-label">Add Artist to library</span>
       </a>
-      <a href="" ng-if="vm.artist.inMyLibrary" remove-from-library id="vm.artistId" type="artist">
+      <a href="" ng-if="vm.authentication.isAuthenticated() && vm.artist.inMyLibrary" remove-from-library id="vm.artistId" type="artist">
         <i class="material-icons">not_interested</i> <span class="icon-label">Remove Artist from library</span>
       </a>
     </span>

@@ -11,16 +11,16 @@ export default class artistCtrl {
    * @param {$rootScope.Scope} $scope
    * @param {ui.router.state.$stateParams} $stateParams
    * @param {ui.router.state.$state} $state
+   * @param {authentication} authentication
    */
-  constructor(artistModel, $scope, $stateParams, $state) {
+  constructor(artistModel, $scope, $stateParams, $state, authentication) {
     if(angular.isDefined($stateParams.artistId) && $stateParams.artistId.length > 0) {
-      this.artistId = $stateParams.artistId;
-      this.model = artistModel;
       this.$scope = $scope;
+      this.model = artistModel;
+      this.artistId = $stateParams.artistId;
+      this.authentication = authentication;
       this.activeTab = 'songs';
       //Initialize data
-      this.displaySongs = true;
-
       this.getArtist();
     }
     else {
@@ -69,6 +69,5 @@ export default class artistCtrl {
       this.songs = songs;
     });
   }
-
 }
 

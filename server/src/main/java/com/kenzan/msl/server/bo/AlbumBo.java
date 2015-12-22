@@ -19,6 +19,8 @@ public class AlbumBo extends AbstractBo {
     private UUID artistMbid;
     private String artistName;
     private List<String> songsList = new ArrayList<>();
+    private boolean isInMyLibrary;
+    private String favoritesTimestamp;
 
     /**
      * @return the albumId
@@ -172,5 +174,34 @@ public class AlbumBo extends AbstractBo {
      */
     public void setSongsList(List<String> songsList) {
         this.songsList = songsList;
+    }
+
+    /**
+     * @return boolean
+     */
+    public boolean isInMyLibrary() {
+        return isInMyLibrary;
+    }
+
+    /**
+     *
+     * @param isInMyLibrary boolean
+     */
+    public void setInMyLibrary(boolean isInMyLibrary) {
+        this.isInMyLibrary = isInMyLibrary;
+    }
+
+    /**
+     * @return String
+     */
+    public String getFavoritesTimestamp() {
+        return favoritesTimestamp;
+    }
+
+    /**
+     * @param favoritesTimestamp String
+     */
+    public void setFavoritesTimestamp(String favoritesTimestamp) {
+        this.favoritesTimestamp = favoritesTimestamp;
     }
 }

@@ -62,6 +62,8 @@ public class Translators {
         model.setAverageRating(bo.getAverageRating());
         model.setPersonalRating(bo.getPersonalRating());
         model.setImageLink(bo.getImageLink());
+        model.setInMyLibrary(bo.isInMyLibrary());
+        model.setFavoritesTimestamp(bo.getFavoritesTimestamp());
         if ( null == bo.getSongsList() || bo.getSongsList().isEmpty() ) {
             model.setSongsList(null);
         }
@@ -124,6 +126,8 @@ public class Translators {
         model.setImageLink(bo.getImageLink());
         model.setAlbumsList((null == bo.getAlbumsList() || bo.getAlbumsList().isEmpty()) ? null : bo.getAlbumsList());
         model.setSongsList((null == bo.getSongsList() || bo.getSongsList().isEmpty()) ? null : bo.getSongsList());
+        model.setInMyLibrary(bo.isInMyLibrary());
+        model.setFavoritesTimestamp(bo.getFavoritesTimestamp());
         model
             .setSimilarArtistsList((null == bo.getSimilarArtistsList() || bo.getSimilarArtistsList().isEmpty())
                                                                                                                ? null
@@ -188,6 +192,8 @@ public class Translators {
         model.setArtistName(bo.getArtistName());
         model.setAlbumId(null == bo.getAlbumId() ? null : bo.getAlbumId().toString());
         model.setAlbumName(bo.getAlbumName());
+        model.setInMyLibrary(bo.isInMyLibrary());
+        model.setFavoritesTimestamp(bo.getFavoritesTimestamp());
 
         return model;
     }

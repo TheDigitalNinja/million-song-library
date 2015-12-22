@@ -12,6 +12,7 @@ import com.kenzan.msl.server.cassandra.CassandraConstants;
 import com.kenzan.msl.server.cassandra.QueryAccessor;
 import com.kenzan.msl.server.dao.AverageRatingsDao;
 import com.kenzan.msl.server.dao.UserDataByUserDao;
+import io.swagger.model.MyLibrary;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -65,6 +66,15 @@ public class SongListQuery
         new Paginator(CassandraConstants.MSL_CONTENT_TYPE.SONG, queryAccessor, mappingManager, this, pagingStateUuid,
                       items, facets).getPage(songListBo);
 
+        // Adds isInLibrary tag to songList results
+        if ( null != userUuid ) {
+            MyLibrary myLibrary = LibraryQuery.get(queryAccessor, mappingManager, userUuid.toString());
+            for ( SongBo songBo : songListBo.getBoList() ) {
+                if ( LibraryQuery.isInLibrary(songBo, myLibrary) ) {
+                    songBo.setInMyLibrary(true);
+                }
+            }
+        }
         /*
          * Asynchronously query for the average and user ratings for each song.
          * 

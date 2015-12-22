@@ -8,9 +8,11 @@ export default class artistBoxCtrl {
    * @constructor
    * @this {vm}
    * @param {ui.router.state.$state} $state
+   * @param {authentication} authentication
    */
-  constructor($state) {
+  constructor($state, authentication) {
     this.$state = $state;
+    this.authentication = authentication;
   }
 
   isLibraryPage () {

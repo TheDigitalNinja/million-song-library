@@ -2,12 +2,16 @@
  * Library model
  * @param {$log} $log
  * @param {myLibraryStore} myLibraryStore
+ * @param {toastr} toastr
+ * @param {$rootScope} $rootScope
  */
 export default class libraryModel {
 
-  constructor($log, myLibraryStore) {
-    this.$log = $log;
+  constructor($log, myLibraryStore, toastr, $rootScope) {
     this.myLibraryStore = myLibraryStore;
+    this.$rootScope = $rootScope;
+    this.toastr = toastr;
+    this.$log = $log;
   }
 
   /**
@@ -22,7 +26,18 @@ export default class libraryModel {
    * @param {string} songId
    */
   async addSongToLibrary(songId) {
-    await this.myLibraryStore.addSong(songId);
+    try {
+      let response = await this.myLibraryStore.addSong(songId);
+      if(response.message === 'success') {
+        this.toastr.success('Successfully added song to library');
+        this.$rootScope.$emit('addedToLibrary', 'Song');
+        return;
+      }
+    }
+    catch(err) {
+      this.$log.error(err);
+    }
+    this.toastr.error('Unable to add song to library, please try again later');
   }
 
   /**
@@ -30,7 +45,18 @@ export default class libraryModel {
    * @param {string} albumId
    */
   async addAlbumToLibrary(albumId) {
-    await this.myLibraryStore.addAlbum(albumId);
+    try {
+      let response = await this.myLibraryStore.addAlbum(albumId);
+      if(response.message === 'success') {
+        this.toastr.success('Successfully added album to library');
+        this.$rootScope.$emit('addedToLibrary', 'Album');
+        return;
+      }
+    }
+    catch(err) {
+      this.$log.error(err);
+    }
+    this.toastr.error('Unable to add album to library, please try again later');
   }
 
   /**
@@ -38,7 +64,18 @@ export default class libraryModel {
    * @param {string} artistId
    */
   async addArtistToLibrary(artistId) {
-    await this.myLibraryStore.addArtist(artistId);
+    try {
+      let response = await this.myLibraryStore.addArtist(artistId);
+      if(response.message === 'success') {
+        this.toastr.success('Successfully added artist');
+        this.$rootScope.$emit('addedToLibrary', 'Artist');
+        return;
+      }
+    }
+    catch(err) {
+      this.$log.error(err);
+    }
+    this.toastr.error('Unable to add artist to library, please try again later');
   }
 
   /**
@@ -46,8 +83,19 @@ export default class libraryModel {
    * @param {string} songId
    * @param {string} timestamp
    */
-  removeSongFromLibrary(songId, timestamp) {
-    this.myLibraryStore.removeSong(songId, timestamp);
+  async removeSongFromLibrary(songId, timestamp) {
+    try {
+      let response = await this.myLibraryStore.removeSong(songId, timestamp);
+      if(response.message === 'success') {
+        this.toastr.success('Successfully removed song');
+        this.$rootScope.$emit('deletedFromLibrary', 'Song');
+        return;
+      }
+    }
+    catch(err) {
+      this.$log.error(err);
+    }
+    this.toastr.error('Unable to delete song, please try again later');
   }
 
   /**
@@ -55,8 +103,19 @@ export default class libraryModel {
    * @param {string} albumId
    * @param {string} timestamp
    */
-  removeAlbumFromLibrary(albumId, timestamp) {
-    this.myLibraryStore.removeAlbum(albumId, timestamp);
+  async removeAlbumFromLibrary(albumId, timestamp) {
+    try {
+      let response = await this.myLibraryStore.removeAlbum(albumId, timestamp);
+      if(response.message === 'success') {
+        this.toastr.success('Successfully removed album');
+        this.$rootScope.$emit('deletedFromLibrary', 'Album');
+        return;
+      }
+    }
+    catch(err) {
+      this.$log.error(err);
+    }
+    this.toastr.error('Unable to delete album, please try again later');
   }
 
   /**
@@ -64,8 +123,19 @@ export default class libraryModel {
    * @param {string} artistId
    * @param {string} timestamp
    */
-  removeArtistFromLibrary(artistId, timestamp) {
-    this.myLibraryStore.removeArtist(artistId, timestamp);
+  async removeArtistFromLibrary(artistId, timestamp) {
+    try {
+      let response = await this.myLibraryStore.removeArtist(artistId, timestamp);
+      if(response.message === 'success') {
+        this.toastr.success('Successfully removed artist');
+        this.$rootScope.$emit('deletedFromLibrary', 'Artist');
+        return;
+      }
+    }
+    catch(err) {
+      this.$log.error(err);
+    }
+    this.toastr.error('Unable to delete artist, please try again later');
   }
 
 }

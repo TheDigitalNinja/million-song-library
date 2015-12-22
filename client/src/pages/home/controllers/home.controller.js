@@ -13,6 +13,7 @@ export default class homeCtrl {
    * @param {albumModel} albumModel
    * @param {artistModel} artistModel
    * @param {songModel} songModel
+   * @param {$rootScope} $rootScope
    */
   constructor($scope,
               $location,
@@ -20,7 +21,8 @@ export default class homeCtrl {
               albumModel,
               artistModel,
               songModel,
-              filterModel) {
+              filterModel,
+              $rootScope) {
     this.$scope = $scope;
     this.$log = $log;
     this.artistModel = artistModel;
@@ -31,6 +33,16 @@ export default class homeCtrl {
 
     this._getCurrentTab();
     filterModel.applyCurrentFilters(this);
+
+    //Update song album and artist list on removed from library
+    $rootScope.$on('deletedFromLibrary', (event, data) => {
+      filterModel.applyCurrentFilters(this);
+    });
+
+    //Update song album and artist list on added to library
+    $rootScope.$on('addedToLibrary', (event, data) => {
+      filterModel.applyCurrentFilters(this);
+    });
   }
 
   /**
