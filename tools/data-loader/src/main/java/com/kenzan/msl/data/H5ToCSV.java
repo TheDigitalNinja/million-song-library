@@ -208,6 +208,7 @@ public class H5ToCSV {
             List<NormalizedRow> group = new ArrayList<NormalizedRow>();
             while (line != null) {
                 final NormalizedRow normalizedRow = new NormalizedRow.NormalizedRowBuilder(line).build();
+                normalizedRow.lookUpAlbumImage();
                 group.add(normalizedRow);
                 count += 1;
                 line = bufferedReader.readLine();

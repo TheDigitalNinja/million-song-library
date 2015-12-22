@@ -68,6 +68,12 @@ public class NormalizedRow {
         csv[Field.SONG_HOTNESS.getIndex()] = RowUtil.formatHotness(song.getHotness());
         return String.join(FIELD_DELIMITER, csv);
     }
+    
+    public void lookUpAlbumImage(){
+        AlbumImage albumImage = new AlbumImage(album.getName(), artist.getMbid());
+        String imageUrl = albumImage.getUrl();
+        album.setImageLink(imageUrl);
+    }
 
     public static class NormalizedRowBuilder {
 
@@ -110,9 +116,6 @@ public class NormalizedRow {
         }
 
         public NormalizedRow build() {
-        	AlbumImage albumImage = new AlbumImage(album.getName(), artist.getMbid());
-        	album.setImageLink(albumImage.getUrl());
-
             return new NormalizedRow(this);
         }
     }
