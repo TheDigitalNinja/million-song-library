@@ -6,8 +6,6 @@ package com.kenzan.msl.server.dao;
 import java.util.UUID;
 
 /**
- * 
- * 
  * @author billschwanitz
  */
 public abstract class AbstractAlbumDao extends AbstractDao {
@@ -71,5 +69,15 @@ public abstract class AbstractAlbumDao extends AbstractDao {
      * @param artistMbid the artistMbid to set
      */
     public abstract void setArtistMbid(UUID artistMbid);
+
+    /**
+     * @return the album imageLink
+     */
+    public abstract String getImageLink();
+
+    /**
+     * @param imageLink the imageLink to set
+     */
+    public abstract void setImageLink(String imageLink);
 
 }

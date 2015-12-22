@@ -19,6 +19,7 @@ public class Q12AlbumsByUser {
     private final UUID aritstId;
     private final UUID artistMbid;
     private final String artistName;
+    private final String imageLink;
     
     public Q12AlbumsByUser(final NormalizedRow normalizedRow, final UUID userId,  final Date favoritesTimestamp) {
 
@@ -30,6 +31,7 @@ public class Q12AlbumsByUser {
         this.aritstId = normalizedRow.getArtist().getId();
         this.artistMbid = normalizedRow.getArtist().getMbid();
         this.artistName = normalizedRow.getArtist().getName();
+        this.imageLink = normalizedRow.getAlbum().getImageLink();
     }
     
     public String toString() {
@@ -44,6 +46,7 @@ public class Q12AlbumsByUser {
         row.add(aritstId.toString());
         row.add(artistMbid.toString());
         row.add(RowUtil.formatText(artistName));
+        row.add(RowUtil.formatText(imageLink));
         return String.join(RowUtil.FIELD_DELIMITER, row);
     }
 }

@@ -8,6 +8,7 @@ public class NormalizedAlbum {
     private final String name;
     private final int year;
     private final float hotness;
+    private String imageLink;
 
     private NormalizedAlbum(AlbumBuilder builder) {
 
@@ -33,6 +34,14 @@ public class NormalizedAlbum {
         return hotness;
     }
 
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
+	}
+	
+	public String getImageLink(){
+		return imageLink;
+	}
+
     public static class AlbumBuilder {
 
         private UUID id;
@@ -53,4 +62,5 @@ public class NormalizedAlbum {
             return new NormalizedAlbum(this);
         }
     }
+
 }

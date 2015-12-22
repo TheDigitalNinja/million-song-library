@@ -58,6 +58,7 @@ public class AlbumInfoQuery {
                 albumBo.setAlbumName(songsArtistByAlbumDao.getAlbumName());
                 albumBo.setArtistId(songsArtistByAlbumDao.getArtistId());
                 albumBo.setArtistName(songsArtistByAlbumDao.getArtistName());
+				albumBo.setImageLink(songsArtistByAlbumDao.getImageLink());
 
                 if ( songsArtistByAlbumDao.getArtistGenres() != null
                     && songsArtistByAlbumDao.getArtistGenres().size() > 0 ) {

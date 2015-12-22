@@ -75,6 +75,7 @@ CREATE TABLE featured_albums (
   artist_id uuid,
   artist_mbid uuid,
   artist_name text,
+  image_link text,
   PRIMARY KEY ((hotness_bucket, content_type), hotness_value, album_id)
 ) WITH CLUSTERING ORDER BY (hotness_value DESC, album_id ASC);
 
@@ -157,6 +158,7 @@ CREATE TABLE albums_by_user (
   artist_id uuid,
   artist_mbid uuid,
   artist_name text,
+  image_link text,
   PRIMARY KEY ((user_id, content_type), favorites_timestamp, album_id)
 ) WITH CLUSTERING ORDER BY (favorites_timestamp DESC, album_id ASC);
 
@@ -184,6 +186,7 @@ CREATE TABLE songs_artist_by_album (
   artist_name text static,
   similar_artists map<uuid, text> static,
   song_duration int,
+  image_link text,
   PRIMARY KEY ((album_id), song_name, song_id)
 ) WITH CLUSTERING ORDER BY (song_name ASC, song_id ASC);
 

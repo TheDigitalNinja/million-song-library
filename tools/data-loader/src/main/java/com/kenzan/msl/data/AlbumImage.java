@@ -19,9 +19,9 @@ public class AlbumImage {
 	private UUID artistMbid;
 	private String url;
 	
-	public AlbumImage(final NormalizedRow normalizedRow){
-		this.albumName = normalizedRow.getAlbum().getName();
-		this.artistMbid = normalizedRow.getArtist().getMbid();
+	public AlbumImage(String albumName, UUID artistMbid){
+		this.albumName = albumName;
+		this.artistMbid = artistMbid;
 	}
 		
 	public String getUrl() {

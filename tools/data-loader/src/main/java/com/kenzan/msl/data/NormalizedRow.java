@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
 import com.kenzan.msl.data.row.RowUtil;
+import com.kenzan.msl.data.AlbumImage;
 
 /**
  * {@link NormalizedRow} contains "normalized" content objects with appropriate
@@ -67,6 +68,12 @@ public class NormalizedRow {
         csv[Field.SONG_HOTNESS.getIndex()] = RowUtil.formatHotness(song.getHotness());
         return String.join(FIELD_DELIMITER, csv);
     }
+    
+    public void lookUpAlbumImage(){
+        AlbumImage albumImage = new AlbumImage(album.getName(), artist.getMbid());
+        String imageUrl = albumImage.getUrl();
+        album.setImageLink(imageUrl);
+    }
 
     public static class NormalizedRowBuilder {
 
@@ -109,7 +116,6 @@ public class NormalizedRow {
         }
 
         public NormalizedRow build() {
-
             return new NormalizedRow(this);
         }
     }

@@ -208,6 +208,7 @@ public class H5ToCSV {
             List<NormalizedRow> group = new ArrayList<NormalizedRow>();
             while (line != null) {
                 final NormalizedRow normalizedRow = new NormalizedRow.NormalizedRowBuilder(line).build();
+                normalizedRow.lookUpAlbumImage();
                 group.add(normalizedRow);
                 count += 1;
                 line = bufferedReader.readLine();
@@ -249,12 +250,11 @@ public class H5ToCSV {
                                 numRating, sumRating));
                     }
                     q6Writer.println(new Q06FeaturedAlbum(group.get(0)));
-                    AlbumImage albumImage = new AlbumImage(group.get(0));
                     for (int x = averageRating; x >= 1; x--) {
-                        q7Writer.println(new Q07AlbumsByFacet(group.get(0), Rating.values()[x - 1].toString(), albumImage.getUrl()));
+                        q7Writer.println(new Q07AlbumsByFacet(group.get(0), Rating.values()[x - 1].toString()));
                     }
                     for (final Genre genre : group.get(0).getArtist().getGenres()) {
-                        q7Writer.println(new Q07AlbumsByFacet(group.get(0), genre.toString(), albumImage.getUrl()));
+                        q7Writer.println(new Q07AlbumsByFacet(group.get(0), genre.toString()));
                     }
                     group = new ArrayList<NormalizedRow>();
                 }

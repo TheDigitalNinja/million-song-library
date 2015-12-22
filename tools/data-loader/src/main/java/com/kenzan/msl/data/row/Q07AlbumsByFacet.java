@@ -19,13 +19,13 @@ public class Q07AlbumsByFacet {
     private final UUID artistMbid;
     private final String artistName;
     
-    public Q07AlbumsByFacet(final NormalizedRow normalizedRow, final String facetName, String url) {
+    public Q07AlbumsByFacet(final NormalizedRow normalizedRow, final String facetName) {
 
         this.facetName = facetName;
         this.albumName = normalizedRow.getAlbum().getName();
         this.albumId = normalizedRow.getAlbum().getId();
         this.albumYear = normalizedRow.getAlbum().getYear();
-        this.imageLink = url;
+        this.imageLink = normalizedRow.getAlbum().getImageLink();
         this.aritstId = normalizedRow.getArtist().getId();
         this.artistMbid = normalizedRow.getArtist().getMbid();
         this.artistName = normalizedRow.getArtist().getName();
