@@ -7,20 +7,18 @@ import java.util.UUID;
 
 import com.kenzan.msl.data.ContentType;
 
-public class Q02UserData {
+public class Q02UserRatings {
 	
 	private final UUID userId;
 	private final ContentType contentType;
 	private final UUID contentId;
-    private final Date favoritesTimestamp;
 	private final int rating;
 
-	public Q02UserData(final UUID userId, final ContentType contentType, final UUID contentId, final Date favoritesTimestamp, final int rating) {
+	public Q02UserRatings(final UUID userId, final ContentType contentType, final UUID contentId, final int rating) {
 		
 		this.userId = userId;
 		this.contentType = contentType;
 		this.contentId = contentId;
-		this.favoritesTimestamp = favoritesTimestamp;
 		this.rating = rating;
 	}
 
@@ -36,10 +34,6 @@ public class Q02UserData {
         return contentId;
     }
 
-    public Date getFavoritesTimestamp() {
-        return favoritesTimestamp;
-    }
-
     public int getRating() {
         return rating;
     }
@@ -50,7 +44,6 @@ public class Q02UserData {
 		userData.add(userId.toString());
 		userData.add(contentType.toString());
 		userData.add(contentId.toString());
-		userData.add(RowUtil.formatTimestamp(favoritesTimestamp));
 		userData.add(RowUtil.formatInt(rating));
 		return String.join(RowUtil.FIELD_DELIMITER, userData);
 	}
