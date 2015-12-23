@@ -1,0 +1,26 @@
+x-swagger-router-controller: catalog_controller
+get:
+  description: "Get a song's info from the database"
+  tags:
+    - Catalog
+  operationId: get_song
+  parameters:
+    -
+      name: songId
+      in: path
+      description: The song's unique identifier
+      required: true
+      type: string
+  responses:
+    "200":
+      description: Success
+      schema:
+        $ref: "#/definitions/SongInfo"
+    "404":
+      description: Song not found
+      schema:
+        $ref: "#/definitions/NotFoundResponse"
+    "500":
+      description: Server Error
+      schema:
+        $ref: "#/definitions/ErrorResponse"

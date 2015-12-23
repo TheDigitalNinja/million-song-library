@@ -1,0 +1,28 @@
+x-swagger-router-controller: rating_controller
+put:
+  description: Make a comment about a song
+  tags:
+    - Rating
+  schemes: ["https"]
+  security: [sessionToken: []]
+  operationId: comment_song
+  parameters:
+    -
+      name: songId
+      in: path
+      description: Id of the song you want to comment on
+      required: true
+      type: string
+  responses:
+    "200":
+      description: Successfully sent comment data to the server
+      schema:
+        $ref: "#/definitions/StatusResponse"
+    "404":
+      description: Song not found
+      schema:
+        $ref: "#/definitions/NotFoundResponse"
+    "500":
+      description: Server Error
+      schema:
+        $ref: "#/definitions/ErrorResponse"

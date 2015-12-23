@@ -1,0 +1,26 @@
+x-swagger-router-controller: catalog_controller
+get:
+  description: "Get browsing data for albums in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by album name, if no facets are passed then the results will be in featured order."
+  tags:
+    - Catalog
+  operationId: browse_albums
+  parameters:
+    -
+      $ref: "#/parameters/PagingState"
+    -
+      $ref: "#/parameters/Items"
+    -
+      $ref: "#/parameters/Facets"
+  responses:
+    "200":
+      description: Success
+      schema:
+        $ref: "#/definitions/AlbumList"
+    "400":
+      description: "Request parameter error: (1) Invalid pagingState. The string passed as pagingState is not a valid pagingState key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys."
+      schema:
+        $ref: "#/definitions/ErrorResponse"
+    "500":
+      description: Server Error
+      schema:
+        $ref: "#/definitions/ErrorResponse"

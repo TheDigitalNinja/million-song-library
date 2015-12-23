@@ -1,0 +1,204 @@
+  #
+  # complex objects
+  #
+  AlbumInfo:
+    properties:
+      album_id:
+        type: string
+      album_name:
+        type: string
+      artist_id:
+        type: string
+      artist_mbid:
+        type: string
+      artist_name:
+        type: string
+      genre:
+        type: string
+      year:
+        description: The year the album was released
+        type: integer
+      favorites_timestamp:
+        type: string
+      average_rating:
+        type: integer
+      personal_rating:
+        type: integer
+      image_link:
+        type: string
+      songs_list:
+        type: array
+        items:
+          type: string
+      in_my_library:
+        type: boolean
+  ArtistInfo:
+    properties:
+      artist_id:
+        type: string
+      artist_mbid:
+        type: string
+      artist_name:
+        type: string
+      albums_list:
+        type: array
+        items:
+          type: string
+      average_rating:
+        type: integer
+      personal_rating:
+        type: integer
+      favorites_timestamp:
+        type: string
+      image_link:
+        type: string
+      songs_list:
+        type: array
+        items:
+          type: string
+      genre:
+        type: string
+      similar_artists_list:
+        type: array
+        items:
+          type: string
+      in_my_library:
+        type: boolean
+  FacetInfo:
+    properties:
+      facet_id:
+        type: string
+      name:
+        type: string
+  FacetInfoWithChildren:
+    properties:
+      facet_id:
+        type: string
+      name:
+        type: string
+      children:
+        type: array
+        items:
+          $ref: "#/definitions/FacetInfo"
+  MyLibrary:
+    properties:
+      albums:
+        type: array
+        items:
+          $ref: "#/definitions/AlbumInfo"
+      artists:
+        type: array
+        items:
+          $ref: "#/definitions/ArtistInfo"
+      songs:
+        type: array
+        items:
+          $ref: "#/definitions/SongInfo"
+  PagingState:
+    properties:
+      pagingState:
+        description: PagingState indicates a position in a paginated query. It is sent from the server with each paginated result and returned to the server to retrieve the next page. A PagingState instance contains a GUID key to an EVCache entry on the server. The value of the EVCache entry contains the original Cassandra query and the PagingState returned after execution of the Cassandra paginated query.
+        type: string
+  SongInfo:
+    properties:
+      song_id:
+        type: string
+      song_name:
+        type: string
+      image_link:
+        type: string
+      artist_id:
+        type: string
+      artist_mbid:
+        type: string
+      artist_name:
+        type: string
+      album_id:
+        type: string
+      album_name:
+        type: string
+      favorites_timestamp:
+        type: string
+      duration:
+        description: Length of song in seconds
+        type: integer
+      genre:
+        type: string
+      danceability:
+        type: number
+      average_rating:
+        type: integer
+      personal_rating:
+        type: integer
+      song_hotttnesss:
+        description: The Echo Nest hotttnesss score
+        type: number
+      year:
+        description: The year the song was released
+        type: integer
+      in_my_library:
+        type: boolean
+  UserInfo:
+    properties:
+      userId:
+        type: string
+      name:
+        type: string
+      email:
+        type: string
+
+  #
+  #lists
+  #
+  AlbumList:
+    properties:
+      pagingState:
+        $ref: "#/definitions/PagingState"
+      albums:
+        type: array
+        items:
+          $ref: "#/definitions/AlbumInfo"
+  ArtistList:
+    properties:
+      pagingState:
+        $ref: "#/definitions/PagingState"
+      artists:
+        type: array
+        items:
+          $ref: "#/definitions/ArtistInfo"
+  SongList:
+    properties:
+      pagingState:
+        $ref: "#/definitions/PagingState"
+      songs:
+        type: array
+        items:
+          $ref: "#/definitions/SongInfo"
+
+  #
+  #responses
+  #
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  LoginSuccessResponse:
+    properties:
+      authenticated:
+        type: string
+  NotFoundResponse:
+    properties:
+      message:
+        type: string
+  SearchResponse:
+    properties:
+      search_results:
+        type: array
+        items:
+          type: string
+  StatusResponse:
+    properties:
+      message:
+        type: string

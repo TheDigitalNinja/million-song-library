@@ -1,0 +1,54 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Million Songs API
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths
+basePath: /
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /msl/v1/catalogedge/song/{songId}:
+    $ref: ./swagger/api/swagger/catalog-edge/paths/getSong.yaml
+
+  /msl/v1/catalogedge/album/{albumId}:
+    $ref: ./swagger/api/swagger/catalog-edge/paths/getAlbum.yaml
+
+  /msl/v1/catalogedge/artist/{artistId}:
+    $ref: ./swagger/api/swagger/catalog-edge/paths/getArtist.yaml
+
+  /msl/v1/catalogedge/facet/{facetId}:
+    $ref: ./swagger/api/swagger/catalog-edge/paths/getFacet.yaml
+
+  /msl/v1/catalogedge/browse/album:
+    $ref: ./swagger/api/swagger/catalog-edge/paths/browseAlbums.yaml
+
+  /msl/v1/catalogedge/browse/artist:
+    $ref: ./swagger/api/swagger/catalog-edge/paths/browseArtists.yaml
+
+  /msl/v1/catalogedge/browse/song:
+    $ref: ./swagger/api/swagger/catalog-edge/paths/browseSongs.yaml
+
+
+
+securityDefinitions:
+  $ref: ./swagger/api/swagger/security-definitions/index.yaml
+#
+# Reuseable Parameters
+#
+parameters:
+  $ref: ./swagger/api/swagger/parameters/index.yaml
+
+# complex objects have schema definitions
+definitions:
+  $ref: ./swagger/api/swagger/definitions/definitions.yaml

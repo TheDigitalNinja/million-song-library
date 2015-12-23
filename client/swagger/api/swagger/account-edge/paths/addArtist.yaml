@@ -1,0 +1,24 @@
+x-swagger-router-controller: mylibrary_controller
+put:
+  description: "Adds a artist to the user library"
+  tags:
+    - Account
+  schemes: ["https"]
+  security: [sessionToken: []]
+  operationId: add_artist
+  parameters:
+    -
+      name: artistId
+      in: path
+      description: Artist id for the artist to add to the library
+      type: string
+      required: true
+  responses:
+    "200":
+      description: Success
+      schema:
+        $ref: "#/definitions/StatusResponse"
+    "500":
+      description: Server Error
+      schema:
+        $ref: "#/definitions/ErrorResponse"

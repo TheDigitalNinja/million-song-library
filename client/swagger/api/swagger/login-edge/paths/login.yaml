@@ -1,0 +1,36 @@
+x-swagger-router-controller: login_controller
+post:
+  description: Logs a user into the system
+  tags:
+    - Login
+  consumes:
+    - application/x-www-form-urlencoded
+  produces:
+    - application/json
+    - text/html
+  schemes: ["https"]
+  operationId: login
+  parameters:
+    -
+      name: email
+      in: formData
+      description: Login to the app with user credentials
+      required: true
+      type: string
+    -
+      name: password
+      in: formData
+      description: user password
+      required: true
+      type: string
+  responses:
+    "200":
+      description: Successfully logged on the user
+      schema:
+        $ref: "#/definitions/LoginSuccessResponse"
+    "401":
+      description: Invalid Login Credentials
+    "500":
+      description: Server Error
+      schema:
+        $ref: "#/definitions/ErrorResponse"

@@ -1,0 +1,19 @@
+x-swagger-router-controller: login_controller
+post:
+  description: Logs a user out of the system
+  tags:
+    - Login
+  schemes: ["https"]
+  security: [sessionToken: []]
+  produces:
+    - application/json
+  operationId: logout
+  responses:
+    "200":
+      description: Logged out
+      schema:
+        $ref: "#/definitions/StatusResponse"
+    "500":
+      description: Server Error
+      schema:
+        $ref: "#/definitions/ErrorResponse"
