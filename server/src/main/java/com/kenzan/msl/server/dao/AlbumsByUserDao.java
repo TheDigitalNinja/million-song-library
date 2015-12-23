@@ -32,6 +32,9 @@ public class AlbumsByUserDao {
     private UUID artistMbid;
     @Column(name = "artist_name")
     private String artistName;
+    
+    @Column(name = "image_link")
+    private String imageLink;
 
     public UUID getUserId() {
         return userId;
@@ -103,5 +106,13 @@ public class AlbumsByUserDao {
 
     public void setArtistName(String artistName) {
         this.artistName = artistName;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 }

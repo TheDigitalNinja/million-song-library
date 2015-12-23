@@ -84,6 +84,7 @@ public class Translators {
             albumInfo.setArtistMbid(dao.getArtistMbid() == null ? null : dao.getArtistMbid().toString());
             albumInfo.setFavoritesTimestamp(dao.getFavoritesTimestamp() == null ? null : String.valueOf(dao
                 .getFavoritesTimestamp().getTime()));
+            albumInfo.setImageLink(dao.getImageLink());
             output.add(albumInfo);
         }
         return output;
