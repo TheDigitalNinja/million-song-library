@@ -40,7 +40,7 @@ Note: fields marked with "K" are partition keys, and those marked with "C" are c
 |=======================
 |Query Number	|Description			|
 |Q1				|Users					|image:images/database/Q01 users.png[Users]
-|Q2				|User Data by User		|image:images/database/Q02 user data by user.png[User Data by User]
+|Q2				|User ratings		|image:images/database/Q02 user ratings.png[User Ratings]
 |Q3				|Average Ratings		|image:images/database/Q03 average ratings.png[Average Ratings]
 |Q4				|Featured Songs			|image:images/database/Q04 featured songs.png[Featured Songs]
 |Q5				|Songs by Facet			|image:images/database/Q05 songs by facet.png[Songs by Facet]

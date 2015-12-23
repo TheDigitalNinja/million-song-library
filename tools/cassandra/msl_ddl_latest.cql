@@ -13,11 +13,10 @@ CREATE TABLE users (
 );
 
 // Q2:
-CREATE TABLE user_data_by_user (
+CREATE TABLE user_ratings (
   user_id uuid,
   content_type text,
   content_id uuid,
-  favorites_timestamp timestamp,
   rating int,
   PRIMARY KEY ((user_id), content_type, content_id)
 ) WITH CLUSTERING ORDER BY (content_type ASC, content_id ASC);
