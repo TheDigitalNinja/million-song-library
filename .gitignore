@@ -3,14 +3,7 @@
 /client/build
 /client/coverage
 /client/swagger/api/swagger/swagger.yaml
-
 /target
-/server/target
-/server/src/gen/java/io/swagger/api/*.java
-/server/src/gen/java/io/swagger/model
-/server/src/main/webapp
-/server/pom.xml
-/server/swagger-jaxrs-server.iml
 
 /common/swagger-codegen
 *-compiled.js

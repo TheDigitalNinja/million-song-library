@@ -20,9 +20,7 @@
     "parse-login-edge-src": "node swagger/resolve.js -- login-edge/index.yaml",
     "parse-player-edge-src": "node swagger/resolve.js -- player-edge/index.yaml",
     "parse-ratings-edge-src": "node swagger/resolve.js -- ratings-edge/index.yaml",
-    "serve-mock": "npm run parse-swagger-src && swagger project start --mock swagger",
-    "start-server": "cd ../server && mvn -f build.xml clean generate-sources jetty:run",
-    "server-coverage": "cd ../server && mvn -f build.xml site"
+    "serve-mock": "npm run parse-swagger-src && swagger project start --mock swagger"
   },
   "author": "",
   "license": "ISC",
