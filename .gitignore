@@ -5,6 +5,8 @@
 /client/swagger/api/swagger/swagger.yaml
 /target
 
+/server/models
+
 /common/swagger-codegen
 *-compiled.js
 *-compiled.js.map

@@ -1,3 +1,5 @@
+import {LOGIN_EDGE} from '../../../constants.js';
+
 /**
  * logout store service
  * @name logoutStore
@@ -9,7 +11,7 @@
 function logoutStore (request, entityMapper, StatusResponseEntity) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/msl/v1/loginedge/logout';
+  const API_REQUEST_PATH = `${LOGIN_EDGE}logout`;
   return {
     /**
      * make logout request

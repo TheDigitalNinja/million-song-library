@@ -1,3 +1,5 @@
+import {LOGIN_EDGE} from '../../../constants.js';
+
 /**
  * login store service
  * @name loginStore
@@ -9,7 +11,7 @@
 function loginStore (request, entityMapper, LoginSuccessResponseEntity) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/msl/v1/loginedge/login';
+  const API_REQUEST_PATH = `${LOGIN_EDGE}login`;
   return {
     /**
      * make login request

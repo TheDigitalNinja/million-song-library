@@ -1,4 +1,5 @@
 import {PAGE_SIZE} from '../../../constants.js';
+import {CATALOG_EDGE} from '../../../constants.js';
 
 /**
  * artist store
@@ -17,7 +18,7 @@ export default function artistStore(request,
                                     $log) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/msl/v1/catalogedge/';
+  const API_REQUEST_PATH = CATALOG_EDGE;
   return {
     /**
      * fetch artist from catalogue endpoint
