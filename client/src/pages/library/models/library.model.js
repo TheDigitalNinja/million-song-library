@@ -1,24 +1,36 @@
 /**
  * Library model
- * @param {$log} $log
- * @param {myLibraryStore} myLibraryStore
- * @param {toastr} toastr
- * @param {$rootScope} $rootScope
  */
 export default class libraryModel {
 
-  constructor($log, myLibraryStore, toastr, $rootScope) {
-    this.myLibraryStore = myLibraryStore;
+  /**
+   * @constructor
+   * @param {$rootScope} $rootScope
+   * @param {myLibraryStore} myLibraryStore
+   * @param {toastr} toastr
+   * @param {$log} $log
+   */
+  constructor($rootScope, myLibraryStore, toastr, $log) {
     this.$rootScope = $rootScope;
+    this.myLibraryStore = myLibraryStore;
     this.toastr = toastr;
     this.$log = $log;
   }
 
   /**
-   * Gets my library
+   * Retrieves the library data (songs, artists, albums)
    */
   async getLibrary() {
-    return await this.myLibraryStore.fetch();
+    try {
+      let response = await this.myLibraryStore.fetch();
+      if(response) {
+        return response;
+      }
+    } catch(err) {
+      this.$log.error(err);
+    }
+    this.toastr.error('Unable to retrieve library, please try again later');
+    return null;
   }
 
   /**
