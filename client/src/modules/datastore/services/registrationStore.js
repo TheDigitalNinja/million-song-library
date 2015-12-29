@@ -1,3 +1,5 @@
+import {ACCOUNT_EDGE} from '../../../constants.js';
+
 /**
  * registration store service
  * @name registrationStore
@@ -9,7 +11,7 @@
 function registrationStore (request, entityMapper, StatusResponseEntity) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/msl/v1/accountedge/users/register';
+  const API_REQUEST_PATH = `${ACCOUNT_EDGE}users/register`;
   return {
     /**
      * make registration request

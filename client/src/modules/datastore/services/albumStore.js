@@ -1,4 +1,5 @@
 import {PAGE_SIZE} from '../../../constants.js';
+import {CATALOG_EDGE} from '../../../constants.js';
 
 /**
  * album store
@@ -12,7 +13,7 @@ import {PAGE_SIZE} from '../../../constants.js';
 function albumStore(request, entityMapper, AlbumInfoEntity, AlbumListEntity, $log) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/msl/v1/catalogedge/';
+  const API_REQUEST_PATH = CATALOG_EDGE;
   return {
     /**
      * fetch album from catalogue endpoint

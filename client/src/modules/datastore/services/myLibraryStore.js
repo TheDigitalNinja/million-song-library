@@ -1,3 +1,5 @@
+import {ACCOUNT_EDGE} from '../../../constants.js';
+
 import StatusResponseEntity from '../entities/StatusResponseEntity';
 
 /**
@@ -17,7 +19,7 @@ function myLibraryStore(
 ) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/msl/v1/accountedge/users/mylibrary';
+  const API_REQUEST_PATH = `${ACCOUNT_EDGE}users/mylibrary`;
   return {
     /**
      * fetch my library from account endpoint

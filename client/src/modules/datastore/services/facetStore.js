@@ -1,3 +1,5 @@
+import {CATALOG_EDGE} from '../../../constants.js';
+
 /**
  * Facet store
  * @param {request} request
@@ -8,7 +10,7 @@
 export default function facetStore(request, entityMapper, FacetListEntity) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/msl/v1/catalogedge/facet/';
+  const API_REQUEST_PATH = `${CATALOG_EDGE}facet/`;
 
   return {
     /**

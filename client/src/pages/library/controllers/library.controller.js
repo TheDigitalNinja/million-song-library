@@ -13,10 +13,10 @@ export default class libraryCtrl {
    * @param {$log} $log
    */
   constructor($rootScope, libraryModel, toastr, $log) {
-    this.$log = $log;
+    this.$rootScope = $rootScope;
     this.libraryModel = libraryModel;
     this.toastr = toastr;
-    this.isProcessing = true;
+    this.$log = $log;
     this._getMyLibrary();
 
     $rootScope.$on('deletedFromLibrary', (event, data) => {
@@ -32,21 +32,23 @@ export default class libraryCtrl {
    */
   async _getMyLibrary() {
     try {
+      this.isProcessing = true;
       const response = await this.libraryModel.getLibrary();
       if(response) {
         this.songs = response.songs;
         this.albums = response.albums;
         this.artists = response.artists;
-        this.isProcessing = false;
-        return;
+        this.$rootScope.$evalAsync();
       }
       else {
-        //TODO add 'no library message'
+        this.$log.error('No response from _getMyLibrary');
       }
     }
     catch(error) {
       this.$log.warn(error);
     }
-    this.isProcessing = false;
+    finally {
+      this.isProcessing = false;
+    }
   }
 }

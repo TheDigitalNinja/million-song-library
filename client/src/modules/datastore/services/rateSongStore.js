@@ -1,3 +1,5 @@
+import {RATINGS_EDGE} from '../../../constants.js';
+
 /**
  * rate song store service
  * @name rateSongStore
@@ -9,7 +11,7 @@
 function rateSongStore (request, entityMapper, StatusResponseEntity) {
   'ngInject';
 
-  const API_REQUEST_PATH = '/msl/v1/ratingsedge/ratesong/';
+  const API_REQUEST_PATH = `${RATINGS_EDGE}ratesong/`;
   return {
     /**
      * make rate song request
