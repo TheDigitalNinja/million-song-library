@@ -11,6 +11,13 @@ Introduction
 ------------
 Some marketing-ish description of what MSL is and why Kenzan is working on it
 
+GitHub Repositories
+-------------------
+The artifacts for this open source project are available from GitHub (http://github.com/kenzanmedia/million-song-library). This is the master repository for all the available artifacts. This master repo refers to most of its artifacts via multiple sub-repositories (git submodules) - one for each service, configuration, and UI service. Subdividing the repositories this way allows for easy configuration of our continuous integration (CI) jobs, while at the same time the master repository makes for easy retrieval of the entire project.
+
+.Directory and Repository Diagram
+image:images/architecture/Directory and Repo Diagram.png[Directory and Repository Diagram]
+
 Tools
 -----
 
@@ -63,10 +70,89 @@ Server
 Architecture
 ~~~~~~~~~~~~
 .High-level Architecture Diagram
-image:images/architecture/High level architecture.jpg[High-level Architecture Diagram]
+image:images/architecture/High Level Architecture.png[High-level Architecture Diagram]
+
+Data Client Layer
+^^^^^^^^^^^^^^^^^
+As a simplification to a traditional edge/middle architecture, this project uses a edge/data client architecture instead. The data clients are jars, each containing all the methods and DAOs for accessing all the tables within a Cassandra cluster. To enhance scalability and configuration flexibility, the Cassandra tables are split into three independent clusters: account, catalog, and rating. Each of these clusters has a data client jar dedicated to accessing it: account-data-client, catalog-data-client, and rating-data-client, respectively.
+
+So a microservice that needs to access Cassandra data will include one or more of the data client jars.
+
+.Data Client and Cassandra Cluster Details
+image:images/architecture/Data Client and Cassandra Cluster Detail.png[Data CLient and Cassandra Cluster Details]
+
+.Data Client Details
+[width="100%",cols="3,2,10",options="header"]
+|=======================
+|Name                          |Table                   |Method
+.21+<|account-data-client  .3+<|users                  <|addOrUpdateUser(UserDao)
+                                                       <|Observable<UserDao> getUser(UUID userUuid)
+                                                       <|deleteUser(UUID userUuid)
+                           .6+<|songs_by_user          <|addOrUpdateSongsByUser(SongsByUserDao)
+                                                       <|Observable<SongsByUserDao> getSongsByUser(UUID userId, Timestamp favoritesTimestamp, UUID songUuid)
+                                                       <|Observable<ResultSet> getSongsByUser(UUID userId, Timestamp favoritesTimestamp, Optional<Integer> limit)
+                                                       <|Observable<ResultSet> getSongsByUser(UUID userId, Optional<Integer> limit)
+                                                       <|Observable<Result<SongsByUserDao>> map(Observable<ResultSet>)
+                                                       <|deleteSongsByUser(UUID userId, Timestamp favoritesTimestamp, UUID songUuid)
+                           .6+<|albums_by_user         <|addOrUpdateAlbumsByUser(AlbumsByUserDao)
+                                                       <|Observable<AlbumsByUserDao> getAlbumsByUser(UUID userId, Timestamp favoritesTimestamp, UUID albumUuid)
+                                                       <|Observable<ResultSet> getAlbumsByUser(UUID userId, Timestamp favoritesTimestamp, Optional<Integer> limit)
+                                                       <|Observable<ResultSet> getAlbumsByUser(UUID userId, Optional<Integer> limit)
+                                                       <|Observable<Result<AlbumsByUserDao>> map(Observable<ResultSet>)
+                                                       <|deleteAlbumsByUser(UUID userId, Timestamp favoritesTimestamp, UUID albumUuid)
+                           .6+<|artists_by_user        <|addOrUpdateArtistsByUser(ArtistsByUserDao)
+                                                       <|Observable<ArtistsByUserDao> getArtistsByUser(UUID userId, Timestamp favoritesTimestamp, UUID artistUuid)
+                                                       <|Observable<ResultSet> getArtistsByUser(UUID userId, Timestamp favoritesTimestamp, Optional<Integer> limit)
+                                                       <|Observable<ResultSet> getArtistsByUser(UUID userId, Optional<Integer> limit)
+                                                       <|Observable<Result<ArtistsByUserDao>> map(Observable<ResultSet>)
+                                                       <|deleteArtistsByUser(UUID userId, Timestamp favoritesTimestamp, UUID artistUuid)
+.09+<|rating-data-client   .3+<|average_ratings        <|addOrUpdateAverageRating(AverageRatingDao)
+                                                       <|Observable<AverageRatingDao> getAverageRating(UUID contentId, String contentType)
+                                                       <|deleteAverageRating(UUID contentId, String contentType)
+                           .6+<|user_ratings           <|addOrUpdateUserRatings(UserRatingsDao)
+                                                       <|Observable<UserRatingsDao> getUserRatings(UUID userUuid, String contentType, UUID contentUuid)
+                                                       <|Observable<ResultSet> getUserRatings(UUID userUuid, String contentType, Optional<Integer> limit)
+                                                       <|Observable<ResultSet> getUserRatings(UUID userUuid, Optional<Integer> limit)
+                                                       <|Observable<Result<UserRatingsDao> map(Observable<ResultSet>)
+                                                       <|deleteUserRatings(UUID userUuid, String contentType, UUID contentUuid)
+.21+<|rating-data-client   .2+<|featured_songs         <|Observable<ResultSet> getFeaturedSongs(Optional<Integer> limit)
+                                                       <|Observable<Result<FeaturedSongsDao> map(Observable<ResultSet>)
+                           .2+<|songs_by_facet         <|Observable<ResultSet> getSongsByFacet(String facetName, Optional<Integer> limit)
+                                                       <|Observable<Result<SongsByFacetDao> map(Observable<ResultSet>)
+                           .2+<|featured_albums        <|Observable<ResultSet> getFeaturedAlbums(Optional<Integer> limit)
+                                                       <|Observable<Result<FeaturedAlbumsDao> map(Observable<ResultSet>)
+                           .2+<|albums_by_facet        <|Observable<ResultSet> getAlbumsByFacet(String facetName, Optional<Integer> limit)
+                                                       <|Observable<Result<AlbumsByFacetDao> map(Observable<ResultSet>)
+                           .2+<|featured_artists       <|Observable<ResultSet> getFeaturedArtists(Optional<Integer> limit)
+                                                       <|Observable<Result<FeaturedArtistsDao> map(Observable<ResultSet>)
+                           .2+<|artists_by_facet       <|Observable<ResultSet> getArtistsByFacet(String facetName, Optional<Integer> limit)
+                                                       <|Observable<Result<ArtistsByFacetDao> map(Observable<ResultSet>)
+                           .2+<|songs_albums_by_artist <|Observable<ResultSet> getSongsAlbumsByArtist(UUID artistUuid, Optional<Integer> limit)
+                                                       <|Observable<Result<SongsAlbumsByArtistDao> map(Observable<ResultSet>)
+                           .2+<|songs_artist_by_album  <|Observable<ResultSet> getSongsArtistByAlbum(UUID albumUuid, Optional<Integer> limit)
+                                                       <|Observable<Result<SongsArtistByAlbumDao> map(Observable<ResultSet>)
+                           .2+<|album_artist_by_song   <|Observable<ResultSet> getAlbumArtistBySong(UUID songUuid, Optional<Integer> limit)
+                                                       <|Observable<Result<AlbumArtistBySongDao> map(Observable<ResultSet>)
+                           .3+<|paging_state           <|addOrUpdatePagingState(PagingStateDao)
+                                                       <|Observable<PagingStateDao> getPagingState(UUID pagingStateUuid)
+                                                       <|deletePagingState(UUID pagingStateUuid)
+|=======================
+
+
+APIs
+^^^^
+[red]#TBA#: links to Swagger generated API doc(s)
 
 Data Objects
 ^^^^^^^^^^^^
+The server has three different classifications of data objects:
+
+. Models: classes that represent the data payloads that are passed back and forth between clients and server
+. Data Access Objects (DAOs): classes that represent the data persisted in Cassandra
+. Business Objects (BOs): classes that aid converting between models and DAOs
+
+.High Level Data Objects Diagram
+image:images/architecture/dataobjects/High Level Data Objects.png[High Level Data Objects Diagram]
 
 Models
 ++++++
@@ -77,14 +163,14 @@ image:images/architecture/dataobjects/Models.png[Model Classes Architecture Diag
 
 Data Access Objects (DAOs)
 ++++++++++++++++++++++++++
-Data Access Objects represent the data as it is persisted in Cassadra. Often this data is optimized for Cassandra, so needs to undergo some massaging to convert it for use in a model.
+Data Access Objects represent the data as it is persisted in Cassadra. In fact, there is a one-to-one correspondence between Cassandra tables and concrete DAO classes. Often this data is optimized for Cassandra, so needs to undergo some massaging to convert it to a model.
 
 .Data Access Object Classes Architecture Diagram
 image:images/architecture/dataobjects/Data access objects.png[Data Access Object Classes Architecture Diagram]
 
 Business Objects (BOs)
 ++++++++++++++++++++++
-Business object classes are the glue between model classes and DAO classes inside the server. In many cases there is not a simple one-to-one connection between reading a DAO from Cassandra and sending that as a model to the client. For example: when building an AlbumInfo model, the album's metadata, community and user ratings must be merged. The BO contains the merged representation of the data.
+Business object classes are the glue inside the server between model classes and DAO classes. In many cases there is not a simple one-to-one connection between reading a DAO from Cassandra and sending that as a model to the client. For example: when building an AlbumInfo model, the album's metadata, community and user ratings must be merged. The BO contains the merged representation of the data.
 
 .Business Object Classes Architecture Diagram
 image:images/architecture/dataobjects/Business objects.png[Business Object Classes Architecture Diagram]
@@ -93,7 +179,7 @@ Language(s) and Frameworks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 The back-end server is written in Java - Enterprise Edition 1.8, to be exact. Communication between client and server is performed using a RESTful web service over HTTP. The REST code stubs, generated by Swagger (http://github.com/swagger-api), use JaxRs annotations (http://jax-rs-spec.java.net). Java's Jersey library (http://jersey.java.net) is used as the implementation of the JaxRs API. JUnit is used as out unit testing framework.
 
-Portions of the Netflix OSS stack are used to provide cloud services. At its foundation, the server is based on Karyon (http://github.com/Netflix/karyon) - this enables the use of other useful Netflix OSS tools. For example, Archaius (http://github.com/Netflix/archaius) is used as the configuration manager allowing the service to react to changes in configuration parameters dynamically, and EVCache (http://github.com/Netflix/EVCache) is used as the highly available, distributed memory cache.
+Portions of the Netflix OSS stack are used to provide cloud services. At its foundation, the server is based on Karyon (http://github.com/Netflix/karyon) - this enables the use of other useful Netflix OSS tools. For example, Archaius (http://github.com/Netflix/archaius) is used as the configuration manager allowing the service to react to changes in configuration parameters dynamically.
 
 All data is persisted using Apache's Cassandra (http://cassandra.apache.org). Cassandra is a highly available, scalable NoSQL database. The DataStax Java driver and row->POJO mapper (http://datastax.github.io/java-driver) are used to interface the Java code with the Cassandra database.
 
@@ -135,7 +221,7 @@ artist = controller.lookUp(artist);
 Parsing and Using MusicBrainz Data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As can be seen in the example REST response, above, multiple "releases" (AKA albums) can be returned for the requested artist. The data import code will review the available releases/albums for the artist and select album art using the following algorithm:
+Multiple "releases" (AKA albums) can be returned for the requested artist. The data import code will review the available releases/albums for the artist and select album art using the following algorithm:
 
 . Consider only those releases/albums whose title matches (case-INsensitively) the name of the album from the MSL data
 . Consider only those release/albums with cover-art-archive/front = true

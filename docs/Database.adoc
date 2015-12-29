@@ -63,6 +63,6 @@ The Million Song Library data is available from http://labrosa.ee.columbia.edu/m
 
 HDF or Hierarchical Data Format files (https://en.wikipedia.org/wiki/Hierarchical_Data_Format) contain all the data we need for albums, artists and songs. We use the Python library written by Thierry Bertin-Mahieux (tb2332@columbia.edu) to read these files. We tried using Java and the JHI5 (https://www.hdfgroup.org/products/java/JNI/jhi5/) but ran into issues with the native library aspect of that implementation so decided to defer the reading of the HDF files to python.
 
-So, at a high level, the data import process uses python to traverses a given directory tree consuming all the .h5 filed and creates a single CSV file with one line for each song. This CSV file is then consumed by a Java program to create the CSVs that will be inserted into the Cassandra cluster.
+So, at a high level, the data import process uses python to traverse a given directory tree consuming all the .h5 files and creating a single CSV file with one line for each song. This CSV file is then consumed by a Java program to create the CSVs that will be inserted into the Cassandra cluster.
 
 NOTE: The tags within an .h5 file (/metadata/artist_terms) essentially indicate the genre of the song. There are so many genres used in the dataset that it makes their use as a searching mechanism not particularly useful. So a list of genres is defined in Genre.java to declare which of the genres we are interested in persisting. Any genres not found in the list are ignored.
