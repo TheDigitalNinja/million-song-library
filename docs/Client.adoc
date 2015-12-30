@@ -18,7 +18,8 @@ Bill Schwanitz <bschwanitz@kenzan.com>
 
 Architecture
 ------------
-[red]#TBA#: a diagram of the client architecture
+.High-level Architecture Diagram
+image:images/architecture/client/Architecture Diagram.png[Architecture Diagram]
 
 Language(s) and Frameworks
 --------------------------
