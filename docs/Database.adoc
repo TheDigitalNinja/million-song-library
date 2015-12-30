@@ -1,10 +1,20 @@
-Million Song Library Database
-=============================
+Kenzan Million Song Library - Database
+======================================
 Bill Schwanitz <bschwanitz@kenzan.com>
 :Author Initials: WES
+:toc!:
 :icons:
 :numbered:
 :website: http://kenzan.com/
+
+*Table of Contents*
+[upperroman]
+. link:MillionSongLibrary.adoc[General Information]
+. link:Client.adoc[Client/UI]
+. link:Server.adoc[Server]
+. Database
+
+'''
 
 Introduction
 ------------
