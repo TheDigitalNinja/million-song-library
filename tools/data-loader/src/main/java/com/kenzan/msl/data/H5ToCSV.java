@@ -24,7 +24,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.io.Files;
 import com.kenzan.msl.data.row.Q01User;
-import com.kenzan.msl.data.row.Q02UserData;
+import com.kenzan.msl.data.row.Q02UserRatings;
 import com.kenzan.msl.data.row.Q03AverageRatings;
 import com.kenzan.msl.data.row.Q04FeaturedSong;
 import com.kenzan.msl.data.row.Q05SongsByFacet;
@@ -165,12 +165,11 @@ public class H5ToCSV {
                         final boolean favorited = random.nextBoolean();
                         final Date timestamp = randomDate();
                         if (favorited) {
-                            q2Writer.println(new Q02UserData(randomUsers[x].getId(), ContentType.ARTIST,
-                                    group.get(0).getSong().getId(), timestamp, ratings[x]));
                             q13Writer.println(new Q13ArtistsByUser(group.get(0), randomUsers[x].getId(), timestamp));
-                        } else if (ratings[x] > 0) {
-                            q2Writer.println(new Q02UserData(randomUsers[x].getId(), ContentType.ARTIST,
-                                    group.get(0).getSong().getId(), null, ratings[x]));
+                        } 
+                        if (ratings[x] > 0) {
+                            q2Writer.println(new Q02UserRatings(randomUsers[x].getId(), ContentType.ARTIST,
+                                    group.get(0).getSong().getId(), ratings[x]));
                         }
                     }
                     if (averageRating > 0) {
@@ -237,12 +236,11 @@ public class H5ToCSV {
                         final boolean favorited = random.nextBoolean();
                         final Date timestamp = randomDate();
                         if (favorited) {
-                            q2Writer.println(new Q02UserData(randomUsers[x].getId(), ContentType.ALBUM,
-                                    group.get(0).getSong().getId(), timestamp, ratings[x]));
                             q12Writer.println(new Q12AlbumsByUser(group.get(0), randomUsers[x].getId(), timestamp));
-                        } else if (ratings[x] > 0) {
-                            q2Writer.println(new Q02UserData(randomUsers[x].getId(), ContentType.ALBUM,
-                                    group.get(0).getSong().getId(), null, ratings[x]));
+                        } 
+                        if (ratings[x] > 0) {
+                            q2Writer.println(new Q02UserRatings(randomUsers[x].getId(), ContentType.ALBUM,
+                                    group.get(0).getSong().getId(), ratings[x]));
                         }
                     }
                     if (averageRating > 0) {
@@ -301,12 +299,11 @@ public class H5ToCSV {
                     final boolean favorited = random.nextBoolean();
                     final Date timestamp = randomDate();
                     if (favorited) {
-                        q2Writer.println(new Q02UserData(randomUsers[x].getId(), ContentType.SONG,
-                                normalizedRow.getSong().getId(), timestamp, ratings[x]));
                         q11Writer.println(new Q11SongsByUser(normalizedRow, randomUsers[x].getId(), timestamp));
-                    } else if (ratings[x] > 0) {
-                        q2Writer.println(new Q02UserData(randomUsers[x].getId(), ContentType.SONG,
-                                normalizedRow.getSong().getId(), null, ratings[x]));
+                    }
+                    if (ratings[x] > 0) {
+                        q2Writer.println(new Q02UserRatings(randomUsers[x].getId(), ContentType.SONG,
+                                normalizedRow.getSong().getId(), ratings[x]));
                     }
                 }
                 if (averageRating > 0) {

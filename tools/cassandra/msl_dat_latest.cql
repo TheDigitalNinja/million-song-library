@@ -5,8 +5,8 @@ TRUNCATE users;
 COPY users FROM '../data/Q01_users.csv';
 
 // Q2:
-TRUNCATE user_data_by_user;
-COPY user_data_by_user FROM '../data/Q02_user_data.csv';
+TRUNCATE user_ratings;
+COPY user_ratings FROM '../data/Q02_user_data.csv';
 
 // Q3:
 TRUNCATE average_ratings;
