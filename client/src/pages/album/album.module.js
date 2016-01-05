@@ -4,6 +4,7 @@ import router from 'angular-ui-router';
 
 //Modules
 import dataStore from 'modules/datastore/module';
+import authentication from 'modules/authentication/module';
 
 import albumPageRoute from './album.route.js';
 import albumCtrl from './controllers/album.controller.js';
@@ -17,6 +18,7 @@ import albumModel from './models/album.model.js';
 export default angular.module('msl.album', [
   router,
   dataStore,
+  authentication,
 ])
   .config(albumPageRoute)
   .directive('albumsList', albumsList)

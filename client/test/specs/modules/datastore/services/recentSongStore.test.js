@@ -2,6 +2,7 @@
 import datastoreModule from 'modules/datastore/module';
 
 describe('recentSongsStore', () => {
+  const API_PATH = `:${process.env.ACCOUNT_PORT}/msl/v1/accountedge/users`;
   let recentSongsStore, request, entityMapper, SongListEntity;
 
   beforeEach(() => {
@@ -23,7 +24,7 @@ describe('recentSongsStore', () => {
     it('should request the user recent songs', () => {
       (async () => {
         await recentSongsStore.fetch();
-        expect(request.get).toHaveBeenCalledWith('/msl/v1/accountedge/users/recentsongs');
+        expect(request.get).toHaveBeenCalledWith(`${API_PATH}/recentsongs`);
       })();
     });
 

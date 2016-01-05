@@ -23,10 +23,15 @@ if (_.isUndefined(process.env.NODE_ENV)) {
  * set api host environment as swagger host.
  */
 if (_.isUndefined(process.env.API_HOST)) {
+  process.env.API_HOST = "http://local.msl.dev";
+
   if (argv.mock || process.env.npm_config_mock) {
-    process.env.API_HOST = "http://local.msl.dev:10010";
+    process.env.LOGIN_PORT = process.env.ACCOUNT_PORT = process.env.CATALOG_PORT = process.env.RATINGS_PORT = "10010";
   } else {
-    process.env.API_HOST = "http://local.msl.dev";
+    process.env.LOGIN_PORT = "9001";
+    process.env.ACCOUNT_PORT = "9002";
+    process.env.CATALOG_PORT = "9003";
+    process.env.RATINGS_PORT = "9004";
   }
 }
 
@@ -79,7 +84,7 @@ module.exports = {
     }]
   },
   plugins: [
-    new webpack.EnvironmentPlugin(["NODE_ENV", "API_HOST"]),
+    new webpack.EnvironmentPlugin(["NODE_ENV", "API_HOST", "LOGIN_PORT", "ACCOUNT_PORT", "CATALOG_PORT", "RATINGS_PORT"]),
     // use jquery as a global because some libraries like bootstrap expects it to be global
     new webpack.ProvidePlugin({jQuery: "jquery"}),
     new HtmlWebpackPlugin({filename: "index.html", template: path.join(context, "index.tpl.html")}),

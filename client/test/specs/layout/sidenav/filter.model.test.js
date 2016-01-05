@@ -5,7 +5,8 @@ import sidenav from 'layout/sidenav/sidenav.module.js';
 describe('filterModel', () => {
   const RATING = '4';
   const GENRE_ID = '2';
-  const GENRE = { facetId: GENRE_ID, name: 'SomeGenre' };
+  const GENRE_NAME = 'SomeGenre';
+  const GENRE = { facetId: GENRE_ID, name: GENRE_NAME };
   let filterModel, listener, songModel, albumModel, artistModel, $location;
 
   beforeEach(() => {
@@ -42,17 +43,41 @@ describe('filterModel', () => {
     });
   });
 
-  describe('setSelectedGenreId', () => {
-    beforeEach(() => {
-      filterModel.setSelectedGenre(GENRE);
+  describe('setSelectedGenre', () => {
+    describe('when the genre is defined', () => {
+      beforeEach(() => {
+        filterModel.setSelectedGenre(GENRE);
+      });
+
+      it("should set the selectedGenreId to the genre's facet id", () => {
+        expect(filterModel.selectedGenreId).toEqual(GENRE_ID);
+      });
+
+      it("should set the selectedGenreName to genre's name", () => {
+        expect(filterModel.selectedGenreName).toEqual(GENRE_NAME);
+      });
+
+      it('should set the selectedRating to null', () => {
+        expect(filterModel.selectedRating).toBeNull();
+      });
     });
 
-    it('should set the selectedGenre to the received value', () => {
-      expect(filterModel.selectedGenreId).toEqual(GENRE_ID);
-    });
+    describe('when the genre is undefined', () => {
+      beforeEach(() => {
+        filterModel.setSelectedGenre(null);
+      });
 
-    it('should set the selectedRating to null', () => {
-      expect(filterModel.selectedRating).toBeNull();
+      it('should set the selectedGenreId to null', () => {
+        expect(filterModel.selectedGenreId).toBeNull();
+      });
+
+      it('should set the selectedGenreName to null', () => {
+        expect(filterModel.selectedGenreName).toBeNull();
+      });
+
+      it('should set the selectedRating to null', () => {
+        expect(filterModel.selectedRating).toBeNull();
+      });
     });
   });
 

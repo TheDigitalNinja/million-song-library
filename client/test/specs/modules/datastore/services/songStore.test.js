@@ -2,7 +2,9 @@ import {PAGE_SIZE} from 'constants.js';
 import datastoreModule from 'modules/datastore/module';
 
 describe('songStore', () => {
+  const API_PATH = `:${process.env.CATALOG_PORT}/msl/v1/catalogedge`;
   const error = new Error('an error');
+
   let songStore, request, entityMapper, SongInfoEntity, SongListEntity, $log;
 
   beforeEach(() => {
@@ -34,7 +36,7 @@ describe('songStore', () => {
     it('should get the song info from the api endpoint', (done) => {
       (async () => {
         await songStore.fetch(SONG_ID);
-        expect(request.get).toHaveBeenCalledWith(`/msl/v1/catalogedge/song/${ SONG_ID }`);
+        expect(request.get).toHaveBeenCalledWith(`${API_PATH}/song/${ SONG_ID }`);
         done();
       })();
     });
@@ -70,7 +72,7 @@ describe('songStore', () => {
       (async () => {
         const params = { items: PAGE_SIZE, facets: opts };
         await songStore.fetchAll(opts);
-        expect(request.get).toHaveBeenCalledWith('/msl/v1/catalogedge/browse/song', { params });
+        expect(request.get).toHaveBeenCalledWith(`${API_PATH}/browse/song`, { params });
         done();
       })();
     });

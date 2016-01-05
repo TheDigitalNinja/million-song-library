@@ -90,6 +90,18 @@ describe('homeCtrl', () => {
       $location.search.and.returnValue({ tab: 'nonExistingTab' });
       expect(homeCtrl().selectedTab).toBe(0);
     });
+
+    it('should apply current filters again when deleted from library', () => {
+      const controller = homeCtrl();
+      $scope.$emit('deletedFromLibrary');
+      expect(filterModel.applyCurrentFilters.calls.count()).toEqual(2);
+    });
+
+    it('should apply current filters again when added to library', () => {
+      const controller = homeCtrl();
+      $scope.$emit('addedToLibrary');
+      expect(filterModel.applyCurrentFilters.calls.count()).toEqual(2);
+    });
   });
 
   describe('selectTab', () => {

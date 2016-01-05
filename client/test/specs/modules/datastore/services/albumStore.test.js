@@ -3,7 +3,9 @@ import {PAGE_SIZE} from 'constants.js';
 import datastoreModule from 'modules/datastore/module';
 
 describe('albumStore', () => {
+  const API_PATH = `:${process.env.CATALOG_PORT}/msl/v1/catalogedge`;
   const error = new Error('an error');
+
   let albumStore, request, entityMapper, AlbumInfoEntity, AlbumListEntity, $log;
 
   beforeEach(() => {
@@ -35,7 +37,7 @@ describe('albumStore', () => {
     it('should request the album', (done) => {
       (async () => {
         await albumStore.fetch(ALBUM_ID);
-        expect(request.get).toHaveBeenCalledWith(`/msl/v1/catalogedge/album/${ ALBUM_ID }`);
+        expect(request.get).toHaveBeenCalledWith(`${API_PATH}/album/${ ALBUM_ID }`);
         done();
       })();
     });
@@ -71,7 +73,7 @@ describe('albumStore', () => {
       (async () => {
         const params = { params: { items: PAGE_SIZE, facets: GENRE } };
         await albumStore.fetchAll(GENRE);
-        expect(request.get).toHaveBeenCalledWith('/msl/v1/catalogedge/browse/album', params);
+        expect(request.get).toHaveBeenCalledWith(`${API_PATH}/browse/album`, params);
         done();
       })();
     });

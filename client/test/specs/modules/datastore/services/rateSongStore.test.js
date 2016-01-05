@@ -3,6 +3,7 @@ import datastoreModule from 'modules/datastore/module';
 describe('rateSongStore', () => {
   const SONG_ID = '2';
   const RATING = '4';
+  const API_PATH = `:${process.env.RATINGS_PORT}/msl/v1/ratingsedge/ratesong`;
 
   let rateSongStore, request, entityMapper, StatusResponseEntity;
 
@@ -32,7 +33,7 @@ describe('rateSongStore', () => {
         const data = `rating=${ RATING }`;
         const headers = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
         await rateSongStore.push(SONG_ID, RATING);
-        expect(request.put).toHaveBeenCalledWith(`/msl/v1/ratingsedge/ratesong/${SONG_ID}`, data, headers);
+        expect(request.put).toHaveBeenCalledWith(`${API_PATH}/${SONG_ID}`, data, headers);
         done();
       })();
     });

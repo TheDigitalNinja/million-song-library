@@ -2,6 +2,8 @@
 import  dataStoreModule from 'modules/datastore/module';
 
 describe('logoutStore', () => {
+  const API_PATH = `:${process.env.LOGIN_PORT}/msl/v1/loginedge`;
+
   let logoutStore, request, entityMapper, StatusResponseEntity;
 
   beforeEach(() => {
@@ -29,7 +31,7 @@ describe('logoutStore', () => {
     it('should post to the logout endpoint', () => {
       (async () => {
         await logoutStore.push();
-        expect(request.post).toHaveBeenCalledWith('/msl/v1/loginedge/logout', jasmine.any(Object));
+        expect(request.post).toHaveBeenCalledWith(`${API_PATH}/logout`, jasmine.any(Object));
       })();
     });
 

@@ -2,6 +2,8 @@
 import datastoreModule from 'modules/datastore/module';
 
 describe('facetStore', () => {
+  const API_PATH = `:${process.env.CATALOG_PORT}/msl/v1/catalogedge/facet`;
+
   let facetStore, request, entityMapper, FacetListEntity;
 
   beforeEach(() => {
@@ -31,7 +33,7 @@ describe('facetStore', () => {
         const FACET = '4';
 
         await facetStore.fetch(FACET);
-        expect(request.get).toHaveBeenCalledWith(`/msl/v1/catalogedge/facet/${FACET}`);
+        expect(request.get).toHaveBeenCalledWith(`${API_PATH}/${FACET}`);
         done();
       })();
     });
@@ -39,7 +41,7 @@ describe('facetStore', () => {
     it('should use the default facet when called without facet', (done) => {
       (async () => {
         await facetStore.fetch();
-        expect(request.get).toHaveBeenCalledWith('/msl/v1/catalogedge/facet/~');
+        expect(request.get).toHaveBeenCalledWith(`${API_PATH}/~`);
         done();
       })();
     });
