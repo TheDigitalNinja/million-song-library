@@ -4,6 +4,7 @@ import datastoreModule from 'modules/datastore/module';
 describe('loginStore', () => {
   const EMAIL = 'a@a.com';
   const PASSWORD = 'password';
+  const API_PATH = `:${process.env.LOGIN_PORT}/msl/v1/loginedge`;
   const params = { email: EMAIL, password: PASSWORD };
 
   let loginStore, request, entityMapper, LoginSuccessResponseEntity;
@@ -34,7 +35,7 @@ describe('loginStore', () => {
       (async () => {
         await loginStore.push(EMAIL, PASSWORD);
         var params = `email=${ EMAIL }&password=${ PASSWORD }`;
-        expect(request.post).toHaveBeenCalledWith('/msl/v1/loginedge/login', params, jasmine.any(Object));
+        expect(request.post).toHaveBeenCalledWith(`${API_PATH}/login`, params, jasmine.any(Object));
         done();
       })();
     });

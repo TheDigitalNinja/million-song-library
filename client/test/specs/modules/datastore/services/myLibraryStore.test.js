@@ -2,6 +2,8 @@ import datastoreModule from 'modules/datastore/module';
 
 describe('myLibraryStore', () => {
   const TIMESTAMP = 'Thu Feb 05 00:31:49 CST 2015';
+  const API_PATH = `:${process.env.ACCOUNT_PORT}/msl/v1/accountedge/users/mylibrary`;
+
   let myLibraryStore, request, entityMapper, MyLibraryEntity, StatusResponseEntity;
 
   beforeEach(() => {
@@ -29,7 +31,7 @@ describe('myLibraryStore', () => {
     it('should request the list of songs', (done) => {
       (async () => {
         await myLibraryStore.fetch();
-        expect(request.get).toHaveBeenCalledWith('/msl/v1/accountedge/users/mylibrary');
+        expect(request.get).toHaveBeenCalledWith(API_PATH);
         done();
       })();
     });
@@ -54,7 +56,7 @@ describe('myLibraryStore', () => {
     it('should make a put request to add the song to the library endpoint', (done) => {
       (async () => {
         await myLibraryStore.addSong(SONG_ID);
-        expect(request.put).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/addsong/${ SONG_ID }`);
+        expect(request.put).toHaveBeenCalledWith(`${API_PATH}/addsong/${ SONG_ID }`);
         done();
       })();
     });
@@ -79,7 +81,7 @@ describe('myLibraryStore', () => {
     it('should make a put request to add the album to the library endpoint', (done) => {
       (async () => {
         await myLibraryStore.addAlbum(ALBUM_ID);
-        expect(request.put).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/addalbum/${ ALBUM_ID }`);
+        expect(request.put).toHaveBeenCalledWith(`${API_PATH}/addalbum/${ ALBUM_ID }`);
         done();
       })();
     });
@@ -104,7 +106,7 @@ describe('myLibraryStore', () => {
     it('should make a put request to add the artist to the library endpoint', (done) => {
       (async () => {
         await myLibraryStore.addArtist(ARTIST_ID);
-        expect(request.put).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/addartist/${ ARTIST_ID }`);
+        expect(request.put).toHaveBeenCalledWith(`${API_PATH}/addartist/${ ARTIST_ID }`);
         done();
       })();
     });
@@ -129,7 +131,7 @@ describe('myLibraryStore', () => {
     it('should make a put request to remove the song from the library endpoint', (done) => {
       (async () => {
         await myLibraryStore.removeSong(SONG_ID, TIMESTAMP);
-        expect(request.delete).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/removesong/${ SONG_ID }/${ TIMESTAMP }`);
+        expect(request.delete).toHaveBeenCalledWith(`${API_PATH}/removesong/${ SONG_ID }/${ TIMESTAMP }`);
         done();
       })();
     });
@@ -154,7 +156,7 @@ describe('myLibraryStore', () => {
     it('should make a put request to remove the album from the library endpoint', (done) => {
       (async () => {
         await myLibraryStore.removeAlbum(ALBUM_ID, TIMESTAMP);
-        expect(request.delete).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/removealbum/${ ALBUM_ID }/${ TIMESTAMP }`);
+        expect(request.delete).toHaveBeenCalledWith(`${API_PATH}/removealbum/${ ALBUM_ID }/${ TIMESTAMP }`);
         done();
       })();
     });
@@ -179,7 +181,7 @@ describe('myLibraryStore', () => {
     it('should make a put request to remove the artist from the library endpoint', (done) => {
       (async () => {
         await myLibraryStore.removeArtist(ARTIST_ID, TIMESTAMP);
-        expect(request.delete).toHaveBeenCalledWith(`/msl/v1/accountedge/users/mylibrary/removeartist/${ ARTIST_ID }/${ TIMESTAMP }`);
+        expect(request.delete).toHaveBeenCalledWith(`${API_PATH}/removeartist/${ ARTIST_ID }/${ TIMESTAMP }`);
         done();
       })();
     });

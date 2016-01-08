@@ -3,8 +3,9 @@ import {PAGE_SIZE} from 'constants.js';
 import datastoreModule from 'modules/datastore/module';
 
 describe('artistStore', () => {
-
+  const API_PATH = `:${process.env.CATALOG_PORT}/msl/v1/catalogedge`;
   const error = new Error('an error');
+
   let artistStore, entityMapper, request, ArtistInfoEntity, ArtistListEntity, $log;
 
   beforeEach(() => {
@@ -36,7 +37,7 @@ describe('artistStore', () => {
     it('should get the artist', (done) => {
       (async () => {
         await artistStore.fetch(ARTIST_ID);
-        expect(request.get).toHaveBeenCalledWith(`/msl/v1/catalogedge/artist/${ARTIST_ID}`);
+        expect(request.get).toHaveBeenCalledWith(`${API_PATH}/artist/${ARTIST_ID}`);
         done();
       })();
     });
@@ -72,7 +73,7 @@ describe('artistStore', () => {
 
         const params = { params: { items: PAGE_SIZE, facets: GENRE } };
         await artistStore.fetchAll(GENRE);
-        expect(request.get).toHaveBeenCalledWith('/msl/v1/catalogedge/browse/artist', params);
+        expect(request.get).toHaveBeenCalledWith(`${API_PATH}/browse/artist`, params);
         done();
       })();
     });

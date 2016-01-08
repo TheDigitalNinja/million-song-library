@@ -4,6 +4,7 @@ describe('registrationStore', () => {
   const EMAIL = 'a@a.com';
   const PASSWORD = 'password';
   const PASSWORDCONFIRMATION = 'password';
+  const API_PATH = `:${process.env.ACCOUNT_PORT}/msl/v1/accountedge/users`;
 
   let registrationStore, request, entityMapper, StatusResponseEntity;
 
@@ -33,7 +34,7 @@ describe('registrationStore', () => {
       (async () => {
         await registrationStore.registration(EMAIL, PASSWORD, PASSWORD);
         var params = { email: EMAIL, password: PASSWORD, passwordConfirmation: PASSWORDCONFIRMATION };
-        expect(request.post).toHaveBeenCalledWith('/msl/v1/accountedge/users/register', params, jasmine.any(Object));
+        expect(request.post).toHaveBeenCalledWith(`${API_PATH}/register`, params, jasmine.any(Object));
         done();
       })();
     });

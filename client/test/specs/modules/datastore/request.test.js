@@ -11,7 +11,7 @@ describe('request', () => {
 
   beforeEach(() => {
     angular.mock.module(datastoreModule, ($provide) => {
-      $http = jasmine.createSpyObj('$http', ['get', 'post', 'put']);
+      $http = jasmine.createSpyObj('$http', ['get', 'post', 'put', 'delete']);
 
       $provide.value('$http', $http);
     });
@@ -23,6 +23,7 @@ describe('request', () => {
     $http.get.and.returnValue({ data: expectedData });
     $http.post.and.returnValue({ data: expectedData });
     $http.put.and.returnValue({ data: expectedData });
+    $http.delete.and.returnValue({ data: expectedData });
   });
 
   describe('get', () => {
@@ -73,6 +74,24 @@ describe('request', () => {
     it('should return the response data', (done) => {
       (async () => {
         const response = await request.put(A_PATH, content, config);
+        expect(response).toBe(expectedData);
+        done();
+      })();
+    });
+  });
+
+  describe('delete', () => {
+    it('should make a delete request with the path and the given content and config', (done) => {
+      (async () => {
+        await request.delete(A_PATH, content, config);
+        expect($http.delete).toHaveBeenCalledWith(`${host}${A_PATH}`, content, config);
+        done();
+      })();
+    });
+
+    it('should return the response data', (done) => {
+      (async () => {
+        const response = await request.delete(A_PATH, content, config);
         expect(response).toBe(expectedData);
         done();
       })();

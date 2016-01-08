@@ -79,7 +79,7 @@ export default class libraryModel {
     try {
       let response = await this.myLibraryStore.addArtist(artistId);
       if(response.message === 'success') {
-        this.toastr.success('Successfully added artist');
+        this.toastr.success('Successfully added artist to library');
         this.$rootScope.$emit('addedToLibrary', 'Artist');
         return;
       }
