@@ -1,5 +1,5 @@
 x-swagger-router-controller: mylibrary_controller
-put:
+delete:
   description: "Removes a song to the user library"
   tags:
     - Account
