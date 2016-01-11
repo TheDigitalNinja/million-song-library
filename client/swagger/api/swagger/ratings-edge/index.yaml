@@ -18,17 +18,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /msl/v1/ratingsedge/rateartist/{artistId}:
-    $ref: ./swagger/api/swagger/ratings-edge/paths/rateArtist.yaml
-
-  /msl/v1/ratingsedge/ratealbum/{albumId}:
-    $ref: ./swagger/api/swagger/ratings-edge/paths/rateAlbum.yaml
-
-  /msl/v1/ratingsedge/ratesong/{songId}:
-    $ref: ./swagger/api/swagger/ratings-edge/paths/rateSong.yaml
-
-  /msl/v1/ratingsedge/commentsong/{songId}:
-    $ref: ./swagger/api/swagger/ratings-edge/paths/commentSong.yaml
+  $ref: ./swagger/api/swagger/ratings-edge/paths.yaml
 
 securityDefinitions:
   $ref: ./swagger/api/swagger/security-definitions/index.yaml

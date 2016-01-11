@@ -18,8 +18,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /msl/v1/searchedge/search::
-    $ref: ./swagger/api/swagger/search-edge/paths/search.yaml
+  $ref: ./swagger/api/swagger/search-edge/paths.yaml
 
 securityDefinitions:
   $ref: ./swagger/api/swagger/security-definitions/index.yaml

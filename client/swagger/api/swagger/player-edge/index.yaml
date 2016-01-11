@@ -18,8 +18,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /msl/v1/playeredge/play/{songId}:
-    $ref: ./swagger/api/swagger/player-edge/paths/playSong.yaml
+  $ref: ./swagger/api/swagger/player-edge/paths/playSong.yaml
 
 securityDefinitions:
   $ref: ./swagger/api/swagger/security-definitions/index.yaml

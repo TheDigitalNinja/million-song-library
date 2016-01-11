@@ -21,6 +21,7 @@
     "parse-player-edge-src": "node swagger/resolve.js -- player-edge/index.yaml",
     "parse-ratings-edge-src": "node swagger/resolve.js -- ratings-edge/index.yaml",
 
+    "build-server": "cd ../server && mvn -f build.xml clean compile",
     "account-edge-server": "cd ../server/msl-account-edge && mvn -P dev clean jetty:run",
     "catalog-edge-server": "cd ../server/msl-catalog-edge && mvn -P dev clean jetty:run",
     "login-edge-server": "cd ../server/msl-login-edge && mvn -P dev clean jetty:run",

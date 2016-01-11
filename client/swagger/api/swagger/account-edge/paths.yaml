@@ -1,0 +1,279 @@
+/msl/v1/accountedge/users/register:
+  x-swagger-router-controller: registration_controller
+  post:
+    description: "Register a new user"
+    tags:
+      - Account
+    consumes:
+      - application/x-www-form-urlencoded
+    schemes: ["https"]
+    operationId: registration
+    parameters:
+      -
+        name: email
+        in: formData
+        description: Email used to identify the account
+        type: string
+        required: true
+      -
+        name: password
+        in: formData
+        description: user password
+        type: string
+        required: true
+      -
+        name: passwordConfirmation
+        in: formData
+        description: user confirmation password
+        type: string
+        required: true
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/msl/v1/accountedge/users/recentsongs:
+  x-swagger-router-controller: history_controller
+  get:
+    description: Get recently played songs
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: get_recent_songs
+    responses:
+      "200":
+        description: Got recent songs!
+        schema:
+          $ref: "#/definitions/SongList"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/msl/v1/accountedge/users/mylibrary:
+  x-swagger-router-controller: mylibrary_controller
+  get:
+    description: "Get the user's library of favorites"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: get_my_library
+    responses:
+      "200":
+        description: Retrieved user library
+        schema:
+          $ref: "#/definitions/MyLibrary"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/msl/v1/accountedge/users/profile:
+  x-swagger-router-controller: catalog_controller
+  get:
+    description: "Get the current user's account info"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: get_user_info
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/UserInfo"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/msl/v1/accountedge/users/mylibrary/addsong/{songId}:
+  x-swagger-router-controller: mylibrary_controller
+  put:
+    description: "Adds a song to the user library"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: add_song
+    parameters:
+      -
+        name: songId
+        in: path
+        description: Song id for the song to add to the library
+        type: string
+        required: true
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/msl/v1/accountedge/users/mylibrary/addalbum/{albumId}:
+  x-swagger-router-controller: mylibrary_controller
+  put:
+    description: "Adds a album to the user library"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: add_album
+    parameters:
+      -
+        name: albumId
+        in: path
+        description: Album id for the album to add to the library
+        type: string
+        required: true
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/msl/v1/accountedge/users/mylibrary/addartist/{artistId}:
+  x-swagger-router-controller: mylibrary_controller
+  put:
+    description: "Adds a artist to the user library"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: add_artist
+    parameters:
+      -
+        name: artistId
+        in: path
+        description: Artist id for the artist to add to the library
+        type: string
+        required: true
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/msl/v1/accountedge/users/mylibrary/removesong/{songId}/{timestamp}:
+  x-swagger-router-controller: mylibrary_controller
+  delete:
+    description: "Removes a song to the user library"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: remove_song
+    parameters:
+      -
+        name: songId
+        in: path
+        description: Song id for the song to remove to the library
+        type: string
+        required: true
+      -
+        name: timestamp
+        in: path
+        description: timestamp of the time the artist was added to the user library
+        type: string
+        required: true
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/msl/v1/accountedge/users/mylibrary/removealbum/{albumId}/{timestamp}:
+  x-swagger-router-controller: mylibrary_controller
+  delete:
+    description: "Removes an album to the user library"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: remove_album
+    parameters:
+      -
+        name: albumId
+        in: path
+        description: Album id for the album to remove to the library
+        type: string
+        required: true
+      -
+        name: timestamp
+        in: path
+        description: timestamp of the time the album was added to the user library
+        type: string
+        required: true
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/msl/v1/accountedge/users/mylibrary/removeartist/{artistId}/{timestamp}:
+  x-swagger-router-controller: mylibrary_controller
+  delete:
+    description: "Removes an artist to the user library"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: remove_artist
+    parameters:
+      -
+        name: artistId
+        in: path
+        description: Artist id for the artist to remove to the library
+        type: string
+        required: true
+      -
+        name: timestamp
+        in: path
+        description: timestamp of the time the artist was added to the user library
+        type: string
+        required: true
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
