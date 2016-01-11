@@ -18,35 +18,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /msl/v1/accountedge/users/register:
-    $ref: ./swagger/api/swagger/account-edge/paths/register.yaml
-
-  /msl/v1/accountedge/users/recentsongs:
-    $ref: ./swagger/api/swagger/account-edge/paths/recentSongs.yaml
-
-  /msl/v1/accountedge/users/mylibrary:
-    $ref: ./swagger/api/swagger/account-edge/paths/myLibrary.yaml
-
-  /msl/v1/accountedge/users/profile:
-    $ref: ./swagger/api/swagger/account-edge/paths/profile.yaml
-
-  /msl/v1/accountedge/users/mylibrary/addsong/{songId}:
-    $ref: ./swagger/api/swagger/account-edge/paths/addSong.yaml
-
-  /msl/v1/accountedge/users/mylibrary/addalbum/{albumId}:
-    $ref: ./swagger/api/swagger/account-edge/paths/addAlbum.yaml
-
-  /msl/v1/accountedge/users/mylibrary/addartist/{artistId}:
-    $ref: ./swagger/api/swagger/account-edge/paths/addArtist.yaml
-
-  /msl/v1/accountedge/users/mylibrary/removesong/{songId}/{timestamp}:
-    $ref: ./swagger/api/swagger/account-edge/paths/removeSong.yaml
-
-  /msl/v1/accountedge/users/mylibrary/removealbum/{albumId}/{timestamp}:
-    $ref: ./swagger/api/swagger/account-edge/paths/removeAlbum.yaml
-
-  /msl/v1/accountedge/users/mylibrary/removeartist/{artistId}/{timestamp}:
-    $ref: ./swagger/api/swagger/account-edge/paths/removeArtist.yaml
+  $ref: ./swagger/api/swagger/account-edge/paths.yaml
 
 securityDefinitions:
   $ref: ./swagger/api/swagger/security-definitions/index.yaml

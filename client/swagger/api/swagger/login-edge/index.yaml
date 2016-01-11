@@ -18,14 +18,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /msl/v1/loginedge/login:
-    $ref: ./swagger/api/swagger/login-edge/paths/login.yaml
-
-  /msl/v1/loginedge/logout:
-    $ref: ./swagger/api/swagger/login-edge/paths/logout.yaml
-
-  /msl/v1/loginedge/resetpassword:
-    $ref: ./swagger/api/swagger/login-edge/paths/resetPassword.yaml
+  $ref: ./swagger/api/swagger/login-edge/paths.yaml
 
 securityDefinitions:
   $ref: ./swagger/api/swagger/security-definitions/index.yaml
