@@ -41,13 +41,13 @@ paths:
   /msl/v1/accountedge/users/mylibrary/addartist/{artistId}:
     $ref: ./swagger/api/swagger/account-edge/paths/addArtist.yaml
 
-  /msl/v1/accountedge/users/mylibrary/removesong/{songId}:
+  /msl/v1/accountedge/users/mylibrary/removesong/{songId}/{timestamp}:
     $ref: ./swagger/api/swagger/account-edge/paths/removeSong.yaml
 
-  /msl/v1/accountedge/users/mylibrary/removealbum/{albumId}:
+  /msl/v1/accountedge/users/mylibrary/removealbum/{albumId}/{timestamp}:
     $ref: ./swagger/api/swagger/account-edge/paths/removeAlbum.yaml
 
-  /msl/v1/accountedge/users/mylibrary/removeartist/{artistId}:
+  /msl/v1/accountedge/users/mylibrary/removeartist/{artistId}/{timestamp}:
     $ref: ./swagger/api/swagger/account-edge/paths/removeArtist.yaml
 
 # CATALOG EDGE ================================================================

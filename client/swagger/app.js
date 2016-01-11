@@ -38,7 +38,7 @@ SwaggerExpress.create({
 
   swaggerExpress.sysConfig.corsOptions = {
     origin: true,
-    methods: ['GET', 'PUT', 'POST', 'OPTIONS'],
+    methods: ['GET', 'PUT', 'POST', 'OPTIONS', 'DELETE'],
     credentials: true,
   };
 

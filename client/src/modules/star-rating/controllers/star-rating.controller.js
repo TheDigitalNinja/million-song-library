@@ -24,8 +24,8 @@ export default class ratingController {
 
     this.max = 5;
     this.readOnly = !!$scope.readOnly;
-    this.isPersonalRating = $scope.isPersonalRating || false;
 
+    this._updateStarRating();
     $scope.$watch('starRating', (newVal) => this._updateStars());
   }
 
@@ -48,6 +48,20 @@ export default class ratingController {
       }
       this.readOnly = false;
       this.$scope.$evalAsync();
+    }
+  }
+
+  /**
+   * Update the star rating checking the personal rating
+   * @private
+   */
+  _updateStarRating() {
+    if(this.$scope.personalRating && this.$scope.personalRating > 0) {
+      this.$scope.starRating = this.$scope.personalRating;
+      this.isPersonalRating = true;
+    }
+    else {
+      this.isPersonalRating = false;
     }
   }
 
