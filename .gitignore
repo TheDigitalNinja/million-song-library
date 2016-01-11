@@ -9,6 +9,8 @@
 /server/models
 
 /common/swagger-codegen
+/common/target
+
 *-compiled.js
 *-compiled.js.map
 .DS_Store
