@@ -23,27 +23,29 @@
     res.json(response);
   }
 
+  var success_message = { message : "success" };
+
   function add_song(req, res) {
-    res.json({ data: { message: "Song " + req.swagger.params.songId.value + " added to the library" } });
+    res.json(success_message);
   }
 
   function add_album(req, res) {
-    res.json({ data: { message: "Album " + req.swagger.params.albumId.value + " added to the library" } });
+    res.json(success_message);
   }
 
   function add_artist(req, res) {
-    res.json({ data: { message: "Artist " + req.swagger.params.artistId.value + " added to the library" } });
+    res.json(success_message);
   }
 
   function remove_song(req, res) {
-    res.json({ data: { message: "Song " + req.swagger.params.songId.value + " removed to the library" } });
+    res.json(success_message);
   }
 
   function remove_album(req, res) {
-    res.json({ data: { message: "Album " + req.swagger.params.albumId.value + " removed to the library" } });
+    res.json(success_message);
   }
 
   function remove_artist(req, res) {
-    res.json({ data: { message: "Artist " + req.swagger.params.artistId.value + " removed to the library" } });
+    res.json(success_message);
   }
 })();

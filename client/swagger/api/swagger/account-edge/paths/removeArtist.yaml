@@ -1,6 +1,6 @@
 x-swagger-router-controller: mylibrary_controller
 delete:
-  description: "Removes a artist to the user library"
+  description: "Removes an artist to the user library"
   tags:
     - Account
   schemes: ["https"]

@@ -12,10 +12,10 @@ function starRatingDirective () {
     controllerAs: 'rating',
     scope: {
       starRating: '=',
+      personalRating: '=',
       readOnly: '=',
       entityId: '=',
       entityType: '@',
-      isPersonalRating: '=',
     },
   };
 }
