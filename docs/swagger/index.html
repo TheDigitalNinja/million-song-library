@@ -1,0 +1,2590 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Million Songs API</title>
+    <style type="text/css">
+      body { 
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+	display: none;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+    </style>
+  </head>
+  <body>
+  <h1>Million Songs API</h1>
+    <div class="app-desc">A sample swagger server</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="hello@helloreverb.com">hello@helloreverb.com</a></div>
+    <div class="app-desc">Version: 0.0.1</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+  
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  
+  <h2>Table of Contents </h2>
+  <div class="method-summary"></div>
+  
+  <ol>
+  
+  
+  
+  <li><a href="#getMyLibrary"><code><span class="http-method">get</span> /msl/v1/accountedge/users/mylibrary</code></a></li>
+  
+  <li><a href="#addAlbum"><code><span class="http-method">put</span> /msl/v1/accountedge/users/mylibrary/addalbum/{albumId}</code></a></li>
+  
+  <li><a href="#addArtist"><code><span class="http-method">put</span> /msl/v1/accountedge/users/mylibrary/addartist/{artistId}</code></a></li>
+  
+  <li><a href="#addSong"><code><span class="http-method">put</span> /msl/v1/accountedge/users/mylibrary/addsong/{songId}</code></a></li>
+  
+  <li><a href="#removeAlbum"><code><span class="http-method">delete</span> /msl/v1/accountedge/users/mylibrary/removealbum/{albumId}/{timestamp}</code></a></li>
+  
+  <li><a href="#removeArtist"><code><span class="http-method">delete</span> /msl/v1/accountedge/users/mylibrary/removeartist/{artistId}/{timestamp}</code></a></li>
+  
+  <li><a href="#removeSong"><code><span class="http-method">delete</span> /msl/v1/accountedge/users/mylibrary/removesong/{songId}/{timestamp}</code></a></li>
+  
+  <li><a href="#getUserInfo"><code><span class="http-method">get</span> /msl/v1/accountedge/users/profile</code></a></li>
+  
+  <li><a href="#getRecentSongs"><code><span class="http-method">get</span> /msl/v1/accountedge/users/recentsongs</code></a></li>
+  
+  <li><a href="#registration"><code><span class="http-method">post</span> /msl/v1/accountedge/users/register</code></a></li>
+  
+  <li><a href="#getAlbum"><code><span class="http-method">get</span> /msl/v1/catalogedge/album/{albumId}</code></a></li>
+  
+  <li><a href="#getArtist"><code><span class="http-method">get</span> /msl/v1/catalogedge/artist/{artistId}</code></a></li>
+  
+  <li><a href="#browseAlbums"><code><span class="http-method">get</span> /msl/v1/catalogedge/browse/album</code></a></li>
+  
+  <li><a href="#browseArtists"><code><span class="http-method">get</span> /msl/v1/catalogedge/browse/artist</code></a></li>
+  
+  <li><a href="#browseSongs"><code><span class="http-method">get</span> /msl/v1/catalogedge/browse/song</code></a></li>
+  
+  <li><a href="#getFacet"><code><span class="http-method">get</span> /msl/v1/catalogedge/facet/{facetId}</code></a></li>
+  
+  <li><a href="#getSong"><code><span class="http-method">get</span> /msl/v1/catalogedge/song/{songId}</code></a></li>
+  
+  <li><a href="#login"><code><span class="http-method">post</span> /msl/v1/loginedge/login</code></a></li>
+  
+  <li><a href="#logout"><code><span class="http-method">post</span> /msl/v1/loginedge/logout</code></a></li>
+  
+  <li><a href="#resetPassword"><code><span class="http-method">post</span> /msl/v1/loginedge/resetpassword</code></a></li>
+  
+  <li><a href="#playSong"><code><span class="http-method">get</span> /msl/v1/playeredge/play/{songId}</code></a></li>
+  
+  <li><a href="#commentSong"><code><span class="http-method">put</span> /msl/v1/ratingsedge/commentsong/{songId}</code></a></li>
+  
+  <li><a href="#rateAlbum"><code><span class="http-method">put</span> /msl/v1/ratingsedge/ratealbum/{albumId}</code></a></li>
+  
+  <li><a href="#rateArtist"><code><span class="http-method">put</span> /msl/v1/ratingsedge/rateartist/{artistId}</code></a></li>
+  
+  <li><a href="#rateSong"><code><span class="http-method">put</span> /msl/v1/ratingsedge/ratesong/{songId}</code></a></li>
+  
+  <li><a href="#searchFor"><code><span class="http-method">get</span> /msl/v1/searchedge/search</code></a></li>
+  
+  
+  
+  </ol>
+  
+
+  
+  
+  
+  
+  <div class="method"><a name="getMyLibrary"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /msl/v1/accountedge/users/mylibrary</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getMyLibrary</span>)</div>
+    
+    <div class="method-notes">Get the user&#39;s library of favorites</div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">MyLibrary</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Retrieved user library
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="addAlbum"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /msl/v1/accountedge/users/mylibrary/addalbum/{albumId}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">addAlbum</span>)</div>
+    
+    <div class="method-notes">Adds a album to the user library</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">albumId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Album id for the album to add to the library </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">StatusResponse</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="addArtist"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /msl/v1/accountedge/users/mylibrary/addartist/{artistId}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">addArtist</span>)</div>
+    
+    <div class="method-notes">Adds a artist to the user library</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">artistId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Artist id for the artist to add to the library </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">StatusResponse</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="addSong"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /msl/v1/accountedge/users/mylibrary/addsong/{songId}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">addSong</span>)</div>
+    
+    <div class="method-notes">Adds a song to the user library</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">songId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Song id for the song to add to the library </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">StatusResponse</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="removeAlbum"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /msl/v1/accountedge/users/mylibrary/removealbum/{albumId}/{timestamp}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">removeAlbum</span>)</div>
+    
+    <div class="method-notes">Removes an album to the user library</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">albumId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Album id for the album to remove to the library </div><div class="param">timestamp (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; timestamp of the time the album was added to the user library </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">StatusResponse</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="removeArtist"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /msl/v1/accountedge/users/mylibrary/removeartist/{artistId}/{timestamp}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">removeArtist</span>)</div>
+    
+    <div class="method-notes">Removes an artist to the user library</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">artistId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Artist id for the artist to remove to the library </div><div class="param">timestamp (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; timestamp of the time the artist was added to the user library </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">StatusResponse</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="removeSong"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /msl/v1/accountedge/users/mylibrary/removesong/{songId}/{timestamp}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">removeSong</span>)</div>
+    
+    <div class="method-notes">Removes a song to the user library</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">songId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Song id for the song to remove to the library </div><div class="param">timestamp (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; timestamp of the time the artist was added to the user library </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">StatusResponse</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="getUserInfo"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /msl/v1/accountedge/users/profile</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getUserInfo</span>)</div>
+    
+    <div class="method-notes">Get the current user&#39;s account info</div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">UserInfo</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="getRecentSongs"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /msl/v1/accountedge/users/recentsongs</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getRecentSongs</span>)</div>
+    
+    <div class="method-notes">Get recently played songs</div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">SongList</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Got recent songs!
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="registration"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /msl/v1/accountedge/users/register</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">registration</span>)</div>
+    
+    <div class="method-notes">Register a new user</div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/x-www-form-urlencoded</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">email (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Email used to identify the account </div><div class="param">password (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; user password </div><div class="param">passwordConfirmation (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; user confirmation password </div>
+    </div>  <!-- field-items -->
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">StatusResponse</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="getAlbum"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /msl/v1/catalogedge/album/{albumId}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getAlbum</span>)</div>
+    
+    <div class="method-notes">Get data for an Album of songs</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">albumId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The album&#39;s unique identifier </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">AlbumInfo</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">404</h4>
+    Album not found
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="getArtist"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /msl/v1/catalogedge/artist/{artistId}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getArtist</span>)</div>
+    
+    <div class="method-notes">Get data on an Artist</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">artistId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Artist Identifier </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">ArtistInfo</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">404</h4>
+    Artist not found
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="browseAlbums"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /msl/v1/catalogedge/browse/album</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">browseAlbums</span>)</div>
+    
+    <div class="method-notes">Get browsing data for albums in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by album name, if no facets are passed then the results will be in featured order.</div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">pagingState (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; PagingState is used to retrieve the next page in a paginated query. A  PagingState instance contains a UUID key to an object in Cassandra on the server. The data within the object allows the server to retrieve the next page of data. </div><div class="param">items (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Number of items to return. Used for paginating results. The maximum is 100. If not provided, or falls outside the inclusive range 1-100, defaults to 25. </div><div class="param">facets (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Comma delimited list of facet IDs to use as filters. If not provided, no filters will be applied. </div>
+    </div>  <!-- field-items -->
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">AlbumList</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">400</h4>
+    Request parameter error: (1) Invalid pagingState. The string passed as pagingState is not a valid pagingState key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys.
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="browseArtists"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /msl/v1/catalogedge/browse/artist</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">browseArtists</span>)</div>
+    
+    <div class="method-notes">Get browsing data for artists in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by artist name, if no facets are passed then the results will be in featured order.</div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">pagingState (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; PagingState is used to retrieve the next page in a paginated query. A  PagingState instance contains a UUID key to an object in Cassandra on the server. The data within the object allows the server to retrieve the next page of data. </div><div class="param">items (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Number of items to return. Used for paginating results. The maximum is 100. If not provided, or falls outside the inclusive range 1-100, defaults to 25. </div><div class="param">facets (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Comma delimited list of facet IDs to use as filters. If not provided, no filters will be applied. </div>
+    </div>  <!-- field-items -->
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">ArtistList</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">400</h4>
+    Request parameter error: (1) Invalid pagingState. The string passed as pagingState is not a valid pagingState key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys.
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="browseSongs"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /msl/v1/catalogedge/browse/song</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">browseSongs</span>)</div>
+    
+    <div class="method-notes">Get browsing data for songs in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by song name, if no facets are passed then the results will be in featured order.</div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">pagingState (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; PagingState is used to retrieve the next page in a paginated query. A  PagingState instance contains a UUID key to an object in Cassandra on the server. The data within the object allows the server to retrieve the next page of data. </div><div class="param">items (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Number of items to return. Used for paginating results. The maximum is 100. If not provided, or falls outside the inclusive range 1-100, defaults to 25. </div><div class="param">facets (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Comma delimited list of facet IDs to use as filters. If not provided, no filters will be applied. </div>
+    </div>  <!-- field-items -->
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">SongList</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">400</h4>
+    Request parameter error: (1) Invalid pagingState. The string passed as pagingState is not a valid pagingState key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys.
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="getFacet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /msl/v1/catalogedge/facet/{facetId}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getFacet</span>)</div>
+    
+    <div class="method-notes">Get a facet in the heirarchy. Passing a facetId of &#39;~&#39; retrieves the root facet.</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">facetId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Facet identifier </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">FacetInfoWithChildren</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">404</h4>
+    Parent facet not found
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="getSong"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /msl/v1/catalogedge/song/{songId}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">getSong</span>)</div>
+    
+    <div class="method-notes">Get a song&#39;s info from the database</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">songId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The song&#39;s unique identifier </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">SongInfo</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">404</h4>
+    Song not found
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="login"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /msl/v1/loginedge/login</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">login</span>)</div>
+    
+    <div class="method-notes">Logs a user into the system</div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/x-www-form-urlencoded</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">email (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Login to the app with user credentials </div><div class="param">password (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; user password </div>
+    </div>  <!-- field-items -->
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">LoginSuccessResponse</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+      <li><code>text/html</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Successfully logged on the user
+    
+    
+    <h4 class="field-label">401</h4>
+    Invalid Login Credentials
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="logout"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /msl/v1/loginedge/logout</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">logout</span>)</div>
+    
+    <div class="method-notes">Logs a user out of the system</div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">StatusResponse</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Logged out
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="resetPassword"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /msl/v1/loginedge/resetpassword</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">resetPassword</span>)</div>
+    
+    <div class="method-notes">Resets the user&#39;s password via email</div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">email (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Email used to identify the account </div>
+    </div>  <!-- field-items -->
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">StatusResponse</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Success
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="playSong"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /msl/v1/playeredge/play/{songId}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">playSong</span>)</div>
+    
+    <div class="method-notes">Request to begin streaming a song. Result will be an mp3.</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">songId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Song id for the song the user requested </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">file</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Request accepted streaming sound data
+    
+    
+    <h4 class="field-label">404</h4>
+    Song not found
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="commentSong"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /msl/v1/ratingsedge/commentsong/{songId}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">commentSong</span>)</div>
+    
+    <div class="method-notes">Make a comment about a song</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">songId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the song you want to comment on </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">StatusResponse</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Successfully sent comment data to the server
+    
+    
+    <h4 class="field-label">404</h4>
+    Song not found
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="rateAlbum"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /msl/v1/ratingsedge/ratealbum/{albumId}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">rateAlbum</span>)</div>
+    
+    <div class="method-notes">Update your rating of an album.</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">albumId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id for the album that is being rated </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/x-www-form-urlencoded</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">rating (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Value between 1-5 that represents the user&#39;s rating of the album </div>
+    </div>  <!-- field-items -->
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">StatusResponse</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Successfully sent rating data to the server
+    
+    
+    <h4 class="field-label">404</h4>
+    Album not found
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="rateArtist"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /msl/v1/ratingsedge/rateartist/{artistId}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">rateArtist</span>)</div>
+    
+    <div class="method-notes">Update your rating of an artist.</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">artistId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id for the artist that is being rated </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/x-www-form-urlencoded</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">rating (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Value between 1-5 that represents the user&#39;s rating of the artist </div>
+    </div>  <!-- field-items -->
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">StatusResponse</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Successfully sent rating data to the server
+    
+    
+    <h4 class="field-label">404</h4>
+    Artist not found
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="rateSong"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /msl/v1/ratingsedge/ratesong/{songId}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">rateSong</span>)</div>
+    
+    <div class="method-notes">Update your rating of a song.</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">songId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id for the song that is being rated </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/x-www-form-urlencoded</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">rating (required)</div>
+
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Value between 1-5 that represents the user&#39;s rating of the song </div>
+    </div>  <!-- field-items -->
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">StatusResponse</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Successfully sent rating data to the server
+    
+    
+    <h4 class="field-label">404</h4>
+    Song not found
+    
+    
+    <h4 class="field-label">500</h4>
+    Server Error
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="searchFor"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /msl/v1/searchedge/search</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">searchFor</span>)</div>
+    
+    <div class="method-notes">Search things that match a user provided string</div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">searchText (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; User search string </div><div class="param">searchType (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; A string representation of the various types of entities that can be searched. </div>
+    </div>  <!-- field-items -->
+    
+
+    
+
+    <!-- Remove Return type... unclear where this comes from;
+         for our swagger.json files, it is always empty and there is no boolean guard or hasReturnType
+         do we end up with a heading but not content
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type"><a href="#">SearchResponse</a></div>
+    
+
+    Todo: process Response Object and its headers, schema, examples
+    -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Successfully searched
+    
+    
+    <h4 class="field-label">500</h4>
+    Bad Request
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  
+  
+  
+
+  <div class="up"><a href="#__Models">Up</a></div>
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h2>Table of Contents</h2>
+  <ol>
+  
+  
+    <li><a href="#AlbumInfo"><code>AlbumInfo</code></a></li>
+  
+  
+  
+    <li><a href="#ArtistInfo"><code>ArtistInfo</code></a></li>
+  
+  
+  
+    <li><a href="#FacetInfo"><code>FacetInfo</code></a></li>
+  
+  
+  
+    <li><a href="#FacetInfoWithChildren"><code>FacetInfoWithChildren</code></a></li>
+  
+  
+  
+    <li><a href="#MyLibrary"><code>MyLibrary</code></a></li>
+  
+  
+  
+    <li><a href="#PagingState"><code>PagingState</code></a></li>
+  
+  
+  
+    <li><a href="#SongInfo"><code>SongInfo</code></a></li>
+  
+  
+  
+    <li><a href="#UserInfo"><code>UserInfo</code></a></li>
+  
+  
+  
+    <li><a href="#AlbumList"><code>AlbumList</code></a></li>
+  
+  
+  
+    <li><a href="#ArtistList"><code>ArtistList</code></a></li>
+  
+  
+  
+    <li><a href="#SongList"><code>SongList</code></a></li>
+  
+  
+  
+    <li><a href="#ErrorResponse"><code>ErrorResponse</code></a></li>
+  
+  
+  
+    <li><a href="#LoginSuccessResponse"><code>LoginSuccessResponse</code></a></li>
+  
+  
+  
+    <li><a href="#NotFoundResponse"><code>NotFoundResponse</code></a></li>
+  
+  
+  
+    <li><a href="#SearchResponse"><code>SearchResponse</code></a></li>
+  
+  
+  
+    <li><a href="#StatusResponse"><code>StatusResponse</code></a></li>
+  
+  
+  </ol>
+
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="AlbumInfo">AlbumInfo</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">album_id </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">album_name </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">artist_id </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">artist_mbid </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">artist_name </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">genre </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">year </div><div class="param-desc"><span class="param-type">Integer</span> The year the album was released</div>
+      
+      <div class="param">favorites_timestamp </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">average_rating </div><div class="param-desc"><span class="param-type">Integer</span> </div>
+      
+      <div class="param">personal_rating </div><div class="param-desc"><span class="param-type">Integer</span> </div>
+      
+      <div class="param">image_link </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">songs_list </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      <div class="param">in_my_library </div><div class="param-desc"><span class="param-type">Boolean</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="ArtistInfo">ArtistInfo</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">artist_id </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">artist_mbid </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">artist_name </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">albums_list </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      <div class="param">average_rating </div><div class="param-desc"><span class="param-type">Integer</span> </div>
+      
+      <div class="param">personal_rating </div><div class="param-desc"><span class="param-type">Integer</span> </div>
+      
+      <div class="param">favorites_timestamp </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">image_link </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">songs_list </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      <div class="param">genre </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">similar_artists_list </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      <div class="param">in_my_library </div><div class="param-desc"><span class="param-type">Boolean</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FacetInfo">FacetInfo</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">facet_id </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">name </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FacetInfoWithChildren">FacetInfoWithChildren</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">facet_id </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">name </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">children </div><div class="param-desc"><span class="param-type">array[FacetInfo]</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="MyLibrary">MyLibrary</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">albums </div><div class="param-desc"><span class="param-type">array[AlbumInfo]</span> </div>
+      
+      <div class="param">artists </div><div class="param-desc"><span class="param-type">array[ArtistInfo]</span> </div>
+      
+      <div class="param">songs </div><div class="param-desc"><span class="param-type">array[SongInfo]</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="PagingState">PagingState</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">pagingState </div><div class="param-desc"><span class="param-type">String</span> PagingState indicates a position in a paginated query. It is sent from the server with each paginated result and returned to the server to retrieve the next page. A PagingState instance contains a GUID key to an EVCache entry on the server. The value of the EVCache entry contains the original Cassandra query and the PagingState returned after execution of the Cassandra paginated query.</div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="SongInfo">SongInfo</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">song_id </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">song_name </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">image_link </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">artist_id </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">artist_mbid </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">artist_name </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">album_id </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">album_name </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">favorites_timestamp </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">duration </div><div class="param-desc"><span class="param-type">Integer</span> Length of song in seconds</div>
+      
+      <div class="param">genre </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">danceability </div><div class="param-desc"><span class="param-type">BigDecimal</span> </div>
+      
+      <div class="param">average_rating </div><div class="param-desc"><span class="param-type">Integer</span> </div>
+      
+      <div class="param">personal_rating </div><div class="param-desc"><span class="param-type">Integer</span> </div>
+      
+      <div class="param">song_hotttnesss </div><div class="param-desc"><span class="param-type">BigDecimal</span> The Echo Nest hotttnesss score</div>
+      
+      <div class="param">year </div><div class="param-desc"><span class="param-type">Integer</span> The year the song was released</div>
+      
+      <div class="param">in_my_library </div><div class="param-desc"><span class="param-type">Boolean</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="UserInfo">UserInfo</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">userId </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">name </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">email </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="AlbumList">AlbumList</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">pagingState </div><div class="param-desc"><span class="param-type">PagingState</span> </div>
+      
+      <div class="param">albums </div><div class="param-desc"><span class="param-type">array[AlbumInfo]</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="ArtistList">ArtistList</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">pagingState </div><div class="param-desc"><span class="param-type">PagingState</span> </div>
+      
+      <div class="param">artists </div><div class="param-desc"><span class="param-type">array[ArtistInfo]</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="SongList">SongList</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">pagingState </div><div class="param-desc"><span class="param-type">PagingState</span> </div>
+      
+      <div class="param">songs </div><div class="param-desc"><span class="param-type">array[SongInfo]</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="ErrorResponse">ErrorResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">message </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="LoginSuccessResponse">LoginSuccessResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">authenticated </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="NotFoundResponse">NotFoundResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">message </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="SearchResponse">SearchResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">search_results </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="StatusResponse">StatusResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">message </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  </body>
+</html>
