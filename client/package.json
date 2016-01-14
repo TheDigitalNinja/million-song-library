@@ -21,7 +21,7 @@
     "parse-login-edge-src": "node swagger/resolve.js -- login-edge/index.yaml",
     "parse-player-edge-src": "node swagger/resolve.js -- player-edge/index.yaml",
     "parse-ratings-edge-src": "node swagger/resolve.js -- ratings-edge/index.yaml",
-    "generate-swagger-html": "npm run parse-swagger-src && java -jar ../common/swagger-codegen-cli.jar generate -i swagger/api/swagger/swagger.yaml -l html -o ../common/target -c swagger/package.json",
+    "generate-swagger-html": "npm run parse-swagger-src && java -jar ../common/swagger-codegen-cli.jar generate -i swagger/api/swagger/swagger.yaml -l html -o ../docs/swagger -c swagger/package.json",
 
     "build-server": "cd ../server && mvn -f build.xml clean compile",
     "account-edge-server": "cd ../server/msl-account-edge && mvn -P dev clean jetty:run",
