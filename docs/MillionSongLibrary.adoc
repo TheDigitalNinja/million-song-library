@@ -38,3 +38,9 @@ publish the documentation in various formats.
 Documentation
 ~~~~~~~~~~~~~
 The AsciiDoc open-source tool (http://asciidoc.org/) allows the team to produce documentation that can then be formatted and published in a variety of formats. 
+
+Coding Standards
+----------------
+We have found the Google coding standards and style guides (https://google.github.io/styleguide/javaguide.html for Java, https://google.github.io/styleguide/javascriptguide.xml for JavaScript, and https://github.com/google/styleguide for implementations on various IDEs) to be concise and useful.
+
+All code in this project has been written to comform to these standards.
