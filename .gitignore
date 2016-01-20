@@ -1,9 +1,3 @@
-/client/bower_components
-/client/node_modules
-/client/build
-/client/coverage
-/client/swagger/api/swagger/swagger.yaml
-/client/swagger/api/swagger/paths.yaml
 /target
 
 /server/models

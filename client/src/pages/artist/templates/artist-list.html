@@ -1,8 +1,0 @@
-<div layout="row" layout-wrap>
-  <div ng-if="artists" layout-padding flex="33" flex-sm="100" ng-repeat="artist in artists track by $index">
-    <artist-box artist="artist"></artist-box>
-  </div>
-  <div ng-if="artists && !artists.length">
-    <p> Sorry, no artists matched your filtering criteria. </p>
-  </div>
-</div>

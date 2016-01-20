@@ -1,6 +1,0 @@
-<ul class="star-rating list-unstyled" ng-class="{ 'rating-readonly': rating.readOnly, 'personal-rating': rating.isPersonalRating }">
-  <li ng-repeat="star in rating.stars track by $index">
-    <button ng-if="star.filled" type="button" class="material-icons" ng-click="rating.rate($index)">star</button>
-    <button ng-if="!star.filled" type="button" class="material-icons" ng-click="rating.rate($index)">star_outline</button>
-  </li>
-</ul>

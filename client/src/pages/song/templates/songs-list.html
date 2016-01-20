@@ -1,8 +1,0 @@
-<div layout="row" layout-wrap>
-  <div ng-if="songs" layout-padding flex="33" flex-sm="100" ng-repeat="song in songs track by $index">
-    <song-box song="song"></song-box>
-  </div>
-  <div ng-if="songs && !songs.length">
-    <p> Sorry, no songs matched your filtering criteria. </p>
-  </div>
-</div>
