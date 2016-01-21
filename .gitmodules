@@ -22,3 +22,6 @@
 [submodule "server/msl-ratings-data-client"]
 	path = server/msl-ratings-data-client
 	url = git@github.com:kenzanmedia/msl-ratings-data-client.git
+[submodule "msl-pages"]
+	path = msl-pages
+	url = git@github.com:kenzanmedia/msl-pages.git

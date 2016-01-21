@@ -1,4 +1,0 @@
-sessionToken:
-  type: apiKey
-  name: sessionToken
-  in: header
