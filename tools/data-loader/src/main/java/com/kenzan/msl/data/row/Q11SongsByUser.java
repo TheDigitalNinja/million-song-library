@@ -22,6 +22,7 @@ public class Q11SongsByUser {
     private final String artistName;
     private final int songDuration;
     private final String songName;
+    private final String imageLink;
     
     public Q11SongsByUser(final NormalizedRow normalizedRow, final UUID userId,  final Date favoritesTimestamp) {
 
@@ -36,6 +37,7 @@ public class Q11SongsByUser {
         this.artistName = normalizedRow.getArtist().getName();
         this.songDuration = normalizedRow.getSong().getDuration();
         this.songName = normalizedRow.getSong().getName();
+        this.imageLink = normalizedRow.getAlbum().getImageLink();
     }
     
     public String toString() {
@@ -53,6 +55,7 @@ public class Q11SongsByUser {
         row.add(RowUtil.formatText(artistName));
         row.add(RowUtil.formatInt(songDuration));
         row.add(RowUtil.formatText(songName));
+        row.add(RowUtil.formatText(imageLink));
         return String.join(RowUtil.FIELD_DELIMITER, row);
     }
 }

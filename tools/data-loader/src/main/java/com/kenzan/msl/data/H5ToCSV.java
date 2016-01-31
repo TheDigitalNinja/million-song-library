@@ -55,6 +55,7 @@ public class H5ToCSV {
     private static final int NORMALIZE_ARTISTS = 3;
     private static final int NORMALIZE_SIMILAR_ARTISTS = 4;
     private static final int NORMALIZE_CLEAN = 5;
+
     private static final String RAW_DATA = "02_raw_data.txt";
     private static final String RAW_DATA_BY_SONG_ID = "03_raw_data_by_song_id.txt";
     private static final String RAW_DATA_NORMALIZED_SONGS = "04_raw_data_normalized_songs.txt";
@@ -134,10 +135,9 @@ public class H5ToCSV {
                 final PrintWriter q13Writer = new PrintWriter(new FileWriter(Q13_ARTISTS_BY_USER));
                 final PrintWriter q10Writer = new PrintWriter(new FileWriter(Q10_SONGS_ALBUMS_BY_ARTIST))) {
             String line = bufferedReader.readLine();
-            List<NormalizedRow> group = new ArrayList<NormalizedRow>();
             while (line != null) {
                 final NormalizedRow normalizedRow = new NormalizedRow.NormalizedRowBuilder(line).build();
-                group.add(normalizedRow);
+                normalizedRow.lookUpAlbumImage();
                 count += 1;
                 line = bufferedReader.readLine();
                 if (line == null || !normalizedRow.getArtist().getId()
@@ -165,28 +165,31 @@ public class H5ToCSV {
                         final boolean favorited = random.nextBoolean();
                         final Date timestamp = randomDate();
                         if (favorited) {
-                            q13Writer.println(new Q13ArtistsByUser(group.get(0), randomUsers[x].getId(), timestamp));
+                            q13Writer.println(new Q13ArtistsByUser(normalizedRow, randomUsers[x].getId(), timestamp));
                         } 
                         if (ratings[x] > 0) {
                             q2Writer.println(new Q02UserRatings(randomUsers[x].getId(), ContentType.ARTIST,
-                                    group.get(0).getSong().getId(), ratings[x]));
+                                    normalizedRow.getSong().getId(), ratings[x]));
                         }
                     }
                     if (averageRating > 0) {
-                        q3Writer.println(new Q03AverageRatings(group.get(0).getSong().getId(), ContentType.ARTIST,
+                        q3Writer.println(new Q03AverageRatings(normalizedRow.getSong().getId(), ContentType.ARTIST,
                                 numRating, sumRating));
                     }
 
-                    q8Writer.println(new Q08FeaturedArtist(group.get(0)));
+                    Q08FeaturedArtist featuredArtist = new Q08FeaturedArtist(normalizedRow);
+                    q8Writer.println(featuredArtist);
+                    q8Writer.flush();
+
                     for (int x = averageRating; x >= 1; x--) {
-                        q9Writer.println(new Q09ArtistsByFacet(group.get(0), Rating.values()[x - 1].toString()));
+                        q9Writer.println(new Q09ArtistsByFacet(normalizedRow, Rating.values()[x - 1].toString()));
                     }
-                    for (final Genre genre : group.get(0).getArtist().getGenres()) {
-                        q9Writer.println(new Q09ArtistsByFacet(group.get(0), genre.toString()));
+                    for (final Genre genre : normalizedRow.getArtist().getGenres()) {
+                        q9Writer.println(new Q09ArtistsByFacet(normalizedRow, genre.toString()));
                     }
-                    group = new ArrayList<NormalizedRow>();
                 }
-                q10Writer.println(new Q10SongsAlbumsByArtist(normalizedRow));
+                Q10SongsAlbumsByArtist songsAlbumsByArtist = new Q10SongsAlbumsByArtist(normalizedRow);
+                q10Writer.println(songsAlbumsByArtist);
             }
         }
         System.out.println("createArtistTables: " + count + " lines");
@@ -204,11 +207,9 @@ public class H5ToCSV {
                 final PrintWriter q12Writer = new PrintWriter(new FileWriter(Q12_ALBUMS_BY_USER));
                 final PrintWriter q14Writer = new PrintWriter(new FileWriter(Q14_SONGS_ARTIST_BY_ALBUM))) {
             String line = bufferedReader.readLine();
-            List<NormalizedRow> group = new ArrayList<NormalizedRow>();
             while (line != null) {
                 final NormalizedRow normalizedRow = new NormalizedRow.NormalizedRowBuilder(line).build();
                 normalizedRow.lookUpAlbumImage();
-                group.add(normalizedRow);
                 count += 1;
                 line = bufferedReader.readLine();
                 if (line == null || !normalizedRow.getAlbum().getId()
@@ -236,25 +237,28 @@ public class H5ToCSV {
                         final boolean favorited = random.nextBoolean();
                         final Date timestamp = randomDate();
                         if (favorited) {
-                            q12Writer.println(new Q12AlbumsByUser(group.get(0), randomUsers[x].getId(), timestamp));
+                            q12Writer.println(new Q12AlbumsByUser(normalizedRow, randomUsers[x].getId(), timestamp));
                         } 
                         if (ratings[x] > 0) {
                             q2Writer.println(new Q02UserRatings(randomUsers[x].getId(), ContentType.ALBUM,
-                                    group.get(0).getSong().getId(), ratings[x]));
+                                    normalizedRow.getSong().getId(), ratings[x]));
                         }
                     }
                     if (averageRating > 0) {
-                        q3Writer.println(new Q03AverageRatings(group.get(0).getSong().getId(), ContentType.ALBUM,
+                        q3Writer.println(new Q03AverageRatings(normalizedRow.getSong().getId(), ContentType.ALBUM,
                                 numRating, sumRating));
                     }
-                    q6Writer.println(new Q06FeaturedAlbum(group.get(0)));
+
+                    Q06FeaturedAlbum featureAlbum = new Q06FeaturedAlbum(normalizedRow);
+                    q6Writer.println(featureAlbum);
+                    q6Writer.flush();
+
                     for (int x = averageRating; x >= 1; x--) {
-                        q7Writer.println(new Q07AlbumsByFacet(group.get(0), Rating.values()[x - 1].toString()));
+                        q7Writer.println(new Q07AlbumsByFacet(normalizedRow, Rating.values()[x - 1].toString()));
                     }
-                    for (final Genre genre : group.get(0).getArtist().getGenres()) {
-                        q7Writer.println(new Q07AlbumsByFacet(group.get(0), genre.toString()));
+                    for (final Genre genre : normalizedRow.getArtist().getGenres()) {
+                        q7Writer.println(new Q07AlbumsByFacet(normalizedRow, genre.toString()));
                     }
-                    group = new ArrayList<NormalizedRow>();
                 }
                 q14Writer.println(new Q14SongsArtistByAlbum(normalizedRow));
             }
@@ -276,6 +280,7 @@ public class H5ToCSV {
             String line = bufferedReader.readLine();
             while (line != null) {
                 final NormalizedRow normalizedRow = new NormalizedRow.NormalizedRowBuilder(line).build();
+                normalizedRow.lookUpAlbumImage();
                 final Random random = new Random();
                 final int[] ratings = new int[3];
                 ratings[0] = random.nextInt(6);
@@ -310,7 +315,11 @@ public class H5ToCSV {
                     q3Writer.println(new Q03AverageRatings(normalizedRow.getSong().getId(), ContentType.SONG, numRating,
                             sumRating));
                 }
-                q4Writer.println(new Q04FeaturedSong(normalizedRow));
+
+                Q04FeaturedSong featureSong = new Q04FeaturedSong(normalizedRow);
+                q4Writer.println(featureSong);
+                q4Writer.flush();
+
                 for (int x = averageRating; x >= 1; x--) {
                     q5Writer.println(new Q05SongsByFacet(normalizedRow, Rating.values()[x - 1].toString()));
                 }

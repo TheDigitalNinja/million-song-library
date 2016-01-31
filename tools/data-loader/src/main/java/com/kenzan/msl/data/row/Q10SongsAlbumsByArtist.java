@@ -22,6 +22,7 @@ public class Q10SongsAlbumsByArtist {
     private final String artistName;
     private final Map<UUID, String> similarArtists;
     private final int songDuration;
+    private final String imageLink;
     
     public Q10SongsAlbumsByArtist(final NormalizedRow normalizedRow) {
 
@@ -41,6 +42,7 @@ public class Q10SongsAlbumsByArtist {
         }
         this.similarArtists = artistMap;
         this.songDuration = normalizedRow.getSong().getDuration();
+        this.imageLink = normalizedRow.getAlbum().getImageLink();
     }
     
     public String toString() {
@@ -57,6 +59,7 @@ public class Q10SongsAlbumsByArtist {
         row.add(RowUtil.formatText(artistName));
         row.add(RowUtil.formatSimilarArtists(similarArtists));
         row.add(RowUtil.formatInt(songDuration));
+        row.add(RowUtil.formatText(imageLink));
         return String.join(RowUtil.FIELD_DELIMITER, row);
     }
 }
