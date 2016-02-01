@@ -21,6 +21,7 @@ public class Q04FeaturedSong {
     private final String artistName;
     private final int songDuration;
     private final String songName;
+    private final String imageLink;
     
     public Q04FeaturedSong(final NormalizedRow normalizedRow) {
         
@@ -34,6 +35,7 @@ public class Q04FeaturedSong {
         this.artistName = normalizedRow.getArtist().getName();
         this.songDuration = normalizedRow.getSong().getDuration();
         this.songName = normalizedRow.getSong().getName();
+        this.imageLink = normalizedRow.getAlbum().getImageLink();
     }
     
     public String toString() {
@@ -51,6 +53,7 @@ public class Q04FeaturedSong {
         row.add(RowUtil.formatText(artistName));
         row.add(RowUtil.formatInt(songDuration));
         row.add(RowUtil.formatText(songName));
+        row.add(RowUtil.formatText(imageLink));
         return String.join(RowUtil.FIELD_DELIMITER, row);
     }
 }

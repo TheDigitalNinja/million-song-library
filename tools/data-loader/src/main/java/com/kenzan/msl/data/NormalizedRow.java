@@ -25,7 +25,6 @@ public class NormalizedRow {
     private final NormalizedSong song;
 
     private NormalizedRow(NormalizedRowBuilder builder) {
-
         this.artist = builder.artist;
         this.album = builder.album;
         this.song = builder.song;
@@ -72,7 +71,7 @@ public class NormalizedRow {
     public void lookUpAlbumImage(){
         AlbumImage albumImage = new AlbumImage(album.getName(), artist.getMbid());
         String imageUrl = albumImage.getUrl();
-        album.setImageLink(imageUrl);
+        this.album.setImageLink(imageUrl);
     }
 
     public static class NormalizedRowBuilder {

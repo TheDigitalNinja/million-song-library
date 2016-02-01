@@ -15,62 +15,62 @@ import fm.last.musicbrainz.coverart.CoverArtImage;
 import fm.last.musicbrainz.coverart.impl.DefaultCoverArtArchiveClient;
 
 public class AlbumImage {
-	private String albumName;
-	private UUID artistMbid;
-	private String url;
-	
-	public AlbumImage(String albumName, UUID artistMbid){
-		this.albumName = albumName;
-		this.artistMbid = artistMbid;
-	}
-		
-	public String getUrl() {
-		if(this.url == null){
-			this.url = this.getImageUrl();
-		}
-		return url;
-	}
-	
-    private String getAlbumMbid(){
-    	String albumMbid = null;
-    	Artist artist = new Artist();
-    	ArtistIncludesWs2 includes = artist.getIncludes();
-    	includes.setReleases(true);
-    	artist.setIncludes(includes);
-    	try {
-			ArtistWs2 artistWs = artist.lookUp(this.artistMbid.toString());
-			List<ReleaseWs2> list =  artistWs.getReleases();
-			for(ReleaseWs2 release : list){
-				if(release.getTitle().toLowerCase().equals(this.albumName.toLowerCase())){
-					albumMbid = release.getId();
-					break;
-				}
-			}
-			
-		} catch (MBWS2Exception e) {
-			e.printStackTrace();
-		}
-    	return albumMbid;
+    private String albumName;
+    private UUID artistMbid;
+    private String url;
+
+    public AlbumImage(String albumName, UUID artistMbid) {
+        this.albumName = albumName;
+        this.artistMbid = artistMbid;
     }
-    
+
+    public String getUrl() {
+        if (this.url == null) {
+            this.url = getImageUrl();
+        }
+        return url;
+    }
+
+    private String getAlbumMbid() {
+        String albumMbid = null;
+        Artist artist = new Artist();
+        ArtistIncludesWs2 includes = artist.getIncludes();
+        includes.setReleases(true);
+        artist.setIncludes(includes);
+        try {
+            ArtistWs2 artistWs = artist.lookUp(this.artistMbid.toString());
+            List<ReleaseWs2> list = artistWs.getReleases();
+            for (ReleaseWs2 release : list) {
+                if (release.getTitle().toLowerCase().equals(this.albumName.toLowerCase())) {
+                    albumMbid = release.getId();
+                    break;
+                }
+            }
+
+        } catch (MBWS2Exception e) {
+            e.printStackTrace();
+        }
+        return albumMbid;
+    }
+
     private String getImageUrl() {
-    	String imageUrl = "";
-    	CoverArtArchiveClient client = new DefaultCoverArtArchiveClient();
-    	String albumMbid = this.getAlbumMbid();
-    	if(albumMbid == null){
-    		return imageUrl;
-    	}
+        String imageUrl = "";
+        CoverArtArchiveClient client = new DefaultCoverArtArchiveClient();
+        String albumMbid = this.getAlbumMbid();
+        if (albumMbid == null) {
+            return imageUrl;
+        }
         UUID releaseMbid = UUID.fromString(albumMbid);
         CoverArt coverArt = client.getByMbid(releaseMbid);
         if (coverArt != null) {
             for (CoverArtImage coverArtImage : coverArt.getImages()) {
-                if(coverArtImage.isFront()) {
+                if (coverArtImage.isFront()) {
                     imageUrl = coverArtImage.getSmallThumbnailUrl();
                     if (null == imageUrl) {
-                        imageUrl = coverArtImage.getLargeThumbnailUrl(); 
+                        imageUrl = coverArtImage.getLargeThumbnailUrl();
                     }
                     if (null == imageUrl) {
-                    	imageUrl = coverArtImage.getImageUrl(); 
+                        imageUrl = coverArtImage.getImageUrl();
                     }
                 }
             }
