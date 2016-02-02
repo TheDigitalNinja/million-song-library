@@ -44,6 +44,7 @@ CREATE TABLE featured_songs (
   artist_name text,
   song_duration int,
   song_name text,
+  image_link text,
   PRIMARY KEY ((hotness_bucket, content_type), hotness_value, song_id)
 ) WITH CLUSTERING ORDER BY (hotness_value DESC, song_id ASC);
 
@@ -60,6 +61,7 @@ CREATE TABLE songs_by_facet (
   artist_mbid uuid,
   artist_name text,
   song_duration int,
+  image_link text,
   PRIMARY KEY ((facet_name, content_type), song_name, song_id)
 ) WITH CLUSTERING ORDER BY (song_name ASC, song_id ASC);
 
@@ -100,6 +102,7 @@ CREATE TABLE featured_artists (
   artist_id uuid,
   artist_mbid uuid,
   artist_name text,
+  image_link text,
   PRIMARY KEY ((hotness_bucket, content_type), hotness_value, artist_id)
 ) WITH CLUSTERING ORDER BY (hotness_value DESC, artist_id ASC);
 
@@ -110,6 +113,7 @@ CREATE TABLE artists_by_facet (
   artist_name text,
   artist_id uuid,
   aritst_mbid uuid,
+  image_link text,
   PRIMARY KEY ((facet_name, content_type), artist_name, artist_id)
 ) WITH CLUSTERING ORDER BY (artist_name ASC, artist_id ASC);
 
@@ -126,6 +130,7 @@ CREATE TABLE songs_albums_by_artist (
   artist_name text static,
   similar_artists map<uuid, text> static,
   song_duration int,
+  image_link text,
   PRIMARY KEY ((artist_id), album_year, album_name, album_id, song_name, song_id)
 ) WITH CLUSTERING ORDER BY (album_year DESC, album_name ASC, album_id ASC, song_name ASC, song_id ASC);
 
@@ -143,6 +148,7 @@ CREATE TABLE songs_by_user (
   artist_name text,
   song_duration int,
   song_name text,
+  image_link text,
   PRIMARY KEY ((user_id, content_type), favorites_timestamp, song_id)
 ) WITH CLUSTERING ORDER BY (favorites_timestamp DESC, song_id ASC);
 
@@ -169,6 +175,7 @@ CREATE TABLE artists_by_user (
   artist_id uuid,
   artist_mbid uuid,
   artist_name text,
+  image_link text,
   PRIMARY KEY ((user_id, content_type), favorites_timestamp, artist_id)
 ) WITH CLUSTERING ORDER BY (favorites_timestamp DESC, artist_id ASC);
 
@@ -183,9 +190,9 @@ CREATE TABLE songs_artist_by_album (
   artist_id uuid static,
   artist_mbid uuid static,
   artist_name text static,
+  image_link text,
   similar_artists map<uuid, text> static,
   song_duration int,
-  image_link text,
   PRIMARY KEY ((album_id), song_name, song_id)
 ) WITH CLUSTERING ORDER BY (song_name ASC, song_id ASC);
 
@@ -202,6 +209,7 @@ CREATE TABLE album_artist_by_song (
   similar_artists map<uuid, text>,
   song_duration int,
   song_name text,
+  image_link text,
   PRIMARY KEY (song_id)
 );
 

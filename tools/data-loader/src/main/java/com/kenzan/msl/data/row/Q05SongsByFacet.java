@@ -20,6 +20,7 @@ public class Q05SongsByFacet {
     private final UUID artistMbid;
     private final String artistName;
     private final int songDuration;
+    private final String imageLink;
     
     public Q05SongsByFacet(final NormalizedRow normalizedRow, final String facetName) {
 
@@ -33,6 +34,7 @@ public class Q05SongsByFacet {
         this.artistMbid = normalizedRow.getArtist().getMbid();
         this.artistName = normalizedRow.getArtist().getName();
         this.songDuration = normalizedRow.getSong().getDuration();
+        this.imageLink = normalizedRow.getAlbum().getImageLink();
     }
     
     public String toString() {
@@ -49,6 +51,7 @@ public class Q05SongsByFacet {
         row.add(artistMbid.toString());
         row.add(RowUtil.formatText(artistName));
         row.add(RowUtil.formatInt(songDuration));
+        row.add(RowUtil.formatText(imageLink));
         return String.join(RowUtil.FIELD_DELIMITER, row);
     }
 }
