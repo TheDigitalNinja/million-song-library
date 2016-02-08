@@ -23,64 +23,64 @@ image:images/architecture/server/High Level Architecture Diagram.png[High-level 
 
 Data Client Layer
 ~~~~~~~~~~~~~~~~~
-As a simplification to a traditional edge/middle architecture, this project uses a edge/data client architecture instead. The data clients are jars, each containing all the methods and DOs for accessing all the tables within a Cassandra cluster. To enhance scalability and configuration flexibility, the Cassandra tables are split into three independent clusters: account, catalog, and rating. Each of these clusters has a data client jar dedicated to accessing it: account-data-client, catalog-data-client, and rating-data-client, respectively.
+As a simplification to a traditional edge/middle architecture, this project uses a edge/data client architecture instead. The data clients are jars, each containing all the methods and DTOs for accessing all the tables within a Cassandra cluster. To enhance scalability and configuration flexibility, the Cassandra tables are split into three independent clusters: account, catalog, and rating. Each of these clusters has a data client jar dedicated to accessing it: account-data-client, catalog-data-client, and rating-data-client, respectively.
 
 So a microservice that needs to access Cassandra data will include one or more of the data client jars.
 
 .Data Client and Cassandra Cluster Details
 image:images/architecture/server/Data Client and Cassandra Cluster Detail.png[Data CLient and Cassandra Cluster Details]
 
-.Account Data Client DOs
+.Account Data Client DTOs
 [width="100%",cols="2,10",options="header"]
 |=======================
-|Table                    |DO
-<|users                  <|User
-<|songs_by_user          <|SongsByUser
-<|albums_by_user         <|AlbumsByUser
-<|artists_by_user        <|ArtistsByUser
+|Table                    |DTO
+<|users                  <|UserDto
+<|songs_by_user          <|SongsByUserDto
+<|albums_by_user         <|AlbumsByUserDto
+<|artists_by_user        <|ArtistsByUserDto
 |=======================
 
 .Account Data Client Methods
 [width="100%",cols="2,10",options="header"]
 |=======================
 |Table                       |Method
-.3+<|users                  <|Observable<Void> addOrUpdateUser(User)
-                            <|Observable<User> getUser(UUID userUuid)
+.3+<|users                  <|Observable<Void> addOrUpdateUser(UserDto)
+                            <|Observable<UserDto> getUser(UUID userUuid)
                             <|Observable<Void> deleteUser(UUID userUuid)
-.6+<|songs_by_user          <|Observable<Void> addOrUpdateSongsByUser(SongsByUser)
-                            <|Observable<SongsByUser> getSongsByUser(UUID userId, Timestamp favoritesTimestamp, UUID songUuid)
+.6+<|songs_by_user          <|Observable<Void> addOrUpdateSongsByUser(SongsByUserDto)
+                            <|Observable<SongsByUserDto> getSongsByUser(UUID userId, Timestamp favoritesTimestamp, UUID songUuid)
                             <|Observable<ResultSet> getSongsByUser(UUID userId, Timestamp favoritesTimestamp, Optional<Integer> limit)
                             <|Observable<ResultSet> getSongsByUser(UUID userId, Optional<Integer> limit)
-                            <|Observable<Result<SongsByUser> map(Observable<ResultSet>)
+                            <|Observable<Result<SongsByUserDto> map(Observable<ResultSet>)
                             <|Observable<Void> deleteSongsByUser(UUID userId, Timestamp favoritesTimestamp, UUID songUuid)
-.6+<|albums_by_user         <|Observable<Void> addOrUpdateAlbumsByUser(AlbumsByUser)
-                            <|Observable<AlbumsByUser> getAlbumsByUser(UUID userId, Timestamp favoritesTimestamp, UUID albumUuid)
+.6+<|albums_by_user         <|Observable<Void> addOrUpdateAlbumsByUser(AlbumsByUserDto)
+                            <|Observable<AlbumsByUserDto> getAlbumsByUser(UUID userId, Timestamp favoritesTimestamp, UUID albumUuid)
                             <|Observable<ResultSet> getAlbumsByUser(UUID userId, Timestamp favoritesTimestamp, Optional<Integer> limit)
                             <|Observable<ResultSet> getAlbumsByUser(UUID userId, Optional<Integer> limit)
-                            <|Observable<Result<AlbumsByUser> map(Observable<ResultSet>)
+                            <|Observable<Result<AlbumsByUserDto> map(Observable<ResultSet>)
                             <|Observable<Void> deleteAlbumsByUser(UUID userId, Timestamp favoritesTimestamp, UUID albumUuid)
-.6+<|artists_by_user        <|Observable<Void> addOrUpdateArtistsByUser(ArtistsByUser)
-                            <|Observable<ArtistsByUser> getArtistsByUser(UUID userId, Timestamp favoritesTimestamp, UUID artistUuid)
+.6+<|artists_by_user        <|Observable<Void> addOrUpdateArtistsByUser(ArtistsByUserDto)
+                            <|Observable<ArtistsByUserDto> getArtistsByUser(UUID userId, Timestamp favoritesTimestamp, UUID artistUuid)
                             <|Observable<ResultSet> getArtistsByUser(UUID userId, Timestamp favoritesTimestamp, Optional<Integer> limit)
                             <|Observable<ResultSet> getArtistsByUser(UUID userId, Optional<Integer> limit)
-                            <|Observable<Result<ArtistsByUser> map(Observable<ResultSet>)
+                            <|Observable<Result<ArtistsByUserDto> map(Observable<ResultSet>)
                             <|Observable<Void> deleteArtistsByUser(UUID userId, Timestamp favoritesTimestamp, UUID artistUuid)
 |=======================
 
-.Catalog Data Client DOs
+.Catalog Data Client DTOs
 [width="100%",cols="2,10",options="header"]
 |=======================
-|Table                    |DO
-<|featured_songs         <|FeaturedSongs
-<|songs_by_facet         <|SongsByFacet
-<|featured_albums        <|FeaturedAlbums
-<|albums_by_facet        <|AlbumsByFacet
-<|featured_artists       <|FeaturedArtists
-<|artists_by_facet       <|ArtistsByFacet
-<|songs_albums_by_artist <|SongsAlbumsByArtist
-<|songs_artist_by_album  <|SongsArtistByAlbum
-<|album_artist_by_song   <|AlbumArtistBySong
-<|paging_state           <|PagingState
+|Table                    |DTO
+<|featured_songs         <|FeaturedSongsDto
+<|songs_by_facet         <|SongsByFacetDto
+<|featured_albums        <|FeaturedAlbumsDto
+<|albums_by_facet        <|AlbumsByFacetDto
+<|featured_artists       <|FeaturedArtistsDto
+<|artists_by_facet       <|ArtistsByFacetDto
+<|songs_albums_by_artist <|SongsAlbumsByArtistDto
+<|songs_artist_by_album  <|SongsArtistByAlbumDto
+<|album_artist_by_song   <|AlbumArtistBySongDto
+<|paging_state           <|PagingStateDto
 |=======================
 
 .Catalog Data Client Methods
@@ -88,48 +88,48 @@ image:images/architecture/server/Data Client and Cassandra Cluster Detail.png[Da
 |=======================
 |Table                       |Method
 .2+<|featured_songs         <|Observable<ResultSet> getFeaturedSongs(Optional<Integer> limit)
-                            <|Observable<Result<FeaturedSongs> map(Observable<ResultSet>)
+                            <|Observable<Result<FeaturedSongsDto> map(Observable<ResultSet>)
 .2+<|songs_by_facet         <|Observable<ResultSet> getSongsByFacet(String facetName, Optional<Integer> limit)
-                            <|Observable<Result<SongsByFacet> map(Observable<ResultSet>)
+                            <|Observable<Result<SongsByFacetDto> map(Observable<ResultSet>)
 .2+<|featured_albums        <|Observable<ResultSet> getFeaturedAlbums(Optional<Integer> limit)
-                            <|Observable<Result<FeaturedAlbums> map(Observable<ResultSet>)
+                            <|Observable<Result<FeaturedAlbumsDto> map(Observable<ResultSet>)
 .2+<|albums_by_facet        <|Observable<ResultSet> getAlbumsByFacet(String facetName, Optional<Integer> limit)
-                            <|Observable<Result<AlbumsByFacet> map(Observable<ResultSet>)
+                            <|Observable<Result<AlbumsByFacetDto> map(Observable<ResultSet>)
 .2+<|featured_artists       <|Observable<ResultSet> getFeaturedArtists(Optional<Integer> limit)
-                            <|Observable<Result<FeaturedArtists> map(Observable<ResultSet>)
+                            <|Observable<Result<FeaturedArtistsDto> map(Observable<ResultSet>)
 .2+<|artists_by_facet       <|Observable<ResultSet> getArtistsByFacet(String facetName, Optional<Integer> limit)
-                            <|Observable<Result<ArtistsByFacet> map(Observable<ResultSet>)
+                            <|Observable<Result<ArtistsByFacetDto> map(Observable<ResultSet>)
 .2+<|songs_albums_by_artist <|Observable<ResultSet> getSongsAlbumsByArtist(UUID artistUuid, Optional<Integer> limit)
-                            <|Observable<Result<SongsAlbumsByArtist> map(Observable<ResultSet>)
+                            <|Observable<Result<SongsAlbumsByArtistDto> map(Observable<ResultSet>)
 .2+<|songs_artist_by_album  <|Observable<ResultSet> getSongsArtistByAlbum(UUID albumUuid, Optional<Integer> limit)
-                            <|Observable<Result<SongsArtistByAlbum> map(Observable<ResultSet>)
+                            <|Observable<Result<SongsArtistByAlbumDto> map(Observable<ResultSet>)
 .2+<|album_artist_by_song   <|Observable<ResultSet> getAlbumArtistBySong(UUID songUuid, Optional<Integer> limit)
-                            <|Observable<Result<AlbumArtistBySong> map(Observable<ResultSet>)
-.3+<|paging_state           <|Observable<Void> addOrUpdatePagingState(PagingState)
-                            <|Observable<PagingState> getPagingState(UUID pagingStateUuid)
+                            <|Observable<Result<AlbumArtistBySongDto> map(Observable<ResultSet>)
+.3+<|paging_state           <|Observable<Void> addOrUpdatePagingState(PagingStateDto)
+                            <|Observable<PagingStateDto> getPagingState(UUID pagingStateUuid)
                             <|Observable<Void> deletePagingState(UUID pagingStateUuid)
 |=======================
 
-.Rating Data Client DOs
+.Rating Data Client DTOs
 [width="100%",cols="2,10",options="header"]
 |=======================
-|Table                    |DO
-<|average_ratings        <|AverageRating
-<|user_ratings           <|UserRatings
+|Table                    |DTO
+<|average_ratings        <|AverageRatingDto
+<|user_ratings           <|UserRatingsDto
 |=======================
 
 .Rating Data Client Details
 [width="100%",cols="2,10",options="header"]
 |=======================
 |Table                       |Method
-.3+<|average_ratings        <|Observable<Void> addOrUpdateAverageRating(AverageRating)
-                            <|Observable<AverageRating> getAverageRating(UUID contentId, String contentType)
+.3+<|average_ratings        <|Observable<Void> addOrUpdateAverageRating(AverageRatingDto)
+                            <|Observable<AverageRatingDto> getAverageRating(UUID contentId, String contentType)
                             <|Observable<Void> deleteAverageRating(UUID contentId, String contentType)
-.6+<|user_ratings           <|Observable<Void> addOrUpdateUserRatings(UserRatings)
-                            <|Observable<UserRatings> getUserRatings(UUID userUuid, String contentType, UUID contentUuid)
+.6+<|user_ratings           <|Observable<Void> addOrUpdateUserRatings(UserRatingsDto)
+                            <|Observable<UserRatingsDto> getUserRatings(UUID userUuid, String contentType, UUID contentUuid)
                             <|Observable<ResultSet> getUserRatings(UUID userUuid, String contentType, Optional<Integer> limit)
                             <|Observable<ResultSet> getUserRatings(UUID userUuid, Optional<Integer> limit)
-                            <|Observable<Result<UserRatings> map(Observable<ResultSet>)
+                            <|Observable<Result<UserRatingsDto> map(Observable<ResultSet>)
                             <|Observable<Void> deleteUserRatings(UUID userUuid, String contentType, UUID contentUuid)
 |=======================
 
@@ -142,8 +142,8 @@ Data POJOs
 The server has three different classifications of data POJOs:
 
 . Models: classes that represent the data payloads that are passed back and forth between clients and server
-. Data Objects (DOs): classes that represent the data persisted in Cassandra
-. Business Objects (BOs): classes that aid converting between models and DOs
+. Data Transfer Objects (DTOs): classes that represent the data persisted in Cassandra
+. Business Objects (BOs): classes that aid converting between models and DTOs
 
 .High Level Data POJOs Diagram
 image:images/architecture/server/dataobjects/High Level Data POJOs.png[High Level Data POJOs Diagram]
@@ -155,16 +155,16 @@ The model classes are generated by Swagger and represent all the data payloads t
 .Model Classes Architecture Diagram
 image:images/architecture/server/dataobjects/Models.png[Model Classes Architecture Diagram]
 
-Data Objects (DOs)
-^^^^^^^^^^^^^^^^^^
-Data Objects represent the data as it is persisted in Cassadra. In fact, there is a one-to-one correspondence between Cassandra tables and concrete DO classes. Often this data is optimized for Cassandra, so needs to undergo some massaging to convert it to a model.
+Data Transfer Objects (DTOs)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Data Transfer Objects represent the data as it is persisted in Cassadra. In fact, there is a one-to-one correspondence between Cassandra tables and concrete DTO classes. Often this data is optimized for Cassandra, so needs to undergo some massaging to convert it to a model.
 
-.Data Object Classes Architecture Diagram
-image:images/architecture/server/dataobjects/Data Objects.png[Data Object Classes Architecture Diagram]
+.Data Transfer Object Classes Architecture Diagram
+image:images/architecture/server/dataobjects/Data Transfer Objects.png[Data Transfer Object Classes Architecture Diagram]
 
 Business Objects (BOs)
 ^^^^^^^^^^^^^^^^^^^^^^
-Business object classes are the glue inside the server between model classes and DO classes. In many cases there is not a simple one-to-one connection between reading a DO from Cassandra and sending that as a model to the client. For example: when building an AlbumInfo model, the album's metadata, community and user ratings must be merged. The BO contains the merged representation of the data.
+Business object classes are the glue inside the server between model classes and DTO classes. In many cases there is not a simple one-to-one connection between reading a DTO from Cassandra and sending that as a model to the client. For example: when building an AlbumInfo model, the album's metadata, community and user ratings must be merged. The BO contains the merged representation of the data.
 
 .Business Object Classes Architecture Diagram
 image:images/architecture/server/dataobjects/Business Objects.png[Business Object Classes Architecture Diagram]
@@ -182,18 +182,18 @@ That is a *LOT* of information. Let's summarize...
 .Server Languages and Frameworks
 [width="60%",cols="6,^3,^3,1",options="header"]
 |=======================
-|Use 						|Name 			|Vendor 		|Link
-|Language 					|Java EE 1.8 	|Oracle 		|link:http://www.java.com[html]
-|API Documentor/Generator 	|Swagger 		|open-souce 	|link:http://github.com/swagger-api[html]
-|ReST API 					|JaxRs 			|Oracle 		|link:http://jax-rs-spec.java.net[html]
-|ReST Implementation 		|Jersey 		|Oracle 		|link:http://jersey.java.net[html]
-|Unit Testing 				|JUnit 			|JUnit 			|link:http://junit.org[html]
-|Cloud Infrastructure 		|Karyon 		|Netflix OSS 	|link:http://github.com/Netflix/karyon[html]
-|Configuration Management 	|Archaius 		|Netflix OSS 	|link:http://github.com/Netflix/archaius[html]
-|Database 					|Cassandra 		|Apache 		|link:http://cassandra.apache.org[html]
-|Database Driver 			|DataStax 		|DataStax 		|link:http://datastax.github.io/java-driver[html]
-|Database Row->POJO Mapper 	|Datastax 		|DataStax 		|link:http://datastax.github.io/java-driver[html]
-|Reactive Code Library 		|RxJava 		|Netflix 		|link:http://techblog.netflix.com/2013/02/rxjava-netflix-api.html[html]
+|Use                         |Name        |Vendor        |Link
+|Language                    |Java EE 1.8 |Oracle        |link:http://www.java.com[html]
+|API Documentor/Generator    |Swagger     |open-souce    |link:http://github.com/swagger-api[html]
+|ReST API                    |JaxRs       |Oracle        |link:http://jax-rs-spec.java.net[html]
+|ReST Implementation         |Jersey      |Oracle        |link:http://jersey.java.net[html]
+|Unit Testing                |JUnit       |JUnit         |link:http://junit.org[html]
+|Cloud Infrastructure        |Karyon      |Netflix OSS   |link:http://github.com/Netflix/karyon[html]
+|Configuration Management    |Archaius    |Netflix OSS   |link:http://github.com/Netflix/archaius[html]
+|Database                    |Cassandra   |Apache        |link:http://cassandra.apache.org[html]
+|Database Driver             |DataStax    |DataStax      |link:http://datastax.github.io/java-driver[html]
+|Database Row->POJO Mapper   |Datastax    |DataStax      |link:http://datastax.github.io/java-driver[html]
+|Reactive Code Library       |RxJava      |Netflix       |link:http://techblog.netflix.com/2013/02/rxjava-netflix-api.html[html]
 |=======================
 
 Album Cover Artwork
