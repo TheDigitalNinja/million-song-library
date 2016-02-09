@@ -1,0 +1,745 @@
+/account-edge/users/register:
+  x-swagger-router-controller: registration_controller
+  post:
+    description: "Register a new user"
+    tags:
+      - Account
+    consumes:
+      - application/x-www-form-urlencoded
+    schemes: ["https"]
+    operationId: registration
+    parameters:
+      -
+        name: email
+        in: formData
+        description: Email used to identify the account
+        type: string
+        required: true
+      -
+        name: password
+        in: formData
+        description: user password
+        type: string
+        required: true
+      -
+        name: passwordConfirmation
+        in: formData
+        description: user confirmation password
+        type: string
+        required: true
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/account-edge/users/recentsongs:
+  x-swagger-router-controller: history_controller
+  get:
+    description: Get recently played songs
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: get_recent_songs
+    responses:
+      "200":
+        description: Got recent songs!
+        schema:
+          $ref: "#/definitions/SongList"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/account-edge/users/mylibrary:
+  x-swagger-router-controller: mylibrary_controller
+  get:
+    description: "Get the user's library of favorites"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: get_my_library
+    responses:
+      "200":
+        description: Retrieved user library
+        schema:
+          $ref: "#/definitions/MyLibrary"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/account-edge/users/profile:
+  x-swagger-router-controller: catalog_controller
+  get:
+    description: "Get the current user's account info"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: get_user_info
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/UserInfo"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/account-edge/users/mylibrary/addsong/{songId}:
+  x-swagger-router-controller: mylibrary_controller
+  put:
+    description: "Adds a song to the user library"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: add_song
+    parameters:
+      -
+        name: songId
+        in: path
+        description: Song id for the song to add to the library
+        type: string
+        required: true
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/account-edge/users/mylibrary/addalbum/{albumId}:
+  x-swagger-router-controller: mylibrary_controller
+  put:
+    description: "Adds a album to the user library"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: add_album
+    parameters:
+      -
+        name: albumId
+        in: path
+        description: Album id for the album to add to the library
+        type: string
+        required: true
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/account-edge/users/mylibrary/addartist/{artistId}:
+  x-swagger-router-controller: mylibrary_controller
+  put:
+    description: "Adds a artist to the user library"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: add_artist
+    parameters:
+      -
+        name: artistId
+        in: path
+        description: Artist id for the artist to add to the library
+        type: string
+        required: true
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/account-edge/users/mylibrary/removesong/{songId}/{timestamp}:
+  x-swagger-router-controller: mylibrary_controller
+  delete:
+    description: "Removes a song to the user library"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: remove_song
+    parameters:
+      -
+        name: songId
+        in: path
+        description: Song id for the song to remove to the library
+        type: string
+        required: true
+      -
+        name: timestamp
+        in: path
+        description: timestamp of the time the artist was added to the user library
+        type: string
+        required: true
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/account-edge/users/mylibrary/removealbum/{albumId}/{timestamp}:
+  x-swagger-router-controller: mylibrary_controller
+  delete:
+    description: "Removes an album to the user library"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: remove_album
+    parameters:
+      -
+        name: albumId
+        in: path
+        description: Album id for the album to remove to the library
+        type: string
+        required: true
+      -
+        name: timestamp
+        in: path
+        description: timestamp of the time the album was added to the user library
+        type: string
+        required: true
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/account-edge/users/mylibrary/removeartist/{artistId}/{timestamp}:
+  x-swagger-router-controller: mylibrary_controller
+  delete:
+    description: "Removes an artist to the user library"
+    tags:
+      - Account
+    schemes: ["https"]
+    security: [sessionToken: []]
+    operationId: remove_artist
+    parameters:
+      -
+        name: artistId
+        in: path
+        description: Artist id for the artist to remove to the library
+        type: string
+        required: true
+      -
+        name: timestamp
+        in: path
+        description: timestamp of the time the artist was added to the user library
+        type: string
+        required: true
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+/catalog-edge/song/{songId}:
+  x-swagger-router-controller: catalog_controller
+  get:
+    description: "Get a song's info from the database"
+    tags:
+      - Catalog
+    operationId: get_song
+    parameters:
+      -
+        name: songId
+        in: path
+        description: The song's unique identifier
+        required: true
+        type: string
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/SongInfo"
+      "404":
+        description: Song not found
+        schema:
+          $ref: "#/definitions/NotFoundResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/catalog-edge/album/{albumId}:
+  x-swagger-router-controller: catalog_controller
+  get:
+    description: Get data for an Album of songs
+    tags:
+      - Catalog
+    operationId: get_album
+    parameters:
+      -
+        name: albumId
+        in: path
+        description: The album's unique identifier
+        required: true
+        type: string
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/AlbumInfo"
+      "404":
+        description: Album not found
+        schema:
+          $ref: "#/definitions/NotFoundResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/catalog-edge/artist/{artistId}:
+  x-swagger-router-controller: catalog_controller
+  get:
+    description: Get data on an Artist
+    tags:
+      - Catalog
+    operationId: get_artist
+    parameters:
+      -
+        name: artistId
+        in: path
+        description: Artist Identifier
+        required: true
+        type: string
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/ArtistInfo"
+      "404":
+        description: Artist not found
+        schema:
+          $ref: "#/definitions/NotFoundResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/catalog-edge/facet/{facetId}:
+  x-swagger-router-controller: facet_controller
+  get:
+    description: Get a facet in the heirarchy. Passing a facetId of '~' retrieves the root facet.
+    tags:
+      - Catalog
+    operationId: get_facet
+    parameters:
+      -
+        name: facetId
+        in: path
+        description: Facet identifier
+        required: true
+        type: string
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/FacetInfoWithChildren"
+      "404":
+        description: Parent facet not found
+        schema:
+          $ref: "#/definitions/NotFoundResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/catalog-edge/browse/album:
+  x-swagger-router-controller: catalog_controller
+  get:
+    description: "Get browsing data for albums in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by album name, if no facets are passed then the results will be in featured order."
+    tags:
+      - Catalog
+    operationId: browse_albums
+    parameters:
+      -
+        $ref: "#/parameters/PagingState"
+      -
+        $ref: "#/parameters/Items"
+      -
+        $ref: "#/parameters/Facets"
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/AlbumList"
+      "400":
+        description: "Request parameter error: (1) Invalid pagingState. The string passed as pagingState is not a valid pagingState key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys."
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/catalog-edge/browse/artist:
+  x-swagger-router-controller: catalog_controller
+  get:
+    description: "Get browsing data for artists in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by artist name, if no facets are passed then the results will be in featured order."
+    tags:
+      - Catalog
+    operationId: browse_artists
+    parameters:
+      -
+        $ref: "#/parameters/PagingState"
+      -
+        $ref: "#/parameters/Items"
+      -
+        $ref: "#/parameters/Facets"
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/ArtistList"
+      "400":
+        description: "Request parameter error: (1) Invalid pagingState. The string passed as pagingState is not a valid pagingState key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys."
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/catalog-edge/browse/song:
+  x-swagger-router-controller: catalog_controller
+  get:
+    description: "Get browsing data for songs in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by song name, if no facets are passed then the results will be in featured order."
+    tags:
+      - Catalog
+    operationId: browse_songs
+    parameters:
+      -
+        $ref: "#/parameters/PagingState"
+      -
+        $ref: "#/parameters/Items"
+      -
+        $ref: "#/parameters/Facets"
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/SongList"
+      "400":
+        description: "Request parameter error: (1) Invalid pagingState. The string passed as pagingState is not a valid pagingState key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys."
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+/ratings-edge/rateartist/{artistId}:
+  x-swagger-router-controller: rating_controller
+  put:
+    description: Update your rating of an artist.
+    tags:
+      - Rating
+    schemes: ["https"]
+    security: [sessionToken: []]
+    consumes:
+      - application/x-www-form-urlencoded
+    operationId: rate_artist
+    parameters:
+      -
+        name: artistId
+        in: path
+        description: Id for the artist that is being rated
+        required: true
+        type: string
+      -
+        name: rating
+        in: formData
+        description: "Value between 1-5 that represents the user's rating of the artist"
+        required: true
+        type: integer
+    responses:
+      "200":
+        description: Successfully sent rating data to the server
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "404":
+        description: Artist not found
+        schema:
+          $ref: "#/definitions/NotFoundResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/ratings-edge/ratealbum/{albumId}:
+  x-swagger-router-controller: rating_controller
+  put:
+    description: Update your rating of an album.
+    tags:
+      - Rating
+    schemes: ["https"]
+    security: [sessionToken: []]
+    consumes:
+      - application/x-www-form-urlencoded
+    operationId: rate_album
+    parameters:
+      -
+        name: albumId
+        in: path
+        description: Id for the album that is being rated
+        required: true
+        type: string
+      -
+        name: rating
+        in: formData
+        description: "Value between 1-5 that represents the user's rating of the album"
+        required: true
+        type: integer
+    responses:
+      "200":
+        description: Successfully sent rating data to the server
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "404":
+        description: Album not found
+        schema:
+          $ref: "#/definitions/NotFoundResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/ratings-edge/ratesong/{songId}:
+  x-swagger-router-controller: rating_controller
+  put:
+    description: Update your rating of a song.
+    tags:
+      - Rating
+    schemes: ["https"]
+    security: [sessionToken: []]
+    consumes:
+      - application/x-www-form-urlencoded
+    operationId: rate_song
+    parameters:
+      -
+        name: songId
+        in: path
+        description: Id for the song that is being rated
+        required: true
+        type: string
+      -
+        name: rating
+        in: formData
+        description: "Value between 1-5 that represents the user's rating of the song"
+        required: true
+        type: integer
+    responses:
+      "200":
+        description: Successfully sent rating data to the server
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "404":
+        description: Song not found
+        schema:
+          $ref: "#/definitions/NotFoundResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+/login-edge/login:
+  x-swagger-router-controller: login_controller
+  post:
+    description: Logs a user into the system
+    tags:
+      - Login
+    consumes:
+      - application/x-www-form-urlencoded
+    produces:
+      - application/json
+      - text/html
+    schemes: ["https"]
+    operationId: login
+    parameters:
+      -
+        name: email
+        in: formData
+        description: Login to the app with user credentials
+        required: true
+        type: string
+      -
+        name: password
+        in: formData
+        description: user password
+        required: true
+        type: string
+    responses:
+      "200":
+        description: Successfully logged on the user
+        schema:
+          $ref: "#/definitions/LoginSuccessResponse"
+      "401":
+        description: Invalid Login Credentials
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/login-edge/logout:
+  x-swagger-router-controller: login_controller
+  post:
+    description: Logs a user out of the system
+    tags:
+      - Login
+    schemes: ["https"]
+    security: [sessionToken: []]
+    produces:
+      - application/json
+    operationId: logout
+    responses:
+      "200":
+        description: Logged out
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/login-edge/resetpassword:
+  # binds a127 app logic to a route
+  x-swagger-router-controller: login_controller
+  post:
+    description: "Resets the user's password via email"
+    tags:
+      - Login
+    schemes: ["https"]
+    operationId: reset_password
+    parameters:
+      - name: email
+        in: formData
+        description: Email used to identify the account
+        required: true
+        type: string
+    responses:
+      "200":
+        description: Success
+        schema:
+          # a pointer to a definition
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+/search-edge/search:
+  x-swagger-router-controller: search_controller
+  get:
+    description: Search things that match a user provided string
+    tags:
+      - Search
+    operationId: search_for
+    parameters:
+      -
+        name: searchText
+        in: query
+        description: User search string
+        required: true
+        type: string
+      -
+        name: searchType
+        in: query
+        description: A string representation of the various types of entities that can be searched.
+        required: true
+        type: string
+        enum: &entityTypes
+          - album
+          - artist
+          - song
+    responses:
+      "200":
+        description: Successfully searched
+        schema:
+          $ref: "#/definitions/SearchResponse"
+      "500":
+        description: Bad Request
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+/player-edge/play/{songId}:
+    x-swagger-router-controller: player_controller
+    get:
+      description: Request to begin streaming a song. Result will be an mp3.
+      tags:
+        - Player
+      operationId: play_song
+      parameters:
+        -
+          name: songId
+          in: path
+          description: Song id for the song the user requested
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Request accepted streaming sound data
+          schema:
+            type: file
+        "404":
+          description: Song not found
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "500":
+          description: Server Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+

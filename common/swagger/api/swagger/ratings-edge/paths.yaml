@@ -1,0 +1,116 @@
+/ratings-edge/rateartist/{artistId}:
+  x-swagger-router-controller: rating_controller
+  put:
+    description: Update your rating of an artist.
+    tags:
+      - Rating
+    schemes: ["https"]
+    security: [sessionToken: []]
+    consumes:
+      - application/x-www-form-urlencoded
+    operationId: rate_artist
+    parameters:
+      -
+        name: artistId
+        in: path
+        description: Id for the artist that is being rated
+        required: true
+        type: string
+      -
+        name: rating
+        in: formData
+        description: "Value between 1-5 that represents the user's rating of the artist"
+        required: true
+        type: integer
+    responses:
+      "200":
+        description: Successfully sent rating data to the server
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "404":
+        description: Artist not found
+        schema:
+          $ref: "#/definitions/NotFoundResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/ratings-edge/ratealbum/{albumId}:
+  x-swagger-router-controller: rating_controller
+  put:
+    description: Update your rating of an album.
+    tags:
+      - Rating
+    schemes: ["https"]
+    security: [sessionToken: []]
+    consumes:
+      - application/x-www-form-urlencoded
+    operationId: rate_album
+    parameters:
+      -
+        name: albumId
+        in: path
+        description: Id for the album that is being rated
+        required: true
+        type: string
+      -
+        name: rating
+        in: formData
+        description: "Value between 1-5 that represents the user's rating of the album"
+        required: true
+        type: integer
+    responses:
+      "200":
+        description: Successfully sent rating data to the server
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "404":
+        description: Album not found
+        schema:
+          $ref: "#/definitions/NotFoundResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/ratings-edge/ratesong/{songId}:
+  x-swagger-router-controller: rating_controller
+  put:
+    description: Update your rating of a song.
+    tags:
+      - Rating
+    schemes: ["https"]
+    security: [sessionToken: []]
+    consumes:
+      - application/x-www-form-urlencoded
+    operationId: rate_song
+    parameters:
+      -
+        name: songId
+        in: path
+        description: Id for the song that is being rated
+        required: true
+        type: string
+      -
+        name: rating
+        in: formData
+        description: "Value between 1-5 that represents the user's rating of the song"
+        required: true
+        type: integer
+    responses:
+      "200":
+        description: Successfully sent rating data to the server
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "404":
+        description: Song not found
+        schema:
+          $ref: "#/definitions/NotFoundResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+

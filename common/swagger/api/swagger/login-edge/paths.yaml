@@ -1,0 +1,87 @@
+/login-edge/login:
+  x-swagger-router-controller: login_controller
+  post:
+    description: Logs a user into the system
+    tags:
+      - Login
+    consumes:
+      - application/x-www-form-urlencoded
+    produces:
+      - application/json
+      - text/html
+    schemes: ["https"]
+    operationId: login
+    parameters:
+      -
+        name: email
+        in: formData
+        description: Login to the app with user credentials
+        required: true
+        type: string
+      -
+        name: password
+        in: formData
+        description: user password
+        required: true
+        type: string
+    responses:
+      "200":
+        description: Successfully logged on the user
+        schema:
+          $ref: "#/definitions/LoginSuccessResponse"
+      "401":
+        description: Invalid Login Credentials
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/login-edge/logout:
+  x-swagger-router-controller: login_controller
+  post:
+    description: Logs a user out of the system
+    tags:
+      - Login
+    schemes: ["https"]
+    security: [sessionToken: []]
+    produces:
+      - application/json
+    operationId: logout
+    responses:
+      "200":
+        description: Logged out
+        schema:
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/login-edge/resetpassword:
+  # binds a127 app logic to a route
+  x-swagger-router-controller: login_controller
+  post:
+    description: "Resets the user's password via email"
+    tags:
+      - Login
+    schemes: ["https"]
+    operationId: reset_password
+    parameters:
+      - name: email
+        in: formData
+        description: Email used to identify the account
+        required: true
+        type: string
+    responses:
+      "200":
+        description: Success
+        schema:
+          # a pointer to a definition
+          $ref: "#/definitions/StatusResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
