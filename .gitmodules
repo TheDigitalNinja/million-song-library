@@ -43,3 +43,6 @@
 [submodule "msl-pages"]
 	path = msl-pages
 	url = git@github.com:kenzanmedia/msl-pages.git
+[submodule "common/styleguide"]
+	path = common/styleguide
+	url = https://github.com/kenzanmedia/styleguide.git
