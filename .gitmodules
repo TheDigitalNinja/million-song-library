@@ -4,24 +4,42 @@
 [submodule "server/msl-catalog-edge"]
 	path = server/msl-catalog-edge
 	url = git@github.com:kenzanmedia/msl-catalog-edge.git
+[submodule "server/msl-catalog-edge-config"]
+	path = server/msl-catalog-edge-config
+	url = git@github.com:kenzanmedia/msl-catalog-edge-config.git
 [submodule "server/msl-catalog-data-client"]
     path = server/msl-catalog-data-client
     url = git@github.com:kenzanmedia/msl-catalog-data-client.git
+[submodule "server/msl-catalog-data-client-config"]
+	path = server/msl-catalog-data-client-config
+	url = git@github.com:kenzanmedia/msl-catalog-data-client-config.git
 [submodule "server/msl-account-edge"]
 	path = server/msl-account-edge
 	url = git@github.com:kenzanmedia/msl-account-edge.git
+[submodule "server/msl-account-edge-config"]
+	path = server/msl-account-edge-config
+	url = git@github.com:kenzanmedia/msl-account-edge-config.git
 [submodule "server/msl-account-data-client"]
 	path = server/msl-account-data-client
 	url = git@github.com:kenzanmedia/msl-account-data-client.git
+[submodule "server/msl-account-data-client-config"]
+	path = server/msl-account-data-client-config
+	url = git@github.com:kenzanmedia/msl-account-data-client-config.git
 [submodule "server/msl-login-edge"]
 	path = server/msl-login-edge
 	url = git@github.com:kenzanmedia/msl-login-edge.git
+[submodule "server/msl-login-edge-config"]
+	path = server/msl-login-edge-config
+	url = git@github.com:kenzanmedia/msl-login-edge-config.git
 [submodule "server/msl-ratings-edge"]
 	path = server/msl-ratings-edge
 	url = git@github.com:kenzanmedia/msl-ratings-edge.git
 [submodule "server/msl-ratings-data-client"]
 	path = server/msl-ratings-data-client
 	url = git@github.com:kenzanmedia/msl-ratings-data-client.git
+[submodule "server/msl-ratings-data-client-config"]
+	path = server/msl-ratings-data-client-config
+	url = git@github.com:kenzanmedia/msl-ratings-data-client-config.git
 [submodule "msl-pages"]
 	path = msl-pages
 	url = git@github.com:kenzanmedia/msl-pages.git
