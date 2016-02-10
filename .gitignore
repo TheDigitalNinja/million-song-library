@@ -1,8 +1,5 @@
-/target
-
-/server/models
-
-/common/swagger-codegen
+.vagrant
+/server/target
 
 *-compiled.js
 *-compiled.js.map
