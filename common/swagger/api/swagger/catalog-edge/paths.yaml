@@ -1,0 +1,202 @@
+/catalog-edge/song/{songId}:
+  x-swagger-router-controller: catalog_controller
+  get:
+    description: "Get a song's info from the database"
+    tags:
+      - Catalog
+    operationId: get_song
+    parameters:
+      -
+        name: songId
+        in: path
+        description: The song's unique identifier
+        required: true
+        type: string
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/SongInfo"
+      "404":
+        description: Song not found
+        schema:
+          $ref: "#/definitions/NotFoundResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/catalog-edge/album/{albumId}:
+  x-swagger-router-controller: catalog_controller
+  get:
+    description: Get data for an Album of songs
+    tags:
+      - Catalog
+    operationId: get_album
+    parameters:
+      -
+        name: albumId
+        in: path
+        description: The album's unique identifier
+        required: true
+        type: string
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/AlbumInfo"
+      "404":
+        description: Album not found
+        schema:
+          $ref: "#/definitions/NotFoundResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/catalog-edge/artist/{artistId}:
+  x-swagger-router-controller: catalog_controller
+  get:
+    description: Get data on an Artist
+    tags:
+      - Catalog
+    operationId: get_artist
+    parameters:
+      -
+        name: artistId
+        in: path
+        description: Artist Identifier
+        required: true
+        type: string
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/ArtistInfo"
+      "404":
+        description: Artist not found
+        schema:
+          $ref: "#/definitions/NotFoundResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/catalog-edge/facet/{facetId}:
+  x-swagger-router-controller: facet_controller
+  get:
+    description: Get a facet in the heirarchy. Passing a facetId of '~' retrieves the root facet.
+    tags:
+      - Catalog
+    operationId: get_facet
+    parameters:
+      -
+        name: facetId
+        in: path
+        description: Facet identifier
+        required: true
+        type: string
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/FacetInfoWithChildren"
+      "404":
+        description: Parent facet not found
+        schema:
+          $ref: "#/definitions/NotFoundResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/catalog-edge/browse/album:
+  x-swagger-router-controller: catalog_controller
+  get:
+    description: "Get browsing data for albums in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by album name, if no facets are passed then the results will be in featured order."
+    tags:
+      - Catalog
+    operationId: browse_albums
+    parameters:
+      -
+        $ref: "#/parameters/PagingState"
+      -
+        $ref: "#/parameters/Items"
+      -
+        $ref: "#/parameters/Facets"
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/AlbumList"
+      "400":
+        description: "Request parameter error: (1) Invalid pagingState. The string passed as pagingState is not a valid pagingState key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys."
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/catalog-edge/browse/artist:
+  x-swagger-router-controller: catalog_controller
+  get:
+    description: "Get browsing data for artists in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by artist name, if no facets are passed then the results will be in featured order."
+    tags:
+      - Catalog
+    operationId: browse_artists
+    parameters:
+      -
+        $ref: "#/parameters/PagingState"
+      -
+        $ref: "#/parameters/Items"
+      -
+        $ref: "#/parameters/Facets"
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/ArtistList"
+      "400":
+        description: "Request parameter error: (1) Invalid pagingState. The string passed as pagingState is not a valid pagingState key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys."
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
+
+/catalog-edge/browse/song:
+  x-swagger-router-controller: catalog_controller
+  get:
+    description: "Get browsing data for songs in the catalog. The sort order is predetermined: if one or more facets are passed then the order will be alphabetical ascending by song name, if no facets are passed then the results will be in featured order."
+    tags:
+      - Catalog
+    operationId: browse_songs
+    parameters:
+      -
+        $ref: "#/parameters/PagingState"
+      -
+        $ref: "#/parameters/Items"
+      -
+        $ref: "#/parameters/Facets"
+    responses:
+      "200":
+        description: Success
+        schema:
+          $ref: "#/definitions/SongList"
+      "400":
+        description: "Request parameter error: (1) Invalid pagingState. The string passed as pagingState is not a valid pagingState key. (2) Invalid facets. The string passed as facets is not a valid comma delimited list of valid facet keys."
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+      "500":
+        description: Server Error
+        schema:
+          $ref: "#/definitions/ErrorResponse"
+
