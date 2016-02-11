@@ -35,7 +35,7 @@
                             <workingDirectory>msl-server-common</workingDirectory>
                             <arguments>
                                 <argument>-f</argument>
-                                <argument>build.xml</argument>
+                                <argument>build-pom.xml</argument>
                                 <argument>clean</argument>
                                 <argument>compile</argument>
                             </arguments>
