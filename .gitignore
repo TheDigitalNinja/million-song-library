@@ -1,6 +1,9 @@
 .vagrant
 /server/target
 
+common/swagger/api/swagger/swagger.yaml
+common/swagger/api/swagger/paths.yaml
+
 *-compiled.js
 *-compiled.js.map
 .DS_Store
