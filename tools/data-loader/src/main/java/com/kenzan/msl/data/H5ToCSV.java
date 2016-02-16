@@ -89,9 +89,8 @@ public class H5ToCSV {
     private static final String Q10_SONGS_ALBUMS_BY_ARTIST = "../data/Q10_songs_albums_by_artist.csv";
     private static final String Q13_ARTISTS_BY_USER = "../data/Q13_artists_by_user.csv";
 
-    public H5ToCSV(final String directory) throws IOException, InterruptedException {
+    public H5ToCSV() throws IOException, InterruptedException {
 
-        //this.h5ToCsv(directory);
         this.mergeSortData(RAW_DATA, RAW_DATA_BY_SONG_ID, Field.SONG_ID);
         this.readDataWriteData(RAW_DATA_BY_SONG_ID, RAW_DATA_NORMALIZED_SONGS, NORMALIZE_SONGS);
         this.mergeSortData(RAW_DATA_NORMALIZED_SONGS, RAW_DATA_BY_ALBUM_ID, Field.ALBUM_ID);
@@ -116,7 +115,7 @@ public class H5ToCSV {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         final long startTime = System.currentTimeMillis();
-        new H5ToCSV(args[0]);
+        new H5ToCSV();
         final long stopTime = System.currentTimeMillis();
         final long elapsedTime = stopTime - startTime;
         final String minutesSeconds = String.format("%02d:%02d", elapsedTime / 1000 / 60, elapsedTime / 1000 % 60);
@@ -348,23 +347,6 @@ public class H5ToCSV {
             }
         }
         return users;
-    }
-
-    private void h5ToCsv(final String readDirectoryPath) throws IOException, InterruptedException {
-
-        final ProcessBuilder processBuilder = new ProcessBuilder("python", "src/main/python/hdf5_to_csv.py", readDirectoryPath);
-        System.out.println("h5ToCsv: running python process");
-        final Process process = processBuilder.start();
-        try (final BufferedReader pythonOutput = new BufferedReader(
-                new InputStreamReader(process.getInputStream()))) {
-            String line = pythonOutput.readLine();
-            while (line != null) {
-                System.out.println(line);
-                line = pythonOutput.readLine();
-            }
-        }
-        int exitValue = process.waitFor();
-        System.out.println("h5ToCsv: python process complete " + exitValue);
     }
 
     private void normalizeSongs(final BufferedReader bufferedReader, final PrintWriter printWriter) throws IOException {
