@@ -147,10 +147,10 @@ fi
 
 
 if [[ ${BUILD_SERVER} -eq 0 ]]; then
-    echo "RUNING SERVER ..."
+    echo "BUILDING SERVER ..."
     cd ${PROJECT_PATH}/server
-    mvn -f build.xml clean compile
-    error_handler $? "\n failed at /server mvn -f build.xml file \n"
+    mvn pom.xml clean compile
+    error_handler $? "\n failed at running main maven file under /server \n"
     else echo "........................ skip server build"
 fi
 
