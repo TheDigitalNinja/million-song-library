@@ -34,6 +34,7 @@ public class AlbumImage {
     private String getAlbumMbid() {
         String albumMbid = null;
         Artist artist = new Artist();
+
         ArtistIncludesWs2 includes = artist.getIncludes();
         includes.setReleases(true);
         artist.setIncludes(includes);
@@ -61,7 +62,12 @@ public class AlbumImage {
             return imageUrl;
         }
         UUID releaseMbid = UUID.fromString(albumMbid);
-        CoverArt coverArt = client.getByMbid(releaseMbid);
+        CoverArt coverArt = null;
+        try {
+            coverArt = client.getByMbid(releaseMbid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (coverArt != null) {
             for (CoverArtImage coverArtImage : coverArt.getImages()) {
                 if (coverArtImage.isFront()) {
