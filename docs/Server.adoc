@@ -9,10 +9,10 @@ Bill Schwanitz <bschwanitz@kenzan.com>
 
 *Table of Contents*
 [upperroman]
-. link:MillionSongLibrary.adoc[General Information]
-. link:Client.adoc[Client/UI]
+. link:MillionSongLibrary.html[General Information]
+. link:Client.html[Client/UI]
 . Server
-. link:Database.adoc[Database]
+. link:Database.html[Database]
 
 '''
 

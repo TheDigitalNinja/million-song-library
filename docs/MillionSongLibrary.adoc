@@ -10,9 +10,9 @@ Bill Schwanitz <bschwanitz@kenzan.com>
 *Table of Contents*
 [upperroman]
 . General Information
-. link:Client.adoc[Client/UI]
-. link:Server.adoc[Server]
-. link:Database.adoc[Database]
+. link:Client.html[Client/UI]
+. link:Server.html[Server]
+. link:Database.html[Database]
 
 '''
 
