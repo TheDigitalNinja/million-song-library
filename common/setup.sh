@@ -242,26 +242,10 @@ if [[ ${path_to_cassandra} ]]
         echo "RUNNING CASSANDRA ..."
         if [[ ! -d "${path_to_cassandra}bin" ]]; then echo "wrong cassandra directory provided"; exit 1; fi
 
-        if ps -ax | grep cassandra > /dev/null; then
-            echo "cassandra is running";
-        else
-            ${path_to_cassandra}bin/cassandra </dev/null &>/dev/null &
-            error_handler $? "unable to start cassandra"
-            CASSANDRA_RUNNING_FLAG=1
-
-            while [ ${CASSANDRA_RUNNING_FLAG} -ne 0 ]; do
-                sleep 10s
-                if ps -ax | grep cassandra > /dev/null; then
-                    echo "cassandra is running";
-                    CASSANDRA_RUNNING_FLAG=0
-                fi
-            done
-        fi
-
         cd ${PROJECT_PATH}/tools/cassandra
 
         ${path_to_cassandra}bin/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
-        error_handler $? "unable to run cqlsh -> msl_ddl_lates.cql"
+        error_handler $? "unable to run cqlsh -> msl_ddl_lates.cql. Check if cassandra is running and run sudo ./setup.sh -c ${path_to_cassandra}"
 
         ${path_to_cassandra}bin/cqlsh -e "SOURCE 'msl_dat_latest.cql';";
         error_handler $? "unable to run cqlsh -> msl_dat_lates.cql"
