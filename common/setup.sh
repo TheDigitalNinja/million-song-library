@@ -52,16 +52,32 @@ function install_maven {
     echo "Installing maven..."
     if [[ ${UNAME_S} =~ Linux* ]] ;
         then
-            sudo apt-get -y install maven
+            wget http://apache.mirror.anlx.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+            error_handler $? "unable wget maven"
+            tar -zxf apache-maven-3.3.9-bin.tar.gz
+            error_handler $? "unable to unzip maven tar.gz"
+            sudo cp -R apache-maven-3.3.9 /usr/local
+            error_handler $? "unable to copy maven to /usr/local"
+            sudo rm -rf apache-maven-3.3.9
+            sudo rm -rf apache-maven-3.3.9-bin.tar.gz
+            sudo ln -s /usr/local/apache-maven-3.3.9/bin/mvn /usr/bin/mvn
+            error_handler $? "unable to create maven symlink"
+            sudo ln -s /usr/local/apache-maven-3.3.9/bin/mvnDebug /usr/bin/mvnDebug
+            error_handler $? "unable to create maven symlink"
+            error_handler $? "unable to create maven maven"
         elif [[ ${UNAME_S} =~ Darwin* ]]
             then
                 command -v brew >/dev/null && echo "brew Found In \$PATH" || install_homebrew
+                brew update
+                error_handler $? "unable to update brew"
                 brew install maven
+                error_handler $? "unable to install maven"
         else
             echo "Unsupported OS"
             exit 1;
     fi
-    error_handler $? "unable to install maven"
+    sudo echo 'export JAVA_HOME=$(/usr/libexec/java_home)' >> ~/.mavenrc
+    error_handler $? "unable to create ~/.mavenrc"
     echo "Successfully installed mvn"
 }
 
@@ -72,23 +88,23 @@ function install_npm {
         then
             sudo apt-get -y remove --purge node
             error_handler $? "unable to purge node"
-            sudo apt-get -y install nodejs
+            curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+            error_handler $? "unable to add nodesource"
+            sudo apt-get install -y nodejs
             error_handler $? "unable to install nodejs"
-            sudo apt-get -y install npm
-            error_handler $? "unable to install npm"
-            sudo apt-get -y install nodejs-legacy
-            error_handler $? "unable to install nodejs-legacy"
+            sudo apt-get install -y build-essential
+            error_handler $? "unable to install build-essential"
         elif [[ ${UNAME_S} =~ Darwin* ]]
             then
                 command -v brew >/dev/null && echo "brew Found In \$PATH" || install_homebrew
+                brew update
+                error_handler $? "unable to update brew"
                 brew install node
                 error_handler $? "unable to install node"
         else
             echo "Unsupported OS"
             exit 1;
     fi
-    npm install -y -g --force npm@3.5.6
-    error_handler $? "unable to update node"
     echo "Successfully installed npm"
 }
 
@@ -105,16 +121,39 @@ function install_homebrew {
     error_handler $? "no command /usr/bin/ruby"
     brew update
     error_handler $? "unable to brew update"
+    echo "Successfully installed homeBrew..."
 }
 
-## ADD HOST ===============================================================
+function install_gem {
+    echo "gem Not Found in \$PATH"
+    echo "Installing gem..."
+    if [[ ${UNAME_S} =~ Linux* ]] ; then
+        sudo apt-get install rubygems
+    else
+        command -v brew >/dev/null && echo "brew Found In \$PATH" || install_homebrew
+        brew update
+        error_handler $? "unable to update brew"
+        brew install rbenv ruby-build
+    fi
+    error_handler $? "unable to install rubyGem"
+    echo "Successfully installed rubyGem"
+}
+
+function install_asciidoctor {
+    echo "asciidoctor Not Found in \$PATH"
+    echo "Installing asciidoctor..."
+    sudo gem install asciidoctor
+    error_handler $? "unable to install asciidoctor"
+}
+
+## ADD HOSTNAME ===========================================================
 ## ========================================================================
 
 ping -c 1 msl.kenzanlabs.com
 
 if [[ $? -ne 0 ]]; then
-    echo "\n 127.0.0.1 msl.kenzanlabs.com" | sudo tee -a  /etc/hosts
-    error_handler $? "\n unable to add msl.kenzanlabs.com to /etc/hosts file \n"
+    echo "127.0.0.1 msl.kenzanlabs.com" | sudo tee -a  /etc/hosts
+    error_handler $? "unable to add msl.kenzanlabs.com to /etc/hosts file"
     else echo "msl.kenzanlabs.com already part of /etc/hosts"
 fi
 
@@ -124,6 +163,14 @@ fi
 command -v mvn >/dev/null && echo "mvn Found In \$PATH" || install_maven
 command -v npm >/dev/null && echo "npm Found In \$PATH" || install_npm
 command -v bower >/dev/null && echo "bower Found In \$PATH" || install_bower
+command -v gem >/dev/null && echo "gem Found In \$PATH" || install_gem
+
+which asciidoctor
+if [[ $? -ne 0 ]]; then
+    install_asciidoctor
+  else
+    echo "asciidoctor Found In \$PATH"
+fi
 
 ## PULL AND UPDATE MILLION-SONG-LIBRARY REPO ==============================
 ## ========================================================================
@@ -142,18 +189,6 @@ if [[ ${RUN_GIT} -eq 0 ]]; then
     else echo "........................ skip git update"
 fi
 
-## INSTALL AND BUILD SERVER ===============================================
-## ========================================================================
-
-
-if [[ ${BUILD_SERVER} -eq 0 ]]; then
-    echo "BUILDING SERVER ..."
-    cd ${PROJECT_PATH}/server
-    mvn pom.xml clean compile
-    error_handler $? "\n failed at running main maven file under /server \n"
-    else echo "........................ skip server build"
-fi
-
 ## INSTALL MSL-PAGES ======================================================
 ## ========================================================================
 
@@ -161,15 +196,15 @@ if [[ ${BUILD_NODE} -eq 0 ]]; then
     echo "RUNNING NODE ..."
     cd ${PROJECT_PATH}/msl-pages
     if [[ -d node_modules ]]; then
-        rm -rf node_modules
-        npm cache clean
+        sudo rm -rf node_modules
+        sudo npm cache clean
     fi
     if [[ -d bower_components ]]; then
-        rm -rf bower_components
+        sudo rm -rf bower_components
         bower cache clean
     fi
 
-    npm -y install
+    sudo npm install -y
     error_handler $? "unable to run npm install "
     bower install --allow-root
     error_handler $? "unable to run bower install"
@@ -186,23 +221,49 @@ if [[ ${BUILD_NODE} -eq 0 ]]; then
     else echo "........................ skip node update"
 fi
 
+## INSTALL AND BUILD SERVER ===============================================
+## ========================================================================
+
+if [[ ${BUILD_SERVER} -eq 0 ]]; then
+    echo "BUILDING SERVER ..."
+    cd ${PROJECT_PATH}/server
+    java -version
+    mvn -version
+    mvn clean compile
+    error_handler $? "failed at running main maven file under /server"
+    else echo "........................ skip server build"
+fi
+
 ## CREATE CASSANDRA AND LOAD DATA =========================================
 ## ========================================================================
 
 if [[ ${path_to_cassandra} ]]
     then
         echo "RUNNING CASSANDRA ..."
-        if [[ -d ${path_to_cassandra}/bin ]]; then echo "wrong cassandra directory provided"; exit 1; fi
+        if [[ ! -d "${path_to_cassandra}bin" ]]; then echo "wrong cassandra directory provided"; exit 1; fi
+
+        if ps -ax | grep cassandra > /dev/null; then
+            echo "cassandra is running";
+        else
+            ${path_to_cassandra}bin/cassandra </dev/null &>/dev/null &
+            error_handler $? "unable to start cassandra"
+            CASSANDRA_RUNNING_FLAG=1
+
+            while [ ${CASSANDRA_RUNNING_FLAG} -ne 0 ]; do
+                sleep 10s
+                if ps -ax | grep cassandra > /dev/null; then
+                    echo "cassandra is running";
+                    CASSANDRA_RUNNING_FLAG=0
+                fi
+            done
+        fi
 
         cd ${PROJECT_PATH}/tools/cassandra
 
-        sh ${path_to_cassandra}/bin/cassandra
-        error_handler $? "unable to start cassandra"
-
-        ${path_to_cassandra}/bin/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+        ${path_to_cassandra}bin/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
         error_handler $? "unable to run cqlsh -> msl_ddl_lates.cql"
 
-        ${path_to_cassandra}/bin/cqlsh -e "SOURCE 'msl_dat_latest.cql';";
+        ${path_to_cassandra}bin/cqlsh -e "SOURCE 'msl_dat_latest.cql';";
         error_handler $? "unable to run cqlsh -> msl_dat_lates.cql"
     else
         echo "NO CASSANDRA FOLDER PROVIDED"
