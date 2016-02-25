@@ -210,12 +210,12 @@ if [[ ${BUILD_NODE} -eq 0 ]]; then
     error_handler $? "unable to run bower install"
 
     # Generate swagger html docs
-    npm run generate-swagger-html
+    sudo npm run generate-swagger-html
 
     # Protractor
-    npm install -g -y protractor
+    sudo npm install -g -y protractor
     error_handler $? "unable to install protractor"
-    npm install -g -y selenium-webdriver
+    sudo npm install -g -y selenium-webdriver
     error_handler $? "unable to install selenium-webdriver"
 
     else echo "........................ skip node update"
