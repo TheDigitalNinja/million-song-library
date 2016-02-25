@@ -19,8 +19,10 @@ where **command** is one of:
 
 For environment setup testing see [vagrant](https://www.vagrantup.com/downloads.html)
 
+> On windows use the `setup.ps1` script instead of the `setup.sh`. Make sure to run with administrator rights.
+
 Sample: 
-`sudo ./setup.sh -c ~/cassandra/dsc-cassandra-2.1.11/ -n -s -g`
+`sudo ./setup.sh -c ~/cassandra/dsc-cassandra-2.1.11 -n -s -g`
 
 ___
 
