@@ -204,6 +204,7 @@ if [[ ${BUILD_NODE} -eq 0 ]]; then
         bower cache clean
     fi
 
+    sudo npm -g install npm@latest
     sudo npm install -y
     error_handler $? "unable to run npm install "
     bower install --allow-root
