@@ -128,7 +128,8 @@ function install_gem {
     echo "gem Not Found in \$PATH"
     echo "Installing gem..."
     if [[ ${UNAME_S} =~ Linux* ]] ; then
-        sudo apt-get install rubygems
+        sudo apt-get install -y rubygems
+        if [[ $? -ne 0 ]]; then sudo apt-get install -y ruby; fi
     else
         command -v brew >/dev/null && echo "brew Found In \$PATH" || install_homebrew
         brew update
@@ -178,13 +179,9 @@ fi
 if [[ ${RUN_GIT} -eq 0 ]]; then
     echo "RUNNING GIT ..."
     cd ${PROJECT_PATH}
-    git checkout develop
-    error_handler $? "unable to check out to develop"
-    git pull origin develop
-    error_handler $? "unable to git pull sources"
-    git submodule init
+    sudo git submodule init
     error_handler $? "unable to git submodule init, please verify ssh"
-    git submodule update
+    sudo git submodule update
     error_handler $? "unable to git submodule update, please verify ssh"
     else echo "........................ skip git update"
 fi
@@ -246,6 +243,11 @@ if [[ ${path_to_cassandra} ]]
         cd ${PROJECT_PATH}/tools/cassandra
 
         ${path_to_cassandra}bin/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+        if [[ $? -ne 0 ]]; then
+          ${path_to_cassandra}bin/cassandra >> /dev/null
+          sleep 30s
+          ${path_to_cassandra}bin/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+        fi
         error_handler $? "unable to run cqlsh -> msl_ddl_lates.cql. Check if cassandra is running and run sudo ./setup.sh -c ${path_to_cassandra}"
 
         ${path_to_cassandra}bin/cqlsh -e "SOURCE 'msl_dat_latest.cql';";
