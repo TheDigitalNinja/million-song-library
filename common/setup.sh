@@ -128,7 +128,8 @@ function install_gem {
     echo "gem Not Found in \$PATH"
     echo "Installing gem..."
     if [[ ${UNAME_S} =~ Linux* ]] ; then
-        sudo apt-get install rubygems
+        sudo apt-get install -y rubygems
+        if [[ $? -ne 0 ]]; then sudo apt-get install -y ruby; fi
     else
         command -v brew >/dev/null && echo "brew Found In \$PATH" || install_homebrew
         brew update
