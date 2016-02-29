@@ -180,6 +180,7 @@ if [[ ${RUN_GIT} -eq 0 ]]; then
     echo "RUNNING GIT ..."
     cd ${PROJECT_PATH}
     sudo git submodule init
+    git submodule init
     error_handler $? "unable to git submodule init, please verify ssh"
     sudo git submodule update
     error_handler $? "unable to git submodule update, please verify ssh"
