@@ -12,6 +12,8 @@ CREATE TABLE users (
   PRIMARY KEY (username)
 );
 
+CREATE INDEX ON users (user_id);
+
 // Q2:
 CREATE TABLE user_ratings (
   user_id uuid,
