@@ -212,6 +212,8 @@ Function msl-pages-setup
 
     npm run generate-swagger-html
 
+    npm install -g -y webpack
+    error_handler $? "unable to install webpack"
     npm install -g -y protractor
     error-handler $? "Unable to install protractor"
     npm install -g -y selenium-webdriver

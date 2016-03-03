@@ -1,51 +1,54 @@
 Vagrant.configure(2) do |config|
 
-  # Inline script ------------------------------
-  $git_setup = <<SCRIPT
-  PROJECT_PATH = /vagrant
-  eval "$(ssh-agent -s)";
-  ssh-add ./.ssh/id_rsa
-  ssh-keyscan github.com >> ./.ssh/known_hosts
-  sudo apt-get -y install git-core
-  cd $PROJECT_PATH
-SCRIPT
+  config.ssh.forward_agent = true
 
-  $java_setup = <<SCRIPT
-  if [[ $(uname -s) =~ Linux* ]]; then sudo apt-get -y update && sudo apt-get -y upgrade; fi
+  def provisioning (config, args)
+    config.vm.synced_folder ".", "/vagrant", disabled: true
+    config.vm.provision "file", source: "~/.gitconfig", destination: "./.gitconfig"
+    config.vm.provision "file", source: "~/.ssh/known_hosts", destination: "./.ssh/known_hosts"
+    config.vm.provision "file", source: "./common/provision/msl-setup.sh", destination: "./msl-setup.sh", run: "always"
+    config.vm.provision "file", source: "<<PATH_TO_dsc-cassandra-2.1.11>>", destination: "./cassandra/dsc-cassandra-2.1.11", run: "always"
 
-  sudo apt-get install -y software-properties-common python-software-properties
-  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
-  sudo add-apt-repository ppa:webupd8team/java -y
-  sudo apt-get update
-  sudo apt-get install oracle-java8-installer
-  echo "Setting environment variables for Java 8.."
-  sudo apt-get install -y oracle-java8-set-default
-SCRIPT
-
-  $main_setup = <<SCRIPT
-    cd /Users/anram88/Documents/Pernix/KenzanMedia/million-song-library/common
-    sudo ./setup.sh -c ~/cassandra/dsc-cassandra-2.2.3/ -s -n
-SCRIPT
+    config.vm.provision "shell", path: "./common/provision/git-setup.sh"
+    config.vm.provision "shell", path: "./common/provision/java-setup.sh"
+    config.vm.provision "shell", path: "./common/provision/msl-setup.sh"
+  end
 
     config.vm.define "ubuntu" do |ubuntu|
       ubuntu.vm.box = "ubuntu/trusty64"
       ubuntu.vm.hostname = "web-dev"
-
-      ubuntu.vm.synced_folder ".", "/Users/anram88/Documents/Pernix/KenzanMedia/million-song-library/"
-
-      # Provisions
-      ubuntu.vm.provision "file", source: "~/.gitconfig", destination: "./.gitconfig"
       ubuntu.vm.provision "file", source: "~/.ssh/id_rsa", destination: "./.ssh/id_rsa"
       ubuntu.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "./.ssh/id_rsa.pub"
-      ubuntu.vm.provision "file", source: "/Applications/dsc-cassandra-2.2.3", destination: "./cassandra/dsc-cassandra-2.2.3", run: "always"
 
-      ubuntu.vm.provision "shell", inline: $git_setup
-      ubuntu.vm.provision "shell", inline: $java_setup
-      ubuntu.vm.provision "shell", inline: $main_setup
+      provisioning(ubuntu, [])
 
       ubuntu.vm.provider "virtualbox" do |v|
         v.memory = 2000
         v.customize ["modifyvm", :id, "--cpuexecutioncap", "90"]
+      end
+    end
+
+    config.vm.define "prod" do |prod|
+      prod.vm.box = "dummy"
+      prod.vm.hostname="web-prod"
+      prod.vm.provision "file", source: "<<PATH_TO_SSH_PRIVATE_KEY>>", destination: "./.ssh/id_rsa"
+      prod.vm.provision "file", source: "<<PATH_TO_SSH_PUBLIC_KEY>>", destination: "./.ssh/id_rsa.pub"
+
+      provisioning(prod, [])
+
+      prod.vm.provider "aws" do |aws, override|
+        aws.region_config "us-west-2", :ami => "ami-9abea4fb"
+        aws.region = "us-west-2"
+        aws.instance_type="t2.small"
+        aws.tags = { 'Name': 'Production-aws' }
+        aws.keypair_name = "vagrant-ubuntu"
+
+        override.ssh.username = "ubuntu"
+        override.ssh.private_key_path = "<<PATH_TO_YOUR_AWS_KEY.pem>>"
+
+        aws.access_key_id = "<<AWS_ACCESS_KEY_ID>>"
+        aws.secret_access_key = "<<AWS_SECRET_ACCESS_KEY>>"
+        aws.security_groups = [ '<<SECURITY_GROUP_WITH_SSH_AND_HTTP_PORTS_ENABLED>>' ]
       end
     end
 

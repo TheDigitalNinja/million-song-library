@@ -179,10 +179,10 @@ fi
 if [[ ${RUN_GIT} -eq 0 ]]; then
     echo "RUNNING GIT ..."
     cd ${PROJECT_PATH}
-    sudo git submodule init
     git submodule init
+    git submodule sync
     error_handler $? "unable to git submodule init, please verify ssh"
-    sudo git submodule update
+    sudo git submodule update --init
     error_handler $? "unable to git submodule update, please verify ssh"
     else echo "........................ skip git update"
 fi
@@ -211,7 +211,8 @@ if [[ ${BUILD_NODE} -eq 0 ]]; then
     # Generate swagger html docs
     sudo npm run generate-swagger-html
 
-    # Protractor
+    sudo npm install webpack -g
+    error_handler $? "unable to install webpack"
     sudo npm install -g -y protractor
     error_handler $? "unable to install protractor"
     sudo npm install -g -y selenium-webdriver
@@ -239,19 +240,33 @@ fi
 if [[ ${path_to_cassandra} ]]
     then
         echo "RUNNING CASSANDRA ..."
-        if [[ ! -d "${path_to_cassandra}/bin" ]]; then echo "wrong cassandra directory provided"; exit 1; fi
+        if [[ ! -d "${path_to_cassandra}/bin" ]]; then
+          if [[ ! -d "${path_to_cassandra}bin" ]]; then
+            echo "wrong cassandra directory provided"
+            exit 1
+          else
+            CASSANDRA_BIN="${path_to_cassandra}bin";
+          fi
+        else
+          CASSANDRA_BIN="${path_to_cassandra}/bin"
+        fi
 
         cd ${PROJECT_PATH}/tools/cassandra
 
-        ${path_to_cassandra}/bin/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+        ${CASSANDRA_BIN}/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+
         if [[ $? -ne 0 ]]; then
-          ${path_to_cassandra}/bin/cassandra >> /dev/null
-          sleep 30s
-          ${path_to_cassandra}/bin/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+            ${CASSANDRA_BIN}/cassandra >> /dev/null;
+            sleep 30s
+            ${CASSANDRA_BIN}/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+            while [[ $? -ne 0 ]]; do
+                sleep 30s
+                ${CASSANDRA_BIN}/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+            done
         fi
         error_handler $? "unable to run cqlsh -> msl_ddl_lates.cql. Check if cassandra is running and run sudo ./setup.sh -c ${path_to_cassandra}"
 
-        ${path_to_cassandra}/bin/cqlsh -e "SOURCE 'msl_dat_latest.cql';";
+        ${CASSANDRA_BIN}/cqlsh -e "SOURCE 'msl_dat_latest.cql';";
         error_handler $? "unable to run cqlsh -> msl_dat_lates.cql"
     else
         echo "NO CASSANDRA FOLDER PROVIDED"
