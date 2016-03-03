@@ -205,7 +205,7 @@ if [[ ${BUILD_NODE} -eq 0 ]]; then
     sudo npm -g install npm@latest
     sudo npm install -y
     error_handler $? "unable to run npm install "
-    bower install --allow-root
+    sudo bower install --allow-root
     error_handler $? "unable to run bower install"
 
     # Generate swagger html docs

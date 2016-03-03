@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
 
     config.vm.provision "shell", path: "./common/provision/git-setup.sh"
     config.vm.provision "shell", path: "./common/provision/java-setup.sh"
-    config.vm.provision "shell", path: "./common/provision/msl-setup.sh"
+    config.vm.provision "shell", path: "./common/provision/msl-setup.sh", privileged: false
   end
 
     config.vm.define "ubuntu" do |ubuntu|
@@ -41,7 +41,7 @@ Vagrant.configure(2) do |config|
         aws.region = "us-west-2"
         aws.instance_type="t2.small"
         aws.tags = { 'Name': 'Production-aws' }
-        aws.keypair_name = "vagrant-ubuntu"
+        aws.keypair_name = "<<KEY_PAIR_NAME>>"
 
         override.ssh.username = "ubuntu"
         override.ssh.private_key_path = "<<PATH_TO_YOUR_AWS_KEY.pem>>"
