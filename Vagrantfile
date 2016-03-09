@@ -7,7 +7,6 @@ Vagrant.configure(2) do |config|
     config.vm.provision "file", source: "~/.gitconfig", destination: "./.gitconfig"
     config.vm.provision "file", source: "~/.ssh/known_hosts", destination: "./.ssh/known_hosts"
     config.vm.provision "file", source: "./common/provision/msl-setup.sh", destination: "./msl-setup.sh", run: "always"
-    config.vm.provision "file", source: "<<PATH_TO_dsc-cassandra-2.1.11>>", destination: "./cassandra/dsc-cassandra-2.1.11", run: "always"
 
     config.vm.provision "shell", path: "./common/provision/git-setup.sh"
     config.vm.provision "shell", path: "./common/provision/java-setup.sh"
