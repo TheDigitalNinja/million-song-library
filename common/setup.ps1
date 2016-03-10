@@ -243,7 +243,19 @@ Function cassandra-setup
         cd ${PROJECT_PATH}/tools/cassandra
 
         $CASSANDRA_PATH/bin/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
-        error_handler $? "unable to run cqlsh -> msl_ddl_lates.cql. Check if cassandra is running and run with admin rights ./setup.ps1 -c $CASSANDRA_PATH"
+        if ($? -ne $true)
+        {
+            $CASSANDRA_PATH/bin/cassandra
+            Start-Sleep -s 30
+            $CASSANDRA_PATH/bin/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+
+            while($? -ne $true)
+            {
+                Start-Sleep -s 30
+                $CASSANDRA_PATH/bin/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+            }
+        }
+        error_handler $? "unable to run cqlsh -> msl_ddl_lates.cql. Check if cassandra is running and run with admin rights .\setup.ps1 -c $CASSANDRA_PATH"
 
         $CASSANDRA_PATH/bin/cqlsh -e "SOURCE 'msl_dat_latest.cql';";
         error_handler $? "unable to run cqlsh -> msl_dat_lates.cql"
