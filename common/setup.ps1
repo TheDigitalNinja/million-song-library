@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 foreach ($arg in $args) {
     if($CASSANDRA_PATH -eq $true) { $CASSANDRA_PATH = $arg }
     if ($arg -eq "-c")
@@ -14,9 +14,20 @@ foreach ($arg in $args) {
 $CURRENT=Get-Location
 $PROJECT_PATH=Split-Path $CURRENT -Parent
 
-function reload () 
+function reload ()
 {
-    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine")
+    #$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine")
+    @(
+        $Profile.AllUsersAllHosts,
+        $Profile.AllUsersCurrentHost,
+        $Profile.CurrentUserAllHosts,
+        $Profile.CurrentUserCurrentHost
+    ) | % {
+        if(Test-Path $_){
+            Write-Verbose "Running $_"
+            . $_
+        }
+    }
 }
 
 Function error-handler ($lastCommand, $msg)
@@ -33,20 +44,20 @@ Function test-chocolatey
     $oldPreference = $ErrorActionPreference
     $ErrorActionPreference = 'stop'
     try {if (Get-Command chocolatey){"command chocolatey exists "}}
-    Catch 
-    { 
+    Catch
+    {
         "chocolatey doesn't exist"
         error-handler $false "Please install chocolatey before continuing... "
     }
     Finally {$ErrorActionPreference=$oldPreference}
 }
 
-Function test-maven 
+Function test-maven
 {
     $oldPreference = $ErrorActionPreference
     $ErrorActionPreference = 'stop'
     try {if (Get-Command mvn){"maven already installed..."}}
-    Catch 
+    Catch
     {
         "Installing maven..."
         choco install maven -y
@@ -61,12 +72,31 @@ Function test-maven
 
 }
 
+Function test-python
+{
+    $oldPreference = $ErrorActionPreference
+    $ErrorActionPreference = 'stop'
+    try {if (Get-Command python){"python already installed..."}}
+    Catch
+    {
+        "Installing python..."
+        choco install python -y
+        error-handler $? "Unable to install python"
+        reload
+        choco upgrade python -y
+        error-handler $? "Unable to upgrade python"
+        reload
+    }
+    Finally {$ErrorActionPreference=$oldPreference}
+
+}
+
 Function test-npm
 {
     $oldPreference = $ErrorActionPreference
     $ErrorActionPreference = 'stop'
     try {if (Get-Command npm){"node.js already installed..."}}
-    Catch 
+    Catch
     {
         "Installing node.js... "
         choco install nodejs.install -y
@@ -84,7 +114,7 @@ Function test-bower
     $oldPreference = $ErrorActionPreference
     $ErrorActionPreference = 'stop'
     try {if (Get-Command bower){"bower already installed..."}}
-    Catch 
+    Catch
     {
         "Installing bower... "
         npm install -g bower
@@ -99,7 +129,7 @@ Function test-git
     $oldPreference = $ErrorActionPreference
     $ErrorActionPreference = 'stop'
     try {if (Get-Command git){"git already installed..."}}
-    Catch 
+    Catch
     {
         "Installing git... "
         choco install git -y
@@ -117,7 +147,7 @@ Function test-rubyGem
     $oldPreference = $ErrorActionPreference
     $ErrorActionPreference = 'stop'
     try {if (Get-Command gem){"rubygems already installed..."}}
-    Catch 
+    Catch
     {
         "Installing rubygems..."
         choco install rubygems -y
@@ -135,7 +165,7 @@ Function test-asciidoctor
     $oldPreference = $ErrorActionPreference
     $ErrorActionPreference = 'stop'
     try {if (Get-Command asciidoctor){"asciidoctor already installed..."}}
-    Catch 
+    Catch
     {
         "Installing asciidoctor"
         gem install asciidoctor
@@ -150,6 +180,7 @@ Function test-java{if ([string]::IsNullOrEmpty($JAVA_HOME)) { "JAVA_HOME is not 
 # GLOBAL CONFIGURATION ===========================
 test-chocolatey
 test-java
+test-python
 test-maven
 test-git
 test-npm
@@ -168,7 +199,7 @@ Function add-hostname
         Add-Content -Path $HOST_FILE -Value "127.0.0.1 msl.kenzanlabs.com"
         error-handler $? "Unable to add hostname"
         "Added msl.kenzanlabs.com"
-    } else 
+    } else
     {
         "msl.kenzanlabs.com is already on C:\Windows\system32\drivers\etc\hosts"
     }
@@ -178,25 +209,21 @@ Function add-hostname
 Function git-setup
 {
     cd $PROJECT_PATH
-    git checkout develop
-    error-handler $? "Unable to checkout to develop branch"
-    git pull origin develop
-    error-handler $? "Unable to pull recent develop branch changes"
     git submodule init
-    error-handler $? "Unable to git submodule init"
-    git submodule update
-    error-handler $? "Unable to git submodule update"
+    git submodule sync
+    error-handler $? "unable to git submodule init, please verify ssh"
+    git submodule update --init
 }
 
 # MSL-PAGES SETUP ================================
 
-Function msl-pages-setup 
+Function msl-pages-setup
 {
     cd $PROJECT_PATH\msl-pages
     if (Test-Path .\node_modules)
     {
         Remove-Item .\node_modules -Force -Recurse
-        npm cache clean 
+        npm cache clean
     }
     if (Test-Path .\bower_components)
     {
@@ -210,15 +237,22 @@ Function msl-pages-setup
     bower install --allow-root
     error-handler $? "Unable to run bower install"
 
+    if ( -Not (Test-Path $PROJECT_PATH\msl-pages\swagger)) {
+        cmd /c mklink /J $PROJECT_PATH\msl-pages\swagger $PROJECT_PATH\common\swagger
+    }
+    if (-Not (Test-Path $PROJECT_PATH\common\node_modules)) {
+        cmd /c mklink /J $PROJECT_PATH\common\node_modules $PROJECT_PATH\msl-pages\node_modules
+    }
+
     npm run generate-swagger-html
 
     npm install -g -y webpack
-    error_handler $? "unable to install webpack"
+    error-handler $? "unable to install webpack"
     npm install -g -y protractor
     error-handler $? "Unable to install protractor"
     npm install -g -y selenium-webdriver
     error-handler $? "Unable to install selenium-webdriver"
-    
+
 }
 
 # SERVER SETUP ===================================
@@ -236,30 +270,28 @@ Function server-setup
 
 Function cassandra-setup
 {
-    if (Test-Path $CASSANDRA_PATH/bin) 
+    if (Test-Path $CASSANDRA_PATH\bin)
     {
         "RUNNING CASSANDRA ..."
 
-        cd ${PROJECT_PATH}/tools/cassandra
+        cd "$PROJECT_PATH\tools\cassandra"
 
-        $CASSANDRA_PATH/bin/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
-        if ($? -ne $true)
+        python $CASSANDRA_PATH\bin\cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+        if ( $? -ne $true)
         {
-            $CASSANDRA_PATH/bin/cassandra
-            Start-Sleep -s 30
-            $CASSANDRA_PATH/bin/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+            START powershell -WindowStyle Hidden "$CASSANDRA_PATH\bin\cassandra.bat"
 
-            while($? -ne $true)
+            while ($? -ne $true)
             {
                 Start-Sleep -s 30
-                $CASSANDRA_PATH/bin/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+                python $CASSANDRA_PATH\bin\cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
             }
         }
-        error_handler $? "unable to run cqlsh -> msl_ddl_lates.cql. Check if cassandra is running and run with admin rights .\setup.ps1 -c $CASSANDRA_PATH"
+        error-handler $? "unable to run cqlsh -> msl_ddl_lates.cql. Check if cassandra is running and run with admin rights .\setup.ps1 -c $CASSANDRA_PATH"
 
-        $CASSANDRA_PATH/bin/cqlsh -e "SOURCE 'msl_dat_latest.cql';";
-        error_handler $? "unable to run cqlsh -> msl_dat_lates.cql"
-    }       
+        python $CASSANDRA_PATH\bin\cqlsh -e "SOURCE 'msl_dat_latest.cql';";
+        error-handler $? "unable to run cqlsh -> msl_dat_lates.cql"
+    }
     else
     {
         echo "CHECK CASSANDRA FOLDER PROVIDED"
@@ -271,7 +303,7 @@ Function cassandra-setup
 
 add-hostname
 
-if ($RUN_NODE -eq $true) { msl-pages-setup }
 if ($RUN_GIT -eq $true) { git-setup }
+if ($RUN_NODE -eq $true) { msl-pages-setup }
 if ($RUN_SERVER -eq $true) { server-setup }
 if ($RUN_CASSANDRA -eq $true) { cassandra-setup }
