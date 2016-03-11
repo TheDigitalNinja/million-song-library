@@ -150,10 +150,10 @@ Function test-rubyGem
     Catch
     {
         "Installing rubygems..."
-        choco install rubygems -y
+        choco install ruby -y
         error-handler $? "Unable to install rubygems"
         reload
-        choco upgrade rubygems -y
+        choco upgrade ruby -y
         error-handler $? "Unable to upgrade rubygems"
         reload
     }
