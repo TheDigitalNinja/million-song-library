@@ -80,10 +80,10 @@ Function test-python
     Catch
     {
         "Installing python..."
-        choco install python -y
+        choco install python2 -y
         error-handler $? "Unable to install python"
         reload
-        choco upgrade python -y
+        choco upgrade python2 -y
         error-handler $? "Unable to upgrade python"
         reload
     }
@@ -237,12 +237,16 @@ Function msl-pages-setup
     bower install --allow-root
     error-handler $? "Unable to run bower install"
 
-    if ( -Not (Test-Path $PROJECT_PATH\msl-pages\swagger)) {
-        cmd /c mklink /J $PROJECT_PATH\msl-pages\swagger $PROJECT_PATH\common\swagger
+    if ( Test-Path $PROJECT_PATH\msl-pages\swagger)
+    {
+        Remove-Item $PROJECT_PATH\msl-pages\swagger
     }
-    if (-Not (Test-Path $PROJECT_PATH\common\node_modules)) {
-        cmd /c mklink /J $PROJECT_PATH\common\node_modules $PROJECT_PATH\msl-pages\node_modules
+    if (Test-Path $PROJECT_PATH\common\node_modules)
+    {
+        Remove-Item $PROJECT_PATH\common\node_modules
     }
+    cmd /c mklink /J $PROJECT_PATH\msl-pages\swagger $PROJECT_PATH\common\swagger
+    cmd /c mklink /J $PROJECT_PATH\common\node_modules $PROJECT_PATH\msl-pages\node_modules
 
     npm run generate-swagger-html
 
@@ -279,7 +283,9 @@ Function cassandra-setup
         python $CASSANDRA_PATH\bin\cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
         if ( $? -ne $true)
         {
-            START powershell -WindowStyle Hidden "$CASSANDRA_PATH\bin\cassandra.bat"
+            START powershell -WindowStyle Normal "$CASSANDRA_PATH\bin\cassandra.bat"
+            Start-Sleep -s 30
+            python $CASSANDRA_PATH\bin\cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
 
             while ($? -ne $true)
             {
