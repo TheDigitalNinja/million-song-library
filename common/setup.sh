@@ -184,6 +184,7 @@ if [[ ${RUN_GIT} -eq 0 ]]; then
     error_handler $? "unable to git submodule init, please verify ssh"
     sudo git submodule update --init
     error_handler $? "unable to git submodule update, please verify ssh"
+    sudo chmod -R 777 $PROJECT_PATH
     else echo "........................ skip git update"
 fi
 
@@ -217,6 +218,7 @@ if [[ ${BUILD_NODE} -eq 0 ]]; then
     error_handler $? "unable to install protractor"
     sudo npm install -g -y selenium-webdriver
     error_handler $? "unable to install selenium-webdriver"
+    sudo chmod -R 777 $PROJECT_PATH/msl-pages
 
     else echo "........................ skip node update"
 fi
@@ -231,6 +233,7 @@ if [[ ${BUILD_SERVER} -eq 0 ]]; then
     mvn -version
     mvn clean compile
     error_handler $? "failed at running main maven file under /server"
+    sudo chmod -R 777 $PROJECT_PATH/server
     else echo "........................ skip server build"
 fi
 
