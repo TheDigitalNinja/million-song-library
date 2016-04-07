@@ -1,0 +1,1536 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 576,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 14,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 0,
+      "end": 44,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 44
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 7,
+        "end": 44,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 7
+          },
+          "end": {
+            "line": 1,
+            "column": 44
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 13,
+            "end": 43,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 13
+              },
+              "end": {
+                "line": 1,
+                "column": 43
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 13,
+              "end": 29,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 13
+                },
+                "end": {
+                  "line": 1,
+                  "column": 29
+                }
+              },
+              "name": "USER_REDIRECT_TO"
+            },
+            "init": {
+              "type": "Literal",
+              "start": 32,
+              "end": 43,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 32
+                },
+                "end": {
+                  "line": 1,
+                  "column": 43
+                }
+              },
+              "value": "msl.login",
+              "rawValue": "msl.login",
+              "raw": "'msl.login'"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 45,
+      "end": 93,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 48
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 52,
+        "end": 93,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 7
+          },
+          "end": {
+            "line": 2,
+            "column": 48
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 58,
+            "end": 92,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 13
+              },
+              "end": {
+                "line": 2,
+                "column": 47
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 58,
+              "end": 79,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 13
+                },
+                "end": {
+                  "line": 2,
+                  "column": 34
+                }
+              },
+              "name": "ANONYMOUS_REDIRECT_TO"
+            },
+            "init": {
+              "type": "Literal",
+              "start": 82,
+              "end": 92,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 37
+                },
+                "end": {
+                  "line": 2,
+                  "column": 47
+                }
+              },
+              "value": "msl.home",
+              "rawValue": "msl.home",
+              "raw": "'msl.home'"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 94,
+      "end": 126,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 32
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 101,
+        "end": 126,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 7
+          },
+          "end": {
+            "line": 3,
+            "column": 32
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 107,
+            "end": 125,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 13
+              },
+              "end": {
+                "line": 3,
+                "column": 31
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 107,
+              "end": 116,
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 13
+                },
+                "end": {
+                  "line": 3,
+                  "column": 22
+                }
+              },
+              "name": "ROLE_USER"
+            },
+            "init": {
+              "type": "Literal",
+              "start": 119,
+              "end": 125,
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 25
+                },
+                "end": {
+                  "line": 3,
+                  "column": 31
+                }
+              },
+              "value": "user",
+              "rawValue": "user",
+              "raw": "'user'"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 127,
+      "end": 169,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 42
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 134,
+        "end": 169,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 7
+          },
+          "end": {
+            "line": 4,
+            "column": 42
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 140,
+            "end": 168,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 13
+              },
+              "end": {
+                "line": 4,
+                "column": 41
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 140,
+              "end": 154,
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 13
+                },
+                "end": {
+                  "line": 4,
+                  "column": 27
+                }
+              },
+              "name": "ROLE_ANONYMOUS"
+            },
+            "init": {
+              "type": "Literal",
+              "start": 157,
+              "end": 168,
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 30
+                },
+                "end": {
+                  "line": 4,
+                  "column": 41
+                }
+              },
+              "value": "anonymous",
+              "rawValue": "anonymous",
+              "raw": "'anonymous'"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 170,
+      "end": 205,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 35
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 177,
+        "end": 205,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 7
+          },
+          "end": {
+            "line": 5,
+            "column": 35
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 183,
+            "end": 204,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 13
+              },
+              "end": {
+                "line": 5,
+                "column": 34
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 183,
+              "end": 197,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 13
+                },
+                "end": {
+                  "line": 5,
+                  "column": 27
+                }
+              },
+              "name": "GENRE_FACET_ID"
+            },
+            "init": {
+              "type": "Literal",
+              "start": 200,
+              "end": 204,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 30
+                },
+                "end": {
+                  "line": 5,
+                  "column": 34
+                }
+              },
+              "value": "A1",
+              "rawValue": "A1",
+              "raw": "'A1'"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 206,
+      "end": 242,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 36
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 213,
+        "end": 242,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 7
+          },
+          "end": {
+            "line": 6,
+            "column": 36
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 219,
+            "end": 241,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 13
+              },
+              "end": {
+                "line": 6,
+                "column": 35
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 219,
+              "end": 234,
+              "loc": {
+                "start": {
+                  "line": 6,
+                  "column": 13
+                },
+                "end": {
+                  "line": 6,
+                  "column": 28
+                }
+              },
+              "name": "RATING_FACET_ID"
+            },
+            "init": {
+              "type": "Literal",
+              "start": 237,
+              "end": 241,
+              "loc": {
+                "start": {
+                  "line": 6,
+                  "column": 31
+                },
+                "end": {
+                  "line": 6,
+                  "column": 35
+                }
+              },
+              "value": "A2",
+              "rawValue": "A2",
+              "raw": "'A2'"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 243,
+      "end": 271,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 28
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 250,
+        "end": 271,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 7
+          },
+          "end": {
+            "line": 7,
+            "column": 28
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 256,
+            "end": 270,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 13
+              },
+              "end": {
+                "line": 7,
+                "column": 27
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 256,
+              "end": 265,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 13
+                },
+                "end": {
+                  "line": 7,
+                  "column": 22
+                }
+              },
+              "name": "PAGE_SIZE"
+            },
+            "init": {
+              "type": "Literal",
+              "start": 268,
+              "end": 270,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 25
+                },
+                "end": {
+                  "line": 7,
+                  "column": 27
+                }
+              },
+              "value": 12,
+              "rawValue": 12,
+              "raw": "12"
+            }
+          }
+        ],
+        "kind": "const",
+        "trailingComments": [
+          {
+            "type": "CommentLine",
+            "value": " RESOURCES",
+            "start": 273,
+            "end": 285,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 9,
+                "column": 12
+              }
+            },
+            "range": [
+              273,
+              285
+            ]
+          }
+        ],
+        "leadingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "trailingComments": [
+        {
+          "type": "CommentLine",
+          "value": " RESOURCES",
+          "start": 273,
+          "end": 285,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 0
+            },
+            "end": {
+              "line": 9,
+              "column": 12
+            }
+          },
+          "range": [
+            273,
+            285
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 286,
+      "end": 353,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 67
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 293,
+        "end": 353,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 7
+          },
+          "end": {
+            "line": 10,
+            "column": 67
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 299,
+            "end": 352,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 13
+              },
+              "end": {
+                "line": 10,
+                "column": 66
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 299,
+              "end": 309,
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 13
+                },
+                "end": {
+                  "line": 10,
+                  "column": 23
+                }
+              },
+              "name": "LOGIN_EDGE",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "TemplateLiteral",
+              "start": 312,
+              "end": 352,
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 26
+                },
+                "end": {
+                  "line": 10,
+                  "column": 66
+                }
+              },
+              "expressions": [
+                {
+                  "type": "MemberExpression",
+                  "start": 316,
+                  "end": 338,
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 30
+                    },
+                    "end": {
+                      "line": 10,
+                      "column": 52
+                    }
+                  },
+                  "object": {
+                    "type": "MemberExpression",
+                    "start": 316,
+                    "end": 327,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 30
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 41
+                      }
+                    },
+                    "object": {
+                      "type": "Identifier",
+                      "start": 316,
+                      "end": 323,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 30
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 37
+                        }
+                      },
+                      "name": "process"
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 324,
+                      "end": 327,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 38
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 41
+                        }
+                      },
+                      "name": "env"
+                    },
+                    "computed": false
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "start": 328,
+                    "end": 338,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 42
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 52
+                      }
+                    },
+                    "name": "LOGIN_PORT"
+                  },
+                  "computed": false
+                }
+              ],
+              "quasis": [
+                {
+                  "type": "TemplateElement",
+                  "start": 313,
+                  "end": 314,
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 27
+                    },
+                    "end": {
+                      "line": 10,
+                      "column": 28
+                    }
+                  },
+                  "value": {
+                    "raw": ":",
+                    "cooked": ":"
+                  },
+                  "tail": false
+                },
+                {
+                  "type": "TemplateElement",
+                  "start": 339,
+                  "end": 351,
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 53
+                    },
+                    "end": {
+                      "line": 10,
+                      "column": 65
+                    }
+                  },
+                  "value": {
+                    "raw": "/login-edge/",
+                    "cooked": "/login-edge/"
+                  },
+                  "tail": true
+                }
+              ]
+            },
+            "leadingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "CommentLine",
+            "value": " RESOURCES",
+            "start": 273,
+            "end": 285,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 9,
+                "column": 12
+              }
+            },
+            "range": [
+              273,
+              285
+            ]
+          }
+        ],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " RESOURCES",
+          "start": 273,
+          "end": 285,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 0
+            },
+            "end": {
+              "line": 9,
+              "column": 12
+            }
+          },
+          "range": [
+            273,
+            285
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 354,
+      "end": 427,
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 73
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 361,
+        "end": 427,
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 7
+          },
+          "end": {
+            "line": 11,
+            "column": 73
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 367,
+            "end": 426,
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 13
+              },
+              "end": {
+                "line": 11,
+                "column": 72
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 367,
+              "end": 379,
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 13
+                },
+                "end": {
+                  "line": 11,
+                  "column": 25
+                }
+              },
+              "name": "ACCOUNT_EDGE"
+            },
+            "init": {
+              "type": "TemplateLiteral",
+              "start": 382,
+              "end": 426,
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 28
+                },
+                "end": {
+                  "line": 11,
+                  "column": 72
+                }
+              },
+              "expressions": [
+                {
+                  "type": "MemberExpression",
+                  "start": 386,
+                  "end": 410,
+                  "loc": {
+                    "start": {
+                      "line": 11,
+                      "column": 32
+                    },
+                    "end": {
+                      "line": 11,
+                      "column": 56
+                    }
+                  },
+                  "object": {
+                    "type": "MemberExpression",
+                    "start": 386,
+                    "end": 397,
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 32
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 43
+                      }
+                    },
+                    "object": {
+                      "type": "Identifier",
+                      "start": 386,
+                      "end": 393,
+                      "loc": {
+                        "start": {
+                          "line": 11,
+                          "column": 32
+                        },
+                        "end": {
+                          "line": 11,
+                          "column": 39
+                        }
+                      },
+                      "name": "process"
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 394,
+                      "end": 397,
+                      "loc": {
+                        "start": {
+                          "line": 11,
+                          "column": 40
+                        },
+                        "end": {
+                          "line": 11,
+                          "column": 43
+                        }
+                      },
+                      "name": "env"
+                    },
+                    "computed": false
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "start": 398,
+                    "end": 410,
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 44
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 56
+                      }
+                    },
+                    "name": "ACCOUNT_PORT"
+                  },
+                  "computed": false
+                }
+              ],
+              "quasis": [
+                {
+                  "type": "TemplateElement",
+                  "start": 383,
+                  "end": 384,
+                  "loc": {
+                    "start": {
+                      "line": 11,
+                      "column": 29
+                    },
+                    "end": {
+                      "line": 11,
+                      "column": 30
+                    }
+                  },
+                  "value": {
+                    "raw": ":",
+                    "cooked": ":"
+                  },
+                  "tail": false
+                },
+                {
+                  "type": "TemplateElement",
+                  "start": 411,
+                  "end": 425,
+                  "loc": {
+                    "start": {
+                      "line": 11,
+                      "column": 57
+                    },
+                    "end": {
+                      "line": 11,
+                      "column": 71
+                    }
+                  },
+                  "value": {
+                    "raw": "/account-edge/",
+                    "cooked": "/account-edge/"
+                  },
+                  "tail": true
+                }
+              ]
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 428,
+      "end": 501,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 73
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 435,
+        "end": 501,
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 7
+          },
+          "end": {
+            "line": 12,
+            "column": 73
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 441,
+            "end": 500,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 13
+              },
+              "end": {
+                "line": 12,
+                "column": 72
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 441,
+              "end": 453,
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 13
+                },
+                "end": {
+                  "line": 12,
+                  "column": 25
+                }
+              },
+              "name": "CATALOG_EDGE"
+            },
+            "init": {
+              "type": "TemplateLiteral",
+              "start": 456,
+              "end": 500,
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 28
+                },
+                "end": {
+                  "line": 12,
+                  "column": 72
+                }
+              },
+              "expressions": [
+                {
+                  "type": "MemberExpression",
+                  "start": 460,
+                  "end": 484,
+                  "loc": {
+                    "start": {
+                      "line": 12,
+                      "column": 32
+                    },
+                    "end": {
+                      "line": 12,
+                      "column": 56
+                    }
+                  },
+                  "object": {
+                    "type": "MemberExpression",
+                    "start": 460,
+                    "end": 471,
+                    "loc": {
+                      "start": {
+                        "line": 12,
+                        "column": 32
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 43
+                      }
+                    },
+                    "object": {
+                      "type": "Identifier",
+                      "start": 460,
+                      "end": 467,
+                      "loc": {
+                        "start": {
+                          "line": 12,
+                          "column": 32
+                        },
+                        "end": {
+                          "line": 12,
+                          "column": 39
+                        }
+                      },
+                      "name": "process"
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 468,
+                      "end": 471,
+                      "loc": {
+                        "start": {
+                          "line": 12,
+                          "column": 40
+                        },
+                        "end": {
+                          "line": 12,
+                          "column": 43
+                        }
+                      },
+                      "name": "env"
+                    },
+                    "computed": false
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "start": 472,
+                    "end": 484,
+                    "loc": {
+                      "start": {
+                        "line": 12,
+                        "column": 44
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 56
+                      }
+                    },
+                    "name": "CATALOG_PORT"
+                  },
+                  "computed": false
+                }
+              ],
+              "quasis": [
+                {
+                  "type": "TemplateElement",
+                  "start": 457,
+                  "end": 458,
+                  "loc": {
+                    "start": {
+                      "line": 12,
+                      "column": 29
+                    },
+                    "end": {
+                      "line": 12,
+                      "column": 30
+                    }
+                  },
+                  "value": {
+                    "raw": ":",
+                    "cooked": ":"
+                  },
+                  "tail": false
+                },
+                {
+                  "type": "TemplateElement",
+                  "start": 485,
+                  "end": 499,
+                  "loc": {
+                    "start": {
+                      "line": 12,
+                      "column": 57
+                    },
+                    "end": {
+                      "line": 12,
+                      "column": 71
+                    }
+                  },
+                  "value": {
+                    "raw": "/catalog-edge/",
+                    "cooked": "/catalog-edge/"
+                  },
+                  "tail": true
+                }
+              ]
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 502,
+      "end": 575,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 73
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 509,
+        "end": 575,
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 7
+          },
+          "end": {
+            "line": 13,
+            "column": 73
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 515,
+            "end": 574,
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 13
+              },
+              "end": {
+                "line": 13,
+                "column": 72
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 515,
+              "end": 527,
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 13
+                },
+                "end": {
+                  "line": 13,
+                  "column": 25
+                }
+              },
+              "name": "RATINGS_EDGE"
+            },
+            "init": {
+              "type": "TemplateLiteral",
+              "start": 530,
+              "end": 574,
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 28
+                },
+                "end": {
+                  "line": 13,
+                  "column": 72
+                }
+              },
+              "expressions": [
+                {
+                  "type": "MemberExpression",
+                  "start": 534,
+                  "end": 558,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 32
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 56
+                    }
+                  },
+                  "object": {
+                    "type": "MemberExpression",
+                    "start": 534,
+                    "end": 545,
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 32
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 43
+                      }
+                    },
+                    "object": {
+                      "type": "Identifier",
+                      "start": 534,
+                      "end": 541,
+                      "loc": {
+                        "start": {
+                          "line": 13,
+                          "column": 32
+                        },
+                        "end": {
+                          "line": 13,
+                          "column": 39
+                        }
+                      },
+                      "name": "process"
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 542,
+                      "end": 545,
+                      "loc": {
+                        "start": {
+                          "line": 13,
+                          "column": 40
+                        },
+                        "end": {
+                          "line": 13,
+                          "column": 43
+                        }
+                      },
+                      "name": "env"
+                    },
+                    "computed": false
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "start": 546,
+                    "end": 558,
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 44
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 56
+                      }
+                    },
+                    "name": "RATINGS_PORT"
+                  },
+                  "computed": false
+                }
+              ],
+              "quasis": [
+                {
+                  "type": "TemplateElement",
+                  "start": 531,
+                  "end": 532,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 29
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 30
+                    }
+                  },
+                  "value": {
+                    "raw": ":",
+                    "cooked": ":"
+                  },
+                  "tail": false
+                },
+                {
+                  "type": "TemplateElement",
+                  "start": 559,
+                  "end": 573,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 57
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 71
+                    }
+                  },
+                  "value": {
+                    "raw": "/ratings-edge/",
+                    "cooked": "/ratings-edge/"
+                  },
+                  "tail": true
+                }
+              ]
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    }
+  ]
+}

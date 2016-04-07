@@ -1,0 +1,469 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 395,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 15,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 107,
+      "end": 394,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "start": 122,
+        "end": 394,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 15
+          },
+          "end": {
+            "line": 14,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 131,
+          "end": 142,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 24
+            },
+            "end": {
+              "line": 5,
+              "column": 35
+            }
+          },
+          "name": "layoutRoute",
+          "leadingComments": null
+        },
+        "generator": false,
+        "expression": false,
+        "async": false,
+        "params": [
+          {
+            "type": "Identifier",
+            "start": 143,
+            "end": 157,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 36
+              },
+              "end": {
+                "line": 5,
+                "column": 50
+              }
+            },
+            "name": "$stateProvider"
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "start": 159,
+          "end": 394,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 52
+            },
+            "end": {
+              "line": 14,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "ExpressionStatement",
+              "start": 163,
+              "end": 174,
+              "loc": {
+                "start": {
+                  "line": 6,
+                  "column": 2
+                },
+                "end": {
+                  "line": 6,
+                  "column": 13
+                }
+              },
+              "expression": {
+                "type": "Literal",
+                "start": 163,
+                "end": 173,
+                "loc": {
+                  "start": {
+                    "line": 6,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 6,
+                    "column": 12
+                  }
+                },
+                "value": "ngInject",
+                "rawValue": "ngInject",
+                "raw": "'ngInject'"
+              },
+              "trailingComments": [
+                {
+                  "type": "CommentLine",
+                  "value": " Default state is used so we do not re-render elements like navigation",
+                  "start": 178,
+                  "end": 250,
+                  "loc": {
+                    "start": {
+                      "line": 8,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 74
+                    }
+                  },
+                  "range": [
+                    178,
+                    250
+                  ]
+                },
+                {
+                  "type": "CommentLine",
+                  "value": " when user navigates to new default container page",
+                  "start": 253,
+                  "end": 305,
+                  "loc": {
+                    "start": {
+                      "line": 9,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 9,
+                      "column": 54
+                    }
+                  },
+                  "range": [
+                    253,
+                    305
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ExpressionStatement",
+              "start": 308,
+              "end": 392,
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 2
+                },
+                "end": {
+                  "line": 13,
+                  "column": 7
+                }
+              },
+              "expression": {
+                "type": "CallExpression",
+                "start": 308,
+                "end": 391,
+                "loc": {
+                  "start": {
+                    "line": 10,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 13,
+                    "column": 6
+                  }
+                },
+                "callee": {
+                  "type": "MemberExpression",
+                  "start": 308,
+                  "end": 333,
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 11,
+                      "column": 10
+                    }
+                  },
+                  "object": {
+                    "type": "Identifier",
+                    "start": 308,
+                    "end": 322,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 16
+                      }
+                    },
+                    "name": "$stateProvider",
+                    "leadingComments": null
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "start": 328,
+                    "end": 333,
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 5
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 10
+                      }
+                    },
+                    "name": "state"
+                  },
+                  "computed": false,
+                  "leadingComments": null
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "start": 334,
+                    "end": 339,
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 11
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 16
+                      }
+                    },
+                    "value": "msl",
+                    "rawValue": "msl",
+                    "raw": "'msl'"
+                  },
+                  {
+                    "type": "ObjectExpression",
+                    "start": 341,
+                    "end": 390,
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 18
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 5
+                      }
+                    },
+                    "properties": [
+                      {
+                        "type": "Property",
+                        "start": 349,
+                        "end": 383,
+                        "loc": {
+                          "start": {
+                            "line": 12,
+                            "column": 6
+                          },
+                          "end": {
+                            "line": 12,
+                            "column": 40
+                          }
+                        },
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 349,
+                          "end": 357,
+                          "loc": {
+                            "start": {
+                              "line": 12,
+                              "column": 6
+                            },
+                            "end": {
+                              "line": 12,
+                              "column": 14
+                            }
+                          },
+                          "name": "template"
+                        },
+                        "value": {
+                          "type": "CallExpression",
+                          "start": 359,
+                          "end": 383,
+                          "loc": {
+                            "start": {
+                              "line": 12,
+                              "column": 16
+                            },
+                            "end": {
+                              "line": 12,
+                              "column": 40
+                            }
+                          },
+                          "callee": {
+                            "type": "Identifier",
+                            "start": 359,
+                            "end": 366,
+                            "loc": {
+                              "start": {
+                                "line": 12,
+                                "column": 16
+                              },
+                              "end": {
+                                "line": 12,
+                                "column": 23
+                              }
+                            },
+                            "name": "require"
+                          },
+                          "arguments": [
+                            {
+                              "type": "Literal",
+                              "start": 367,
+                              "end": 382,
+                              "loc": {
+                                "start": {
+                                  "line": 12,
+                                  "column": 24
+                                },
+                                "end": {
+                                  "line": 12,
+                                  "column": 39
+                                }
+                              },
+                              "value": "./layout.html",
+                              "rawValue": "./layout.html",
+                              "raw": "'./layout.html'"
+                            }
+                          ]
+                        },
+                        "kind": "init"
+                      }
+                    ]
+                  }
+                ],
+                "leadingComments": null
+              },
+              "leadingComments": [
+                {
+                  "type": "CommentLine",
+                  "value": " Default state is used so we do not re-render elements like navigation",
+                  "start": 178,
+                  "end": 250,
+                  "loc": {
+                    "start": {
+                      "line": 8,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 74
+                    }
+                  },
+                  "range": [
+                    178,
+                    250
+                  ]
+                },
+                {
+                  "type": "CommentLine",
+                  "value": " when user navigates to new default container page",
+                  "start": 253,
+                  "end": 305,
+                  "loc": {
+                    "start": {
+                      "line": 9,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 9,
+                      "column": 54
+                    }
+                  },
+                  "range": [
+                    253,
+                    305
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Angular config for default container.\n * @param {ui.router.state.$stateProvider} $stateProvider\n ",
+            "start": 0,
+            "end": 106,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 4,
+                "column": 3
+              }
+            },
+            "range": [
+              0,
+              106
+            ]
+          }
+        ],
+        "trailingComments": []
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Angular config for default container.\n * @param {ui.router.state.$stateProvider} $stateProvider\n ",
+          "start": 0,
+          "end": 106,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 3
+            }
+          },
+          "range": [
+            0,
+            106
+          ]
+        }
+      ]
+    }
+  ]
+}

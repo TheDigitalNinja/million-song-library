@@ -1,0 +1,1744 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 1002,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 40,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 0,
+      "end": 54,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 54
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 8,
+          "end": 24,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 8
+            },
+            "end": {
+              "line": 1,
+              "column": 24
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 8,
+            "end": 24,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 8
+              },
+              "end": {
+                "line": 1,
+                "column": 24
+              }
+            },
+            "name": "USER_REDIRECT_TO"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 8,
+            "end": 24,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 8
+              },
+              "end": {
+                "line": 1,
+                "column": 24
+              }
+            },
+            "name": "USER_REDIRECT_TO"
+          }
+        },
+        {
+          "type": "ImportSpecifier",
+          "start": 26,
+          "end": 35,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 26
+            },
+            "end": {
+              "line": 1,
+              "column": 35
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 26,
+            "end": 35,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 26
+              },
+              "end": {
+                "line": 1,
+                "column": 35
+              }
+            },
+            "name": "ROLE_USER"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 26,
+            "end": 35,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 26
+              },
+              "end": {
+                "line": 1,
+                "column": 35
+              }
+            },
+            "name": "ROLE_USER"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 42,
+        "end": 53,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 42
+          },
+          "end": {
+            "line": 1,
+            "column": 53
+          }
+        },
+        "value": "constants",
+        "rawValue": "constants",
+        "raw": "'constants'"
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Angular config for my page.\n * @param {ui.router.state.$stateProvider} $stateProvider\n ",
+          "start": 56,
+          "end": 152,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 6,
+              "column": 3
+            }
+          },
+          "range": [
+            56,
+            152
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 153,
+      "end": 1001,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 39,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "start": 168,
+        "end": 1001,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 15
+          },
+          "end": {
+            "line": 39,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 177,
+          "end": 186,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 24
+            },
+            "end": {
+              "line": 7,
+              "column": 33
+            }
+          },
+          "name": "userRoute",
+          "leadingComments": null
+        },
+        "generator": false,
+        "expression": false,
+        "async": false,
+        "params": [
+          {
+            "type": "Identifier",
+            "start": 187,
+            "end": 201,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 34
+              },
+              "end": {
+                "line": 7,
+                "column": 48
+              }
+            },
+            "name": "$stateProvider"
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "start": 203,
+          "end": 1001,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 50
+            },
+            "end": {
+              "line": 39,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "ExpressionStatement",
+              "start": 208,
+              "end": 219,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 2
+                },
+                "end": {
+                  "line": 9,
+                  "column": 13
+                }
+              },
+              "expression": {
+                "type": "Literal",
+                "start": 208,
+                "end": 218,
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 12
+                  }
+                },
+                "value": "ngInject",
+                "rawValue": "ngInject",
+                "raw": "'ngInject'"
+              }
+            },
+            {
+              "type": "ExpressionStatement",
+              "start": 223,
+              "end": 999,
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 2
+                },
+                "end": {
+                  "line": 38,
+                  "column": 7
+                }
+              },
+              "expression": {
+                "type": "CallExpression",
+                "start": 223,
+                "end": 998,
+                "loc": {
+                  "start": {
+                    "line": 11,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 38,
+                    "column": 6
+                  }
+                },
+                "callee": {
+                  "type": "MemberExpression",
+                  "start": 223,
+                  "end": 822,
+                  "loc": {
+                    "start": {
+                      "line": 11,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 33,
+                      "column": 10
+                    }
+                  },
+                  "object": {
+                    "type": "CallExpression",
+                    "start": 223,
+                    "end": 811,
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 32,
+                        "column": 6
+                      }
+                    },
+                    "callee": {
+                      "type": "MemberExpression",
+                      "start": 223,
+                      "end": 643,
+                      "loc": {
+                        "start": {
+                          "line": 11,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 27,
+                          "column": 10
+                        }
+                      },
+                      "object": {
+                        "type": "CallExpression",
+                        "start": 223,
+                        "end": 632,
+                        "loc": {
+                          "start": {
+                            "line": 11,
+                            "column": 2
+                          },
+                          "end": {
+                            "line": 26,
+                            "column": 6
+                          }
+                        },
+                        "callee": {
+                          "type": "MemberExpression",
+                          "start": 223,
+                          "end": 456,
+                          "loc": {
+                            "start": {
+                              "line": 11,
+                              "column": 2
+                            },
+                            "end": {
+                              "line": 21,
+                              "column": 10
+                            }
+                          },
+                          "object": {
+                            "type": "CallExpression",
+                            "start": 223,
+                            "end": 445,
+                            "loc": {
+                              "start": {
+                                "line": 11,
+                                "column": 2
+                              },
+                              "end": {
+                                "line": 20,
+                                "column": 6
+                              }
+                            },
+                            "callee": {
+                              "type": "MemberExpression",
+                              "start": 223,
+                              "end": 248,
+                              "loc": {
+                                "start": {
+                                  "line": 11,
+                                  "column": 2
+                                },
+                                "end": {
+                                  "line": 12,
+                                  "column": 10
+                                }
+                              },
+                              "object": {
+                                "type": "Identifier",
+                                "start": 223,
+                                "end": 237,
+                                "loc": {
+                                  "start": {
+                                    "line": 11,
+                                    "column": 2
+                                  },
+                                  "end": {
+                                    "line": 11,
+                                    "column": 16
+                                  }
+                                },
+                                "name": "$stateProvider"
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "start": 243,
+                                "end": 248,
+                                "loc": {
+                                  "start": {
+                                    "line": 12,
+                                    "column": 5
+                                  },
+                                  "end": {
+                                    "line": 12,
+                                    "column": 10
+                                  }
+                                },
+                                "name": "state"
+                              },
+                              "computed": false
+                            },
+                            "arguments": [
+                              {
+                                "type": "Literal",
+                                "start": 249,
+                                "end": 259,
+                                "loc": {
+                                  "start": {
+                                    "line": 12,
+                                    "column": 11
+                                  },
+                                  "end": {
+                                    "line": 12,
+                                    "column": 21
+                                  }
+                                },
+                                "value": "msl.user",
+                                "rawValue": "msl.user",
+                                "raw": "'msl.user'"
+                              },
+                              {
+                                "type": "ObjectExpression",
+                                "start": 261,
+                                "end": 444,
+                                "loc": {
+                                  "start": {
+                                    "line": 12,
+                                    "column": 23
+                                  },
+                                  "end": {
+                                    "line": 20,
+                                    "column": 5
+                                  }
+                                },
+                                "properties": [
+                                  {
+                                    "type": "Property",
+                                    "start": 269,
+                                    "end": 311,
+                                    "loc": {
+                                      "start": {
+                                        "line": 13,
+                                        "column": 6
+                                      },
+                                      "end": {
+                                        "line": 13,
+                                        "column": 48
+                                      }
+                                    },
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Identifier",
+                                      "start": 269,
+                                      "end": 277,
+                                      "loc": {
+                                        "start": {
+                                          "line": 13,
+                                          "column": 6
+                                        },
+                                        "end": {
+                                          "line": 13,
+                                          "column": 14
+                                        }
+                                      },
+                                      "name": "template"
+                                    },
+                                    "value": {
+                                      "type": "CallExpression",
+                                      "start": 279,
+                                      "end": 311,
+                                      "loc": {
+                                        "start": {
+                                          "line": 13,
+                                          "column": 16
+                                        },
+                                        "end": {
+                                          "line": 13,
+                                          "column": 48
+                                        }
+                                      },
+                                      "callee": {
+                                        "type": "Identifier",
+                                        "start": 279,
+                                        "end": 286,
+                                        "loc": {
+                                          "start": {
+                                            "line": 13,
+                                            "column": 16
+                                          },
+                                          "end": {
+                                            "line": 13,
+                                            "column": 23
+                                          }
+                                        },
+                                        "name": "require"
+                                      },
+                                      "arguments": [
+                                        {
+                                          "type": "Literal",
+                                          "start": 287,
+                                          "end": 310,
+                                          "loc": {
+                                            "start": {
+                                              "line": 13,
+                                              "column": 24
+                                            },
+                                            "end": {
+                                              "line": 13,
+                                              "column": 47
+                                            }
+                                          },
+                                          "value": "./templates/user.html",
+                                          "rawValue": "./templates/user.html",
+                                          "raw": "'./templates/user.html'"
+                                        }
+                                      ]
+                                    },
+                                    "kind": "init"
+                                  },
+                                  {
+                                    "type": "Property",
+                                    "start": 319,
+                                    "end": 437,
+                                    "loc": {
+                                      "start": {
+                                        "line": 14,
+                                        "column": 6
+                                      },
+                                      "end": {
+                                        "line": 19,
+                                        "column": 7
+                                      }
+                                    },
+                                    "method": false,
+                                    "shorthand": false,
+                                    "computed": false,
+                                    "key": {
+                                      "type": "Identifier",
+                                      "start": 319,
+                                      "end": 323,
+                                      "loc": {
+                                        "start": {
+                                          "line": 14,
+                                          "column": 6
+                                        },
+                                        "end": {
+                                          "line": 14,
+                                          "column": 10
+                                        }
+                                      },
+                                      "name": "data"
+                                    },
+                                    "value": {
+                                      "type": "ObjectExpression",
+                                      "start": 325,
+                                      "end": 437,
+                                      "loc": {
+                                        "start": {
+                                          "line": 14,
+                                          "column": 12
+                                        },
+                                        "end": {
+                                          "line": 19,
+                                          "column": 7
+                                        }
+                                      },
+                                      "properties": [
+                                        {
+                                          "type": "Property",
+                                          "start": 335,
+                                          "end": 428,
+                                          "loc": {
+                                            "start": {
+                                              "line": 15,
+                                              "column": 8
+                                            },
+                                            "end": {
+                                              "line": 18,
+                                              "column": 9
+                                            }
+                                          },
+                                          "method": false,
+                                          "shorthand": false,
+                                          "computed": false,
+                                          "key": {
+                                            "type": "Identifier",
+                                            "start": 335,
+                                            "end": 346,
+                                            "loc": {
+                                              "start": {
+                                                "line": 15,
+                                                "column": 8
+                                              },
+                                              "end": {
+                                                "line": 15,
+                                                "column": 19
+                                              }
+                                            },
+                                            "name": "permissions"
+                                          },
+                                          "value": {
+                                            "type": "ObjectExpression",
+                                            "start": 348,
+                                            "end": 428,
+                                            "loc": {
+                                              "start": {
+                                                "line": 15,
+                                                "column": 21
+                                              },
+                                              "end": {
+                                                "line": 18,
+                                                "column": 9
+                                              }
+                                            },
+                                            "properties": [
+                                              {
+                                                "type": "Property",
+                                                "start": 360,
+                                                "end": 377,
+                                                "loc": {
+                                                  "start": {
+                                                    "line": 16,
+                                                    "column": 10
+                                                  },
+                                                  "end": {
+                                                    "line": 16,
+                                                    "column": 27
+                                                  }
+                                                },
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Identifier",
+                                                  "start": 360,
+                                                  "end": 364,
+                                                  "loc": {
+                                                    "start": {
+                                                      "line": 16,
+                                                      "column": 10
+                                                    },
+                                                    "end": {
+                                                      "line": 16,
+                                                      "column": 14
+                                                    }
+                                                  },
+                                                  "name": "only"
+                                                },
+                                                "value": {
+                                                  "type": "ArrayExpression",
+                                                  "start": 366,
+                                                  "end": 377,
+                                                  "loc": {
+                                                    "start": {
+                                                      "line": 16,
+                                                      "column": 16
+                                                    },
+                                                    "end": {
+                                                      "line": 16,
+                                                      "column": 27
+                                                    }
+                                                  },
+                                                  "elements": [
+                                                    {
+                                                      "type": "Identifier",
+                                                      "start": 367,
+                                                      "end": 376,
+                                                      "loc": {
+                                                        "start": {
+                                                          "line": 16,
+                                                          "column": 17
+                                                        },
+                                                        "end": {
+                                                          "line": 16,
+                                                          "column": 26
+                                                        }
+                                                      },
+                                                      "name": "ROLE_USER"
+                                                    }
+                                                  ]
+                                                },
+                                                "kind": "init"
+                                              },
+                                              {
+                                                "type": "Property",
+                                                "start": 389,
+                                                "end": 417,
+                                                "loc": {
+                                                  "start": {
+                                                    "line": 17,
+                                                    "column": 10
+                                                  },
+                                                  "end": {
+                                                    "line": 17,
+                                                    "column": 38
+                                                  }
+                                                },
+                                                "method": false,
+                                                "shorthand": false,
+                                                "computed": false,
+                                                "key": {
+                                                  "type": "Identifier",
+                                                  "start": 389,
+                                                  "end": 399,
+                                                  "loc": {
+                                                    "start": {
+                                                      "line": 17,
+                                                      "column": 10
+                                                    },
+                                                    "end": {
+                                                      "line": 17,
+                                                      "column": 20
+                                                    }
+                                                  },
+                                                  "name": "redirectTo"
+                                                },
+                                                "value": {
+                                                  "type": "Identifier",
+                                                  "start": 401,
+                                                  "end": 417,
+                                                  "loc": {
+                                                    "start": {
+                                                      "line": 17,
+                                                      "column": 22
+                                                    },
+                                                    "end": {
+                                                      "line": 17,
+                                                      "column": 38
+                                                    }
+                                                  },
+                                                  "name": "USER_REDIRECT_TO"
+                                                },
+                                                "kind": "init"
+                                              }
+                                            ]
+                                          },
+                                          "kind": "init"
+                                        }
+                                      ]
+                                    },
+                                    "kind": "init"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "start": 451,
+                            "end": 456,
+                            "loc": {
+                              "start": {
+                                "line": 21,
+                                "column": 5
+                              },
+                              "end": {
+                                "line": 21,
+                                "column": 10
+                              }
+                            },
+                            "name": "state"
+                          },
+                          "computed": false
+                        },
+                        "arguments": [
+                          {
+                            "type": "Literal",
+                            "start": 457,
+                            "end": 475,
+                            "loc": {
+                              "start": {
+                                "line": 21,
+                                "column": 11
+                              },
+                              "end": {
+                                "line": 21,
+                                "column": 29
+                              }
+                            },
+                            "value": "msl.user.history",
+                            "rawValue": "msl.user.history",
+                            "raw": "'msl.user.history'"
+                          },
+                          {
+                            "type": "ObjectExpression",
+                            "start": 477,
+                            "end": 631,
+                            "loc": {
+                              "start": {
+                                "line": 21,
+                                "column": 31
+                              },
+                              "end": {
+                                "line": 26,
+                                "column": 5
+                              }
+                            },
+                            "properties": [
+                              {
+                                "type": "Property",
+                                "start": 485,
+                                "end": 503,
+                                "loc": {
+                                  "start": {
+                                    "line": 22,
+                                    "column": 6
+                                  },
+                                  "end": {
+                                    "line": 22,
+                                    "column": 24
+                                  }
+                                },
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": {
+                                  "type": "Identifier",
+                                  "start": 485,
+                                  "end": 488,
+                                  "loc": {
+                                    "start": {
+                                      "line": 22,
+                                      "column": 6
+                                    },
+                                    "end": {
+                                      "line": 22,
+                                      "column": 9
+                                    }
+                                  },
+                                  "name": "url"
+                                },
+                                "value": {
+                                  "type": "Literal",
+                                  "start": 490,
+                                  "end": 503,
+                                  "loc": {
+                                    "start": {
+                                      "line": 22,
+                                      "column": 11
+                                    },
+                                    "end": {
+                                      "line": 22,
+                                      "column": 24
+                                    }
+                                  },
+                                  "value": "/my/history",
+                                  "rawValue": "/my/history",
+                                  "raw": "'/my/history'"
+                                },
+                                "kind": "init"
+                              },
+                              {
+                                "type": "Property",
+                                "start": 511,
+                                "end": 561,
+                                "loc": {
+                                  "start": {
+                                    "line": 23,
+                                    "column": 6
+                                  },
+                                  "end": {
+                                    "line": 23,
+                                    "column": 56
+                                  }
+                                },
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": {
+                                  "type": "Identifier",
+                                  "start": 511,
+                                  "end": 519,
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 6
+                                    },
+                                    "end": {
+                                      "line": 23,
+                                      "column": 14
+                                    }
+                                  },
+                                  "name": "template"
+                                },
+                                "value": {
+                                  "type": "CallExpression",
+                                  "start": 521,
+                                  "end": 561,
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 16
+                                    },
+                                    "end": {
+                                      "line": 23,
+                                      "column": 56
+                                    }
+                                  },
+                                  "callee": {
+                                    "type": "Identifier",
+                                    "start": 521,
+                                    "end": 528,
+                                    "loc": {
+                                      "start": {
+                                        "line": 23,
+                                        "column": 16
+                                      },
+                                      "end": {
+                                        "line": 23,
+                                        "column": 23
+                                      }
+                                    },
+                                    "name": "require"
+                                  },
+                                  "arguments": [
+                                    {
+                                      "type": "Literal",
+                                      "start": 529,
+                                      "end": 560,
+                                      "loc": {
+                                        "start": {
+                                          "line": 23,
+                                          "column": 24
+                                        },
+                                        "end": {
+                                          "line": 23,
+                                          "column": 55
+                                        }
+                                      },
+                                      "value": "./templates/user-history.html",
+                                      "rawValue": "./templates/user-history.html",
+                                      "raw": "'./templates/user-history.html'"
+                                    }
+                                  ]
+                                },
+                                "kind": "init"
+                              },
+                              {
+                                "type": "Property",
+                                "start": 569,
+                                "end": 598,
+                                "loc": {
+                                  "start": {
+                                    "line": 24,
+                                    "column": 6
+                                  },
+                                  "end": {
+                                    "line": 24,
+                                    "column": 35
+                                  }
+                                },
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": {
+                                  "type": "Identifier",
+                                  "start": 569,
+                                  "end": 579,
+                                  "loc": {
+                                    "start": {
+                                      "line": 24,
+                                      "column": 6
+                                    },
+                                    "end": {
+                                      "line": 24,
+                                      "column": 16
+                                    }
+                                  },
+                                  "name": "controller"
+                                },
+                                "value": {
+                                  "type": "Literal",
+                                  "start": 581,
+                                  "end": 598,
+                                  "loc": {
+                                    "start": {
+                                      "line": 24,
+                                      "column": 18
+                                    },
+                                    "end": {
+                                      "line": 24,
+                                      "column": 35
+                                    }
+                                  },
+                                  "value": "userHistoryCtrl",
+                                  "rawValue": "userHistoryCtrl",
+                                  "raw": "'userHistoryCtrl'"
+                                },
+                                "kind": "init"
+                              },
+                              {
+                                "type": "Property",
+                                "start": 606,
+                                "end": 624,
+                                "loc": {
+                                  "start": {
+                                    "line": 25,
+                                    "column": 6
+                                  },
+                                  "end": {
+                                    "line": 25,
+                                    "column": 24
+                                  }
+                                },
+                                "method": false,
+                                "shorthand": false,
+                                "computed": false,
+                                "key": {
+                                  "type": "Identifier",
+                                  "start": 606,
+                                  "end": 618,
+                                  "loc": {
+                                    "start": {
+                                      "line": 25,
+                                      "column": 6
+                                    },
+                                    "end": {
+                                      "line": 25,
+                                      "column": 18
+                                    }
+                                  },
+                                  "name": "controllerAs"
+                                },
+                                "value": {
+                                  "type": "Literal",
+                                  "start": 620,
+                                  "end": 624,
+                                  "loc": {
+                                    "start": {
+                                      "line": 25,
+                                      "column": 20
+                                    },
+                                    "end": {
+                                      "line": 25,
+                                      "column": 24
+                                    }
+                                  },
+                                  "value": "vm",
+                                  "rawValue": "vm",
+                                  "raw": "'vm'"
+                                },
+                                "kind": "init"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "start": 638,
+                        "end": 643,
+                        "loc": {
+                          "start": {
+                            "line": 27,
+                            "column": 5
+                          },
+                          "end": {
+                            "line": 27,
+                            "column": 10
+                          }
+                        },
+                        "name": "state"
+                      },
+                      "computed": false
+                    },
+                    "arguments": [
+                      {
+                        "type": "Literal",
+                        "start": 644,
+                        "end": 660,
+                        "loc": {
+                          "start": {
+                            "line": 27,
+                            "column": 11
+                          },
+                          "end": {
+                            "line": 27,
+                            "column": 27
+                          }
+                        },
+                        "value": "msl.user.likes",
+                        "rawValue": "msl.user.likes",
+                        "raw": "'msl.user.likes'"
+                      },
+                      {
+                        "type": "ObjectExpression",
+                        "start": 662,
+                        "end": 810,
+                        "loc": {
+                          "start": {
+                            "line": 27,
+                            "column": 29
+                          },
+                          "end": {
+                            "line": 32,
+                            "column": 5
+                          }
+                        },
+                        "properties": [
+                          {
+                            "type": "Property",
+                            "start": 670,
+                            "end": 686,
+                            "loc": {
+                              "start": {
+                                "line": 28,
+                                "column": 6
+                              },
+                              "end": {
+                                "line": 28,
+                                "column": 22
+                              }
+                            },
+                            "method": false,
+                            "shorthand": false,
+                            "computed": false,
+                            "key": {
+                              "type": "Identifier",
+                              "start": 670,
+                              "end": 673,
+                              "loc": {
+                                "start": {
+                                  "line": 28,
+                                  "column": 6
+                                },
+                                "end": {
+                                  "line": 28,
+                                  "column": 9
+                                }
+                              },
+                              "name": "url"
+                            },
+                            "value": {
+                              "type": "Literal",
+                              "start": 675,
+                              "end": 686,
+                              "loc": {
+                                "start": {
+                                  "line": 28,
+                                  "column": 11
+                                },
+                                "end": {
+                                  "line": 28,
+                                  "column": 22
+                                }
+                              },
+                              "value": "/my/likes",
+                              "rawValue": "/my/likes",
+                              "raw": "'/my/likes'"
+                            },
+                            "kind": "init"
+                          },
+                          {
+                            "type": "Property",
+                            "start": 694,
+                            "end": 742,
+                            "loc": {
+                              "start": {
+                                "line": 29,
+                                "column": 6
+                              },
+                              "end": {
+                                "line": 29,
+                                "column": 54
+                              }
+                            },
+                            "method": false,
+                            "shorthand": false,
+                            "computed": false,
+                            "key": {
+                              "type": "Identifier",
+                              "start": 694,
+                              "end": 702,
+                              "loc": {
+                                "start": {
+                                  "line": 29,
+                                  "column": 6
+                                },
+                                "end": {
+                                  "line": 29,
+                                  "column": 14
+                                }
+                              },
+                              "name": "template"
+                            },
+                            "value": {
+                              "type": "CallExpression",
+                              "start": 704,
+                              "end": 742,
+                              "loc": {
+                                "start": {
+                                  "line": 29,
+                                  "column": 16
+                                },
+                                "end": {
+                                  "line": 29,
+                                  "column": 54
+                                }
+                              },
+                              "callee": {
+                                "type": "Identifier",
+                                "start": 704,
+                                "end": 711,
+                                "loc": {
+                                  "start": {
+                                    "line": 29,
+                                    "column": 16
+                                  },
+                                  "end": {
+                                    "line": 29,
+                                    "column": 23
+                                  }
+                                },
+                                "name": "require"
+                              },
+                              "arguments": [
+                                {
+                                  "type": "Literal",
+                                  "start": 712,
+                                  "end": 741,
+                                  "loc": {
+                                    "start": {
+                                      "line": 29,
+                                      "column": 24
+                                    },
+                                    "end": {
+                                      "line": 29,
+                                      "column": 53
+                                    }
+                                  },
+                                  "value": "./templates/user-likes.html",
+                                  "rawValue": "./templates/user-likes.html",
+                                  "raw": "'./templates/user-likes.html'"
+                                }
+                              ]
+                            },
+                            "kind": "init"
+                          },
+                          {
+                            "type": "Property",
+                            "start": 750,
+                            "end": 777,
+                            "loc": {
+                              "start": {
+                                "line": 30,
+                                "column": 6
+                              },
+                              "end": {
+                                "line": 30,
+                                "column": 33
+                              }
+                            },
+                            "method": false,
+                            "shorthand": false,
+                            "computed": false,
+                            "key": {
+                              "type": "Identifier",
+                              "start": 750,
+                              "end": 760,
+                              "loc": {
+                                "start": {
+                                  "line": 30,
+                                  "column": 6
+                                },
+                                "end": {
+                                  "line": 30,
+                                  "column": 16
+                                }
+                              },
+                              "name": "controller"
+                            },
+                            "value": {
+                              "type": "Literal",
+                              "start": 762,
+                              "end": 777,
+                              "loc": {
+                                "start": {
+                                  "line": 30,
+                                  "column": 18
+                                },
+                                "end": {
+                                  "line": 30,
+                                  "column": 33
+                                }
+                              },
+                              "value": "userLikesCtrl",
+                              "rawValue": "userLikesCtrl",
+                              "raw": "'userLikesCtrl'"
+                            },
+                            "kind": "init"
+                          },
+                          {
+                            "type": "Property",
+                            "start": 785,
+                            "end": 803,
+                            "loc": {
+                              "start": {
+                                "line": 31,
+                                "column": 6
+                              },
+                              "end": {
+                                "line": 31,
+                                "column": 24
+                              }
+                            },
+                            "method": false,
+                            "shorthand": false,
+                            "computed": false,
+                            "key": {
+                              "type": "Identifier",
+                              "start": 785,
+                              "end": 797,
+                              "loc": {
+                                "start": {
+                                  "line": 31,
+                                  "column": 6
+                                },
+                                "end": {
+                                  "line": 31,
+                                  "column": 18
+                                }
+                              },
+                              "name": "controllerAs"
+                            },
+                            "value": {
+                              "type": "Literal",
+                              "start": 799,
+                              "end": 803,
+                              "loc": {
+                                "start": {
+                                  "line": 31,
+                                  "column": 20
+                                },
+                                "end": {
+                                  "line": 31,
+                                  "column": 24
+                                }
+                              },
+                              "value": "vm",
+                              "rawValue": "vm",
+                              "raw": "'vm'"
+                            },
+                            "kind": "init"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "start": 817,
+                    "end": 822,
+                    "loc": {
+                      "start": {
+                        "line": 33,
+                        "column": 5
+                      },
+                      "end": {
+                        "line": 33,
+                        "column": 10
+                      }
+                    },
+                    "name": "state"
+                  },
+                  "computed": false
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "start": 823,
+                    "end": 841,
+                    "loc": {
+                      "start": {
+                        "line": 33,
+                        "column": 11
+                      },
+                      "end": {
+                        "line": 33,
+                        "column": 29
+                      }
+                    },
+                    "value": "msl.user.library",
+                    "rawValue": "msl.user.library",
+                    "raw": "'msl.user.library'"
+                  },
+                  {
+                    "type": "ObjectExpression",
+                    "start": 843,
+                    "end": 997,
+                    "loc": {
+                      "start": {
+                        "line": 33,
+                        "column": 31
+                      },
+                      "end": {
+                        "line": 38,
+                        "column": 5
+                      }
+                    },
+                    "properties": [
+                      {
+                        "type": "Property",
+                        "start": 851,
+                        "end": 869,
+                        "loc": {
+                          "start": {
+                            "line": 34,
+                            "column": 6
+                          },
+                          "end": {
+                            "line": 34,
+                            "column": 24
+                          }
+                        },
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 851,
+                          "end": 854,
+                          "loc": {
+                            "start": {
+                              "line": 34,
+                              "column": 6
+                            },
+                            "end": {
+                              "line": 34,
+                              "column": 9
+                            }
+                          },
+                          "name": "url"
+                        },
+                        "value": {
+                          "type": "Literal",
+                          "start": 856,
+                          "end": 869,
+                          "loc": {
+                            "start": {
+                              "line": 34,
+                              "column": 11
+                            },
+                            "end": {
+                              "line": 34,
+                              "column": 24
+                            }
+                          },
+                          "value": "/my/library",
+                          "rawValue": "/my/library",
+                          "raw": "'/my/library'"
+                        },
+                        "kind": "init"
+                      },
+                      {
+                        "type": "Property",
+                        "start": 877,
+                        "end": 927,
+                        "loc": {
+                          "start": {
+                            "line": 35,
+                            "column": 6
+                          },
+                          "end": {
+                            "line": 35,
+                            "column": 56
+                          }
+                        },
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 877,
+                          "end": 885,
+                          "loc": {
+                            "start": {
+                              "line": 35,
+                              "column": 6
+                            },
+                            "end": {
+                              "line": 35,
+                              "column": 14
+                            }
+                          },
+                          "name": "template"
+                        },
+                        "value": {
+                          "type": "CallExpression",
+                          "start": 887,
+                          "end": 927,
+                          "loc": {
+                            "start": {
+                              "line": 35,
+                              "column": 16
+                            },
+                            "end": {
+                              "line": 35,
+                              "column": 56
+                            }
+                          },
+                          "callee": {
+                            "type": "Identifier",
+                            "start": 887,
+                            "end": 894,
+                            "loc": {
+                              "start": {
+                                "line": 35,
+                                "column": 16
+                              },
+                              "end": {
+                                "line": 35,
+                                "column": 23
+                              }
+                            },
+                            "name": "require"
+                          },
+                          "arguments": [
+                            {
+                              "type": "Literal",
+                              "start": 895,
+                              "end": 926,
+                              "loc": {
+                                "start": {
+                                  "line": 35,
+                                  "column": 24
+                                },
+                                "end": {
+                                  "line": 35,
+                                  "column": 55
+                                }
+                              },
+                              "value": "./templates/user-library.html",
+                              "rawValue": "./templates/user-library.html",
+                              "raw": "'./templates/user-library.html'"
+                            }
+                          ]
+                        },
+                        "kind": "init"
+                      },
+                      {
+                        "type": "Property",
+                        "start": 935,
+                        "end": 964,
+                        "loc": {
+                          "start": {
+                            "line": 36,
+                            "column": 6
+                          },
+                          "end": {
+                            "line": 36,
+                            "column": 35
+                          }
+                        },
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 935,
+                          "end": 945,
+                          "loc": {
+                            "start": {
+                              "line": 36,
+                              "column": 6
+                            },
+                            "end": {
+                              "line": 36,
+                              "column": 16
+                            }
+                          },
+                          "name": "controller"
+                        },
+                        "value": {
+                          "type": "Literal",
+                          "start": 947,
+                          "end": 964,
+                          "loc": {
+                            "start": {
+                              "line": 36,
+                              "column": 18
+                            },
+                            "end": {
+                              "line": 36,
+                              "column": 35
+                            }
+                          },
+                          "value": "userLibraryCtrl",
+                          "rawValue": "userLibraryCtrl",
+                          "raw": "'userLibraryCtrl'"
+                        },
+                        "kind": "init"
+                      },
+                      {
+                        "type": "Property",
+                        "start": 972,
+                        "end": 990,
+                        "loc": {
+                          "start": {
+                            "line": 37,
+                            "column": 6
+                          },
+                          "end": {
+                            "line": 37,
+                            "column": 24
+                          }
+                        },
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 972,
+                          "end": 984,
+                          "loc": {
+                            "start": {
+                              "line": 37,
+                              "column": 6
+                            },
+                            "end": {
+                              "line": 37,
+                              "column": 18
+                            }
+                          },
+                          "name": "controllerAs"
+                        },
+                        "value": {
+                          "type": "Literal",
+                          "start": 986,
+                          "end": 990,
+                          "loc": {
+                            "start": {
+                              "line": 37,
+                              "column": 20
+                            },
+                            "end": {
+                              "line": 37,
+                              "column": 24
+                            }
+                          },
+                          "value": "vm",
+                          "rawValue": "vm",
+                          "raw": "'vm'"
+                        },
+                        "kind": "init"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Angular config for my page.\n * @param {ui.router.state.$stateProvider} $stateProvider\n ",
+            "start": 56,
+            "end": 152,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 0
+              },
+              "end": {
+                "line": 6,
+                "column": 3
+              }
+            },
+            "range": [
+              56,
+              152
+            ]
+          }
+        ],
+        "trailingComments": []
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Angular config for my page.\n * @param {ui.router.state.$stateProvider} $stateProvider\n ",
+          "start": 56,
+          "end": 152,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 6,
+              "column": 3
+            }
+          },
+          "range": [
+            56,
+            152
+          ]
+        }
+      ]
+    }
+  ]
+}

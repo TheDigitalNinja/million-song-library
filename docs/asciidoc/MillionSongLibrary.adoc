@@ -1,0 +1,32 @@
+= Kenzan Million Song Library Project
+:toc: left
+:toclevels: 3
+:toc-title: Kenzan Million Song Library Project
+:sectnums:
+:icons: font
+// Set the output attribute below to html if generating HTML output, or set to pdf if generating PDF output.
+:output: pdf
+
+One does not simply build a rich, dynamic library with a million songs. It takes an array of microservices crafted with open technologies, a database that won't hold back performance, and an architecture that's ready to venture out to the cloud when you are.
+
+TIP: With this demonstration project, you can deploy a Million Song Library and see what it's like to launch a microservices-based application of your own. If you have questions about the demo, feel free to drop us a line at support_msl@kenzan.com.
+
+include::MSL-Overview.adoc[leveloffset=+1]
+
+include::Tools.adoc[leveloffset=+1]
+
+include::Client.adoc[leveloffset=+1]
+
+include::Server.adoc[leveloffset=+1]
+
+include::Database.adoc[leveloffset=+1]
+
+include::Setup-Mac.adoc[leveloffset=+1]
+
+include::Setup-Ubuntu.adoc[leveloffset=+1]
+
+include::Setup-Windows.adoc[leveloffset=+1]
+
+include::Setup-Manual.adoc[leveloffset=+1]
+
+include::Setup-AWS.adoc[leveloffset=+1]

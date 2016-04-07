@@ -1,0 +1,7 @@
+com.kenzan.msl.account.edge
+com.kenzan.msl.account.edge.services
+com.kenzan.msl.account.edge.translate
+io.swagger.api
+io.swagger.api.factories
+io.swagger.api.impl
+io.swagger.client

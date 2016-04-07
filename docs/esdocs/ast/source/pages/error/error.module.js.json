@@ -1,0 +1,538 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 321,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 16,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 8,
+      "end": 42,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 34
+        }
+      },
+      "specifiers": [],
+      "source": {
+        "type": "Literal",
+        "start": 15,
+        "end": 41,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 7
+          },
+          "end": {
+            "line": 2,
+            "column": 33
+          }
+        },
+        "value": "./stylesheets/error.scss",
+        "rawValue": "./stylesheets/error.scss",
+        "raw": "'./stylesheets/error.scss'",
+        "leadingComments": null
+      },
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " View",
+          "start": 0,
+          "end": 7,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 7
+            }
+          },
+          "range": [
+            0,
+            7
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Dependencies",
+          "start": 44,
+          "end": 59,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 15
+            }
+          },
+          "range": [
+            44,
+            59
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 60,
+      "end": 90,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 30
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 67,
+          "end": 74,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 7
+            },
+            "end": {
+              "line": 5,
+              "column": 14
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 67,
+            "end": 74,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 7
+              },
+              "end": {
+                "line": 5,
+                "column": 14
+              }
+            },
+            "name": "angular",
+            "leadingComments": null
+          },
+          "leadingComments": null
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 80,
+        "end": 89,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 20
+          },
+          "end": {
+            "line": 5,
+            "column": 29
+          }
+        },
+        "value": "angular",
+        "rawValue": "angular",
+        "raw": "'angular'"
+      },
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Dependencies",
+          "start": 44,
+          "end": 59,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 15
+            }
+          },
+          "range": [
+            44,
+            59
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 92,
+      "end": 138,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 46
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 99,
+          "end": 113,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 7
+            },
+            "end": {
+              "line": 7,
+              "column": 21
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 99,
+            "end": 113,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 7
+              },
+              "end": {
+                "line": 7,
+                "column": 21
+              }
+            },
+            "name": "errorPageRoute"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 119,
+        "end": 137,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 27
+          },
+          "end": {
+            "line": 7,
+            "column": 45
+          }
+        },
+        "value": "./error.route.js",
+        "rawValue": "./error.route.js",
+        "raw": "'./error.route.js'"
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Default error page module.\n * All pages related with errors are handled in this module.\n ",
+          "start": 140,
+          "end": 238,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 0
+            },
+            "end": {
+              "line": 12,
+              "column": 3
+            }
+          },
+          "range": [
+            140,
+            238
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 239,
+      "end": 320,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 8
+        }
+      },
+      "declaration": {
+        "type": "MemberExpression",
+        "start": 254,
+        "end": 319,
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 15
+          },
+          "end": {
+            "line": 15,
+            "column": 7
+          }
+        },
+        "object": {
+          "type": "CallExpression",
+          "start": 254,
+          "end": 311,
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 15
+            },
+            "end": {
+              "line": 14,
+              "column": 25
+            }
+          },
+          "callee": {
+            "type": "MemberExpression",
+            "start": 254,
+            "end": 295,
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 15
+              },
+              "end": {
+                "line": 14,
+                "column": 9
+              }
+            },
+            "object": {
+              "type": "CallExpression",
+              "start": 254,
+              "end": 285,
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 15
+                },
+                "end": {
+                  "line": 13,
+                  "column": 46
+                }
+              },
+              "callee": {
+                "type": "MemberExpression",
+                "start": 254,
+                "end": 268,
+                "loc": {
+                  "start": {
+                    "line": 13,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 13,
+                    "column": 29
+                  }
+                },
+                "object": {
+                  "type": "Identifier",
+                  "start": 254,
+                  "end": 261,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 15
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 22
+                    }
+                  },
+                  "name": "angular",
+                  "leadingComments": null
+                },
+                "property": {
+                  "type": "Identifier",
+                  "start": 262,
+                  "end": 268,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 23
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 29
+                    }
+                  },
+                  "name": "module"
+                },
+                "computed": false,
+                "leadingComments": null
+              },
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "start": 269,
+                  "end": 280,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 30
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 41
+                    }
+                  },
+                  "value": "msl.error",
+                  "rawValue": "msl.error",
+                  "raw": "'msl.error'"
+                },
+                {
+                  "type": "ArrayExpression",
+                  "start": 282,
+                  "end": 284,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 43
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 45
+                    }
+                  },
+                  "elements": []
+                }
+              ],
+              "leadingComments": null
+            },
+            "property": {
+              "type": "Identifier",
+              "start": 289,
+              "end": 295,
+              "loc": {
+                "start": {
+                  "line": 14,
+                  "column": 3
+                },
+                "end": {
+                  "line": 14,
+                  "column": 9
+                }
+              },
+              "name": "config"
+            },
+            "computed": false,
+            "leadingComments": null
+          },
+          "arguments": [
+            {
+              "type": "Identifier",
+              "start": 296,
+              "end": 310,
+              "loc": {
+                "start": {
+                  "line": 14,
+                  "column": 10
+                },
+                "end": {
+                  "line": 14,
+                  "column": 24
+                }
+              },
+              "name": "errorPageRoute"
+            }
+          ],
+          "leadingComments": null
+        },
+        "property": {
+          "type": "Identifier",
+          "start": 315,
+          "end": 319,
+          "loc": {
+            "start": {
+              "line": 15,
+              "column": 3
+            },
+            "end": {
+              "line": 15,
+              "column": 7
+            }
+          },
+          "name": "name"
+        },
+        "computed": false,
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Default error page module.\n * All pages related with errors are handled in this module.\n ",
+            "start": 140,
+            "end": 238,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 12,
+                "column": 3
+              }
+            },
+            "range": [
+              140,
+              238
+            ]
+          }
+        ],
+        "trailingComments": []
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Default error page module.\n * All pages related with errors are handled in this module.\n ",
+          "start": 140,
+          "end": 238,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 0
+            },
+            "end": {
+              "line": 12,
+              "column": 3
+            }
+          },
+          "range": [
+            140,
+            238
+          ]
+        }
+      ]
+    }
+  ]
+}

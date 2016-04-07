@@ -1,0 +1,8 @@
+com.kenzan.msl.login.edge.services
+com.kenzan.msl.server
+com.kenzan.msl.server.mock
+com.kenzan.msl.server.services
+io.swagger.api
+io.swagger.api.factories
+io.swagger.api.impl
+io.swagger.client

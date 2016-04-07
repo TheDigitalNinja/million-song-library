@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">src/modules/datastore/services/myLibraryStore.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-defaultRoute">defaultRoute</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-defaultRun">defaultRun</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ACCOUNT_EDGE">ACCOUNT_EDGE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ANONYMOUS_REDIRECT_TO">ANONYMOUS_REDIRECT_TO</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CATALOG_EDGE">CATALOG_EDGE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GENRE_FACET_ID">GENRE_FACET_ID</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LOGIN_EDGE">LOGIN_EDGE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PAGE_SIZE">PAGE_SIZE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-RATINGS_EDGE">RATINGS_EDGE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-RATING_FACET_ID">RATING_FACET_ID</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ROLE_ANONYMOUS">ROLE_ANONYMOUS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ROLE_USER">ROLE_USER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-USER_REDIRECT_TO">USER_REDIRECT_TO</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">filters</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-timeFilter">timeFilter</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">layout</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-layoutRoute">layoutRoute</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">layout/navbar</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/layout/navbar/navbar-search.controller.js~navbarSearchCtrl.html">navbarSearchCtrl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/layout/navbar/navbar.controller.js~navbarCtrl.html">navbarCtrl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-navbar">navbar</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">layout/sidenav</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/layout/sidenav/filter.model.js~filterModel.html">filterModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">layout/sidenav/genre-filter</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/layout/sidenav/genre-filter/genre-filter.controller.js~genreFilterCtrl.html">genreFilterCtrl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/layout/sidenav/genre-filter/genre-filter.directive.js~GenreFilter.html">GenreFilter</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">layout/sidenav/rating-filter</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/layout/sidenav/rating-filter/rating-filter.controller.js~ratingFilterCtrl.html">ratingFilterCtrl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/layout/sidenav/rating-filter/rating-filter.directive.js~RatingFilter.html">RatingFilter</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules/authentication</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-authCookie">authCookie</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-authentication">authentication</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules/authentication/directives</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-password">password</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules/datastore</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-entityMapper">entityMapper</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-request">request</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules/datastore/entities</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/datastore/entities/AlbumInfoEntity.js~AlbumInfoEntity.html">AlbumInfoEntity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/datastore/entities/AlbumListEntity.js~AlbumListEntity.html">AlbumListEntity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/datastore/entities/ArtistInfoEntity.js~ArtistInfoEntity.html">ArtistInfoEntity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/datastore/entities/ArtistListEntity.js~ArtistListEntity.html">ArtistListEntity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/datastore/entities/FacetInfoEntity.js~FacetInfoEntity.html">FacetInfoEntity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/datastore/entities/FacetListEntity.js~FacetListEntity.html">FacetListEntity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/datastore/entities/LoginSuccessResponseEntity.js~LoginSuccessResponseEntity.html">LoginSuccessResponseEntity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/datastore/entities/MyLibraryEntity.js~MyLibraryEntity.html">MyLibraryEntity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/datastore/entities/SongInfoEntity.js~SongInfoEntity.html">SongInfoEntity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/datastore/entities/SongListEntity.js~SongListEntity.html">SongListEntity</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/datastore/entities/StatusResponseEntity.js~StatusResponseEntity.html">StatusResponseEntity</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules/datastore/services</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-albumStore">albumStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-artistStore">artistStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-facetStore">facetStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-loginStore">loginStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-logoutStore">logoutStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-myLibraryStore">myLibraryStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rateAlbumStore">rateAlbumStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rateArtistStore">rateArtistStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rateSongStore">rateSongStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-recentSongsStore">recentSongsStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registrationStore">registrationStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-songStore">songStore</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules/login-modal</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/login-modal/login-modal.controller.js~loginModalCtrl.html">loginModalCtrl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/login-modal/login-modal.js~LoginModal.html">LoginModal</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules/player/directives</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-playButton">playButton</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-playerDirective">playerDirective</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules/player/factories</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-player">player</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules/songs-table/directives</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-songsTable">songsTable</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules/star-rating/controllers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/star-rating/controllers/star-rating.controller.js~ratingController.html">ratingController</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules/star-rating/directives</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-starRatingDirective">starRatingDirective</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modules/star-rating/models</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/modules/star-rating/models/rating.model.js~ratingModel.html">ratingModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/album</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-albumPageRoute">albumPageRoute</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/album/controllers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/pages/album/controllers/album-box.controller.js~albumBoxCtrl.html">albumBoxCtrl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/pages/album/controllers/album.controller.js~albumCtrl.html">albumCtrl</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/album/directives</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-albumBox">albumBox</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-albumsList">albumsList</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/album/models</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-albumModel">albumModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/artist</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-artistPageRoute">artistPageRoute</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/artist/controllers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/pages/artist/controllers/artist-box.controller.js~artistBoxCtrl.html">artistBoxCtrl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/pages/artist/controllers/artist.controller.js~artistCtrl.html">artistCtrl</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/artist/directives</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-artistsBox">artistsBox</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-artistsList">artistsList</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/artist/models</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-artistModel">artistModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/error</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-errorPageRoute">errorPageRoute</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/home</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-homeRoute">homeRoute</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/home/controllers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/pages/home/controllers/home.controller.js~homeCtrl.html">homeCtrl</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/home/directives</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-scrollListener">scrollListener</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/library</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-LibraryCarousel">LibraryCarousel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-libraryRoute">libraryRoute</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/library/controllers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/pages/library/controllers/library.controller.js~libraryCtrl.html">libraryCtrl</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/library/directives</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-addToLibrary">addToLibrary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-removeFromLibrary">removeFromLibrary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-repeatComplete">repeatComplete</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/library/models</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/pages/library/models/library.model.js~libraryModel.html">libraryModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/login</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-loginPageRoute">loginPageRoute</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/login/controllers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/pages/login/controllers/login.controller.js~loginCtrl.html">loginCtrl</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/registration</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registrationRoute">registrationRoute</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/registration/controllers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/pages/registration/controllers/registration.controller.js~registrationCtrl.html">registrationCtrl</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/registration/directives</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-match">match</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/search</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-searchPageRoute">searchPageRoute</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/search/controllers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/pages/search/controllers/search.controller.js~searchCtrl.html">searchCtrl</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/song</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-songPageRoute">songPageRoute</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/song/controllers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/pages/song/controllers/song-box.controller.js~songBoxCtrl.html">songBoxCtrl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/pages/song/controllers/song.controller.js~songCtrl.html">songCtrl</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/song/directives</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-songBox">songBox</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-songList">songList</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/song/models</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-songModel">songModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/user</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-userRoute">userRoute</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pages/user/controllers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/pages/user/controllers/user-history.controller.js~historyCtrl.html">historyCtrl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/pages/user/controllers/user-library.controller.js~libraryCtrl.html">libraryCtrl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-likesCtrl">likesCtrl</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/modules/datastore/services/myLibraryStore.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {ACCOUNT_EDGE} from &apos;../../../constants.js&apos;;
+
+import StatusResponseEntity from &apos;../entities/StatusResponseEntity&apos;;
+
+/**
+ * @name myLibraryStore
+ * @param {request} request
+ * @param {entityMapper} entityMapper
+ * @param {MyLibraryEntity} MyLibraryEntity
+ * @param {StatusResponseEntity} StatusResponseEntity
+ * @returns {*}
+ */
+function myLibraryStore(
+  request,
+  entityMapper,
+  MyLibraryEntity,
+  StatusResponseEntity
+) {
+  &apos;ngInject&apos;;
+
+  const API_REQUEST_PATH = `${ACCOUNT_EDGE}users/mylibrary`;
+  return {
+    /**
+     * Fetch my library from account endpoint.
+     * @name myLibraryStore#fetch
+     * @return {MyLibraryEntity}
+     */
+    async fetch() {
+      const response = await request.get(API_REQUEST_PATH);
+      return entityMapper(response.data, MyLibraryEntity);
+    },
+
+    /**
+     * Add song to my library.
+     * @param {string} songId
+     * @return {StatusResponseEntity}
+     */
+    async addSong(songId) {
+      const apiPath = `${ API_REQUEST_PATH }/addsong/${ songId }`;
+      const response = await request.put(apiPath);
+      return entityMapper(response, StatusResponseEntity);
+    },
+
+    /**
+     * Add album to my library.
+     * @param {string} albumId
+     * @return {StatusResponseEntity}
+     */
+    async addAlbum(albumId) {
+      const apiPath = `${ API_REQUEST_PATH }/addalbum/${ albumId }`;
+      const response = await request.put(apiPath);
+      return entityMapper(response, StatusResponseEntity);
+    },
+
+    /**
+     * Add artist to my library.
+     * @param {string} artistId
+     * @return {StatusResponseEntity}
+     */
+    async addArtist(artistId) {
+      const apiPath = `${ API_REQUEST_PATH }/addartist/${ artistId }`;
+      const response = await request.put(apiPath);
+      return entityMapper(response, StatusResponseEntity);
+    },
+
+    /**
+     * Remove song to my library.
+     * @param {string} songId
+     * @param {string} timestamp
+     * @return {StatusResponseEntity}
+     */
+    async removeSong(songId, timestamp) {
+      const apiPath = `${ API_REQUEST_PATH }/removesong/${ songId }/${ timestamp }`;
+      const response = await request.delete(apiPath);
+      return entityMapper(response, StatusResponseEntity);
+    },
+
+    /**
+     * Remove album to my library.
+     * @param {string} albumId
+     * @param {string} timestamp
+     * @return {StatusResponseEntity}
+     */
+    async removeAlbum(albumId, timestamp) {
+      const apiPath = `${ API_REQUEST_PATH }/removealbum/${ albumId }/${ timestamp }`;
+      const response = await request.delete(apiPath);
+      return entityMapper(response, StatusResponseEntity);
+    },
+
+    /**
+     * Remove artist to my library.
+     * @param {string} artistId
+     * @param {string} timestamp
+     * @return {StatusResponseEntity}
+     */
+    async removeArtist(artistId, timestamp) {
+      const apiPath = `${ API_REQUEST_PATH }/removeartist/${ artistId }/${ timestamp }`;
+      const response = await request.delete(apiPath);
+      return entityMapper(response, StatusResponseEntity);
+    },
+  };
+}
+
+export default myLibraryStore;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

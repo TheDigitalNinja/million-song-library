@@ -1,0 +1,1597 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 935,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 36,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 8,
+      "end": 41,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 33
+        }
+      },
+      "specifiers": [],
+      "source": {
+        "type": "Literal",
+        "start": 15,
+        "end": 40,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 7
+          },
+          "end": {
+            "line": 2,
+            "column": 32
+          }
+        },
+        "value": "./stylesheets/song.scss",
+        "rawValue": "./stylesheets/song.scss",
+        "raw": "'./stylesheets/song.scss'",
+        "leadingComments": null
+      },
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " View",
+          "start": 0,
+          "end": 7,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 7
+            }
+          },
+          "range": [
+            0,
+            7
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Dependencies",
+          "start": 43,
+          "end": 58,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 15
+            }
+          },
+          "range": [
+            43,
+            58
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 59,
+      "end": 89,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 30
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 66,
+          "end": 73,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 7
+            },
+            "end": {
+              "line": 5,
+              "column": 14
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 66,
+            "end": 73,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 7
+              },
+              "end": {
+                "line": 5,
+                "column": 14
+              }
+            },
+            "name": "angular",
+            "leadingComments": null
+          },
+          "leadingComments": null
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 79,
+        "end": 88,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 20
+          },
+          "end": {
+            "line": 5,
+            "column": 29
+          }
+        },
+        "value": "angular",
+        "rawValue": "angular",
+        "raw": "'angular'"
+      },
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Dependencies",
+          "start": 43,
+          "end": 58,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 15
+            }
+          },
+          "range": [
+            43,
+            58
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 90,
+      "end": 129,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 39
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 97,
+          "end": 103,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 7
+            },
+            "end": {
+              "line": 6,
+              "column": 13
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 97,
+            "end": 103,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 7
+              },
+              "end": {
+                "line": 6,
+                "column": 13
+              }
+            },
+            "name": "router"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 109,
+        "end": 128,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 19
+          },
+          "end": {
+            "line": 6,
+            "column": 38
+          }
+        },
+        "value": "angular-ui-router",
+        "rawValue": "angular-ui-router",
+        "raw": "'angular-ui-router'"
+      },
+      "trailingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Modules",
+          "start": 131,
+          "end": 141,
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 10
+            }
+          },
+          "range": [
+            131,
+            141
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 142,
+      "end": 191,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 49
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 149,
+          "end": 158,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 7
+            },
+            "end": {
+              "line": 9,
+              "column": 16
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 149,
+            "end": 158,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 7
+              },
+              "end": {
+                "line": 9,
+                "column": 16
+              }
+            },
+            "name": "dataStore",
+            "leadingComments": null
+          },
+          "leadingComments": null
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 164,
+        "end": 190,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 22
+          },
+          "end": {
+            "line": 9,
+            "column": 48
+          }
+        },
+        "value": "modules/datastore/module",
+        "rawValue": "modules/datastore/module",
+        "raw": "'modules/datastore/module'"
+      },
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Modules",
+          "start": 131,
+          "end": 141,
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 10
+            }
+          },
+          "range": [
+            131,
+            141
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 192,
+      "end": 240,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 48
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 199,
+          "end": 205,
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 7
+            },
+            "end": {
+              "line": 10,
+              "column": 13
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 199,
+            "end": 205,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 7
+              },
+              "end": {
+                "line": 10,
+                "column": 13
+              }
+            },
+            "name": "rating"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 211,
+        "end": 239,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 19
+          },
+          "end": {
+            "line": 10,
+            "column": 47
+          }
+        },
+        "value": "modules/star-rating/module",
+        "rawValue": "modules/star-rating/module",
+        "raw": "'modules/star-rating/module'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 241,
+      "end": 300,
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 59
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 248,
+          "end": 262,
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 7
+            },
+            "end": {
+              "line": 11,
+              "column": 21
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 248,
+            "end": 262,
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 7
+              },
+              "end": {
+                "line": 11,
+                "column": 21
+              }
+            },
+            "name": "authentication"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 268,
+        "end": 299,
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 27
+          },
+          "end": {
+            "line": 11,
+            "column": 58
+          }
+        },
+        "value": "modules/authentication/module",
+        "rawValue": "modules/authentication/module",
+        "raw": "'modules/authentication/module'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 302,
+      "end": 346,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 44
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 309,
+          "end": 322,
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 7
+            },
+            "end": {
+              "line": 13,
+              "column": 20
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 309,
+            "end": 322,
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 7
+              },
+              "end": {
+                "line": 13,
+                "column": 20
+              }
+            },
+            "name": "songPageRoute"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 328,
+        "end": 345,
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 26
+          },
+          "end": {
+            "line": 13,
+            "column": 43
+          }
+        },
+        "value": "./song.route.js",
+        "rawValue": "./song.route.js",
+        "raw": "'./song.route.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 347,
+      "end": 403,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 56
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 354,
+          "end": 362,
+          "loc": {
+            "start": {
+              "line": 14,
+              "column": 7
+            },
+            "end": {
+              "line": 14,
+              "column": 15
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 354,
+            "end": 362,
+            "loc": {
+              "start": {
+                "line": 14,
+                "column": 7
+              },
+              "end": {
+                "line": 14,
+                "column": 15
+              }
+            },
+            "name": "songCtrl"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 368,
+        "end": 402,
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 21
+          },
+          "end": {
+            "line": 14,
+            "column": 55
+          }
+        },
+        "value": "./controllers/song.controller.js",
+        "rawValue": "./controllers/song.controller.js",
+        "raw": "'./controllers/song.controller.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 404,
+      "end": 467,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 63
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 411,
+          "end": 422,
+          "loc": {
+            "start": {
+              "line": 15,
+              "column": 7
+            },
+            "end": {
+              "line": 15,
+              "column": 18
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 411,
+            "end": 422,
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 7
+              },
+              "end": {
+                "line": 15,
+                "column": 18
+              }
+            },
+            "name": "songBoxCtrl"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 428,
+        "end": 466,
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 24
+          },
+          "end": {
+            "line": 15,
+            "column": 62
+          }
+        },
+        "value": "./controllers/song-box.controller.js",
+        "rawValue": "./controllers/song-box.controller.js",
+        "raw": "'./controllers/song-box.controller.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 469,
+      "end": 520,
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 0
+        },
+        "end": {
+          "line": 17,
+          "column": 51
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 476,
+          "end": 485,
+          "loc": {
+            "start": {
+              "line": 17,
+              "column": 7
+            },
+            "end": {
+              "line": 17,
+              "column": 16
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 476,
+            "end": 485,
+            "loc": {
+              "start": {
+                "line": 17,
+                "column": 7
+              },
+              "end": {
+                "line": 17,
+                "column": 16
+              }
+            },
+            "name": "songsList"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 491,
+        "end": 519,
+        "loc": {
+          "start": {
+            "line": 17,
+            "column": 22
+          },
+          "end": {
+            "line": 17,
+            "column": 50
+          }
+        },
+        "value": "./directives/songs-list.js",
+        "rawValue": "./directives/songs-list.js",
+        "raw": "'./directives/songs-list.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 522,
+      "end": 569,
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 0
+        },
+        "end": {
+          "line": 19,
+          "column": 47
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 529,
+          "end": 536,
+          "loc": {
+            "start": {
+              "line": 19,
+              "column": 7
+            },
+            "end": {
+              "line": 19,
+              "column": 14
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 529,
+            "end": 536,
+            "loc": {
+              "start": {
+                "line": 19,
+                "column": 7
+              },
+              "end": {
+                "line": 19,
+                "column": 14
+              }
+            },
+            "name": "songBox"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 542,
+        "end": 568,
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 20
+          },
+          "end": {
+            "line": 19,
+            "column": 46
+          }
+        },
+        "value": "./directives/song-box.js",
+        "rawValue": "./directives/song-box.js",
+        "raw": "'./directives/song-box.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 571,
+      "end": 618,
+      "loc": {
+        "start": {
+          "line": 21,
+          "column": 0
+        },
+        "end": {
+          "line": 21,
+          "column": 47
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 578,
+          "end": 587,
+          "loc": {
+            "start": {
+              "line": 21,
+              "column": 7
+            },
+            "end": {
+              "line": 21,
+              "column": 16
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 578,
+            "end": 587,
+            "loc": {
+              "start": {
+                "line": 21,
+                "column": 7
+              },
+              "end": {
+                "line": 21,
+                "column": 16
+              }
+            },
+            "name": "songModel"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 593,
+        "end": 617,
+        "loc": {
+          "start": {
+            "line": 21,
+            "column": 22
+          },
+          "end": {
+            "line": 21,
+            "column": 46
+          }
+        },
+        "value": "./models/song.model.js",
+        "rawValue": "./models/song.model.js",
+        "raw": "'./models/song.model.js'"
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 620,
+      "end": 934,
+      "loc": {
+        "start": {
+          "line": 23,
+          "column": 0
+        },
+        "end": {
+          "line": 35,
+          "column": 8
+        }
+      },
+      "declaration": {
+        "type": "MemberExpression",
+        "start": 635,
+        "end": 933,
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 15
+          },
+          "end": {
+            "line": 35,
+            "column": 7
+          }
+        },
+        "object": {
+          "type": "CallExpression",
+          "start": 635,
+          "end": 925,
+          "loc": {
+            "start": {
+              "line": 23,
+              "column": 15
+            },
+            "end": {
+              "line": 34,
+              "column": 34
+            }
+          },
+          "callee": {
+            "type": "MemberExpression",
+            "start": 635,
+            "end": 901,
+            "loc": {
+              "start": {
+                "line": 23,
+                "column": 15
+              },
+              "end": {
+                "line": 34,
+                "column": 10
+              }
+            },
+            "object": {
+              "type": "CallExpression",
+              "start": 635,
+              "end": 890,
+              "loc": {
+                "start": {
+                  "line": 23,
+                  "column": 15
+                },
+                "end": {
+                  "line": 33,
+                  "column": 36
+                }
+              },
+              "callee": {
+                "type": "MemberExpression",
+                "start": 635,
+                "end": 866,
+                "loc": {
+                  "start": {
+                    "line": 23,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 33,
+                    "column": 12
+                  }
+                },
+                "object": {
+                  "type": "CallExpression",
+                  "start": 635,
+                  "end": 853,
+                  "loc": {
+                    "start": {
+                      "line": 23,
+                      "column": 15
+                    },
+                    "end": {
+                      "line": 32,
+                      "column": 32
+                    }
+                  },
+                  "callee": {
+                    "type": "MemberExpression",
+                    "start": 635,
+                    "end": 833,
+                    "loc": {
+                      "start": {
+                        "line": 23,
+                        "column": 15
+                      },
+                      "end": {
+                        "line": 32,
+                        "column": 12
+                      }
+                    },
+                    "object": {
+                      "type": "CallExpression",
+                      "start": 635,
+                      "end": 820,
+                      "loc": {
+                        "start": {
+                          "line": 23,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 31,
+                          "column": 41
+                        }
+                      },
+                      "callee": {
+                        "type": "MemberExpression",
+                        "start": 635,
+                        "end": 792,
+                        "loc": {
+                          "start": {
+                            "line": 23,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 31,
+                            "column": 13
+                          }
+                        },
+                        "object": {
+                          "type": "CallExpression",
+                          "start": 635,
+                          "end": 778,
+                          "loc": {
+                            "start": {
+                              "line": 23,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 30,
+                              "column": 35
+                            }
+                          },
+                          "callee": {
+                            "type": "MemberExpression",
+                            "start": 635,
+                            "end": 756,
+                            "loc": {
+                              "start": {
+                                "line": 23,
+                                "column": 15
+                              },
+                              "end": {
+                                "line": 30,
+                                "column": 13
+                              }
+                            },
+                            "object": {
+                              "type": "CallExpression",
+                              "start": 635,
+                              "end": 742,
+                              "loc": {
+                                "start": {
+                                  "line": 23,
+                                  "column": 15
+                                },
+                                "end": {
+                                  "line": 29,
+                                  "column": 24
+                                }
+                              },
+                              "callee": {
+                                "type": "MemberExpression",
+                                "start": 635,
+                                "end": 727,
+                                "loc": {
+                                  "start": {
+                                    "line": 23,
+                                    "column": 15
+                                  },
+                                  "end": {
+                                    "line": 29,
+                                    "column": 9
+                                  }
+                                },
+                                "object": {
+                                  "type": "CallExpression",
+                                  "start": 635,
+                                  "end": 717,
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 15
+                                    },
+                                    "end": {
+                                      "line": 28,
+                                      "column": 2
+                                    }
+                                  },
+                                  "callee": {
+                                    "type": "MemberExpression",
+                                    "start": 635,
+                                    "end": 649,
+                                    "loc": {
+                                      "start": {
+                                        "line": 23,
+                                        "column": 15
+                                      },
+                                      "end": {
+                                        "line": 23,
+                                        "column": 29
+                                      }
+                                    },
+                                    "object": {
+                                      "type": "Identifier",
+                                      "start": 635,
+                                      "end": 642,
+                                      "loc": {
+                                        "start": {
+                                          "line": 23,
+                                          "column": 15
+                                        },
+                                        "end": {
+                                          "line": 23,
+                                          "column": 22
+                                        }
+                                      },
+                                      "name": "angular"
+                                    },
+                                    "property": {
+                                      "type": "Identifier",
+                                      "start": 643,
+                                      "end": 649,
+                                      "loc": {
+                                        "start": {
+                                          "line": 23,
+                                          "column": 23
+                                        },
+                                        "end": {
+                                          "line": 23,
+                                          "column": 29
+                                        }
+                                      },
+                                      "name": "module"
+                                    },
+                                    "computed": false
+                                  },
+                                  "arguments": [
+                                    {
+                                      "type": "Literal",
+                                      "start": 650,
+                                      "end": 660,
+                                      "loc": {
+                                        "start": {
+                                          "line": 23,
+                                          "column": 30
+                                        },
+                                        "end": {
+                                          "line": 23,
+                                          "column": 40
+                                        }
+                                      },
+                                      "value": "msl.song",
+                                      "rawValue": "msl.song",
+                                      "raw": "'msl.song'"
+                                    },
+                                    {
+                                      "type": "ArrayExpression",
+                                      "start": 662,
+                                      "end": 716,
+                                      "loc": {
+                                        "start": {
+                                          "line": 23,
+                                          "column": 42
+                                        },
+                                        "end": {
+                                          "line": 28,
+                                          "column": 1
+                                        }
+                                      },
+                                      "elements": [
+                                        {
+                                          "type": "Identifier",
+                                          "start": 666,
+                                          "end": 672,
+                                          "loc": {
+                                            "start": {
+                                              "line": 24,
+                                              "column": 2
+                                            },
+                                            "end": {
+                                              "line": 24,
+                                              "column": 8
+                                            }
+                                          },
+                                          "name": "router"
+                                        },
+                                        {
+                                          "type": "Identifier",
+                                          "start": 676,
+                                          "end": 682,
+                                          "loc": {
+                                            "start": {
+                                              "line": 25,
+                                              "column": 2
+                                            },
+                                            "end": {
+                                              "line": 25,
+                                              "column": 8
+                                            }
+                                          },
+                                          "name": "rating"
+                                        },
+                                        {
+                                          "type": "Identifier",
+                                          "start": 686,
+                                          "end": 695,
+                                          "loc": {
+                                            "start": {
+                                              "line": 26,
+                                              "column": 2
+                                            },
+                                            "end": {
+                                              "line": 26,
+                                              "column": 11
+                                            }
+                                          },
+                                          "name": "dataStore"
+                                        },
+                                        {
+                                          "type": "Identifier",
+                                          "start": 699,
+                                          "end": 713,
+                                          "loc": {
+                                            "start": {
+                                              "line": 27,
+                                              "column": 2
+                                            },
+                                            "end": {
+                                              "line": 27,
+                                              "column": 16
+                                            }
+                                          },
+                                          "name": "authentication"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "start": 721,
+                                  "end": 727,
+                                  "loc": {
+                                    "start": {
+                                      "line": 29,
+                                      "column": 3
+                                    },
+                                    "end": {
+                                      "line": 29,
+                                      "column": 9
+                                    }
+                                  },
+                                  "name": "config"
+                                },
+                                "computed": false
+                              },
+                              "arguments": [
+                                {
+                                  "type": "Identifier",
+                                  "start": 728,
+                                  "end": 741,
+                                  "loc": {
+                                    "start": {
+                                      "line": 29,
+                                      "column": 10
+                                    },
+                                    "end": {
+                                      "line": 29,
+                                      "column": 23
+                                    }
+                                  },
+                                  "name": "songPageRoute"
+                                }
+                              ]
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "start": 746,
+                              "end": 756,
+                              "loc": {
+                                "start": {
+                                  "line": 30,
+                                  "column": 3
+                                },
+                                "end": {
+                                  "line": 30,
+                                  "column": 13
+                                }
+                              },
+                              "name": "controller"
+                            },
+                            "computed": false
+                          },
+                          "arguments": [
+                            {
+                              "type": "Literal",
+                              "start": 757,
+                              "end": 767,
+                              "loc": {
+                                "start": {
+                                  "line": 30,
+                                  "column": 14
+                                },
+                                "end": {
+                                  "line": 30,
+                                  "column": 24
+                                }
+                              },
+                              "value": "songCtrl",
+                              "rawValue": "songCtrl",
+                              "raw": "'songCtrl'"
+                            },
+                            {
+                              "type": "Identifier",
+                              "start": 769,
+                              "end": 777,
+                              "loc": {
+                                "start": {
+                                  "line": 30,
+                                  "column": 26
+                                },
+                                "end": {
+                                  "line": 30,
+                                  "column": 34
+                                }
+                              },
+                              "name": "songCtrl"
+                            }
+                          ]
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 782,
+                          "end": 792,
+                          "loc": {
+                            "start": {
+                              "line": 31,
+                              "column": 3
+                            },
+                            "end": {
+                              "line": 31,
+                              "column": 13
+                            }
+                          },
+                          "name": "controller"
+                        },
+                        "computed": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "Literal",
+                          "start": 793,
+                          "end": 806,
+                          "loc": {
+                            "start": {
+                              "line": 31,
+                              "column": 14
+                            },
+                            "end": {
+                              "line": 31,
+                              "column": 27
+                            }
+                          },
+                          "value": "songBoxCtrl",
+                          "rawValue": "songBoxCtrl",
+                          "raw": "'songBoxCtrl'"
+                        },
+                        {
+                          "type": "Identifier",
+                          "start": 808,
+                          "end": 819,
+                          "loc": {
+                            "start": {
+                              "line": 31,
+                              "column": 29
+                            },
+                            "end": {
+                              "line": 31,
+                              "column": 40
+                            }
+                          },
+                          "name": "songBoxCtrl"
+                        }
+                      ]
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 824,
+                      "end": 833,
+                      "loc": {
+                        "start": {
+                          "line": 32,
+                          "column": 3
+                        },
+                        "end": {
+                          "line": 32,
+                          "column": 12
+                        }
+                      },
+                      "name": "directive"
+                    },
+                    "computed": false
+                  },
+                  "arguments": [
+                    {
+                      "type": "Literal",
+                      "start": 834,
+                      "end": 843,
+                      "loc": {
+                        "start": {
+                          "line": 32,
+                          "column": 13
+                        },
+                        "end": {
+                          "line": 32,
+                          "column": 22
+                        }
+                      },
+                      "value": "songBox",
+                      "rawValue": "songBox",
+                      "raw": "'songBox'"
+                    },
+                    {
+                      "type": "Identifier",
+                      "start": 845,
+                      "end": 852,
+                      "loc": {
+                        "start": {
+                          "line": 32,
+                          "column": 24
+                        },
+                        "end": {
+                          "line": 32,
+                          "column": 31
+                        }
+                      },
+                      "name": "songBox"
+                    }
+                  ]
+                },
+                "property": {
+                  "type": "Identifier",
+                  "start": 857,
+                  "end": 866,
+                  "loc": {
+                    "start": {
+                      "line": 33,
+                      "column": 3
+                    },
+                    "end": {
+                      "line": 33,
+                      "column": 12
+                    }
+                  },
+                  "name": "directive"
+                },
+                "computed": false
+              },
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "start": 867,
+                  "end": 878,
+                  "loc": {
+                    "start": {
+                      "line": 33,
+                      "column": 13
+                    },
+                    "end": {
+                      "line": 33,
+                      "column": 24
+                    }
+                  },
+                  "value": "songsList",
+                  "rawValue": "songsList",
+                  "raw": "'songsList'"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 880,
+                  "end": 889,
+                  "loc": {
+                    "start": {
+                      "line": 33,
+                      "column": 26
+                    },
+                    "end": {
+                      "line": 33,
+                      "column": 35
+                    }
+                  },
+                  "name": "songsList"
+                }
+              ]
+            },
+            "property": {
+              "type": "Identifier",
+              "start": 894,
+              "end": 901,
+              "loc": {
+                "start": {
+                  "line": 34,
+                  "column": 3
+                },
+                "end": {
+                  "line": 34,
+                  "column": 10
+                }
+              },
+              "name": "factory"
+            },
+            "computed": false
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "start": 902,
+              "end": 913,
+              "loc": {
+                "start": {
+                  "line": 34,
+                  "column": 11
+                },
+                "end": {
+                  "line": 34,
+                  "column": 22
+                }
+              },
+              "value": "songModel",
+              "rawValue": "songModel",
+              "raw": "'songModel'"
+            },
+            {
+              "type": "Identifier",
+              "start": 915,
+              "end": 924,
+              "loc": {
+                "start": {
+                  "line": 34,
+                  "column": 24
+                },
+                "end": {
+                  "line": 34,
+                  "column": 33
+                }
+              },
+              "name": "songModel"
+            }
+          ]
+        },
+        "property": {
+          "type": "Identifier",
+          "start": 929,
+          "end": 933,
+          "loc": {
+            "start": {
+              "line": 35,
+              "column": 3
+            },
+            "end": {
+              "line": 35,
+              "column": 7
+            }
+          },
+          "name": "name"
+        },
+        "computed": false,
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}

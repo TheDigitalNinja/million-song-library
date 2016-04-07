@@ -1,0 +1,1629 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 969,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 40,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "FunctionDeclaration",
+      "start": 102,
+      "end": 757,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 28,
+          "column": 1
+        }
+      },
+      "id": {
+        "type": "Identifier",
+        "start": 111,
+        "end": 127,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 9
+          },
+          "end": {
+            "line": 6,
+            "column": 25
+          }
+        },
+        "name": "playerController",
+        "leadingComments": null
+      },
+      "generator": false,
+      "expression": false,
+      "async": false,
+      "params": [
+        {
+          "type": "Identifier",
+          "start": 129,
+          "end": 135,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 27
+            },
+            "end": {
+              "line": 6,
+              "column": 33
+            }
+          },
+          "name": "$scope"
+        },
+        {
+          "type": "Identifier",
+          "start": 137,
+          "end": 143,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 35
+            },
+            "end": {
+              "line": 6,
+              "column": 41
+            }
+          },
+          "name": "player"
+        }
+      ],
+      "body": {
+        "type": "BlockStatement",
+        "start": 145,
+        "end": 757,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 43
+          },
+          "end": {
+            "line": 28,
+            "column": 1
+          }
+        },
+        "body": [
+          {
+            "type": "ExpressionStatement",
+            "start": 149,
+            "end": 160,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 2
+              },
+              "end": {
+                "line": 7,
+                "column": 13
+              }
+            },
+            "expression": {
+              "type": "Literal",
+              "start": 149,
+              "end": 159,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 2
+                },
+                "end": {
+                  "line": 7,
+                  "column": 12
+                }
+              },
+              "value": "ngInject",
+              "rawValue": "ngInject",
+              "raw": "'ngInject'"
+            },
+            "trailingComments": [
+              {
+                "type": "Block",
+                "value": "*\n   * Listener for player state change\n   * this is not angular action so we need to digest scope manually.\n   ",
+                "start": 164,
+                "end": 280,
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 12,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  164,
+                  280
+                ]
+              }
+            ]
+          },
+          {
+            "type": "VariableDeclaration",
+            "start": 283,
+            "end": 429,
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 2
+              },
+              "end": {
+                "line": 17,
+                "column": 4
+              }
+            },
+            "declarations": [
+              {
+                "type": "VariableDeclarator",
+                "start": 287,
+                "end": 428,
+                "loc": {
+                  "start": {
+                    "line": 13,
+                    "column": 6
+                  },
+                  "end": {
+                    "line": 17,
+                    "column": 3
+                  }
+                },
+                "id": {
+                  "type": "Identifier",
+                  "start": 287,
+                  "end": 306,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 6
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 25
+                    }
+                  },
+                  "name": "onPlayerStateChange",
+                  "leadingComments": null
+                },
+                "init": {
+                  "type": "ArrowFunctionExpression",
+                  "start": 309,
+                  "end": 428,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 28
+                    },
+                    "end": {
+                      "line": 17,
+                      "column": 3
+                    }
+                  },
+                  "id": null,
+                  "generator": false,
+                  "expression": false,
+                  "async": false,
+                  "params": [],
+                  "body": {
+                    "type": "BlockStatement",
+                    "start": 315,
+                    "end": 428,
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 34
+                      },
+                      "end": {
+                        "line": 17,
+                        "column": 3
+                      }
+                    },
+                    "body": [
+                      {
+                        "type": "ExpressionStatement",
+                        "start": 321,
+                        "end": 353,
+                        "loc": {
+                          "start": {
+                            "line": 14,
+                            "column": 4
+                          },
+                          "end": {
+                            "line": 14,
+                            "column": 36
+                          }
+                        },
+                        "expression": {
+                          "type": "AssignmentExpression",
+                          "start": 321,
+                          "end": 352,
+                          "loc": {
+                            "start": {
+                              "line": 14,
+                              "column": 4
+                            },
+                            "end": {
+                              "line": 14,
+                              "column": 35
+                            }
+                          },
+                          "operator": "=",
+                          "left": {
+                            "type": "MemberExpression",
+                            "start": 321,
+                            "end": 332,
+                            "loc": {
+                              "start": {
+                                "line": 14,
+                                "column": 4
+                              },
+                              "end": {
+                                "line": 14,
+                                "column": 15
+                              }
+                            },
+                            "object": {
+                              "type": "ThisExpression",
+                              "start": 321,
+                              "end": 325,
+                              "loc": {
+                                "start": {
+                                  "line": 14,
+                                  "column": 4
+                                },
+                                "end": {
+                                  "line": 14,
+                                  "column": 8
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "start": 326,
+                              "end": 332,
+                              "loc": {
+                                "start": {
+                                  "line": 14,
+                                  "column": 9
+                                },
+                                "end": {
+                                  "line": 14,
+                                  "column": 15
+                                }
+                              },
+                              "name": "active"
+                            },
+                            "computed": false
+                          },
+                          "right": {
+                            "type": "CallExpression",
+                            "start": 335,
+                            "end": 352,
+                            "loc": {
+                              "start": {
+                                "line": 14,
+                                "column": 18
+                              },
+                              "end": {
+                                "line": 14,
+                                "column": 35
+                              }
+                            },
+                            "callee": {
+                              "type": "MemberExpression",
+                              "start": 335,
+                              "end": 350,
+                              "loc": {
+                                "start": {
+                                  "line": 14,
+                                  "column": 18
+                                },
+                                "end": {
+                                  "line": 14,
+                                  "column": 33
+                                }
+                              },
+                              "object": {
+                                "type": "Identifier",
+                                "start": 335,
+                                "end": 341,
+                                "loc": {
+                                  "start": {
+                                    "line": 14,
+                                    "column": 18
+                                  },
+                                  "end": {
+                                    "line": 14,
+                                    "column": 24
+                                  }
+                                },
+                                "name": "player"
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "start": 342,
+                                "end": 350,
+                                "loc": {
+                                  "start": {
+                                    "line": 14,
+                                    "column": 25
+                                  },
+                                  "end": {
+                                    "line": 14,
+                                    "column": 33
+                                  }
+                                },
+                                "name": "isActive"
+                              },
+                              "computed": false
+                            },
+                            "arguments": []
+                          }
+                        }
+                      },
+                      {
+                        "type": "ExpressionStatement",
+                        "start": 358,
+                        "end": 399,
+                        "loc": {
+                          "start": {
+                            "line": 15,
+                            "column": 4
+                          },
+                          "end": {
+                            "line": 15,
+                            "column": 45
+                          }
+                        },
+                        "expression": {
+                          "type": "AssignmentExpression",
+                          "start": 358,
+                          "end": 398,
+                          "loc": {
+                            "start": {
+                              "line": 15,
+                              "column": 4
+                            },
+                            "end": {
+                              "line": 15,
+                              "column": 44
+                            }
+                          },
+                          "operator": "=",
+                          "left": {
+                            "type": "MemberExpression",
+                            "start": 358,
+                            "end": 373,
+                            "loc": {
+                              "start": {
+                                "line": 15,
+                                "column": 4
+                              },
+                              "end": {
+                                "line": 15,
+                                "column": 19
+                              }
+                            },
+                            "object": {
+                              "type": "ThisExpression",
+                              "start": 358,
+                              "end": 362,
+                              "loc": {
+                                "start": {
+                                  "line": 15,
+                                  "column": 4
+                                },
+                                "end": {
+                                  "line": 15,
+                                  "column": 8
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "start": 363,
+                              "end": 373,
+                              "loc": {
+                                "start": {
+                                  "line": 15,
+                                  "column": 9
+                                },
+                                "end": {
+                                  "line": 15,
+                                  "column": 19
+                                }
+                              },
+                              "name": "songEntity"
+                            },
+                            "computed": false
+                          },
+                          "right": {
+                            "type": "CallExpression",
+                            "start": 376,
+                            "end": 398,
+                            "loc": {
+                              "start": {
+                                "line": 15,
+                                "column": 22
+                              },
+                              "end": {
+                                "line": 15,
+                                "column": 44
+                              }
+                            },
+                            "callee": {
+                              "type": "MemberExpression",
+                              "start": 376,
+                              "end": 396,
+                              "loc": {
+                                "start": {
+                                  "line": 15,
+                                  "column": 22
+                                },
+                                "end": {
+                                  "line": 15,
+                                  "column": 42
+                                }
+                              },
+                              "object": {
+                                "type": "Identifier",
+                                "start": 376,
+                                "end": 382,
+                                "loc": {
+                                  "start": {
+                                    "line": 15,
+                                    "column": 22
+                                  },
+                                  "end": {
+                                    "line": 15,
+                                    "column": 28
+                                  }
+                                },
+                                "name": "player"
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "start": 383,
+                                "end": 396,
+                                "loc": {
+                                  "start": {
+                                    "line": 15,
+                                    "column": 29
+                                  },
+                                  "end": {
+                                    "line": 15,
+                                    "column": 42
+                                  }
+                                },
+                                "name": "getSongEntity"
+                              },
+                              "computed": false
+                            },
+                            "arguments": []
+                          }
+                        }
+                      },
+                      {
+                        "type": "ExpressionStatement",
+                        "start": 404,
+                        "end": 424,
+                        "loc": {
+                          "start": {
+                            "line": 16,
+                            "column": 4
+                          },
+                          "end": {
+                            "line": 16,
+                            "column": 24
+                          }
+                        },
+                        "expression": {
+                          "type": "CallExpression",
+                          "start": 404,
+                          "end": 423,
+                          "loc": {
+                            "start": {
+                              "line": 16,
+                              "column": 4
+                            },
+                            "end": {
+                              "line": 16,
+                              "column": 23
+                            }
+                          },
+                          "callee": {
+                            "type": "MemberExpression",
+                            "start": 404,
+                            "end": 421,
+                            "loc": {
+                              "start": {
+                                "line": 16,
+                                "column": 4
+                              },
+                              "end": {
+                                "line": 16,
+                                "column": 21
+                              }
+                            },
+                            "object": {
+                              "type": "Identifier",
+                              "start": 404,
+                              "end": 410,
+                              "loc": {
+                                "start": {
+                                  "line": 16,
+                                  "column": 4
+                                },
+                                "end": {
+                                  "line": 16,
+                                  "column": 10
+                                }
+                              },
+                              "name": "$scope"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "start": 411,
+                              "end": 421,
+                              "loc": {
+                                "start": {
+                                  "line": 16,
+                                  "column": 11
+                                },
+                                "end": {
+                                  "line": 16,
+                                  "column": 21
+                                }
+                              },
+                              "name": "$evalAsync"
+                            },
+                            "computed": false
+                          },
+                          "arguments": []
+                        }
+                      }
+                    ]
+                  }
+                },
+                "leadingComments": null
+              }
+            ],
+            "kind": "let",
+            "leadingComments": [
+              {
+                "type": "Block",
+                "value": "*\n   * Listener for player state change\n   * this is not angular action so we need to digest scope manually.\n   ",
+                "start": 164,
+                "end": 280,
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 12,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  164,
+                  280
+                ]
+              }
+            ],
+            "trailingComments": [
+              {
+                "type": "Block",
+                "value": "*\n   * Close player user action.\n   ",
+                "start": 433,
+                "end": 473,
+                "loc": {
+                  "start": {
+                    "line": 19,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 21,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  433,
+                  473
+                ]
+              }
+            ]
+          },
+          {
+            "type": "ExpressionStatement",
+            "start": 476,
+            "end": 509,
+            "loc": {
+              "start": {
+                "line": 22,
+                "column": 2
+              },
+              "end": {
+                "line": 22,
+                "column": 35
+              }
+            },
+            "expression": {
+              "type": "AssignmentExpression",
+              "start": 476,
+              "end": 508,
+              "loc": {
+                "start": {
+                  "line": 22,
+                  "column": 2
+                },
+                "end": {
+                  "line": 22,
+                  "column": 34
+                }
+              },
+              "operator": "=",
+              "left": {
+                "type": "MemberExpression",
+                "start": 476,
+                "end": 486,
+                "loc": {
+                  "start": {
+                    "line": 22,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 22,
+                    "column": 12
+                  }
+                },
+                "object": {
+                  "type": "ThisExpression",
+                  "start": 476,
+                  "end": 480,
+                  "loc": {
+                    "start": {
+                      "line": 22,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 22,
+                      "column": 6
+                    }
+                  },
+                  "leadingComments": null
+                },
+                "property": {
+                  "type": "Identifier",
+                  "start": 481,
+                  "end": 486,
+                  "loc": {
+                    "start": {
+                      "line": 22,
+                      "column": 7
+                    },
+                    "end": {
+                      "line": 22,
+                      "column": 12
+                    }
+                  },
+                  "name": "close"
+                },
+                "computed": false,
+                "leadingComments": null
+              },
+              "right": {
+                "type": "ArrowFunctionExpression",
+                "start": 489,
+                "end": 508,
+                "loc": {
+                  "start": {
+                    "line": 22,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 22,
+                    "column": 34
+                  }
+                },
+                "id": null,
+                "generator": false,
+                "expression": true,
+                "async": false,
+                "params": [],
+                "body": {
+                  "type": "CallExpression",
+                  "start": 495,
+                  "end": 508,
+                  "loc": {
+                    "start": {
+                      "line": 22,
+                      "column": 21
+                    },
+                    "end": {
+                      "line": 22,
+                      "column": 34
+                    }
+                  },
+                  "callee": {
+                    "type": "MemberExpression",
+                    "start": 495,
+                    "end": 506,
+                    "loc": {
+                      "start": {
+                        "line": 22,
+                        "column": 21
+                      },
+                      "end": {
+                        "line": 22,
+                        "column": 32
+                      }
+                    },
+                    "object": {
+                      "type": "Identifier",
+                      "start": 495,
+                      "end": 501,
+                      "loc": {
+                        "start": {
+                          "line": 22,
+                          "column": 21
+                        },
+                        "end": {
+                          "line": 22,
+                          "column": 27
+                        }
+                      },
+                      "name": "player"
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 502,
+                      "end": 506,
+                      "loc": {
+                        "start": {
+                          "line": 22,
+                          "column": 28
+                        },
+                        "end": {
+                          "line": 22,
+                          "column": 32
+                        }
+                      },
+                      "name": "stop"
+                    },
+                    "computed": false
+                  },
+                  "arguments": []
+                }
+              },
+              "leadingComments": null
+            },
+            "leadingComments": [
+              {
+                "type": "Block",
+                "value": "*\n   * Close player user action.\n   ",
+                "start": 433,
+                "end": 473,
+                "loc": {
+                  "start": {
+                    "line": 19,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 21,
+                    "column": 5
+                  }
+                },
+                "range": [
+                  433,
+                  473
+                ]
+              }
+            ],
+            "trailingComments": [
+              {
+                "type": "CommentLine",
+                "value": " Add player state change listener",
+                "start": 513,
+                "end": 548,
+                "loc": {
+                  "start": {
+                    "line": 24,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 24,
+                    "column": 37
+                  }
+                },
+                "range": [
+                  513,
+                  548
+                ]
+              }
+            ]
+          },
+          {
+            "type": "ExpressionStatement",
+            "start": 551,
+            "end": 602,
+            "loc": {
+              "start": {
+                "line": 25,
+                "column": 2
+              },
+              "end": {
+                "line": 25,
+                "column": 53
+              }
+            },
+            "expression": {
+              "type": "CallExpression",
+              "start": 551,
+              "end": 601,
+              "loc": {
+                "start": {
+                  "line": 25,
+                  "column": 2
+                },
+                "end": {
+                  "line": 25,
+                  "column": 52
+                }
+              },
+              "callee": {
+                "type": "MemberExpression",
+                "start": 551,
+                "end": 580,
+                "loc": {
+                  "start": {
+                    "line": 25,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 25,
+                    "column": 31
+                  }
+                },
+                "object": {
+                  "type": "Identifier",
+                  "start": 551,
+                  "end": 557,
+                  "loc": {
+                    "start": {
+                      "line": 25,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 25,
+                      "column": 8
+                    }
+                  },
+                  "name": "player",
+                  "leadingComments": null
+                },
+                "property": {
+                  "type": "Identifier",
+                  "start": 558,
+                  "end": 580,
+                  "loc": {
+                    "start": {
+                      "line": 25,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 25,
+                      "column": 31
+                    }
+                  },
+                  "name": "addStateChangeListener"
+                },
+                "computed": false,
+                "leadingComments": null
+              },
+              "arguments": [
+                {
+                  "type": "Identifier",
+                  "start": 581,
+                  "end": 600,
+                  "loc": {
+                    "start": {
+                      "line": 25,
+                      "column": 32
+                    },
+                    "end": {
+                      "line": 25,
+                      "column": 51
+                    }
+                  },
+                  "name": "onPlayerStateChange"
+                }
+              ],
+              "leadingComments": null
+            },
+            "leadingComments": [
+              {
+                "type": "CommentLine",
+                "value": " Add player state change listener",
+                "start": 513,
+                "end": 548,
+                "loc": {
+                  "start": {
+                    "line": 24,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 24,
+                    "column": 37
+                  }
+                },
+                "range": [
+                  513,
+                  548
+                ]
+              }
+            ],
+            "trailingComments": [
+              {
+                "type": "CommentLine",
+                "value": " When scope destroys then remove player state change listener",
+                "start": 605,
+                "end": 668,
+                "loc": {
+                  "start": {
+                    "line": 26,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 26,
+                    "column": 65
+                  }
+                },
+                "range": [
+                  605,
+                  668
+                ]
+              }
+            ]
+          },
+          {
+            "type": "ExpressionStatement",
+            "start": 671,
+            "end": 755,
+            "loc": {
+              "start": {
+                "line": 27,
+                "column": 2
+              },
+              "end": {
+                "line": 27,
+                "column": 86
+              }
+            },
+            "expression": {
+              "type": "CallExpression",
+              "start": 671,
+              "end": 754,
+              "loc": {
+                "start": {
+                  "line": 27,
+                  "column": 2
+                },
+                "end": {
+                  "line": 27,
+                  "column": 85
+                }
+              },
+              "callee": {
+                "type": "MemberExpression",
+                "start": 671,
+                "end": 681,
+                "loc": {
+                  "start": {
+                    "line": 27,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 27,
+                    "column": 12
+                  }
+                },
+                "object": {
+                  "type": "Identifier",
+                  "start": 671,
+                  "end": 677,
+                  "loc": {
+                    "start": {
+                      "line": 27,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 27,
+                      "column": 8
+                    }
+                  },
+                  "name": "$scope",
+                  "leadingComments": null
+                },
+                "property": {
+                  "type": "Identifier",
+                  "start": 678,
+                  "end": 681,
+                  "loc": {
+                    "start": {
+                      "line": 27,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 27,
+                      "column": 12
+                    }
+                  },
+                  "name": "$on"
+                },
+                "computed": false,
+                "leadingComments": null
+              },
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "start": 682,
+                  "end": 692,
+                  "loc": {
+                    "start": {
+                      "line": 27,
+                      "column": 13
+                    },
+                    "end": {
+                      "line": 27,
+                      "column": 23
+                    }
+                  },
+                  "value": "$destroy",
+                  "rawValue": "$destroy",
+                  "raw": "'$destroy'"
+                },
+                {
+                  "type": "ArrowFunctionExpression",
+                  "start": 694,
+                  "end": 753,
+                  "loc": {
+                    "start": {
+                      "line": 27,
+                      "column": 25
+                    },
+                    "end": {
+                      "line": 27,
+                      "column": 84
+                    }
+                  },
+                  "id": null,
+                  "generator": false,
+                  "expression": true,
+                  "async": false,
+                  "params": [],
+                  "body": {
+                    "type": "CallExpression",
+                    "start": 700,
+                    "end": 753,
+                    "loc": {
+                      "start": {
+                        "line": 27,
+                        "column": 31
+                      },
+                      "end": {
+                        "line": 27,
+                        "column": 84
+                      }
+                    },
+                    "callee": {
+                      "type": "MemberExpression",
+                      "start": 700,
+                      "end": 732,
+                      "loc": {
+                        "start": {
+                          "line": 27,
+                          "column": 31
+                        },
+                        "end": {
+                          "line": 27,
+                          "column": 63
+                        }
+                      },
+                      "object": {
+                        "type": "Identifier",
+                        "start": 700,
+                        "end": 706,
+                        "loc": {
+                          "start": {
+                            "line": 27,
+                            "column": 31
+                          },
+                          "end": {
+                            "line": 27,
+                            "column": 37
+                          }
+                        },
+                        "name": "player"
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "start": 707,
+                        "end": 732,
+                        "loc": {
+                          "start": {
+                            "line": 27,
+                            "column": 38
+                          },
+                          "end": {
+                            "line": 27,
+                            "column": 63
+                          }
+                        },
+                        "name": "removeStateChangeListener"
+                      },
+                      "computed": false
+                    },
+                    "arguments": [
+                      {
+                        "type": "Identifier",
+                        "start": 733,
+                        "end": 752,
+                        "loc": {
+                          "start": {
+                            "line": 27,
+                            "column": 64
+                          },
+                          "end": {
+                            "line": 27,
+                            "column": 83
+                          }
+                        },
+                        "name": "onPlayerStateChange"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "leadingComments": null
+            },
+            "leadingComments": [
+              {
+                "type": "CommentLine",
+                "value": " When scope destroys then remove player state change listener",
+                "start": 605,
+                "end": 668,
+                "loc": {
+                  "start": {
+                    "line": 26,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 26,
+                    "column": 65
+                  }
+                },
+                "range": [
+                  605,
+                  668
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Player directive controller.\n * @param {$rootScope.Scope} $scope\n * @param {player} player\n ",
+          "start": 0,
+          "end": 101,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 3
+            }
+          },
+          "range": [
+            0,
+            101
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 759,
+      "end": 968,
+      "loc": {
+        "start": {
+          "line": 30,
+          "column": 0
+        },
+        "end": {
+          "line": 39,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "start": 774,
+        "end": 968,
+        "loc": {
+          "start": {
+            "line": 30,
+            "column": 15
+          },
+          "end": {
+            "line": 39,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 783,
+          "end": 798,
+          "loc": {
+            "start": {
+              "line": 30,
+              "column": 24
+            },
+            "end": {
+              "line": 30,
+              "column": 39
+            }
+          },
+          "name": "playerDirective"
+        },
+        "generator": false,
+        "expression": false,
+        "async": false,
+        "params": [],
+        "body": {
+          "type": "BlockStatement",
+          "start": 802,
+          "end": 968,
+          "loc": {
+            "start": {
+              "line": 30,
+              "column": 43
+            },
+            "end": {
+              "line": 39,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "ExpressionStatement",
+              "start": 806,
+              "end": 817,
+              "loc": {
+                "start": {
+                  "line": 31,
+                  "column": 2
+                },
+                "end": {
+                  "line": 31,
+                  "column": 13
+                }
+              },
+              "expression": {
+                "type": "Literal",
+                "start": 806,
+                "end": 816,
+                "loc": {
+                  "start": {
+                    "line": 31,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 31,
+                    "column": 12
+                  }
+                },
+                "value": "ngInject",
+                "rawValue": "ngInject",
+                "raw": "'ngInject'"
+              }
+            },
+            {
+              "type": "ReturnStatement",
+              "start": 821,
+              "end": 966,
+              "loc": {
+                "start": {
+                  "line": 33,
+                  "column": 2
+                },
+                "end": {
+                  "line": 38,
+                  "column": 4
+                }
+              },
+              "argument": {
+                "type": "ObjectExpression",
+                "start": 828,
+                "end": 965,
+                "loc": {
+                  "start": {
+                    "line": 33,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 38,
+                    "column": 3
+                  }
+                },
+                "properties": [
+                  {
+                    "type": "Property",
+                    "start": 834,
+                    "end": 847,
+                    "loc": {
+                      "start": {
+                        "line": 34,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 34,
+                        "column": 17
+                      }
+                    },
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 834,
+                      "end": 842,
+                      "loc": {
+                        "start": {
+                          "line": 34,
+                          "column": 4
+                        },
+                        "end": {
+                          "line": 34,
+                          "column": 12
+                        }
+                      },
+                      "name": "restrict"
+                    },
+                    "value": {
+                      "type": "Literal",
+                      "start": 844,
+                      "end": 847,
+                      "loc": {
+                        "start": {
+                          "line": 34,
+                          "column": 14
+                        },
+                        "end": {
+                          "line": 34,
+                          "column": 17
+                        }
+                      },
+                      "value": "E",
+                      "rawValue": "E",
+                      "raw": "'E'"
+                    },
+                    "kind": "init"
+                  },
+                  {
+                    "type": "Property",
+                    "start": 853,
+                    "end": 898,
+                    "loc": {
+                      "start": {
+                        "line": 35,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 35,
+                        "column": 49
+                      }
+                    },
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 853,
+                      "end": 861,
+                      "loc": {
+                        "start": {
+                          "line": 35,
+                          "column": 4
+                        },
+                        "end": {
+                          "line": 35,
+                          "column": 12
+                        }
+                      },
+                      "name": "template"
+                    },
+                    "value": {
+                      "type": "CallExpression",
+                      "start": 863,
+                      "end": 898,
+                      "loc": {
+                        "start": {
+                          "line": 35,
+                          "column": 14
+                        },
+                        "end": {
+                          "line": 35,
+                          "column": 49
+                        }
+                      },
+                      "callee": {
+                        "type": "Identifier",
+                        "start": 863,
+                        "end": 870,
+                        "loc": {
+                          "start": {
+                            "line": 35,
+                            "column": 14
+                          },
+                          "end": {
+                            "line": 35,
+                            "column": 21
+                          }
+                        },
+                        "name": "require"
+                      },
+                      "arguments": [
+                        {
+                          "type": "Literal",
+                          "start": 871,
+                          "end": 897,
+                          "loc": {
+                            "start": {
+                              "line": 35,
+                              "column": 22
+                            },
+                            "end": {
+                              "line": 35,
+                              "column": 48
+                            }
+                          },
+                          "value": "../templates/player.html",
+                          "rawValue": "../templates/player.html",
+                          "raw": "'../templates/player.html'"
+                        }
+                      ]
+                    },
+                    "kind": "init"
+                  },
+                  {
+                    "type": "Property",
+                    "start": 904,
+                    "end": 932,
+                    "loc": {
+                      "start": {
+                        "line": 36,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 36,
+                        "column": 32
+                      }
+                    },
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 904,
+                      "end": 914,
+                      "loc": {
+                        "start": {
+                          "line": 36,
+                          "column": 4
+                        },
+                        "end": {
+                          "line": 36,
+                          "column": 14
+                        }
+                      },
+                      "name": "controller"
+                    },
+                    "value": {
+                      "type": "Identifier",
+                      "start": 916,
+                      "end": 932,
+                      "loc": {
+                        "start": {
+                          "line": 36,
+                          "column": 16
+                        },
+                        "end": {
+                          "line": 36,
+                          "column": 32
+                        }
+                      },
+                      "name": "playerController"
+                    },
+                    "kind": "init"
+                  },
+                  {
+                    "type": "Property",
+                    "start": 938,
+                    "end": 960,
+                    "loc": {
+                      "start": {
+                        "line": 37,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 37,
+                        "column": 26
+                      }
+                    },
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 938,
+                      "end": 950,
+                      "loc": {
+                        "start": {
+                          "line": 37,
+                          "column": 4
+                        },
+                        "end": {
+                          "line": 37,
+                          "column": 16
+                        }
+                      },
+                      "name": "controllerAs"
+                    },
+                    "value": {
+                      "type": "Literal",
+                      "start": 952,
+                      "end": 960,
+                      "loc": {
+                        "start": {
+                          "line": 37,
+                          "column": 18
+                        },
+                        "end": {
+                          "line": 37,
+                          "column": 26
+                        }
+                      },
+                      "value": "player",
+                      "rawValue": "player",
+                      "raw": "'player'"
+                    },
+                    "kind": "init"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}

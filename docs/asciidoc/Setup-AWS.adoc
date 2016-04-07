@@ -1,0 +1,278 @@
+[[setup-aws]]
+= Deploying to AWS
+:sectnums:
+:icons: font
+
+Deploying the Million Song Library demo locally is a great way to see it in action, but a microservices-based application like MSL is really designed for the cloud. Follow the steps in this section to deploy the Million Song Library demo to an AWS EC2 instance.
+
+== Get Your System Ready
+
+Before setting up the demo, make sure you have everything you need.
+
+AWS Account:: You will need an AWS account to complete this procedure. If you don't already have one, you can https://aws.amazon.com/free/[set up an AWS account for free^].
+
+NOTE: You may incur costs on your AWS account based on your EC2 instance usage while running the Million Song Library demo. Be sure to stop your MSL instance when you're not using it.
+
+Git:: You will need Git to make a local copy of the million-song-library repository. If you don't already have it, http://git-scm.com/downloads[install Git^].
+
+IMPORTANT: (Windows only) During Git installation, make sure to select the *Use Git from the Windows Command Prompt* option. Otherwise you won't be able use Git commands in PowerShell.
+
+Vagrant:: The easiest way to set up the Million Song Library in an EC2 instance is with Vagrant, a tool for automating the creation of development environments. If you don't already have it, https://www.vagrantup.com/downloads.html[install Vagrant^].
+
+====
+*Entering Commands*
+
+We tested these steps using the default Terminal applications on Mac OS X and Ubuntu. To enter commands on Windows 10, we recommend running Windows PowerShell as an Administrator.
+====
+
+====
+*Where is My Home Directory?*
+
+For this process, it's important to know where your home directory is. Your home directory is the directory that has the same name as your user name.
+
+* On Mac and Linux, your home directory is represented by the tilde (~) sign in Terminal commands.
+* On Windows, your home directory is: *C:\Users\<your_username>\*
+====
+
+== Clone the MSL Repository
+
+To edit the Vagrant file, you first need to clone the million-song-library repository to a local directory.
+
+. Open a new Terminal or PowerShell window and make sure you are in your home directory.
+. Enter the following command to clone the million-song-library repository:
++
+----
+git clone https://github.com/kenzanmedia/million-song-library
+----
+. Enter the following command to change directories to the cloned repository:
++
+----
+cd million-song-library
+----
++
+. Enter the following command to initialize the repository and submodules:
++
+----
+git submodule init && git submodule update
+----
+
+NOTE: For Windows, you will need to run the commands separately: first `git submodule init` and then `git submodule update`.
+
+== Set up Vagrant for AWS
+
+The AWS plug-in enables Vagrant to automtically create EC2 instances using a dummy virtual machine.
+
+. Enter the following command to install the AWS plug-in for Vagrant:
++
+----
+vagrant plugin install vagrant-aws
+----
+. Enter the following command to download the dummy virtual machine:
++
+----
+vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box
+----
+
+== Generate an SSH Key Pair
+
+Generate a new SSH key pair for use on the EC2 instance.
+
+NOTE: On Windows, use the Git Bash terminal app for this step. You can find it uder *Start->All apps->Git->Git Bash*.
+
+. Generate a new key pair:
+.. Enter the following command where _myemailaddress@gmail.com_ is your email address:
++
+----
+ssh-keygen -t rsa -C myemailaddress@gmail.com
+----
++
+.. Enter the file path and name where you want to save the key pair. For example:
++
+----
+/Users/jdoe/.ssh/aws_msl
+----
+.. Press *<Enter>* twice to skip entering a passphrase.
+. Import the new SSH key pair into your AWS account:
+.. Sign in to your https://aws.amazon.com/console/[AWS EC2 Management Console^] and switch to your preferred region.
+.. Click *Key Pairs* (under *Network & Security*).
+.. Click *Import Key Pair*.
+.. Click *Choose File* and select the new public key file (for example, *aws_msl.pub*).
++
+Alternately, you can open the public key in a text editor, copy the contents, and paste the contents in the *Public key contents* box.
+.. In the *Key pair name* box, type the name of the key pair (for example, *aws_msl*).
+.. Click *Import*.
+
+== Generate an AWS Key Pair
+
+Generate a new AWS key pair to allow Vagrant to log on to the EC2 instance.
+
+. In your EC2 Management Console, click *Key Pairs* (under *Network & Security*).
+. Click *Create Key Pair*.
+. In the *Key pair name* box, type the name of the key pair (for example, *kenzan_msl*).
+. Click *Create* to create and download the private key file.
+. Place the private key file in the same location as the SSH key you created. For example: *~/.ssh/kenzan_msl.pem*
+
+== Generate an AWS Access Key
+
+Generate a new AWS access key to allow Vagrant to authenticate with AWS.
+
+. In your EC2 Management Console, click your user name, and then click *Security Credentials*.
+. Under *Access Keys*, click *Create New Access Key*.
+. Click *Download Key File* to download the access key file.
+. Place the access key file in the same location as the other keys you created. For example: *~/.ssh/rootkey.csv*
+
+NOTE: The access key file is a CSV file that contains values for two keys: *AWSAccessKeyId* and *AWSSecretKey*. You will need these two key values in a later step.
+
+[[create-security-group]]
+== Create a Security Group
+
+Create a new AWS Security Group to allow inbound access to the EC2 instance.
+
+. In your EC2 Management Console, click *Security Groups* (under *Network & Security*).
+. Click *Create Key Pair*.
+. In the *Security group name* box, type the name of the security group (for example, *kenzanmsl*).
+. In the *Description* box, type a description for the security group (for example, *Million Song Library Demo*).
+. On the *Inbound* tab, click *Add Rule*.
+. For *Type*, select *All traffic*.
+. For *Source*, select *Anywhere*.
+. Click *Create*.
+
+== Edit the Vagrant File
+
+The Vagrant file contains all of the information needed to set up and configure the EC2 instance. You need to edit the Vagrant file to add information about your AWS account -- this lets Vagrant know where to set up the instance.
+
+. In a text editor, open the *Vagrant* file located in the *million-song-library* directory (in your home directory).
+. Replace the following variables with the correct values:
++
+[width="100%",cols="2,1",options="header"]
+|===
+|Variable                                               |Value
+|\<<PATH_TO_SSH_PRIVATE_KEY>>                           |File path and name for your private SSH key. For example: *~/.ssh/aws_msl*
+|\<<PATH_TO_SSH_PUBLIC_KEY>>                            |File path and name for your public SSH key. For example: *~/.ssh/aws_msl.pub*
+|\<<KEY_PAIR_NAME>>                                     |Name of your AWS key pair. For example: *kenzan_msl*
+|\<<PATH_TO_YOUR_AWS_KEY.pem>>                          |File path and name for your private AWS key. For example: *~/.ssh/kenzan_msl.pem*
+|\<<AWS_ACCESS_KEY_ID>>                                 |*AWSAccessKeyId* value from the *rootkey.csv* access key file you downloaded.
+|\<<AWS_SECRET_ACCESS_KEY>>                             |*AWSSecretKey* value from the *rootkey.csv* access key file you downloaded.
+|\<<SECURITY_GROUP_WITH_SSH_AND_HTTP_PORTS_ENABLED>>    |Name of the AWS security group you created for use with the MSL demo. For example: *kenzanmsl*
+|aws.region = "us-west-2"                               |If necessary, replace the region code with your preferred AWS region.
+|aws.instance_type="t2.small"                           |Replace the instance type with the desired type. We recommend *t2.large* or better to avoid running out of resources.
+|===
+. Save and close the *Vagrant* file.
+
+== Provision an EC2 Instance
+
+After you finish editing the Vagrant file, you're ready to use Vagrant to create and provision the EC2 instance with the Million Song Library Demo.
+
+. Open a new Terminal or PowerShell window and make sure you are in your home directory.
+. Enter the following command to change to the million-song-library repository:
++
+----
+cd million-song-library
+----
+. Enter the following command to start the provisioning process;
++
+----
+vagrant up prod
+----
+. Wait for the provisioning process to complete (about 30 minutes).
+
+[[edit-aws-hosts]]
+== Edit the Hosts File
+
+While you're waiting for the provisioning process to complete, take a few minutes to update the *hosts* file on your local system. This will allow you to access the Million Song Library application using a Web browser.
+
+. In your EC2 Management Console, click *Instances* to view all running instances. You should see the *Production-aws* instance created by Vagrant.
+. Copy the *Public IP* of the instance.
+. In a text editor, open the *hosts* file on your computer. The location of the *hosts* file depends on your operating system:
++
+[width="100%",cols="1,2",options="header"]
+|===
+|Operating Syystem      |Location of hosts file
+|Mac                    |/private/etc/hosts
+|Linux                  |/etc/hosts
+|Windows                |C:\Windows\System32\Drivers\etc
+|===
+. Add the following line to the *hosts* file where _xxx.xxx.xxx.xxx_ is the public IP address of the EC2 instance.
++
+----
+xxx.xxx.xxx.xxx     msl.kenzanlabs.com
+----
+. Save and close the *hosts* file.
+
+== Start the MSL Demo
+
+Provisioning is complete -- now it's time to start the Million Song Library demo.
+
+. Open a new Terminal or PowerShell window and make sure you are in your home directory.
+. Enter the following command to connect to the EC2 instance:
++
+----
+vagrant ssh prod
+----
+. After you are connected to the instance, enter the following command to change to the application directory: 
++
+----
+cd million-song-library/msl-pages
+----
+. Enter the following command to start the application front end:
++
+----
+npm run deploy
+----
++
+Wait for the front end to start up -- this will take just a couple of minutes.
+. Open a new Terminal or PowerShell window and make sure you are in your home directory.
+. Enter the following command to change to the application directory: 
++
+----
+cd million-song-library/msl-pages
+----
+. Enter the following command to start the server instances:
++
+----
+npm run serve-all
+----
++
+NOTE: If your EC2 instance is low on free memory, you can start up just the core server instances by running the `npm run catalog-edge-server` command instead.
++
+Wait for the server instances to start up -- again, this will take just a couple of minutes.
+. Open a Web browser and point it to: *msl.kenzanlabs.com:3000*
++
+The Million Song Library home page displays. (If you don't see data right away, wait a couple of minutes and then refresh the page.)
+
+NOTE: If the Million Song Library home page does not display, make sure that you <<create-security-group,allowed all inbound traffic in your AWS security group>> and that you <<edit-aws-hosts,correctly edited the *hosts* file>>.
+
+ifeval::["{output}"=="html"]
+.Million Song Library Home Page
+image:images/msl-home-page-mac.png[Million Song Library Home Page]
+endif::[]
+
+ifeval::["{output}"=="pdf"]
+.Million Song Library Home Page
+image:images/msl-home-page-mac.png[Million Song Library Home Page, width=600]
+endif::[]
+
+Now that the Million Song Library demo is working, here are some fun things to try:
+
+* Click *Register* to register for an account.
+* Click the labels to switch the view between *Songs*, *Albums*, and *Artists*.
+* Click a genre or star rating on the left to filter songs. (Click the *x* to clear a filter.)
+* Mouse over a song and click *Add to library* to add it to your music library (you must be logged in).
+* Click the stars below a song to rate it (you must be logged in).
+
+== Stop the MSL Demo
+
+Done having fun for now? Here's how to terminate the EC2 instance:
+
+. Open a new Terminal or PowerShell window and make sure you are in your home directory.
+. Enter the following command to change to the million-song-library repository:
++
+----
+cd million-song-library
+----
+. Enter the following command to destroy the EC2 instance:
++
+----
+vagrant destroy prod -f
+----
+The EC2 instance is terminated. If you want to run the demo again, just follow this procedure to create a new Million Song Library instance any time.
