@@ -3,7 +3,6 @@
 
 common/swagger/api/swagger/swagger.yaml
 common/swagger/api/swagger/paths.yaml
-docs/*.html
 
 *-compiled.js
 *-compiled.js.map
