@@ -1,0 +1,651 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 371,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 11,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 0,
+      "end": 36,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 36
+        }
+      },
+      "specifiers": [],
+      "source": {
+        "type": "Literal",
+        "start": 7,
+        "end": 35,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 7
+          },
+          "end": {
+            "line": 1,
+            "column": 35
+          }
+        },
+        "value": "./stylesheets/default.scss",
+        "rawValue": "./stylesheets/default.scss",
+        "raw": "'./stylesheets/default.scss'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 37,
+      "end": 67,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 30
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 44,
+          "end": 51,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 14
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 44,
+            "end": 51,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 14
+              }
+            },
+            "name": "angular"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 57,
+        "end": 66,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 20
+          },
+          "end": {
+            "line": 2,
+            "column": 29
+          }
+        },
+        "value": "angular",
+        "rawValue": "angular",
+        "raw": "'angular'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 68,
+      "end": 125,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 57
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 75,
+          "end": 89,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 7
+            },
+            "end": {
+              "line": 3,
+              "column": 21
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 75,
+            "end": 89,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 7
+              },
+              "end": {
+                "line": 3,
+                "column": 21
+              }
+            },
+            "name": "loginModalCtrl"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 95,
+        "end": 124,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 27
+          },
+          "end": {
+            "line": 3,
+            "column": 56
+          }
+        },
+        "value": "./login-modal.controller.js",
+        "rawValue": "./login-modal.controller.js",
+        "raw": "'./login-modal.controller.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 126,
+      "end": 165,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 39
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 133,
+          "end": 143,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 7
+            },
+            "end": {
+              "line": 4,
+              "column": 17
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 133,
+            "end": 143,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 7
+              },
+              "end": {
+                "line": 4,
+                "column": 17
+              }
+            },
+            "name": "loginModal"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 149,
+        "end": 164,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 23
+          },
+          "end": {
+            "line": 4,
+            "column": 38
+          }
+        },
+        "value": "./login-modal",
+        "rawValue": "./login-modal",
+        "raw": "'./login-modal'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 166,
+      "end": 213,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 47
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 173,
+          "end": 188,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 7
+            },
+            "end": {
+              "line": 5,
+              "column": 22
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 173,
+            "end": 188,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 7
+              },
+              "end": {
+                "line": 5,
+                "column": 22
+              }
+            },
+            "name": "angularMaterial"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 194,
+        "end": 212,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 28
+          },
+          "end": {
+            "line": 5,
+            "column": 46
+          }
+        },
+        "value": "angular-material",
+        "rawValue": "angular-material",
+        "raw": "'angular-material'"
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 215,
+      "end": 370,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 8
+        }
+      },
+      "declaration": {
+        "type": "MemberExpression",
+        "start": 230,
+        "end": 369,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 15
+          },
+          "end": {
+            "line": 10,
+            "column": 7
+          }
+        },
+        "object": {
+          "type": "CallExpression",
+          "start": 230,
+          "end": 361,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 15
+            },
+            "end": {
+              "line": 9,
+              "column": 42
+            }
+          },
+          "callee": {
+            "type": "MemberExpression",
+            "start": 230,
+            "end": 327,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 15
+              },
+              "end": {
+                "line": 9,
+                "column": 8
+              }
+            },
+            "object": {
+              "type": "CallExpression",
+              "start": 230,
+              "end": 318,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 15
+                },
+                "end": {
+                  "line": 8,
+                  "column": 36
+                }
+              },
+              "callee": {
+                "type": "MemberExpression",
+                "start": 230,
+                "end": 292,
+                "loc": {
+                  "start": {
+                    "line": 7,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 10
+                  }
+                },
+                "object": {
+                  "type": "CallExpression",
+                  "start": 230,
+                  "end": 281,
+                  "loc": {
+                    "start": {
+                      "line": 7,
+                      "column": 15
+                    },
+                    "end": {
+                      "line": 7,
+                      "column": 66
+                    }
+                  },
+                  "callee": {
+                    "type": "MemberExpression",
+                    "start": 230,
+                    "end": 244,
+                    "loc": {
+                      "start": {
+                        "line": 7,
+                        "column": 15
+                      },
+                      "end": {
+                        "line": 7,
+                        "column": 29
+                      }
+                    },
+                    "object": {
+                      "type": "Identifier",
+                      "start": 230,
+                      "end": 237,
+                      "loc": {
+                        "start": {
+                          "line": 7,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 7,
+                          "column": 22
+                        }
+                      },
+                      "name": "angular"
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 238,
+                      "end": 244,
+                      "loc": {
+                        "start": {
+                          "line": 7,
+                          "column": 23
+                        },
+                        "end": {
+                          "line": 7,
+                          "column": 29
+                        }
+                      },
+                      "name": "module"
+                    },
+                    "computed": false
+                  },
+                  "arguments": [
+                    {
+                      "type": "Literal",
+                      "start": 245,
+                      "end": 261,
+                      "loc": {
+                        "start": {
+                          "line": 7,
+                          "column": 30
+                        },
+                        "end": {
+                          "line": 7,
+                          "column": 46
+                        }
+                      },
+                      "value": "msl.loginModal",
+                      "rawValue": "msl.loginModal",
+                      "raw": "'msl.loginModal'"
+                    },
+                    {
+                      "type": "ArrayExpression",
+                      "start": 263,
+                      "end": 280,
+                      "loc": {
+                        "start": {
+                          "line": 7,
+                          "column": 48
+                        },
+                        "end": {
+                          "line": 7,
+                          "column": 65
+                        }
+                      },
+                      "elements": [
+                        {
+                          "type": "Identifier",
+                          "start": 264,
+                          "end": 279,
+                          "loc": {
+                            "start": {
+                              "line": 7,
+                              "column": 49
+                            },
+                            "end": {
+                              "line": 7,
+                              "column": 64
+                            }
+                          },
+                          "name": "angularMaterial"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "property": {
+                  "type": "Identifier",
+                  "start": 285,
+                  "end": 292,
+                  "loc": {
+                    "start": {
+                      "line": 8,
+                      "column": 3
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 10
+                    }
+                  },
+                  "name": "service"
+                },
+                "computed": false
+              },
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "start": 293,
+                  "end": 305,
+                  "loc": {
+                    "start": {
+                      "line": 8,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 23
+                    }
+                  },
+                  "value": "loginModal",
+                  "rawValue": "loginModal",
+                  "raw": "'loginModal'"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 307,
+                  "end": 317,
+                  "loc": {
+                    "start": {
+                      "line": 8,
+                      "column": 25
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 35
+                    }
+                  },
+                  "name": "loginModal"
+                }
+              ]
+            },
+            "property": {
+              "type": "Identifier",
+              "start": 322,
+              "end": 327,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 3
+                },
+                "end": {
+                  "line": 9,
+                  "column": 8
+                }
+              },
+              "name": "value"
+            },
+            "computed": false
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "start": 328,
+              "end": 344,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 9
+                },
+                "end": {
+                  "line": 9,
+                  "column": 25
+                }
+              },
+              "value": "loginModalCtrl",
+              "rawValue": "loginModalCtrl",
+              "raw": "'loginModalCtrl'"
+            },
+            {
+              "type": "Identifier",
+              "start": 346,
+              "end": 360,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 27
+                },
+                "end": {
+                  "line": 9,
+                  "column": 41
+                }
+              },
+              "name": "loginModalCtrl"
+            }
+          ]
+        },
+        "property": {
+          "type": "Identifier",
+          "start": 365,
+          "end": 369,
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 3
+            },
+            "end": {
+              "line": 10,
+              "column": 7
+            }
+          },
+          "name": "name"
+        },
+        "computed": false,
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}

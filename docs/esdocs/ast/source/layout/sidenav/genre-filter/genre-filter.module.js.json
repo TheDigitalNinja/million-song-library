@@ -1,0 +1,439 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 239,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 9,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 16,
+      "end": 46,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 30
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 23,
+          "end": 30,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 14
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 23,
+            "end": 30,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 14
+              }
+            },
+            "name": "angular",
+            "leadingComments": null
+          },
+          "leadingComments": null
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 36,
+        "end": 45,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 20
+          },
+          "end": {
+            "line": 2,
+            "column": 29
+          }
+        },
+        "value": "angular",
+        "rawValue": "angular",
+        "raw": "'angular'"
+      },
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Dependencies",
+          "start": 0,
+          "end": 15,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 15
+            }
+          },
+          "range": [
+            0,
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 48,
+      "end": 102,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 54
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 55,
+          "end": 66,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 7
+            },
+            "end": {
+              "line": 4,
+              "column": 18
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 55,
+            "end": 66,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 7
+              },
+              "end": {
+                "line": 4,
+                "column": 18
+              }
+            },
+            "name": "genreFilter"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 72,
+        "end": 101,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 24
+          },
+          "end": {
+            "line": 4,
+            "column": 53
+          }
+        },
+        "value": "./genre-filter.directive.js",
+        "rawValue": "./genre-filter.directive.js",
+        "raw": "'./genre-filter.directive.js'"
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 104,
+      "end": 238,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 8
+        }
+      },
+      "declaration": {
+        "type": "MemberExpression",
+        "start": 119,
+        "end": 237,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 15
+          },
+          "end": {
+            "line": 8,
+            "column": 7
+          }
+        },
+        "object": {
+          "type": "CallExpression",
+          "start": 119,
+          "end": 229,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 15
+            },
+            "end": {
+              "line": 7,
+              "column": 57
+            }
+          },
+          "callee": {
+            "type": "MemberExpression",
+            "start": 119,
+            "end": 184,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 15
+              },
+              "end": {
+                "line": 7,
+                "column": 12
+              }
+            },
+            "object": {
+              "type": "CallExpression",
+              "start": 119,
+              "end": 171,
+              "loc": {
+                "start": {
+                  "line": 6,
+                  "column": 15
+                },
+                "end": {
+                  "line": 6,
+                  "column": 67
+                }
+              },
+              "callee": {
+                "type": "MemberExpression",
+                "start": 119,
+                "end": 133,
+                "loc": {
+                  "start": {
+                    "line": 6,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 6,
+                    "column": 29
+                  }
+                },
+                "object": {
+                  "type": "Identifier",
+                  "start": 119,
+                  "end": 126,
+                  "loc": {
+                    "start": {
+                      "line": 6,
+                      "column": 15
+                    },
+                    "end": {
+                      "line": 6,
+                      "column": 22
+                    }
+                  },
+                  "name": "angular"
+                },
+                "property": {
+                  "type": "Identifier",
+                  "start": 127,
+                  "end": 133,
+                  "loc": {
+                    "start": {
+                      "line": 6,
+                      "column": 23
+                    },
+                    "end": {
+                      "line": 6,
+                      "column": 29
+                    }
+                  },
+                  "name": "module"
+                },
+                "computed": false
+              },
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "start": 134,
+                  "end": 166,
+                  "loc": {
+                    "start": {
+                      "line": 6,
+                      "column": 30
+                    },
+                    "end": {
+                      "line": 6,
+                      "column": 62
+                    }
+                  },
+                  "value": "msl.layout.sideNav.genreFilter",
+                  "rawValue": "msl.layout.sideNav.genreFilter",
+                  "raw": "'msl.layout.sideNav.genreFilter'"
+                },
+                {
+                  "type": "ArrayExpression",
+                  "start": 168,
+                  "end": 170,
+                  "loc": {
+                    "start": {
+                      "line": 6,
+                      "column": 64
+                    },
+                    "end": {
+                      "line": 6,
+                      "column": 66
+                    }
+                  },
+                  "elements": []
+                }
+              ]
+            },
+            "property": {
+              "type": "Identifier",
+              "start": 175,
+              "end": 184,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 3
+                },
+                "end": {
+                  "line": 7,
+                  "column": 12
+                }
+              },
+              "name": "directive"
+            },
+            "computed": false
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "start": 185,
+              "end": 198,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 13
+                },
+                "end": {
+                  "line": 7,
+                  "column": 26
+                }
+              },
+              "value": "genreFilter",
+              "rawValue": "genreFilter",
+              "raw": "'genreFilter'"
+            },
+            {
+              "type": "MemberExpression",
+              "start": 200,
+              "end": 228,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 28
+                },
+                "end": {
+                  "line": 7,
+                  "column": 56
+                }
+              },
+              "object": {
+                "type": "Identifier",
+                "start": 200,
+                "end": 211,
+                "loc": {
+                  "start": {
+                    "line": 7,
+                    "column": 28
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 39
+                  }
+                },
+                "name": "genreFilter"
+              },
+              "property": {
+                "type": "Identifier",
+                "start": 212,
+                "end": 228,
+                "loc": {
+                  "start": {
+                    "line": 7,
+                    "column": 40
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 56
+                  }
+                },
+                "name": "directiveFactory"
+              },
+              "computed": false
+            }
+          ]
+        },
+        "property": {
+          "type": "Identifier",
+          "start": 233,
+          "end": 237,
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 3
+            },
+            "end": {
+              "line": 8,
+              "column": 7
+            }
+          },
+          "name": "name"
+        },
+        "computed": false,
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}

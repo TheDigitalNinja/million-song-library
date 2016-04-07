@@ -1,0 +1,246 @@
+[[setup-windows]]
+= Windows Automated Setup
+:sectnums:
+:icons: font
+
+Follow the steps in this section to set up the Million Song Library demo on a system running Windows.
+
+[[get-ready-windows]]
+== Get Your System Ready
+
+Before setting up the demo, make sure you have everything you need.
+
+Windows 10:: We tested this procedure on Windows 10 Pro. http://windows.microsoft.com/en-us/windows/which-operating-system[Check your Windows version^] to see if you're already running Windows 10 Pro, and to find out if you're running a 32-bit or 64-bit version of Windows. If you're running an older version of Windows, you should https://www.microsoft.com/en-us/windows/windows-10-upgrade[upgrade your system to Windows 10^].
+
+Java 1.8 JDK:: Install the http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html[Java 1.8 JDK^]. Make sure to select the correct download option: *Windows x86* (for 32-bit systems) or *Windows x64* (for 64-bit systems). To install, just double-click the EXE file.
++
+====
+NOTE: After installing the Java 1.8 JDK, it's a good idea to set your JAVA_HOME environmental variable to avoid errors when running commands:
+
+. Right-click the *Start* menu and click *System*.
+. Click *Advanced system settings*.
+. Click *Environment Variables*.
+. Click *New*.
+. Type *JAVA_HOME* in the *Variable name* box.
+. Click in the *Variable value* box and then click *Browse*. Select the directory where Java is installed (for example, *C:\Program Files\Java\jdk1.8.0_73*), and then click *OK*.
+
+ifeval::["{output}"=="html"]
+.Setting JAVA_HOME for Windows
+image:images/java-home-windows.png[Setting JAVA_HOME for Windows]
+endif::[]
+
+ifeval::["{output}"=="pdf"]
+.Setting JAVA_HOME for Windows
+image:images/java-home-windows.png[Setting JAVA_HOME for Windows, width=400]
+endif::[]
+====
+
+Git:: Install Git if you don't have it already. One easy method is to http://git-scm.com/downloads[download the Windows installer^]. To install, just double-click the EXE file.
++
+====
+IMPORTANT: During Git installation, make sure to select the *Use Git from the Windows Command Prompt* option. Otherwise you won't be able use Git commands in PowerShell.
+
+ifeval::["{output}"=="html"]
+.Installing Git for Windows
+image:images/git-setup-windows.png[Installing Git for Windows]
+endif::[]
+
+ifeval::["{output}"=="pdf"]
+.Installing Git for Windows
+image:images/git-setup-windows.png[Installing Git for Windows, width=400]
+endif::[]
+====
+
+PowerShell:: You'll need to use Windows PowerShell to enter commands at the command prompt. You can find it in *Start->All Apps->Windows PowerShell*.
+
+====
+*Where is My Home Directory?*
+
+For this process, it's important to know where your home directory is. Your home directory is the directory that has the same name as your user name.
+
+For example, if the user name you use to log on to Windows is jdoe, then the path *C:\Users\jdoe* points to your home directory.
+====
+
+[[update-tools-windows]]
+== Update Existing Tools (If Needed)
+
+The Million Song Library setup script will automatically install the required tools and frameworks, so in most cases there's nothing more you need to install before getting started. There's one exception--if you already have some of the required tools installed on your system, then you need to make sure they are at the required version. Check the list below.
+
+Maven 3.3.9 or later:: To see what version of Maven is installed, enter `mvn -version` at the PowerShell command prompt. If you get the message `command not found`, it means Maven is not installed, and there's no need to do anything.
++
+If the command reports that an older version is installed, http://www.tutorialspoint.com/maven/maven_environment_setup.htm[upgrade your Maven installation^] to version 3.3.9 or later.
+
+Node 0.12.x or later:: To see what version of Node is installed, enter `node --version` at the PowerShell command prompt. If you get the message `command not found`, it means Node is not installed, and there's no need to do anything.
++
+If the command reports that an older version is installed, https://nodejs.org/en/download/[download the Node.js Windows installer^]. Just double-click the installer to run it. This will also install npm.
+
+npm 2.7.x or later:: To see what version of npm is installed, enter `npm -version` at the PowerShell command prompt. If you get the message `command not found`, it means npm is not installed, and there's no need to do anything.
++
+If the command reports that an older version is installed, https://nodejs.org/en/download/[download the Node.js Windows installer^], which includes npm. Just double-click the installer to run it.
+
+== Clone the MSL Repository
+
+To run the setup script, you first need to clone the million-song-library repository to a local directory.
+
+. Open a new PowerShell window and enter the following command:
++
+----
+git clone https://github.com/kenzanmedia/million-song-library
+----
++
+Git creates a directory called *million-song-library* inside your home directory, and checks out a working copy of the repository.
++
+. Enter the following command to change directories to the cloned repository:
++
+----
+cd million-song-library
+----
++
+. Enter the folowing command to initialize the repository:
++
+----
+git submodule init
+----
++
+. Enter the folowing command to update all submodules:
++
+----
+git submodule update
+----
+
+[[start-cassandra-windows]]
+== Install Cassandra
+
+Now let's get Cassandra installed.
+
+. If you don't already have a utility on your system that can extract *.tar.gz* files, you'll need to install one first. One good option is http://www.7-zip.org/[7-Zip^], which is free and open source.
+. Download Cassandra 2.1.11 (Community version) from the https://downloads.datastax.com/community/[Datastax download site^].
++
+NOTE: Make sure to download the correct file: *dsc-cassandra-2.1.11-bin.tar.gz*
+. Create a new directory named *cassandra* inside your home ( *C:\Users\<your_username>\* ) directory.
+. Move the *dsc-cassandra-2.1.11-bin.tar.gz* file into the *C:\Users\<your_username>\cassandra* directory.
+. Extract the contents of the *.tar.gz* file. If you are using 7-Zip:
+.. Right-click the *.tar.gz* file and click *7-Zip->Extract Here*. This results in a *.tar* file.
+.. Right-click the *.tar* file and click *7-Zip->Extract Here*.
+
+== Enable Scripts in PowerShell
+
+The default PowerShell execution policies don't allow running scripts. You'll need to change that so you can run the Million Song Library setup script.
+
+. Open a new PowerShell window with administrator privileges.
+.. Click the *Start* menu, and then navigate to *All Apps->Windows PowerShell*.
+.. Right-click the *Windows PowerShell* program icon and click *Run as Administrator*.
+. Enter the following command:
++
+----
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+----
+. Enter *y* to confirm.
+
+NOTE: For more information about PowerShell execution policies, see https://technet.microsoft.com/library/hh847748.aspx[this tech note from Microsoft^].
+
+== Install Chocolatey
+
+Chocolatey is a package manager for Windows. The Million Song Library setup script uses Chocolately to download required tools, so you'll need to install it.
+
+. Open a new PowerShell window with administrator privileges.
+.. Click the *Start* menu, and then navigate to *All Apps->Windows PowerShell*.
+.. Right-click the *Windows PowerShell* program icon and click *Run as Administrator*.
+. Enter the following command:
++
+----
+iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
+----
+. After the installation is complete, close all PowerShell windows.
+
+== Run the Setup Script
+
+Now that Cassandra and Chocolatey are installed, you're ready to run the setup script.
+
+. Open a new PowerShell window with administrator privileges.
+.. Click the *Start* menu, and then navigate to *All Apps->Windows PowerShell*.
+.. Right-click the *Windows PowerShell* program icon and click *Run as Administrator*.
+. Enter the following command to change to the script directory:
++
+----
+cd C:\Users\<your_username>\million-song-library\common
+----
+. Enter the following command to run the setup script:
++
+----
+.\setup.ps1 -c C:\Users\<your_username>\cassandra\dsc-cassandra-2.1.11 -n -s -g
+----
+. Wait for the script to complete (about 30 minutes).
+
+IMPORTANT: If a Windows Firewall dialog box displays while the script is running, click *Allow Access*.
+
+NOTE: It's normal to see some warnings while the script runs. If the script encounters an error that prevents it from finishing, make sure you installed all the required tools. See <<get-ready-windows>> and <<update-tools-windows>> above. Then try running the script again.
+
+[[start-msl-windows]]
+== Start the MSL Demo
+
+Setup is complete -- now it's time to start the Million Song Library demo.
+
+. Open a new PowerShell window with administrator privileges.
+.. Click the *Start* menu, and then navigate to *All Apps->Windows PowerShell*.
+.. Right-click the *Windows PowerShell* program icon and click *Run as Administrator*.
+. Enter the following command to change to the application directory: 
++
+----
+cd C:\Users\<your_username>\million-song-library\msl-pages
+----
+. Enter the following command to start the application front end:
++
+----
+npm run full-dev
+----
++
+Wait for the front end to start up -- this will take just a couple of minutes.
+. Open a new PowerShell window with administrator privileges.
+.. Click the *Start* menu, and then navigate to *All Apps->Windows PowerShell*.
+.. Right-click the *Windows PowerShell* program icon and click *Run as Administrator*.
+. Enter the following command to change to the application directory: 
++
+----
+cd C:\Users\<your_username>\million-song-library\msl-pages
+----
+. Enter the following command to start the server instances:
++
+----
+npm run serve-all
+----
++
+Wait for the server instances to start up -- again, this will take just a couple of minutes.
+. Open a Web browser and point it to: *msl.kenzanlabs.com:3000*
++
+The Million Song Library home page displays. (If you don't see data right away, wait a couple of minutes and then refresh the page.)
++
+[red]#*TBD - need screenshot for Windows*#
+ifeval::["{output}"=="html"]
+.Million Song Library Home Page
+image:images/msl-home-page-windows.png[Million Song Library Home Page]
+endif::[]
+
+ifeval::["{output}"=="pdf"]
+.Million Song Library Home Page
+image:images/msl-home-page-windows.png[Million Song Library Home Page, width=600]
+endif::[]
+
+Now that the Million Song Library demo is working, here are some fun things to try:
+
+* Click *Register* to register for an account.
+* Click the labels to switch the view between *Songs*, *Albums*, and *Artists*.
+* Click a genre or star rating on the left to filter songs. (Click the *x* to clear a filter.)
+* Mouse over a song and click *Add to library* to add it to your music library (you must be logged in).
+* Click the stars below a song to rate it (you must be logged in).
+
+== Stop the MSL Demo
+Done having fun for now? Follow these steps to stop the Million Song Library demo.
+
+. In the PowerShell window where you started the server instances, press *Control+C* to stop the server.
+. In the PowerShell window where you started the application, press *Control+C* to stop the application.
+. Stop the Cassandra service:
++
+[red]#*TBD - Need steps for stopping Cassandra on Windows*#
+
+NOTE: You don't need to run the setup script if you want to start the Million Song Library demo again. Just start Cassandra (see <<start-cassandra-windows>>) and then start the application and server instances (see <<start-msl-windows>>).

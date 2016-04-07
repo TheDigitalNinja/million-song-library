@@ -1,0 +1,6 @@
+com.kenzan.msl.catalog.client
+com.kenzan.msl.catalog.client.archaius
+com.kenzan.msl.catalog.client.cassandra
+com.kenzan.msl.catalog.client.cassandra.query
+com.kenzan.msl.catalog.client.dto
+com.kenzan.msl.catalog.client.services

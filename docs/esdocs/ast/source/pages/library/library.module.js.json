@@ -1,0 +1,1794 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 1312,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 34,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 16,
+      "end": 39,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 23
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 23,
+          "end": 24,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 8
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 23,
+            "end": 24,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 8
+              }
+            },
+            "name": "$",
+            "leadingComments": null
+          },
+          "leadingComments": null
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 30,
+        "end": 38,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 14
+          },
+          "end": {
+            "line": 2,
+            "column": 22
+          }
+        },
+        "value": "jquery",
+        "rawValue": "jquery",
+        "raw": "'jquery'"
+      },
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Dependencies",
+          "start": 0,
+          "end": 15,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 15
+            }
+          },
+          "range": [
+            0,
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 40,
+      "end": 70,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 30
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 47,
+          "end": 54,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 7
+            },
+            "end": {
+              "line": 3,
+              "column": 14
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 47,
+            "end": 54,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 7
+              },
+              "end": {
+                "line": 3,
+                "column": 14
+              }
+            },
+            "name": "angular"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 60,
+        "end": 69,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 20
+          },
+          "end": {
+            "line": 3,
+            "column": 29
+          }
+        },
+        "value": "angular",
+        "rawValue": "angular",
+        "raw": "'angular'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 71,
+      "end": 112,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 41
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 78,
+          "end": 86,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 7
+            },
+            "end": {
+              "line": 4,
+              "column": 15
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 78,
+            "end": 86,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 7
+              },
+              "end": {
+                "line": 4,
+                "column": 15
+              }
+            },
+            "name": "uiRouter"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 92,
+        "end": 111,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 21
+          },
+          "end": {
+            "line": 4,
+            "column": 40
+          }
+        },
+        "value": "angular-ui-router",
+        "rawValue": "angular-ui-router",
+        "raw": "'angular-ui-router'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 114,
+      "end": 160,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 46
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 121,
+          "end": 133,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 7
+            },
+            "end": {
+              "line": 6,
+              "column": 19
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 121,
+            "end": 133,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 7
+              },
+              "end": {
+                "line": 6,
+                "column": 19
+              }
+            },
+            "name": "libraryRoute"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 139,
+        "end": 159,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 25
+          },
+          "end": {
+            "line": 6,
+            "column": 45
+          }
+        },
+        "value": "./library.route.js",
+        "rawValue": "./library.route.js",
+        "raw": "'./library.route.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 161,
+      "end": 223,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 62
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 168,
+          "end": 179,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 7
+            },
+            "end": {
+              "line": 7,
+              "column": 18
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 168,
+            "end": 179,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 7
+              },
+              "end": {
+                "line": 7,
+                "column": 18
+              }
+            },
+            "name": "libraryCtrl"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 185,
+        "end": 222,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 24
+          },
+          "end": {
+            "line": 7,
+            "column": 61
+          }
+        },
+        "value": "./controllers/library.controller.js",
+        "rawValue": "./controllers/library.controller.js",
+        "raw": "'./controllers/library.controller.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 224,
+      "end": 277,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 53
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 231,
+          "end": 243,
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 7
+            },
+            "end": {
+              "line": 8,
+              "column": 19
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 231,
+            "end": 243,
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 7
+              },
+              "end": {
+                "line": 8,
+                "column": 19
+              }
+            },
+            "name": "libraryModel"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 249,
+        "end": 276,
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 25
+          },
+          "end": {
+            "line": 8,
+            "column": 52
+          }
+        },
+        "value": "./models/library.model.js",
+        "rawValue": "./models/library.model.js",
+        "raw": "'./models/library.model.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 278,
+      "end": 336,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 58
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 285,
+          "end": 297,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 7
+            },
+            "end": {
+              "line": 9,
+              "column": 19
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 285,
+            "end": 297,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 7
+              },
+              "end": {
+                "line": 9,
+                "column": 19
+              }
+            },
+            "name": "addToLibrary"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 303,
+        "end": 335,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 25
+          },
+          "end": {
+            "line": 9,
+            "column": 57
+          }
+        },
+        "value": "./directives/add-to-library.js",
+        "rawValue": "./directives/add-to-library.js",
+        "raw": "'./directives/add-to-library.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 337,
+      "end": 405,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 68
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 344,
+          "end": 361,
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 7
+            },
+            "end": {
+              "line": 10,
+              "column": 24
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 344,
+            "end": 361,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 7
+              },
+              "end": {
+                "line": 10,
+                "column": 24
+              }
+            },
+            "name": "removeFromLibrary"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 367,
+        "end": 404,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 30
+          },
+          "end": {
+            "line": 10,
+            "column": 67
+          }
+        },
+        "value": "./directives/remove-from-library.js",
+        "rawValue": "./directives/remove-from-library.js",
+        "raw": "'./directives/remove-from-library.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 406,
+      "end": 455,
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 49
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 413,
+          "end": 422,
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 7
+            },
+            "end": {
+              "line": 11,
+              "column": 16
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 413,
+            "end": 422,
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 7
+              },
+              "end": {
+                "line": 11,
+                "column": 16
+              }
+            },
+            "name": "dataStore"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 428,
+        "end": 454,
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 22
+          },
+          "end": {
+            "line": 11,
+            "column": 48
+          }
+        },
+        "value": "modules/datastore/module",
+        "rawValue": "modules/datastore/module",
+        "raw": "'modules/datastore/module'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 456,
+      "end": 527,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 71
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 463,
+          "end": 487,
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 7
+            },
+            "end": {
+              "line": 12,
+              "column": 31
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 463,
+            "end": 487,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 7
+              },
+              "end": {
+                "line": 12,
+                "column": 31
+              }
+            },
+            "name": "libraryCarouselDirective"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 493,
+        "end": 526,
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 37
+          },
+          "end": {
+            "line": 12,
+            "column": 70
+          }
+        },
+        "value": "./library-carousel.directive.js",
+        "rawValue": "./library-carousel.directive.js",
+        "raw": "'./library-carousel.directive.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 528,
+      "end": 589,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 61
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 535,
+          "end": 549,
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 7
+            },
+            "end": {
+              "line": 13,
+              "column": 21
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 535,
+            "end": 549,
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 7
+              },
+              "end": {
+                "line": 13,
+                "column": 21
+              }
+            },
+            "name": "repeatComplete"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 555,
+        "end": 588,
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 27
+          },
+          "end": {
+            "line": 13,
+            "column": 60
+          }
+        },
+        "value": "./directives/repeat-complete.js",
+        "rawValue": "./directives/repeat-complete.js",
+        "raw": "'./directives/repeat-complete.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 590,
+      "end": 630,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 40
+        }
+      },
+      "specifiers": [],
+      "source": {
+        "type": "Literal",
+        "start": 597,
+        "end": 629,
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 7
+          },
+          "end": {
+            "line": 14,
+            "column": 39
+          }
+        },
+        "value": "slick-carousel/slick/slick.css",
+        "rawValue": "slick-carousel/slick/slick.css",
+        "raw": "'slick-carousel/slick/slick.css'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 631,
+      "end": 677,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 46
+        }
+      },
+      "specifiers": [],
+      "source": {
+        "type": "Literal",
+        "start": 638,
+        "end": 676,
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 7
+          },
+          "end": {
+            "line": 15,
+            "column": 45
+          }
+        },
+        "value": "slick-carousel/slick/slick-theme.css",
+        "rawValue": "slick-carousel/slick/slick-theme.css",
+        "raw": "'slick-carousel/slick/slick-theme.css'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 678,
+      "end": 724,
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 0
+        },
+        "end": {
+          "line": 16,
+          "column": 46
+        }
+      },
+      "specifiers": [],
+      "source": {
+        "type": "Literal",
+        "start": 685,
+        "end": 723,
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 7
+          },
+          "end": {
+            "line": 16,
+            "column": 45
+          }
+        },
+        "value": "slick-carousel/slick/fonts/slick.eot",
+        "rawValue": "slick-carousel/slick/fonts/slick.eot",
+        "raw": "'slick-carousel/slick/fonts/slick.eot'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 725,
+      "end": 771,
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 0
+        },
+        "end": {
+          "line": 17,
+          "column": 46
+        }
+      },
+      "specifiers": [],
+      "source": {
+        "type": "Literal",
+        "start": 732,
+        "end": 770,
+        "loc": {
+          "start": {
+            "line": 17,
+            "column": 7
+          },
+          "end": {
+            "line": 17,
+            "column": 45
+          }
+        },
+        "value": "slick-carousel/slick/fonts/slick.svg",
+        "rawValue": "slick-carousel/slick/fonts/slick.svg",
+        "raw": "'slick-carousel/slick/fonts/slick.svg'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 772,
+      "end": 818,
+      "loc": {
+        "start": {
+          "line": 18,
+          "column": 0
+        },
+        "end": {
+          "line": 18,
+          "column": 46
+        }
+      },
+      "specifiers": [],
+      "source": {
+        "type": "Literal",
+        "start": 779,
+        "end": 817,
+        "loc": {
+          "start": {
+            "line": 18,
+            "column": 7
+          },
+          "end": {
+            "line": 18,
+            "column": 45
+          }
+        },
+        "value": "slick-carousel/slick/fonts/slick.ttf",
+        "rawValue": "slick-carousel/slick/fonts/slick.ttf",
+        "raw": "'slick-carousel/slick/fonts/slick.ttf'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 819,
+      "end": 866,
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 0
+        },
+        "end": {
+          "line": 19,
+          "column": 47
+        }
+      },
+      "specifiers": [],
+      "source": {
+        "type": "Literal",
+        "start": 826,
+        "end": 865,
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 7
+          },
+          "end": {
+            "line": 19,
+            "column": 46
+          }
+        },
+        "value": "slick-carousel/slick/fonts/slick.woff",
+        "rawValue": "slick-carousel/slick/fonts/slick.woff",
+        "raw": "'slick-carousel/slick/fonts/slick.woff'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 867,
+      "end": 910,
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 0
+        },
+        "end": {
+          "line": 20,
+          "column": 43
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 874,
+          "end": 887,
+          "loc": {
+            "start": {
+              "line": 20,
+              "column": 7
+            },
+            "end": {
+              "line": 20,
+              "column": 20
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 874,
+            "end": 887,
+            "loc": {
+              "start": {
+                "line": 20,
+                "column": 7
+              },
+              "end": {
+                "line": 20,
+                "column": 20
+              }
+            },
+            "name": "slickCarousel"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 893,
+        "end": 909,
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 26
+          },
+          "end": {
+            "line": 20,
+            "column": 42
+          }
+        },
+        "value": "slick-carousel",
+        "rawValue": "slick-carousel",
+        "raw": "'slick-carousel'"
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 912,
+      "end": 1311,
+      "loc": {
+        "start": {
+          "line": 22,
+          "column": 0
+        },
+        "end": {
+          "line": 33,
+          "column": 8
+        }
+      },
+      "declaration": {
+        "type": "MemberExpression",
+        "start": 927,
+        "end": 1310,
+        "loc": {
+          "start": {
+            "line": 22,
+            "column": 15
+          },
+          "end": {
+            "line": 33,
+            "column": 7
+          }
+        },
+        "object": {
+          "type": "CallExpression",
+          "start": 927,
+          "end": 1302,
+          "loc": {
+            "start": {
+              "line": 22,
+              "column": 15
+            },
+            "end": {
+              "line": 32,
+              "column": 40
+            }
+          },
+          "callee": {
+            "type": "MemberExpression",
+            "start": 927,
+            "end": 1272,
+            "loc": {
+              "start": {
+                "line": 22,
+                "column": 15
+              },
+              "end": {
+                "line": 32,
+                "column": 10
+              }
+            },
+            "object": {
+              "type": "CallExpression",
+              "start": 927,
+              "end": 1261,
+              "loc": {
+                "start": {
+                  "line": 22,
+                  "column": 15
+                },
+                "end": {
+                  "line": 31,
+                  "column": 46
+                }
+              },
+              "callee": {
+                "type": "MemberExpression",
+                "start": 927,
+                "end": 1227,
+                "loc": {
+                  "start": {
+                    "line": 22,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 31,
+                    "column": 12
+                  }
+                },
+                "object": {
+                  "type": "CallExpression",
+                  "start": 927,
+                  "end": 1214,
+                  "loc": {
+                    "start": {
+                      "line": 22,
+                      "column": 15
+                    },
+                    "end": {
+                      "line": 30,
+                      "column": 52
+                    }
+                  },
+                  "callee": {
+                    "type": "MemberExpression",
+                    "start": 927,
+                    "end": 1174,
+                    "loc": {
+                      "start": {
+                        "line": 22,
+                        "column": 15
+                      },
+                      "end": {
+                        "line": 30,
+                        "column": 12
+                      }
+                    },
+                    "object": {
+                      "type": "CallExpression",
+                      "start": 927,
+                      "end": 1161,
+                      "loc": {
+                        "start": {
+                          "line": 22,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 29,
+                          "column": 42
+                        }
+                      },
+                      "callee": {
+                        "type": "MemberExpression",
+                        "start": 927,
+                        "end": 1131,
+                        "loc": {
+                          "start": {
+                            "line": 22,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 29,
+                            "column": 12
+                          }
+                        },
+                        "object": {
+                          "type": "CallExpression",
+                          "start": 927,
+                          "end": 1118,
+                          "loc": {
+                            "start": {
+                              "line": 22,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 28,
+                              "column": 57
+                            }
+                          },
+                          "callee": {
+                            "type": "MemberExpression",
+                            "start": 927,
+                            "end": 1073,
+                            "loc": {
+                              "start": {
+                                "line": 22,
+                                "column": 15
+                              },
+                              "end": {
+                                "line": 28,
+                                "column": 12
+                              }
+                            },
+                            "object": {
+                              "type": "CallExpression",
+                              "start": 927,
+                              "end": 1060,
+                              "loc": {
+                                "start": {
+                                  "line": 22,
+                                  "column": 15
+                                },
+                                "end": {
+                                  "line": 27,
+                                  "column": 41
+                                }
+                              },
+                              "callee": {
+                                "type": "MemberExpression",
+                                "start": 927,
+                                "end": 1032,
+                                "loc": {
+                                  "start": {
+                                    "line": 22,
+                                    "column": 15
+                                  },
+                                  "end": {
+                                    "line": 27,
+                                    "column": 13
+                                  }
+                                },
+                                "object": {
+                                  "type": "CallExpression",
+                                  "start": 927,
+                                  "end": 1018,
+                                  "loc": {
+                                    "start": {
+                                      "line": 22,
+                                      "column": 15
+                                    },
+                                    "end": {
+                                      "line": 26,
+                                      "column": 23
+                                    }
+                                  },
+                                  "callee": {
+                                    "type": "MemberExpression",
+                                    "start": 927,
+                                    "end": 1004,
+                                    "loc": {
+                                      "start": {
+                                        "line": 22,
+                                        "column": 15
+                                      },
+                                      "end": {
+                                        "line": 26,
+                                        "column": 9
+                                      }
+                                    },
+                                    "object": {
+                                      "type": "CallExpression",
+                                      "start": 927,
+                                      "end": 994,
+                                      "loc": {
+                                        "start": {
+                                          "line": 22,
+                                          "column": 15
+                                        },
+                                        "end": {
+                                          "line": 25,
+                                          "column": 6
+                                        }
+                                      },
+                                      "callee": {
+                                        "type": "MemberExpression",
+                                        "start": 927,
+                                        "end": 941,
+                                        "loc": {
+                                          "start": {
+                                            "line": 22,
+                                            "column": 15
+                                          },
+                                          "end": {
+                                            "line": 22,
+                                            "column": 29
+                                          }
+                                        },
+                                        "object": {
+                                          "type": "Identifier",
+                                          "start": 927,
+                                          "end": 934,
+                                          "loc": {
+                                            "start": {
+                                              "line": 22,
+                                              "column": 15
+                                            },
+                                            "end": {
+                                              "line": 22,
+                                              "column": 22
+                                            }
+                                          },
+                                          "name": "angular"
+                                        },
+                                        "property": {
+                                          "type": "Identifier",
+                                          "start": 935,
+                                          "end": 941,
+                                          "loc": {
+                                            "start": {
+                                              "line": 22,
+                                              "column": 23
+                                            },
+                                            "end": {
+                                              "line": 22,
+                                              "column": 29
+                                            }
+                                          },
+                                          "name": "module"
+                                        },
+                                        "computed": false
+                                      },
+                                      "arguments": [
+                                        {
+                                          "type": "Literal",
+                                          "start": 942,
+                                          "end": 955,
+                                          "loc": {
+                                            "start": {
+                                              "line": 22,
+                                              "column": 30
+                                            },
+                                            "end": {
+                                              "line": 22,
+                                              "column": 43
+                                            }
+                                          },
+                                          "value": "msl.library",
+                                          "rawValue": "msl.library",
+                                          "raw": "'msl.library'"
+                                        },
+                                        {
+                                          "type": "ArrayExpression",
+                                          "start": 957,
+                                          "end": 993,
+                                          "loc": {
+                                            "start": {
+                                              "line": 22,
+                                              "column": 45
+                                            },
+                                            "end": {
+                                              "line": 25,
+                                              "column": 5
+                                            }
+                                          },
+                                          "elements": [
+                                            {
+                                              "type": "Identifier",
+                                              "start": 963,
+                                              "end": 971,
+                                              "loc": {
+                                                "start": {
+                                                  "line": 23,
+                                                  "column": 4
+                                                },
+                                                "end": {
+                                                  "line": 23,
+                                                  "column": 12
+                                                }
+                                              },
+                                              "name": "uiRouter"
+                                            },
+                                            {
+                                              "type": "Identifier",
+                                              "start": 977,
+                                              "end": 986,
+                                              "loc": {
+                                                "start": {
+                                                  "line": 24,
+                                                  "column": 4
+                                                },
+                                                "end": {
+                                                  "line": 24,
+                                                  "column": 13
+                                                }
+                                              },
+                                              "name": "dataStore"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    "property": {
+                                      "type": "Identifier",
+                                      "start": 998,
+                                      "end": 1004,
+                                      "loc": {
+                                        "start": {
+                                          "line": 26,
+                                          "column": 3
+                                        },
+                                        "end": {
+                                          "line": 26,
+                                          "column": 9
+                                        }
+                                      },
+                                      "name": "config"
+                                    },
+                                    "computed": false
+                                  },
+                                  "arguments": [
+                                    {
+                                      "type": "Identifier",
+                                      "start": 1005,
+                                      "end": 1017,
+                                      "loc": {
+                                        "start": {
+                                          "line": 26,
+                                          "column": 10
+                                        },
+                                        "end": {
+                                          "line": 26,
+                                          "column": 22
+                                        }
+                                      },
+                                      "name": "libraryRoute"
+                                    }
+                                  ]
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "start": 1022,
+                                  "end": 1032,
+                                  "loc": {
+                                    "start": {
+                                      "line": 27,
+                                      "column": 3
+                                    },
+                                    "end": {
+                                      "line": 27,
+                                      "column": 13
+                                    }
+                                  },
+                                  "name": "controller"
+                                },
+                                "computed": false
+                              },
+                              "arguments": [
+                                {
+                                  "type": "Literal",
+                                  "start": 1033,
+                                  "end": 1046,
+                                  "loc": {
+                                    "start": {
+                                      "line": 27,
+                                      "column": 14
+                                    },
+                                    "end": {
+                                      "line": 27,
+                                      "column": 27
+                                    }
+                                  },
+                                  "value": "libraryCtrl",
+                                  "rawValue": "libraryCtrl",
+                                  "raw": "'libraryCtrl'"
+                                },
+                                {
+                                  "type": "Identifier",
+                                  "start": 1048,
+                                  "end": 1059,
+                                  "loc": {
+                                    "start": {
+                                      "line": 27,
+                                      "column": 29
+                                    },
+                                    "end": {
+                                      "line": 27,
+                                      "column": 40
+                                    }
+                                  },
+                                  "name": "libraryCtrl"
+                                }
+                              ]
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "start": 1064,
+                              "end": 1073,
+                              "loc": {
+                                "start": {
+                                  "line": 28,
+                                  "column": 3
+                                },
+                                "end": {
+                                  "line": 28,
+                                  "column": 12
+                                }
+                              },
+                              "name": "directive"
+                            },
+                            "computed": false
+                          },
+                          "arguments": [
+                            {
+                              "type": "Literal",
+                              "start": 1074,
+                              "end": 1091,
+                              "loc": {
+                                "start": {
+                                  "line": 28,
+                                  "column": 13
+                                },
+                                "end": {
+                                  "line": 28,
+                                  "column": 30
+                                }
+                              },
+                              "value": "libraryCarousel",
+                              "rawValue": "libraryCarousel",
+                              "raw": "'libraryCarousel'"
+                            },
+                            {
+                              "type": "Identifier",
+                              "start": 1093,
+                              "end": 1117,
+                              "loc": {
+                                "start": {
+                                  "line": 28,
+                                  "column": 32
+                                },
+                                "end": {
+                                  "line": 28,
+                                  "column": 56
+                                }
+                              },
+                              "name": "libraryCarouselDirective"
+                            }
+                          ]
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 1122,
+                          "end": 1131,
+                          "loc": {
+                            "start": {
+                              "line": 29,
+                              "column": 3
+                            },
+                            "end": {
+                              "line": 29,
+                              "column": 12
+                            }
+                          },
+                          "name": "directive"
+                        },
+                        "computed": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "Literal",
+                          "start": 1132,
+                          "end": 1146,
+                          "loc": {
+                            "start": {
+                              "line": 29,
+                              "column": 13
+                            },
+                            "end": {
+                              "line": 29,
+                              "column": 27
+                            }
+                          },
+                          "value": "addToLibrary",
+                          "rawValue": "addToLibrary",
+                          "raw": "'addToLibrary'"
+                        },
+                        {
+                          "type": "Identifier",
+                          "start": 1148,
+                          "end": 1160,
+                          "loc": {
+                            "start": {
+                              "line": 29,
+                              "column": 29
+                            },
+                            "end": {
+                              "line": 29,
+                              "column": 41
+                            }
+                          },
+                          "name": "addToLibrary"
+                        }
+                      ]
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 1165,
+                      "end": 1174,
+                      "loc": {
+                        "start": {
+                          "line": 30,
+                          "column": 3
+                        },
+                        "end": {
+                          "line": 30,
+                          "column": 12
+                        }
+                      },
+                      "name": "directive"
+                    },
+                    "computed": false
+                  },
+                  "arguments": [
+                    {
+                      "type": "Literal",
+                      "start": 1175,
+                      "end": 1194,
+                      "loc": {
+                        "start": {
+                          "line": 30,
+                          "column": 13
+                        },
+                        "end": {
+                          "line": 30,
+                          "column": 32
+                        }
+                      },
+                      "value": "removeFromLibrary",
+                      "rawValue": "removeFromLibrary",
+                      "raw": "'removeFromLibrary'"
+                    },
+                    {
+                      "type": "Identifier",
+                      "start": 1196,
+                      "end": 1213,
+                      "loc": {
+                        "start": {
+                          "line": 30,
+                          "column": 34
+                        },
+                        "end": {
+                          "line": 30,
+                          "column": 51
+                        }
+                      },
+                      "name": "removeFromLibrary"
+                    }
+                  ]
+                },
+                "property": {
+                  "type": "Identifier",
+                  "start": 1218,
+                  "end": 1227,
+                  "loc": {
+                    "start": {
+                      "line": 31,
+                      "column": 3
+                    },
+                    "end": {
+                      "line": 31,
+                      "column": 12
+                    }
+                  },
+                  "name": "directive"
+                },
+                "computed": false
+              },
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "start": 1228,
+                  "end": 1244,
+                  "loc": {
+                    "start": {
+                      "line": 31,
+                      "column": 13
+                    },
+                    "end": {
+                      "line": 31,
+                      "column": 29
+                    }
+                  },
+                  "value": "repeatComplete",
+                  "rawValue": "repeatComplete",
+                  "raw": "'repeatComplete'"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 1246,
+                  "end": 1260,
+                  "loc": {
+                    "start": {
+                      "line": 31,
+                      "column": 31
+                    },
+                    "end": {
+                      "line": 31,
+                      "column": 45
+                    }
+                  },
+                  "name": "repeatComplete"
+                }
+              ]
+            },
+            "property": {
+              "type": "Identifier",
+              "start": 1265,
+              "end": 1272,
+              "loc": {
+                "start": {
+                  "line": 32,
+                  "column": 3
+                },
+                "end": {
+                  "line": 32,
+                  "column": 10
+                }
+              },
+              "name": "service"
+            },
+            "computed": false
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "start": 1273,
+              "end": 1287,
+              "loc": {
+                "start": {
+                  "line": 32,
+                  "column": 11
+                },
+                "end": {
+                  "line": 32,
+                  "column": 25
+                }
+              },
+              "value": "libraryModel",
+              "rawValue": "libraryModel",
+              "raw": "'libraryModel'"
+            },
+            {
+              "type": "Identifier",
+              "start": 1289,
+              "end": 1301,
+              "loc": {
+                "start": {
+                  "line": 32,
+                  "column": 27
+                },
+                "end": {
+                  "line": 32,
+                  "column": 39
+                }
+              },
+              "name": "libraryModel"
+            }
+          ]
+        },
+        "property": {
+          "type": "Identifier",
+          "start": 1306,
+          "end": 1310,
+          "loc": {
+            "start": {
+              "line": 33,
+              "column": 3
+            },
+            "end": {
+              "line": 33,
+              "column": 7
+            }
+          },
+          "name": "name"
+        },
+        "computed": false,
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}

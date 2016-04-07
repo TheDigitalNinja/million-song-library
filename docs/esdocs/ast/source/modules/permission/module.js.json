@@ -1,0 +1,212 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 141,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 5,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 0,
+      "end": 28,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 28
+        }
+      },
+      "specifiers": [],
+      "source": {
+        "type": "Literal",
+        "start": 7,
+        "end": 27,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 7
+          },
+          "end": {
+            "line": 1,
+            "column": 27
+          }
+        },
+        "value": "angular-permission",
+        "rawValue": "angular-permission",
+        "raw": "'angular-permission'"
+      },
+      "trailingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Return angular module name so we do not",
+          "start": 29,
+          "end": 71,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 2,
+              "column": 42
+            }
+          },
+          "range": [
+            29,
+            71
+          ]
+        },
+        {
+          "type": "CommentLine",
+          "value": " have to hard code strings everywhere",
+          "start": 72,
+          "end": 111,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 3,
+              "column": 39
+            }
+          },
+          "range": [
+            72,
+            111
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 112,
+      "end": 140,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 28
+        }
+      },
+      "declaration": {
+        "type": "Literal",
+        "start": 127,
+        "end": 139,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 15
+          },
+          "end": {
+            "line": 4,
+            "column": 27
+          }
+        },
+        "value": "permission",
+        "rawValue": "permission",
+        "raw": "'permission'",
+        "leadingComments": [
+          {
+            "type": "CommentLine",
+            "value": " Return angular module name so we do not",
+            "start": 29,
+            "end": 71,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 0
+              },
+              "end": {
+                "line": 2,
+                "column": 42
+              }
+            },
+            "range": [
+              29,
+              71
+            ]
+          },
+          {
+            "type": "CommentLine",
+            "value": " have to hard code strings everywhere",
+            "start": 72,
+            "end": 111,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 0
+              },
+              "end": {
+                "line": 3,
+                "column": 39
+              }
+            },
+            "range": [
+              72,
+              111
+            ]
+          }
+        ],
+        "trailingComments": []
+      },
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Return angular module name so we do not",
+          "start": 29,
+          "end": 71,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 2,
+              "column": 42
+            }
+          },
+          "range": [
+            29,
+            71
+          ]
+        },
+        {
+          "type": "CommentLine",
+          "value": " have to hard code strings everywhere",
+          "start": 72,
+          "end": 111,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 3,
+              "column": 39
+            }
+          },
+          "range": [
+            72,
+            111
+          ]
+        }
+      ]
+    }
+  ]
+}

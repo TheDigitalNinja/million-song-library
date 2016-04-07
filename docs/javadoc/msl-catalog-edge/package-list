@@ -1,0 +1,9 @@
+com.kenzan.msl.catalog.edge
+com.kenzan.msl.catalog.edge.manager
+com.kenzan.msl.catalog.edge.mock
+com.kenzan.msl.catalog.edge.services
+com.kenzan.msl.catalog.edge.translate
+io.swagger.api
+io.swagger.api.factories
+io.swagger.api.impl
+io.swagger.client
