@@ -38,10 +38,7 @@ Use the following resources (located in the `/docs` directory) to learn more abo
 
 © 2016 Kenzan Media, LLC.
 
-The Kenzan Million Song Library project is licensed under the **TBD License**.
-<!---
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
---->
+The Kenzan Million Song Library project is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 ## Support
 
