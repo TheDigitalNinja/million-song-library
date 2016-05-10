@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
       provisioning(ubuntu, [])
 
       ubuntu.vm.provider "virtualbox" do |v|
-        v.memory = 2000
+        v.memory = 4000
         v.customize ["modifyvm", :id, "--cpuexecutioncap", "90"]
       end
     end
@@ -38,7 +38,7 @@ Vagrant.configure(2) do |config|
       prod.vm.provider "aws" do |aws, override|
         aws.region_config "us-west-2", :ami => "ami-9abea4fb"
         aws.region = "us-west-2"
-        aws.instance_type="t2.small"
+        aws.instance_type="m4.xlarge"
         aws.tags = { 'Name': 'Production-aws' }
         aws.keypair_name = "<<KEY_PAIR_NAME>>"
 
