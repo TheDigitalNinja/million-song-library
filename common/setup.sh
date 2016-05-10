@@ -153,7 +153,7 @@ function install_asciidoctor {
 ping -c 1 msl.kenzanlabs.com
 
 if [[ $? -ne 0 ]]; then
-    echo "127.0.0.1 msl.kenzanlabs.com" | sudo tee -a  /etc/hosts
+    echo "0.0.0.0 msl.kenzanlabs.com" | sudo tee -a  /etc/hosts
     error_handler $? "unable to add msl.kenzanlabs.com to /etc/hosts file"
     else echo "msl.kenzanlabs.com already part of /etc/hosts"
 fi
