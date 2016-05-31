@@ -206,7 +206,7 @@ if [[ ${BUILD_NODE} -eq 0 ]]; then
     sudo npm -g install npm@latest
     sudo npm install -y
     error_handler $? "unable to run npm install "
-    sudo bower install --allow-root
+    bower install
     error_handler $? "unable to run bower install"
 
     # Generate swagger html docs
@@ -227,6 +227,7 @@ fi
 ## ========================================================================
 
 if [[ ${BUILD_SERVER} -eq 0 ]]; then
+    sudo chmod -R 777 $PROJECT_PATH
     echo "BUILDING SERVER ..."
     cd ${PROJECT_PATH}/server
     java -version
