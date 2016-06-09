@@ -3,20 +3,20 @@
 :sectnums:
 :icons: font
 
-Are you the type who likes to see all the magic that happens behind the scenes? Or maybe you prefer that things are installed on your system _just so_. In either case, you can can manually install the Million Song Library without using the automated setup script. Just follow the steps in this section.
+Are you the type who likes to see all the magic that happens behind the scenes? Or maybe you prefer that things are installed on your system _just so_. In either case, you can can manually install the Million Song Library on a Mac or Linux system without using the automated setup script. Just follow the steps in this section.
 
-NOTE: If you want to get up and running as quickly as possible, using the automated setup script is the easiest way to install the Million Song Library demo on a <<Setup-Mac.adoc#setup-mac,Mac>>, <<Setup-Ubuntu.adoc#setup-ubuntu,Linux>>, or <<Setup-Windows.adoc#setup-windows,Windows>> computer.
+NOTE: If you want to get up and running as quickly as possible, using the automated setup script is the easiest way to install the Million Song Library demo on a <<Setup-Mac.adoc#setup-mac,Mac>> or <<Setup-Ubuntu.adoc#setup-ubuntu,Linux>> system. Or use Vagrant to automate setup on a <<Setup-Windows.adoc#setup-windows,Windows>> system.
 
 == Get Your System Ready
 
 Before setting up the demo, make sure all of the following tools are installed on your system and are at the required version or higher.
 
-This procedure assumes that you're running the Million Song Library demo on Mac OS X 10.11 (El Capitan), Ubuntu 14.04 (Trusty Tahr), or Windows 10. Things might work a little differently on other operating systems.
+This procedure assumes that you're running the Million Song Library demo on Mac OS X 10.11 (El Capitan) or Ubuntu 14.04 (Trusty Tahr). Things might work a little differently on other operating systems.
 
 ====
 *Entering Commands*
 
-We tested these steps using the default Terminal applications on Mac OS X and Ubuntu. To enter commands on Windows 10, we recommend running Windows PowerShell as an Administrator.
+We tested these steps using the default Terminal applications on Mac OS X and Ubuntu.
 ====
 
 ====
@@ -24,8 +24,8 @@ We tested these steps using the default Terminal applications on Mac OS X and Ub
 
 For this process, it's important to know where your home directory is. Your home directory is the directory that has the same name as your user name.
 
-* On Mac and Linux, your home directory is represented by the tilde (~) sign in Terminal commands.
-* On Windows, your home directory is: *C:\Users\<your_username>\*
+For example, if the user name you use to log on to your system is jdoe, your home directory is named *jdoe*. In Terminal, your home directory is represented by the tilde (~) sign. For example, the path *~/stuff* points to a directory named *stuff* located inside your home directory.
+
 ====
 
 Java 1.8 JDK::
@@ -35,8 +35,6 @@ To check the installed version, use the `java -version` command. If necessary, h
 Git::
 
 To check the installed version, use the `git --version` command. If necessary, http://git-scm.com/downloads[install Git^].
-
-IMPORTANT: (Windows only) During Git installation, make sure to select the *Use Git from the Windows Command Prompt* option. Otherwise you won't be able use Git commands in PowerShell.
 
 Maven 3.3.9 or later::
 
@@ -58,7 +56,7 @@ NOTE: If you get a permissions error, use `sudo bower --version` instead.
 
 RubyGem::
 
-To check the installed version, use the `gem --version` command. If necessary, install RubyGem for https://gorails.com/setup/osx/10.11-el-capitan[Mac^], https://gorails.com/setup/ubuntu/14.04[Linux^], or http://rubyinstaller.org/downloads/[Windows^].
+To check the installed version, use the `gem --version` command. If necessary, install RubyGem for https://gorails.com/setup/osx/10.11-el-capitan[Mac^] or https://gorails.com/setup/ubuntu/14.04[Linux^].
 
 AsciiDoctor::
 
@@ -70,10 +68,6 @@ Cassandra::
 NOTE: Make sure to download the correct file: *dsc-cassandra-2.1.11-bin.tar.gz*
 . Create a new directory named *cassandra* inside your home directory.
 . Move the *dsc-cassandra-2.1.11-bin.tar.gz* file into the new *cassandra* directory, and then extract the contents into the *cassandra* directory.
-
-Chocolatey (Windows only)::
-
-To check the installed version, use the `choco -v` command. If necessary, https://chocolatey.org/[install Chocolatey^].
 
 Apple Xcode (Mac OS X Only)::
 
@@ -105,8 +99,6 @@ cd million-song-library
 git submodule init && git submodule update
 ----
 
-NOTE: For Windows, you will need to run the commands separately: first `git submodule init` and then `git submodule update`.
-
 == Set up the Client
 
 . Change to the *msl-pages* directory inside the *million-song-library* directory
@@ -120,14 +112,12 @@ cd msl-pages
 npm install && bower install
 ----
 +
-NOTE: For Windows, you will need to run the commands separately: first `npm install` and then `bower install`.
 . Install Protractor and Selenium WebDriver globally:
 +
 ----
 npm install -g -y protractor && npm install -g -y selenium-webdriver
 ----
 +
-NOTE: For Windows, you will need to run the commands separately: first `npm install -g -y protractor` and then `npm install -g -y selenium-webdriver`.
 
 == Set up the Server
 
@@ -147,34 +137,14 @@ mvn clean compile
 . Open a new Terminal window, or a PowerShell window with administrator privileges.
 . Start Cassandra:
 +
-_Mac or Linux_
-+
 ----
 sh ~/cassandra/dsc-cassandra-2.1.11/bin/cassandra
-----
-+
-_Windows_
-+
-[red]#*TBD - need step for Windows*#
-+
-----
-???
 ----
 . After Cassandra finishes starting, press *<Enter>* to display the command prompt again.
 . Enter the Cassandra console:
 +
-_Mac or Linux_
-+
 ----
 sh ~/cassandra/dsc-cassandra-2.1.11/bin/cqlsh
-----
-+
-_Windows_
-+
-[red]#*TBD - need step for Windows*#
-+
-----
-???
 ----
 . Import data by entering the following commands at the *cqlsh>* prompt, pressing *<Enter>* after each command:
 +
@@ -195,17 +165,10 @@ exit
 . Open a new Terminal window, or a PowerShell window with administrator privileges.
 . Change to the application directory: 
 +
-_Mac or Linux:_
-+
 ----
 cd ~/million-song-library/msl-pages
 ----
 +
-_Windows:_
-+
-----
-cd C:\Users\<your_username>\million-song-library\msl-pages
-----
 
 . Start the application front end:
 +
@@ -217,17 +180,10 @@ Wait for the front end to start up -- this will take just a couple of minutes.
 . Open a new Terminal window, or a PowerShell window with administrator privileges.
 . Change to the application directory: 
 +
-_Mac or Linux:_
-+
 ----
 cd ~/million-song-library/msl-pages
 ----
 +
-_Windows:_
-+
-----
-cd C:\Users\<your_username>\million-song-library\msl-pages
-----
 . Start the server instances:
 +
 _Linux:_
@@ -236,7 +192,7 @@ _Linux:_
 sudo npm run serve-all
 ----
 +
-_Mac or Windows:_
+_Mac:_
 +
 ----
 npm run serve-all
@@ -263,5 +219,3 @@ Look at the output from the command and note the first 3&#8211;5 digit number th
 ----
 sudo kill pid
 ----
-
-[red]#*TBD - Need steps for stopping Cassandra on Windows*#
