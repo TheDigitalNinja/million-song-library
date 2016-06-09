@@ -14,7 +14,7 @@ There are three ways to run the Million Song Library demonstration:
 
 - **Automated Setup** – Uses the `setup.sh` script (located in the `/common` directory) to automate much of the setup process. This is the quickest method for running the MSL demonstration locally on a Mac, Linux, or Windows system.
 
-- **Manual Setup** – Also runs the MSL demonstration locally on a Mac, Linux, or Windows system. This method takes more time but lets you control how the various tools are installed on your system.
+- **Manual Setup** – Also runs the MSL demonstration locally on a Mac or Linux system. This method takes more time but lets you control how the various tools are installed on your system.
 
 - **AWS Setup** – Deploys the MSL demonstration to an EC2 instance on AWS. This method uses [Vagrant](https://www.vagrantup.com/) to automate the cloud deployment process.
 

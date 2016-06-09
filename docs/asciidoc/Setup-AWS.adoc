@@ -129,7 +129,7 @@ NOTE: The access key file is a CSV file that contains values for two keys: *AWSA
 Create a new AWS Security Group to allow inbound access to the EC2 instance.
 
 . In your EC2 Management Console, click *Security Groups* (under *Network & Security*).
-. Click *Create Key Pair*.
+. Click *Create Security Group*.
 . In the *Security group name* box, type the name of the security group (for example, *kenzanmsl*).
 . In the *Description* box, type a description for the security group (for example, *Million Song Library Demo*).
 . On the *Inbound* tab, click *Add Rule*.
@@ -141,7 +141,7 @@ Create a new AWS Security Group to allow inbound access to the EC2 instance.
 
 The Vagrant file contains all of the information needed to set up and configure the EC2 instance. You need to edit the Vagrant file to add information about your AWS account -- this lets Vagrant know where to set up the instance.
 
-. In a text editor, open the *Vagrant* file located in the *million-song-library* directory (in your home directory).
+. In a text editor, open the file named *Vagrantfile* located in the *million-song-library* directory (in your home directory).
 . Replace the following variables with the correct values:
 +
 [width="100%",cols="2,1",options="header"]
@@ -169,12 +169,14 @@ After you finish editing the Vagrant file, you're ready to use Vagrant to create
 ----
 cd million-song-library
 ----
-. Enter the following command to start the provisioning process;
+. Enter the following command to start the provisioning process:
 +
 ----
 vagrant up prod
 ----
 . Wait for the provisioning process to complete (about 30 minutes).
+
+NOTE: If you get an error stating that the *.gitconfig* file does not exist, enter the command `touch ~/.gitconfig` to create one, and then run `vagrant up prod` again.
 
 [[edit-aws-hosts]]
 == Edit the Hosts File

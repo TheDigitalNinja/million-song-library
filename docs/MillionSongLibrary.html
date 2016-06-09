@@ -521,14 +521,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#setup-windows">8. Windows Automated Setup</a>
 <ul class="sectlevel2">
 <li><a href="#get-ready-windows">8.1. Get Your System Ready</a></li>
-<li><a href="#update-tools-windows">8.2. Update Existing Tools (If Needed)</a></li>
-<li><a href="#_clone_the_msl_repository_3">8.3. Clone the MSL Repository</a></li>
-<li><a href="#start-cassandra-windows">8.4. Install Cassandra</a></li>
-<li><a href="#_enable_scripts_in_powershell">8.5. Enable Scripts in PowerShell</a></li>
-<li><a href="#_install_chocolatey">8.6. Install Chocolatey</a></li>
-<li><a href="#_run_the_setup_script_3">8.7. Run the Setup Script</a></li>
-<li><a href="#start-msl-windows">8.8. Start the MSL Demo</a></li>
-<li><a href="#_stop_the_msl_demo_3">8.9. Stop the MSL Demo</a></li>
+<li><a href="#_clone_the_msl_repository_3">8.2. Clone the MSL Repository</a></li>
+<li><a href="#_set_up_the_virtual_machine">8.3. Set up the Virtual Machine</a></li>
+<li><a href="#_edit_the_hosts_file">8.4. Edit the Hosts File</a></li>
+<li><a href="#start-msl-windows">8.5. Start the MSL Demo</a></li>
+<li><a href="#_stop_the_msl_demo_3">8.6. Stop the MSL Demo</a></li>
 </ul>
 </li>
 <li><a href="#setup-manual">9. Manual Setup</a>
@@ -536,10 +533,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_get_your_system_ready">9.1. Get Your System Ready</a></li>
 <li><a href="#_clone_the_msl_repository_4">9.2. Clone the MSL Repository</a></li>
 <li><a href="#_set_up_the_client">9.3. Set up the Client</a></li>
-<li><a href="#_set_up_the_server">9.4. Set up the Server</a></li>
-<li><a href="#_set_up_cassandra">9.5. Set up Cassandra</a></li>
-<li><a href="#_start_the_msl_demo">9.6. Start the MSL Demo</a></li>
-<li><a href="#_stop_the_msl_demo_4">9.7. Stop the MSL Demo</a></li>
+<li><a href="#_set_up_cassandra">9.4. Set up Cassandra</a></li>
+<li><a href="#_start_the_msl_demo">9.5. Start the MSL Demo</a></li>
+<li><a href="#_stop_the_msl_demo_4">9.6. Stop the MSL Demo</a></li>
 </ul>
 </li>
 <li><a href="#setup-aws">10. Deploying to AWS</a>
@@ -1812,7 +1808,10 @@ After installation, make sure to open Xcode, accept the license agreement, and (
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new Terminal window and enter the following command:</p>
+<p>Open a new Terminal window and make sure you are in your home directory.</p>
+</li>
+<li>
+<p>Enter the following command:</p>
 <div class="listingblock">
 <div class="content">
 <pre>git clone https://github.com/kenzanmedia/million-song-library</pre>
@@ -1980,7 +1979,7 @@ It&#8217;s normal to see some warnings while the script runs. If the script enco
 <p>Enter the following command to start the server instances:</p>
 <div class="listingblock">
 <div class="content">
-<pre>sudo npm run serve-all</pre>
+<pre>npm run serve-all</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2188,7 +2187,10 @@ You don&#8217;t need to run the setup script if you want to start the Million So
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new Terminal window and enter the following command:</p>
+<p>Open a new Terminal window and make sure you are in your home directory.</p>
+</li>
+<li>
+<p>Enter the following command:</p>
 <div class="listingblock">
 <div class="content">
 <pre>git clone https://github.com/kenzanmedia/million-song-library</pre>
@@ -2439,7 +2441,7 @@ You don&#8217;t need to run the setup script if you want to start the Million So
 <h2 id="setup-windows">8. Windows Automated Setup</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Follow the steps in this section to set up the Million Song Library demo on a system running Windows.</p>
+<p>Follow the steps in this section to set up the Million Song Library demo on a system running Windows. You will actually be installing the demo inside a Linux virtual machine using Vagrant&#8201;&#8212;&#8201;a process that&#8217;s both easy and free.</p>
 </div>
 <div class="sect2">
 <h3 id="get-ready-windows">8.1. Get Your System Ready</h3>
@@ -2451,52 +2453,6 @@ You don&#8217;t need to run the setup script if you want to start the Million So
 <dt class="hdlist1">Windows 10</dt>
 <dd>
 <p>We tested this procedure on Windows 10 Pro. <a href="http://windows.microsoft.com/en-us/windows/which-operating-system" target="_blank">Check your Windows version</a> to see if you&#8217;re already running Windows 10 Pro, and to find out if you&#8217;re running a 32-bit or 64-bit version of Windows. If you&#8217;re running an older version of Windows, you should <a href="https://www.microsoft.com/en-us/windows/windows-10-upgrade" target="_blank">upgrade your system to Windows 10</a>.</p>
-</dd>
-<dt class="hdlist1">Java 1.8 JDK</dt>
-<dd>
-<p>Install the <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank">Java 1.8 JDK</a>. Make sure to select the correct download option: <strong>Windows x86</strong> (for 32-bit systems) or <strong>Windows x64</strong> (for 64-bit systems). To install, just double-click the EXE file.</p>
-<div class="exampleblock">
-<div class="content">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-After installing the Java 1.8 JDK, it&#8217;s a good idea to set your JAVA_HOME environmental variable to avoid errors when running commands:
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Right-click the <strong>Start</strong> menu and click <strong>System</strong>.</p>
-</li>
-<li>
-<p>Click <strong>Advanced system settings</strong>.</p>
-</li>
-<li>
-<p>Click <strong>Environment Variables</strong>.</p>
-</li>
-<li>
-<p>Click <strong>New</strong>.</p>
-</li>
-<li>
-<p>Type <strong>JAVA_HOME</strong> in the <strong>Variable name</strong> box.</p>
-</li>
-<li>
-<p>Click in the <strong>Variable value</strong> box and then click <strong>Browse</strong>. Select the directory where Java is installed (for example, <strong>C:\Program Files\Java\jdk1.8.0_73</strong>), and then click <strong>OK</strong>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<div class="title">Setting JAVA_HOME for Windows</div>
-<p><span class="image"><img src="asciidoc/images/java-home-windows.png" alt="Setting JAVA_HOME for Windows"></span></p>
-</div>
-</div>
-</div>
 </dd>
 <dt class="hdlist1">Git</dt>
 <dd>
@@ -2522,9 +2478,16 @@ During Git installation, make sure to select the <strong>Use Git from the Window
 </div>
 </div>
 </dd>
+<dt class="hdlist1">Vagrant</dt>
+<dd>
+<p>The easiest way to set up the Million Song Library on Windows is with Vagrant, a tool for automating the creation of development environments. If you don&#8217;t already have it, <a href="https://www.vagrantup.com/downloads.html" target="_blank">install Vagrant</a>.</p>
+</dd>
 <dt class="hdlist1">PowerShell</dt>
 <dd>
 <p>You&#8217;ll need to use Windows PowerShell to enter commands at the command prompt. You can find it in <strong>Start&#8594;All Apps&#8594;Windows PowerShell</strong>.</p>
+<div class="paragraph">
+<p>For some commands, you&#8217;ll need to use Git Bash instead (we&#8217;ll let you know when). You can find it in  <strong>Start&#8594;All Apps&#8594;Git&#8594;Git Bash</strong>.</p>
+</div>
 </dd>
 </dl>
 </div>
@@ -2539,49 +2502,24 @@ During Git installation, make sure to select the <strong>Use Git from the Window
 <div class="paragraph">
 <p>For example, if the user name you use to log on to Windows is jdoe, then the path <strong>C:\Users\jdoe</strong> points to your home directory.</p>
 </div>
+<div class="paragraph">
+<p>In Git Bash, your home directory is represented by the tilde (~) sign. For example, the path <strong>~/stuff</strong> points to a directory named <strong>stuff</strong> located inside your home directory.</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="update-tools-windows">8.2. Update Existing Tools (If Needed)</h3>
+<h3 id="_clone_the_msl_repository_3">8.2. Clone the MSL Repository</h3>
 <div class="paragraph">
-<p>The Million Song Library setup script will automatically install the required tools and frameworks, so in most cases there&#8217;s nothing more you need to install before getting started. There&#8217;s one exception&#8212;&#8203;if you already have some of the required tools installed on your system, then you need to make sure they are at the required version. Check the list below.</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Maven 3.3.9 or later</dt>
-<dd>
-<p>To see what version of Maven is installed, enter <code>mvn -version</code> at the PowerShell command prompt. If you get the message <code>command not found</code>, it means Maven is not installed, and there&#8217;s no need to do anything.</p>
-<div class="paragraph">
-<p>If the command reports that an older version is installed, <a href="http://www.tutorialspoint.com/maven/maven_environment_setup.htm" target="_blank">upgrade your Maven installation</a> to version 3.3.9 or later.</p>
-</div>
-</dd>
-<dt class="hdlist1">Node 0.12.x or later</dt>
-<dd>
-<p>To see what version of Node is installed, enter <code>node --version</code> at the PowerShell command prompt. If you get the message <code>command not found</code>, it means Node is not installed, and there&#8217;s no need to do anything.</p>
-<div class="paragraph">
-<p>If the command reports that an older version is installed, <a href="https://nodejs.org/en/download/" target="_blank">download the Node.js Windows installer</a>. Just double-click the installer to run it. This will also install npm.</p>
-</div>
-</dd>
-<dt class="hdlist1">npm 2.7.x or later</dt>
-<dd>
-<p>To see what version of npm is installed, enter <code>npm -version</code> at the PowerShell command prompt. If you get the message <code>command not found</code>, it means npm is not installed, and there&#8217;s no need to do anything.</p>
-<div class="paragraph">
-<p>If the command reports that an older version is installed, <a href="https://nodejs.org/en/download/" target="_blank">download the Node.js Windows installer</a>, which includes npm. Just double-click the installer to run it.</p>
-</div>
-</dd>
-</dl>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_clone_the_msl_repository_3">8.3. Clone the MSL Repository</h3>
-<div class="paragraph">
-<p>To run the setup script, you first need to clone the million-song-library repository to a local directory.</p>
+<p>To use Vagrant to set up a virtual machine for the demo, you first need to clone the million-song-library repository to a local directory.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new PowerShell window and enter the following command:</p>
+<p>Open a new PowerShell window and make sure you are in your home directory.</p>
+</li>
+<li>
+<p>Enter the following command:</p>
 <div class="listingblock">
 <div class="content">
 <pre>git clone https://github.com/kenzanmedia/million-song-library</pre>
@@ -2619,82 +2557,33 @@ During Git installation, make sure to select the <strong>Use Git from the Window
 </div>
 </div>
 <div class="sect2">
-<h3 id="start-cassandra-windows">8.4. Install Cassandra</h3>
+<h3 id="_set_up_the_virtual_machine">8.3. Set up the Virtual Machine</h3>
 <div class="paragraph">
-<p>Now let&#8217;s get Cassandra installed.</p>
+<p>The Vagrant file contains all of the information needed to set up and configure the Linux virtual machine to run the Million Song Library Demo. Let&#8217;s get it running.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If you don&#8217;t already have a utility on your system that can extract <strong>.tar.gz</strong> files, you&#8217;ll need to install one first. One good option is <a href="http://www.7-zip.org/" target="_blank">7-Zip</a>, which is free and open source.</p>
+<p>Open a new PowerShell window and make sure you are in your home directory.</p>
 </li>
 <li>
-<p>Download Cassandra 2.1.11 (Community version) from the <a href="https://downloads.datastax.com/community/" target="_blank">Datastax download site</a>.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Make sure to download the correct file: <strong>dsc-cassandra-2.1.11-bin.tar.gz</strong>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Create a new directory named <strong>cassandra</strong> inside your home ( <strong>C:\Users\&lt;your_username&gt;\</strong> ) directory.</p>
-</li>
-<li>
-<p>Move the <strong>dsc-cassandra-2.1.11-bin.tar.gz</strong> file into the <strong>C:\Users\&lt;your_username&gt;\cassandra</strong> directory.</p>
-</li>
-<li>
-<p>Extract the contents of the <strong>.tar.gz</strong> file. If you are using 7-Zip:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Right-click the <strong>.tar.gz</strong> file and click <strong>7-Zip&#8594;Extract Here</strong>. This results in a <strong>.tar</strong> file.</p>
-</li>
-<li>
-<p>Right-click the <strong>.tar</strong> file and click <strong>7-Zip&#8594;Extract Here</strong>.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_enable_scripts_in_powershell">8.5. Enable Scripts in PowerShell</h3>
-<div class="paragraph">
-<p>The default PowerShell execution policies don&#8217;t allow running scripts. You&#8217;ll need to change that so you can run the Million Song Library setup script.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Open a new PowerShell window with administrator privileges.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Click the <strong>Start</strong> menu, and then navigate to <strong>All Apps&#8594;Windows PowerShell</strong>.</p>
-</li>
-<li>
-<p>Right-click the <strong>Windows PowerShell</strong> program icon and click <strong>Run as Administrator</strong>.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Enter the following command:</p>
+<p>Enter the following command to change to the million-song-library repository:</p>
 <div class="listingblock">
 <div class="content">
-<pre>Set-ExecutionPolicy -ExecutionPolicy Unrestricted</pre>
+<pre>cd million-song-library</pre>
 </div>
 </div>
 </li>
 <li>
-<p>Enter <strong>y</strong> to confirm.</p>
+<p>Enter the following command to set up the virtual machine:</p>
+<div class="listingblock">
+<div class="content">
+<pre>vagrant up ubuntu</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Wait for the setup process to complete (about 30 minutes).</p>
 </li>
 </ol>
 </div>
@@ -2705,137 +2594,67 @@ Make sure to download the correct file: <strong>dsc-cassandra-2.1.11-bin.tar.gz<
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-For more information about PowerShell execution policies, see <a href="https://technet.microsoft.com/library/hh847748.aspx" target="_blank">this tech note from Microsoft</a>.
+If you get an error stating <code>The box 'ubuntu/trusty64' could not be found</code>, it means you don&#8217;t have the correct version of the Microsoft Visual C&#43;&#43; Redistributable Package on your system. First install the <a href="https://www.microsoft.com/en-us/download/details.aspx?id=8328" target="_blank">Microsoft Visual C&#43;&#43; 2010 SP1 Redistributable Package</a>, and then run the <code>vagrant up ubuntu</code> command again.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_install_chocolatey">8.6. Install Chocolatey</h3>
+<h3 id="_edit_the_hosts_file">8.4. Edit the Hosts File</h3>
 <div class="paragraph">
-<p>Chocolatey is a package manager for Windows. The Million Song Library setup script uses Chocolately to download required tools, so you&#8217;ll need to install it.</p>
+<p>While you&#8217;re waiting for the setup process to complete, take a few minutes to update the <strong>hosts</strong> file on your local system. This will allow you to access the Million Song Library application using a Web browser.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new PowerShell window with administrator privileges.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Click the <strong>Start</strong> menu, and then navigate to <strong>All Apps&#8594;Windows PowerShell</strong>.</p>
+<p>In a text editor, open the <strong>hosts</strong> file located in the <strong>C:\Windows\System32\Drivers\etc</strong> directory.</p>
 </li>
 <li>
-<p>Right-click the <strong>Windows PowerShell</strong> program icon and click <strong>Run as Administrator</strong>.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Enter the following command:</p>
+<p>Add the following line to the <strong>hosts</strong> file.</p>
 <div class="listingblock">
 <div class="content">
-<pre>iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))</pre>
+<pre>127.0.0.1     msl.kenzanlabs.com</pre>
 </div>
 </div>
 </li>
 <li>
-<p>After the installation is complete, close all PowerShell windows.</p>
+<p>Save and close the <strong>hosts</strong> file.</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_run_the_setup_script_3">8.7. Run the Setup Script</h3>
+<h3 id="start-msl-windows">8.5. Start the MSL Demo</h3>
 <div class="paragraph">
-<p>Now that Cassandra and Chocolatey are installed, you&#8217;re ready to run the setup script.</p>
+<p>This is where we need to start using Git Bash, which already has an ssh client (unlike PowerShell).</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new PowerShell window with administrator privileges.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Click the <strong>Start</strong> menu, and then navigate to <strong>All Apps&#8594;Windows PowerShell</strong>.</p>
+<p>Open a new Git Bash window and make sure you are in your home directory.</p>
 </li>
 <li>
-<p>Right-click the <strong>Windows PowerShell</strong> program icon and click <strong>Run as Administrator</strong>.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Enter the following command to change to the script directory:</p>
+<p>Enter the following command to change to the million-song-library repository:</p>
 <div class="listingblock">
 <div class="content">
-<pre>cd C:\Users\&lt;your_username&gt;\million-song-library\common</pre>
+<pre>cd million-song-library</pre>
 </div>
 </div>
 </li>
 <li>
-<p>Enter the following command to run the setup script:</p>
+<p>Enter the following command to connect to the virtual machine and forward the necessary ports (it&#8217;s really long, so use copy and paste, and make sure to select the entire command):</p>
 <div class="listingblock">
 <div class="content">
-<pre>.\setup.ps1 -c C:\Users\&lt;your_username&gt;\cassandra\dsc-cassandra-2.1.11 -n -s -g</pre>
+<pre>vagrant ssh ubuntu -- -L 3000:localhost:3000 -L 3002:localhost:3002 -L 3003:localhost:3003 -L 3004:localhost:3004 -L 9002:localhost:9002 -L 9003:localhost:9003</pre>
 </div>
 </div>
 </li>
 <li>
-<p>Wait for the script to complete (about 30 minutes).</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-If a Windows Firewall dialog box displays while the script is running, click <strong>Allow Access</strong>.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-It&#8217;s normal to see some warnings while the script runs. If the script encounters an error that prevents it from finishing, make sure you installed all the required tools. See <a href="#get-ready-windows">Get Your System Ready</a> and <a href="#update-tools-windows">Update Existing Tools (If Needed)</a> above. Then try running the script again.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="start-msl-windows">8.8. Start the MSL Demo</h3>
-<div class="paragraph">
-<p>Setup is complete&#8201;&#8212;&#8201;now it&#8217;s time to start the Million Song Library demo.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Open a new PowerShell window with administrator privileges.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Click the <strong>Start</strong> menu, and then navigate to <strong>All Apps&#8594;Windows PowerShell</strong>.</p>
-</li>
-<li>
-<p>Right-click the <strong>Windows PowerShell</strong> program icon and click <strong>Run as Administrator</strong>.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Enter the following command to change to the application directory:</p>
+<p>After you are connected to the virtual machine, enter the following command to change to the application directory:</p>
 <div class="listingblock">
 <div class="content">
-<pre>cd C:\Users\&lt;your_username&gt;\million-song-library\msl-pages</pre>
+<pre>cd kenzan/million-song-library/msl-pages</pre>
 </div>
 </div>
 </li>
@@ -2847,27 +2666,33 @@ It&#8217;s normal to see some warnings while the script runs. If the script enco
 </div>
 </div>
 <div class="paragraph">
-<p>Wait for the front end to start up&#8201;&#8212;&#8201;this will take just a couple of minutes.</p>
+<p>Wait for the front end to start up&#8201;&#8212;&#8201;this will take a few minutes.</p>
 </div>
 </li>
 <li>
-<p>Open a new PowerShell window with administrator privileges.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Click the <strong>Start</strong> menu, and then navigate to <strong>All Apps&#8594;Windows PowerShell</strong>.</p>
+<p>Open a new Git Bash window and make sure you are in your home directory.</p>
 </li>
 <li>
-<p>Right-click the <strong>Windows PowerShell</strong> program icon and click <strong>Run as Administrator</strong>.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Enter the following command to change to the application directory:</p>
+<p>Enter the following command to change to the million-song-library repository:</p>
 <div class="listingblock">
 <div class="content">
-<pre>cd C:\Users\&lt;your_username&gt;\million-song-library\msl-pages</pre>
+<pre>cd million-song-library</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to connect to the virtual machine (we don&#8217;t need such a long command this time as we already forwarded the necessary ports):</p>
+<div class="listingblock">
+<div class="content">
+<pre>vagrant ssh ubuntu</pre>
+</div>
+</div>
+</li>
+<li>
+<p>After you are connected to the virtual machine, enter the following command to change to the application directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd kenzan/million-song-library/msl-pages</pre>
 </div>
 </div>
 </li>
@@ -2875,11 +2700,11 @@ It&#8217;s normal to see some warnings while the script runs. If the script enco
 <p>Enter the following command to start the server instances:</p>
 <div class="listingblock">
 <div class="content">
-<pre>npm run serve-all</pre>
+<pre>sudo npm run serve-all</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Wait for the server instances to start up&#8201;&#8212;&#8201;again, this will take just a couple of minutes.</p>
+<p>Wait for the server instances to start up&#8201;&#8212;&#8201;again, this will take several minutes.</p>
 </div>
 </li>
 <li>
@@ -2888,9 +2713,8 @@ It&#8217;s normal to see some warnings while the script runs. If the script enco
 <p>The Million Song Library home page displays. (If you don&#8217;t see data right away, wait a couple of minutes and then refresh the page.)</p>
 </div>
 <div class="paragraph">
-<p><span class="red"><strong>TBD - need screenshot for Windows</strong></span>
-.Million Song Library Home Page
-<span class="image"><img src="asciidoc/images/msl-home-page-windows.png" alt="Million Song Library Home Page"></span></p>
+<div class="title">Million Song Library Home Page</div>
+<p><span class="image"><img src="asciidoc/images/msl-home-page-windows.png" alt="Million Song Library Home Page"></span></p>
 </div>
 </li>
 </ol>
@@ -2919,37 +2743,35 @@ It&#8217;s normal to see some warnings while the script runs. If the script enco
 </div>
 </div>
 <div class="sect2">
-<h3 id="_stop_the_msl_demo_3">8.9. Stop the MSL Demo</h3>
+<h3 id="_stop_the_msl_demo_3">8.6. Stop the MSL Demo</h3>
 <div class="paragraph">
-<p>Done having fun for now? Follow these steps to stop the Million Song Library demo.</p>
+<p>Done having fun for now? Here&#8217;s how to terminate the virtual machine:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In the PowerShell window where you started the server instances, press <strong>Control+C</strong> to stop the server.</p>
+<p>Open a new PowerShell window and make sure you are in your home directory.</p>
 </li>
 <li>
-<p>In the PowerShell window where you started the application, press <strong>Control+C</strong> to stop the application.</p>
+<p>Enter the following command to change to the million-song-library repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd million-song-library</pre>
+</div>
+</div>
 </li>
 <li>
-<p>Stop the Cassandra service:</p>
+<p>Enter the following command to destroy the virtual machine:</p>
+<div class="listingblock">
+<div class="content">
+<pre>vagrant destroy ubuntu -f</pre>
+</div>
+</div>
 <div class="paragraph">
-<p><span class="red"><strong>TBD - Need steps for stopping Cassandra on Windows</strong></span></p>
+<p>The virtual machine is deleted. If you want to run the demo again, just follow this procedure to create a new Million Song Library virtual machine any time.</p>
 </div>
 </li>
 </ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-You don&#8217;t need to run the setup script if you want to start the Million Song Library demo again. Just start Cassandra (see <a href="#start-cassandra-windows">Install Cassandra</a>) and then start the application and server instances (see <a href="#start-msl-windows">Start the MSL Demo</a>).
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
@@ -2958,7 +2780,7 @@ You don&#8217;t need to run the setup script if you want to start the Million So
 <h2 id="setup-manual">9. Manual Setup</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Are you the type who likes to see all the magic that happens behind the scenes? Or maybe you prefer that things are installed on your system <em>just so</em>. In either case, you can can manually install the Million Song Library without using the automated setup script. Just follow the steps in this section.</p>
+<p>Are you the type who likes to see all the magic that happens behind the scenes? Or maybe you prefer that things are installed on your system <em>just so</em>. In either case, you can can manually install the Million Song Library on a Mac or Linux system without using the automated setup script. Just follow the steps in this section.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2967,7 +2789,7 @@ You don&#8217;t need to run the setup script if you want to start the Million So
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you want to get up and running as quickly as possible, using the automated setup script is the easiest way to install the Million Song Library demo on a <a href="#setup-mac">Mac</a>, <a href="#setup-ubuntu">Linux</a>, or <a href="#setup-windows">Windows</a> computer.
+If you want to get up and running as quickly as possible, using the automated setup script is the easiest way to install the Million Song Library demo on a <a href="#setup-mac">Mac</a> or <a href="#setup-ubuntu">Linux</a> system. Or use Vagrant to automate setup on a <a href="#setup-windows">Windows</a> system.
 </td>
 </tr>
 </table>
@@ -2978,7 +2800,7 @@ If you want to get up and running as quickly as possible, using the automated se
 <p>Before setting up the demo, make sure all of the following tools are installed on your system and are at the required version or higher.</p>
 </div>
 <div class="paragraph">
-<p>This procedure assumes that you&#8217;re running the Million Song Library demo on Mac OS X 10.11 (El Capitan), Ubuntu 14.04 (Trusty Tahr), or Windows 10. Things might work a little differently on other operating systems.</p>
+<p>This procedure assumes that you&#8217;re running the Million Song Library demo on Mac OS X 10.11 (El Capitan) or Ubuntu 14.04 (Trusty Tahr). Things might work a little differently on other operating systems.</p>
 </div>
 <div class="exampleblock">
 <div class="content">
@@ -2986,7 +2808,7 @@ If you want to get up and running as quickly as possible, using the automated se
 <p><strong>Entering Commands</strong></p>
 </div>
 <div class="paragraph">
-<p>We tested these steps using the default Terminal applications on Mac OS X and Ubuntu. To enter commands on Windows 10, we recommend running Windows PowerShell as an Administrator.</p>
+<p>We tested these steps using the default Terminal applications on Mac OS X and Ubuntu.</p>
 </div>
 </div>
 </div>
@@ -2998,15 +2820,8 @@ If you want to get up and running as quickly as possible, using the automated se
 <div class="paragraph">
 <p>For this process, it&#8217;s important to know where your home directory is. Your home directory is the directory that has the same name as your user name.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>On Mac and Linux, your home directory is represented by the tilde (~) sign in Terminal commands.</p>
-</li>
-<li>
-<p>On Windows, your home directory is: <strong>C:\Users\&lt;your_username&gt;\</strong></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>For example, if the user name you use to log on to your system is jdoe, your home directory is named <strong>jdoe</strong>. In Terminal, your home directory is represented by the tilde (~) sign. For example, the path <strong>~/stuff</strong> points to a directory named <strong>stuff</strong> located inside your home directory.</p>
 </div>
 </div>
 </div>
@@ -3020,22 +2835,6 @@ If you want to get up and running as quickly as possible, using the automated se
 <dd>
 <p>To check the installed version, use the <code>git --version</code> command. If necessary, <a href="http://git-scm.com/downloads" target="_blank">install Git</a>.</p>
 </dd>
-</dl>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-(Windows only) During Git installation, make sure to select the <strong>Use Git from the Windows Command Prompt</strong> option. Otherwise you won&#8217;t be able use Git commands in PowerShell.
-</td>
-</tr>
-</table>
-</div>
-<div class="dlist">
-<dl>
 <dt class="hdlist1">Maven 3.3.9 or later</dt>
 <dd>
 <p>To check the installed version, use the <code>mvn -version</code> command. If necessary, <a href="http://www.tutorialspoint.com/maven/maven_environment_setup.htm" target="_blank">set up Maven</a>.</p>
@@ -3070,7 +2869,7 @@ If you get a permissions error, use <code>sudo bower --version</code> instead.
 <dl>
 <dt class="hdlist1">RubyGem</dt>
 <dd>
-<p>To check the installed version, use the <code>gem --version</code> command. If necessary, install RubyGem for <a href="https://gorails.com/setup/osx/10.11-el-capitan" target="_blank">Mac</a>, <a href="https://gorails.com/setup/ubuntu/14.04" target="_blank">Linux</a>, or <a href="http://rubyinstaller.org/downloads/" target="_blank">Windows</a>.</p>
+<p>To check the installed version, use the <code>gem --version</code> command. If necessary, install RubyGem for <a href="https://gorails.com/setup/osx/10.11-el-capitan" target="_blank">Mac</a> or <a href="https://gorails.com/setup/ubuntu/14.04" target="_blank">Linux</a>.</p>
 </dd>
 <dt class="hdlist1">AsciiDoctor</dt>
 <dd>
@@ -3103,10 +2902,6 @@ Make sure to download the correct file: <strong>dsc-cassandra-2.1.11-bin.tar.gz<
 </li>
 </ol>
 </div>
-</dd>
-<dt class="hdlist1">Chocolatey (Windows only)</dt>
-<dd>
-<p>To check the installed version, use the <code>choco -v</code> command. If necessary, <a href="https://chocolatey.org/" target="_blank">install Chocolatey</a>.</p>
 </dd>
 <dt class="hdlist1">Apple Xcode (Mac OS X Only)</dt>
 <dd>
@@ -3164,18 +2959,6 @@ After installation, make sure to open Xcode, accept the license agreement, and (
 </li>
 </ol>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-For Windows, you will need to run the commands separately: first <code>git submodule init</code> and then <code>git submodule update</code>.
-</td>
-</tr>
-</table>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_set_up_the_client">9.3. Set up the Client</h3>
@@ -3196,18 +2979,6 @@ For Windows, you will need to run the commands separately: first <code>git submo
 <pre>npm install &amp;&amp; bower install</pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-For Windows, you will need to run the commands separately: first <code>npm install</code> and then <code>bower install</code>.
-</td>
-</tr>
-</table>
-</div>
 </li>
 <li>
 <p>Install Protractor and Selenium WebDriver globally:</p>
@@ -3216,26 +2987,10 @@ For Windows, you will need to run the commands separately: first <code>npm insta
 <pre>npm install -g -y protractor &amp;&amp; npm install -g -y selenium-webdriver</pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-For Windows, you will need to run the commands separately: first <code>npm install -g -y protractor</code> and then <code>npm install -g -y selenium-webdriver</code>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>== Set up the Server</p>
 </div>
 </li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_set_up_the_server">9.4. Set up the Server</h3>
-<div class="olist arabic">
-<ol class="arabic">
 <li>
 <p>Change to the <strong>server</strong> directory inside the <strong>million-song-library</strong> directory:</p>
 <div class="listingblock">
@@ -3256,7 +3011,7 @@ For Windows, you will need to run the commands separately: first <code>npm insta
 </div>
 </div>
 <div class="sect2">
-<h3 id="_set_up_cassandra">9.5. Set up Cassandra</h3>
+<h3 id="_set_up_cassandra">9.4. Set up Cassandra</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3264,23 +3019,9 @@ For Windows, you will need to run the commands separately: first <code>npm insta
 </li>
 <li>
 <p>Start Cassandra:</p>
-<div class="paragraph">
-<p><em>Mac or Linux</em></p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre>sh ~/cassandra/dsc-cassandra-2.1.11/bin/cassandra</pre>
-</div>
-</div>
-<div class="paragraph">
-<p><em>Windows</em></p>
-</div>
-<div class="paragraph">
-<p><span class="red"><strong>TBD - need step for Windows</strong></span></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>???</pre>
 </div>
 </div>
 </li>
@@ -3289,23 +3030,9 @@ For Windows, you will need to run the commands separately: first <code>npm insta
 </li>
 <li>
 <p>Enter the Cassandra console:</p>
-<div class="paragraph">
-<p><em>Mac or Linux</em></p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre>sh ~/cassandra/dsc-cassandra-2.1.11/bin/cqlsh</pre>
-</div>
-</div>
-<div class="paragraph">
-<p><em>Windows</em></p>
-</div>
-<div class="paragraph">
-<p><span class="red"><strong>TBD - need step for Windows</strong></span></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>???</pre>
 </div>
 </div>
 </li>
@@ -3333,7 +3060,7 @@ SOURCE 'msl_dat_latest.cql';</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_start_the_msl_demo">9.6. Start the MSL Demo</h3>
+<h3 id="_start_the_msl_demo">9.5. Start the MSL Demo</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3341,20 +3068,9 @@ SOURCE 'msl_dat_latest.cql';</pre>
 </li>
 <li>
 <p>Change to the application directory:</p>
-<div class="paragraph">
-<p><em>Mac or Linux:</em></p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre>cd ~/million-song-library/msl-pages</pre>
-</div>
-</div>
-<div class="paragraph">
-<p><em>Windows:</em></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>cd C:\Users\&lt;your_username&gt;\million-song-library\msl-pages</pre>
 </div>
 </div>
 </li>
@@ -3374,20 +3090,9 @@ SOURCE 'msl_dat_latest.cql';</pre>
 </li>
 <li>
 <p>Change to the application directory:</p>
-<div class="paragraph">
-<p><em>Mac or Linux:</em></p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre>cd ~/million-song-library/msl-pages</pre>
-</div>
-</div>
-<div class="paragraph">
-<p><em>Windows:</em></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>cd C:\Users\&lt;your_username&gt;\million-song-library\msl-pages</pre>
 </div>
 </div>
 </li>
@@ -3402,7 +3107,7 @@ SOURCE 'msl_dat_latest.cql';</pre>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Mac or Windows:</em></p>
+<p><em>Mac:</em></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3423,7 +3128,7 @@ SOURCE 'msl_dat_latest.cql';</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_stop_the_msl_demo_4">9.7. Stop the MSL Demo</h3>
+<h3 id="_stop_the_msl_demo_4">9.6. Stop the MSL Demo</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3452,9 +3157,6 @@ SOURCE 'msl_dat_latest.cql';</pre>
 </div>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><span class="red"><strong>TBD - Need steps for stopping Cassandra on Windows</strong></span></p>
 </div>
 </div>
 </div>
@@ -3770,7 +3472,7 @@ The access key file is a CSV file that contains values for two keys: <strong>AWS
 <p>In your EC2 Management Console, click <strong>Security Groups</strong> (under <strong>Network &amp; Security</strong>).</p>
 </li>
 <li>
-<p>Click <strong>Create Key Pair</strong>.</p>
+<p>Click <strong>Create Security Group</strong>.</p>
 </li>
 <li>
 <p>In the <strong>Security group name</strong> box, type the name of the security group (for example, <strong>kenzanmsl</strong>).</p>
@@ -3801,7 +3503,7 @@ The access key file is a CSV file that contains values for two keys: <strong>AWS
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In a text editor, open the <strong>Vagrant</strong> file located in the <strong>million-song-library</strong> directory (in your home directory).</p>
+<p>In a text editor, open the file named <strong>Vagrantfile</strong> located in the <strong>million-song-library</strong> directory (in your home directory).</p>
 </li>
 <li>
 <p>Replace the following variables with the correct values:</p>
@@ -3881,7 +3583,7 @@ The access key file is a CSV file that contains values for two keys: <strong>AWS
 </div>
 </li>
 <li>
-<p>Enter the following command to start the provisioning process;</p>
+<p>Enter the following command to start the provisioning process:</p>
 <div class="listingblock">
 <div class="content">
 <pre>vagrant up prod</pre>
@@ -3892,6 +3594,18 @@ The access key file is a CSV file that contains values for two keys: <strong>AWS
 <p>Wait for the provisioning process to complete (about 30 minutes).</p>
 </li>
 </ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you get an error stating that the <strong>.gitconfig</strong> file does not exist, enter the command <code>touch ~/.gitconfig</code> to create one, and then run <code>vagrant up prod</code> again.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -4105,7 +3819,7 @@ If the Million Song Library home page does not display, make sure that you <a hr
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-05 13:30:13 MDT
+Last updated 2016-06-09 15:42:53 MDT
 </div>
 </div>
 </body>

@@ -69,7 +69,8 @@ If the command reports that an older version is installed, https://nodejs.org/en
 
 To run the setup script, you first need to clone the million-song-library repository to a local directory.
 
-. Open a new Terminal window and enter the following command:
+. Open a new Terminal window and make sure you are in your home directory.
+. Enter the following command:
 +
 ----
 git clone https://github.com/kenzanmedia/million-song-library
