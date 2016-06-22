@@ -21,7 +21,7 @@ Vagrant.configure(2) do |config|
     ##############################
     config.vm.define "ubuntu" do |ubuntu|
       ubuntu.vm.box = "ubuntu/trusty64"
-      ubuntu.vm.hostname = "ubuntu_trusty"
+      ubuntu.vm.hostname = "ubuntutrusty"
       provisioning(ubuntu, [ "~/.ssh/id_rsa.pub",  "~/.ssh/id_rsa"])
 
       ubuntu.vm.provider "virtualbox" do |v|
