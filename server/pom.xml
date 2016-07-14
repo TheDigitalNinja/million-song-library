@@ -4,7 +4,7 @@
     <groupId>msl.server</groupId>
     <artifactId>msl-server</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -12,7 +12,7 @@
         <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
         <maven-install-plugin.version>2.5.1</maven-install-plugin.version>
 
-        <msl-server.version>1.0.0</msl-server.version>
+        <msl-server.version>1.1.0</msl-server.version>
     </properties>
 
     <build>
