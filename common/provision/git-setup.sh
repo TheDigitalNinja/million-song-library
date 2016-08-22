@@ -26,5 +26,6 @@ fi
 
 sudo chmod 700 ~/.ssh
 sudo chmod 600 ~/.ssh/authorized_keys
+sudo chmod 400 ~/.ssh/id_rsa
 
 exit 0;
