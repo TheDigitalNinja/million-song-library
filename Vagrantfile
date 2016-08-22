@@ -2,18 +2,24 @@ Vagrant.configure(2) do |config|
 
   config.ssh.forward_agent = true
 
-  def provisioning (config, args)
+  def provisioning (config, autoSetup, args)
     config.vm.provision "file", source: args[0], destination: "./.ssh/id_rsa.pub"
     config.vm.provision "file", source: args[1], destination: "./.ssh/id_rsa"
 
     config.vm.synced_folder ".", "/vagrant", disabled: true
     config.vm.provision "file", source: "~/.gitconfig", destination: "./.gitconfig"
     config.vm.provision "file", source: "~/.ssh/known_hosts", destination: "./.ssh/known_hosts"
-    config.vm.provision "file", source: "./common/provision/msl-setup.sh", destination: "./msl-setup.sh", run: "always"
 
     config.vm.provision "shell", path: "./common/provision/git-setup.sh" , privileged: false
     config.vm.provision "shell", path: "./common/provision/java-setup.sh", privileged: false
-    config.vm.provision "shell", path: "./common/provision/msl-setup.sh", privileged: false
+    config.vm.provision "shell", path: "./common/provision/cassandra-setup.sh" , privileged: false
+    config.vm.provision "shell", path: "./common/provision/basic-dep-setup.sh" , privileged: false
+
+    if autoSetup
+      config.vm.provision "shell", path: "./common/provision/auto-setup.sh", privileged: false
+    else
+      config.vm.provision "shell", path: "./common/provision/manual-setup-test.sh", privileged: false
+    end
   end
 
     ##############################
@@ -22,7 +28,18 @@ Vagrant.configure(2) do |config|
     config.vm.define "ubuntu" do |ubuntu|
       ubuntu.vm.box = "ubuntu/trusty64"
       ubuntu.vm.hostname = "ubuntutrusty"
-      provisioning(ubuntu, [ "~/.ssh/id_rsa.pub",  "~/.ssh/id_rsa"])
+      provisioning(ubuntu, true, [ "~/.ssh/id_rsa.pub",  "~/.ssh/id_rsa" ])
+
+      ubuntu.vm.provider "virtualbox" do |v|
+        v.memory = 4000
+        v.customize ["modifyvm", :id, "--cpuexecutioncap", "90"]
+      end
+    end
+
+    config.vm.define "manual-ubuntu" do |ubuntu|
+      ubuntu.vm.box = "ubuntu/trusty64"
+      ubuntu.vm.hostname = "ubuntutrusty"
+      provisioning(ubuntu, false, [ "~/.ssh/id_rsa.pub",  "~/.ssh/id_rsa" ])
 
       ubuntu.vm.provider "virtualbox" do |v|
         v.memory = 4000
@@ -39,7 +56,18 @@ Vagrant.configure(2) do |config|
     config.vm.define "mac" do |mac|
       mac.vm.box = "AndrewDryga/vagrant-box-osx"
       mac.vm.hostname = "macosx"
-      provisioning(mac, ["~/.ssh/id_rsa.pub", "~/.ssh/id_rsa"])
+      provisioning(mac, true, ["~/.ssh/id_rsa.pub", "~/.ssh/id_rsa" ])
+
+      mac.vm.provider "virtualbox" do |v|
+        v.memory = 5000
+        v.customize ["modifyvm", :id, "--cpuexecutioncap", "90"]
+      end
+    end
+
+    config.vm.define "manual-mac" do |mac|
+      mac.vm.box = "AndrewDryga/vagrant-box-osx"
+      mac.vm.hostname = "macosx"
+      provisioning(mac, false, ["~/.ssh/id_rsa.pub", "~/.ssh/id_rsa" ])
 
       mac.vm.provider "virtualbox" do |v|
         v.memory = 5000
@@ -57,7 +85,7 @@ Vagrant.configure(2) do |config|
       awsUbuntu.vm.box = "dummy"
       awsUbuntu.vm.hostname="ubuntuAws"
 
-      provisioning(awsUbuntu, [ "<<PATH_TO_SSH_PUBLIC_KEY>>", "<<PATH_TO_SSH_PRIVATE_KEY>>" ])
+      provisioning(awsUbuntu, false, [ "<<PATH_TO_SSH_PUBLIC_KEY>>", "<<PATH_TO_SSH_PRIVATE_KEY>>" ])
 
       awsUbuntu.vm.provider "aws" do |aws, override|
         aws.region_config "us-west-2", :ami => "ami-9abea4fb"

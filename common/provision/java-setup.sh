@@ -9,7 +9,6 @@ function install_homebrew {
 }
 
 UNAME_S=$(uname -s)
-
 echo "Setting Java 8 "
 
 if [[ ${UNAME_S} =~ Linux* ]]; then
