@@ -52,6 +52,7 @@ function error_handler () {
 ping -c 1 msl.kenzanlabs.com
 
 if [[ $? -ne 0 ]]; then
+    echo "Your HOST file is being modified"
     echo "0.0.0.0 msl.kenzanlabs.com" | sudo tee -a  /etc/hosts
     error_handler $? "unable to add msl.kenzanlabs.com to /etc/hosts file"
     else echo "msl.kenzanlabs.com already part of /etc/hosts"
