@@ -7,6 +7,6 @@ fi
 cd $HOME/kenzan/
 
 git clone https://<USERNAME>:<PASSWORD>@github.com/kenzanmedia/million-song-library.git
-cd $HOME/kenzan/million-song-library/common
+cd $HOME/kenzan/million-song-library/bin
 ./setup.sh -g -n -s -c $CASSANDRA_HOME
 exit 0;
