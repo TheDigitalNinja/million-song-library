@@ -10,15 +10,15 @@ Vagrant.configure(2) do |config|
     config.vm.provision "file", source: "~/.gitconfig", destination: "./.gitconfig"
     config.vm.provision "file", source: "~/.ssh/known_hosts", destination: "./.ssh/known_hosts"
 
-    config.vm.provision "shell", path: "./common/provision/git-setup.sh" , privileged: false
-    config.vm.provision "shell", path: "./common/provision/java-setup.sh", privileged: false
-    config.vm.provision "shell", path: "./common/provision/cassandra-setup.sh" , privileged: false
-    config.vm.provision "shell", path: "./common/provision/basic-dep-setup.sh" , privileged: false
+    config.vm.provision "shell", path: "./bin/provision/git-setup.sh" , privileged: false
+    config.vm.provision "shell", path: "./bin/provision/java-setup.sh", privileged: false
+    config.vm.provision "shell", path: "./bin/provision/cassandra-setup.sh" , privileged: false
+    config.vm.provision "shell", path: "./bin/provision/basic-dep-setup.sh" , privileged: false
 
     if autoSetup
-      config.vm.provision "shell", path: "./common/provision/auto-setup.sh", privileged: false
+      config.vm.provision "shell", path: "./bin/provision/auto-setup.sh", privileged: false
     else
-      config.vm.provision "shell", path: "./common/provision/manual-setup-test.sh", privileged: false
+      config.vm.provision "shell", path: "./bin/provision/manual-setup-test.sh", privileged: false
     end
   end
 
