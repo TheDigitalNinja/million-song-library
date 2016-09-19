@@ -224,6 +224,9 @@ npm run deploy
 +
 Wait for the front end to start up -- this will take just a couple of minutes.
 . Open a new Terminal or PowerShell window and make sure you are in your home directory.
++
+WARNING: Make sure to open a new Terminal tab or window before starting the servers, to avoid stopping the front end.
++
 . Enter the following command to change to the application directory: 
 +
 ----
@@ -240,9 +243,11 @@ NOTE: If your EC2 instance is low on free memory, you can start up just the core
 Wait for the server instances to start up -- again, this will take just a couple of minutes.
 . Open a Web browser and point it to: *msl.kenzanlabs.com:3000*
 +
-The Million Song Library home page displays. (If you don't see data right away, wait a couple of minutes and then refresh the page.)
-
+The Million Song Library home page displays.
++
 NOTE: If the Million Song Library home page does not display, make sure that you <<create-security-group,allowed all inbound traffic in your AWS security group>> and that you <<edit-aws-hosts,correctly edited the *hosts* file>>.
++
+NOTE: If you don't see data right away, wait a few minutes and then refresh the page. If data still doesn't load, try clearing your web browser cache.
 
 ifeval::["{output}"=="html"]
 .Million Song Library Home Page
