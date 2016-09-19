@@ -97,7 +97,7 @@ Now let's get Cassandra up and running.
 
 . Download Cassandra 2.1.11 (Community version) from the https://downloads.datastax.com/community/[Datastax download site^].
 +
-NOTE: Make sure to download the correct file: *dsc-cassandra-2.1.11-bin.tar.gz*
+NOTE: Make sure to download the correct file: https://downloads.datastax.com/community/dsc-cassandra-2.1.11-bin.tar.gz[*dsc-cassandra-2.1.11-bin.tar.gz*]
 . Create a new directory named *cassandra* inside your home ( *~/* ) directory.
 . Move the *dsc-cassandra-2.1.11-bin.tar.gz* file into the *~/cassandra* directory, and then extract the contents into the *~/cassandra* directory.
 . To start Cassandra, enter the following command in Terminal:
@@ -106,15 +106,19 @@ NOTE: Make sure to download the correct file: *dsc-cassandra-2.1.11-bin.tar.gz*
 sh ~/cassandra/dsc-cassandra-2.1.11/bin/cassandra
 ----
 
+WARNING: If you get an error when trying to start Cassandra, it probably means that Cassandra is already running (for example, from running the Million Song Library demo previously). To correct this issue, reboot your system, or stop Cassandra (see <<stop-msl-ubuntu>>). Then try starting Cassandra again. You should always make sure to stop Cassandra when you're done working with the Million Song Library demo.
+
 == Run the Setup Script
 
 Now that Cassandra is running, you're ready to run the setup script.
+
+NOTE: If you've already run the setup script once, you don't need to run it again to start the demo. Just skip ahead to <<start-msl-ubuntu>>. If you haven't run the setup script before, follow the steps below.
 
 . In Terminal, press *Shift+Control+T* to open a new tab.
 . Enter the following command to change to the script directory:
 +
 ----
-cd ~/million-song-library/common
+cd ~/million-song-library/bin
 ----
 . Enter the following command to make the setup script executable:
 +
@@ -149,6 +153,9 @@ npm run full-dev
 +
 Wait for the front end to start up -- this will take just a couple of minutes.
 . In Terminal, press *Shift+Control+T* to open another new tab. You should still be in the *msl-pages* directory.
++
+WARNING: Make sure to open a new Terminal tab or window before starting the servers, to avoid stopping the front end.
++
 . Enter the following command to start the server instances (you'll be prompted for your administrator password):
 +
 ----
@@ -158,7 +165,9 @@ sudo npm run serve-all
 Wait for the server instances to start up -- again, this will take just a couple of minutes.
 . Open a Web browser and point it to: *msl.kenzanlabs.com:3000*
 +
-The Million Song Library home page displays. (If you don't see data right away, wait a couple of minutes and then refresh the page.)
+The Million Song Library home page displays.
++
+NOTE: If you don't see data right away, wait a few minutes and then refresh the page. If data still doesn't load, try clearing your web browser cache.
 +
 
 ifeval::["{output}"=="html"]
@@ -179,6 +188,7 @@ Now that the Million Song Library demo is working, here are some fun things to t
 * Mouse over a song and click *Add to library* to add it to your music library (you must be logged in).
 * Click the stars below a song to rate it (you must be logged in).
 
+[[stop-msl-ubuntu]]
 == Stop the MSL Demo
 Done having fun for now? Follow these steps to stop the Million Song Library demo.
 

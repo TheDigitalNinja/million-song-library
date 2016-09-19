@@ -5,7 +5,8 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<title>Kenzan Million Song Library Project</title>
+<meta name="author" content="Kenzan">
+<title>Million Song Library Project</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -420,9 +421,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Kenzan Million Song Library Project</h1>
+<h1>Million Song Library Project</h1>
+<div class="details">
+<span id="author" class="author">Kenzan</span><br>
+<span id="email" class="email"><a href="mailto:support_msl@kenzan.com">support_msl@kenzan.com</a></span><br>
+<span id="revdate">19 September 2016</span>
+</div>
 <div id="toc" class="toc2">
-<div id="toctitle">Kenzan Million Song Library Project</div>
+<div id="toctitle">Million Song Library Project</div>
 <ul class="sectlevel1">
 <li><a href="#_million_song_library_overview">1. Million Song Library Overview</a>
 <ul class="sectlevel2">
@@ -504,7 +510,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#start-cassandra-mac">6.5. Install and Start Cassandra</a></li>
 <li><a href="#_run_the_setup_script">6.6. Run the Setup Script</a></li>
 <li><a href="#start-msl-mac">6.7. Start the MSL Demo</a></li>
-<li><a href="#_stop_the_msl_demo">6.8. Stop the MSL Demo</a></li>
+<li><a href="#stop-msl-mac">6.8. Stop the MSL Demo</a></li>
 </ul>
 </li>
 <li><a href="#setup-ubuntu">7. Linux Automated Setup</a>
@@ -515,7 +521,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#start-cassandra-ubuntu">7.4. Install and Start Cassandra</a></li>
 <li><a href="#_run_the_setup_script_2">7.5. Run the Setup Script</a></li>
 <li><a href="#start-msl-ubuntu">7.6. Start the MSL Demo</a></li>
-<li><a href="#_stop_the_msl_demo_2">7.7. Stop the MSL Demo</a></li>
+<li><a href="#stop-msl-ubuntu">7.7. Stop the MSL Demo</a></li>
 </ul>
 </li>
 <li><a href="#setup-windows">8. Windows Automated Setup</a>
@@ -525,7 +531,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_set_up_the_virtual_machine">8.3. Set up the Virtual Machine</a></li>
 <li><a href="#_edit_the_hosts_file">8.4. Edit the Hosts File</a></li>
 <li><a href="#start-msl-windows">8.5. Start the MSL Demo</a></li>
-<li><a href="#_stop_the_msl_demo_3">8.6. Stop the MSL Demo</a></li>
+<li><a href="#_stop_the_msl_demo">8.6. Stop the MSL Demo</a></li>
 </ul>
 </li>
 <li><a href="#setup-manual">9. Manual Setup</a>
@@ -533,9 +539,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_get_your_system_ready">9.1. Get Your System Ready</a></li>
 <li><a href="#_clone_the_msl_repository_4">9.2. Clone the MSL Repository</a></li>
 <li><a href="#_set_up_the_client">9.3. Set up the Client</a></li>
-<li><a href="#_set_up_cassandra">9.4. Set up Cassandra</a></li>
-<li><a href="#_start_the_msl_demo">9.5. Start the MSL Demo</a></li>
-<li><a href="#_stop_the_msl_demo_4">9.6. Stop the MSL Demo</a></li>
+<li><a href="#_set_up_the_server">9.4. Set up the Server</a></li>
+<li><a href="#start-cassandra-manual">9.5. Set up Cassandra</a></li>
+<li><a href="#start-msl-manual">9.6. Start the MSL Demo</a></li>
+<li><a href="#stop-msl-manual">9.7. Stop the MSL Demo</a></li>
 </ul>
 </li>
 <li><a href="#setup-aws">10. Deploying to AWS</a>
@@ -550,8 +557,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_edit_the_vagrant_file">10.8. Edit the Vagrant File</a></li>
 <li><a href="#_provision_an_ec2_instance">10.9. Provision an EC2 Instance</a></li>
 <li><a href="#edit-aws-hosts">10.10. Edit the Hosts File</a></li>
-<li><a href="#_start_the_msl_demo_2">10.11. Start the MSL Demo</a></li>
-<li><a href="#_stop_the_msl_demo_5">10.12. Stop the MSL Demo</a></li>
+<li><a href="#_start_the_msl_demo">10.11. Start the MSL Demo</a></li>
+<li><a href="#_stop_the_msl_demo_2">10.12. Stop the MSL Demo</a></li>
 </ul>
 </li>
 </ul>
@@ -1797,7 +1804,10 @@ After installation, make sure to open Xcode, accept the license agreement, and (
 <div class="sect2">
 <h3 id="_enable_the_root_user">6.3. Enable the Root User</h3>
 <div class="paragraph">
-<p>On Mac OS X, the root user is not enabled by default, so you&#8217;ll need to enable it so the setup script runs properly. To enable the root user, just <a href="https://support.apple.com/en-us/HT204012" target="_blank">follow these instructions</a>.</p>
+<p>The setup script requires the use of <code>sudo</code> to run certain commands as root. However, on Mac OS X, the root user is not enabled by default. You&#8217;ll need to enable the root user so that the setup script will run properly.</p>
+</div>
+<div class="paragraph">
+<p>To enable the root user, just <a href="https://support.apple.com/en-us/HT204012" target="_blank">follow these instructions</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1856,7 +1866,7 @@ After installation, make sure to open Xcode, accept the license agreement, and (
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Make sure to download the correct file: <strong>dsc-cassandra-2.1.11-bin.tar.gz</strong>
+Make sure to download the correct file: <a href="https://downloads.datastax.com/community/dsc-cassandra-2.1.11-bin.tar.gz"><strong>dsc-cassandra-2.1.11-bin.tar.gz</strong></a>
 </td>
 </tr>
 </table>
@@ -1878,11 +1888,35 @@ Make sure to download the correct file: <strong>dsc-cassandra-2.1.11-bin.tar.gz<
 </li>
 </ol>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If you get an error when trying to start Cassandra, it probably means that Cassandra is already running (for example, from running the Million Song Library demo previously). To correct this issue, reboot your system, or stop Cassandra (see <a href="#stop-msl-mac">Stop the MSL Demo</a>). Then try starting Cassandra again. You should always make sure to stop Cassandra when you&#8217;re done working with the Million Song Library demo.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_run_the_setup_script">6.6. Run the Setup Script</h3>
 <div class="paragraph">
 <p>Now that Cassandra is running, you&#8217;re ready to run the setup script.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you&#8217;ve already run the setup script once, you don&#8217;t need to run it again to start the demo. Just skip ahead to <a href="#start-msl-mac">Start the MSL Demo</a>. If you haven&#8217;t run the setup script before, follow the steps below.
+</td>
+</tr>
+</table>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1893,7 +1927,7 @@ Make sure to download the correct file: <strong>dsc-cassandra-2.1.11-bin.tar.gz<
 <p>Enter the following command to change to the script directory:</p>
 <div class="listingblock">
 <div class="content">
-<pre>cd ~/million-song-library/common</pre>
+<pre>cd ~/million-song-library/bin</pre>
 </div>
 </div>
 </li>
@@ -1974,6 +2008,18 @@ It&#8217;s normal to see some warnings while the script runs. If the script enco
 </li>
 <li>
 <p>In Terminal, press <strong>Command+T</strong> to open another new tab. You should still be in the <strong>msl-pages</strong> directory.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Make sure to open a new Terminal tab or window before starting the servers, to avoid stopping the front end.
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
 <p>Enter the following command to start the server instances:</p>
@@ -1989,7 +2035,19 @@ It&#8217;s normal to see some warnings while the script runs. If the script enco
 <li>
 <p>Open a Web browser and point it to: <strong>msl.kenzanlabs.com:3000</strong></p>
 <div class="paragraph">
-<p>The Million Song Library home page displays. (If you don&#8217;t see data right away, wait a couple of minutes and then refresh the page.)</p>
+<p>The Million Song Library home page displays.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you don&#8217;t see data right away, wait a few minutes and then refresh the page. If data still doesn&#8217;t load, try clearing your web browser cache.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <div class="title">Million Song Library Home Page</div>
@@ -2022,7 +2080,7 @@ It&#8217;s normal to see some warnings while the script runs. If the script enco
 </div>
 </div>
 <div class="sect2">
-<h3 id="_stop_the_msl_demo">6.8. Stop the MSL Demo</h3>
+<h3 id="stop-msl-mac">6.8. Stop the MSL Demo</h3>
 <div class="paragraph">
 <p>Done having fun for now? Follow these steps to stop the Million Song Library demo.</p>
 </div>
@@ -2235,7 +2293,7 @@ You don&#8217;t need to run the setup script if you want to start the Million So
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Make sure to download the correct file: <strong>dsc-cassandra-2.1.11-bin.tar.gz</strong>
+Make sure to download the correct file: <a href="https://downloads.datastax.com/community/dsc-cassandra-2.1.11-bin.tar.gz"><strong>dsc-cassandra-2.1.11-bin.tar.gz</strong></a>
 </td>
 </tr>
 </table>
@@ -2257,11 +2315,35 @@ Make sure to download the correct file: <strong>dsc-cassandra-2.1.11-bin.tar.gz<
 </li>
 </ol>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If you get an error when trying to start Cassandra, it probably means that Cassandra is already running (for example, from running the Million Song Library demo previously). To correct this issue, reboot your system, or stop Cassandra (see <a href="#stop-msl-ubuntu">Stop the MSL Demo</a>). Then try starting Cassandra again. You should always make sure to stop Cassandra when you&#8217;re done working with the Million Song Library demo.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_run_the_setup_script_2">7.5. Run the Setup Script</h3>
 <div class="paragraph">
 <p>Now that Cassandra is running, you&#8217;re ready to run the setup script.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you&#8217;ve already run the setup script once, you don&#8217;t need to run it again to start the demo. Just skip ahead to <a href="#start-msl-ubuntu">Start the MSL Demo</a>. If you haven&#8217;t run the setup script before, follow the steps below.
+</td>
+</tr>
+</table>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -2272,7 +2354,7 @@ Make sure to download the correct file: <strong>dsc-cassandra-2.1.11-bin.tar.gz<
 <p>Enter the following command to change to the script directory:</p>
 <div class="listingblock">
 <div class="content">
-<pre>cd ~/million-song-library/common</pre>
+<pre>cd ~/million-song-library/bin</pre>
 </div>
 </div>
 </li>
@@ -2341,6 +2423,18 @@ It&#8217;s normal to see some warnings while the script runs. If the script enco
 </li>
 <li>
 <p>In Terminal, press <strong>Shift+Control+T</strong> to open another new tab. You should still be in the <strong>msl-pages</strong> directory.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Make sure to open a new Terminal tab or window before starting the servers, to avoid stopping the front end.
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
 <p>Enter the following command to start the server instances (you&#8217;ll be prompted for your administrator password):</p>
@@ -2356,7 +2450,19 @@ It&#8217;s normal to see some warnings while the script runs. If the script enco
 <li>
 <p>Open a Web browser and point it to: <strong>msl.kenzanlabs.com:3000</strong></p>
 <div class="paragraph">
-<p>The Million Song Library home page displays. (If you don&#8217;t see data right away, wait a couple of minutes and then refresh the page.)</p>
+<p>The Million Song Library home page displays.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you don&#8217;t see data right away, wait a few minutes and then refresh the page. If data still doesn&#8217;t load, try clearing your web browser cache.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <div class="title">Million Song Library Home Page</div>
@@ -2389,7 +2495,7 @@ It&#8217;s normal to see some warnings while the script runs. If the script enco
 </div>
 </div>
 <div class="sect2">
-<h3 id="_stop_the_msl_demo_2">7.7. Stop the MSL Demo</h3>
+<h3 id="stop-msl-ubuntu">7.7. Stop the MSL Demo</h3>
 <div class="paragraph">
 <p>Done having fun for now? Follow these steps to stop the Million Song Library demo.</p>
 </div>
@@ -2743,7 +2849,7 @@ If you get an error stating <code>The box 'ubuntu/trusty64' could not be found</
 </div>
 </div>
 <div class="sect2">
-<h3 id="_stop_the_msl_demo_3">8.6. Stop the MSL Demo</h3>
+<h3 id="_stop_the_msl_demo">8.6. Stop the MSL Demo</h3>
 <div class="paragraph">
 <p>Done having fun for now? Here&#8217;s how to terminate the virtual machine:</p>
 </div>
@@ -2888,7 +2994,7 @@ If you get a permissions error, use <code>sudo bower --version</code> instead.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Make sure to download the correct file: <strong>dsc-cassandra-2.1.11-bin.tar.gz</strong>
+Make sure to download the correct file: <a href="https://downloads.datastax.com/community/dsc-cassandra-2.1.11-bin.tar.gz"><strong>dsc-cassandra-2.1.11-bin.tar.gz</strong></a>
 </td>
 </tr>
 </table>
@@ -2921,9 +3027,12 @@ After installation, make sure to open Xcode, accept the license agreement, and (
 </dd>
 <dt class="hdlist1">Enable Root User (Mac OS X Only)</dt>
 <dd>
-<p>On Mac OS X, the root user is not enabled by default, so you&#8217;ll need to enable it so the setup script runs properly. To enable the root user, just <a href="https://support.apple.com/en-us/HT204012" target="_blank">follow these instructions</a>.</p>
+<p>The setup script requires the use of <code>sudo</code> to run certain commands as root. However, on Mac OS X, the root user is not enabled by default. You&#8217;ll need to enable the root user so that the setup script will run properly.</p>
 </dd>
 </dl>
+</div>
+<div class="paragraph">
+<p>To enable the root user, just <a href="https://support.apple.com/en-us/HT204012" target="_blank">follow these instructions</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2987,10 +3096,14 @@ After installation, make sure to open Xcode, accept the license agreement, and (
 <pre>npm install -g -y protractor &amp;&amp; npm install -g -y selenium-webdriver</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>== Set up the Server</p>
-</div>
 </li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_set_up_the_server">9.4. Set up the Server</h3>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Change to the <strong>server</strong> directory inside the <strong>million-song-library</strong> directory:</p>
 <div class="listingblock">
@@ -3011,11 +3124,11 @@ After installation, make sure to open Xcode, accept the license agreement, and (
 </div>
 </div>
 <div class="sect2">
-<h3 id="_set_up_cassandra">9.4. Set up Cassandra</h3>
+<h3 id="start-cassandra-manual">9.5. Set up Cassandra</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new Terminal window, or a PowerShell window with administrator privileges.</p>
+<p>Open a new Terminal window.</p>
 </li>
 <li>
 <p>Start Cassandra:</p>
@@ -3058,13 +3171,25 @@ SOURCE 'msl_dat_latest.cql';</pre>
 </li>
 </ol>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If you get an error when trying to start Cassandra, it probably means that Cassandra is already running (for example, from running the Million Song Library demo previously). To correct this issue, reboot your system, or stop Cassandra (see <a href="#stop-msl-manual">Stop the MSL Demo</a>). Then try starting Cassandra again. You should always make sure to stop Cassandra when you&#8217;re done working with the Million Song Library demo.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_start_the_msl_demo">9.5. Start the MSL Demo</h3>
+<h3 id="start-msl-manual">9.6. Start the MSL Demo</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a new Terminal window, or a PowerShell window with administrator privileges.</p>
+<p>Open a new Terminal window.</p>
 </li>
 <li>
 <p>Change to the application directory:</p>
@@ -3086,7 +3211,19 @@ SOURCE 'msl_dat_latest.cql';</pre>
 </div>
 </li>
 <li>
-<p>Open a new Terminal window, or a PowerShell window with administrator privileges.</p>
+<p>Open a new Terminal window.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Make sure to open a new Terminal tab or window before starting the servers, to avoid stopping the front end.
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
 <p>Change to the application directory:</p>
@@ -3121,24 +3258,36 @@ SOURCE 'msl_dat_latest.cql';</pre>
 <li>
 <p>Open a Web browser and point it to: <strong>msl.kenzanlabs.com:3000</strong></p>
 <div class="paragraph">
-<p>The Million Song Library home page displays. (If you don&#8217;t see data right away, wait a couple of minutes and then refresh the page.)</p>
+<p>The Million Song Library home page displays.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you don&#8217;t see data right away, wait a few minutes and then refresh the page. If data still doesn&#8217;t load, try clearing your web browser cache.
+</td>
+</tr>
+</table>
 </div>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_stop_the_msl_demo_4">9.6. Stop the MSL Demo</h3>
+<h3 id="stop-msl-manual">9.7. Stop the MSL Demo</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Switch to the Terminal or PowerShell window where you started the server instances and press <strong>Control+C</strong> to stop the server.</p>
+<p>Switch to the Terminal window where you started the server instances and press <strong>Control+C</strong> to stop the server.</p>
 </li>
 <li>
-<p>Switch to the Terminal or PowerShell window where you started the application and press <strong>Control+C</strong> to stop the application.</p>
+<p>Switch to the Terminal window where you started the application and press <strong>Control+C</strong> to stop the application.</p>
 </li>
 <li>
-<p>Switch to the Terminal or PowerShell window where you started Cassandra and enter the following command:</p>
+<p>Switch to the Terminal window where you started Cassandra and enter the following command:</p>
 <div class="listingblock">
 <div class="content">
 <pre>ps auwx | grep cassandra</pre>
@@ -3157,6 +3306,18 @@ SOURCE 'msl_dat_latest.cql';</pre>
 </div>
 </li>
 </ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You don&#8217;t need to run the setup script if you want to start the Million Song Library demo again. Just start Cassandra (see <a href="#start-cassandra-manual">Set up Cassandra</a>) and then start the application and server instances (see <a href="#start-msl-manual">Start the MSL Demo</a>).
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -3665,7 +3826,7 @@ If you get an error stating that the <strong>.gitconfig</strong> file does not e
 </div>
 </div>
 <div class="sect2">
-<h3 id="_start_the_msl_demo_2">10.11. Start the MSL Demo</h3>
+<h3 id="_start_the_msl_demo">10.11. Start the MSL Demo</h3>
 <div class="paragraph">
 <p>Provisioning is complete&#8201;&#8212;&#8201;now it&#8217;s time to start the Million Song Library demo.</p>
 </div>
@@ -3703,6 +3864,18 @@ If you get an error stating that the <strong>.gitconfig</strong> file does not e
 </li>
 <li>
 <p>Open a new Terminal or PowerShell window and make sure you are in your home directory.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Make sure to open a new Terminal tab or window before starting the servers, to avoid stopping the front end.
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
 <p>Enter the following command to change to the application directory:</p>
@@ -3738,10 +3911,7 @@ If your EC2 instance is low on free memory, you can start up just the core serve
 <li>
 <p>Open a Web browser and point it to: <strong>msl.kenzanlabs.com:3000</strong></p>
 <div class="paragraph">
-<p>The Million Song Library home page displays. (If you don&#8217;t see data right away, wait a couple of minutes and then refresh the page.)</p>
-</div>
-</li>
-</ol>
+<p>The Million Song Library home page displays.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3754,6 +3924,21 @@ If the Million Song Library home page does not display, make sure that you <a hr
 </td>
 </tr>
 </table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you don&#8217;t see data right away, wait a few minutes and then refresh the page. If data still doesn&#8217;t load, try clearing your web browser cache.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <div class="title">Million Song Library Home Page</div>
@@ -3783,7 +3968,7 @@ If the Million Song Library home page does not display, make sure that you <a hr
 </div>
 </div>
 <div class="sect2">
-<h3 id="_stop_the_msl_demo_5">10.12. Stop the MSL Demo</h3>
+<h3 id="_stop_the_msl_demo_2">10.12. Stop the MSL Demo</h3>
 <div class="paragraph">
 <p>Done having fun for now? Here&#8217;s how to terminate the EC2 instance:</p>
 </div>
@@ -3819,7 +4004,7 @@ If the Million Song Library home page does not display, make sure that you <a hr
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-06-09 15:42:53 MDT
+Last updated 2016-09-19 12:19:03 MDT
 </div>
 </div>
 </body>

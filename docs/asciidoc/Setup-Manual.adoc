@@ -65,7 +65,7 @@ To check the installed version, use the `asciidoctor --version` command. If nece
 Cassandra::
 . Download Cassandra 2.1.11 (Community version) from the https://downloads.datastax.com/community/[Datastax download site^].
 +
-NOTE: Make sure to download the correct file: *dsc-cassandra-2.1.11-bin.tar.gz*
+NOTE: Make sure to download the correct file: https://downloads.datastax.com/community/dsc-cassandra-2.1.11-bin.tar.gz[*dsc-cassandra-2.1.11-bin.tar.gz*]
 . Create a new directory named *cassandra* inside your home directory.
 . Move the *dsc-cassandra-2.1.11-bin.tar.gz* file into the new *cassandra* directory, and then extract the contents into the *cassandra* directory.
 
@@ -77,7 +77,9 @@ NOTE: After installation, make sure to open Xcode, accept the license agreement,
 
 Enable Root User (Mac OS X Only)::
 
-On Mac OS X, the root user is not enabled by default, so you'll need to enable it so the setup script runs properly. To enable the root user, just https://support.apple.com/en-us/HT204012[follow these instructions^].
+The setup script requires the use of `sudo` to run certain commands as root. However, on Mac OS X, the root user is not enabled by default. You'll need to enable the root user so that the setup script will run properly.
+
+To enable the root user, just https://support.apple.com/en-us/HT204012[follow these instructions^].
 
 == Clone the MSL Repository
 
@@ -117,7 +119,6 @@ npm install && bower install
 ----
 npm install -g -y protractor && npm install -g -y selenium-webdriver
 ----
-+
 
 == Set up the Server
 
@@ -132,9 +133,10 @@ cd ../server
 mvn clean compile
 ----
 
+[[start-cassandra-manual]]
 == Set up Cassandra
 
-. Open a new Terminal window, or a PowerShell window with administrator privileges.
+. Open a new Terminal window.
 . Start Cassandra:
 +
 ----
@@ -160,9 +162,12 @@ Wait for the database to import the data -- this will take several minutes.
 exit
 ----
 
+WARNING: If you get an error when trying to start Cassandra, it probably means that Cassandra is already running (for example, from running the Million Song Library demo previously). To correct this issue, reboot your system, or stop Cassandra (see <<stop-msl-manual>>). Then try starting Cassandra again. You should always make sure to stop Cassandra when you're done working with the Million Song Library demo.
+
+[[start-msl-manual]]
 == Start the MSL Demo
 
-. Open a new Terminal window, or a PowerShell window with administrator privileges.
+. Open a new Terminal window.
 . Change to the application directory: 
 +
 ----
@@ -177,7 +182,10 @@ npm run full-dev
 ----
 +
 Wait for the front end to start up -- this will take just a couple of minutes.
-. Open a new Terminal window, or a PowerShell window with administrator privileges.
+. Open a new Terminal window.
++
+WARNING: Make sure to open a new Terminal tab or window before starting the servers, to avoid stopping the front end.
++
 . Change to the application directory: 
 +
 ----
@@ -201,13 +209,16 @@ npm run serve-all
 Wait for the server instances to start up -- again, this will take just a couple of minutes.
 . Open a Web browser and point it to: *msl.kenzanlabs.com:3000*
 +
-The Million Song Library home page displays. (If you don't see data right away, wait a couple of minutes and then refresh the page.)
+The Million Song Library home page displays.
++
+NOTE: If you don't see data right away, wait a few minutes and then refresh the page. If data still doesn't load, try clearing your web browser cache.
 
+[[stop-msl-manual]]
 == Stop the MSL Demo
 
-. Switch to the Terminal or PowerShell window where you started the server instances and press *Control+C* to stop the server.
-. Switch to the Terminal or PowerShell window where you started the application and press *Control+C* to stop the application.
-. Switch to the Terminal or PowerShell window where you started Cassandra and enter the following command:
+. Switch to the Terminal window where you started the server instances and press *Control+C* to stop the server.
+. Switch to the Terminal window where you started the application and press *Control+C* to stop the application.
+. Switch to the Terminal window where you started Cassandra and enter the following command:
 +
 ----
 ps auwx | grep cassandra
@@ -219,3 +230,5 @@ Look at the output from the command and note the first 3&#8211;5 digit number th
 ----
 sudo kill pid
 ----
+
+NOTE: You don't need to run the setup script if you want to start the Million Song Library demo again. Just start Cassandra (see <<start-cassandra-manual>>) and then start the application and server instances (see <<start-msl-manual>>).

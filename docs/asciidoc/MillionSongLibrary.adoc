@@ -1,11 +1,13 @@
-= Kenzan Million Song Library Project
+= Million Song Library Project
+Kenzan <support_msl@kenzan.com>
+19 September 2016
 :toc: left
 :toclevels: 3
-:toc-title: Kenzan Million Song Library Project
+:toc-title: Million Song Library Project
 :sectnums:
 :icons: font
 // Set the output attribute below to html if generating HTML output, or set to pdf if generating PDF output.
-:output: html
+:output: pdf
 
 One does not simply build a rich, dynamic library with a million songs. It takes an array of microservices crafted with open technologies, a database that won't hold back performance, and an architecture that's ready to venture out to the cloud when you are.
 
