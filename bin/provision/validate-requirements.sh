@@ -64,7 +64,8 @@ function verifyNpm {
   if [[ "$_npm" ]]; then
       version=$("$_npm" --version)
       echo npm version found "$version"
-      if [[ "${version:0:1}" -ge "2" && "${version:2:1}" -ge "7" ]]; then
+      version=(`echo $version | tr '.' ' '`)
+      if [[ "${version[0]}" -gt "2" ]] || [[ "${version[0]}" -eq "2" && "${version[1]}" -ge "7" ]]; then
           echo "npm version is greater than 2.7"
       else
           echo "npm version is less than 2.7"
