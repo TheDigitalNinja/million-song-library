@@ -1,0 +1,949 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 613,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 19,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 0,
+      "end": 41,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 41
+        }
+      },
+      "specifiers": [],
+      "source": {
+        "type": "Literal",
+        "start": 7,
+        "end": 40,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 7
+          },
+          "end": {
+            "line": 1,
+            "column": 40
+          }
+        },
+        "value": "./stylesheets/registration.scss",
+        "rawValue": "./stylesheets/registration.scss",
+        "raw": "'./stylesheets/registration.scss'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 42,
+      "end": 72,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 30
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 49,
+          "end": 56,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 14
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 49,
+            "end": 56,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 14
+              }
+            },
+            "name": "angular"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 62,
+        "end": 71,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 20
+          },
+          "end": {
+            "line": 2,
+            "column": 29
+          }
+        },
+        "value": "angular",
+        "rawValue": "angular",
+        "raw": "'angular'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 73,
+      "end": 114,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 41
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 80,
+          "end": 88,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 7
+            },
+            "end": {
+              "line": 3,
+              "column": 15
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 80,
+            "end": 88,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 7
+              },
+              "end": {
+                "line": 3,
+                "column": 15
+              }
+            },
+            "name": "uiRouter"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 94,
+        "end": 113,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 21
+          },
+          "end": {
+            "line": 3,
+            "column": 40
+          }
+        },
+        "value": "angular-ui-router",
+        "rawValue": "angular-ui-router",
+        "raw": "'angular-ui-router'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 115,
+      "end": 157,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 42
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 122,
+          "end": 132,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 7
+            },
+            "end": {
+              "line": 4,
+              "column": 17
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 122,
+            "end": 132,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 7
+              },
+              "end": {
+                "line": 4,
+                "column": 17
+              }
+            },
+            "name": "ngMessages"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 138,
+        "end": 156,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 23
+          },
+          "end": {
+            "line": 4,
+            "column": 41
+          }
+        },
+        "value": "angular-messages",
+        "rawValue": "angular-messages",
+        "raw": "'angular-messages'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 158,
+      "end": 214,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 56
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 165,
+          "end": 182,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 7
+            },
+            "end": {
+              "line": 5,
+              "column": 24
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 165,
+            "end": 182,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 7
+              },
+              "end": {
+                "line": 5,
+                "column": 24
+              }
+            },
+            "name": "registrationRoute"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 188,
+        "end": 213,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 30
+          },
+          "end": {
+            "line": 5,
+            "column": 55
+          }
+        },
+        "value": "./registration.route.js",
+        "rawValue": "./registration.route.js",
+        "raw": "'./registration.route.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 215,
+      "end": 266,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 51
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 222,
+          "end": 236,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 7
+            },
+            "end": {
+              "line": 6,
+              "column": 21
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 222,
+            "end": 236,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 7
+              },
+              "end": {
+                "line": 6,
+                "column": 21
+              }
+            },
+            "name": "matchDirective"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 242,
+        "end": 265,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 27
+          },
+          "end": {
+            "line": 6,
+            "column": 50
+          }
+        },
+        "value": "./directives/match.js",
+        "rawValue": "./directives/match.js",
+        "raw": "'./directives/match.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 267,
+      "end": 339,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 72
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 274,
+          "end": 290,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 7
+            },
+            "end": {
+              "line": 7,
+              "column": 23
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 274,
+            "end": 290,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 7
+              },
+              "end": {
+                "line": 7,
+                "column": 23
+              }
+            },
+            "name": "registrationCtrl"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 296,
+        "end": 338,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 29
+          },
+          "end": {
+            "line": 7,
+            "column": 71
+          }
+        },
+        "value": "./controllers/registration.controller.js",
+        "rawValue": "./controllers/registration.controller.js",
+        "raw": "'./controllers/registration.controller.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 340,
+      "end": 389,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 49
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 347,
+          "end": 356,
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 7
+            },
+            "end": {
+              "line": 8,
+              "column": 16
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 347,
+            "end": 356,
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 7
+              },
+              "end": {
+                "line": 8,
+                "column": 16
+              }
+            },
+            "name": "dataStore"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 362,
+        "end": 388,
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 22
+          },
+          "end": {
+            "line": 8,
+            "column": 48
+          }
+        },
+        "value": "modules/datastore/module",
+        "rawValue": "modules/datastore/module",
+        "raw": "'modules/datastore/module'"
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 391,
+      "end": 612,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 18,
+          "column": 8
+        }
+      },
+      "declaration": {
+        "type": "MemberExpression",
+        "start": 406,
+        "end": 611,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 15
+          },
+          "end": {
+            "line": 18,
+            "column": 7
+          }
+        },
+        "object": {
+          "type": "CallExpression",
+          "start": 406,
+          "end": 603,
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 15
+            },
+            "end": {
+              "line": 17,
+              "column": 51
+            }
+          },
+          "callee": {
+            "type": "MemberExpression",
+            "start": 406,
+            "end": 565,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 15
+              },
+              "end": {
+                "line": 17,
+                "column": 13
+              }
+            },
+            "object": {
+              "type": "CallExpression",
+              "start": 406,
+              "end": 551,
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 15
+                },
+                "end": {
+                  "line": 16,
+                  "column": 37
+                }
+              },
+              "callee": {
+                "type": "MemberExpression",
+                "start": 406,
+                "end": 526,
+                "loc": {
+                  "start": {
+                    "line": 10,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 16,
+                    "column": 12
+                  }
+                },
+                "object": {
+                  "type": "CallExpression",
+                  "start": 406,
+                  "end": 513,
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 15
+                    },
+                    "end": {
+                      "line": 15,
+                      "column": 28
+                    }
+                  },
+                  "callee": {
+                    "type": "MemberExpression",
+                    "start": 406,
+                    "end": 494,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 15
+                      },
+                      "end": {
+                        "line": 15,
+                        "column": 9
+                      }
+                    },
+                    "object": {
+                      "type": "CallExpression",
+                      "start": 406,
+                      "end": 484,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 14,
+                          "column": 2
+                        }
+                      },
+                      "callee": {
+                        "type": "MemberExpression",
+                        "start": 406,
+                        "end": 420,
+                        "loc": {
+                          "start": {
+                            "line": 10,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 10,
+                            "column": 29
+                          }
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "start": 406,
+                          "end": 413,
+                          "loc": {
+                            "start": {
+                              "line": 10,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 10,
+                              "column": 22
+                            }
+                          },
+                          "name": "angular"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 414,
+                          "end": 420,
+                          "loc": {
+                            "start": {
+                              "line": 10,
+                              "column": 23
+                            },
+                            "end": {
+                              "line": 10,
+                              "column": 29
+                            }
+                          },
+                          "name": "module"
+                        },
+                        "computed": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "Literal",
+                          "start": 421,
+                          "end": 439,
+                          "loc": {
+                            "start": {
+                              "line": 10,
+                              "column": 30
+                            },
+                            "end": {
+                              "line": 10,
+                              "column": 48
+                            }
+                          },
+                          "value": "msl.registration",
+                          "rawValue": "msl.registration",
+                          "raw": "'msl.registration'"
+                        },
+                        {
+                          "type": "ArrayExpression",
+                          "start": 441,
+                          "end": 483,
+                          "loc": {
+                            "start": {
+                              "line": 10,
+                              "column": 50
+                            },
+                            "end": {
+                              "line": 14,
+                              "column": 1
+                            }
+                          },
+                          "elements": [
+                            {
+                              "type": "Identifier",
+                              "start": 445,
+                              "end": 453,
+                              "loc": {
+                                "start": {
+                                  "line": 11,
+                                  "column": 2
+                                },
+                                "end": {
+                                  "line": 11,
+                                  "column": 10
+                                }
+                              },
+                              "name": "uiRouter"
+                            },
+                            {
+                              "type": "Identifier",
+                              "start": 457,
+                              "end": 466,
+                              "loc": {
+                                "start": {
+                                  "line": 12,
+                                  "column": 2
+                                },
+                                "end": {
+                                  "line": 12,
+                                  "column": 11
+                                }
+                              },
+                              "name": "dataStore"
+                            },
+                            {
+                              "type": "Identifier",
+                              "start": 470,
+                              "end": 480,
+                              "loc": {
+                                "start": {
+                                  "line": 13,
+                                  "column": 2
+                                },
+                                "end": {
+                                  "line": 13,
+                                  "column": 12
+                                }
+                              },
+                              "name": "ngMessages"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 488,
+                      "end": 494,
+                      "loc": {
+                        "start": {
+                          "line": 15,
+                          "column": 3
+                        },
+                        "end": {
+                          "line": 15,
+                          "column": 9
+                        }
+                      },
+                      "name": "config"
+                    },
+                    "computed": false
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "start": 495,
+                      "end": 512,
+                      "loc": {
+                        "start": {
+                          "line": 15,
+                          "column": 10
+                        },
+                        "end": {
+                          "line": 15,
+                          "column": 27
+                        }
+                      },
+                      "name": "registrationRoute"
+                    }
+                  ]
+                },
+                "property": {
+                  "type": "Identifier",
+                  "start": 517,
+                  "end": 526,
+                  "loc": {
+                    "start": {
+                      "line": 16,
+                      "column": 3
+                    },
+                    "end": {
+                      "line": 16,
+                      "column": 12
+                    }
+                  },
+                  "name": "directive"
+                },
+                "computed": false
+              },
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "start": 527,
+                  "end": 534,
+                  "loc": {
+                    "start": {
+                      "line": 16,
+                      "column": 13
+                    },
+                    "end": {
+                      "line": 16,
+                      "column": 20
+                    }
+                  },
+                  "value": "match",
+                  "rawValue": "match",
+                  "raw": "'match'"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 536,
+                  "end": 550,
+                  "loc": {
+                    "start": {
+                      "line": 16,
+                      "column": 22
+                    },
+                    "end": {
+                      "line": 16,
+                      "column": 36
+                    }
+                  },
+                  "name": "matchDirective"
+                }
+              ]
+            },
+            "property": {
+              "type": "Identifier",
+              "start": 555,
+              "end": 565,
+              "loc": {
+                "start": {
+                  "line": 17,
+                  "column": 3
+                },
+                "end": {
+                  "line": 17,
+                  "column": 13
+                }
+              },
+              "name": "controller"
+            },
+            "computed": false
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "start": 566,
+              "end": 584,
+              "loc": {
+                "start": {
+                  "line": 17,
+                  "column": 14
+                },
+                "end": {
+                  "line": 17,
+                  "column": 32
+                }
+              },
+              "value": "registrationCtrl",
+              "rawValue": "registrationCtrl",
+              "raw": "'registrationCtrl'"
+            },
+            {
+              "type": "Identifier",
+              "start": 586,
+              "end": 602,
+              "loc": {
+                "start": {
+                  "line": 17,
+                  "column": 34
+                },
+                "end": {
+                  "line": 17,
+                  "column": 50
+                }
+              },
+              "name": "registrationCtrl"
+            }
+          ]
+        },
+        "property": {
+          "type": "Identifier",
+          "start": 607,
+          "end": 611,
+          "loc": {
+            "start": {
+              "line": 18,
+              "column": 3
+            },
+            "end": {
+              "line": 18,
+              "column": 7
+            }
+          },
+          "name": "name"
+        },
+        "computed": false,
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}

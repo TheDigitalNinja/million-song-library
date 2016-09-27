@@ -1,0 +1,5 @@
+com.kenzan.msl.ratings.client
+com.kenzan.msl.ratings.client.cassandra
+com.kenzan.msl.ratings.client.cassandra.query
+com.kenzan.msl.ratings.client.dto
+com.kenzan.msl.ratings.client.services

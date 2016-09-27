@@ -1,0 +1,4011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.4">
+<meta name="author" content="Kenzan">
+<title>Million Song Library Project</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Remove comment around @import statement below when using as a custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{margin:0}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+body{-webkit-font-smoothing:antialiased}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.spread{width:100%}
+p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol,ul.no-bullet,ol.no-bullet{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.no-bullet{list-style:none}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite:before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media only screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7;font-weight:bold}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+body{tab-size:4}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
+.clearfix:after,.float-group:after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menu{color:rgba(0,0,0,.8)}
+b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
+b.button:before{content:"[";padding:0 3px 0 2px}
+b.button:after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header:before,#header:after,#content:before,#content:after,#footnotes:before,#footnotes:after,#footer:before,#footer:after{content:" ";display:table}
+#header:after,#content:after,#footnotes:after,#footer:after{clear:both}
+#content{margin-top:1.25em}
+#content:before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
+#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span:before{content:"\00a0\2013\00a0"}
+#header .details br+span.author:before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark:before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber:after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media only screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}
+@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+.sect1{padding-bottom:.625em}
+@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}
+.sect1+.sect1{border-top:1px solid #efefed}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
+.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
+.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
+@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
+@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
+.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]:before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]:before{display:block}
+.listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote:before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
+.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
+.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
+.quoteblock .quoteblock blockquote:before{display:none}
+.verseblock{margin:0 1em 1.25em 1em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract{margin:0 0 1.25em 0;display:block}
+.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
+.quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
+table.tableblock{max-width:100%;border-collapse:separate}
+table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all th.tableblock,table.grid-all td.tableblock{border-width:0 1px 1px 0}
+table.grid-all tfoot>tr>th.tableblock,table.grid-all tfoot>tr>td.tableblock{border-width:1px 1px 0 0}
+table.grid-cols th.tableblock,table.grid-cols td.tableblock{border-width:0 1px 0 0}
+table.grid-all *>tr>.tableblock:last-child,table.grid-cols *>tr>.tableblock:last-child{border-right-width:0}
+table.grid-rows th.tableblock,table.grid-rows td.tableblock{border-width:0 0 1px 0}
+table.grid-all tbody>tr:last-child>th.tableblock,table.grid-all tbody>tr:last-child>td.tableblock,table.grid-all thead:last-child>tr>th.tableblock,table.grid-rows tbody>tr:last-child>th.tableblock,table.grid-rows tbody>tr:last-child>td.tableblock,table.grid-rows thead:last-child>tr>th.tableblock{border-bottom-width:0}
+table.grid-rows tfoot>tr>th.tableblock,table.grid-rows tfoot>tr>td.tableblock{border-width:1px 0 0 0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot{border-width:1px 0}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.unstyled,ol.unnumbered,ul.checklist,ul.none{list-style-type:none}
+ul.unstyled,ol.unnumbered,ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1em;font-size:.85em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{width:1em;position:relative;top:1px}
+ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
+ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
+ul.inline>li>*{display:block}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist>table tr>td:first-of-type{padding:0 .75em;line-height:1}
+.colist>table tr>td:last-of-type{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
+.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;text-indent:-1.05em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]:after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@media print{@page{margin:1.25cm .75cm}
+*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]:after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+.sect1{padding-bottom:0!important}
+.sect1+.sect1{border:0!important}
+#header>h1:first-child{margin-top:1.25rem}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em 0}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span:before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]:before{display:block}
+#footer{background:none!important;padding:0 .9375em}
+#footer-text{color:rgba(0,0,0,.6)!important;font-size:.9em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>Million Song Library Project</h1>
+<div class="details">
+<span id="author" class="author">Kenzan</span><br>
+<span id="email" class="email"><a href="mailto:support_msl@kenzan.com">support_msl@kenzan.com</a></span><br>
+<span id="revdate">19 September 2016</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Million Song Library Project</div>
+<ul class="sectlevel1">
+<li><a href="#_million_song_library_overview">1. Million Song Library Overview</a>
+<ul class="sectlevel2">
+<li><a href="#_key_technologies">1.1. Key Technologies</a></li>
+<li><a href="#microservices-architecture">1.2. Microservices Architecture</a></li>
+<li><a href="#_high_performance_database">1.3. High-Performance Database</a></li>
+<li><a href="#_cloud_based_infrastructure">1.4. Cloud-Based Infrastructure</a></li>
+<li><a href="#_about_the_msl_demo">1.5. About the MSL Demo</a></li>
+</ul>
+</li>
+<li><a href="#_code_and_documentation">2. Code and Documentation</a>
+<ul class="sectlevel2">
+<li><a href="#_github_repositories">2.1. GitHub Repositories</a></li>
+<li><a href="#_coding_standards">2.2. Coding Standards</a></li>
+<li><a href="#_documentation_tools">2.3. Documentation Tools</a>
+<ul class="sectlevel3">
+<li><a href="#_swagger_api_documentation_and_code_generation">2.3.1. Swagger API Documentation and Code Generation</a></li>
+<li><a href="#_javadoc_and_esdoc">2.3.2. Javadoc and ESDoc</a></li>
+<li><a href="#_asciidoc_documentation">2.3.3. AsciiDoc Documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_client_ui_architecture">3. Client/UI Architecture</a>
+<ul class="sectlevel2">
+<li><a href="#_angularjs">3.1. AngularJS</a></li>
+<li><a href="#_sass">3.2. Sass</a></li>
+<li><a href="#_material_design">3.3. Material Design</a></li>
+<li><a href="#_kss_styleguide_generation">3.4. KSS Styleguide Generation</a></li>
+<li><a href="#_es2015">3.5. ES2015</a></li>
+<li><a href="#_webpack">3.6. Webpack</a></li>
+</ul>
+</li>
+<li><a href="#_server_architecture">4. Server Architecture</a>
+<ul class="sectlevel2">
+<li><a href="#_data_client_layer">4.1. Data Client Layer</a>
+<ul class="sectlevel3">
+<li><a href="#_data_client_dtos_and_methods">4.1.1. Data Client DTOs and Methods</a></li>
+</ul>
+</li>
+<li><a href="#_apis">4.2. APIs</a></li>
+<li><a href="#_data_pojos">4.3. Data POJOs</a>
+<ul class="sectlevel3">
+<li><a href="#_models">4.3.1. Models</a></li>
+<li><a href="#_data_transfer_objects_dtos">4.3.2. Data Transfer Objects (DTOs)</a></li>
+<li><a href="#_business_objects_bos">4.3.3. Business Objects (BOs)</a></li>
+</ul>
+</li>
+<li><a href="#_languages_and_frameworks">4.4. Languages and Frameworks</a></li>
+<li><a href="#_album_cover_artwork">4.5. Album Cover Artwork</a>
+<ul class="sectlevel3">
+<li><a href="#_musicbrainz_access">4.5.1. MusicBrainz Access</a></li>
+<li><a href="#_parsing_and_using_musicbrainz_data">4.5.2. Parsing and Using MusicBrainz Data</a></li>
+<li><a href="#_cover_art_archive_access">4.5.3. Cover Art Archive Access</a></li>
+<li><a href="#_parsing_and_using_coverartarchive_data">4.5.4. Parsing and Using CoverArtArchive Data</a></li>
+<li><a href="#__image_unavailable_images">4.5.5. &#8220;Image Unavailable&#8221; Images</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_database_architecture">5. Database Architecture</a>
+<ul class="sectlevel2">
+<li><a href="#_design">5.1. Design</a>
+<ul class="sectlevel3">
+<li><a href="#_entity_relationship_model">5.1.1. Entity-Relationship Model</a></li>
+<li><a href="#_access_patterns">5.1.2. Access Patterns</a></li>
+</ul>
+</li>
+<li><a href="#_implementation">5.2. Implementation</a></li>
+<li><a href="#_data_import">5.3. Data Import</a></li>
+</ul>
+</li>
+<li><a href="#setup-mac">6. Mac OS X Automated Setup</a>
+<ul class="sectlevel2">
+<li><a href="#get-ready-mac">6.1. Get Your System Ready</a></li>
+<li><a href="#update-tools-mac">6.2. Update Existing Tools (If Needed)</a></li>
+<li><a href="#_enable_the_root_user">6.3. Enable the Root User</a></li>
+<li><a href="#_clone_the_msl_repository">6.4. Clone the MSL Repository</a></li>
+<li><a href="#start-cassandra-mac">6.5. Install and Start Cassandra</a></li>
+<li><a href="#_run_the_setup_script">6.6. Run the Setup Script</a></li>
+<li><a href="#start-msl-mac">6.7. Start the MSL Demo</a></li>
+<li><a href="#stop-msl-mac">6.8. Stop the MSL Demo</a></li>
+</ul>
+</li>
+<li><a href="#setup-ubuntu">7. Linux Automated Setup</a>
+<ul class="sectlevel2">
+<li><a href="#get-ready-ubuntu">7.1. Get Your System Ready</a></li>
+<li><a href="#update-tools-ubuntu">7.2. Update Existing Tools (If Needed)</a></li>
+<li><a href="#_clone_the_msl_repository_2">7.3. Clone the MSL Repository</a></li>
+<li><a href="#start-cassandra-ubuntu">7.4. Install and Start Cassandra</a></li>
+<li><a href="#_run_the_setup_script_2">7.5. Run the Setup Script</a></li>
+<li><a href="#start-msl-ubuntu">7.6. Start the MSL Demo</a></li>
+<li><a href="#stop-msl-ubuntu">7.7. Stop the MSL Demo</a></li>
+</ul>
+</li>
+<li><a href="#setup-windows">8. Windows Automated Setup</a>
+<ul class="sectlevel2">
+<li><a href="#get-ready-windows">8.1. Get Your System Ready</a></li>
+<li><a href="#_clone_the_msl_repository_3">8.2. Clone the MSL Repository</a></li>
+<li><a href="#_set_up_the_virtual_machine">8.3. Set up the Virtual Machine</a></li>
+<li><a href="#_edit_the_hosts_file">8.4. Edit the Hosts File</a></li>
+<li><a href="#start-msl-windows">8.5. Start the MSL Demo</a></li>
+<li><a href="#_stop_the_msl_demo">8.6. Stop the MSL Demo</a></li>
+</ul>
+</li>
+<li><a href="#setup-manual">9. Manual Setup</a>
+<ul class="sectlevel2">
+<li><a href="#_get_your_system_ready">9.1. Get Your System Ready</a></li>
+<li><a href="#_clone_the_msl_repository_4">9.2. Clone the MSL Repository</a></li>
+<li><a href="#_set_up_the_client">9.3. Set up the Client</a></li>
+<li><a href="#_set_up_the_server">9.4. Set up the Server</a></li>
+<li><a href="#start-cassandra-manual">9.5. Set up Cassandra</a></li>
+<li><a href="#start-msl-manual">9.6. Start the MSL Demo</a></li>
+<li><a href="#stop-msl-manual">9.7. Stop the MSL Demo</a></li>
+</ul>
+</li>
+<li><a href="#setup-aws">10. Deploying to AWS</a>
+<ul class="sectlevel2">
+<li><a href="#_get_your_system_ready_2">10.1. Get Your System Ready</a></li>
+<li><a href="#_clone_the_msl_repository_5">10.2. Clone the MSL Repository</a></li>
+<li><a href="#_set_up_vagrant_for_aws">10.3. Set up Vagrant for AWS</a></li>
+<li><a href="#_generate_an_ssh_key_pair">10.4. Generate an SSH Key Pair</a></li>
+<li><a href="#_generate_an_aws_key_pair">10.5. Generate an AWS Key Pair</a></li>
+<li><a href="#_generate_an_aws_access_key">10.6. Generate an AWS Access Key</a></li>
+<li><a href="#create-security-group">10.7. Create a Security Group</a></li>
+<li><a href="#_edit_the_vagrant_file">10.8. Edit the Vagrant File</a></li>
+<li><a href="#_provision_an_ec2_instance">10.9. Provision an EC2 Instance</a></li>
+<li><a href="#edit-aws-hosts">10.10. Edit the Hosts File</a></li>
+<li><a href="#_start_the_msl_demo">10.11. Start the MSL Demo</a></li>
+<li><a href="#_stop_the_msl_demo_2">10.12. Stop the MSL Demo</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>One does not simply build a rich, dynamic library with a million songs. It takes an array of microservices crafted with open technologies, a database that won&#8217;t hold back performance, and an architecture that&#8217;s ready to venture out to the cloud when you are.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+With this demonstration project, you can deploy a Million Song Library and see what it&#8217;s like to launch a microservices-based application of your own. If you have questions about the demo, feel free to drop us a line at <a href="mailto:support_msl@kenzan.com">support_msl@kenzan.com</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_million_song_library_overview">1. Million Song Library Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>At Kenzan, we build Platform as a Service (PaaS) solutions that enable our customers to deliver secure, database-driven applications anywhere they want, anytime they need. We&#8217;re a big believer in the open source software (OSS) tools created by Netflix, along with other cool things like microservices, NoSQL databases, and scalable cloud infrastructure. These technologies, and more, help power us through all phases of delivering a customized PaaS solution, from architecture and application development to testing and DevOps.</p>
+</div>
+<div class="paragraph">
+<p>So why did we start the Million Song Library (MSL) project? There are a couple of reasons. First, we wanted to build a model to demonstrate the capability and flexibility offered by some of the Netflix OSS components when paired with a Cassandra database. Second, we thought it would be pretty neat to have a ready-to-go foundation on top of which database-driven applications can be rapidly developed, tested, and deployed to the cloud.</p>
+</div>
+<div class="paragraph">
+<p>And here&#8217;s the best part&#8201;&#8212;&#8201;we&#8217;re taking the whole thing open source. Because at Kenzan, we want everyone to have the power to build a dynamic library with a million songs. Or a million funny videos. Or a million must-have gadgets. Or a million loyal customers. Or whatever it is that you&#8217;re a big beliver in.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Need a companion on your journey to the cloud? We&#8217;re always up for an adventure&#8201;&#8212;&#8201;just knock on our door at <a href="http://www.kenzan.com" target="_blank">Kenzan.com</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_key_technologies">1.1. Key Technologies</h3>
+<div class="paragraph">
+<p>The diagram below shows some of the key techologies we use in creating a database-driven, microservices-based Web application like the Million Song Library project. Read on for information about each of the technologies.</p>
+</div>
+<div class="paragraph">
+<div class="title">Million Song Library Key Technologies</div>
+<p><span class="image"><img src="asciidoc/images/architecture/MSL_Overview.png" alt="Million Song Library Key Technologies"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="microservices-architecture">1.2. Microservices Architecture</h3>
+<div class="paragraph">
+<p>In a microservices architecture, large applications are made up of multiple smaller services that can be independently deployed using automated methods. Each microservice is self-contained and provides a targeted piece of functionality. Microservices are discoverable, so clients and servers can automatically find one another. And they communicate using standard, lightweight protocols such as REST APIs.</p>
+</div>
+<div class="paragraph">
+<p>At Kenzan, we have a lot of experience working with microservices. We&#8217;ve found that adopting a microservices architecture results in Web applications that are more modular and easier to manage compared to traditional, monolithic applications. Because microservices can be scaled independently, distributing them across servers, you have the flexibility to quickly meet changing demands. Usage of one microservice is going way up? Just add more instances of it. Need to add another cabability to your application? It&#8217;s as simple as updating a microservice or creating a new one. You don&#8217;t have to rebuild and deploy the entire application just to push out a change.</p>
+</div>
+<div class="paragraph">
+<p>While microservices bring a lot of advantages, building a microservices-based solution from the ground up could present a challenge. That&#8217;s why the Million Song Library leverages a number of <a href="https://netflix.github.io/" target="_blank">open source software (OSS) libraries from Netflix</a>. The Netflix OSS components provide support for building applications using a suite of microservices, greatly easing the transition to a microservices-based architecture. What&#8217;s more, they&#8217;ve been tried and tested in one of the most demanding cloud environments imaginable.</p>
+</div>
+<div class="paragraph">
+<p>Here are some of the Netflix OSS tools that make the Million Song Library possible.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://github.com/Netflix/karyon" target="_blank">Karyon</a></dt>
+<dd>
+<p><em>Cloud infrastructure blueprint.</em> Constructing a complex architecture requires a solid foundation. Karyon provides a scaffold for building cloud-based services, and it offers hooks for other Netflix OSS tools. When an application is based on the Karyon blueprint, it gains the ability to leverage a common core of functionality. A Karyon application can initialize itself and its dependencies, make itself available for discovery, and even let the rest of the platform know whether it&#8217;s healthy or not.</p>
+</dd>
+<dt class="hdlist1"><a href="https://github.com/Netflix/zuul" target="_blank">Zuul</a></dt>
+<dd>
+<p><em>Intelligent request routing.</em> You might remember Zuul as <a href="https://en.wikipedia.org/wiki/Ghostbusters" target="_blank">the gatekeeper from the movie Ghostbusters</a>. In a microservices architecture, Zuul watches the front gate of your application and ensures that only the correct actors can access the correct services. Zuul uses pre-defined filters to allow or reject calls made to the application, and it dynamically routes requests to different application instances in response to changing demand. Zuul can even track statistics and perform stress testing to help make sure the system is prepared for times when usage spikes.</p>
+</dd>
+<dt class="hdlist1"><a href="https://github.com/Netflix/eureka" target="_blank">Eureka</a></dt>
+<dd>
+<p><em>Private load balancing.</em> Using cloud-based load balancers in a microservices architecture can quickly become cumbersome. This is due to the vast number of microservices and possible routes between them&#8201;&#8212;&#8201;each of which could potentially need its own load balancer. What&#8217;s more, while cloud-based load balancers are great for distributing loads for edge services that offer public access, they can&#8217;t help with middle-tier services that reside within a virtual private cloud (VPC)&#8201;&#8212;&#8201;services that you don&#8217;t want the outside world to acccess.</p>
+<div class="paragraph">
+<p>That&#8217;s where Eureka comes in. Eureka is a service registry that manages all active services and ensures that loads are properly distributed. Each time an instance of a microservice starts up, it lets Eureka know that it&#8217;s available. And if it ever stops sending out a heartbeat, Eureka quickly drops it from the list of available instances. Working in conjunction with Zuul, Eureka helps clients find active servers and gives them the information they need to communicate with one another, all within the VPC. And because server information is cached on the client, the system keeps working even if Eureka becomes unavailable.</p>
+</div>
+</dd>
+<dt class="hdlist1"><a href="https://github.com/Netflix/archaius" target="_blank">Archaius</a></dt>
+<dd>
+<p><em>Contextual properties management.</em> Managing configuration properties for a large number of microservices could be problematic. Archaius solves this by storing properties in a central library where they can be easily maintained. At runtime, Archaius checks the software version and environmental values for the application&#8201;&#8212;&#8201;that is, the context it&#8217;s running in. Archaius determines the properties needed for that particular context, and then delivers the appropriate properties to the application over the network.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_high_performance_database">1.3. High-Performance Database</h3>
+<div class="paragraph">
+<p>Today&#8217;s modern Web is all about data&#8201;&#8212;&#8201;storing it, finding it, retrieving it. And all while users are impatiently tapping their screens. As data sets grow larger, having a reliable and  blazingly-fast database is critical for delivering a sucessful database-driven application. That&#8217;s why, for the Million Song Library, we went with a Cassandra database, along with a DataStax Java driver that provides an interface between the database and the application code.</p>
+</div>
+<div class="paragraph">
+<p>Cassandra is a NoSQL database that offers much lower latency and higher scalablility than relational databases. Compared to a traditional SQL database, Cassandra can accept data at higher rates and volumes. Cassandra&#8217;s node-based architecture makes it more resilient because there is no single point of failure. And it&#8217;s easy to scale out a Cassandra database by adding more nodes (with no need to take the system down first).</p>
+</div>
+<div class="paragraph">
+<p>Achieving such a high level of performance does require a different way of thinking. In a Cassandra database, transactions need to be simple and can&#8217;t be nested. And data may be written in multiple locations rather than normalized to a single table. But predictable application performance and constant uptime are well worth the change.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cloud_based_infrastructure">1.4. Cloud-Based Infrastructure</h3>
+<div class="paragraph">
+<p>At Kenzan, we build a lot of PaaS solutions on Amazon Web Services (AWS). AWS provides the infrastructure and core services needed to deploy a complex, database-driven application in the cloud:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://aws.amazon.com/ec2/" target="_blank"><em>Elastic Compute Cloud (EC2)</em></a> lets you create or decommision virtual server instances at will, so you always have just the amount of computing power you need.</p>
+</li>
+<li>
+<p><a href="https://aws.amazon.com/autoscaling/" target="_blank"><em>Auto-Scaling Groups (ASGs)</em></a> can fire up instances automatically in response to increased load or other conditions.</p>
+</li>
+<li>
+<p><a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html" target="_blank"><em>Amazon Machine Images (AMIs)</em></a> enable a templated pipeline for successful and repeatable deployment of instances.</p>
+</li>
+<li>
+<p><a href="https://aws.amazon.com/elasticloadbalancing/" target="_blank"><em>Elastic Load Balancing (ELB)</em></a> distributes traffic from the public web among the available instances so that one doesn&#8217;t get overwhelmed while others sit idle.</p>
+</li>
+<li>
+<p><a href="https://aws.amazon.com/s3/" target="_blank"><em>Simple Storage Service (S3)</em></a> provides persistant storage for AMIs, configurations, or image assets.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>AWS is hosted on multiple, independent regions and availability zones that provide resiliency&#8201;&#8212;&#8201;even if an AWS region goes down, the application is still available. And because the middle-tier and data store reside within the Virtual Private Cloud, the entire platform is secure and protected.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Million Song Library architecture isn&#8217;t limited to running on AWS. It can be deployed locally. Or feel free to deploy your application to another cloud infrastructure, such as Microsoft Azure or Google Cloud Platform&#8201;&#8212;&#8201;whatever makes the most sense for you.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_about_the_msl_demo">1.5. About the MSL Demo</h3>
+<div class="paragraph">
+<p>To take a  deeper dive into the architechure of the Million Song Library project and discover more about the technologies used to build it, just keep reading&#8201;&#8212;&#8201;more awaits below.</p>
+</div>
+<div class="paragraph">
+<p>When you&#8217;re ready to try out the Million Song Library demo on a Mac, Linux, or Windows computer, just follow the setup instructions, and you&#8217;ll have your own microservices-based Web application up and running in about an hour:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#setup-mac">Mac OS X Automated Setup</a></p>
+</li>
+<li>
+<p><a href="#setup-ubuntu">Linux Automated Setup</a></p>
+</li>
+<li>
+<p><a href="#setup-windows">Windows Automated Setup</a></p>
+</li>
+<li>
+<p><a href="#setup-manual">Manual Setup</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you have an AWS account, you can can also deploy the Million Song Library to an EC2 instance. See <a href="#setup-aws">Deploying to AWS</a> for step-by-step instructions.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_and_documentation">2. Code and Documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Million Song Library project is open source and hosted on GitHub. The code is written using common coding standards. And it&#8217;s fully documented with the help of automated documentation tools.</p>
+</div>
+<div class="sect2">
+<h3 id="_github_repositories">2.1. GitHub Repositories</h3>
+<div class="paragraph">
+<p>You can find all of the source code for the Million Song Library project in the master repository on GitHub.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><a href="http://github.com/kenzanmedia/million-song-library" class="bare" target="_blank">http://github.com/kenzanmedia/million-song-library</a></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The master repository includes multiple sub-repositories that have been added as Git submodules using the <code>git submodule add</code> command. There is one submodule for each service, configuration, and UI service. Dividing the project into submodules like this makes it easier to configure <a href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank">continuous integration</a> (CI) jobs. It also provides a cleaner separation of responsibilities within the code. At the same time, having one master repository means that it&#8217;s simple to retrieve the entire project all at once.</p>
+</div>
+<div class="paragraph">
+<div class="title">Million Song Library Repository Structure</div>
+<p><span class="image"><img src="asciidoc/images/architecture/Directory and Repo Diagram.png" alt="Million Song Library Repository Structure"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_coding_standards">2.2. Coding Standards</h3>
+<div class="paragraph">
+<p>We think the Google coding standards and style guides are concise and useful, so we based our own style guide on them. We wrote all of the code in the Million Song Library project to conform to these standards. See the <a href="https://github.com/kenzanmedia/styleguide" target="_blank">Kenzan Style Guide</a> to learn more.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_documentation_tools">2.3. Documentation Tools</h3>
+<div class="paragraph">
+<p>The Million Song Library project leverages a number of tools to generate API, code, and other documentation.</p>
+</div>
+<div class="sect3">
+<h4 id="_swagger_api_documentation_and_code_generation">2.3.1. Swagger API Documentation and Code Generation</h4>
+<div class="paragraph">
+<p>We use the open-source <a href="http://github.com/swagger-api" target="_blank">Swagger framework</a> to create the API documentation right alongside the client and server code. Swagger provides more than just a way to document as you develop because the documentation actually drives code generation. Using the Swagger codegen tools, you can generate client libraries and server stubs from the same definition file used to generate the documentation. By unifying the generation of the API documentation with the application code, Swagger assures that they always stay in sync. And it enables publishing of the API documentation to both static and interactive formats.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Recently, Swagger was donated to the Open API Initiative and was renamed the <a href="https://github.com/OAI/OpenAPI-Specification" target="_blank">OpenAPI Specification</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To use Swagger, we first specify the API methods and models in multiple <a href="https://en.wikipedia.org/wiki/YAML" target="_blank">YAML files</a> and combine them as necessary:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>definitions.yaml</strong> - (One file) Declares all of the objects that will be passed into and out of the APIs.</p>
+</li>
+<li>
+<p><strong>paths.yaml</strong> -  (One file for each microservice) Declares the API methods for that microservice.</p>
+</li>
+<li>
+<p><strong>index.yaml</strong> - (One file for each microservice) Uses <code>$ref</code> commands to combine certain other YAML files to completely define the API for that microservice.</p>
+</li>
+<li>
+<p><strong>index.yaml</strong> - (One file) Combines all of the API methods and models into a single file that is used to generate documentation for all API methods in all microservices.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Next, to generate documentation and server-side code stubs, we use JavaScript (<strong>resolve.js</strong>) to resolve the <code>$ref</code> commands and output the final YAML files. The final YAML files are sent through Swagger (<strong>swagger-client-cli</strong>) to build the server-side code stubs and the HTML API documentation.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For an example of static documentation generated with Swagger, see <a href="swagger/index.html" target="_blank">this static HTML representation</a>. For instructions on how to run the Swagger mock server and view the interactive documentation, see the &#8220;Swagger&#8221; section in the <a href="https://github.com/kenzanmedia/msl-pages" target="_blank">README for the msl-pages sub-repository</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_javadoc_and_esdoc">2.3.2. Javadoc and ESDoc</h4>
+<div class="paragraph">
+<p>To generate documentation for the server Java classes, we use the open-source <a href="http://www.oracle.com/technetwork/articles/java/index-jsp-135444.html" target="_blank">Javadoc tool</a>. Information about each class, including its parameters and return object or value, is added to the code by means of standard comments. HTML or PDF documentation can then be generated from the code comments using command line tools. A number of popular IDEs also offer tools for generating JavaDocs.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, we use <a href="https://esdoc.org/" target="_blank">ESDoc</a> to create code documentation for the JavaScript functions and methods that are part of the UI service.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_asciidoc_documentation">2.3.3. AsciiDoc Documentation</h4>
+<div class="paragraph">
+<p>We use <a href="http://asciidoc.org/" target="_blank">AsciiDoc</a> to create supplemental documentation for the Million Song Library project (including the document you&#8217;re reading now).</p>
+</div>
+<div class="paragraph">
+<p>AsciiDoc is a text-based markup language for writing documentation such as articles, books, and more. Like other lightweight markup languages, AsciiDoc has a simple syntax that is human readable. Using open source tools, text files written in AsciiDoc can be easily processed to create output in a variety of formats, including HTML and PDF.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_client_ui_architecture">3. Client/UI Architecture</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Million Song Library client architecture is modular by design and takes advantage of modern Web application languages and frameworks.</p>
+</div>
+<div class="sect2">
+<h3 id="_angularjs">3.1. AngularJS</h3>
+<div class="paragraph">
+<p>The Million Song Library UI presents itself to the user as a single-page app built using <a href="https://angularjs.org/" target="_blank">AngularJS</a>. AngularJS is an open-source JavaScript framework that extends HTML and enables the creation of dynamic Web applications. It provides a flexible toolset that works well with other libraries.</p>
+</div>
+<div class="paragraph">
+<div class="title">UI High-level Architecture</div>
+<p><span class="image"><img src="asciidoc/images/architecture/client/Architecture Diagram.png" alt="UI High-Level Architecture"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sass">3.2. Sass</h3>
+<div class="paragraph">
+<p>We use <a href="http://sass-lang.com" target="_blank">Sass</a> (along with SCSS syntax) to help manage the complex CSS stylesheets that make the Million Song Library UI possible. Sass is a CSS pre-processor that extends the CSS language. It adds features that allow the use of variables, mixins, functions, and other techniques that make CSS much more maintainable, themable, and extendable.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_material_design">3.3. Material Design</h3>
+<div class="paragraph">
+<p>Underlying the CSS and Angular architecture of the Million Song Library UI is <a href="http://www.getmdl.io/" target="_blank">Google&#8217;s Material Design</a>, which provides an accessible look and feel that scales across browsers and devices. We use the <a href="https://material.angularjs.org/" target="_blank">Angular Material</a> version of Material Design to leverage its built-in AngularJS components. Adopting Material Design allows for extensibility of the Million Song Library UI and makes it easy for others to add their own features.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_kss_styleguide_generation">3.4. KSS Styleguide Generation</h3>
+<div class="paragraph">
+<p><a href="http://warpspire.com/kss/styleguides/" target="_blank">KSS</a> provides a specification and styleguide format that helps you produce CSS documentation as well as example HTML that shows your styles in action. The KSS documentation syntax is readable by humans, yet is structured enough to be automatically parsed by a machine. It&#8217;s designed with CSS preprocessors (such as Sass or Less) in mind, and is flexible enough to accommodate a multitude of CSS frameworks (such as YUI, Blueprint, or 960).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_es2015">3.5. ES2015</h3>
+<div class="paragraph">
+<p>The Million Song Library UI uses new features (like <code>await</code> and <code>async</code>) available in the latest version of the JavaScript programming language, ES2015. We use <a href="https://babeljs.io/" target="_blank">Babel</a> to transpile ES2015 script into standard JavaScript syntax that today&#8217;s browsers can understand.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_webpack">3.6. Webpack</h3>
+<div class="paragraph">
+<p><a href="https://webpack.github.io/" target="_blank">Webpack</a> is a module bundler. We use it to produce static assets from modules that have dependencies. The main <code>index.html</code> file is built using the <a href="https://github.com/ampedandwired/html-webpack-plugin" target="_blank">HTML Webpack Plugin</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_server_architecture">4. Server Architecture</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Instead of a traditional edge/middle architecture, the Million Song Library project uses a simplified edge/data client architecture.</p>
+</div>
+<div class="paragraph">
+<div class="title">High-level Server Architecture</div>
+<p><span class="image"><img src="asciidoc/images/architecture/server/High Level Architecture Diagram.png" alt="High-level Architecture Diagram"></span></p>
+</div>
+<div class="sect2">
+<h3 id="_data_client_layer">4.1. Data Client Layer</h3>
+<div class="paragraph">
+<p>The data clients are JARs, each one containing the methods and data transfer objects (DTOs) needed to access all of the tables in a Cassandra cluster.</p>
+</div>
+<div class="paragraph">
+<p>To enhance scalability and configuration flexibility, the Cassandra tables are split into three independent clusters: <strong>account</strong>, <strong>catalog</strong>, and <strong>rating</strong>. Each of these clusters has a data client JAR dedicated to accessing it: <strong>account-data-client</strong>, <strong>catalog-data-client</strong>, and <strong>rating-data-client</strong>, respectively. This means that a microservice that needs to access Cassandra data will include one or more of the data client JARs.</p>
+</div>
+<div class="paragraph">
+<div class="title">Data Clients and Cassandra Clusters</div>
+<p><span class="image"><img src="asciidoc/images/architecture/server/Data Client and Cassandra Cluster Detail.png" alt="Data Client and Cassandra Cluster Details"></span></p>
+</div>
+<div class="sect3">
+<h4 id="_data_client_dtos_and_methods">4.1.1. Data Client DTOs and Methods</h4>
+<div class="paragraph">
+<p>The tables below list the DTOs and methods available for each database table accessed by <strong>account-data-client</strong>, <strong>catalog-data-client</strong>, and <strong>rating-data-client</strong>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For details about all of the available DTOs and methods, see the <a href="https://github.com/kenzanmedia/million-song-library/tree/develop/docs" target="_blank">Javadoc documentation</a> for each data client.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Account Data Client DTOs</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Table</th>
+<th class="tableblock halign-left valign-top">DTO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">users</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UserDto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">songs_by_user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SongsByUserDto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">albums_by_user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AlbumsByUserDto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">artists_by_user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ArtistsByUserDto</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Account Data Client Methods</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Table</th>
+<th class="tableblock halign-left valign-top">Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">users</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Void&gt; addOrUpdateUser(UserDto)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;UserDto&gt; getUser(UUID userUuid)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Void&gt; deleteUser(UUID userUuid)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock">songs_by_user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Void&gt; addOrUpdateSongsByUser(SongsByUserDto)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;SongsByUserDto&gt; getSongsByUser(UUID userId, Timestamp favoritesTimestamp, UUID songUuid)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getSongsByUser(UUID userId, Timestamp favoritesTimestamp, Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getSongsByUser(UUID userId, Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Result&lt;SongsByUserDto&gt; map(Observable&lt;ResultSet&gt;)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Void&gt; deleteSongsByUser(UUID userId, Timestamp favoritesTimestamp, UUID songUuid)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock">albums_by_user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Void&gt; addOrUpdateAlbumsByUser(AlbumsByUserDto)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;AlbumsByUserDto&gt; getAlbumsByUser(UUID userId, Timestamp favoritesTimestamp, UUID albumUuid)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getAlbumsByUser(UUID userId, Timestamp favoritesTimestamp, Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getAlbumsByUser(UUID userId, Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Result&lt;AlbumsByUserDto&gt; map(Observable&lt;ResultSet&gt;)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Void&gt; deleteAlbumsByUser(UUID userId, Timestamp favoritesTimestamp, UUID albumUuid)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock">artists_by_user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Void&gt; addOrUpdateArtistsByUser(ArtistsByUserDto)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ArtistsByUserDto&gt; getArtistsByUser(UUID userId, Timestamp favoritesTimestamp, UUID artistUuid)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getArtistsByUser(UUID userId, Timestamp favoritesTimestamp, Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getArtistsByUser(UUID userId, Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Result&lt;ArtistsByUserDto&gt; map(Observable&lt;ResultSet&gt;)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Void&gt; deleteArtistsByUser(UUID userId, Timestamp favoritesTimestamp, UUID artistUuid)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 3. Catalog Data Client DTOs</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Table</th>
+<th class="tableblock halign-left valign-top">DTO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">featured_songs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FeaturedSongsDto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">songs_by_facet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SongsByFacetDto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">featured_albums</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FeaturedAlbumsDto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">albums_by_facet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AlbumsByFacetDto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">featured_artists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FeaturedArtistsDto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">artists_by_facet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ArtistsByFacetDto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">songs_albums_by_artist</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SongsAlbumsByArtistDto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">songs_artist_by_album</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SongsArtistByAlbumDto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">album_artist_by_song</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AlbumArtistBySongDto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">paging_state</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PagingStateDto</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 4. Catalog Data Client Methods</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Table</th>
+<th class="tableblock halign-left valign-top">Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">featured_songs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getFeaturedSongs(Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Result&lt;FeaturedSongsDto&gt; map(Observable&lt;ResultSet&gt;)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">songs_by_facet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getSongsByFacet(String facetName, Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Result&lt;SongsByFacetDto&gt; map(Observable&lt;ResultSet&gt;)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">featured_albums</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getFeaturedAlbums(Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Result&lt;FeaturedAlbumsDto&gt; map(Observable&lt;ResultSet&gt;)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">albums_by_facet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getAlbumsByFacet(String facetName, Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Result&lt;AlbumsByFacetDto&gt; map(Observable&lt;ResultSet&gt;)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">featured_artists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getFeaturedArtists(Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Result&lt;FeaturedArtistsDto&gt; map(Observable&lt;ResultSet&gt;)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">artists_by_facet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getArtistsByFacet(String facetName, Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Result&lt;ArtistsByFacetDto&gt; map(Observable&lt;ResultSet&gt;)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">songs_albums_by_artist</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getSongsAlbumsByArtist(UUID artistUuid, Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Result&lt;SongsAlbumsByArtistDto&gt; map(Observable&lt;ResultSet&gt;)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">songs_artist_by_album</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getSongsArtistByAlbum(UUID albumUuid, Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Result&lt;SongsArtistByAlbumDto&gt; map(Observable&lt;ResultSet&gt;)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">album_artist_by_song</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getAlbumArtistBySong(UUID songUuid, Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Result&lt;AlbumArtistBySongDto&gt; map(Observable&lt;ResultSet&gt;)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">paging_state</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Void&gt; addOrUpdatePagingState(PagingStateDto)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;PagingStateDto&gt; getPagingState(UUID pagingStateUuid)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Void&gt; deletePagingState(UUID pagingStateUuid)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 5. Rating Data Client DTOs</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Table</th>
+<th class="tableblock halign-left valign-top">DTO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">average_ratings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AverageRatingDto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user_ratings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UserRatingsDto</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 6. Rating Data Client Details</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Table</th>
+<th class="tableblock halign-left valign-top">Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">average_ratings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Void&gt; addOrUpdateAverageRating(AverageRatingDto)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;AverageRatingDto&gt; getAverageRating(UUID contentId, String contentType)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Void&gt; deleteAverageRating(UUID contentId, String contentType)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="6"><p class="tableblock">user_ratings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Void&gt; addOrUpdateUserRatings(UserRatingsDto)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;UserRatingsDto&gt; getUserRatings(UUID userUuid, String contentType, UUID contentUuid)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getUserRatings(UUID userUuid, String contentType, Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;ResultSet&gt; getUserRatings(UUID userUuid, Optional&lt;Integer&gt; limit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Result&lt;UserRatingsDto&gt; map(Observable&lt;ResultSet&gt;)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observable&lt;Void&gt; deleteUserRatings(UUID userUuid, String contentType, UUID contentUuid)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_apis">4.2. APIs</h3>
+<div class="paragraph">
+<p>To learn more about the Million Song Library server APIs, see the API documentation we generated using Swagger. You can find links to all of the documentation in the README file on the <a href="https://github.com/kenzanmedia/million-song-library" target="_blank">Million Song Library GitHub page</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data_pojos">4.3. Data POJOs</h3>
+<div class="paragraph">
+<p>The server has three different types of data POJOs (plain old Java objects):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Models</strong> - Classes that represent the data payloads that are passed between client and server.</p>
+</li>
+<li>
+<p><strong>Data Transfer Objects (DTOs)</strong> - Classes that represent the data persisted in Cassandra.</p>
+</li>
+<li>
+<p><strong>Business Objects (BOs)</strong> - Classes that help to convert data between models and DTOs.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Data POJOs Interaction</div>
+<p><span class="image"><img src="asciidoc/images/architecture/server/dataobjects/High Level Data POJOs.png" alt="Data POJOs Interaction"></span></p>
+</div>
+<div class="sect3">
+<h4 id="_models">4.3.1. Models</h4>
+<div class="paragraph">
+<p>The model classes are generated by Swagger and represent the data payloads that are passed back and forth between client and server.</p>
+</div>
+<div class="paragraph">
+<div class="title">Model Classes</div>
+<p><span class="image"><img src="asciidoc/images/architecture/server/dataobjects/Models.png" alt="Model Classes"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_data_transfer_objects_dtos">4.3.2. Data Transfer Objects (DTOs)</h4>
+<div class="paragraph">
+<p>Data Transfer Objects represent the data as it is persisted in Cassadra. Simply, there is a one-to-one relationship between Cassandra tables and concrete DTO classes. In many cases this data is optimized for Cassandra, which means it needs to undergo some manipulation to convert it to a model.</p>
+</div>
+<div class="paragraph">
+<div class="title">Data Transfer Object Classes</div>
+<p><span class="image"><img src="asciidoc/images/architecture/server/dataobjects/Data Transfer Objects.png" alt="Data Transfer Object Classes"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_business_objects_bos">4.3.3. Business Objects (BOs)</h4>
+<div class="paragraph">
+<p>Insider the server, business object classes represent the glue that holds together model classes and DTO classes. In many cases there is not a simple one-to-one connection between reading a DTO from Cassandra and sending that data as a model to the client. For example, when building an <strong>AlbumInfo</strong> model, the album&#8217;s metadata, community, and user ratings need to be merged. The BO contains the merged representation of the data.</p>
+</div>
+<div class="paragraph">
+<div class="title">Business Object Classes</div>
+<p><span class="image"><img src="asciidoc/images/architecture/server/dataobjects/Business Objects.png" alt="Business Object Classes"></span></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_languages_and_frameworks">4.4. Languages and Frameworks</h3>
+<div class="paragraph">
+<p>The back-end server is written in Java&#8201;&#8212;&#8201;Java Enterprise Edition 1.8, to be exact. Communication between client and server is performed using RESTful Web services over HTTP. The REST code stubs are generated by <a href="http://github.com/swagger-api" target="_blank">Swagger</a> and use <a href="http://jax-rs-spec.java.net" target="_blank">JAX-RS annotations</a>. Java&#8217;s <a href="http://jersey.java.net" target="_blank">Jersey library</a> is used as the implementation of the JAX-RS API. Finally, <a href="http://junit.org/" target="_blank">JUnit</a> is used as our unit testing framework.</p>
+</div>
+<div class="paragraph">
+<p>As described in the <a href="#microservices-architecture">Microservices Architecture</a> section above, portions of the <a href="https://netflix.github.io/" target="_blank">Netflix OSS stack</a> are used to provide cloud services. At its foundation, the server is based on <a href="http://github.com/Netflix/karyon" target="_blank">Karyon</a>, which enables the use of other Netflix OSS tools. For example, <a href="http://github.com/Netflix/archaius" target="_blank">Archaius</a> is used as the configuration manager, allowing a service to dynamically react to changes in configuration parameters.</p>
+</div>
+<div class="paragraph">
+<p>All data is persisted using Apache&#8217;s <a href="http://cassandra.apache.org" target="_blank">Cassandra</a>. Cassandra is a scalable, highly-available NoSQL database. The <a href="http://datastax.github.io/java-driver" target="_blank">DataStax Java driver</a> and row&#8594;POJO mapper provide an interface between the Java code and the Cassandra database.</p>
+</div>
+<div class="paragraph">
+<p>The table below summarizes the languages and frameworks used in the Million Song Library server.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 7. Server Languages and Frameworks</caption>
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 21.4285%;">
+<col style="width: 21.4285%;">
+<col style="width: 14.2859%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Use</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Vendor</th>
+<th class="tableblock halign-left valign-top">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Language</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java EE 1.8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.java.com" target="_blank">link</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API Documention/Code Generator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Swagger</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">open-souce</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://github.com/swagger-api" target="_blank">link</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ReST API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JAX-RS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://jax-rs-spec.java.net" target="_blank">link</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ReST Implementation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jersey</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://jersey.java.net" target="_blank">link</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unit Testing</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JUnit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JUnit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://junit.org" target="_blank">link</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloud Infrastructure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Karyon</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Netflix OSS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://github.com/Netflix/karyon" target="_blank">link</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration Management</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Archaius</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Netflix OSS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://github.com/Netflix/archaius" target="_blank">link</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cassandra</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://cassandra.apache.org" target="_blank">link</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Driver</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DataStax</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DataStax</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://datastax.github.io/java-driver" target="_blank">link</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Row&#8594;POJO Mapper</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datastax</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DataStax</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://datastax.github.io/java-driver" target="_blank">link</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reactive Code Library</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RxJava</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Netflix</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://techblog.netflix.com/2013/02/rxjava-netflix-api.html" target="_blank">link</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_album_cover_artwork">4.5. Album Cover Artwork</h3>
+<div class="paragraph">
+<p>Album cover artwork is retrieved from <a href="http://musicbrainz.org" target="_blank">MusicBrainz</a>, &#8220;an open music encyclopedia that collects music metadata and makes it available to the public&#8221;, and <a href="http://coverartarchive.org" target="_blank">Cover Art Archive</a>, &#8220;whose goal is to make cover art images available to everyone on the Internet in an organised and convenient way&#8221;. The Million Song Library data set contains an artist&#8217;s MusicBrainz ID (<strong>artist_mbid</strong>). As part of the data import process, this identifier is used to retrieve the links to artwork using the MusicBrainz and Cover Art Archive APIs.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All interactions with MusicBrainz and the Cover Art Archive are performed during the data import process&#8201;&#8212;&#8201;no queries to either of these sites  occur when the Million Song Library server is running.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_musicbrainz_access">4.5.1. MusicBrainz Access</h4>
+<div class="paragraph">
+<p>We use the <a href="https://github.com/schnatterer/musicbrainzws2-java" target="_blank"><strong>musicbrainzws2-java</strong></a> Java library to access the MusicBrainz API.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parsing_and_using_musicbrainz_data">4.5.2. Parsing and Using MusicBrainz Data</h4>
+<div class="paragraph">
+<p>Multiple releases (that is, albums) can be returned for the requested artist. The data import code reviews the available releases/albums for the artist and selects album art using the following algorithm:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Consider only those releases/albums whose title matches (not case-sensitive) the name of the album from the Million Song Library data.</p>
+</li>
+<li>
+<p>Consider only those release/albums for which <code>cover-art-archive/front = true</code>.</p>
+</li>
+<li>
+<p>Give preference to multiple possible candidates based on packaging in this order:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Jewel Case (indicates a CD)</p>
+</li>
+<li>
+<p>Cardboard/Paper Sleeve (idicates an LP)</p>
+</li>
+<li>
+<p>Cassette Case (indicates cassette tape)</p>
+</li>
+<li>
+<p>Other packaging</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If a particular piece of art is <em>not</em> available, the image link field in the database is left blank/null. If artwork is available, then the data import process retrieves the image URL through the Cover Art Archive REST API (using <strong>CoverArtArchiveClient</strong>) and writes it to the database.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_cover_art_archive_access">4.5.3. Cover Art Archive Access</h4>
+<div class="paragraph">
+<p>The <strong>CoverArtArchiveClient</strong> class from <a href="http://github.com/lastfm/coverartarchive-api" target="_blank">the Cover Art Archive API</a> allows us to retrieve the image URL using the release MBID (MusicBrainz Identifier).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parsing_and_using_coverartarchive_data">4.5.4. Parsing and Using CoverArtArchive Data</h4>
+<div class="paragraph">
+<p>As you can see in the code example above, multiple images can be returned for the requested release/album. The data import code will review the available images for the release/album and select the image URL using the following algorithm:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Consider only those images for which <code>isFront() == true</code>.</p>
+</li>
+<li>
+<p>Give preference to multiple possible URLs in this order:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>small thumbnail</p>
+</li>
+<li>
+<p>large thumbnail</p>
+</li>
+<li>
+<p>image (this is the high resolution image)</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If, based on this algorithm, a particular piece of art is <em>not</em> available, the image link field in the database is left blank/null.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__image_unavailable_images">4.5.5. &#8220;Image Unavailable&#8221; Images</h4>
+<div class="paragraph">
+<p>When preparing to send an artwork link in response to a request, if the image link URL from the database is blank/null, the server instead inserts a URL that points to an &#8220;artwork unavailable&#8221; image on the pages server. This URL is defined as a configuration parameter. Three &#8220;artwork unavailable&#8221; images (one each for album, artist, and song) are available for HTTP retrieval from the pages server.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_database_architecture">5. Database Architecture</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Due to the large amount of data to be persisted, and the need for quick reads and linear scalable performance, the Million Song Library project uses Cassandra as the back-end datastore, along with the Datastax Java driver as the interface.</p>
+</div>
+<div class="sect2">
+<h3 id="_design">5.1. Design</h3>
+<div class="paragraph">
+<p>We used the <a href="http://kdm.dataview.org" target="_blank">Kashlev Data Modeler</a> (KDM) to model the Cassandra schema.</p>
+</div>
+<div class="sect3">
+<h4 id="_entity_relationship_model">5.1.1. Entity-Relationship Model</h4>
+<div class="paragraph">
+<p>Initially, we performed a traditional data analysis&#8201;&#8212;&#8201;looking at what entities are required based on the use cases, and what the relationships are between those entities. The result is illustrated in the <a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model" target="_blank">entity-relationship model</a> below which was created with KDM and uses Chen&#8217;s notation.</p>
+</div>
+<div class="paragraph">
+<div class="title">Entity Relationship Model</div>
+<p><span class="image"><img src="asciidoc/images/database/entity_relationship.png" alt="Entity Relationship Diagram"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_access_patterns">5.1.2. Access Patterns</h4>
+<div class="paragraph">
+<p>Next, we used those same use cases to determine how the data in the entities would be accessed. Given the use patterns of a Cassandra datastore, it&#8217;s important to think in terms of queries when designing the schema. This can be a challenging transition for those accustomed to building SQL schemas. Maybe even more challenging is the need to denormalize the schema&#8201;&#8212;&#8201;a thought that could keep an SQL database designer up at night. Luckily, there are many good tutorials and documents online dicussing this process.</p>
+</div>
+<div class="paragraph">
+<div class="title">Access Patterns Diagram</div>
+<p><span class="image"><img src="asciidoc/images/database/access_patterns.png" alt="Access Patterns Diagram"></span></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_implementation">5.2. Implementation</h3>
+<div class="paragraph">
+<p>The following table shows the details for each query included in the access patterns diagram above.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Fields marked with <strong>K</strong> are partition keys. Fields marked with <strong>C</strong> are cluster keys.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 8. Queries</caption>
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 22.2222%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Query Number</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Table Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q01 users.png" alt="Users"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User ratings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q02 user ratings.png" alt="User Ratings"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Average Ratings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q03 average ratings.png" alt="Average Ratings"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Featured Songs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q04 featured songs.png" alt="Featured Songs"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Songs by Facet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q05 songs by facet.png" alt="Songs by Facet"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Featured Songs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q06 featured songs.png" alt="Featured Songs"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Songs by Facet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q07 albums by facet.png" alt="Songs by Facet"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Featured Artists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q08 featured artists.png" alt="Featured Artists"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artists by Facet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q09 artists by facet.png" alt="Artists by Facet"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Songs/Albums by Artist</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q10 songs albums by artist.png" alt="Songs/Albums by Artist"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Songs by User</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q11 songs by user.png" alt="Songs by User"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Albums by User</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q12 albums by user.png" alt="Albums by User"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q13</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Artists by User</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q13 artists by user.png" alt="Artists by User"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Songs/Artist by Album</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q14 songs artist by album.png" alt="Songs/Artist by Album"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Album/Artist by Song</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q15 album artist by song.png" alt="Album/Artist by Song"></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Paging State</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="image"><img src="asciidoc/images/database/Q16 paging state.png" alt="Paging State"></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_data_import">5.3. Data Import</h3>
+<div class="paragraph">
+<p>The Million Song Library project uses data from the <a href="http://labrosa.ee.columbia.edu/millionsong/pages/getting-dataset" target="_blank">Million Song Dataset</a>. (A 10,000 song subset of the full data set is also available.) Downloading the data set yields a gzipped file that contains two directories: <strong>AdditionalFiles</strong> and <strong>data</strong>. The <strong>data</strong> directory has a number of subdirectories that contain an <strong>HDF</strong> file (with the extension <strong>h5</strong>) for each song in the data set. The <strong>AdditionalFiles</strong> directory contains several files that summarize the data set&#8201;&#8212;&#8201;these files are not used for the import.</p>
+</div>
+<div class="paragraph">
+<p>HDF or <a href="https://en.wikipedia.org/wiki/Hierarchical_Data_Format" target="_blank">Hierarchical Data Format</a> files contain all the data needed for albums, artists, and songs. We use the Python library written by <a href="mailto:tb2332@columbia.edu">Thierry Bertin-Mahieux</a> to read these files. (We initially tried using Java and <a href="https://www.hdfgroup.org/products/java/JNI/jhi5/" target="_blank">JHI5</a> but ran into issues with the native library aspect of that implementation.)</p>
+</div>
+<div class="paragraph">
+<p>At a high level, the data import process uses Python to traverse a given directory tree, consuming all of the <strong>.h5</strong> files and creating a single CSV file with one line for each song. This CSV file is then consumed by a Java program to create the CSVs that are inserted into the Cassandra cluster.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The tags within an <strong>.h5</strong> file (<strong>/metadata/artist_terms</strong>) essentially indicate the genre of the song. There are so many genres used in the data set that it makes them not particularly useful as a searching mechanism. For this reason, a list of genres is defined in <strong>Genre.java</strong> to declare which of the genres we are interested in persisting. Any genres not found in the list are ignored.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setup-mac">6. Mac OS X Automated Setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Follow the steps in this section to set up the Million Song Library demo on a Mac.</p>
+</div>
+<div class="sect2">
+<h3 id="get-ready-mac">6.1. Get Your System Ready</h3>
+<div class="paragraph">
+<p>Before setting up the demo, make sure you have everything you need.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Mac OS X 10.11</dt>
+<dd>
+<p>We tested this procedure on Mac OS X 10.11 (El Capitan). <a href="https://support.apple.com/en-us/HT201260" target="_blank">Check your OS X version</a> to see if you&#8217;re already running El Capitan. If you&#8217;re running an older version of OS X, you should <a href="https://support.apple.com/en-us/HT201475" target="_blank">upgrade your Mac to El Capitan</a>.</p>
+</dd>
+<dt class="hdlist1">Apple Xcode</dt>
+<dd>
+<p>On Mac OS X, some necessary command line tools aren&#8217;t installed by default, so to get them you&#8217;ll need to <a href="https://developer.apple.com/xcode/download/" target="_blank">install the latest version of Xcode from the Mac App Store</a>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+After installation, make sure to open Xcode, accept the license agreement, and (if prompted) install any additional tools.
+</td>
+</tr>
+</table>
+</div>
+</dd>
+<dt class="hdlist1">Java 1.8 JDK</dt>
+<dd>
+<p>Install the <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank">Java 1.8 JDK</a>. Make sure to select the <strong>Mac OS X x64</strong> download option. To install, just double-click the DMG file to open it, and then double-click the installer.</p>
+</dd>
+<dt class="hdlist1">Git</dt>
+<dd>
+<p>Install Git if you don&#8217;t have it already. One easy method is to <a href="http://git-scm.com/downloads" target="_blank">download the Mac OS X installer</a>. To install, just double-click the DMG file to open it, and then double-click the installer.</p>
+</dd>
+<dt class="hdlist1">Terminal</dt>
+<dd>
+<p>You&#8217;ll need a terminal application so you can enter commands at the command prompt. The Terminal app included with Mac OS X will work just fine. You can find it in <strong>Applications&#8594;Utilities</strong>.</p>
+</dd>
+</dl>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Where is My Home Directory?</strong></p>
+</div>
+<div class="paragraph">
+<p>For this process, it&#8217;s important to know where your home directory is. Your home directory is the directory that has the same name as your user name.</p>
+</div>
+<div class="paragraph">
+<p>For example, if the user name you use to log on to your Mac is jdoe, your home directory is named <strong>jdoe</strong>. In Terminal, your home directory is represented by the tilde (~) sign. For example, the path <strong>~/stuff</strong> points to a directory named <strong>stuff</strong> located inside your home directory.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="update-tools-mac">6.2. Update Existing Tools (If Needed)</h3>
+<div class="paragraph">
+<p>The Million Song Library setup script will automatically install the required tools and frameworks, so in most cases there&#8217;s nothing more you need to install before getting started. There&#8217;s one exception&#8212;&#8203;if you already have some of the required tools installed on your system, then you need to make sure they are at the required version. Check the list below.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Maven 3.3.9 or later</dt>
+<dd>
+<p>To see what version of Maven is installed, enter <code>mvn -version</code> at the command prompt. If you get the message <code>command not found</code>, it means Maven is not installed, and there&#8217;s no need to do anything.</p>
+<div class="paragraph">
+<p>If the command reports that an older version is installed, <a href="http://www.tutorialspoint.com/maven/maven_environment_setup.htm" target="_blank">upgrade your Maven installation</a> to version 3.3.9 or later.</p>
+</div>
+</dd>
+<dt class="hdlist1">Node 0.12.x or later</dt>
+<dd>
+<p>To see what version of Node is installed, enter <code>node --version</code> at the command prompt. If you get the message <code>command not found</code>, it means Node is not installed, and there&#8217;s no need to do anything.</p>
+<div class="paragraph">
+<p>If the command reports that an older version is installed, <a href="https://nodejs.org/en/download/" target="_blank">download the Node.js Mac OS X installer</a>. Just double-click the installer to run it. This will also install npm.</p>
+</div>
+</dd>
+<dt class="hdlist1">npm 2.7.x or later</dt>
+<dd>
+<p>To see what version of npm is installed, enter <code>npm -version</code> at the command prompt. If you get the message <code>command not found</code>, it means npm is not installed, and there&#8217;s no need to do anything.</p>
+<div class="paragraph">
+<p>If the command reports that an older version is installed, <a href="https://nodejs.org/en/download/" target="_blank">download the Node.js Mac OS X installer</a>, which includes npm. Just double-click the installer to run it.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_enable_the_root_user">6.3. Enable the Root User</h3>
+<div class="paragraph">
+<p>The setup script requires the use of <code>sudo</code> to run certain commands as root. However, on Mac OS X, the root user is not enabled by default. You&#8217;ll need to enable the root user so that the setup script will run properly.</p>
+</div>
+<div class="paragraph">
+<p>To enable the root user, just <a href="https://support.apple.com/en-us/HT204012" target="_blank">follow these instructions</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_clone_the_msl_repository">6.4. Clone the MSL Repository</h3>
+<div class="paragraph">
+<p>To run the setup script, you first need to clone the million-song-library repository to a local directory.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a new Terminal window and make sure you are in your home directory.</p>
+</li>
+<li>
+<p>Enter the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre>git clone https://github.com/kenzanmedia/million-song-library</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Git creates a directory called <strong>million-song-library</strong> inside your home directory, and checks out a working copy of the repository.</p>
+</div>
+</li>
+<li>
+<p>Enter the following command to change directories to the cloned repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd million-song-library</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the folowing command to initialize the repository and submodules:</p>
+<div class="listingblock">
+<div class="content">
+<pre>git submodule init &amp;&amp; git submodule update</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="start-cassandra-mac">6.5. Install and Start Cassandra</h3>
+<div class="paragraph">
+<p>Now let&#8217;s get Cassandra up and running.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download Cassandra 2.1.11 (Community version) from the <a href="https://downloads.datastax.com/community/" target="_blank">Datastax download site</a>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Make sure to download the correct file: <a href="https://downloads.datastax.com/community/dsc-cassandra-2.1.11-bin.tar.gz"><strong>dsc-cassandra-2.1.11-bin.tar.gz</strong></a>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Create a new directory named <strong>cassandra</strong> inside your home ( <strong>~/</strong> ) directory.</p>
+</li>
+<li>
+<p>Move the <strong>dsc-cassandra-2.1.11-bin.tar.gz</strong> file into the <strong>~/cassandra</strong> directory, and then double-click the file to extract it.</p>
+</li>
+<li>
+<p>To start Cassandra, open a new Terminal window and enter the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre>sh ~/cassandra/dsc-cassandra-2.1.11/bin/cassandra</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If you get an error when trying to start Cassandra, it probably means that Cassandra is already running (for example, from running the Million Song Library demo previously). To correct this issue, reboot your system, or stop Cassandra (see <a href="#stop-msl-mac">Stop the MSL Demo</a>). Then try starting Cassandra again. You should always make sure to stop Cassandra when you&#8217;re done working with the Million Song Library demo.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_run_the_setup_script">6.6. Run the Setup Script</h3>
+<div class="paragraph">
+<p>Now that Cassandra is running, you&#8217;re ready to run the setup script.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you&#8217;ve already run the setup script once, you don&#8217;t need to run it again to start the demo. Just skip ahead to <a href="#start-msl-mac">Start the MSL Demo</a>. If you haven&#8217;t run the setup script before, follow the steps below.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In Terminal, press <strong>Command+T</strong> to open a new tab.</p>
+</li>
+<li>
+<p>Enter the following command to change to the script directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd ~/million-song-library/bin</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to make the setup script executable:</p>
+<div class="listingblock">
+<div class="content">
+<pre>chmod +x setup.sh</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to run the setup script:</p>
+<div class="listingblock">
+<div class="content">
+<pre>./setup.sh -c ~/cassandra/dsc-cassandra-2.1.11 -n -s -g</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Watch the script output&#8201;&#8212;&#8201;you will be prompted to press <strong>&lt;Enter&gt;</strong> and also to enter your administrator password.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Wait for the script to complete (about 30 minutes).</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It&#8217;s normal to see some warnings while the script runs. If the script encounters an error that prevents it from finishing, make sure you installed all the required tools. See <a href="#get-ready-mac">Get Your System Ready</a> and <a href="#update-tools-mac">Update Existing Tools (If Needed)</a> above. Then try running the script again.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="start-msl-mac">6.7. Start the MSL Demo</h3>
+<div class="paragraph">
+<p>Setup is complete&#8201;&#8212;&#8201;now it&#8217;s time to start the Million Song Library demo.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In Terminal, press <strong>Command+T</strong> to open another new tab.</p>
+</li>
+<li>
+<p>Enter the following command to change to the application directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd ~/million-song-library/msl-pages</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to start the application front end:</p>
+<div class="listingblock">
+<div class="content">
+<pre>npm run full-dev</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the front end to start up&#8201;&#8212;&#8201;this will take just a couple of minutes.</p>
+</div>
+</li>
+<li>
+<p>In Terminal, press <strong>Command+T</strong> to open another new tab. You should still be in the <strong>msl-pages</strong> directory.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Make sure to open a new Terminal tab or window before starting the servers, to avoid stopping the front end.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Enter the following command to start the server instances:</p>
+<div class="listingblock">
+<div class="content">
+<pre>npm run serve-all</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the server instances to start up&#8201;&#8212;&#8201;again, this will take just a couple of minutes.</p>
+</div>
+</li>
+<li>
+<p>Open a Web browser and point it to: <strong>msl.kenzanlabs.com:3000</strong></p>
+<div class="paragraph">
+<p>The Million Song Library home page displays.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you don&#8217;t see data right away, wait a few minutes and then refresh the page. If data still doesn&#8217;t load, try clearing your web browser cache.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Million Song Library Home Page</div>
+<p><span class="image"><img src="asciidoc/images/msl-home-page-mac.png" alt="Million Song Library Home Page"></span></p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now that the Million Song Library demo is working, here are some fun things to try:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click <strong>Register</strong> to register for an account.</p>
+</li>
+<li>
+<p>Click the labels to switch the view between <strong>Songs</strong>, <strong>Albums</strong>, and <strong>Artists</strong>.</p>
+</li>
+<li>
+<p>Click a genre or star rating on the left to filter songs. (Click the <strong>x</strong> to clear a filter.)</p>
+</li>
+<li>
+<p>Mouse over a song and click <strong>Add to library</strong> to add it to your music library (you must be logged in).</p>
+</li>
+<li>
+<p>Click the stars below a song to rate it (you must be logged in).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stop-msl-mac">6.8. Stop the MSL Demo</h3>
+<div class="paragraph">
+<p>Done having fun for now? Follow these steps to stop the Million Song Library demo.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In Terminal, switch to the tab where you started the server instances and press <strong>Control+C</strong> to stop the server.</p>
+</li>
+<li>
+<p>In Terminal, switch to the tab where you started the application and press <strong>Control+C</strong> to stop the application.</p>
+</li>
+<li>
+<p>In Terminal, switch to the tab where you started Cassandra and enter the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre>ps auwx | grep cassandra</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Look at the output from the command and note the first 3&#8211;5 digit number that appears in the output. This is the process ID for Cassandra.</p>
+</div>
+</li>
+<li>
+<p>Enter the following command where <strong>pid</strong> is the process ID you found (you&#8217;ll be prompted for your administrator password):</p>
+<div class="listingblock">
+<div class="content">
+<pre>sudo kill pid</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You don&#8217;t need to run the setup script if you want to start the Million Song Library demo again. Just start Cassandra (see <a href="#start-cassandra-mac">Install and Start Cassandra</a>) and then start the application and server instances (see <a href="#start-msl-mac">Start the MSL Demo</a>).
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setup-ubuntu">7. Linux Automated Setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Follow the steps in this section to set up the Million Song Library demo on a system running Linux.</p>
+</div>
+<div class="sect2">
+<h3 id="get-ready-ubuntu">7.1. Get Your System Ready</h3>
+<div class="paragraph">
+<p>Before setting up the demo, make sure you have everything you need.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Ubuntu 14.04</dt>
+<dd>
+<p>We tested this procedure on Ubuntu 14.04 (Trusty Tahr). <a href="https://help.ubuntu.com/community/CheckingYourUbuntuVersion" target="_blank">Check your Ubuntu version</a> to see if you&#8217;re already running Trusty Tahr. If you&#8217;re running an older version of Ubuntu, you should <a href="https://help.ubuntu.com/community/TrustyUpgrades" target="_blank">upgrade your system to Trusty Tahr</a>.</p>
+</dd>
+<dt class="hdlist1">Java 1.8 JDK</dt>
+<dd>
+<p>Install the Java 1.8 JDK:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In a Terminal window, enter the following command to add the <a href="http://www.webupd8.org/" target="_blank">WebUpd8</a> Java PPA repository (you&#8217;ll be prompted for your administrator password):</p>
+<div class="listingblock">
+<div class="content">
+<pre>sudo add-apt-repository ppa:webupd8team/java</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to update the package index:</p>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt-get update</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to install the Java 1.8 JDK:</p>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt-get install oracle-java8-installer</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1">Git</dt>
+<dd>
+<p>Install Git if you don&#8217;t have it already. In a Terminal window, enter the following command (you&#8217;ll be prompted for your administrator password):</p>
+<div class="listingblock">
+<div class="content">
+<pre>sudo apt-get install git</pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Terminal</dt>
+<dd>
+<p>You&#8217;ll need a terminal application so you can enter commands at the command prompt. The Terminal app included with Ubuntu will work just fine. You can find it in <strong>Applications</strong>.</p>
+</dd>
+</dl>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Where is My Home Directory?</strong></p>
+</div>
+<div class="paragraph">
+<p>For this process, it&#8217;s important to know where your home directory is. Your home directory is the directory that has the same name as your user name.</p>
+</div>
+<div class="paragraph">
+<p>For example, if the user name you use to log on to your system is jdoe, your home directory is named <strong>jdoe</strong>. In Terminal, your home directory is represented by the tilde (~) sign. For example, the path <strong>~/stuff</strong> points to a directory named <strong>stuff</strong> located inside your home directory.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="update-tools-ubuntu">7.2. Update Existing Tools (If Needed)</h3>
+<div class="paragraph">
+<p>The Million Song Library setup script will automatically install the required tools and frameworks, so in most cases there&#8217;s nothing more you need to install before getting started. There&#8217;s one exception&#8212;&#8203;if you already have some of the required tools installed on your system, then you need to make sure they are at the required version. Check the list below.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Maven 3.3.9 or later</dt>
+<dd>
+<p>To see what version of Maven is installed, enter <code>mvn -version</code> at the command prompt. If the system does not return a version number, it means Maven is not installed, and there&#8217;s no need to do anything.</p>
+<div class="paragraph">
+<p>If the command reports that an older version is installed, <a href="http://www.tutorialspoint.com/maven/maven_environment_setup.htm" target="_blank">upgrade your Maven installation</a> to version 3.3.9 or later.</p>
+</div>
+</dd>
+<dt class="hdlist1">Node 0.12.x or later</dt>
+<dd>
+<p>To see what version of Node is installed, enter <code>node --version</code> at the command prompt. If the system does not return a version number, it means Node is not installed, and there&#8217;s no need to do anything.</p>
+<div class="paragraph">
+<p>If the command reports that an older version is installed, <a href="https://nodejs.org/en/download/package-manager/" target="_blank">update your installation of Node.js</a>.</p>
+</div>
+</dd>
+<dt class="hdlist1">npm 2.7.x or later</dt>
+<dd>
+<p>To see what version of npm is installed, enter <code>npm -version</code> at the command prompt. If the system does not return a version number, it means npm is not installed, and there&#8217;s no need to do anything.</p>
+<div class="paragraph">
+<p>If the command reports that an older version is installed, <a href="https://nodejs.org/en/download/package-manager/" target="_blank">update your installation of Node.js</a>, which includes npm.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_clone_the_msl_repository_2">7.3. Clone the MSL Repository</h3>
+<div class="paragraph">
+<p>To run the setup script, you first need to clone the million-song-library repository to a local directory.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a new Terminal window and make sure you are in your home directory.</p>
+</li>
+<li>
+<p>Enter the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre>git clone https://github.com/kenzanmedia/million-song-library</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Git creates a directory called <strong>million-song-library</strong> inside your home directory, and checks out a working copy of the repository.</p>
+</div>
+</li>
+<li>
+<p>Enter the following command to change directories to the cloned repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd million-song-library</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the folowing command to initialize the repository and submodules:</p>
+<div class="listingblock">
+<div class="content">
+<pre>git submodule init &amp;&amp; git submodule update</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="start-cassandra-ubuntu">7.4. Install and Start Cassandra</h3>
+<div class="paragraph">
+<p>Now let&#8217;s get Cassandra up and running.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download Cassandra 2.1.11 (Community version) from the <a href="https://downloads.datastax.com/community/" target="_blank">Datastax download site</a>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Make sure to download the correct file: <a href="https://downloads.datastax.com/community/dsc-cassandra-2.1.11-bin.tar.gz"><strong>dsc-cassandra-2.1.11-bin.tar.gz</strong></a>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Create a new directory named <strong>cassandra</strong> inside your home ( <strong>~/</strong> ) directory.</p>
+</li>
+<li>
+<p>Move the <strong>dsc-cassandra-2.1.11-bin.tar.gz</strong> file into the <strong>~/cassandra</strong> directory, and then extract the contents into the <strong>~/cassandra</strong> directory.</p>
+</li>
+<li>
+<p>To start Cassandra, enter the following command in Terminal:</p>
+<div class="listingblock">
+<div class="content">
+<pre>sh ~/cassandra/dsc-cassandra-2.1.11/bin/cassandra</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If you get an error when trying to start Cassandra, it probably means that Cassandra is already running (for example, from running the Million Song Library demo previously). To correct this issue, reboot your system, or stop Cassandra (see <a href="#stop-msl-ubuntu">Stop the MSL Demo</a>). Then try starting Cassandra again. You should always make sure to stop Cassandra when you&#8217;re done working with the Million Song Library demo.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_run_the_setup_script_2">7.5. Run the Setup Script</h3>
+<div class="paragraph">
+<p>Now that Cassandra is running, you&#8217;re ready to run the setup script.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you&#8217;ve already run the setup script once, you don&#8217;t need to run it again to start the demo. Just skip ahead to <a href="#start-msl-ubuntu">Start the MSL Demo</a>. If you haven&#8217;t run the setup script before, follow the steps below.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In Terminal, press <strong>Shift+Control+T</strong> to open a new tab.</p>
+</li>
+<li>
+<p>Enter the following command to change to the script directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd ~/million-song-library/bin</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to make the setup script executable:</p>
+<div class="listingblock">
+<div class="content">
+<pre>chmod +x setup.sh</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to run the setup script (you&#8217;ll be prompted for your administrator password):</p>
+<div class="listingblock">
+<div class="content">
+<pre>sudo ./setup.sh -c ~/cassandra/dsc-cassandra-2.1.11 -n -s -g</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Wait for the script to complete (about 30 minutes).</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It&#8217;s normal to see some warnings while the script runs. If the script encounters an error that prevents it from finishing, make sure you installed all the required tools. See <a href="#get-ready-ubuntu">Get Your System Ready</a> and <a href="#update-tools-ubuntu">Update Existing Tools (If Needed)</a> above. Then try running the script again.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="start-msl-ubuntu">7.6. Start the MSL Demo</h3>
+<div class="paragraph">
+<p>Setup is complete&#8201;&#8212;&#8201;now it&#8217;s time to start the Million Song Library demo.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In Terminal, press <strong>Shift+Control+T</strong> to open another new tab.</p>
+</li>
+<li>
+<p>Enter the following command to change to the application directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd ~/million-song-library/msl-pages</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to start the application front end:</p>
+<div class="listingblock">
+<div class="content">
+<pre>npm run full-dev</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the front end to start up&#8201;&#8212;&#8201;this will take just a couple of minutes.</p>
+</div>
+</li>
+<li>
+<p>In Terminal, press <strong>Shift+Control+T</strong> to open another new tab. You should still be in the <strong>msl-pages</strong> directory.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Make sure to open a new Terminal tab or window before starting the servers, to avoid stopping the front end.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Enter the following command to start the server instances (you&#8217;ll be prompted for your administrator password):</p>
+<div class="listingblock">
+<div class="content">
+<pre>sudo npm run serve-all</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the server instances to start up&#8201;&#8212;&#8201;again, this will take just a couple of minutes.</p>
+</div>
+</li>
+<li>
+<p>Open a Web browser and point it to: <strong>msl.kenzanlabs.com:3000</strong></p>
+<div class="paragraph">
+<p>The Million Song Library home page displays.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you don&#8217;t see data right away, wait a few minutes and then refresh the page. If data still doesn&#8217;t load, try clearing your web browser cache.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Million Song Library Home Page</div>
+<p><span class="image"><img src="asciidoc/images/msl-home-page-linux.png" alt="Million Song Library Home Page"></span></p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now that the Million Song Library demo is working, here are some fun things to try:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click <strong>Register</strong> to register for an account.</p>
+</li>
+<li>
+<p>Click the labels to switch the view between <strong>Songs</strong>, <strong>Albums</strong>, and <strong>Artists</strong>.</p>
+</li>
+<li>
+<p>Click a genre or star rating on the left to filter songs. (Click the <strong>x</strong> to clear a filter.)</p>
+</li>
+<li>
+<p>Mouse over a song and click <strong>Add to library</strong> to add it to your music library (you must be logged in).</p>
+</li>
+<li>
+<p>Click the stars below a song to rate it (you must be logged in).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stop-msl-ubuntu">7.7. Stop the MSL Demo</h3>
+<div class="paragraph">
+<p>Done having fun for now? Follow these steps to stop the Million Song Library demo.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In Terminal, switch to the tab where you started the server instances and press <strong>Control+C</strong> to stop the server.</p>
+</li>
+<li>
+<p>In Terminal, switch to the tab where you started the application and press <strong>Control+C</strong> to stop the application.</p>
+</li>
+<li>
+<p>In Terminal, switch to the tab where you started Cassandra and enter the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre>ps auwx | grep cassandra</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Look at the output from the command and note the first 3&#8211;5 digit number that appears in the output. This is the process ID for Cassandra.</p>
+</div>
+</li>
+<li>
+<p>Enter the following command where <strong>pid</strong> is the process ID you found (you&#8217;ll be prompted for your administrator password):</p>
+<div class="listingblock">
+<div class="content">
+<pre>sudo kill pid</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You don&#8217;t need to run the setup script if you want to start the Million Song Library demo again. Just start Cassandra (see <a href="#start-cassandra-ubuntu">Install and Start Cassandra</a>) and then start the application and server instances (see <a href="#start-msl-ubuntu">Start the MSL Demo</a>).
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setup-windows">8. Windows Automated Setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Follow the steps in this section to set up the Million Song Library demo on a system running Windows. You will actually be installing the demo inside a Linux virtual machine using Vagrant&#8201;&#8212;&#8201;a process that&#8217;s both easy and free.</p>
+</div>
+<div class="sect2">
+<h3 id="get-ready-windows">8.1. Get Your System Ready</h3>
+<div class="paragraph">
+<p>Before setting up the demo, make sure you have everything you need.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Windows 10</dt>
+<dd>
+<p>We tested this procedure on Windows 10 Pro. <a href="http://windows.microsoft.com/en-us/windows/which-operating-system" target="_blank">Check your Windows version</a> to see if you&#8217;re already running Windows 10 Pro, and to find out if you&#8217;re running a 32-bit or 64-bit version of Windows. If you&#8217;re running an older version of Windows, you should <a href="https://www.microsoft.com/en-us/windows/windows-10-upgrade" target="_blank">upgrade your system to Windows 10</a>.</p>
+</dd>
+<dt class="hdlist1">Git</dt>
+<dd>
+<p>Install Git if you don&#8217;t have it already. One easy method is to <a href="http://git-scm.com/downloads" target="_blank">download the Windows installer</a>. To install, just double-click the EXE file.</p>
+<div class="exampleblock">
+<div class="content">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+During Git installation, make sure to select the <strong>Use Git from the Windows Command Prompt</strong> option. Otherwise you won&#8217;t be able use Git commands in PowerShell.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Installing Git for Windows</div>
+<p><span class="image"><img src="asciidoc/images/git-setup-windows.png" alt="Installing Git for Windows"></span></p>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Vagrant</dt>
+<dd>
+<p>The easiest way to set up the Million Song Library on Windows is with Vagrant, a tool for automating the creation of development environments. If you don&#8217;t already have it, <a href="https://www.vagrantup.com/downloads.html" target="_blank">install Vagrant</a>.</p>
+</dd>
+<dt class="hdlist1">PowerShell</dt>
+<dd>
+<p>You&#8217;ll need to use Windows PowerShell to enter commands at the command prompt. You can find it in <strong>Start&#8594;All Apps&#8594;Windows PowerShell</strong>.</p>
+<div class="paragraph">
+<p>For some commands, you&#8217;ll need to use Git Bash instead (we&#8217;ll let you know when). You can find it in  <strong>Start&#8594;All Apps&#8594;Git&#8594;Git Bash</strong>.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Where is My Home Directory?</strong></p>
+</div>
+<div class="paragraph">
+<p>For this process, it&#8217;s important to know where your home directory is. Your home directory is the directory that has the same name as your user name.</p>
+</div>
+<div class="paragraph">
+<p>For example, if the user name you use to log on to Windows is jdoe, then the path <strong>C:\Users\jdoe</strong> points to your home directory.</p>
+</div>
+<div class="paragraph">
+<p>In Git Bash, your home directory is represented by the tilde (~) sign. For example, the path <strong>~/stuff</strong> points to a directory named <strong>stuff</strong> located inside your home directory.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_clone_the_msl_repository_3">8.2. Clone the MSL Repository</h3>
+<div class="paragraph">
+<p>To use Vagrant to set up a virtual machine for the demo, you first need to clone the million-song-library repository to a local directory.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a new PowerShell window and make sure you are in your home directory.</p>
+</li>
+<li>
+<p>Enter the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre>git clone https://github.com/kenzanmedia/million-song-library</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Git creates a directory called <strong>million-song-library</strong> inside your home directory, and checks out a working copy of the repository.</p>
+</div>
+</li>
+<li>
+<p>Enter the following command to change directories to the cloned repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd million-song-library</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the folowing command to initialize the repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre>git submodule init</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the folowing command to update all submodules:</p>
+<div class="listingblock">
+<div class="content">
+<pre>git submodule update</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_set_up_the_virtual_machine">8.3. Set up the Virtual Machine</h3>
+<div class="paragraph">
+<p>The Vagrant file contains all of the information needed to set up and configure the Linux virtual machine to run the Million Song Library Demo. Let&#8217;s get it running.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a new PowerShell window and make sure you are in your home directory.</p>
+</li>
+<li>
+<p>Enter the following command to change to the million-song-library repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd million-song-library</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to set up the virtual machine:</p>
+<div class="listingblock">
+<div class="content">
+<pre>vagrant up ubuntu</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Wait for the setup process to complete (about 30 minutes).</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you get an error stating <code>The box 'ubuntu/trusty64' could not be found</code>, it means you don&#8217;t have the correct version of the Microsoft Visual C&#43;&#43; Redistributable Package on your system. First install the <a href="https://www.microsoft.com/en-us/download/details.aspx?id=8328" target="_blank">Microsoft Visual C&#43;&#43; 2010 SP1 Redistributable Package</a>, and then run the <code>vagrant up ubuntu</code> command again.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_edit_the_hosts_file">8.4. Edit the Hosts File</h3>
+<div class="paragraph">
+<p>While you&#8217;re waiting for the setup process to complete, take a few minutes to update the <strong>hosts</strong> file on your local system. This will allow you to access the Million Song Library application using a Web browser.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In a text editor, open the <strong>hosts</strong> file located in the <strong>C:\Windows\System32\Drivers\etc</strong> directory.</p>
+</li>
+<li>
+<p>Add the following line to the <strong>hosts</strong> file.</p>
+<div class="listingblock">
+<div class="content">
+<pre>127.0.0.1     msl.kenzanlabs.com</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Save and close the <strong>hosts</strong> file.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="start-msl-windows">8.5. Start the MSL Demo</h3>
+<div class="paragraph">
+<p>This is where we need to start using Git Bash, which already has an ssh client (unlike PowerShell).</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a new Git Bash window and make sure you are in your home directory.</p>
+</li>
+<li>
+<p>Enter the following command to change to the million-song-library repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd million-song-library</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to connect to the virtual machine and forward the necessary ports (it&#8217;s really long, so use copy and paste, and make sure to select the entire command):</p>
+<div class="listingblock">
+<div class="content">
+<pre>vagrant ssh ubuntu -- -L 3000:localhost:3000 -L 3002:localhost:3002 -L 3003:localhost:3003 -L 3004:localhost:3004 -L 9002:localhost:9002 -L 9003:localhost:9003</pre>
+</div>
+</div>
+</li>
+<li>
+<p>After you are connected to the virtual machine, enter the following command to change to the application directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd kenzan/million-song-library/msl-pages</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to start the application front end:</p>
+<div class="listingblock">
+<div class="content">
+<pre>npm run full-dev</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the front end to start up&#8201;&#8212;&#8201;this will take a few minutes.</p>
+</div>
+</li>
+<li>
+<p>Open a new Git Bash window and make sure you are in your home directory.</p>
+</li>
+<li>
+<p>Enter the following command to change to the million-song-library repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd million-song-library</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to connect to the virtual machine (we don&#8217;t need such a long command this time as we already forwarded the necessary ports):</p>
+<div class="listingblock">
+<div class="content">
+<pre>vagrant ssh ubuntu</pre>
+</div>
+</div>
+</li>
+<li>
+<p>After you are connected to the virtual machine, enter the following command to change to the application directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd kenzan/million-song-library/msl-pages</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to start the server instances:</p>
+<div class="listingblock">
+<div class="content">
+<pre>sudo npm run serve-all</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the server instances to start up&#8201;&#8212;&#8201;again, this will take several minutes.</p>
+</div>
+</li>
+<li>
+<p>Open a Web browser and point it to: <strong>msl.kenzanlabs.com:3000</strong></p>
+<div class="paragraph">
+<p>The Million Song Library home page displays. (If you don&#8217;t see data right away, wait a couple of minutes and then refresh the page.)</p>
+</div>
+<div class="paragraph">
+<div class="title">Million Song Library Home Page</div>
+<p><span class="image"><img src="asciidoc/images/msl-home-page-windows.png" alt="Million Song Library Home Page"></span></p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now that the Million Song Library demo is working, here are some fun things to try:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click <strong>Register</strong> to register for an account.</p>
+</li>
+<li>
+<p>Click the labels to switch the view between <strong>Songs</strong>, <strong>Albums</strong>, and <strong>Artists</strong>.</p>
+</li>
+<li>
+<p>Click a genre or star rating on the left to filter songs. (Click the <strong>x</strong> to clear a filter.)</p>
+</li>
+<li>
+<p>Mouse over a song and click <strong>Add to library</strong> to add it to your music library (you must be logged in).</p>
+</li>
+<li>
+<p>Click the stars below a song to rate it (you must be logged in).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stop_the_msl_demo">8.6. Stop the MSL Demo</h3>
+<div class="paragraph">
+<p>Done having fun for now? Here&#8217;s how to terminate the virtual machine:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a new PowerShell window and make sure you are in your home directory.</p>
+</li>
+<li>
+<p>Enter the following command to change to the million-song-library repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd million-song-library</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to destroy the virtual machine:</p>
+<div class="listingblock">
+<div class="content">
+<pre>vagrant destroy ubuntu -f</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The virtual machine is deleted. If you want to run the demo again, just follow this procedure to create a new Million Song Library virtual machine any time.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setup-manual">9. Manual Setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Are you the type who likes to see all the magic that happens behind the scenes? Or maybe you prefer that things are installed on your system <em>just so</em>. In either case, you can can manually install the Million Song Library on a Mac or Linux system without using the automated setup script. Just follow the steps in this section.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you want to get up and running as quickly as possible, using the automated setup script is the easiest way to install the Million Song Library demo on a <a href="#setup-mac">Mac</a> or <a href="#setup-ubuntu">Linux</a> system. Or use Vagrant to automate setup on a <a href="#setup-windows">Windows</a> system.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_get_your_system_ready">9.1. Get Your System Ready</h3>
+<div class="paragraph">
+<p>Before setting up the demo, make sure all of the following tools are installed on your system and are at the required version or higher.</p>
+</div>
+<div class="paragraph">
+<p>This procedure assumes that you&#8217;re running the Million Song Library demo on Mac OS X 10.11 (El Capitan) or Ubuntu 14.04 (Trusty Tahr). Things might work a little differently on other operating systems.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Entering Commands</strong></p>
+</div>
+<div class="paragraph">
+<p>We tested these steps using the default Terminal applications on Mac OS X and Ubuntu.</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Where is My Home Directory?</strong></p>
+</div>
+<div class="paragraph">
+<p>For this process, it&#8217;s important to know where your home directory is. Your home directory is the directory that has the same name as your user name.</p>
+</div>
+<div class="paragraph">
+<p>For example, if the user name you use to log on to your system is jdoe, your home directory is named <strong>jdoe</strong>. In Terminal, your home directory is represented by the tilde (~) sign. For example, the path <strong>~/stuff</strong> points to a directory named <strong>stuff</strong> located inside your home directory.</p>
+</div>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Java 1.8 JDK</dt>
+<dd>
+<p>To check the installed version, use the <code>java -version</code> command. If necessary, <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank">install the Java 1.8 JDK</a>.</p>
+</dd>
+<dt class="hdlist1">Git</dt>
+<dd>
+<p>To check the installed version, use the <code>git --version</code> command. If necessary, <a href="http://git-scm.com/downloads" target="_blank">install Git</a>.</p>
+</dd>
+<dt class="hdlist1">Maven 3.3.9 or later</dt>
+<dd>
+<p>To check the installed version, use the <code>mvn -version</code> command. If necessary, <a href="http://www.tutorialspoint.com/maven/maven_environment_setup.htm" target="_blank">set up Maven</a>.</p>
+</dd>
+<dt class="hdlist1">Node 0.12.x or later</dt>
+<dd>
+<p>To check the installed version, use the <code>node --version</code> command. If necessary, <a href="https://nodejs.org/en/download/" target="_blank">install Node</a>.</p>
+</dd>
+<dt class="hdlist1">npm 2.7.x or later</dt>
+<dd>
+<p>To check the installed version, use the <code>npm -version</code> command. If necessary, <a href="https://nodejs.org/en/download/" target="_blank">install Node, which includes npm</a>.</p>
+</dd>
+<dt class="hdlist1">Bower</dt>
+<dd>
+<p>To check the installed version, use the <code>bower --version</code> command. If necessary, <a href="https://github.com/bower/bower" target="_blank">install Bower</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you get a permissions error, use <code>sudo bower --version</code> instead.
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">RubyGem</dt>
+<dd>
+<p>To check the installed version, use the <code>gem --version</code> command. If necessary, install RubyGem for <a href="https://gorails.com/setup/osx/10.11-el-capitan" target="_blank">Mac</a> or <a href="https://gorails.com/setup/ubuntu/14.04" target="_blank">Linux</a>.</p>
+</dd>
+<dt class="hdlist1">AsciiDoctor</dt>
+<dd>
+<p>To check the installed version, use the <code>asciidoctor --version</code> command. If necessary, <a href="http://asciidoctor.org/#installation" target="_blank">install AsciiDoctor</a>.</p>
+</dd>
+<dt class="hdlist1">Cassandra</dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download Cassandra 2.1.11 (Community version) from the <a href="https://downloads.datastax.com/community/" target="_blank">Datastax download site</a>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Make sure to download the correct file: <a href="https://downloads.datastax.com/community/dsc-cassandra-2.1.11-bin.tar.gz"><strong>dsc-cassandra-2.1.11-bin.tar.gz</strong></a>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Create a new directory named <strong>cassandra</strong> inside your home directory.</p>
+</li>
+<li>
+<p>Move the <strong>dsc-cassandra-2.1.11-bin.tar.gz</strong> file into the new <strong>cassandra</strong> directory, and then extract the contents into the <strong>cassandra</strong> directory.</p>
+</li>
+</ol>
+</div>
+</dd>
+<dt class="hdlist1">Apple Xcode (Mac OS X Only)</dt>
+<dd>
+<p>On Mac OS X, some necessary command line tools aren&#8217;t installed by default, so to get them you&#8217;ll need to <a href="https://developer.apple.com/xcode/download/" target="_blank">install the latest version of Xcode from the Mac App Store</a>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+After installation, make sure to open Xcode, accept the license agreement, and (if prompted) install any additional tools.
+</td>
+</tr>
+</table>
+</div>
+</dd>
+<dt class="hdlist1">Enable Root User (Mac OS X Only)</dt>
+<dd>
+<p>The setup script requires the use of <code>sudo</code> to run certain commands as root. However, on Mac OS X, the root user is not enabled by default. You&#8217;ll need to enable the root user so that the setup script will run properly.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>To enable the root user, just <a href="https://support.apple.com/en-us/HT204012" target="_blank">follow these instructions</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_clone_the_msl_repository_4">9.2. Clone the MSL Repository</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure you are in your home directory.</p>
+</li>
+<li>
+<p>Clone the million-song-library repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre>git clone https://github.com/kenzanmedia/million-song-library</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Change directories to the cloned repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd million-song-library</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Initialize the repository and submodules:</p>
+<div class="listingblock">
+<div class="content">
+<pre>git submodule init &amp;&amp; git submodule update</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_set_up_the_client">9.3. Set up the Client</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Change to the <strong>msl-pages</strong> directory inside the <strong>million-song-library</strong> directory</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd msl-pages</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Download and install all dependencies:</p>
+<div class="listingblock">
+<div class="content">
+<pre>npm install &amp;&amp; bower install</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install Protractor and Selenium WebDriver globally:</p>
+<div class="listingblock">
+<div class="content">
+<pre>npm install -g -y protractor &amp;&amp; npm install -g -y selenium-webdriver</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_set_up_the_server">9.4. Set up the Server</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Change to the <strong>server</strong> directory inside the <strong>million-song-library</strong> directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd ../server</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the Maven file to set up the server:</p>
+<div class="listingblock">
+<div class="content">
+<pre>mvn clean compile</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="start-cassandra-manual">9.5. Set up Cassandra</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a new Terminal window.</p>
+</li>
+<li>
+<p>Start Cassandra:</p>
+<div class="listingblock">
+<div class="content">
+<pre>sh ~/cassandra/dsc-cassandra-2.1.11/bin/cassandra</pre>
+</div>
+</div>
+</li>
+<li>
+<p>After Cassandra finishes starting, press <strong>&lt;Enter&gt;</strong> to display the command prompt again.</p>
+</li>
+<li>
+<p>Enter the Cassandra console:</p>
+<div class="listingblock">
+<div class="content">
+<pre>sh ~/cassandra/dsc-cassandra-2.1.11/bin/cqlsh</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Import data by entering the following commands at the <strong>cqlsh&gt;</strong> prompt, pressing <strong>&lt;Enter&gt;</strong> after each command:</p>
+<div class="listingblock">
+<div class="content">
+<pre>SOURCE 'msl_ddl_latest.cql';
+SOURCE 'msl_dat_latest.cql';</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the database to import the data&#8201;&#8212;&#8201;this will take several minutes.</p>
+</div>
+</li>
+<li>
+<p>Exit the console:</p>
+<div class="listingblock">
+<div class="content">
+<pre>exit</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If you get an error when trying to start Cassandra, it probably means that Cassandra is already running (for example, from running the Million Song Library demo previously). To correct this issue, reboot your system, or stop Cassandra (see <a href="#stop-msl-manual">Stop the MSL Demo</a>). Then try starting Cassandra again. You should always make sure to stop Cassandra when you&#8217;re done working with the Million Song Library demo.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="start-msl-manual">9.6. Start the MSL Demo</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a new Terminal window.</p>
+</li>
+<li>
+<p>Change to the application directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd ~/million-song-library/msl-pages</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Start the application front end:</p>
+<div class="listingblock">
+<div class="content">
+<pre>npm run full-dev</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the front end to start up&#8201;&#8212;&#8201;this will take just a couple of minutes.</p>
+</div>
+</li>
+<li>
+<p>Open a new Terminal window.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Make sure to open a new Terminal tab or window before starting the servers, to avoid stopping the front end.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Change to the application directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd ~/million-song-library/msl-pages</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Start the server instances:</p>
+<div class="paragraph">
+<p><em>Linux:</em></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo npm run serve-all</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Mac:</em></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>npm run serve-all</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the server instances to start up&#8201;&#8212;&#8201;again, this will take just a couple of minutes.</p>
+</div>
+</li>
+<li>
+<p>Open a Web browser and point it to: <strong>msl.kenzanlabs.com:3000</strong></p>
+<div class="paragraph">
+<p>The Million Song Library home page displays.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you don&#8217;t see data right away, wait a few minutes and then refresh the page. If data still doesn&#8217;t load, try clearing your web browser cache.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stop-msl-manual">9.7. Stop the MSL Demo</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Switch to the Terminal window where you started the server instances and press <strong>Control+C</strong> to stop the server.</p>
+</li>
+<li>
+<p>Switch to the Terminal window where you started the application and press <strong>Control+C</strong> to stop the application.</p>
+</li>
+<li>
+<p>Switch to the Terminal window where you started Cassandra and enter the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre>ps auwx | grep cassandra</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Look at the output from the command and note the first 3&#8211;5 digit number that appears in the output. This is the process ID for Cassandra.</p>
+</div>
+</li>
+<li>
+<p>Enter the following command where <strong>pid</strong> is the process ID you found (you&#8217;ll be prompted for your administrator password):</p>
+<div class="listingblock">
+<div class="content">
+<pre>sudo kill pid</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You don&#8217;t need to run the setup script if you want to start the Million Song Library demo again. Just start Cassandra (see <a href="#start-cassandra-manual">Set up Cassandra</a>) and then start the application and server instances (see <a href="#start-msl-manual">Start the MSL Demo</a>).
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setup-aws">10. Deploying to AWS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Deploying the Million Song Library demo locally is a great way to see it in action, but a microservices-based application like MSL is really designed for the cloud. Follow the steps in this section to deploy the Million Song Library demo to an AWS EC2 instance.</p>
+</div>
+<div class="sect2">
+<h3 id="_get_your_system_ready_2">10.1. Get Your System Ready</h3>
+<div class="paragraph">
+<p>Before setting up the demo, make sure you have everything you need.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">AWS Account</dt>
+<dd>
+<p>You will need an AWS account to complete this procedure. If you don&#8217;t already have one, you can <a href="https://aws.amazon.com/free/" target="_blank">set up an AWS account for free</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You may incur costs on your AWS account based on your EC2 instance usage while running the Million Song Library demo. Be sure to stop your MSL instance when you&#8217;re not using it.
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Git</dt>
+<dd>
+<p>You will need Git to make a local copy of the million-song-library repository. If you don&#8217;t already have it, <a href="http://git-scm.com/downloads" target="_blank">install Git</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+(Windows only) During Git installation, make sure to select the <strong>Use Git from the Windows Command Prompt</strong> option. Otherwise you won&#8217;t be able use Git commands in PowerShell.
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Vagrant</dt>
+<dd>
+<p>The easiest way to set up the Million Song Library in an EC2 instance is with Vagrant, a tool for automating the creation of development environments. If you don&#8217;t already have it, <a href="https://www.vagrantup.com/downloads.html" target="_blank">install Vagrant</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Entering Commands</strong></p>
+</div>
+<div class="paragraph">
+<p>We tested these steps using the default Terminal applications on Mac OS X and Ubuntu. To enter commands on Windows 10, we recommend running Windows PowerShell as an Administrator.</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Where is My Home Directory?</strong></p>
+</div>
+<div class="paragraph">
+<p>For this process, it&#8217;s important to know where your home directory is. Your home directory is the directory that has the same name as your user name.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On Mac and Linux, your home directory is represented by the tilde (~) sign in Terminal commands.</p>
+</li>
+<li>
+<p>On Windows, your home directory is: <strong>C:\Users\&lt;your_username&gt;\</strong></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_clone_the_msl_repository_5">10.2. Clone the MSL Repository</h3>
+<div class="paragraph">
+<p>To edit the Vagrant file, you first need to clone the million-song-library repository to a local directory.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a new Terminal or PowerShell window and make sure you are in your home directory.</p>
+</li>
+<li>
+<p>Enter the following command to clone the million-song-library repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre>git clone https://github.com/kenzanmedia/million-song-library</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to change directories to the cloned repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd million-song-library</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to initialize the repository and submodules:</p>
+<div class="listingblock">
+<div class="content">
+<pre>git submodule init &amp;&amp; git submodule update</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For Windows, you will need to run the commands separately: first <code>git submodule init</code> and then <code>git submodule update</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_set_up_vagrant_for_aws">10.3. Set up Vagrant for AWS</h3>
+<div class="paragraph">
+<p>The AWS plug-in enables Vagrant to automtically create EC2 instances using a dummy virtual machine.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Enter the following command to install the AWS plug-in for Vagrant:</p>
+<div class="listingblock">
+<div class="content">
+<pre>vagrant plugin install vagrant-aws</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to download the dummy virtual machine:</p>
+<div class="listingblock">
+<div class="content">
+<pre>vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_generate_an_ssh_key_pair">10.4. Generate an SSH Key Pair</h3>
+<div class="paragraph">
+<p>Generate a new SSH key pair for use on the EC2 instance.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+On Windows, use the Git Bash terminal app for this step. You can find it uder <strong>Start&#8594;All apps&#8594;Git&#8594;Git Bash</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Generate a new key pair:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Enter the following command where <em>myemailaddress@gmail.com</em> is your email address:</p>
+<div class="listingblock">
+<div class="content">
+<pre>ssh-keygen -t rsa -C myemailaddress@gmail.com</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the file path and name where you want to save the key pair. For example:</p>
+<div class="listingblock">
+<div class="content">
+<pre>/Users/jdoe/.ssh/aws_msl</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Press <strong>&lt;Enter&gt;</strong> twice to skip entering a passphrase.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Import the new SSH key pair into your AWS account:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Sign in to your <a href="https://aws.amazon.com/console/" target="_blank">AWS EC2 Management Console</a> and switch to your preferred region.</p>
+</li>
+<li>
+<p>Click <strong>Key Pairs</strong> (under <strong>Network &amp; Security</strong>).</p>
+</li>
+<li>
+<p>Click <strong>Import Key Pair</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Choose File</strong> and select the new public key file (for example, <strong>aws_msl.pub</strong>).</p>
+<div class="paragraph">
+<p>Alternately, you can open the public key in a text editor, copy the contents, and paste the contents in the <strong>Public key contents</strong> box.</p>
+</div>
+</li>
+<li>
+<p>In the <strong>Key pair name</strong> box, type the name of the key pair (for example, <strong>aws_msl</strong>).</p>
+</li>
+<li>
+<p>Click <strong>Import</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_generate_an_aws_key_pair">10.5. Generate an AWS Key Pair</h3>
+<div class="paragraph">
+<p>Generate a new AWS key pair to allow Vagrant to log on to the EC2 instance.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In your EC2 Management Console, click <strong>Key Pairs</strong> (under <strong>Network &amp; Security</strong>).</p>
+</li>
+<li>
+<p>Click <strong>Create Key Pair</strong>.</p>
+</li>
+<li>
+<p>In the <strong>Key pair name</strong> box, type the name of the key pair (for example, <strong>kenzan_msl</strong>).</p>
+</li>
+<li>
+<p>Click <strong>Create</strong> to create and download the private key file.</p>
+</li>
+<li>
+<p>Place the private key file in the same location as the SSH key you created. For example: <strong>~/.ssh/kenzan_msl.pem</strong></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_generate_an_aws_access_key">10.6. Generate an AWS Access Key</h3>
+<div class="paragraph">
+<p>Generate a new AWS access key to allow Vagrant to authenticate with AWS.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In your EC2 Management Console, click your user name, and then click <strong>Security Credentials</strong>.</p>
+</li>
+<li>
+<p>Under <strong>Access Keys</strong>, click <strong>Create New Access Key</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Download Key File</strong> to download the access key file.</p>
+</li>
+<li>
+<p>Place the access key file in the same location as the other keys you created. For example: <strong>~/.ssh/rootkey.csv</strong></p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The access key file is a CSV file that contains values for two keys: <strong>AWSAccessKeyId</strong> and <strong>AWSSecretKey</strong>. You will need these two key values in a later step.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-security-group">10.7. Create a Security Group</h3>
+<div class="paragraph">
+<p>Create a new AWS Security Group to allow inbound access to the EC2 instance.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In your EC2 Management Console, click <strong>Security Groups</strong> (under <strong>Network &amp; Security</strong>).</p>
+</li>
+<li>
+<p>Click <strong>Create Security Group</strong>.</p>
+</li>
+<li>
+<p>In the <strong>Security group name</strong> box, type the name of the security group (for example, <strong>kenzanmsl</strong>).</p>
+</li>
+<li>
+<p>In the <strong>Description</strong> box, type a description for the security group (for example, <strong>Million Song Library Demo</strong>).</p>
+</li>
+<li>
+<p>On the <strong>Inbound</strong> tab, click <strong>Add Rule</strong>.</p>
+</li>
+<li>
+<p>For <strong>Type</strong>, select <strong>All traffic</strong>.</p>
+</li>
+<li>
+<p>For <strong>Source</strong>, select <strong>Anywhere</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Create</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_edit_the_vagrant_file">10.8. Edit the Vagrant File</h3>
+<div class="paragraph">
+<p>The Vagrant file contains all of the information needed to set up and configure the EC2 instance. You need to edit the Vagrant file to add information about your AWS account&#8201;&#8212;&#8201;this lets Vagrant know where to set up the instance.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In a text editor, open the file named <strong>Vagrantfile</strong> located in the <strong>million-song-library</strong> directory (in your home directory).</p>
+</li>
+<li>
+<p>Replace the following variables with the correct values:</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 66.6666%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Variable</th>
+<th class="tableblock halign-left valign-top">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;PATH_TO_SSH_PRIVATE_KEY&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">File path and name for your private SSH key. For example: <strong>~/.ssh/aws_msl</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;PATH_TO_SSH_PUBLIC_KEY&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">File path and name for your public SSH key. For example: <strong>~/.ssh/aws_msl.pub</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;KEY_PAIR_NAME&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of your AWS key pair. For example: <strong>kenzan_msl</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;PATH_TO_YOUR_AWS_KEY.pem&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">File path and name for your private AWS key. For example: <strong>~/.ssh/kenzan_msl.pem</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;AWS_ACCESS_KEY_ID&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>AWSAccessKeyId</strong> value from the <strong>rootkey.csv</strong> access key file you downloaded.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;AWS_SECRET_ACCESS_KEY&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>AWSSecretKey</strong> value from the <strong>rootkey.csv</strong> access key file you downloaded.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;SECURITY_GROUP_WITH_SSH_AND_HTTP_PORTS_ENABLED&gt;&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the AWS security group you created for use with the MSL demo. For example: <strong>kenzanmsl</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aws.region = "us-west-2"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If necessary, replace the region code with your preferred AWS region.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aws.instance_type="t2.small"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace the instance type with the desired type. We recommend <strong>t2.large</strong> or better to avoid running out of resources.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Save and close the <strong>Vagrant</strong> file.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_provision_an_ec2_instance">10.9. Provision an EC2 Instance</h3>
+<div class="paragraph">
+<p>After you finish editing the Vagrant file, you&#8217;re ready to use Vagrant to create and provision the EC2 instance with the Million Song Library Demo.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a new Terminal or PowerShell window and make sure you are in your home directory.</p>
+</li>
+<li>
+<p>Enter the following command to change to the million-song-library repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd million-song-library</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to start the provisioning process:</p>
+<div class="listingblock">
+<div class="content">
+<pre>vagrant up prod</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Wait for the provisioning process to complete (about 30 minutes).</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you get an error stating that the <strong>.gitconfig</strong> file does not exist, enter the command <code>touch ~/.gitconfig</code> to create one, and then run <code>vagrant up prod</code> again.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="edit-aws-hosts">10.10. Edit the Hosts File</h3>
+<div class="paragraph">
+<p>While you&#8217;re waiting for the provisioning process to complete, take a few minutes to update the <strong>hosts</strong> file on your local system. This will allow you to access the Million Song Library application using a Web browser.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In your EC2 Management Console, click <strong>Instances</strong> to view all running instances. You should see the <strong>Production-aws</strong> instance created by Vagrant.</p>
+</li>
+<li>
+<p>Copy the <strong>Public IP</strong> of the instance.</p>
+</li>
+<li>
+<p>In a text editor, open the <strong>hosts</strong> file on your computer. The location of the <strong>hosts</strong> file depends on your operating system:</p>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Operating Syystem</th>
+<th class="tableblock halign-left valign-top">Location of hosts file</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mac</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/private/etc/hosts</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/etc/hosts</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C:\Windows\System32\Drivers\etc</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Add the following line to the <strong>hosts</strong> file where <em>xxx.xxx.xxx.xxx</em> is the public IP address of the EC2 instance.</p>
+<div class="listingblock">
+<div class="content">
+<pre>xxx.xxx.xxx.xxx     msl.kenzanlabs.com</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Save and close the <strong>hosts</strong> file.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_start_the_msl_demo">10.11. Start the MSL Demo</h3>
+<div class="paragraph">
+<p>Provisioning is complete&#8201;&#8212;&#8201;now it&#8217;s time to start the Million Song Library demo.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a new Terminal or PowerShell window and make sure you are in your home directory.</p>
+</li>
+<li>
+<p>Enter the following command to connect to the EC2 instance:</p>
+<div class="listingblock">
+<div class="content">
+<pre>vagrant ssh prod</pre>
+</div>
+</div>
+</li>
+<li>
+<p>After you are connected to the instance, enter the following command to change to the application directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd million-song-library/msl-pages</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to start the application front end:</p>
+<div class="listingblock">
+<div class="content">
+<pre>npm run deploy</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the front end to start up&#8201;&#8212;&#8201;this will take just a couple of minutes.</p>
+</div>
+</li>
+<li>
+<p>Open a new Terminal or PowerShell window and make sure you are in your home directory.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Make sure to open a new Terminal tab or window before starting the servers, to avoid stopping the front end.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Enter the following command to change to the application directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd million-song-library/msl-pages</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to start the server instances:</p>
+<div class="listingblock">
+<div class="content">
+<pre>npm run serve-all</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If your EC2 instance is low on free memory, you can start up just the core server instances by running the <code>npm run catalog-edge-server</code> command instead.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Wait for the server instances to start up&#8201;&#8212;&#8201;again, this will take just a couple of minutes.</p>
+</div>
+</li>
+<li>
+<p>Open a Web browser and point it to: <strong>msl.kenzanlabs.com:3000</strong></p>
+<div class="paragraph">
+<p>The Million Song Library home page displays.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the Million Song Library home page does not display, make sure that you <a href="#create-security-group">allowed all inbound traffic in your AWS security group</a> and that you <a href="#edit-aws-hosts">correctly edited the <strong>hosts</strong> file</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you don&#8217;t see data right away, wait a few minutes and then refresh the page. If data still doesn&#8217;t load, try clearing your web browser cache.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Million Song Library Home Page</div>
+<p><span class="image"><img src="asciidoc/images/msl-home-page-mac.png" alt="Million Song Library Home Page"></span></p>
+</div>
+<div class="paragraph">
+<p>Now that the Million Song Library demo is working, here are some fun things to try:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click <strong>Register</strong> to register for an account.</p>
+</li>
+<li>
+<p>Click the labels to switch the view between <strong>Songs</strong>, <strong>Albums</strong>, and <strong>Artists</strong>.</p>
+</li>
+<li>
+<p>Click a genre or star rating on the left to filter songs. (Click the <strong>x</strong> to clear a filter.)</p>
+</li>
+<li>
+<p>Mouse over a song and click <strong>Add to library</strong> to add it to your music library (you must be logged in).</p>
+</li>
+<li>
+<p>Click the stars below a song to rate it (you must be logged in).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stop_the_msl_demo_2">10.12. Stop the MSL Demo</h3>
+<div class="paragraph">
+<p>Done having fun for now? Here&#8217;s how to terminate the EC2 instance:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a new Terminal or PowerShell window and make sure you are in your home directory.</p>
+</li>
+<li>
+<p>Enter the following command to change to the million-song-library repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre>cd million-song-library</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the following command to destroy the EC2 instance:</p>
+<div class="listingblock">
+<div class="content">
+<pre>vagrant destroy prod -f</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The EC2 instance is terminated. If you want to run the demo again, just follow this procedure to create a new Million Song Library instance any time.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2016-09-19 12:19:03 MDT
+</div>
+</div>
+</body>
+</html>

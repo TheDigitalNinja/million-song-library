@@ -1,0 +1,5 @@
+com.kenzan.msl.ratings.edge
+com.kenzan.msl.ratings.edge.services
+io.swagger.api
+io.swagger.api.factories
+io.swagger.api.impl

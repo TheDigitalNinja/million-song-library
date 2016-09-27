@@ -1,0 +1,6 @@
+com.kenzan.msl.account.client
+com.kenzan.msl.account.client.cassandra
+com.kenzan.msl.account.client.cassandra.query
+com.kenzan.msl.account.client.dto
+com.kenzan.msl.account.client.services
+com.kenzan.msl.account.client.translate

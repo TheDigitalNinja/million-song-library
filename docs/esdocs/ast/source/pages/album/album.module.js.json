@@ -1,0 +1,1435 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 856,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 30,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 16,
+      "end": 46,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 30
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 23,
+          "end": 30,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 14
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 23,
+            "end": 30,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 14
+              }
+            },
+            "name": "angular",
+            "leadingComments": null
+          },
+          "leadingComments": null
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 36,
+        "end": 45,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 20
+          },
+          "end": {
+            "line": 2,
+            "column": 29
+          }
+        },
+        "value": "angular",
+        "rawValue": "angular",
+        "raw": "'angular'"
+      },
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Dependencies",
+          "start": 0,
+          "end": 15,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 15
+            }
+          },
+          "range": [
+            0,
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 47,
+      "end": 86,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 39
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 54,
+          "end": 60,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 7
+            },
+            "end": {
+              "line": 3,
+              "column": 13
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 54,
+            "end": 60,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 7
+              },
+              "end": {
+                "line": 3,
+                "column": 13
+              }
+            },
+            "name": "router"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 66,
+        "end": 85,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 19
+          },
+          "end": {
+            "line": 3,
+            "column": 38
+          }
+        },
+        "value": "angular-ui-router",
+        "rawValue": "angular-ui-router",
+        "raw": "'angular-ui-router'"
+      },
+      "trailingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Modules",
+          "start": 88,
+          "end": 98,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 10
+            }
+          },
+          "range": [
+            88,
+            98
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 99,
+      "end": 148,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 49
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 106,
+          "end": 115,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 7
+            },
+            "end": {
+              "line": 6,
+              "column": 16
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 106,
+            "end": 115,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 7
+              },
+              "end": {
+                "line": 6,
+                "column": 16
+              }
+            },
+            "name": "dataStore",
+            "leadingComments": null
+          },
+          "leadingComments": null
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 121,
+        "end": 147,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 22
+          },
+          "end": {
+            "line": 6,
+            "column": 48
+          }
+        },
+        "value": "modules/datastore/module",
+        "rawValue": "modules/datastore/module",
+        "raw": "'modules/datastore/module'"
+      },
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Modules",
+          "start": 88,
+          "end": 98,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 10
+            }
+          },
+          "range": [
+            88,
+            98
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 149,
+      "end": 208,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 59
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 156,
+          "end": 170,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 7
+            },
+            "end": {
+              "line": 7,
+              "column": 21
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 156,
+            "end": 170,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 7
+              },
+              "end": {
+                "line": 7,
+                "column": 21
+              }
+            },
+            "name": "authentication"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 176,
+        "end": 207,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 27
+          },
+          "end": {
+            "line": 7,
+            "column": 58
+          }
+        },
+        "value": "modules/authentication/module",
+        "rawValue": "modules/authentication/module",
+        "raw": "'modules/authentication/module'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 210,
+      "end": 256,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 46
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 217,
+          "end": 231,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 7
+            },
+            "end": {
+              "line": 9,
+              "column": 21
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 217,
+            "end": 231,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 7
+              },
+              "end": {
+                "line": 9,
+                "column": 21
+              }
+            },
+            "name": "albumPageRoute"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 237,
+        "end": 255,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 27
+          },
+          "end": {
+            "line": 9,
+            "column": 45
+          }
+        },
+        "value": "./album.route.js",
+        "rawValue": "./album.route.js",
+        "raw": "'./album.route.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 257,
+      "end": 315,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 58
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 264,
+          "end": 273,
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 7
+            },
+            "end": {
+              "line": 10,
+              "column": 16
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 264,
+            "end": 273,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 7
+              },
+              "end": {
+                "line": 10,
+                "column": 16
+              }
+            },
+            "name": "albumCtrl"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 279,
+        "end": 314,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 22
+          },
+          "end": {
+            "line": 10,
+            "column": 57
+          }
+        },
+        "value": "./controllers/album.controller.js",
+        "rawValue": "./controllers/album.controller.js",
+        "raw": "'./controllers/album.controller.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 316,
+      "end": 381,
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 65
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 323,
+          "end": 335,
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 7
+            },
+            "end": {
+              "line": 11,
+              "column": 19
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 323,
+            "end": 335,
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 7
+              },
+              "end": {
+                "line": 11,
+                "column": 19
+              }
+            },
+            "name": "albumBoxCtrl"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 341,
+        "end": 380,
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 25
+          },
+          "end": {
+            "line": 11,
+            "column": 64
+          }
+        },
+        "value": "./controllers/album-box.controller.js",
+        "rawValue": "./controllers/album-box.controller.js",
+        "raw": "'./controllers/album-box.controller.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 383,
+      "end": 436,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 53
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 390,
+          "end": 400,
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 7
+            },
+            "end": {
+              "line": 13,
+              "column": 17
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 390,
+            "end": 400,
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 7
+              },
+              "end": {
+                "line": 13,
+                "column": 17
+              }
+            },
+            "name": "albumsList"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 406,
+        "end": 435,
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 23
+          },
+          "end": {
+            "line": 13,
+            "column": 52
+          }
+        },
+        "value": "./directives/albums-list.js",
+        "rawValue": "./directives/albums-list.js",
+        "raw": "'./directives/albums-list.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 437,
+      "end": 486,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 49
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 444,
+          "end": 452,
+          "loc": {
+            "start": {
+              "line": 14,
+              "column": 7
+            },
+            "end": {
+              "line": 14,
+              "column": 15
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 444,
+            "end": 452,
+            "loc": {
+              "start": {
+                "line": 14,
+                "column": 7
+              },
+              "end": {
+                "line": 14,
+                "column": 15
+              }
+            },
+            "name": "albumBox"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 458,
+        "end": 485,
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 21
+          },
+          "end": {
+            "line": 14,
+            "column": 48
+          }
+        },
+        "value": "./directives/album-box.js",
+        "rawValue": "./directives/album-box.js",
+        "raw": "'./directives/album-box.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 488,
+      "end": 537,
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 0
+        },
+        "end": {
+          "line": 16,
+          "column": 49
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 495,
+          "end": 505,
+          "loc": {
+            "start": {
+              "line": 16,
+              "column": 7
+            },
+            "end": {
+              "line": 16,
+              "column": 17
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 495,
+            "end": 505,
+            "loc": {
+              "start": {
+                "line": 16,
+                "column": 7
+              },
+              "end": {
+                "line": 16,
+                "column": 17
+              }
+            },
+            "name": "albumModel"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 511,
+        "end": 536,
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 23
+          },
+          "end": {
+            "line": 16,
+            "column": 48
+          }
+        },
+        "value": "./models/album.model.js",
+        "rawValue": "./models/album.model.js",
+        "raw": "'./models/album.model.js'"
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 539,
+      "end": 855,
+      "loc": {
+        "start": {
+          "line": 18,
+          "column": 0
+        },
+        "end": {
+          "line": 29,
+          "column": 8
+        }
+      },
+      "declaration": {
+        "type": "MemberExpression",
+        "start": 554,
+        "end": 854,
+        "loc": {
+          "start": {
+            "line": 18,
+            "column": 15
+          },
+          "end": {
+            "line": 29,
+            "column": 7
+          }
+        },
+        "object": {
+          "type": "CallExpression",
+          "start": 554,
+          "end": 846,
+          "loc": {
+            "start": {
+              "line": 18,
+              "column": 15
+            },
+            "end": {
+              "line": 28,
+              "column": 36
+            }
+          },
+          "callee": {
+            "type": "MemberExpression",
+            "start": 554,
+            "end": 820,
+            "loc": {
+              "start": {
+                "line": 18,
+                "column": 15
+              },
+              "end": {
+                "line": 28,
+                "column": 10
+              }
+            },
+            "object": {
+              "type": "CallExpression",
+              "start": 554,
+              "end": 809,
+              "loc": {
+                "start": {
+                  "line": 18,
+                  "column": 15
+                },
+                "end": {
+                  "line": 27,
+                  "column": 43
+                }
+              },
+              "callee": {
+                "type": "MemberExpression",
+                "start": 554,
+                "end": 779,
+                "loc": {
+                  "start": {
+                    "line": 18,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 27,
+                    "column": 13
+                  }
+                },
+                "object": {
+                  "type": "CallExpression",
+                  "start": 554,
+                  "end": 765,
+                  "loc": {
+                    "start": {
+                      "line": 18,
+                      "column": 15
+                    },
+                    "end": {
+                      "line": 26,
+                      "column": 37
+                    }
+                  },
+                  "callee": {
+                    "type": "MemberExpression",
+                    "start": 554,
+                    "end": 741,
+                    "loc": {
+                      "start": {
+                        "line": 18,
+                        "column": 15
+                      },
+                      "end": {
+                        "line": 26,
+                        "column": 13
+                      }
+                    },
+                    "object": {
+                      "type": "CallExpression",
+                      "start": 554,
+                      "end": 727,
+                      "loc": {
+                        "start": {
+                          "line": 18,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 25,
+                          "column": 34
+                        }
+                      },
+                      "callee": {
+                        "type": "MemberExpression",
+                        "start": 554,
+                        "end": 705,
+                        "loc": {
+                          "start": {
+                            "line": 18,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 25,
+                            "column": 12
+                          }
+                        },
+                        "object": {
+                          "type": "CallExpression",
+                          "start": 554,
+                          "end": 692,
+                          "loc": {
+                            "start": {
+                              "line": 18,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 24,
+                              "column": 38
+                            }
+                          },
+                          "callee": {
+                            "type": "MemberExpression",
+                            "start": 554,
+                            "end": 666,
+                            "loc": {
+                              "start": {
+                                "line": 18,
+                                "column": 15
+                              },
+                              "end": {
+                                "line": 24,
+                                "column": 12
+                              }
+                            },
+                            "object": {
+                              "type": "CallExpression",
+                              "start": 554,
+                              "end": 653,
+                              "loc": {
+                                "start": {
+                                  "line": 18,
+                                  "column": 15
+                                },
+                                "end": {
+                                  "line": 23,
+                                  "column": 25
+                                }
+                              },
+                              "callee": {
+                                "type": "MemberExpression",
+                                "start": 554,
+                                "end": 637,
+                                "loc": {
+                                  "start": {
+                                    "line": 18,
+                                    "column": 15
+                                  },
+                                  "end": {
+                                    "line": 23,
+                                    "column": 9
+                                  }
+                                },
+                                "object": {
+                                  "type": "CallExpression",
+                                  "start": 554,
+                                  "end": 627,
+                                  "loc": {
+                                    "start": {
+                                      "line": 18,
+                                      "column": 15
+                                    },
+                                    "end": {
+                                      "line": 22,
+                                      "column": 2
+                                    }
+                                  },
+                                  "callee": {
+                                    "type": "MemberExpression",
+                                    "start": 554,
+                                    "end": 568,
+                                    "loc": {
+                                      "start": {
+                                        "line": 18,
+                                        "column": 15
+                                      },
+                                      "end": {
+                                        "line": 18,
+                                        "column": 29
+                                      }
+                                    },
+                                    "object": {
+                                      "type": "Identifier",
+                                      "start": 554,
+                                      "end": 561,
+                                      "loc": {
+                                        "start": {
+                                          "line": 18,
+                                          "column": 15
+                                        },
+                                        "end": {
+                                          "line": 18,
+                                          "column": 22
+                                        }
+                                      },
+                                      "name": "angular"
+                                    },
+                                    "property": {
+                                      "type": "Identifier",
+                                      "start": 562,
+                                      "end": 568,
+                                      "loc": {
+                                        "start": {
+                                          "line": 18,
+                                          "column": 23
+                                        },
+                                        "end": {
+                                          "line": 18,
+                                          "column": 29
+                                        }
+                                      },
+                                      "name": "module"
+                                    },
+                                    "computed": false
+                                  },
+                                  "arguments": [
+                                    {
+                                      "type": "Literal",
+                                      "start": 569,
+                                      "end": 580,
+                                      "loc": {
+                                        "start": {
+                                          "line": 18,
+                                          "column": 30
+                                        },
+                                        "end": {
+                                          "line": 18,
+                                          "column": 41
+                                        }
+                                      },
+                                      "value": "msl.album",
+                                      "rawValue": "msl.album",
+                                      "raw": "'msl.album'"
+                                    },
+                                    {
+                                      "type": "ArrayExpression",
+                                      "start": 582,
+                                      "end": 626,
+                                      "loc": {
+                                        "start": {
+                                          "line": 18,
+                                          "column": 43
+                                        },
+                                        "end": {
+                                          "line": 22,
+                                          "column": 1
+                                        }
+                                      },
+                                      "elements": [
+                                        {
+                                          "type": "Identifier",
+                                          "start": 586,
+                                          "end": 592,
+                                          "loc": {
+                                            "start": {
+                                              "line": 19,
+                                              "column": 2
+                                            },
+                                            "end": {
+                                              "line": 19,
+                                              "column": 8
+                                            }
+                                          },
+                                          "name": "router"
+                                        },
+                                        {
+                                          "type": "Identifier",
+                                          "start": 596,
+                                          "end": 605,
+                                          "loc": {
+                                            "start": {
+                                              "line": 20,
+                                              "column": 2
+                                            },
+                                            "end": {
+                                              "line": 20,
+                                              "column": 11
+                                            }
+                                          },
+                                          "name": "dataStore"
+                                        },
+                                        {
+                                          "type": "Identifier",
+                                          "start": 609,
+                                          "end": 623,
+                                          "loc": {
+                                            "start": {
+                                              "line": 21,
+                                              "column": 2
+                                            },
+                                            "end": {
+                                              "line": 21,
+                                              "column": 16
+                                            }
+                                          },
+                                          "name": "authentication"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "start": 631,
+                                  "end": 637,
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 3
+                                    },
+                                    "end": {
+                                      "line": 23,
+                                      "column": 9
+                                    }
+                                  },
+                                  "name": "config"
+                                },
+                                "computed": false
+                              },
+                              "arguments": [
+                                {
+                                  "type": "Identifier",
+                                  "start": 638,
+                                  "end": 652,
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 10
+                                    },
+                                    "end": {
+                                      "line": 23,
+                                      "column": 24
+                                    }
+                                  },
+                                  "name": "albumPageRoute"
+                                }
+                              ]
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "start": 657,
+                              "end": 666,
+                              "loc": {
+                                "start": {
+                                  "line": 24,
+                                  "column": 3
+                                },
+                                "end": {
+                                  "line": 24,
+                                  "column": 12
+                                }
+                              },
+                              "name": "directive"
+                            },
+                            "computed": false
+                          },
+                          "arguments": [
+                            {
+                              "type": "Literal",
+                              "start": 667,
+                              "end": 679,
+                              "loc": {
+                                "start": {
+                                  "line": 24,
+                                  "column": 13
+                                },
+                                "end": {
+                                  "line": 24,
+                                  "column": 25
+                                }
+                              },
+                              "value": "albumsList",
+                              "rawValue": "albumsList",
+                              "raw": "'albumsList'"
+                            },
+                            {
+                              "type": "Identifier",
+                              "start": 681,
+                              "end": 691,
+                              "loc": {
+                                "start": {
+                                  "line": 24,
+                                  "column": 27
+                                },
+                                "end": {
+                                  "line": 24,
+                                  "column": 37
+                                }
+                              },
+                              "name": "albumsList"
+                            }
+                          ]
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 696,
+                          "end": 705,
+                          "loc": {
+                            "start": {
+                              "line": 25,
+                              "column": 3
+                            },
+                            "end": {
+                              "line": 25,
+                              "column": 12
+                            }
+                          },
+                          "name": "directive"
+                        },
+                        "computed": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "Literal",
+                          "start": 706,
+                          "end": 716,
+                          "loc": {
+                            "start": {
+                              "line": 25,
+                              "column": 13
+                            },
+                            "end": {
+                              "line": 25,
+                              "column": 23
+                            }
+                          },
+                          "value": "albumBox",
+                          "rawValue": "albumBox",
+                          "raw": "'albumBox'"
+                        },
+                        {
+                          "type": "Identifier",
+                          "start": 718,
+                          "end": 726,
+                          "loc": {
+                            "start": {
+                              "line": 25,
+                              "column": 25
+                            },
+                            "end": {
+                              "line": 25,
+                              "column": 33
+                            }
+                          },
+                          "name": "albumBox"
+                        }
+                      ]
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 731,
+                      "end": 741,
+                      "loc": {
+                        "start": {
+                          "line": 26,
+                          "column": 3
+                        },
+                        "end": {
+                          "line": 26,
+                          "column": 13
+                        }
+                      },
+                      "name": "controller"
+                    },
+                    "computed": false
+                  },
+                  "arguments": [
+                    {
+                      "type": "Literal",
+                      "start": 742,
+                      "end": 753,
+                      "loc": {
+                        "start": {
+                          "line": 26,
+                          "column": 14
+                        },
+                        "end": {
+                          "line": 26,
+                          "column": 25
+                        }
+                      },
+                      "value": "albumCtrl",
+                      "rawValue": "albumCtrl",
+                      "raw": "'albumCtrl'"
+                    },
+                    {
+                      "type": "Identifier",
+                      "start": 755,
+                      "end": 764,
+                      "loc": {
+                        "start": {
+                          "line": 26,
+                          "column": 27
+                        },
+                        "end": {
+                          "line": 26,
+                          "column": 36
+                        }
+                      },
+                      "name": "albumCtrl"
+                    }
+                  ]
+                },
+                "property": {
+                  "type": "Identifier",
+                  "start": 769,
+                  "end": 779,
+                  "loc": {
+                    "start": {
+                      "line": 27,
+                      "column": 3
+                    },
+                    "end": {
+                      "line": 27,
+                      "column": 13
+                    }
+                  },
+                  "name": "controller"
+                },
+                "computed": false
+              },
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "start": 780,
+                  "end": 794,
+                  "loc": {
+                    "start": {
+                      "line": 27,
+                      "column": 14
+                    },
+                    "end": {
+                      "line": 27,
+                      "column": 28
+                    }
+                  },
+                  "value": "albumBoxCtrl",
+                  "rawValue": "albumBoxCtrl",
+                  "raw": "'albumBoxCtrl'"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 796,
+                  "end": 808,
+                  "loc": {
+                    "start": {
+                      "line": 27,
+                      "column": 30
+                    },
+                    "end": {
+                      "line": 27,
+                      "column": 42
+                    }
+                  },
+                  "name": "albumBoxCtrl"
+                }
+              ]
+            },
+            "property": {
+              "type": "Identifier",
+              "start": 813,
+              "end": 820,
+              "loc": {
+                "start": {
+                  "line": 28,
+                  "column": 3
+                },
+                "end": {
+                  "line": 28,
+                  "column": 10
+                }
+              },
+              "name": "factory"
+            },
+            "computed": false
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "start": 821,
+              "end": 833,
+              "loc": {
+                "start": {
+                  "line": 28,
+                  "column": 11
+                },
+                "end": {
+                  "line": 28,
+                  "column": 23
+                }
+              },
+              "value": "albumModel",
+              "rawValue": "albumModel",
+              "raw": "'albumModel'"
+            },
+            {
+              "type": "Identifier",
+              "start": 835,
+              "end": 845,
+              "loc": {
+                "start": {
+                  "line": 28,
+                  "column": 25
+                },
+                "end": {
+                  "line": 28,
+                  "column": 35
+                }
+              },
+              "name": "albumModel"
+            }
+          ]
+        },
+        "property": {
+          "type": "Identifier",
+          "start": 850,
+          "end": 854,
+          "loc": {
+            "start": {
+              "line": 29,
+              "column": 3
+            },
+            "end": {
+              "line": 29,
+              "column": 7
+            }
+          },
+          "name": "name"
+        },
+        "computed": false,
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}

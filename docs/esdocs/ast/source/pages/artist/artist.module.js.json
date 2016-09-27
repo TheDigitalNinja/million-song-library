@@ -1,0 +1,1597 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 990,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 36,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 10,
+      "end": 45,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 35
+        }
+      },
+      "specifiers": [],
+      "source": {
+        "type": "Literal",
+        "start": 17,
+        "end": 44,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 7
+          },
+          "end": {
+            "line": 2,
+            "column": 34
+          }
+        },
+        "value": "./stylesheets/artist.scss",
+        "rawValue": "./stylesheets/artist.scss",
+        "raw": "'./stylesheets/artist.scss'",
+        "leadingComments": null
+      },
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Styles",
+          "start": 0,
+          "end": 9,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 9
+            }
+          },
+          "range": [
+            0,
+            9
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Dependencies",
+          "start": 47,
+          "end": 62,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 15
+            }
+          },
+          "range": [
+            47,
+            62
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 63,
+      "end": 93,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 30
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 70,
+          "end": 77,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 7
+            },
+            "end": {
+              "line": 5,
+              "column": 14
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 70,
+            "end": 77,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 7
+              },
+              "end": {
+                "line": 5,
+                "column": 14
+              }
+            },
+            "name": "angular",
+            "leadingComments": null
+          },
+          "leadingComments": null
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 83,
+        "end": 92,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 20
+          },
+          "end": {
+            "line": 5,
+            "column": 29
+          }
+        },
+        "value": "angular",
+        "rawValue": "angular",
+        "raw": "'angular'"
+      },
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Dependencies",
+          "start": 47,
+          "end": 62,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 15
+            }
+          },
+          "range": [
+            47,
+            62
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 94,
+      "end": 135,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 41
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 101,
+          "end": 109,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 7
+            },
+            "end": {
+              "line": 6,
+              "column": 15
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 101,
+            "end": 109,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 7
+              },
+              "end": {
+                "line": 6,
+                "column": 15
+              }
+            },
+            "name": "uiRouter"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 115,
+        "end": 134,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 21
+          },
+          "end": {
+            "line": 6,
+            "column": 40
+          }
+        },
+        "value": "angular-ui-router",
+        "rawValue": "angular-ui-router",
+        "raw": "'angular-ui-router'"
+      },
+      "trailingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Module",
+          "start": 137,
+          "end": 146,
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 9
+            }
+          },
+          "range": [
+            137,
+            146
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 147,
+      "end": 196,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 49
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 154,
+          "end": 163,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 7
+            },
+            "end": {
+              "line": 9,
+              "column": 16
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 154,
+            "end": 163,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 7
+              },
+              "end": {
+                "line": 9,
+                "column": 16
+              }
+            },
+            "name": "dataStore",
+            "leadingComments": null
+          },
+          "leadingComments": null
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 169,
+        "end": 195,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 22
+          },
+          "end": {
+            "line": 9,
+            "column": 48
+          }
+        },
+        "value": "modules/datastore/module",
+        "rawValue": "modules/datastore/module",
+        "raw": "'modules/datastore/module'"
+      },
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Module",
+          "start": 137,
+          "end": 146,
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 9
+            }
+          },
+          "range": [
+            137,
+            146
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 197,
+      "end": 249,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 52
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 204,
+          "end": 214,
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 7
+            },
+            "end": {
+              "line": 10,
+              "column": 17
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 204,
+            "end": 214,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 7
+              },
+              "end": {
+                "line": 10,
+                "column": 17
+              }
+            },
+            "name": "songsTable"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 220,
+        "end": 248,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 23
+          },
+          "end": {
+            "line": 10,
+            "column": 51
+          }
+        },
+        "value": "modules/songs-table/module",
+        "rawValue": "modules/songs-table/module",
+        "raw": "'modules/songs-table/module'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 250,
+      "end": 309,
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 59
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 257,
+          "end": 271,
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 7
+            },
+            "end": {
+              "line": 11,
+              "column": 21
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 257,
+            "end": 271,
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 7
+              },
+              "end": {
+                "line": 11,
+                "column": 21
+              }
+            },
+            "name": "authentication"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 277,
+        "end": 308,
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 27
+          },
+          "end": {
+            "line": 11,
+            "column": 58
+          }
+        },
+        "value": "modules/authentication/module",
+        "rawValue": "modules/authentication/module",
+        "raw": "'modules/authentication/module'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 311,
+      "end": 355,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 44
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 318,
+          "end": 329,
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 7
+            },
+            "end": {
+              "line": 13,
+              "column": 18
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 318,
+            "end": 329,
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 7
+              },
+              "end": {
+                "line": 13,
+                "column": 18
+              }
+            },
+            "name": "artistRoute"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 335,
+        "end": 354,
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 24
+          },
+          "end": {
+            "line": 13,
+            "column": 43
+          }
+        },
+        "value": "./artist.route.js",
+        "rawValue": "./artist.route.js",
+        "raw": "'./artist.route.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 356,
+      "end": 416,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 60
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 363,
+          "end": 373,
+          "loc": {
+            "start": {
+              "line": 14,
+              "column": 7
+            },
+            "end": {
+              "line": 14,
+              "column": 17
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 363,
+            "end": 373,
+            "loc": {
+              "start": {
+                "line": 14,
+                "column": 7
+              },
+              "end": {
+                "line": 14,
+                "column": 17
+              }
+            },
+            "name": "artistCtrl"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 379,
+        "end": 415,
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 23
+          },
+          "end": {
+            "line": 14,
+            "column": 59
+          }
+        },
+        "value": "./controllers/artist.controller.js",
+        "rawValue": "./controllers/artist.controller.js",
+        "raw": "'./controllers/artist.controller.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 417,
+      "end": 484,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 67
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 424,
+          "end": 437,
+          "loc": {
+            "start": {
+              "line": 15,
+              "column": 7
+            },
+            "end": {
+              "line": 15,
+              "column": 20
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 424,
+            "end": 437,
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 7
+              },
+              "end": {
+                "line": 15,
+                "column": 20
+              }
+            },
+            "name": "artistBoxCtrl"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 443,
+        "end": 483,
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 26
+          },
+          "end": {
+            "line": 15,
+            "column": 66
+          }
+        },
+        "value": "./controllers/artist-box.controller.js",
+        "rawValue": "./controllers/artist-box.controller.js",
+        "raw": "'./controllers/artist-box.controller.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 486,
+      "end": 541,
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 0
+        },
+        "end": {
+          "line": 17,
+          "column": 55
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 493,
+          "end": 504,
+          "loc": {
+            "start": {
+              "line": 17,
+              "column": 7
+            },
+            "end": {
+              "line": 17,
+              "column": 18
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 493,
+            "end": 504,
+            "loc": {
+              "start": {
+                "line": 17,
+                "column": 7
+              },
+              "end": {
+                "line": 17,
+                "column": 18
+              }
+            },
+            "name": "artistsList"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 510,
+        "end": 540,
+        "loc": {
+          "start": {
+            "line": 17,
+            "column": 24
+          },
+          "end": {
+            "line": 17,
+            "column": 54
+          }
+        },
+        "value": "./directives/artists-list.js",
+        "rawValue": "./directives/artists-list.js",
+        "raw": "'./directives/artists-list.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 543,
+      "end": 594,
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 0
+        },
+        "end": {
+          "line": 19,
+          "column": 51
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 550,
+          "end": 559,
+          "loc": {
+            "start": {
+              "line": 19,
+              "column": 7
+            },
+            "end": {
+              "line": 19,
+              "column": 16
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 550,
+            "end": 559,
+            "loc": {
+              "start": {
+                "line": 19,
+                "column": 7
+              },
+              "end": {
+                "line": 19,
+                "column": 16
+              }
+            },
+            "name": "artistBox"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 565,
+        "end": 593,
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 22
+          },
+          "end": {
+            "line": 19,
+            "column": 50
+          }
+        },
+        "value": "./directives/artist-box.js",
+        "rawValue": "./directives/artist-box.js",
+        "raw": "'./directives/artist-box.js'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 596,
+      "end": 647,
+      "loc": {
+        "start": {
+          "line": 21,
+          "column": 0
+        },
+        "end": {
+          "line": 21,
+          "column": 51
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 603,
+          "end": 614,
+          "loc": {
+            "start": {
+              "line": 21,
+              "column": 7
+            },
+            "end": {
+              "line": 21,
+              "column": 18
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 603,
+            "end": 614,
+            "loc": {
+              "start": {
+                "line": 21,
+                "column": 7
+              },
+              "end": {
+                "line": 21,
+                "column": 18
+              }
+            },
+            "name": "artistModel"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 620,
+        "end": 646,
+        "loc": {
+          "start": {
+            "line": 21,
+            "column": 24
+          },
+          "end": {
+            "line": 21,
+            "column": 50
+          }
+        },
+        "value": "./models/artist.model.js",
+        "rawValue": "./models/artist.model.js",
+        "raw": "'./models/artist.model.js'"
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 649,
+      "end": 989,
+      "loc": {
+        "start": {
+          "line": 23,
+          "column": 0
+        },
+        "end": {
+          "line": 35,
+          "column": 8
+        }
+      },
+      "declaration": {
+        "type": "MemberExpression",
+        "start": 664,
+        "end": 988,
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 15
+          },
+          "end": {
+            "line": 35,
+            "column": 7
+          }
+        },
+        "object": {
+          "type": "CallExpression",
+          "start": 664,
+          "end": 980,
+          "loc": {
+            "start": {
+              "line": 23,
+              "column": 15
+            },
+            "end": {
+              "line": 34,
+              "column": 38
+            }
+          },
+          "callee": {
+            "type": "MemberExpression",
+            "start": 664,
+            "end": 952,
+            "loc": {
+              "start": {
+                "line": 23,
+                "column": 15
+              },
+              "end": {
+                "line": 34,
+                "column": 10
+              }
+            },
+            "object": {
+              "type": "CallExpression",
+              "start": 664,
+              "end": 941,
+              "loc": {
+                "start": {
+                  "line": 23,
+                  "column": 15
+                },
+                "end": {
+                  "line": 33,
+                  "column": 36
+                }
+              },
+              "callee": {
+                "type": "MemberExpression",
+                "start": 664,
+                "end": 917,
+                "loc": {
+                  "start": {
+                    "line": 23,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 33,
+                    "column": 12
+                  }
+                },
+                "object": {
+                  "type": "CallExpression",
+                  "start": 664,
+                  "end": 904,
+                  "loc": {
+                    "start": {
+                      "line": 23,
+                      "column": 15
+                    },
+                    "end": {
+                      "line": 32,
+                      "column": 40
+                    }
+                  },
+                  "callee": {
+                    "type": "MemberExpression",
+                    "start": 664,
+                    "end": 876,
+                    "loc": {
+                      "start": {
+                        "line": 23,
+                        "column": 15
+                      },
+                      "end": {
+                        "line": 32,
+                        "column": 12
+                      }
+                    },
+                    "object": {
+                      "type": "CallExpression",
+                      "start": 664,
+                      "end": 863,
+                      "loc": {
+                        "start": {
+                          "line": 23,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 31,
+                          "column": 45
+                        }
+                      },
+                      "callee": {
+                        "type": "MemberExpression",
+                        "start": 664,
+                        "end": 831,
+                        "loc": {
+                          "start": {
+                            "line": 23,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 31,
+                            "column": 13
+                          }
+                        },
+                        "object": {
+                          "type": "CallExpression",
+                          "start": 664,
+                          "end": 817,
+                          "loc": {
+                            "start": {
+                              "line": 23,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 30,
+                              "column": 39
+                            }
+                          },
+                          "callee": {
+                            "type": "MemberExpression",
+                            "start": 664,
+                            "end": 791,
+                            "loc": {
+                              "start": {
+                                "line": 23,
+                                "column": 15
+                              },
+                              "end": {
+                                "line": 30,
+                                "column": 13
+                              }
+                            },
+                            "object": {
+                              "type": "CallExpression",
+                              "start": 664,
+                              "end": 777,
+                              "loc": {
+                                "start": {
+                                  "line": 23,
+                                  "column": 15
+                                },
+                                "end": {
+                                  "line": 29,
+                                  "column": 22
+                                }
+                              },
+                              "callee": {
+                                "type": "MemberExpression",
+                                "start": 664,
+                                "end": 764,
+                                "loc": {
+                                  "start": {
+                                    "line": 23,
+                                    "column": 15
+                                  },
+                                  "end": {
+                                    "line": 29,
+                                    "column": 9
+                                  }
+                                },
+                                "object": {
+                                  "type": "CallExpression",
+                                  "start": 664,
+                                  "end": 754,
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 15
+                                    },
+                                    "end": {
+                                      "line": 28,
+                                      "column": 2
+                                    }
+                                  },
+                                  "callee": {
+                                    "type": "MemberExpression",
+                                    "start": 664,
+                                    "end": 678,
+                                    "loc": {
+                                      "start": {
+                                        "line": 23,
+                                        "column": 15
+                                      },
+                                      "end": {
+                                        "line": 23,
+                                        "column": 29
+                                      }
+                                    },
+                                    "object": {
+                                      "type": "Identifier",
+                                      "start": 664,
+                                      "end": 671,
+                                      "loc": {
+                                        "start": {
+                                          "line": 23,
+                                          "column": 15
+                                        },
+                                        "end": {
+                                          "line": 23,
+                                          "column": 22
+                                        }
+                                      },
+                                      "name": "angular"
+                                    },
+                                    "property": {
+                                      "type": "Identifier",
+                                      "start": 672,
+                                      "end": 678,
+                                      "loc": {
+                                        "start": {
+                                          "line": 23,
+                                          "column": 23
+                                        },
+                                        "end": {
+                                          "line": 23,
+                                          "column": 29
+                                        }
+                                      },
+                                      "name": "module"
+                                    },
+                                    "computed": false
+                                  },
+                                  "arguments": [
+                                    {
+                                      "type": "Literal",
+                                      "start": 679,
+                                      "end": 691,
+                                      "loc": {
+                                        "start": {
+                                          "line": 23,
+                                          "column": 30
+                                        },
+                                        "end": {
+                                          "line": 23,
+                                          "column": 42
+                                        }
+                                      },
+                                      "value": "msl.artist",
+                                      "rawValue": "msl.artist",
+                                      "raw": "'msl.artist'"
+                                    },
+                                    {
+                                      "type": "ArrayExpression",
+                                      "start": 693,
+                                      "end": 753,
+                                      "loc": {
+                                        "start": {
+                                          "line": 23,
+                                          "column": 44
+                                        },
+                                        "end": {
+                                          "line": 28,
+                                          "column": 1
+                                        }
+                                      },
+                                      "elements": [
+                                        {
+                                          "type": "Identifier",
+                                          "start": 697,
+                                          "end": 705,
+                                          "loc": {
+                                            "start": {
+                                              "line": 24,
+                                              "column": 2
+                                            },
+                                            "end": {
+                                              "line": 24,
+                                              "column": 10
+                                            }
+                                          },
+                                          "name": "uiRouter"
+                                        },
+                                        {
+                                          "type": "Identifier",
+                                          "start": 709,
+                                          "end": 718,
+                                          "loc": {
+                                            "start": {
+                                              "line": 25,
+                                              "column": 2
+                                            },
+                                            "end": {
+                                              "line": 25,
+                                              "column": 11
+                                            }
+                                          },
+                                          "name": "dataStore"
+                                        },
+                                        {
+                                          "type": "Identifier",
+                                          "start": 722,
+                                          "end": 732,
+                                          "loc": {
+                                            "start": {
+                                              "line": 26,
+                                              "column": 2
+                                            },
+                                            "end": {
+                                              "line": 26,
+                                              "column": 12
+                                            }
+                                          },
+                                          "name": "songsTable"
+                                        },
+                                        {
+                                          "type": "Identifier",
+                                          "start": 736,
+                                          "end": 750,
+                                          "loc": {
+                                            "start": {
+                                              "line": 27,
+                                              "column": 2
+                                            },
+                                            "end": {
+                                              "line": 27,
+                                              "column": 16
+                                            }
+                                          },
+                                          "name": "authentication"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "start": 758,
+                                  "end": 764,
+                                  "loc": {
+                                    "start": {
+                                      "line": 29,
+                                      "column": 3
+                                    },
+                                    "end": {
+                                      "line": 29,
+                                      "column": 9
+                                    }
+                                  },
+                                  "name": "config"
+                                },
+                                "computed": false
+                              },
+                              "arguments": [
+                                {
+                                  "type": "Identifier",
+                                  "start": 765,
+                                  "end": 776,
+                                  "loc": {
+                                    "start": {
+                                      "line": 29,
+                                      "column": 10
+                                    },
+                                    "end": {
+                                      "line": 29,
+                                      "column": 21
+                                    }
+                                  },
+                                  "name": "artistRoute"
+                                }
+                              ]
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "start": 781,
+                              "end": 791,
+                              "loc": {
+                                "start": {
+                                  "line": 30,
+                                  "column": 3
+                                },
+                                "end": {
+                                  "line": 30,
+                                  "column": 13
+                                }
+                              },
+                              "name": "controller"
+                            },
+                            "computed": false
+                          },
+                          "arguments": [
+                            {
+                              "type": "Literal",
+                              "start": 792,
+                              "end": 804,
+                              "loc": {
+                                "start": {
+                                  "line": 30,
+                                  "column": 14
+                                },
+                                "end": {
+                                  "line": 30,
+                                  "column": 26
+                                }
+                              },
+                              "value": "artistCtrl",
+                              "rawValue": "artistCtrl",
+                              "raw": "'artistCtrl'"
+                            },
+                            {
+                              "type": "Identifier",
+                              "start": 806,
+                              "end": 816,
+                              "loc": {
+                                "start": {
+                                  "line": 30,
+                                  "column": 28
+                                },
+                                "end": {
+                                  "line": 30,
+                                  "column": 38
+                                }
+                              },
+                              "name": "artistCtrl"
+                            }
+                          ]
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 821,
+                          "end": 831,
+                          "loc": {
+                            "start": {
+                              "line": 31,
+                              "column": 3
+                            },
+                            "end": {
+                              "line": 31,
+                              "column": 13
+                            }
+                          },
+                          "name": "controller"
+                        },
+                        "computed": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "Literal",
+                          "start": 832,
+                          "end": 847,
+                          "loc": {
+                            "start": {
+                              "line": 31,
+                              "column": 14
+                            },
+                            "end": {
+                              "line": 31,
+                              "column": 29
+                            }
+                          },
+                          "value": "artistBoxCtrl",
+                          "rawValue": "artistBoxCtrl",
+                          "raw": "'artistBoxCtrl'"
+                        },
+                        {
+                          "type": "Identifier",
+                          "start": 849,
+                          "end": 862,
+                          "loc": {
+                            "start": {
+                              "line": 31,
+                              "column": 31
+                            },
+                            "end": {
+                              "line": 31,
+                              "column": 44
+                            }
+                          },
+                          "name": "artistBoxCtrl"
+                        }
+                      ]
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 867,
+                      "end": 876,
+                      "loc": {
+                        "start": {
+                          "line": 32,
+                          "column": 3
+                        },
+                        "end": {
+                          "line": 32,
+                          "column": 12
+                        }
+                      },
+                      "name": "directive"
+                    },
+                    "computed": false
+                  },
+                  "arguments": [
+                    {
+                      "type": "Literal",
+                      "start": 877,
+                      "end": 890,
+                      "loc": {
+                        "start": {
+                          "line": 32,
+                          "column": 13
+                        },
+                        "end": {
+                          "line": 32,
+                          "column": 26
+                        }
+                      },
+                      "value": "artistsList",
+                      "rawValue": "artistsList",
+                      "raw": "'artistsList'"
+                    },
+                    {
+                      "type": "Identifier",
+                      "start": 892,
+                      "end": 903,
+                      "loc": {
+                        "start": {
+                          "line": 32,
+                          "column": 28
+                        },
+                        "end": {
+                          "line": 32,
+                          "column": 39
+                        }
+                      },
+                      "name": "artistsList"
+                    }
+                  ]
+                },
+                "property": {
+                  "type": "Identifier",
+                  "start": 908,
+                  "end": 917,
+                  "loc": {
+                    "start": {
+                      "line": 33,
+                      "column": 3
+                    },
+                    "end": {
+                      "line": 33,
+                      "column": 12
+                    }
+                  },
+                  "name": "directive"
+                },
+                "computed": false
+              },
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "start": 918,
+                  "end": 929,
+                  "loc": {
+                    "start": {
+                      "line": 33,
+                      "column": 13
+                    },
+                    "end": {
+                      "line": 33,
+                      "column": 24
+                    }
+                  },
+                  "value": "artistBox",
+                  "rawValue": "artistBox",
+                  "raw": "'artistBox'"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 931,
+                  "end": 940,
+                  "loc": {
+                    "start": {
+                      "line": 33,
+                      "column": 26
+                    },
+                    "end": {
+                      "line": 33,
+                      "column": 35
+                    }
+                  },
+                  "name": "artistBox"
+                }
+              ]
+            },
+            "property": {
+              "type": "Identifier",
+              "start": 945,
+              "end": 952,
+              "loc": {
+                "start": {
+                  "line": 34,
+                  "column": 3
+                },
+                "end": {
+                  "line": 34,
+                  "column": 10
+                }
+              },
+              "name": "factory"
+            },
+            "computed": false
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "start": 953,
+              "end": 966,
+              "loc": {
+                "start": {
+                  "line": 34,
+                  "column": 11
+                },
+                "end": {
+                  "line": 34,
+                  "column": 24
+                }
+              },
+              "value": "artistModel",
+              "rawValue": "artistModel",
+              "raw": "'artistModel'"
+            },
+            {
+              "type": "Identifier",
+              "start": 968,
+              "end": 979,
+              "loc": {
+                "start": {
+                  "line": 34,
+                  "column": 26
+                },
+                "end": {
+                  "line": 34,
+                  "column": 37
+                }
+              },
+              "name": "artistModel"
+            }
+          ]
+        },
+        "property": {
+          "type": "Identifier",
+          "start": 984,
+          "end": 988,
+          "loc": {
+            "start": {
+              "line": 35,
+              "column": 3
+            },
+            "end": {
+              "line": 35,
+              "column": 7
+            }
+          },
+          "name": "name"
+        },
+        "computed": false,
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}

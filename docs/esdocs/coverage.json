@@ -1,0 +1,727 @@
+{
+  "coverage": "36.18%",
+  "expectCount": 351,
+  "actualCount": 127,
+  "files": {
+    "src/layout/sidenav/genre-filter/genre-filter.controller.js": {
+      "expectCount": 11,
+      "actualCount": 4,
+      "undocumentLines": [
+        24,
+        21,
+        20,
+        19,
+        22,
+        23,
+        56
+      ]
+    },
+    "src/pages/home/controllers/home.controller.js": {
+      "expectCount": 16,
+      "actualCount": 7,
+      "undocumentLines": [
+        32,
+        28,
+        27,
+        30,
+        29,
+        33,
+        85,
+        140,
+        31
+      ]
+    },
+    "src/layout/sidenav/rating-filter/rating-filter.controller.js": {
+      "expectCount": 11,
+      "actualCount": 5,
+      "undocumentLines": [
+        19,
+        22,
+        18,
+        21,
+        20,
+        90
+      ]
+    },
+    "src/layout/sidenav/filter.model.js": {
+      "expectCount": 14,
+      "actualCount": 6,
+      "undocumentLines": [
+        22,
+        20,
+        21,
+        27,
+        24,
+        25,
+        26,
+        19
+      ]
+    },
+    "src/modules/star-rating/controllers/star-rating.controller.js": {
+      "expectCount": 12,
+      "actualCount": 3,
+      "undocumentLines": [
+        21,
+        19,
+        23,
+        61,
+        22,
+        25,
+        20,
+        26,
+        83
+      ]
+    },
+    "src/pages/library/controllers/library.controller.js": {
+      "expectCount": 10,
+      "actualCount": 2,
+      "undocumentLines": [
+        19,
+        16,
+        39,
+        40,
+        35,
+        17,
+        38,
+        18
+      ]
+    },
+    "src/pages/library/models/library.model.js": {
+      "expectCount": 13,
+      "actualCount": 9,
+      "undocumentLines": [
+        17,
+        14,
+        15,
+        16
+      ]
+    },
+    "src/pages/album/controllers/album.controller.js": {
+      "expectCount": 11,
+      "actualCount": 2,
+      "undocumentLines": [
+        21,
+        20,
+        24,
+        33,
+        22,
+        25,
+        35,
+        23,
+        37
+      ]
+    },
+    "src/modules/login-modal/login-modal.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        7,
+        3,
+        6,
+        8,
+        11
+      ]
+    },
+    "src/modules/login-modal/login-modal.controller.js": {
+      "expectCount": 9,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        5,
+        8,
+        7,
+        24,
+        4,
+        19,
+        1,
+        11
+      ]
+    },
+    "src/layout/navbar/navbar.controller.js": {
+      "expectCount": 6,
+      "actualCount": 2,
+      "undocumentLines": [
+        15,
+        16,
+        17,
+        4
+      ]
+    },
+    "src/pages/artist/controllers/artist.controller.js": {
+      "expectCount": 15,
+      "actualCount": 6,
+      "undocumentLines": [
+        18,
+        22,
+        36,
+        59,
+        20,
+        21,
+        19,
+        49,
+        69
+      ]
+    },
+    "src/pages/registration/controllers/registration.controller.js": {
+      "expectCount": 9,
+      "actualCount": 3,
+      "undocumentLines": [
+        16,
+        19,
+        17,
+        44,
+        18,
+        20
+      ]
+    },
+    "src/pages/song/controllers/song.controller.js": {
+      "expectCount": 9,
+      "actualCount": 2,
+      "undocumentLines": [
+        22,
+        20,
+        19,
+        23,
+        50,
+        38,
+        21
+      ]
+    },
+    "src/pages/artist/controllers/artist-box.controller.js": {
+      "expectCount": 5,
+      "actualCount": 3,
+      "undocumentLines": [
+        14,
+        15
+      ]
+    },
+    "src/layout/navbar/navbar-search.controller.js": {
+      "expectCount": 4,
+      "actualCount": 1,
+      "undocumentLines": [
+        10,
+        9,
+        13
+      ]
+    },
+    "src/pages/album/controllers/album-box.controller.js": {
+      "expectCount": 5,
+      "actualCount": 3,
+      "undocumentLines": [
+        14,
+        15
+      ]
+    },
+    "src/pages/song/controllers/song-box.controller.js": {
+      "expectCount": 5,
+      "actualCount": 3,
+      "undocumentLines": [
+        14,
+        15
+      ]
+    },
+    "src/constants.js": {
+      "expectCount": 11,
+      "actualCount": 0,
+      "undocumentLines": [
+        11,
+        2,
+        12,
+        5,
+        10,
+        7,
+        13,
+        6,
+        4,
+        3,
+        1
+      ]
+    },
+    "src/modules/datastore/entities/AlbumInfoEntity.js": {
+      "expectCount": 15,
+      "actualCount": 1,
+      "undocumentLines": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        18,
+        26,
+        24,
+        29,
+        31,
+        28,
+        30,
+        25
+      ]
+    },
+    "src/modules/datastore/entities/AlbumListEntity.js": {
+      "expectCount": 4,
+      "actualCount": 1,
+      "undocumentLines": [
+        9,
+        7,
+        8
+      ]
+    },
+    "src/modules/datastore/entities/ArtistInfoEntity.js": {
+      "expectCount": 13,
+      "actualCount": 1,
+      "undocumentLines": [
+        20,
+        17,
+        18,
+        19,
+        22,
+        16,
+        21,
+        24,
+        27,
+        23,
+        26,
+        25
+      ]
+    },
+    "src/modules/datastore/entities/ArtistListEntity.js": {
+      "expectCount": 4,
+      "actualCount": 1,
+      "undocumentLines": [
+        9,
+        7,
+        8
+      ]
+    },
+    "src/modules/datastore/entities/FacetInfoEntity.js": {
+      "expectCount": 4,
+      "actualCount": 1,
+      "undocumentLines": [
+        7,
+        8,
+        9
+      ]
+    },
+    "src/modules/datastore/entities/FacetListEntity.js": {
+      "expectCount": 5,
+      "actualCount": 1,
+      "undocumentLines": [
+        12,
+        9,
+        10,
+        11
+      ]
+    },
+    "src/layout/sidenav/genre-filter/genre-filter.directive.js": {
+      "expectCount": 8,
+      "actualCount": 1,
+      "undocumentLines": [
+        9,
+        15,
+        16,
+        19,
+        10,
+        12,
+        11
+      ]
+    },
+    "src/pages/library/library-carousel.directive.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        25
+      ]
+    },
+    "src/modules/datastore/entities/LoginSuccessResponseEntity.js": {
+      "expectCount": 3,
+      "actualCount": 1,
+      "undocumentLines": [
+        7,
+        6
+      ]
+    },
+    "src/modules/datastore/entities/MyLibraryEntity.js": {
+      "expectCount": 5,
+      "actualCount": 1,
+      "undocumentLines": [
+        13,
+        14,
+        12,
+        15
+      ]
+    },
+    "src/layout/sidenav/rating-filter/rating-filter.directive.js": {
+      "expectCount": 8,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        6,
+        12,
+        13,
+        16,
+        7,
+        9,
+        8
+      ]
+    },
+    "src/modules/datastore/entities/SongInfoEntity.js": {
+      "expectCount": 19,
+      "actualCount": 1,
+      "undocumentLines": [
+        30,
+        31,
+        27,
+        28,
+        29,
+        36,
+        23,
+        35,
+        33,
+        32,
+        34,
+        26,
+        41,
+        37,
+        39,
+        24,
+        25,
+        40
+      ]
+    },
+    "src/modules/datastore/entities/SongListEntity.js": {
+      "expectCount": 5,
+      "actualCount": 1,
+      "undocumentLines": [
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "src/modules/datastore/entities/StatusResponseEntity.js": {
+      "expectCount": 3,
+      "actualCount": 1,
+      "undocumentLines": [
+        6,
+        7
+      ]
+    },
+    "src/pages/library/directives/add-to-library.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/album/directives/album-box.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/album/models/album.model.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/album/album.route.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/datastore/services/albumStore.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/album/directives/albums-list.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/artist/models/artist.model.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/artist/artist.route.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/datastore/services/artistStore.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/artist/directives/artist-box.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/artist/directives/artists-list.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/authentication/authCookie.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/authentication/authentication.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/star-rating/models/rating.model.js": {
+      "expectCount": 6,
+      "actualCount": 2,
+      "undocumentLines": [
+        7,
+        9,
+        10,
+        8
+      ]
+    },
+    "src/pages/search/controllers/search.controller.js": {
+      "expectCount": 3,
+      "actualCount": 2,
+      "undocumentLines": [
+        15
+      ]
+    },
+    "src/pages/user/controllers/user-library.controller.js": {
+      "expectCount": 4,
+      "actualCount": 2,
+      "undocumentLines": [
+        19,
+        20
+      ]
+    },
+    "src/pages/login/controllers/login.controller.js": {
+      "expectCount": 4,
+      "actualCount": 2,
+      "undocumentLines": [
+        22,
+        15
+      ]
+    },
+    "src/pages/user/controllers/user-history.controller.js": {
+      "expectCount": 4,
+      "actualCount": 2,
+      "undocumentLines": [
+        18,
+        19
+      ]
+    },
+    "src/routing.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "src/run.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    },
+    "src/modules/datastore/entityMapper.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/error/error.route.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/datastore/services/facetStore.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/home/home.route.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/layout/layout.route.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/library/library.route.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/user/controllers/user-likes.controller.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "src/pages/login/login.route.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/datastore/services/loginStore.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/datastore/services/logoutStore.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/registration/directives/match.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "src/modules/datastore/services/myLibraryStore.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/layout/navbar/navbar.directive.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "src/modules/authentication/directives/password.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/player/directives/playButton.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        44
+      ]
+    },
+    "src/modules/player/factories/player.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/player/directives/player.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        30
+      ]
+    },
+    "src/modules/datastore/services/rateAlbumStore.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/datastore/services/rateArtistStore.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/datastore/services/rateSongStore.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/datastore/services/recentSongsStore.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/registration/registration.route.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/datastore/services/registrationStore.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/library/directives/remove-from-library.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/library/directives/repeat-complete.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/datastore/request.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/home/directives/scroll-listener.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/search/search.route.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/song/directives/song-box.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/song/directives/songs-list.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/song/models/song.model.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/song/song.route.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/datastore/services/songStore.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/songs-table/directives/songs-table.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/modules/star-rating/directives/star-rating.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        5
+      ]
+    },
+    "src/filters/time-filter.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/pages/user/user.route.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    }
+  }
+}

@@ -1,0 +1,199 @@
+[[setup-windows]]
+= Windows Automated Setup
+:sectnums:
+:icons: font
+
+Follow the steps in this section to set up the Million Song Library demo on a system running Windows. You will actually be installing the demo inside a Linux virtual machine using Vagrant -- a process that's both easy and free.
+
+[[get-ready-windows]]
+== Get Your System Ready
+
+Before setting up the demo, make sure you have everything you need.
+
+Windows 10:: We tested this procedure on Windows 10 Pro. http://windows.microsoft.com/en-us/windows/which-operating-system[Check your Windows version^] to see if you're already running Windows 10 Pro, and to find out if you're running a 32-bit or 64-bit version of Windows. If you're running an older version of Windows, you should https://www.microsoft.com/en-us/windows/windows-10-upgrade[upgrade your system to Windows 10^].
+
+Git:: Install Git if you don't have it already. One easy method is to http://git-scm.com/downloads[download the Windows installer^]. To install, just double-click the EXE file.
++
+====
+IMPORTANT: During Git installation, make sure to select the *Use Git from the Windows Command Prompt* option. Otherwise you won't be able use Git commands in PowerShell.
+
+ifeval::["{output}"=="html"]
+.Installing Git for Windows
+image:images/git-setup-windows.png[Installing Git for Windows]
+endif::[]
+
+ifeval::["{output}"=="pdf"]
+.Installing Git for Windows
+image:images/git-setup-windows.png[Installing Git for Windows, width=400]
+endif::[]
+====
+
+Vagrant:: The easiest way to set up the Million Song Library on Windows is with Vagrant, a tool for automating the creation of development environments. If you don't already have it, https://www.vagrantup.com/downloads.html[install Vagrant^].
+
+PowerShell:: You'll need to use Windows PowerShell to enter commands at the command prompt. You can find it in *Start->All Apps->Windows PowerShell*.
++
+For some commands, you'll need to use Git Bash instead (we'll let you know when). You can find it in  *Start->All Apps->Git->Git Bash*.
+
+====
+*Where is My Home Directory?*
+
+For this process, it's important to know where your home directory is. Your home directory is the directory that has the same name as your user name.
+
+For example, if the user name you use to log on to Windows is jdoe, then the path *C:\Users\jdoe* points to your home directory.
+
+In Git Bash, your home directory is represented by the tilde (~) sign. For example, the path *~/stuff* points to a directory named *stuff* located inside your home directory.
+
+====
+
+== Clone the MSL Repository
+
+To use Vagrant to set up a virtual machine for the demo, you first need to clone the million-song-library repository to a local directory.
+
+. Open a new PowerShell window and make sure you are in your home directory.
+. Enter the following command:
++
+----
+git clone https://github.com/kenzanmedia/million-song-library
+----
++
+Git creates a directory called *million-song-library* inside your home directory, and checks out a working copy of the repository.
++
+. Enter the following command to change directories to the cloned repository:
++
+----
+cd million-song-library
+----
++
+. Enter the folowing command to initialize the repository:
++
+----
+git submodule init
+----
++
+. Enter the folowing command to update all submodules:
++
+----
+git submodule update
+----
+
+== Set up the Virtual Machine
+
+The Vagrant file contains all of the information needed to set up and configure the Linux virtual machine to run the Million Song Library Demo. Let's get it running.
+
+. Open a new PowerShell window and make sure you are in your home directory.
+. Enter the following command to change to the million-song-library repository:
++
+----
+cd million-song-library
+----
+. Enter the following command to set up the virtual machine:
++
+----
+vagrant up ubuntu
+----
+. Wait for the setup process to complete (about 30 minutes).
+
+NOTE: If you get an error stating `The box 'ubuntu/trusty64' could not be found`, it means you don't have the correct version of the Microsoft Visual C&#43;&#43; Redistributable Package on your system. First install the https://www.microsoft.com/en-us/download/details.aspx?id=8328[Microsoft Visual C&#43;&#43; 2010 SP1 Redistributable Package^], and then run the `vagrant up ubuntu` command again.
+
+== Edit the Hosts File
+
+While you're waiting for the setup process to complete, take a few minutes to update the *hosts* file on your local system. This will allow you to access the Million Song Library application using a Web browser.
+
+. In a text editor, open the *hosts* file located in the *C:\Windows\System32\Drivers\etc* directory.
+. Add the following line to the *hosts* file.
++
+----
+127.0.0.1     msl.kenzanlabs.com
+----
+. Save and close the *hosts* file.
+
+[[start-msl-windows]]
+== Start the MSL Demo
+
+This is where we need to start using Git Bash, which already has an ssh client (unlike PowerShell).
+
+. Open a new Git Bash window and make sure you are in your home directory.
+. Enter the following command to change to the million-song-library repository:
++
+----
+cd million-song-library
+----
+. Enter the following command to connect to the virtual machine and forward the necessary ports (it's really long, so use copy and paste, and make sure to select the entire command):
++
+----
+vagrant ssh ubuntu -- -L 3000:localhost:3000 -L 3002:localhost:3002 -L 3003:localhost:3003 -L 3004:localhost:3004 -L 9002:localhost:9002 -L 9003:localhost:9003
+----
+. After you are connected to the virtual machine, enter the following command to change to the application directory: 
++
+----
+cd kenzan/million-song-library/msl-pages
+----
+. Enter the following command to start the application front end:
++
+----
+npm run full-dev
+----
++
+Wait for the front end to start up -- this will take a few minutes.
+. Open a new Git Bash window and make sure you are in your home directory.
+. Enter the following command to change to the million-song-library repository:
++
+----
+cd million-song-library
+----
+. Enter the following command to connect to the virtual machine (we don't need such a long command this time as we already forwarded the necessary ports):
++
+----
+vagrant ssh ubuntu
+----
+. After you are connected to the virtual machine, enter the following command to change to the application directory: 
++
+----
+cd kenzan/million-song-library/msl-pages
+----
+. Enter the following command to start the server instances:
++
+----
+sudo npm run serve-all
+----
++
+Wait for the server instances to start up -- again, this will take several minutes.
+. Open a Web browser and point it to: *msl.kenzanlabs.com:3000*
++
+The Million Song Library home page displays. (If you don't see data right away, wait a couple of minutes and then refresh the page.)
++
+
+ifeval::["{output}"=="html"]
+.Million Song Library Home Page
+image:images/msl-home-page-windows.png[Million Song Library Home Page]
+endif::[]
+
+ifeval::["{output}"=="pdf"]
+.Million Song Library Home Page
+image:images/msl-home-page-windows.png[Million Song Library Home Page, width=600]
+endif::[]
+
+Now that the Million Song Library demo is working, here are some fun things to try:
+
+* Click *Register* to register for an account.
+* Click the labels to switch the view between *Songs*, *Albums*, and *Artists*.
+* Click a genre or star rating on the left to filter songs. (Click the *x* to clear a filter.)
+* Mouse over a song and click *Add to library* to add it to your music library (you must be logged in).
+* Click the stars below a song to rate it (you must be logged in).
+
+== Stop the MSL Demo
+
+Done having fun for now? Here's how to terminate the virtual machine:
+
+. Open a new PowerShell window and make sure you are in your home directory.
+. Enter the following command to change to the million-song-library repository:
++
+----
+cd million-song-library
+----
+. Enter the following command to destroy the virtual machine:
++
+----
+vagrant destroy ubuntu -f
+----
+The virtual machine is deleted. If you want to run the demo again, just follow this procedure to create a new Million Song Library virtual machine any time.

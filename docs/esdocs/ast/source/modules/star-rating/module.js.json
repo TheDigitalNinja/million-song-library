@@ -1,0 +1,817 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 521,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 17,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 0,
+      "end": 36,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 36
+        }
+      },
+      "specifiers": [],
+      "source": {
+        "type": "Literal",
+        "start": 7,
+        "end": 35,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 7
+          },
+          "end": {
+            "line": 1,
+            "column": 35
+          }
+        },
+        "value": "./stylesheets/default.scss",
+        "rawValue": "./stylesheets/default.scss",
+        "raw": "'./stylesheets/default.scss'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 37,
+      "end": 67,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 30
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 44,
+          "end": 51,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 14
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 44,
+            "end": 51,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 14
+              }
+            },
+            "name": "angular"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 57,
+        "end": 66,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 20
+          },
+          "end": {
+            "line": 2,
+            "column": 29
+          }
+        },
+        "value": "angular",
+        "rawValue": "angular",
+        "raw": "'angular'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 68,
+      "end": 118,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 50
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 75,
+          "end": 85,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 7
+            },
+            "end": {
+              "line": 3,
+              "column": 17
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 75,
+            "end": 85,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 7
+              },
+              "end": {
+                "line": 3,
+                "column": 17
+              }
+            },
+            "name": "starRating"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 91,
+        "end": 117,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 23
+          },
+          "end": {
+            "line": 3,
+            "column": 49
+          }
+        },
+        "value": "./directives/star-rating",
+        "rawValue": "./directives/star-rating",
+        "raw": "'./directives/star-rating'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 119,
+      "end": 168,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 49
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 126,
+          "end": 135,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 7
+            },
+            "end": {
+              "line": 4,
+              "column": 16
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 126,
+            "end": 135,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 7
+              },
+              "end": {
+                "line": 4,
+                "column": 16
+              }
+            },
+            "name": "datastore"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 141,
+        "end": 167,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 22
+          },
+          "end": {
+            "line": 4,
+            "column": 48
+          }
+        },
+        "value": "modules/datastore/module",
+        "rawValue": "modules/datastore/module",
+        "raw": "'modules/datastore/module'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 169,
+      "end": 217,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 48
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 176,
+          "end": 187,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 7
+            },
+            "end": {
+              "line": 5,
+              "column": 18
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 176,
+            "end": 187,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 7
+              },
+              "end": {
+                "line": 5,
+                "column": 18
+              }
+            },
+            "name": "ratingModel"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 193,
+        "end": 216,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 24
+          },
+          "end": {
+            "line": 5,
+            "column": 47
+          }
+        },
+        "value": "./models/rating.model",
+        "rawValue": "./models/rating.model",
+        "raw": "'./models/rating.model'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 218,
+      "end": 282,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 64
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 225,
+          "end": 235,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 7
+            },
+            "end": {
+              "line": 6,
+              "column": 17
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 225,
+            "end": 235,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 7
+              },
+              "end": {
+                "line": 6,
+                "column": 17
+              }
+            },
+            "name": "loginModal"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 241,
+        "end": 281,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 23
+          },
+          "end": {
+            "line": 6,
+            "column": 63
+          }
+        },
+        "value": "modules/login-modal/login-modal.module",
+        "rawValue": "modules/login-modal/login-modal.module",
+        "raw": "'modules/login-modal/login-modal.module'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 283,
+      "end": 334,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 51
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 290,
+          "end": 300,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 7
+            },
+            "end": {
+              "line": 7,
+              "column": 17
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 290,
+            "end": 300,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 7
+              },
+              "end": {
+                "line": 7,
+                "column": 17
+              }
+            },
+            "name": "Permission"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 306,
+        "end": 333,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 23
+          },
+          "end": {
+            "line": 7,
+            "column": 50
+          }
+        },
+        "value": "modules/permission/module",
+        "rawValue": "modules/permission/module",
+        "raw": "'modules/permission/module'"
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 336,
+      "end": 520,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 16,
+          "column": 8
+        }
+      },
+      "declaration": {
+        "type": "MemberExpression",
+        "start": 351,
+        "end": 519,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 15
+          },
+          "end": {
+            "line": 16,
+            "column": 7
+          }
+        },
+        "object": {
+          "type": "CallExpression",
+          "start": 351,
+          "end": 511,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 15
+            },
+            "end": {
+              "line": 15,
+              "column": 38
+            }
+          },
+          "callee": {
+            "type": "MemberExpression",
+            "start": 351,
+            "end": 485,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 15
+              },
+              "end": {
+                "line": 15,
+                "column": 12
+              }
+            },
+            "object": {
+              "type": "CallExpression",
+              "start": 351,
+              "end": 472,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 15
+                },
+                "end": {
+                  "line": 14,
+                  "column": 38
+                }
+              },
+              "callee": {
+                "type": "MemberExpression",
+                "start": 351,
+                "end": 444,
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 14,
+                    "column": 10
+                  }
+                },
+                "object": {
+                  "type": "CallExpression",
+                  "start": 351,
+                  "end": 433,
+                  "loc": {
+                    "start": {
+                      "line": 9,
+                      "column": 15
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 4
+                    }
+                  },
+                  "callee": {
+                    "type": "MemberExpression",
+                    "start": 351,
+                    "end": 365,
+                    "loc": {
+                      "start": {
+                        "line": 9,
+                        "column": 15
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 29
+                      }
+                    },
+                    "object": {
+                      "type": "Identifier",
+                      "start": 351,
+                      "end": 358,
+                      "loc": {
+                        "start": {
+                          "line": 9,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 9,
+                          "column": 22
+                        }
+                      },
+                      "name": "angular"
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 359,
+                      "end": 365,
+                      "loc": {
+                        "start": {
+                          "line": 9,
+                          "column": 23
+                        },
+                        "end": {
+                          "line": 9,
+                          "column": 29
+                        }
+                      },
+                      "name": "module"
+                    },
+                    "computed": false
+                  },
+                  "arguments": [
+                    {
+                      "type": "Literal",
+                      "start": 366,
+                      "end": 378,
+                      "loc": {
+                        "start": {
+                          "line": 9,
+                          "column": 30
+                        },
+                        "end": {
+                          "line": 9,
+                          "column": 42
+                        }
+                      },
+                      "value": "msl.rating",
+                      "rawValue": "msl.rating",
+                      "raw": "'msl.rating'"
+                    },
+                    {
+                      "type": "ArrayExpression",
+                      "start": 380,
+                      "end": 432,
+                      "loc": {
+                        "start": {
+                          "line": 9,
+                          "column": 44
+                        },
+                        "end": {
+                          "line": 13,
+                          "column": 3
+                        }
+                      },
+                      "elements": [
+                        {
+                          "type": "Identifier",
+                          "start": 386,
+                          "end": 395,
+                          "loc": {
+                            "start": {
+                              "line": 10,
+                              "column": 4
+                            },
+                            "end": {
+                              "line": 10,
+                              "column": 13
+                            }
+                          },
+                          "name": "datastore"
+                        },
+                        {
+                          "type": "Identifier",
+                          "start": 401,
+                          "end": 411,
+                          "loc": {
+                            "start": {
+                              "line": 11,
+                              "column": 4
+                            },
+                            "end": {
+                              "line": 11,
+                              "column": 14
+                            }
+                          },
+                          "name": "loginModal"
+                        },
+                        {
+                          "type": "Identifier",
+                          "start": 417,
+                          "end": 427,
+                          "loc": {
+                            "start": {
+                              "line": 12,
+                              "column": 4
+                            },
+                            "end": {
+                              "line": 12,
+                              "column": 14
+                            }
+                          },
+                          "name": "Permission"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "property": {
+                  "type": "Identifier",
+                  "start": 437,
+                  "end": 444,
+                  "loc": {
+                    "start": {
+                      "line": 14,
+                      "column": 3
+                    },
+                    "end": {
+                      "line": 14,
+                      "column": 10
+                    }
+                  },
+                  "name": "service"
+                },
+                "computed": false
+              },
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "start": 445,
+                  "end": 458,
+                  "loc": {
+                    "start": {
+                      "line": 14,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 14,
+                      "column": 24
+                    }
+                  },
+                  "value": "ratingModel",
+                  "rawValue": "ratingModel",
+                  "raw": "'ratingModel'"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 460,
+                  "end": 471,
+                  "loc": {
+                    "start": {
+                      "line": 14,
+                      "column": 26
+                    },
+                    "end": {
+                      "line": 14,
+                      "column": 37
+                    }
+                  },
+                  "name": "ratingModel"
+                }
+              ]
+            },
+            "property": {
+              "type": "Identifier",
+              "start": 476,
+              "end": 485,
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 3
+                },
+                "end": {
+                  "line": 15,
+                  "column": 12
+                }
+              },
+              "name": "directive"
+            },
+            "computed": false
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "start": 486,
+              "end": 498,
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 13
+                },
+                "end": {
+                  "line": 15,
+                  "column": 25
+                }
+              },
+              "value": "starRating",
+              "rawValue": "starRating",
+              "raw": "'starRating'"
+            },
+            {
+              "type": "Identifier",
+              "start": 500,
+              "end": 510,
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 27
+                },
+                "end": {
+                  "line": 15,
+                  "column": 37
+                }
+              },
+              "name": "starRating"
+            }
+          ]
+        },
+        "property": {
+          "type": "Identifier",
+          "start": 515,
+          "end": 519,
+          "loc": {
+            "start": {
+              "line": 16,
+              "column": 3
+            },
+            "end": {
+              "line": 16,
+              "column": 7
+            }
+          },
+          "name": "name"
+        },
+        "computed": false,
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}

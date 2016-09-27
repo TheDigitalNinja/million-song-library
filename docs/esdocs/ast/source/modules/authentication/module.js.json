@@ -1,0 +1,767 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 409,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 12,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 0,
+      "end": 30,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 30
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 7,
+          "end": 14,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
+            },
+            "end": {
+              "line": 1,
+              "column": 14
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 7,
+            "end": 14,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 7
+              },
+              "end": {
+                "line": 1,
+                "column": 14
+              }
+            },
+            "name": "angular"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 20,
+        "end": 29,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 20
+          },
+          "end": {
+            "line": 1,
+            "column": 29
+          }
+        },
+        "value": "angular",
+        "rawValue": "angular",
+        "raw": "'angular'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 31,
+      "end": 76,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 45
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 38,
+          "end": 52,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 21
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 38,
+            "end": 52,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 21
+              }
+            },
+            "name": "angularCookies"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 58,
+        "end": 75,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 27
+          },
+          "end": {
+            "line": 2,
+            "column": 44
+          }
+        },
+        "value": "angular-cookies",
+        "rawValue": "angular-cookies",
+        "raw": "'angular-cookies'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 77,
+      "end": 123,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 46
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 84,
+          "end": 98,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 7
+            },
+            "end": {
+              "line": 3,
+              "column": 21
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 84,
+            "end": 98,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 7
+              },
+              "end": {
+                "line": 3,
+                "column": 21
+              }
+            },
+            "name": "authentication"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 104,
+        "end": 122,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 27
+          },
+          "end": {
+            "line": 3,
+            "column": 45
+          }
+        },
+        "value": "./authentication",
+        "rawValue": "./authentication",
+        "raw": "'./authentication'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 124,
+      "end": 162,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 38
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 131,
+          "end": 141,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 7
+            },
+            "end": {
+              "line": 4,
+              "column": 17
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 131,
+            "end": 141,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 7
+              },
+              "end": {
+                "line": 4,
+                "column": 17
+              }
+            },
+            "name": "authCookie"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 147,
+        "end": 161,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 23
+          },
+          "end": {
+            "line": 4,
+            "column": 37
+          }
+        },
+        "value": "./authCookie",
+        "rawValue": "./authCookie",
+        "raw": "'./authCookie'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 163,
+      "end": 211,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 48
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 170,
+          "end": 178,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 7
+            },
+            "end": {
+              "line": 5,
+              "column": 15
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 170,
+            "end": 178,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 7
+              },
+              "end": {
+                "line": 5,
+                "column": 15
+              }
+            },
+            "name": "password"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 184,
+        "end": 210,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 21
+          },
+          "end": {
+            "line": 5,
+            "column": 47
+          }
+        },
+        "value": "./directives/password.js",
+        "rawValue": "./directives/password.js",
+        "raw": "'./directives/password.js'"
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 213,
+      "end": 408,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 8
+        }
+      },
+      "declaration": {
+        "type": "MemberExpression",
+        "start": 228,
+        "end": 407,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 15
+          },
+          "end": {
+            "line": 11,
+            "column": 7
+          }
+        },
+        "object": {
+          "type": "CallExpression",
+          "start": 228,
+          "end": 399,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 15
+            },
+            "end": {
+              "line": 10,
+              "column": 36
+            }
+          },
+          "callee": {
+            "type": "MemberExpression",
+            "start": 228,
+            "end": 373,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 15
+              },
+              "end": {
+                "line": 10,
+                "column": 10
+              }
+            },
+            "object": {
+              "type": "CallExpression",
+              "start": 228,
+              "end": 362,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 15
+                },
+                "end": {
+                  "line": 9,
+                  "column": 44
+                }
+              },
+              "callee": {
+                "type": "MemberExpression",
+                "start": 228,
+                "end": 328,
+                "loc": {
+                  "start": {
+                    "line": 7,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 10
+                  }
+                },
+                "object": {
+                  "type": "CallExpression",
+                  "start": 228,
+                  "end": 317,
+                  "loc": {
+                    "start": {
+                      "line": 7,
+                      "column": 15
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 34
+                    }
+                  },
+                  "callee": {
+                    "type": "MemberExpression",
+                    "start": 228,
+                    "end": 295,
+                    "loc": {
+                      "start": {
+                        "line": 7,
+                        "column": 15
+                      },
+                      "end": {
+                        "line": 8,
+                        "column": 12
+                      }
+                    },
+                    "object": {
+                      "type": "CallExpression",
+                      "start": 228,
+                      "end": 282,
+                      "loc": {
+                        "start": {
+                          "line": 7,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 7,
+                          "column": 69
+                        }
+                      },
+                      "callee": {
+                        "type": "MemberExpression",
+                        "start": 228,
+                        "end": 242,
+                        "loc": {
+                          "start": {
+                            "line": 7,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 7,
+                            "column": 29
+                          }
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "start": 228,
+                          "end": 235,
+                          "loc": {
+                            "start": {
+                              "line": 7,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 7,
+                              "column": 22
+                            }
+                          },
+                          "name": "angular"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 236,
+                          "end": 242,
+                          "loc": {
+                            "start": {
+                              "line": 7,
+                              "column": 23
+                            },
+                            "end": {
+                              "line": 7,
+                              "column": 29
+                            }
+                          },
+                          "name": "module"
+                        },
+                        "computed": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "Literal",
+                          "start": 243,
+                          "end": 263,
+                          "loc": {
+                            "start": {
+                              "line": 7,
+                              "column": 30
+                            },
+                            "end": {
+                              "line": 7,
+                              "column": 50
+                            }
+                          },
+                          "value": "msl.authentication",
+                          "rawValue": "msl.authentication",
+                          "raw": "'msl.authentication'"
+                        },
+                        {
+                          "type": "ArrayExpression",
+                          "start": 265,
+                          "end": 281,
+                          "loc": {
+                            "start": {
+                              "line": 7,
+                              "column": 52
+                            },
+                            "end": {
+                              "line": 7,
+                              "column": 68
+                            }
+                          },
+                          "elements": [
+                            {
+                              "type": "Identifier",
+                              "start": 266,
+                              "end": 280,
+                              "loc": {
+                                "start": {
+                                  "line": 7,
+                                  "column": 53
+                                },
+                                "end": {
+                                  "line": 7,
+                                  "column": 67
+                                }
+                              },
+                              "name": "angularCookies"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 286,
+                      "end": 295,
+                      "loc": {
+                        "start": {
+                          "line": 8,
+                          "column": 3
+                        },
+                        "end": {
+                          "line": 8,
+                          "column": 12
+                        }
+                      },
+                      "name": "directive"
+                    },
+                    "computed": false
+                  },
+                  "arguments": [
+                    {
+                      "type": "Literal",
+                      "start": 296,
+                      "end": 306,
+                      "loc": {
+                        "start": {
+                          "line": 8,
+                          "column": 13
+                        },
+                        "end": {
+                          "line": 8,
+                          "column": 23
+                        }
+                      },
+                      "value": "password",
+                      "rawValue": "password",
+                      "raw": "'password'"
+                    },
+                    {
+                      "type": "Identifier",
+                      "start": 308,
+                      "end": 316,
+                      "loc": {
+                        "start": {
+                          "line": 8,
+                          "column": 25
+                        },
+                        "end": {
+                          "line": 8,
+                          "column": 33
+                        }
+                      },
+                      "name": "password"
+                    }
+                  ]
+                },
+                "property": {
+                  "type": "Identifier",
+                  "start": 321,
+                  "end": 328,
+                  "loc": {
+                    "start": {
+                      "line": 9,
+                      "column": 3
+                    },
+                    "end": {
+                      "line": 9,
+                      "column": 10
+                    }
+                  },
+                  "name": "factory"
+                },
+                "computed": false
+              },
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "start": 329,
+                  "end": 345,
+                  "loc": {
+                    "start": {
+                      "line": 9,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 9,
+                      "column": 27
+                    }
+                  },
+                  "value": "authentication",
+                  "rawValue": "authentication",
+                  "raw": "'authentication'"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 347,
+                  "end": 361,
+                  "loc": {
+                    "start": {
+                      "line": 9,
+                      "column": 29
+                    },
+                    "end": {
+                      "line": 9,
+                      "column": 43
+                    }
+                  },
+                  "name": "authentication"
+                }
+              ]
+            },
+            "property": {
+              "type": "Identifier",
+              "start": 366,
+              "end": 373,
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 3
+                },
+                "end": {
+                  "line": 10,
+                  "column": 10
+                }
+              },
+              "name": "factory"
+            },
+            "computed": false
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "start": 374,
+              "end": 386,
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 11
+                },
+                "end": {
+                  "line": 10,
+                  "column": 23
+                }
+              },
+              "value": "authCookie",
+              "rawValue": "authCookie",
+              "raw": "'authCookie'"
+            },
+            {
+              "type": "Identifier",
+              "start": 388,
+              "end": 398,
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 25
+                },
+                "end": {
+                  "line": 10,
+                  "column": 35
+                }
+              },
+              "name": "authCookie"
+            }
+          ]
+        },
+        "property": {
+          "type": "Identifier",
+          "start": 403,
+          "end": 407,
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 3
+            },
+            "end": {
+              "line": 11,
+              "column": 7
+            }
+          },
+          "name": "name"
+        },
+        "computed": false,
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}
