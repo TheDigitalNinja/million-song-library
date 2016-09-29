@@ -180,11 +180,24 @@ function buildCassandra {
   fi
 }
 
+function confirmBootstrap {
+  read -p "Ready to bootstrap your dev environment. Continue? [y/n] "
+  if [[ $REPLY =~ [yY](es){0,1}$ ]]
+  then
+    return 0
+  else
+    return 1
+  fi
+}
+
 validateTools
-addHostName
-runGit
-buildMslPages
-buildServer
-buildCassandra
+if confirmBootstrap
+then
+  addHostName
+  runGit
+  buildMslPages
+  buildServer
+  buildCassandra
+fi
 
 exit 0;
