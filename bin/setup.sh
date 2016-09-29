@@ -3,6 +3,7 @@
 RUN_GIT=1
 BUILD_SERVER=1
 BUILD_NODE=1
+SKIP_VALIDATION=1
 
 CURRENT=`pwd`
 PROJECT_PATH=${CURRENT}/..
@@ -23,6 +24,9 @@ while [[ $# > 0 ]]; do
         -n|--node)
         BUILD_NODE=0
         ;;
+        -v|--skip-validation)
+        SKIP_VALIDATION=0
+        ;;
         --default)
         RUN_GIT=0
         BUILD_SERVER=0
@@ -33,6 +37,7 @@ while [[ $# > 0 ]]; do
         echo "-s|--server ................................... build server"
         echo "-g|--git ...................................... update and pull git sources and sub-modules"
         echo "-c <cassandra-path>|--cassandra <path> ........ build cassandra keyspace and load data"
+        echo "-v|--skip-validation .......................... skips validation of required installed software"
         exit 1;
         ;;
     esac
@@ -47,15 +52,16 @@ function error_handler () {
 }
 
 function validateTools {
-  if [[ ${path_to_cassandra} ]]; then
-    sh ${PROJECT_PATH}/bin/provision/validate-requirements.sh -c $path_to_cassandra
-  else
-    sh ${PROJECT_PATH}/bin/provision/validate-requirements.sh
-  fi
+  cd ${PROJECT_PATH}/bin/provision
+  bash basic-dep-setup.sh
 
-  if [[ $? -ne 0 ]]; then
-    exit 1;
+  chmod +x validate-requirements.sh
+  if [[ ${path_to_cassandra} ]]; then
+    bash validate-requirements.sh -c $path_to_cassandra
+  else
+    bash validate-requirements.sh
   fi
+  if [[ $? -ne 0 ]]; then exit 1; fi
 }
 
 ## ADD HOSTNAME ===========================================================
@@ -104,10 +110,21 @@ function buildMslPages {
           bower cache clean
       fi
 
-      sudo npm -g install npm@latest
+      . ~/.nvm/nvm.sh
+      if [[ -d ~/.profile ]]; then . ~/.profile ; fi
+      if [[ -d ~/.bashrc ]]; then . ~/.bashrc ; fi
+      if [[ -d ~/.zshrc ]]; then . ~/.zshrc ; fi
+
+      nvm install v6.0.0
+      error_handler $? "unable to nvm install v6.0.0"
+      nvm alias default v6.0.0
+      error_handler $? "unable to nvm alias default v6.0.0"
+      nvm use default
+      error_handler $? "unable to nvm use default"
+
       sudo npm install -y
       error_handler $? "unable to run npm install "
-      bower install
+      bower install --allow-root
       error_handler $? "unable to run bower install"
 
       # Generate swagger html docs
@@ -180,6 +197,11 @@ function buildCassandra {
   fi
 }
 
+if [[ ${SKIP_VALIDATION} -ne 0 ]]; then
+  echo 'Running validation...'
+  validateTools
+fi
+
 function confirmBootstrap {
   read -p "Ready to bootstrap your dev environment. Continue? [y/n] "
   if [[ $REPLY =~ [yY](es){0,1}$ ]]
@@ -190,7 +212,6 @@ function confirmBootstrap {
   fi
 }
 
-validateTools
 if confirmBootstrap
 then
   addHostName

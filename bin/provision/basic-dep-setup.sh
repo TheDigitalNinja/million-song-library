@@ -46,28 +46,65 @@ function install_maven {
 function install_npm {
     echo "npm Not Found in \$PATH"
     echo "Installing npm..."
-    if [[ ${UNAME_S} =~ Linux* ]] ;
-        then
-            sudo apt-get -y remove --purge node
-            error_handler $? "unable to purge node"
-            curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-            error_handler $? "unable to add nodesource"
-            sudo apt-get install -y nodejs
-            error_handler $? "unable to install nodejs"
-            sudo apt-get install -y build-essential
-            error_handler $? "unable to install build-essential"
-        elif [[ ${UNAME_S} =~ Darwin* ]]
-            then
-                command -v brew >/dev/null && echo "brew Found In \$PATH" || install_homebrew
-                brew update
-                error_handler $? "unable to update brew"
-                brew install node
-                error_handler $? "unable to install node"
-        else
-            echo "Unsupported OS"
-            exit 1;
+    if [[ ${UNAME_S} =~ Linux* ]]; then
+      sudo apt-get -y remove --purge node
+      error_handler $? "unable to purge node"
+      curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+      error_handler $? "unable to add nodesource"
+      sudo apt-get install -y nodejs
+      error_handler $? "unable to install nodejs"
+      sudo apt-get install -y build-essential
+      error_handler $? "unable to install build-essential"
+    elif [[ ${UNAME_S} =~ Darwin* ]]; then
+      command -v brew >/dev/null && echo "brew Found In \$PATH" || install_homebrew
+      brew update
+      error_handler $? "unable to update brew"
+      brew install node
+      error_handler $? "unable to install node"
+    else
+      echo "Unsupported OS"
+      exit 1;
     fi
     echo "Successfully installed npm"
+}
+
+function install_nvm {
+    echo "npm Not Found in \$PATH"
+    echo "Installing npm..."
+    if [[ ${UNAME_S} =~ Linux* ]]; then
+      curl https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
+      error_handler $? "unable to curl nvm"
+      if [[ -d ~/.profile ]]; then
+        echo "source $(brew --prefix nvm)/nvm.sh" >> ~/.profile
+        source ~/.profile
+      fi
+      if [[ -d ~/.bashrc ]]; then
+        echo "source $(brew --prefix nvm)/nvm.sh" >> ~/.bashrc
+        source ~/.bashrc
+      fi
+      if [[ -d ~/.zshrc ]]; then
+        echo "source $(brew --prefix nvm)/nvm.sh" >> ~/.zshrc
+        source ~/.zshrc
+      fi
+      error_handler $? "unable to reload source"
+    elif [[ ${UNAME_S} =~ Darwin* ]]; then
+      brew install nvm
+      error_handler $? "unable to install nvm"
+      if [[ -d ~/.profile ]]; then
+        echo "source $(brew --prefix nvm)/nvm.sh" >> ~/.profile
+        source ~/.profile
+      fi
+      if [[ -d ~/.bashrc ]]; then
+        echo "source $(brew --prefix nvm)/nvm.sh" >> ~/.bashrc
+        source ~/.bashrc
+      fi
+      if [[ -d ~/.zshrc ]]; then
+        echo "source $(brew --prefix nvm)/nvm.sh" >> ~/.zshrc
+        source ~/.zshrc
+      fi
+    fi
+    export NVM_DIR=~/.nvm
+      [ -s "~/.nvm/nvm.sh" ] && . "~/.nvm/nvm.sh"
 }
 
 function install_bower {
@@ -115,6 +152,7 @@ function install_asciidoctor {
 
 command -v mvn >/dev/null && echo "mvn Found In \$PATH" || install_maven
 command -v npm >/dev/null && echo "npm Found In \$PATH" || install_npm
+command -v nvm >/dev/null && echo "nvm Found In \$PATH" || install_nvm
 command -v bower >/dev/null && echo "bower Found In \$PATH" || install_bower
 command -v gem >/dev/null && echo "gem Found In \$PATH" || install_gem
 
