@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+UNAME_S=$(uname -s)
+
 # Verify OS
 while [[ $# > 0 ]]; do
     key="$1"
@@ -17,7 +19,6 @@ shift
 done
 
 function validateOS {
-  UNAME_S=$(uname -s)
   if [[ ${UNAME_S} =~ Linux* ]] ; then
     echo "Linux OS"
   elif [[ ${UNAME_S} =~ Darwin* ]] ; then
@@ -198,16 +199,35 @@ function validateXcode {
    fi
 }
 
-validateXcode
+function verifyNvm {
+  if type -p nvm; then
+      echo found nvm executable in PATH
+  else
+    echo "Please install nvm"
+  fi
+}
+
 validateOS
+if [[ $? -ne 0 ]]; then exit 1; fi
 verifyJava
+if [[ $? -ne 0 ]]; then exit 1; fi
 verifyNode
+if [[ $? -ne 0 ]]; then exit 1; fi
 verifyNpm
+if [[ $? -ne 0 ]]; then exit 1; fi
+verifyNvm
+if [[ $? -ne 0 ]]; then exit 1; fi
 verifyMaven
+if [[ $? -ne 0 ]]; then exit 1; fi
+
+if [[ ${UNAME_S} =~ Darwin* ]] ; then
+  validateXcode
+  if [[ $? -ne 0 ]]; then exit 1; fi
+fi
 
 if [[ ${path_to_cassandra} ]]; then
   verifyCassandra
+  if [[ $? -ne 0 ]]; then exit 1; fi
 fi
-
 
 exit 0;

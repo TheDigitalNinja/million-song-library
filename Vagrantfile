@@ -13,7 +13,6 @@ Vagrant.configure(2) do |config|
     config.vm.provision "shell", path: "./bin/provision/git-setup.sh" , privileged: false
     config.vm.provision "shell", path: "./bin/provision/java-setup.sh", privileged: false
     config.vm.provision "shell", path: "./bin/provision/cassandra-setup.sh" , privileged: false
-    config.vm.provision "shell", path: "./bin/provision/basic-dep-setup.sh" , privileged: false
 
     if autoSetup
       config.vm.provision "shell", path: "./bin/provision/auto-setup.sh", privileged: false
