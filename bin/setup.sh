@@ -268,4 +268,6 @@ function init {
   fi
 }
 
+init
+
 exit 0;

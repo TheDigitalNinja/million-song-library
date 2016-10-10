@@ -2,6 +2,7 @@
 
 PURPLE='\033[0;35m'
 RED='\033[0;31m'
+GREEN='\033[1;36m'
 NC='\033[0m' # no color
 
 CASSANDRA=0
@@ -40,24 +41,26 @@ shift
 done
 
 function updateHostFile {
-  cat /etc/hosts | grep 'msl.kenzanlabs.com'
-  if [[ $? -eq 0 ]]; then
-    echo "Please update /etc/hosts file with $(docker-machine ip dev) msl.kenzanlabs.com"
-  else
+  matches=$(cat /etc/hosts | grep -c 'msl.kenzanlabs.com')
+  if [[ ${matches} -gt 1 ]]; then
+    echo -e "${GREEN}\nPlease update /etc/hosts file with $(docker-machine ip dev) msl.kenzanlabs.com\n${NC}"
+  elif [[  ${matches} -eq 1 ]]; then
+    echo -e "\n${PURPLE}Attempting to edit host file${NC}\n"
+    sed -i.bak -e 's/([0-9]{1,3}.?){4}\s+msl.kenzanlabs.com/$(docker-machine ip dev)  msl.kenzanlabs.com/g' /etc/hosts
+  elif [[  ${matches} -eq 0 ]]; then
     echo -e "\n${PURPLE}Attempting to edit host file${NC}\n"
     sudo echo "$(docker-machine ip dev) msl.kenzanlabs.com" >> /etc/hosts
   fi
 }
 
-
 function progressAnimation {
   timeout=$1
+  message=$2
   spin='-\|/'
   i=0
   while [[ ${timeout} -gt 0 ]]; do
     i=$(( (i+1) %4 ))
-    asterisc="${spin:$i:1}"
-    printf "\r${asterisc}${asterisc}"
+    printf "\r${message} ................... [${spin:$i:1}]"
     timeout=$((timeout - 1))
     sleep 1s
   done
@@ -108,9 +111,8 @@ function cassandraSetup {
   RETRIES=0
   docker exec -it msl-cassandra bash setup.sh -y -v -c $(which cassandra)
   while [[ $? -ne 0 && ${RETRIES} -lt 5 ]]; do
-    progressAnimation 10
+    progressAnimation 10 "Attempting to load csv files"
     RETRIES=$((RETRIES + 1))
-    echo -e "\n${PURPLE}ATTEMPT=${RETRIES}${NC}"
     docker exec -it msl-cassandra bash setup.sh -y -v -c $(which cassandra)
   done
   if [[ $? -ne 0 ]]; then echo -e "\n${RED}Error: unable to load csv data into DB${NC}" && exit 1; fi
@@ -155,11 +157,11 @@ function setupServer {
      msl-node-server \
      bash -c "bash npm rebuild node-sass && npm run deploy"
 
-  progressAnimation 25
+  progressAnimation 30 "Starting FE and BE, please wait"
 
   # Start servers
   echo -e "\n${PURPLE}Starting Servers${NC}"
-  docker exec -it msl-node-server  npm run serve-all
+  docker exec -it msl-node-server npm run serve-all
 
 }
 
