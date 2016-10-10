@@ -87,12 +87,10 @@ function verifyNode {
   if [[ "$_node" ]]; then
       version=$("$_node" --version)
       echo nodejs version "$version"
-      if [[ "${version:1:1}" -gt "0" && "${version:3:1}" -ge "0" ]]; then
-          echo "nodejs version is more than 0.12"
-      elif [[ "${version:1:1}" -eq "0" && "${version:3:2}" -ge "12"  ]]; then
-          echo "nodejs version is greater than 0.12"
+      if [[ "${version:1:1}" -eq "4" && "${version:3:1}" -eq "0" ]]; then
+          echo "nodejs version is v4.0.x"
       else
-          echo "nodejs version is less than 0.12"
+          echo "nodejs version is not v4.0.x"
           exit 1;
       fi
   fi
@@ -204,6 +202,7 @@ function verifyNvm {
       echo found nvm executable in PATH
   else
     echo "Please install nvm"
+    exit 1;
   fi
 }
 

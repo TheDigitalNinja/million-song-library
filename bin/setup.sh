@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 RUN_GIT=1
+ADD_HOST=1
 BUILD_SERVER=1
 BUILD_NODE=1
 SKIP_VALIDATION=1
@@ -26,6 +27,9 @@ while [[ $# > 0 ]]; do
         -g|--git)
         RUN_GIT=0
         ;;
+        -h|--host)
+        ADD_HOST=0
+        ;;
         -s|--server)
         BUILD_SERVER=0
         ;;
@@ -49,6 +53,7 @@ while [[ $# > 0 ]]; do
         echo -e "${GREEN}-g|--git ...................................... update and pull git sources and sub-modules"
         echo -e "${GREEN}-c <cassandra-path>|--cassandra <path> ........ build cassandra keyspace and load data"
         echo -e "${GREEN}-v|--skip-validation .......................... skips validation of required installed software"
+        echo -e "${GREEN}-h|--host ..................................... add host to /etc/hosts"
         echo -e "${GREEN}-y|--auto-yes....... .......................... automatically accepts bootstrapping${NC}"
         exit 1;
         ;;
@@ -66,8 +71,6 @@ function error_handler () {
 function validateTools {
   echo -e "\n\n${GREEN} RUNNING TOOL VALIDATOR... ${NC}\n\n"
   cd ${PROJECT_PATH}/bin/provision
-  bash basic-dep-setup.sh
-
   chmod +x validate-requirements.sh
   if [[ ${path_to_cassandra} ]]; then
     bash validate-requirements.sh -c $path_to_cassandra
@@ -82,14 +85,17 @@ function validateTools {
 
 function addHostName {
   echo -e "\n\n${GREEN} ADDING HOST NAME... ${NC}\n\n"
-  ping -c 1 msl.kenzanlabs.com
+  if [[ ${ADD_HOST} -eq 0 ]]; then
+    echo -e "\n\n${GREEN} ADDING HOST NAME... ${NC}"
+    grep 'msl.kenzanlabs.com' -q /etc/hosts && FOUND=1 || FOUND=0
 
-  if [[ $? -ne 0 ]]; then
-      echo -e "\n${PURPLE}Your HOST file is being modified${NC}\n"
+    if [[ $FOUND -eq 0 ]]; then
+      echo -e "\n${PURPLE}Your HOST file is being modified${NC}"
       echo "0.0.0.0 msl.kenzanlabs.com" | sudo tee -a  /etc/hosts
       error_handler $? "unable to add msl.kenzanlabs.com to /etc/hosts file"
-      echo -e "\n${ORANGE} COMPLETED ADDING HOST NAME ${NC}\n"
+      echo -e "\n${ORANGE} COMPLETED ADDING HOST NAME ${NC}"
       else echo -e "\n${GRAY}msl.kenzanlabs.com already part of /etc/hosts${NC}"
+    fi
   fi
 }
 
@@ -126,10 +132,10 @@ function buildMslPages {
           bower cache clean
       fi
 
-      . ~/.nvm/nvm.sh
-      if [[ -d ~/.profile ]]; then . ~/.profile ; fi
-      if [[ -d ~/.bashrc ]]; then . ~/.bashrc ; fi
-      if [[ -d ~/.zshrc ]]; then . ~/.zshrc ; fi
+      if [[ -f ~/.nvm/nvm.sh ]]; then . ~/.nvm/nvm.sh ; fi
+      if [[ -f ~/.bashrc ]]; then . ~/.bashrc ; fi
+      if [[ -f ~/.profile ]]; then . ~/.profile ; fi
+      if [[ -f ~/.zshrc ]]; then . ~/.zshrc ; fi
 
       nvm install v6.0.0
       error_handler $? "unable to nvm install v6.0.0"
@@ -138,13 +144,13 @@ function buildMslPages {
       nvm use default
       error_handler $? "unable to nvm use default"
 
-      sudo npm install -y
+      npm install -y
       error_handler $? "unable to run npm install "
       bower install --allow-root
       error_handler $? "unable to run bower install"
 
       # Generate swagger html docs
-      sudo npm run generate-swagger-html
+      npm run generate-swagger-html
 
       sudo npm install webpack -g
       error_handler $? "unable to install webpack"
@@ -177,49 +183,54 @@ function buildServer {
 ## ========================================================================
 
 function buildCassandra {
-  if [[ ${path_to_cassandra} ]]
-    then
-        echo -e "\n\n${GREEN} SETTING UP CASSANDRA DB... ${NC}\n\n"
-        if [[ ! -d "${path_to_cassandra}/bin" ]]; then
-          if [[ ! -d "${path_to_cassandra}bin" ]]; then
-            echo -e  "\n${RED}Wrong cassandra directory provided${NC}"
-            exit 1
-          else
-            CASSANDRA_BIN="${path_to_cassandra}bin";
-          fi
-        else
-          CASSANDRA_BIN="${path_to_cassandra}/bin"
-        fi
+  echo -e "\n\n${GREEN} SETTING UP CASSANDRA DB... ${NC}"
 
-        cd ${PROJECT_PATH}/tools/cassandra
+  cd ${PROJECT_PATH}/tools/cassandra
+  if type -p cassandra; then
+    echo found cassandra executable in PATH
+    cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+    # Attempts 3 times to start cassandra and load ddl
+    COUNT=0
+    if [[ $? -ne 0 && ${COUNT} -lt 3 ]]; then
+        cassandra -R >> /dev/null;
+        sleep 40s
+        COUNT=$((COUNT + 1))
+        cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+    fi
+    error_handler $? "unable to run cqlsh -> msl_ddl_lates.cql. Check if cassandra is running and run sudo ./setup.sh -c ${path_to_cassandra}"
 
-        ${CASSANDRA_BIN}/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+    cqlsh -e "SOURCE 'msl_dat_latest.cql';";
+    error_handler $? "unable to run cqlsh -> msl_dat_lates.cql"
 
-        if [[ $? -ne 0 ]]; then
-            ${CASSANDRA_BIN}/cassandra >> /dev/null;
-            sleep 30s
-            ${CASSANDRA_BIN}/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
-            while [[ $? -ne 0 ]]; do
-                sleep 30s
-                ${CASSANDRA_BIN}/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
-            done
-        fi
-        error_handler $? "unable to run cqlsh -> msl_ddl_lates.cql. Check if cassandra is running and run sudo ./setup.sh -c ${path_to_cassandra}"
-
-        ${CASSANDRA_BIN}/cqlsh -e "SOURCE 'msl_dat_latest.cql';";
-        error_handler $? "unable to run cqlsh -> msl_dat_lates.cql"
-        echo -e  "\n${ORANGE} DONE SETTING UP CASSANDRA ${NC}\n"
+    echo -e "\n${ORANGE} DONE SETTING UP CASSANDRA ${NC}"
+  elif [[ ${path_to_cassandra} ]]; then
+    if [[ -d "${path_to_cassandra}/bin" ]]; then
+      CASSANDRA_BIN="${path_to_cassandra}/bin";
+    elif [[ -d "${path_to_cassandra}bin" ]]; then
+      CASSANDRA_BIN="${path_to_cassandra}bin";
     else
-        echo -e "\n\n${GRAY}NO CASSANDRA FOLDER PROVIDED${NC}"
-        echo -e "${GRAY}SKIPPING CASSANDRA SETUP${NC}"
-        echo -e "${GRAY}See about downloading it in: https://downloads.datastax.com/community/${NC}"
-        echo -e "${GRAY}Suggested version: dsc-cassandra-2.1.11${NC}"
+      echo -e  "\n${RED}Wrong cassandra directory provided${NC}"
+      exit 1
+    fi
+
+    ${CASSANDRA_BIN}/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+    if [[ $? -ne 0 ]]; then
+        ${CASSANDRA_BIN}/cassandra >> /dev/null;
+        sleep 30s
+        ${CASSANDRA_BIN}/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+    fi
+    error_handler $? "unable to run cqlsh -> msl_ddl_lates.cql. Check if cassandra is running and run sudo ./setup.sh -c ${path_to_cassandra}"
+
+    ${CASSANDRA_BIN}/cqlsh -e "SOURCE 'msl_dat_latest.cql';";
+    error_handler $? "unable to run cqlsh -> msl_dat_lates.cql"
+    echo -e "\n${ORANGE} DONE SETTING UP CASSANDRA ${NC}"
+  else
+    echo -e "\n\n${GRAY}NO CASSANDRA FOLDER PROVIDED${NC}"
+    echo -e "${GRAY}SKIPPING CASSANDRA SETUP${NC}"
+    echo -e "${GRAY}See about downloading it in: https://downloads.datastax.com/community/${NC}"
+    echo -e "${GRAY}Suggested version: dsc-cassandra-2.1.11${NC}"
   fi
 }
-
-if [[ ${SKIP_VALIDATION} -ne 0 ]]; then
-  validateTools
-fi
 
 function bootstrap () {
   echo -e "\n\n${GREEN} BOOTSTRAPPING... ${NC}\n\n"
@@ -243,10 +254,16 @@ function confirmBootstrap {
   fi
 }
 
-if [[ AUTO_YES -eq 0 ]]; then
-  bootstrap
-elif confirmBootstrap ; then
-  bootstrap
-fi
+function init {
+  if [[ ${SKIP_VALIDATION} -ne 0 ]]; then
+    validateTools
+  fi
+
+  if [[ AUTO_YES -eq 0 ]]; then
+    bootstrap
+  elif confirmBootstrap ; then
+    bootstrap
+  fi
+}
 
 exit 0;
