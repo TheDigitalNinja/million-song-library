@@ -188,9 +188,9 @@ function buildCassandra {
   cd ${PROJECT_PATH}/tools/cassandra
   if type -p cassandra; then
     echo found cassandra executable in PATH
-    cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
-    # Attempts 3 times to start cassandra and load ddl
     COUNT=0
+    # Attempts 3 times to start cassandra and load ddl
+    cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
     if [[ $? -ne 0 && ${COUNT} -lt 3 ]]; then
         cassandra -R >> /dev/null;
         sleep 40s
@@ -213,10 +213,12 @@ function buildCassandra {
       exit 1
     fi
 
+    COUNT=0
     ${CASSANDRA_BIN}/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
-    if [[ $? -ne 0 ]]; then
+    if [[ $? -ne 0 && ${COUNT} -lt 3 ]]; then
         ${CASSANDRA_BIN}/cassandra >> /dev/null;
         sleep 30s
+        COUNT=$((COUNT + 1))
         ${CASSANDRA_BIN}/cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
     fi
     error_handler $? "unable to run cqlsh -> msl_ddl_lates.cql. Check if cassandra is running and run sudo ./setup.sh -c ${path_to_cassandra}"
