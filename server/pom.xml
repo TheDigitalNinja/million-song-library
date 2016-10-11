@@ -42,107 +42,6 @@
                         </configuration>
                     </execution>
 
-                    <!-- BUILD DATA-CLIENTS -->
-                    <execution>
-                        <id>package account-data-client</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-clean</phase>
-                        <configuration>
-                            <executable>mvn</executable>
-                            <workingDirectory>msl-account-data-client</workingDirectory>
-                            <arguments>
-                                <argument>clean</argument>
-                                <argument>package</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>package catalog-data-client</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-clean</phase>
-                        <configuration>
-                            <executable>mvn</executable>
-                            <workingDirectory>msl-catalog-data-client</workingDirectory>
-                            <arguments>
-                                <argument>clean</argument>
-                                <argument>package</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>package ratings-data-client</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-clean</phase>
-                        <configuration>
-                            <executable>mvn</executable>
-                            <workingDirectory>msl-ratings-data-client</workingDirectory>
-                            <arguments>
-                                <argument>clean</argument>
-                                <argument>package</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-
-                    <!-- INSTALL DATA-CLIENTS -->
-                    <execution>
-                        <id>install account-data-client</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>clean</phase>
-                        <configuration>
-                            <executable>mvn</executable>
-                            <workingDirectory>msl-account-data-client</workingDirectory>
-                            <arguments>
-                                <argument>-P</argument>
-                                <argument>install</argument>
-                                <argument>compile</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>install catalog-data-client</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>clean</phase>
-                        <configuration>
-                            <executable>mvn</executable>
-                            <workingDirectory>msl-catalog-data-client</workingDirectory>
-                            <arguments>
-                                <argument>-P</argument>
-                                <argument>install</argument>
-                                <argument>compile</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>install ratings-data-client</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>clean</phase>
-                        <configuration>
-                            <executable>mvn</executable>
-                            <workingDirectory>msl-ratings-data-client</workingDirectory>
-                            <arguments>
-                                <argument>-P</argument>
-                                <argument>install</argument>
-                                <argument>compile</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-
                     <!-- GENERATE SWAGGER CODEGEN ON EDGE SERVICES -->
                     <execution>
                         <id>gen swagger on account-edge</id>
@@ -158,6 +57,7 @@
                                 <argument>build</argument>
                                 <argument>clean</argument>
                                 <argument>generate-sources</argument>
+                                <argument>package</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -176,6 +76,7 @@
                                 <argument>build</argument>
                                 <argument>clean</argument>
                                 <argument>generate-sources</argument>
+                                <argument>package</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -194,6 +95,7 @@
                                 <argument>build</argument>
                                 <argument>clean</argument>
                                 <argument>generate-sources</argument>
+                                <argument>package</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -212,74 +114,6 @@
                                 <argument>build</argument>
                                 <argument>clean</argument>
                                 <argument>generate-sources</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-
-                    <!-- PACKAGE EDGE SERVICES -->
-                    <execution>
-                        <id>package account-edge</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <executable>mvn</executable>
-                            <workingDirectory>msl-account-edge</workingDirectory>
-                            <arguments>
-                                <argument>-P</argument>
-                                <argument>no-tests</argument>
-                                <argument>package</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>package catalog-edge</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <executable>mvn</executable>
-                            <workingDirectory>msl-catalog-edge</workingDirectory>
-                            <arguments>
-                                <argument>-P</argument>
-                                <argument>no-tests</argument>
-                                <argument>package</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>package login-edge</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <executable>mvn</executable>
-                            <workingDirectory>msl-login-edge</workingDirectory>
-                            <arguments>
-                                <argument>-P</argument>
-                                <argument>no-tests</argument>
-                                <argument>package</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>package ratings-edge</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <executable>mvn</executable>
-                            <workingDirectory>msl-ratings-edge</workingDirectory>
-                            <arguments>
-                                <argument>-P</argument>
-                                <argument>no-tests</argument>
                                 <argument>package</argument>
                             </arguments>
                         </configuration>

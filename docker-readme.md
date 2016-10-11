@@ -8,10 +8,15 @@ Options:
 
 ```
 -c|--cassandra ................................... build only cassandra image and container
--s|--server ...................................... build only server image and container
 -m|--machine ...................................... docker machine startup (skipped by default)
 -d|--default ...................................... build everything
+-s|--server|-n|--node ...................................... build only server image and container 
 ```
+
+>**NOTE** Once script is done one can view the logs to verify everything went well by typing
+`docker exec -it msl-node-server bash -c "tail -f deploy_log"` 
+and in a different terminal 
+`docker exec -it msl-node-server bash -c "tail -f serve_all_log"`
 
 # MANUAL SETUP
 
@@ -41,7 +46,8 @@ Options:
 
 3. Upload data into db running container
 
-`docker exec -it msl-cassandra bash setup.sh -y -v -c $(which cassandra)`
+`docker exec -it msl-cassandra cqlsh -e "SOURCE 'msl_ddl_latest.cql';";`
+`docker exec -it msl-cassandra cqlsh -e "SOURCE 'msl_dat_latest.cql';";`
 
 
 ## SERVER

@@ -10,46 +10,52 @@ BUILD_SERVER=0
 START_DOCKER_MACHINE=1
 
 while [[ $# > 0 ]]; do
-    key="$1"
-    case $key in
-        -c|--cassandra)
-        BUILD_SERVER=1
-        CASSANDRA=0
-        ;;
-        -m|--machine)
-        START_DOCKER_MACHINE=0
-        ;;
-        -s|--server)
-        CASSANDRA=1
-        BUILD_SERVER=0
-        ;;
-        \0|-d|--default)
-        CASSANDRA=0
-        BUILD_SERVER=0
-        START_DOCKER_MACHINE=1
-        ;;
-        *)
-        echo -e "\n\n${GREEN}No valid params provided";
-        echo -e "${GREEN}-c|--cassandra ................................... build only cassandra image and container "
-        echo -e "${GREEN}-s|--server ...................................... build only server image and container "
-        echo -e "${GREEN}-m|--machine ...................................... docker machine startup (skipped by default) "
-        echo -e "${GREEN}-d|--default ...................................... build everything${NC}"
-        exit 1;
-        ;;
-    esac
+  key="$1"
+  case $key in
+    -c|--cassandra)
+    BUILD_SERVER=1
+    CASSANDRA=0
+    ;;
+    -m|--machine)
+    START_DOCKER_MACHINE=0
+    ;;
+    -s|-n|--server|--node)
+    CASSANDRA=1
+    BUILD_SERVER=0
+    ;;
+    \0|-d|--default)
+    CASSANDRA=0
+    BUILD_SERVER=0
+    START_DOCKER_MACHINE=1
+    ;;
+    *)
+    echo -e "${GREEN}No valid params provided";
+    echo -e "${GREEN}-c|--cassandra ................................... build only cassandra image and container "
+    echo -e "${GREEN}-m|--machine ...................................... docker machine startup (skipped by default) "
+    echo -e "${GREEN}-d|--default ...................................... build everything${NC}"
+    echo -e "${GREEN}-s|--server|-n|--node ...................................... build only server image and container "
+    exit 1;
+    ;;
+  esac
 shift
 done
 
 function updateHostFile {
-  matches=$(cat /etc/hosts | grep -c 'msl.kenzanlabs.com')
-  if [[ ${matches} -gt 1 ]]; then
-    echo -e "${GREEN}\nPlease update /etc/hosts file with $(docker-machine ip dev) msl.kenzanlabs.com\n${NC}"
-  elif [[  ${matches} -eq 1 ]]; then
-    echo -e "\n${PURPLE}Attempting to edit host file${NC}\n"
-    sed -i.bak -e 's/([0-9]{1,3}.?){4}\s+msl.kenzanlabs.com/$(docker-machine ip dev)  msl.kenzanlabs.com/g' /etc/hosts
-  elif [[  ${matches} -eq 0 ]]; then
-    echo -e "\n${PURPLE}Attempting to edit host file${NC}\n"
-    sudo echo "$(docker-machine ip dev) msl.kenzanlabs.com" >> /etc/hosts
+  cat /etc/hosts | grep -E "\b$(docker-machine ip dev)\s+msl.kenzanlabs.com\b"
+  if [[ $? -ne 0 ]]; then
+    matches=$(cat /etc/hosts | grep -c 'msl.kenzanlabs.com')
+    if [[ ${matches} -gt 1 ]]; then
+      echo -e "${GREEN}\nPlease update /etc/hosts file with $(docker-machine ip dev) msl.kenzanlabs.com\n${NC}"
+    elif [[  ${matches} -eq 1 ]]; then
+      echo -e "\n${PURPLE}Attempting to edit host file${NC}\n"
+      echo -e "\n${PURPLE}Creating .bak file${NC}\n"
+      sudo sed -i.bak -E "s/^([[:digit:]]{1,3}.?){4}\s+msl.kenzanlabs.com/$(docker-machine ip dev)  msl.kenzanlabs.com/g" /etc/hosts
+    elif [[  ${matches} -eq 0 ]]; then
+      echo -e "\n${PURPLE}Attempting to edit host file${NC}\n"
+      sudo echo "$(docker-machine ip dev) msl.kenzanlabs.com" >> /etc/hosts
+    fi
+  else
+    echo -e "\n${PURPLE}host is already part of /etc/hosts${NC}"
   fi
 }
 
@@ -109,12 +115,15 @@ function cassandraSetup {
   # Start data upload
   echo -e "\n${PURPLE}Uploading csv data into msl/cassandra container${NC}"
   RETRIES=0
-  docker exec -it msl-cassandra bash setup.sh -y -v -c $(which cassandra)
+  docker exec -it msl-cassandra cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
   while [[ $? -ne 0 && ${RETRIES} -lt 5 ]]; do
     progressAnimation 10 "Attempting to load csv files"
+    echo -e "\n"
     RETRIES=$((RETRIES + 1))
-    docker exec -it msl-cassandra bash setup.sh -y -v -c $(which cassandra)
+    docker exec -it msl-cassandra cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
   done
+  if [[ $? -ne 0 ]]; then echo -e "\n${RED}Error: unable to load csv data into DB${NC}" && exit 1; fi
+  docker exec -it msl-cassandra cqlsh -e "SOURCE 'msl_dat_latest.cql';";
   if [[ $? -ne 0 ]]; then echo -e "\n${RED}Error: unable to load csv data into DB${NC}" && exit 1; fi
 }
 
@@ -150,35 +159,28 @@ function setupServer {
         --entrypoint=/bin/bash \
         msl/node-server                       #image to run
 
-  # Start FE
-  echo -e "\n${PURPLE}Starting Server and View${NC}"
-  docker exec \
-     -d \
-     msl-node-server \
-     bash -c "bash npm rebuild node-sass && npm run deploy"
+  # Start MSL
+  docker exec -d msl-node-server \
+    bash -c "bash ../bin/setup.sh -h -y -v && npm rebuild node-sass && npm run deploy"
 
-  progressAnimation 30 "Starting FE and BE, please wait"
+  echo -e "\n" && progressAnimation 60 "Starting msl.kenzanlabs.com"
 
-  # Start servers
-  echo -e "\n${PURPLE}Starting Servers${NC}"
-  docker exec -it msl-node-server npm run serve-all
+  docker exec -d msl-node-server \
+    bash -c "npm run serve-all >> serve_all_log"
 
+  echo -e "\n" && progressAnimation 120 "Starting up edge services"
+  echo -e "\nAll set, go to ${GREEN}http://msl.kenzanlabs.com:3000${NC}"
 }
 
 function init {
-
   cd ..
-
   updateHostFile
-
   if [[ ${START_DOCKER_MACHINE} -eq 0 ]]; then
     startUpDockerMachine
   fi
-
   if [[ ${CASSANDRA} -eq 0 ]]; then
     cassandraSetup
   fi
-
   if [[ ${BUILD_SERVER} -eq 0 ]]; then
     setupServer
   fi

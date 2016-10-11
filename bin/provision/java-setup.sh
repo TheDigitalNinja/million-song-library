@@ -19,7 +19,6 @@ function install_homebrew {
 
 if [[ ${UNAME_S} =~ Linux* ]]; then
     sudo apt-get -y update
-    sudo apt-get -y upgrade;
     sudo apt-get install -y software-properties-common python-software-properties
     echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
     sudo add-apt-repository ppa:webupd8team/java -y

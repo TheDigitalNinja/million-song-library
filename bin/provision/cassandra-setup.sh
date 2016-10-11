@@ -4,7 +4,7 @@ ORANGE='\033[0;33m'
 PURPLE='\033[0;35m'
 NC='\033[0m' # no color
 
-echo -e "\n\n${PURPLE}INSTALLING CASSANDRA.......................${NC}"
+echo -e "\n${PURPLE}INSTALLING CASSANDRA.......................${NC}"
 
 cassandra_proc >> /dev/null
 if [[ $? -ne 0 ]]; then echo "alias cassandra_proc='ps -ax | grep cassandra'" >> ~/.profile; fi
