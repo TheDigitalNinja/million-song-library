@@ -56,22 +56,9 @@ function verifyGit {
 function verifyNpm {
   if type -p npm; then
       echo found npm executable in PATH
-      _npm=npm
   else
       echo "Please install npm 2.7.x or greater"
       exit 1;
-  fi
-
-  if [[ "$_npm" ]]; then
-      version=$("$_npm" --version)
-      echo npm version found "$version"
-      version=(`echo $version | tr '.' ' '`)
-      if [[ "${version[0]}" -gt "2" ]] || [[ "${version[0]}" -eq "2" && "${version[1]}" -ge "7" ]]; then
-          echo "npm version is greater than 2.7"
-      else
-          echo "npm version is less than 2.7"
-          exit 1;
-      fi
   fi
 }
 
