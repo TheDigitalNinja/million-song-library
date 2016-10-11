@@ -4,6 +4,9 @@ Use `docker-setup.sh` under `/bin`
 
 `bash docker-setup.sh`
 
+>**NOTE** If terminal isn't hooked to docker-machine use the -m option otherwise see manual setup "Hook up terminal to docker machine and then run the script" 
+`bash docker-setup.sh -m`
+
 Options:
 
 ```
@@ -17,6 +20,7 @@ Options:
 `docker exec -it msl-node-server bash -c "tail -f deploy_log"` 
 and in a different terminal 
 `docker exec -it msl-node-server bash -c "tail -f serve_all_log"`
+
 
 # MANUAL SETUP
 
