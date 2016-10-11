@@ -31,8 +31,11 @@ To run setup:
 
    - `-s | --server` builds the server
    - `-g | --git` updates and pull Git sources and sub-modules
+   - `-h | --host` updates /etc/hosts file with msl.kenzanlab.com mapping
+   - `-v | --skip-validation` updates Node and Bower resources
    - `-n | --node` updates Node and Bower resources
    - `-c cassandra-path | --cassandra path` builds the Cassandra keyspace and loads data (Cassandra must be running)
+   - `-y | --auto-yes ` defaults a 'Yes' response
    - `--default` runs everything except Cassandra
    - *For example:* `sudo ./setup.sh -c ~/cassandra/dsc-cassandra-2.1.11 -n -s -g`
 
