@@ -65,21 +65,9 @@ function verifyNpm {
 function verifyNode {
   if type -p node; then
       echo found nodejs executable in PATH
-      _node=node
   else
       echo "Please install nodejs version 0.12.x or greater"
       exit 1;
-  fi
-
-  if [[ "$_node" ]]; then
-      version=$("$_node" --version)
-      echo nodejs version "$version"
-      if [[ "${version:1:1}" -eq "4" && "${version:3:1}" -eq "0" ]]; then
-          echo "nodejs version is v4.0.x"
-      else
-          echo "nodejs version is not v4.0.x"
-          exit 1;
-      fi
   fi
 }
 
@@ -185,6 +173,11 @@ function validateXcode {
 }
 
 function verifyNvm {
+  if [[ -f ~/.nvm/nvm.sh ]]; then . ~/.nvm/nvm.sh ; fi
+  if [[ -f ~/.bashrc ]]; then . ~/.bashrc ; fi
+  if [[ -f ~/.profile ]]; then . ~/.profile ; fi
+  if [[ -f ~/.zshrc ]]; then . ~/.zshrc ; fi
+
   if type -p nvm; then
       echo found nvm executable in PATH
   else
