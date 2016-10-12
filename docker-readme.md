@@ -11,6 +11,7 @@ Options:
 
 ```
 -c|--cassandra ................................... build only cassandra image and container
+-b|--build ................................... build images. Absence of this param will default to pull images from dockerhub
 -m|--machine ...................................... docker machine startup (skipped by default)
 -d|--default ...................................... build everything
 -s|--server|-n|--node ...................................... build only server image and container 
