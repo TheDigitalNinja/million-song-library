@@ -216,14 +216,26 @@ function runContainer {
 
       # Start MSL
       docker exec -d ${SERVER_CONTAINER_NAME} \
+        bash -c "npm run catalog-edge-server >> catalog_edge_log"
+      echo -e "\n" && progressAnimation 5 "Starting up catalog edge"
+
+      docker exec -d ${SERVER_CONTAINER_NAME} \
+        bash -c "npm run account-edge-server >> account_edge_log"
+      echo -e "\n" && progressAnimation 5 "Starting up account edge"
+
+      docker exec -d ${SERVER_CONTAINER_NAME} \
+        bash -c "npm run login-edge-server >> login_edge_log"
+      echo -e "\n" && progressAnimation 7 "Starting up login edge"
+
+      docker exec -d ${SERVER_CONTAINER_NAME} \
+        bash -c "npm run ratings-edge-server >> ratings_edge_log"
+      echo -e "\n" && progressAnimation 7 "Starting up ratings edge"
+
+      docker exec -d ${SERVER_CONTAINER_NAME} \
         bash -c "bash ../bin/setup.sh -h -y -v && npm rebuild node-sass && npm run deploy"
 
       echo -e "\n" && progressAnimation 120 "Starting msl.kenzanlabs.com"
 
-      docker exec -d ${SERVER_CONTAINER_NAME} \
-        bash -c "npm run serve-all >> serve_all_log"
-
-      echo -e "\n" && progressAnimation 30 "Starting up edge services"
       echo -e "\nAll set, go to ${GREEN}http://msl.kenzanlabs.com:3000${NC}"
     fi
 
