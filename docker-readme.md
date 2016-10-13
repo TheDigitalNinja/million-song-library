@@ -10,11 +10,12 @@ Use `docker-setup.sh` under `/bin`
 Options:
 
 ```
+-r|--run ......................................... start up containers - off by default
 -c|--cassandra ................................... build only cassandra image and container
--b|--build ................................... build images. Absence of this param will default to pull images from dockerhub
--m|--machine ...................................... docker machine startup (skipped by default)
--d|--default ...................................... build everything
--s|--server|-n|--node ...................................... build only server image and container 
+-m|--machine ..................................... docker machine startup (skipped by default)
+-d|--default ..................................... build everything
+-s|--server|-n|--node ............................ build only server image and container 
+-b|--build ....................................... build images. Default will attempt to pull images from dockerhub
 ```
 
 >**NOTE** Once script is done one can view the logs to verify everything went well by typing
