@@ -130,14 +130,14 @@ function startUpDockerMachine {
 function cassandraSetup {
   if [[ ${CASSANDRA} -eq 0 ]]; then
     # Create the image
-    docker images | grep 'msl/cassandra'
+    docker images | grep "${CASSANDRA_IMAGE_TAG}"
     if [[ $? -eq 0 ]]; then
-      echo -e "\n${PURPLE}msl/cassandra image exists${NC}"
+      echo -e "\n${PURPLE}${CASSANDRA_IMAGE_TAG} image exists${NC}"
     elif [[ ${BUILD_IMAGES} -eq 0 ]]; then
-      echo -e "\n${PURPLE}Building msl/cassandra image${NC}"
+      echo -e "\n${PURPLE}Building ${CASSANDRA_IMAGE_TAG} image${NC}"
       docker build -t ${CASSANDRA_IMAGE_TAG} -f cassandra.dockerfile .
     else
-      echo -e "\n${PURPLE}Pulling anram88/msl-cassandra image${NC}"
+      echo -e "\n${PURPLE}Pulling ${CASSANDRA_IMAGE_TAG} image${NC}"
       docker pull ${CASSANDRA_IMAGE_TAG}
     fi
   fi
@@ -147,16 +147,16 @@ function cassandraSetup {
 function setupServer {
   if [[ ${BUILD_SERVER} -eq 0 ]]; then
     # Create the image
-    docker images | grep 'msl/node-server'
+    docker images | grep "${SERVER_IMAGE_TAG}"
     if [[ $? -eq 0 ]]; then
-      echo -e "\n${PURPLE}msl/node-server image already exists${NC}"
+      echo -e "\n${PURPLE}${SERVER_IMAGE_TAG} image already exists${NC}"
     elif [[ ${BUILD_IMAGES} -eq 0 ]]; then
       # This will take some time - about < 1 hour
-      echo -e "\n${PURPLE}Building msl/node-server image${NC}"
+      echo -e "\n${PURPLE}Building ${SERVER_IMAGE_TAG} image${NC}"
       echo -e "\n${PURPLE}ETA: ~1hour${NC}"
       docker build -t ${SERVER_IMAGE_TAG} -f Dockerfile .
     else
-      echo -e "\n${PURPLE}Pulling anram88/msl-server image${NC}"
+      echo -e "\n${PURPLE}Pulling ${SERVER_IMAGE_TAG} image${NC}"
       docker pull ${SERVER_IMAGE_TAG}
     fi
   fi
@@ -166,9 +166,9 @@ function runContainer {
   if [[ ${RUN_CONTAINERS} -eq 0 ]]; then
     if [[ ${CASSANDRA} -eq 0 ]]; then
       # Start the container
-      docker ps -a | grep 'msl/cassandra'
+      docker ps -a | grep "${CASSANDRA_IMAGE_TAG}"
       if [[ $? -eq 0 ]]; then
-       docker stop msl-cassandra && docker rm msl-cassandra
+       docker stop ${CASSANDRA_CONTAINER_NAME} && docker rm ${CASSANDRA_CONTAINER_NAME}
       fi
       docker run \
             -d \
@@ -196,9 +196,9 @@ function runContainer {
 
     if [[ ${BUILD_SERVER} -eq 0 ]]; then
       # Start the container
-      docker ps -a | grep 'msl/node-server'
+      docker ps -a | grep "${SERVER_CONTAINER_NAME}"
       if [[ $? -eq 0 ]]; then
-       docker stop msl-node-server && docker rm msl-node-server
+       docker stop ${SERVER_CONTAINER_NAME} && docker rm ${SERVER_CONTAINER_NAME}
       fi
       docker run \
             -d -p 3000:3000 \
@@ -224,11 +224,11 @@ function runContainer {
       echo -e "\n" && progressAnimation 5 "Starting up account edge"
 
       docker exec -d ${SERVER_CONTAINER_NAME} \
-        bash -c "cd ../server/msl-login-edge && java -jar target/msl-login-edge-1.1.0-jar-with-dependencies.jar"
+        bash -c "npm run login-edge-server >> login_edge_log"
       echo -e "\n" && progressAnimation 5 "Starting up login edge"
 
       docker exec -d ${SERVER_CONTAINER_NAME} \
-        bash -c "cd ../server/msl-ratings-edge && java -jar target/msl-ratings-edge-1.1.0-jar-with-dependencies.jar"
+        bash -c "npm run ratings-edge-server >> ratings_edge_log"
       echo -e "\n" && progressAnimation 5 "Starting up ratings edge"
 
       docker exec -d ${SERVER_CONTAINER_NAME} \

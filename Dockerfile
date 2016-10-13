@@ -13,7 +13,7 @@ RUN     echo -e "\n\033[0;35mCOMPLETED LOADING CONTENTS..................\033[0m
 # INSTALLING SOME OS BASIC DEPS
 RUN     echo -e "\n\033[0;35mINSTALLING BASIC OS ........................\033[0m\n"
 RUN     apt-get update
-RUN     apt-get install -y software-properties-common libpng-dev sudo build-essential python
+RUN     apt-get install -y software-properties-common libpng-dev sudo python
 RUN     sudo apt-get -y install wget git-core curl
 
 # INSTALL JAVA
