@@ -224,12 +224,12 @@ function runContainer {
       echo -e "\n" && progressAnimation 5 "Starting up account edge"
 
       docker exec -d ${SERVER_CONTAINER_NAME} \
-        bash -c "npm run login-edge-server >> login_edge_log"
-      echo -e "\n" && progressAnimation 7 "Starting up login edge"
+        bash -c "cd ../server/msl-login-edge && java -jar target/msl-login-edge-1.1.0-jar-with-dependencies.jar"
+      echo -e "\n" && progressAnimation 5 "Starting up login edge"
 
       docker exec -d ${SERVER_CONTAINER_NAME} \
-        bash -c "npm run ratings-edge-server >> ratings_edge_log"
-      echo -e "\n" && progressAnimation 7 "Starting up ratings edge"
+        bash -c "cd ../server/msl-ratings-edge && java -jar target/msl-ratings-edge-1.1.0-jar-with-dependencies.jar"
+      echo -e "\n" && progressAnimation 5 "Starting up ratings edge"
 
       docker exec -d ${SERVER_CONTAINER_NAME} \
         bash -c "bash ../bin/setup.sh -h -y -v && npm rebuild node-sass && npm run deploy"
