@@ -11,10 +11,10 @@ BUILD_IMAGES=1
 START_DOCKER_MACHINE=1
 RUN_CONTAINERS=1
 
-SERVER_IMAGE_TAG=anram88/msl-server
+SERVER_IMAGE_TAG=kenzandocker/msl-server
 SERVER_CONTAINER_NAME=msl-server
 
-CASSANDRA_IMAGE_TAG=anram88/msl-cassandra
+CASSANDRA_IMAGE_TAG=kenzandocker/msl-cassandra
 CASSANDRA_CONTAINER_NAME=msl-cassandra
 
 while [[ $# > 0 ]]; do

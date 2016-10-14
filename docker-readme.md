@@ -48,7 +48,7 @@ and in a different terminal
 
 2. Start cassandra/msl container
 
-`docker run -d --name msl-cassandra -p 7000-7001:7000-7001 -p 9042:9042 -p 7199:7199 -p 9160:9160 msl/cassandra`
+`docker run -d --name msl-cassandra -p 7000-7001:7000-7001 -p 9042:9042 -p 7199:7199 -p 9160:9160 kenzandocker/msl-cassandra`
 
 3. Upload data into db running container
 
@@ -74,7 +74,7 @@ docker run \
          --name msl-node-server \
          --net=host -ti \
          --entrypoint=/bin/bash \
-         msl/node-server
+         kenzandocker/msl-server
 ```
 
 3. Start Up Edger Services
