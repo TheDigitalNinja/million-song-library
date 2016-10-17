@@ -71,28 +71,50 @@ function confirm {
 }
 
 function updateHostFile {
-  cat /etc/hosts | grep -E "\b(^|\s*)?$(docker-machine ip dev)\s+msl.kenzanlabs.com\b"
-  if [[ $? -ne 0 ]]; then
-    matches=$(cat /etc/hosts | grep -E -c "\b(^|\s*)?([0-9]{1,3}.){3}[0-9]{1,3}\s+msl.kenzanlabs.com\b")
+  UNAME_S=$(uname -s)
+
+  if [[ ${UNAME_S} =~ Linux* ]]; then
+    docker_machine_ip=127.0.0.1
+  else
+    docker_machine_ip=$(docker-machine ip dev)
+  fi
+
+  function promtManualUpdate {
+    cat /etc/hosts
+    echo -e "${GREEN}\nPlease update your /etc/hosts file with $(docker-machine ip dev) msl.kenzanlabs.com\n${NC}"
+    if ! confirm "Continue ?" ; then
+      echo -e "\n${RED}DONE${NC}"
+      exit 1;
+    fi
+  }
+
+  if [[ ${UNAME_S} =~ Linux* || ${UNAME_S} =~ Darwin* ]] ; then
     sed --version | grep -i 'gnu'
-    if [[ ${matches} -gt 1 || $? -ne 0 ]]; then
-      cat /etc/hosts
-      echo -e "${GREEN}\nPlease update your /etc/hosts file with $(docker-machine ip dev) msl.kenzanlabs.com\n${NC}"
-      if ! confirm "Continue ?" ; then
-        echo -e "\n${RED}DONE${NC}"
-        exit 1;
+    if [[ $? -ne 0 ]]; then
+      promtManualUpdate
+    else
+
+      cat /etc/hosts | grep -E -c  "\b(^|\s*)?${docker_machine_ip}\s+msl.kenzanlabs.com\b"
+
+      if [[ $? -ge 1 ]]; then
+        echo -e "\n${PURPLE}host is already part of /etc/hosts${NC}"
+      else
+        matches=$(cat /etc/hosts | grep -E -c "\b(^|\s*)?([0-9]{1,3}.){3}[0-9]{1,3}\s+msl.kenzanlabs.com\b")
+        if [[ ${matches} -eq 1 ]]; then
+          echo -e "${PURPLE}Attempting to edit host file::::::::::::::::::::::${NC}"
+          echo -e "${PURPLE}Creating /etc/hosts.bak file${NC}"
+          sudo sed -i.bak -E "s/^([[:digit:]]{1,3}.?){4}\s+msl.kenzanlabs.com/${docker_machine_ip}  msl.kenzanlabs.com/g" /etc/hosts
+          cat /etc/hosts
+        elif [[ ${matches} -eq 0 ]]; then
+          echo -e "\n${PURPLE}Attempting to edit host file${NC}\n"
+          sudo echo "${docker_machine_ip} msl.kenzanlabs.com" >> /etc/hosts
+        elif [[ ${matches} -gt 1 ]]; then
+          promtManualUpdate
+        fi
       fi
-    elif [[  ${matches} -eq 1 ]]; then
-      echo -e "${PURPLE}Attempting to edit host file::::::::::::::::::::::${NC}"
-      echo -e "${PURPLE}Creating /etc/hosts.bak file${NC}"
-      sudo sed -i.bak -E "s/^([[:digit:]]{1,3}.?){4}\s+msl.kenzanlabs.com/$(docker-machine ip dev)  msl.kenzanlabs.com/g" /etc/hosts
-      cat /etc/hosts
-    elif [[  ${matches} -eq 0 ]]; then
-      echo -e "\n${PURPLE}Attempting to edit host file${NC}\n"
-      sudo echo "$(docker-machine ip dev) msl.kenzanlabs.com" >> /etc/hosts
     fi
   else
-    echo -e "\n${PURPLE}host is already part of /etc/hosts${NC}"
+    promtManualUpdate
   fi
 }
 
