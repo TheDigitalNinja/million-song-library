@@ -81,7 +81,7 @@ function updateHostFile {
 
   function promtManualUpdate {
     cat /etc/hosts
-    echo -e "${GREEN}\nPlease update your /etc/hosts file with $(docker-machine ip dev) msl.kenzanlabs.com\n${NC}"
+    echo -e "${GREEN}\nPlease update your /etc/hosts file with ${docker_machine_ip} msl.kenzanlabs.com\n${NC}"
     if ! confirm "Continue ?" ; then
       echo -e "\n${RED}DONE${NC}"
       exit 1;
