@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+UNAME_S=$(uname -s)
+
 PURPLE='\033[0;35m'
 RED='\033[0;31m'
 GREEN='\033[1;36m'
@@ -70,51 +72,11 @@ function confirm {
   fi
 }
 
-function updateHostFile {
-  UNAME_S=$(uname -s)
-
+function getDockerIp {
   if [[ ${UNAME_S} =~ Linux* ]]; then
     docker_machine_ip=127.0.0.1
   else
     docker_machine_ip=$(docker-machine ip dev)
-  fi
-
-  function promtManualUpdate {
-    cat /etc/hosts
-    echo -e "${GREEN}\nPlease update your /etc/hosts file with ${docker_machine_ip} msl.kenzanlabs.com\n${NC}"
-    if ! confirm "Continue ?" ; then
-      echo -e "\n${RED}DONE${NC}"
-      exit 1;
-    fi
-  }
-
-  if [[ ${UNAME_S} =~ Linux* || ${UNAME_S} =~ Darwin* ]] ; then
-    sed --version | grep -i 'gnu'
-    if [[ $? -ne 0 ]]; then
-      promtManualUpdate
-    else
-
-      cat /etc/hosts | grep -E -c  "\b(^|\s*)?${docker_machine_ip}\s+msl.kenzanlabs.com\b"
-
-      if [[ $? -ge 1 ]]; then
-        echo -e "\n${PURPLE}host is already part of /etc/hosts${NC}"
-      else
-        matches=$(cat /etc/hosts | grep -E -c "\b(^|\s*)?([0-9]{1,3}.){3}[0-9]{1,3}\s+msl.kenzanlabs.com\b")
-        if [[ ${matches} -eq 1 ]]; then
-          echo -e "${PURPLE}Attempting to edit host file::::::::::::::::::::::${NC}"
-          echo -e "${PURPLE}Creating /etc/hosts.bak file${NC}"
-          sudo sed -i.bak -E "s/^([[:digit:]]{1,3}.?){4}\s+msl.kenzanlabs.com/${docker_machine_ip}  msl.kenzanlabs.com/g" /etc/hosts
-          cat /etc/hosts
-        elif [[ ${matches} -eq 0 ]]; then
-          echo -e "\n${PURPLE}Attempting to edit host file${NC}\n"
-          sudo echo "${docker_machine_ip} msl.kenzanlabs.com" >> /etc/hosts
-        elif [[ ${matches} -gt 1 ]]; then
-          promtManualUpdate
-        fi
-      fi
-    fi
-  else
-    promtManualUpdate
   fi
 }
 
@@ -132,19 +94,23 @@ function progressAnimation {
 }
 
 function startUpDockerMachine {
-  if [[ ${START_DOCKER_MACHINE} -eq 0 ]]; then
-    docker-machine status dev
-    if [[ $? -ne 0 ]]; then
-      echo -e "\n${PURPLE}Creating dev machine${NC}"
-      docker-machine create --driver virtualbox --virtualbox-memory 4000 dev
-    fi
+  if [[ ${UNAME_S} =~ Linux* ]]; then
+    echo -e "\n${PURPLE}No docker-machine command. Docker ip is: 127.0.0.1${NC}"
+  else
+    if [[ ${START_DOCKER_MACHINE} -eq 0 ]]; then
+      docker-machine status dev
+      if [[ $? -ne 0 ]]; then
+        echo -e "\n${PURPLE}Creating dev machine${NC}"
+        docker-machine create --driver virtualbox --virtualbox-memory 4000 dev
+      fi
 
-    docker-machine env dev
-    if [[ $? -ne 0 ]]; then
-      docker-machine start dev
       docker-machine env dev
+      if [[ $? -ne 0 ]]; then
+        docker-machine start dev
+        docker-machine env dev
+      fi
+      eval $(docker-machine env dev)
     fi
-    eval $(docker-machine env dev)
   fi
 }
 
@@ -223,42 +189,35 @@ function runContainer {
        docker stop ${SERVER_CONTAINER_NAME} && docker rm ${SERVER_CONTAINER_NAME}
       fi
       docker run \
-            -d -p 3000:3000 \
-            -p 3002:3002 \
-            -p 3003:3003 \
-            -p 3004:3004 \
-            -p 9004:9004 \
-            -p 9003:9003 \
-            -p 9002:9002 \
-            -p 9001:9001 \
+            -dt -p 3000-3004:3000-3004 -p 9001-9004:9001-9004 \
             --name ${SERVER_CONTAINER_NAME} \
-            --net=host -ti \
+            --net=host \
             --entrypoint=/bin/bash \
             ${SERVER_IMAGE_TAG}                       #image to run
 
       # Start MSL
       docker exec -d ${SERVER_CONTAINER_NAME} \
         bash -c "npm run catalog-edge-server >> catalog_edge_log"
-      echo -e "\n" && progressAnimation 5 "Starting up catalog edge"
+      echo -e "\n" && progressAnimation 3 "Starting up catalog edge"
 
       docker exec -d ${SERVER_CONTAINER_NAME} \
         bash -c "npm run account-edge-server >> account_edge_log"
-      echo -e "\n" && progressAnimation 5 "Starting up account edge"
+      echo -e "\n" && progressAnimation 3 "Starting up account edge"
 
       docker exec -d ${SERVER_CONTAINER_NAME} \
         bash -c "npm run login-edge-server >> login_edge_log"
-      echo -e "\n" && progressAnimation 5 "Starting up login edge"
+      echo -e "\n" && progressAnimation 3 "Starting up login edge"
 
       docker exec -d ${SERVER_CONTAINER_NAME} \
         bash -c "npm run ratings-edge-server >> ratings_edge_log"
-      echo -e "\n" && progressAnimation 5 "Starting up ratings edge"
+      echo -e "\n" && progressAnimation 3 "Starting up ratings edge"
 
       docker exec -d ${SERVER_CONTAINER_NAME} \
-        bash -c "bash ../bin/setup.sh -h -y -v && npm rebuild node-sass && npm run deploy"
+        bash -c "npm rebuild node-sass && npm run deploy-dev"
 
-      echo -e "\n" && progressAnimation 120 "Starting msl.kenzanlabs.com"
+      echo -e "\n" && progressAnimation 120 "Starting MSL"
 
-      echo -e "\nAll set, go to ${GREEN}http://msl.kenzanlabs.com:3000${NC}"
+      echo -e "\n\nAll set, go to ${GREEN}http://${docker_machine_ip}:3000${NC}\n"
     fi
 
   else
@@ -268,7 +227,7 @@ function runContainer {
 
 function init {
   cd ..
-  updateHostFile
+  getDockerIp
   startUpDockerMachine
   cassandraSetup
   setupServer
@@ -276,6 +235,4 @@ function init {
 }
 
 init
-
-
 exit 0;

@@ -23,6 +23,6 @@ RUN     cd ../bin/provision && sudo chmod +x java-setup.sh && bash java-setup.sh
 RUN     echo -e "\n\033[0;35mRUNNING SETUP SCRIPT........................\033[0m\n"
 RUN     cd ../bin/provision && sudo chmod +x validate-requirements.sh
 RUN     cd ../bin/provision && sudo chmod +x basic-dep-setup.sh && bash ./basic-dep-setup.sh
-RUN     cd ../bin && sudo chmod +x setup.sh && bash setup.sh -h -n -s -v -y
+RUN     cd ../bin && sudo chmod +x setup.sh && bash setup.sh -n -s -v -y
 
 ENTRYPOINT ["/bin/bash"]
