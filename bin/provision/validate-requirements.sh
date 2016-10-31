@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-RED='\033[0;31m'
-NC='\033[0m' # no color
 UNAME_S=$(uname -s)
 
 # Verify OS
@@ -20,13 +18,31 @@ while [[ $# > 0 ]]; do
 shift
 done
 
+function validatePorts {
+  if lsof -i:3000; then
+    echo "MSL Required Port 3000 in use"
+  elif lsof -i:3002; then
+    echo "MSL Required Port 3002 in use"
+  elif lsof -i:3003; then
+    echo "MSL Required Port 3003 in use"
+  elif lsof -i:3004; then
+    echo "MSL Required Port 3004 in use"
+  elif lsof -i:9042; then
+    echo "MSL Required Port 9042 for Cassandra in use"
+  else
+    echo "Ports 3000, 3002, 3003, 3004, and 9042 are open for business"
+    
+    exit 1;
+  fi
+}
+
 function validateOS {
   if [[ ${UNAME_S} =~ Linux* ]] ; then
     echo "Linux OS"
   elif [[ ${UNAME_S} =~ Darwin* ]] ; then
     echo "OS X machine"
   else
-    echo -e "${RED}ERROR: Invalid OS${NC}"
+    echo "Invalid OS"
     exit 1;
   fi
 }
@@ -36,8 +52,8 @@ function verifyGit {
       echo found git executable in PATH
       _git=git
   else
-      echo -e "${RED}ERROR: please install git 2.2.x${NC}"
-      exit 1;
+      echo "please install git 2.2.x"
+      exit;
   fi
 
   if [[ "$_git" ]]; then
@@ -49,7 +65,7 @@ function verifyGit {
       if [[ "${version:0:1}" -ge "2" && "${version:2:1}" -ge "2" ]]; then
           echo "git version is greater than 2.2.x"
       else
-          echo -e "${RED}ERROR: please install git 2.2.x${NC}"
+          echo "git version is less than 2.2.x"
           exit 1;
       fi
   fi
@@ -59,7 +75,7 @@ function verifyNpm {
   if type -p npm; then
       echo found npm executable in PATH
   else
-      echo -e "${RED}ERROR: Please install npm 2.7.x or greater${NC}"
+      echo "Please install npm 2.7.x or greater"
       exit 1;
   fi
 }
@@ -68,7 +84,7 @@ function verifyNode {
   if type -p node; then
       echo found nodejs executable in PATH
   else
-      echo -e "${RED}ERROR: Please install nodejs version 0.12.x or greater${NC}"
+      echo "Please install nodejs version 0.12.x or greater"
       exit 1;
   fi
 }
@@ -81,7 +97,7 @@ function verifyJava {
       echo found java executable in JAVA_HOME
       _java="$JAVA_HOME/bin/java"
   else
-      echo -e "${RED}ERROR: please install java version 1.8 or greater${NC}"
+      echo "please install java version 1.8 or greater"
       exit 1;
   fi
 
@@ -91,17 +107,18 @@ function verifyJava {
       if [[ "${version:0:1}" -eq "1" && "${version:2:1}" -eq "8" ]]; then
           echo "java version is greater than 1.8"
       else
-          echo -e "${RED}ERROR: please install java version 1.8 or greater${NC}"
+          echo "java version is less than 1.8"
           exit 1;
       fi
   fi
 }
 
 function verifyCassandra {
+  echo "cassandra directory: " ${path_to_cassandra}
   if [[ ${path_to_cassandra} ]]; then
       if [[ ! -d "${path_to_cassandra}/bin" ]]; then
           if [[ ! -d "${path_to_cassandra}bin" ]]; then
-            echo -e "${RED}ERROR: wrong cassandra directory provided${NC}"
+            echo "wrong cassandra directory provided"
             exit 1
           else
             CASSANDRA_BIN="${path_to_cassandra}bin";
@@ -118,7 +135,7 @@ function verifyCassandra {
       echo found cassandra executable in CASSANDRA_HOME
       _cassandra="$CASSANDRA_BIN/cassandra"
   else
-      echo -e "${RED}ERROR: Please download/install cassandra version 2.1.11${NC}"
+      echo "Please download/install cassandra version 2.1.11"
       exit 1;
   fi
 
@@ -128,7 +145,7 @@ function verifyCassandra {
       if [[ "${version:0:1}" -eq "2" && "${version:2:1}" -eq "1" &&  "${version:4:2}" -eq "11" ]]; then
           echo "cassandra version found 2.1.11"
       else
-          echo -e "${RED}ERROR: Please download/install cassandra version 2.1.11${NC}"
+          echo "Please see about using cassandra version 2.1.11"
           exit 1;
       fi
   fi
@@ -139,7 +156,7 @@ function verifyMaven {
       echo found mvn executable in PATH
       _mvn=mvn
   else
-      echo -e "${RED}ERROR: please install maven version 3.3.9 or greater${NC}"
+      echo "please install maven version 3.3.9 or greater"
       exit 1;
   fi
 
@@ -153,12 +170,12 @@ function verifyMaven {
       if [[ $? -eq 0 ]]; then
         echo "Maven 3.3.9 found"
       else
-      echo -e "${RED}ERROR: please install maven version 3.3.9 or greater${NC}"
+        echo "No maven 3.3.9 or greater was found"
         exit 1;
       fi
     fi
   else
-    echo -e "${RED}ERROR: please install maven version 3.3.9 or greater${NC}"
+    echo "No maven 3.3.9 or greater was found"
     exit 1;
   fi
 }
@@ -169,7 +186,7 @@ function validateXcode {
       majorv=${version:6:1}
       echo  "xcode version found: " $majorv
    else
-    echo -e "${RED}ERROR: Please install xcode tools${NC}"
+    echo "Please see about installing xcode tools"
     exit 1;
    fi
 }
@@ -183,27 +200,38 @@ function verifyNvm {
   if type -p nvm; then
       echo found nvm executable in PATH
   else
-    echo -e "${RED}ERROR: Please install nvm${NC}"
+    echo "Please install nvm"
     exit 1;
   fi
 }
 
-function init {
-  validateOS
-  verifyJava
-  verifyNode
-  verifyNpm
-  verifyNvm
-  verifyMaven
+verifyCassandra
+if [[ $? -ne 0 ]]; then exit 1; fi
 
-  if [[ ${UNAME_S} =~ Darwin* ]] ; then
-    validateXcode
-  fi
+validateOS
+if [[ $? -ne 0 ]]; then exit 1; fi
+verifyJava
+if [[ $? -ne 0 ]]; then exit 1; fi
+verifyNode
+if [[ $? -ne 0 ]]; then exit 1; fi
+verifyNpm
+if [[ $? -ne 0 ]]; then exit 1; fi
+verifyNvm
+if [[ $? -ne 0 ]]; then exit 1; fi
+verifyMaven
+if [[ $? -ne 0 ]]; then exit 1; fi
 
-  if [[ ${path_to_cassandra} ]]; then
-    verifyCassandra
-  fi
-}
+validatePorts
+if [[ $? -ne 0 ]]; then exit 1; fi
 
-init
+if [[ ${UNAME_S} =~ Darwin* ]] ; then
+  validateXcode
+  if [[ $? -ne 0 ]]; then exit 1; fi
+fi
+
+if [[ ${path_to_cassandra} ]]; then
+  verifyCassandra
+  if [[ $? -ne 0 ]]; then exit 1; fi
+fi
+
 exit 0;
