@@ -30,9 +30,6 @@ while [[ $# > 0 ]]; do
     -g|--git)
     RUN_GIT=0
     ;;
-    -h|--host)
-    ADD_HOST=0
-    ;;
     -s|--server)
     BUILD_SERVER=0
     ;;
@@ -57,7 +54,6 @@ while [[ $# > 0 ]]; do
     echo -e "${GREEN}-g|--git ...................................... update and pull git sources and sub-modules"
     echo -e "${GREEN}-c <cassandra-path>|--cassandra <path> ........ build cassandra keyspace and load data"
     echo -e "${GREEN}-v|--skip-validation .......................... skips validation of required installed software"
-    echo -e "${GREEN}-h|--host ..................................... add host to /etc/hosts"
     echo -e "${GREEN}-y|--auto-yes....... .......................... automatically accepts bootstrapping${NC}"
     exit 1;
     ;;
@@ -82,24 +78,6 @@ function validateTools {
     bash validate-requirements.sh
   fi
   if [[ $? -ne 0 ]]; then exit 1; fi
-}
-
-## ADD HOSTNAME ===========================================================
-## ========================================================================
-
-function addHostName {
-  if [[ ${ADD_HOST} -eq 0 ]]; then
-    echo -e "\n${GREEN} ADDING HOST NAME... ${NC}\n"
-    grep 'msl.kenzanlabs.com' -q /etc/hosts && FOUND=1 || FOUND=0
-
-    if [[ $FOUND -eq 0 ]]; then
-      echo -e "\n${PURPLE}Your HOST file is being modified${NC}"
-      echo "0.0.0.0 msl.kenzanlabs.com" | sudo tee -a  /etc/hosts
-      error_handler $? "unable to add msl.kenzanlabs.com to /etc/hosts file"
-      echo -e "\n${ORANGE} COMPLETED ADDING HOST NAME ${NC}"
-      else echo -e "\n${GRAY}msl.kenzanlabs.com already part of /etc/hosts${NC}"
-    fi
-  fi
 }
 
 ## PULL AND UPDATE MILLION-SONG-LIBRARY REPO ==============================
@@ -247,7 +225,6 @@ function buildCassandra {
 
 function bootstrap () {
   echo -e "\n${GREEN} BOOTSTRAPPING... ${NC}\n"
-  addHostName
   runGit
   buildMslPages
   buildServer

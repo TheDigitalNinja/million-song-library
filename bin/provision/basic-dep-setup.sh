@@ -146,17 +146,20 @@ function install_asciidoctor {
 ## RESOLVE GLOBAL DEP =====================================================
 ## ========================================================================
 
-command -v mvn >/dev/null && echo "mvn Found In \$PATH" || install_maven
-command -v npm >/dev/null && echo "npm Found In \$PATH" || install_npm
-command -v nvm >/dev/null && echo "nvm Found In \$PATH" || install_nvm
-command -v bower >/dev/null && echo "bower Found In \$PATH" || install_bower
-command -v gem >/dev/null && echo "gem Found In \$PATH" || install_gem
+function init {
+  command -v mvn >/dev/null && echo "mvn Found In \$PATH" || install_maven
+  command -v npm >/dev/null && echo "npm Found In \$PATH" || install_npm
+  command -v nvm >/dev/null && echo "nvm Found In \$PATH" || install_nvm
+  command -v bower >/dev/null && echo "bower Found In \$PATH" || install_bower
+  command -v gem >/dev/null && echo "gem Found In \$PATH" || install_gem
 
-which asciidoctor
-if [[ $? -ne 0 ]]; then
-  install_asciidoctor
-else
-  echo "asciidoctor Found In \$PATH"
-fi
+  which asciidoctor
+  if [[ $? -ne 0 ]]; then
+    install_asciidoctor
+  else
+    echo "asciidoctor Found In \$PATH"
+  fi
+}
 
+init
 exit 0;

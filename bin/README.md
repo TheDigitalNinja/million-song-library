@@ -31,7 +31,6 @@ To run setup:
 
    - `-s | --server` builds the server
    - `-g | --git` updates and pull Git sources and sub-modules
-   - `-h | --host` updates /etc/hosts file with msl.kenzanlab.com mapping
    - `-v | --skip-validation` updates Node and Bower resources
    - `-n | --node` updates Node and Bower resources
    - `-c cassandra-path | --cassandra path` builds the Cassandra keyspace and loads data (Cassandra must be running)
@@ -52,4 +51,4 @@ To run setup:
    
    - *Mac or Windows:* `npm run serve-all`
    
-7. Open a Web browser and point it to: `msl.kenzanlabs.com:3000`
+7. Open a Web browser and point it to: `localhost:3000`

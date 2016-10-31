@@ -9,14 +9,12 @@ Use `docker-setup.sh` under `/bin`
 
 Options:
 
-```
--r|--run ......................................... start up containers - off by default
--c|--cassandra ................................... build only cassandra image and container
--m|--machine ..................................... docker machine startup (skipped by default)
--d|--default ..................................... build everything
--s|--server|-n|--node ............................ build only server image and container 
--b|--build ....................................... build images. Default will attempt to pull images from dockerhub
-```
+   - `-r|--run` start up containers - off by default
+   - `-c|--cassandra` build only cassandra image and container
+   - `-m|--machine` docker machine startup (skipped by default)
+   - `-d|--default` builds and runs both msl-cassandra and msl-server image
+   - `-s|--server|-n|--node` build only server image and container
+   - `-b|--build` build images. Default will attempt to pull images from dockerhub
 
 >**NOTE** Once script is done one can view the logs to verify everything went well by typing
 `docker exec -it msl-node-server bash -c "tail -f deploy_log"` 
@@ -27,7 +25,7 @@ and in a different terminal
 # MANUAL SETUP
 
 
-## Hook up terminal to docker machine
+## Hook up terminal to docker machine 
 
 1. Create machine with at least 4g of memory
 `docker-machine create --driver virtualbox --virtualbox-memory 4000 dev`
@@ -36,13 +34,17 @@ and in a different terminal
 3. Log into machine before running any of the following commands
 `docker-machine env dev`
 `eval $(docker-machine env dev)`
-4. Update your `/etc/hosts` file with dev docker-machine ip
-`sudo echo "$(docker-machine ip dev) msl.kenzanlabs.com" >> /etc/hosts`
+
+>**NOTE** On linux machine docker-machine command doesn't exist. Machine ip is by default localhost (127.0.0.1)
 
 
 ## CASSANDRA
 
-1. Build cassandra image
+1. Pull cassandra image
+
+`docker pull kenzandocker/msl-cassandra`
+
+1.1. Optionally, build cassandra image (ETA: 15min)
 
 `docker build -t msl/cassandra -f cassandra.dockerfile .`
 
@@ -58,7 +60,11 @@ and in a different terminal
 
 ## SERVER
 
-1. Build msl container
+1. Pull msl server container
+
+`docker pull kenzandocker/msl-server`
+
+1.1. Optionally build node-server (ETA: 1hour)
 
 `docker build -t msl/node-server -f Dockerfile .`
 
@@ -77,17 +83,17 @@ docker run \
          kenzandocker/msl-server
 ```
 
-3. Start Up Edger Services
+3. Start Up Edge Services
 
-`docker exec -it msl-node-server  npm run serve-all`
+`docker exec -it msl-node-server npm run serve-all`
 
-4. Start FE
+4. Start FE and docs
 
 ```
 docker exec \
       -it \
       msl-node-server \
-      bash -c "bash npm rebuild node-sass && npm run serve-prod"
+      bash -c "npm rebuild node-sass && npm run deploy-dev"
 ```
 
 >**NOTE**: -it - interactive | -d - dameon
