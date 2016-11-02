@@ -198,19 +198,19 @@ function runContainer {
       # Start MSL
       docker exec -d ${SERVER_CONTAINER_NAME} \
         bash -c "npm run catalog-edge-server >> catalog_edge_log"
-      echo -e "\n" && progressAnimation 3 "Starting up catalog edge"
+      echo -e "\n" && progressAnimation 5 "Starting up catalog edge"
 
       docker exec -d ${SERVER_CONTAINER_NAME} \
         bash -c "npm run account-edge-server >> account_edge_log"
-      echo -e "\n" && progressAnimation 3 "Starting up account edge"
+      echo -e "\n" && progressAnimation 5 "Starting up account edge"
 
       docker exec -d ${SERVER_CONTAINER_NAME} \
         bash -c "npm run login-edge-server >> login_edge_log"
-      echo -e "\n" && progressAnimation 3 "Starting up login edge"
+      echo -e "\n" && progressAnimation 5 "Starting up login edge"
 
       docker exec -d ${SERVER_CONTAINER_NAME} \
         bash -c "npm run ratings-edge-server >> ratings_edge_log"
-      echo -e "\n" && progressAnimation 3 "Starting up ratings edge"
+      echo -e "\n" && progressAnimation 5 "Starting up ratings edge"
 
       docker exec -d ${SERVER_CONTAINER_NAME} \
         bash -c "npm rebuild node-sass && npm run deploy-dev"
