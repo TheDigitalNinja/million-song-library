@@ -32,7 +32,6 @@ function validatePorts {
   else
     echo "Ports 3000, 3002, 3003, 3004, and 9042 are open for business"
     
-    exit 1;
   fi
 }
 
@@ -299,6 +298,7 @@ function askYesOrNo() {
     esac
 }
 
+init() {
 verifyNvm
 verifyMaven
 verifyNpm
@@ -310,3 +310,8 @@ validatePorts
 verifyCassandra
 
 exit 0;
+}
+
+echo "Start of Million Song Library validation of required installations script..."
+ init
+echo "finished Million Song Library validation of required installations."
