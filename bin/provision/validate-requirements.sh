@@ -48,8 +48,8 @@ function validateOS {
      if [[  "${version_string:0:2}" -gt "10"  || ("${version_string:0:2}" -eq "11" && "${version_string:3:2}" -gt "10") ]]; then
           echo "OS X version is greater than ${minVersion} (El Capitan)"
           printf "\t** The OS X version installed on this machine (${version_string}) is newer than the version needed for MSL (${minVersion}). MSL has not been tested using this version of OS X, so you may experience problems. "
-          if [[ "no" == $(ask_yes_or_no "Would you like to continue the installation of MSL using the version of OS X that is currently installed?") || \
-            "no" == $(ask_yes_or_no "Are you *really* sure?") ]]
+          if [[ "no" == $(askYesOrNo "Would you like to continue the installation of MSL using the version of OS X that is currently installed?") || \
+            "no" == $(askYesOrNo "Are you *really* sure?") ]]
           then
             echo "Quitting MSL installation."
             exit 1
@@ -86,8 +86,8 @@ function verifyGit {
       if [[ "${version:12:1}" -ge "2" && "${version:14:1}" -ge "2" ]]; then
           echo "git version is greater than ${minVersion}"
           printf "\t** The version of git installed on this machine (${version}) is newer than the ${minVersion} version needed for MSL. MSL has not been tested using this version of git, so you may experience problems. "
-          if [[ "no" == $(ask_yes_or_no "Would you like to continue the installation of MSL using the version of git that is currently installed?") || \
-            "no" == $(ask_yes_or_no "Are you *really* sure?") ]]
+          if [[ "no" == $(askYesOrNo "Would you like to continue the installation of MSL using the version of git that is currently installed?") || \
+            "no" == $(askYesOrNo "Are you *really* sure?") ]]
           then
             echo "Quitting MSL installation."
             exit 1
@@ -116,8 +116,8 @@ function verifyNpm {
 
        if [[ "${version_string:0:1}" -ge "2" && "${version_string:2:2}" -ge "12" ]]; then
           printf "\t** The version of npm installed on this machine (${version_string}) is newer than the version needed for MSL (${minVersion}). MSL has not been tested using this version of npm, so you may experience problems. "
-          if [[ "no" == $(ask_yes_or_no "Would you like to continue the installation of MSL using the version of npm that is currently installed?") || \
-            "no" == $(ask_yes_or_no "Are you *really* sure?") ]]
+          if [[ "no" == $(askYesOrNo "Would you like to continue the installation of MSL using the version of npm that is currently installed?") || \
+            "no" == $(askYesOrNo "Are you *really* sure?") ]]
           then
             echo "Quitting MSL installation."
             exit 1
@@ -148,8 +148,8 @@ function verifyNode {
       if [[ "${version:0:1}" -ge "0" || "${version:2:1}" -ge "12" ]]; then
           echo "node version is greater than ${minVersion}"
           printf "\t** The version of node installed on this machine (${version}) is newer than the ${minVersion} version needed for MSL. MSL has not been tested using this version of Node, so you may experience problems. "
-          if [[ "no" == $(ask_yes_or_no "Would you like to continue the installation of MSL using the version of Node that is currently installed?") || \
-            "no" == $(ask_yes_or_no "Are you *really* sure?") ]]
+          if [[ "no" == $(askYesOrNo "Would you like to continue the installation of MSL using the version of Node that is currently installed?") || \
+            "no" == $(askYesOrNo "Are you *really* sure?") ]]
           then
             echo "Quitting MSL installation."
             exit 1
@@ -181,8 +181,8 @@ function verifyJava {
       if [[ "${version:0:1}" -eq "1" && "${version:2:1}" -gt "8" ]]; then
           echo "java version is greater than ${minVersion}"
           printf "\t** The version of Java installed on this machine (${version}) is newer than the ${minVersion} version needed for MSL. MSL has not been tested using this version of Java, so you may experience problems. "
-          if [[ "no" == $(ask_yes_or_no "Would you like to continue the installation of MSL using the version of Java that is currently installed?") || \
-            "no" == $(ask_yes_or_no "Are you *really* sure?") ]]
+          if [[ "no" == $(askYesOrNo "Would you like to continue the installation of MSL using the version of Java that is currently installed?") || \
+            "no" == $(askYesOrNo "Are you *really* sure?") ]]
           then
             echo "Quitting MSL installation."
             exit 1
@@ -253,8 +253,8 @@ function verifyMaven {
       echo "Maven 3.4.x found"
         echo "Maven version is greater than ${minVersion}"
           printf "\t** The version of Maven installed on this machine (${version}) is newer than the ${mvn} version needed for MSL. MSL has not been tested using this version of Maven, so you may experience problems. "
-          if [[ "no" == $(ask_yes_or_no "Would you like to continue the installation of MSL using the version of Maven that is currently installed?") || \
-            "no" == $(ask_yes_or_no "Are you *really* sure?") ]]
+          if [[ "no" == $(askYesOrNo "Would you like to continue the installation of MSL using the version of Maven that is currently installed?") || \
+            "no" == $(askYesOrNo "Are you *really* sure?") ]]
           then
             echo "Quitting MSL installation."
             exit 1
@@ -291,7 +291,7 @@ function verifyNvm {
   fi
 }
 
-function ask_yes_or_no() {
+function askYesOrNo() {
     read -p "$1 ([y]es or [N]o): "
     case $(echo $REPLY | tr '[A-Z]' '[a-z]') in
         y|yes) echo "yes" ;;
@@ -300,27 +300,13 @@ function ask_yes_or_no() {
 }
 
 verifyNvm
-if [[ $? -ne 0 ]]; then exit 1; fi
 verifyMaven
-if [[ $? -ne 0 ]]; then exit 1; fi
 verifyNpm
-if [[ $? -ne 0 ]]; then exit 1; fi
 validateOS
-if [[ $? -ne 0 ]]; then exit 1; fi
 verifyJava
-if [[ $? -ne 0 ]]; then exit 1; fi
 verifyNode
-if [[ $? -ne 0 ]]; then exit 1; fi
 verifyGit
-if [[ $? -ne 0 ]]; then exit 1; fi
 validatePorts
-if [[ $? -ne 0 ]]; then exit 1; fi
 verifyCassandra
-if [[ $? -ne 0 ]]; then exit 1; fi
-
-#if [[ ${path_to_cassandra} ]]; then
-#  verifyCassandra
-#  if [[ $? -ne 0 ]]; then exit 1; fi
-#fi
 
 exit 0;
