@@ -235,7 +235,7 @@ function verifyCassandra {
 }
 
 function verifyMaven {
-    minVersion=3.9.9
+    minVersion=3.3.9
   if type -p mvn; then
       echo found mvn executable in PATH
       _mvn=mvn
