@@ -159,7 +159,6 @@ function init {
   command -v nvm >/dev/null && echo "nvm Found In \$PATH" || install_nvm
   command -v bower >/dev/null && echo "bower Found In \$PATH" || install_bower
   command -v gem >/dev/null && echo "gem Found In \$PATH" || install_gem
-
   command -v java >/dev/null && echo "java Found In \$PATH" || install_java
   command -v cassandra >/dev/null && echo "cassandra Found In \$PATH" || install_cassandra
 
