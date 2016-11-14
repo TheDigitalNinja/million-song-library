@@ -114,7 +114,6 @@ function startUpDockerMachine {
   fi
 }
 
-# SETUP CASSANDRA
 function cassandraSetup {
   if [[ ${CASSANDRA} -eq 0 ]]; then
     # Create the image
@@ -128,7 +127,43 @@ function cassandraSetup {
       echo -e "\n${PURPLE}Pulling ${CASSANDRA_IMAGE_TAG} image${NC}"
       docker pull ${CASSANDRA_IMAGE_TAG}
     fi
+
+    if [[ ${RUN_CONTAINERS} -eq 0 ]]; then
+      runCassandraContainer
+    else
+      echo -e "\n${GREEN}Skipped running cassandra container\nSee readme to run container and start service"
+    fi
   fi
+}
+
+function runCassandraContainer {
+  # Start the container
+  docker ps -a | grep "${CASSANDRA_IMAGE_TAG}"
+  if [[ $? -eq 0 ]]; then
+   docker stop ${CASSANDRA_CONTAINER_NAME} && docker rm ${CASSANDRA_CONTAINER_NAME}
+  fi
+  docker run \
+        -d \
+        --name ${CASSANDRA_CONTAINER_NAME} \
+        -p 7000-7001:7000-7001 \
+        -p 9042:9042 \
+        -p 7199:7199 \
+        -p 9160:9160 \
+        ${CASSANDRA_IMAGE_TAG}
+
+  # Start data upload
+  echo -e "\n${PURPLE}Uploading csv data into msl/cassandra container${NC}"
+  RETRIES=0
+  docker exec -it ${CASSANDRA_CONTAINER_NAME} cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+  while [[ $? -ne 0 && ${RETRIES} -lt 5 ]]; do
+    progressAnimation 10 "Attempting to load csv files"
+    echo -e "\n"
+    RETRIES=$((RETRIES + 1))
+    docker exec -it ${CASSANDRA_CONTAINER_NAME} cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
+  done
+  if [[ $? -ne 0 ]]; then echo -e "\n${RED}Error: unable to load csv data into DB${NC}" && exit 1; fi
+  docker exec -it ${CASSANDRA_CONTAINER_NAME} cqlsh -e "SOURCE 'msl_dat_latest.cql';";
+  if [[ $? -ne 0 ]]; then echo -e "\n${RED}Error: unable to load csv data into DB${NC}" && exit 1; fi
 }
 
 # SETUP NODE & SERVER
@@ -147,82 +182,51 @@ function setupServer {
       echo -e "\n${PURPLE}Pulling ${SERVER_IMAGE_TAG} image${NC}"
       docker pull ${SERVER_IMAGE_TAG}
     fi
+
+    if [[ ${RUN_CONTAINERS} -eq 0 ]]; then
+      runServerContainer
+    else
+      echo -e "\n${GREEN}Skipped running server container\nSee readme to run container and start service"
+    fi
   fi
 }
 
-function runContainer {
-  if [[ ${RUN_CONTAINERS} -eq 0 ]]; then
-    if [[ ${CASSANDRA} -eq 0 ]]; then
-      # Start the container
-      docker ps -a | grep "${CASSANDRA_IMAGE_TAG}"
-      if [[ $? -eq 0 ]]; then
-       docker stop ${CASSANDRA_CONTAINER_NAME} && docker rm ${CASSANDRA_CONTAINER_NAME}
-      fi
-      docker run \
-            -d \
-            --name ${CASSANDRA_CONTAINER_NAME} \
-            -p 7000-7001:7000-7001 \
-            -p 9042:9042 \
-            -p 7199:7199 \
-            -p 9160:9160 \
-            ${CASSANDRA_IMAGE_TAG}
-
-      # Start data upload
-      echo -e "\n${PURPLE}Uploading csv data into msl/cassandra container${NC}"
-      RETRIES=0
-      docker exec -it ${CASSANDRA_CONTAINER_NAME} cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
-      while [[ $? -ne 0 && ${RETRIES} -lt 5 ]]; do
-        progressAnimation 10 "Attempting to load csv files"
-        echo -e "\n"
-        RETRIES=$((RETRIES + 1))
-        docker exec -it ${CASSANDRA_CONTAINER_NAME} cqlsh -e "SOURCE 'msl_ddl_latest.cql';";
-      done
-      if [[ $? -ne 0 ]]; then echo -e "\n${RED}Error: unable to load csv data into DB${NC}" && exit 1; fi
-      docker exec -it ${CASSANDRA_CONTAINER_NAME} cqlsh -e "SOURCE 'msl_dat_latest.cql';";
-      if [[ $? -ne 0 ]]; then echo -e "\n${RED}Error: unable to load csv data into DB${NC}" && exit 1; fi
-    fi
-
-    if [[ ${BUILD_SERVER} -eq 0 ]]; then
-      # Start the container
-      docker ps -a | grep "${SERVER_CONTAINER_NAME}"
-      if [[ $? -eq 0 ]]; then
-       docker stop ${SERVER_CONTAINER_NAME} && docker rm ${SERVER_CONTAINER_NAME}
-      fi
-      docker run \
-            -dt -p 3000-3004:3000-3004 -p 9001-9004:9001-9004 \
-            --name ${SERVER_CONTAINER_NAME} \
-            --net=host \
-            --entrypoint=/bin/bash \
-            ${SERVER_IMAGE_TAG}                       #image to run
-
-      # Start MSL
-      docker exec -d ${SERVER_CONTAINER_NAME} \
-        bash -c "npm run catalog-edge-server >> catalog_edge_log"
-      echo -e "\n" && progressAnimation 5 "Starting up catalog edge"
-
-      docker exec -d ${SERVER_CONTAINER_NAME} \
-        bash -c "npm run account-edge-server >> account_edge_log"
-      echo -e "\n" && progressAnimation 5 "Starting up account edge"
-
-      docker exec -d ${SERVER_CONTAINER_NAME} \
-        bash -c "npm run login-edge-server >> login_edge_log"
-      echo -e "\n" && progressAnimation 5 "Starting up login edge"
-
-      docker exec -d ${SERVER_CONTAINER_NAME} \
-        bash -c "npm run ratings-edge-server >> ratings_edge_log"
-      echo -e "\n" && progressAnimation 5 "Starting up ratings edge"
-
-      docker exec -d ${SERVER_CONTAINER_NAME} \
-        bash -c "npm rebuild node-sass && npm run deploy-dev"
-
-      echo -e "\n" && progressAnimation 120 "Starting MSL"
-
-      echo -e "\n\nAll set, go to ${GREEN}http://${docker_machine_ip}:3000${NC}\n"
-    fi
-
-  else
-    echo -e "\n${GREEN}Skipped running containers\nSee readme to run containers and start services"
+function runServerContainer {
+  # Start the container
+  docker ps -a | grep "${SERVER_CONTAINER_NAME}"
+  if [[ $? -eq 0 ]]; then
+   docker stop ${SERVER_CONTAINER_NAME} && docker rm ${SERVER_CONTAINER_NAME}
   fi
+  docker run \
+        -dt -p 3000-3004:3000-3004 -p 9001-9004:9001-9004 \
+        --name ${SERVER_CONTAINER_NAME} \
+        --net=host \
+        --entrypoint=/bin/bash \
+        ${SERVER_IMAGE_TAG}                       #image to run
+
+  # Start MSL
+  docker exec -d ${SERVER_CONTAINER_NAME} \
+    bash -c "npm run catalog-edge-server >> catalog_edge_log"
+  echo -e "\n" && progressAnimation 5 "Starting up catalog edge"
+
+  docker exec -d ${SERVER_CONTAINER_NAME} \
+    bash -c "npm run account-edge-server >> account_edge_log"
+  echo -e "\n" && progressAnimation 5 "Starting up account edge"
+
+  docker exec -d ${SERVER_CONTAINER_NAME} \
+    bash -c "npm run login-edge-server >> login_edge_log"
+  echo -e "\n" && progressAnimation 5 "Starting up login edge"
+
+  docker exec -d ${SERVER_CONTAINER_NAME} \
+    bash -c "npm run ratings-edge-server >> ratings_edge_log"
+  echo -e "\n" && progressAnimation 5 "Starting up ratings edge"
+
+  docker exec -d ${SERVER_CONTAINER_NAME} \
+    bash -c "npm rebuild node-sass && npm run deploy-dev"
+
+  echo -e "\n" && progressAnimation 120 "Starting MSL"
+
+  echo -e "\n\nAll set, go to ${GREEN}http://${docker_machine_ip}:3000${NC}\n"
 }
 
 function init {
@@ -231,7 +235,6 @@ function init {
   startUpDockerMachine
   cassandraSetup
   setupServer
-  runContainer
 }
 
 init
