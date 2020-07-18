@@ -119,7 +119,7 @@
     "jquery": "^1.11.3",
     "json-refs": "^1.3.0",
     "json2yaml": "^1.0.3",
-    "lodash": "^3.10.0",
+    "lodash": "^4.17.19",
     "npm-run-all": "^1.5.1",
     "slick-carousel": "1.5.8",
     "swagger-tools": "0.9.7",
